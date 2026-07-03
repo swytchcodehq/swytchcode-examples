@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Uninstall an app from a customer's HubSpot account",
+      "canonical_id": "appinstalls.v3.install"
+    }
+  ]
+}

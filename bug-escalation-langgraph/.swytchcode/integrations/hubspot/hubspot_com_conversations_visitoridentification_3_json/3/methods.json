@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a temporary visitor identification token",
+      "canonical_id": "visitor-identification.v3.tokens.create"
+    }
+  ]
+}

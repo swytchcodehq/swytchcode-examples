@@ -1,0 +1,295 @@
+{
+  "editor": "none",
+  "integrations": {
+    "resend.resend_api": {
+      "version": "v1.5.0"
+    },
+    "stripe.stripe_api": {
+      "version": "2026-02-25.clover"
+    },
+    "hubspot.hubspot_com_crm_contacts_3_json": {
+      "version": "3"
+    }
+  },
+  "mode": "production",
+  "tools": {
+    "hubspot.crm.contacts.create": {
+      "desc": "Create a contact with the given properties and return a copy of the object, including the ID.",
+      "inputs": [
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "associations": {
+                  "required": false,
+                  "type": "array"
+                },
+                "properties": {
+                  "required": true,
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "hubspot.hubspot_com_crm_contacts_3_json@3",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "archived": {
+              "required": false,
+              "type": "boolean"
+            },
+            "createdAt": {
+              "required": true,
+              "type": "string"
+            },
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "properties": {
+              "required": true,
+              "type": "object"
+            },
+            "updatedAt": {
+              "required": true,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Create a HubSpot contact",
+      "type": "method"
+    },
+    "resend.email.create": {
+      "desc": "Send an email",
+      "inputs": [
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "from": {
+                  "required": true,
+                  "type": "string"
+                },
+                "html": {
+                  "required": false,
+                  "type": "string"
+                },
+                "subject": {
+                  "required": true,
+                  "type": "string"
+                },
+                "text": {
+                  "required": false,
+                  "type": "string"
+                },
+                "to": {
+                  "required": true,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "resend.resend@v1.5.0",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Send an email",
+      "type": "method"
+    },
+    "customers.customer.create": {
+      "desc": "<p>Creates a new customer object.</p>",
+      "inputs": [
+        {
+          "address": {
+            "TYPE": "ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "balance": {
+            "TYPE": "INT",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "business_name": {
+            "TYPE": "ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "cash_balance": {
+            "TYPE": "OBJECT",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "description": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "email": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "expand": {
+            "TYPE": "[]STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "individual_name": {
+            "TYPE": "ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "invoice_prefix": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "invoice_settings": {
+            "TYPE": "OBJECT",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "metadata": {
+            "TYPE": "ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "name": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "next_invoice_sequence": {
+            "TYPE": "INT",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "payment_method": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "phone": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "preferred_locales": {
+            "TYPE": "[]STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "shipping": {
+            "TYPE": "ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "source": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "tax": {
+            "TYPE": "OBJECT",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "tax_exempt": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "tax_id_data": {
+            "TYPE": "[]ANY",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "test_clock": {
+            "TYPE": "STRING",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        },
+        {
+          "validate": {
+            "TYPE": "BOOL",
+            "REQUIRED": false,
+            "LOCATION": "body"
+          }
+        }
+      ],
+      "integration": "stripe.stripe_sdk@2026-02-25.clover",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create a customer",
+      "type": "method"
+    }
+  },
+  "version": "1"
+}

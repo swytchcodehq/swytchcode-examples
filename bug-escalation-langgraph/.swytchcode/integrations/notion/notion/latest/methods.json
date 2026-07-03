@@ -1,0 +1,129 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new comment",
+      "canonical_id": "comments.comment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new comment",
+      "canonical_id": "comments.comment.create_c247"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new query for a database",
+      "canonical_id": "databases.query.create_df44"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new query for a database",
+      "canonical_id": "databases.query.create_61aa"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new query for a database",
+      "canonical_id": "databases.query.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new search query",
+      "canonical_id": "search.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new databases",
+      "canonical_id": "databases.databas.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new pages",
+      "canonical_id": "pages.page.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new pages",
+      "canonical_id": "pages.page.create_5bd2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific block by its ID",
+      "canonical_id": "blocks.block.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a block by its ID",
+      "canonical_id": "blocks.block.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch page properties by ID",
+      "canonical_id": "pages.page.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a database object by its ID",
+      "canonical_id": "databases.databas.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a paginated list of workspace users",
+      "canonical_id": "users.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific property for a page",
+      "canonical_id": "pages.property.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get child blocks for a given block ID",
+      "canonical_id": "blocks.children.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get comments for a specific block with pagination",
+      "canonical_id": "comments.comment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my user profile",
+      "canonical_id": "users.me.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user details by ID",
+      "canonical_id": "users.user.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a database record by its ID",
+      "canonical_id": "databases.databas.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a database with new information",
+      "canonical_id": "databases.databas.update_f8ba"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a page with specified properties",
+      "canonical_id": "pages.page.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific page's content",
+      "canonical_id": "pages.page.update_d84b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update block children",
+      "canonical_id": "blocks.children.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update block content",
+      "canonical_id": "blocks.block.update"
+    }
+  ]
+}

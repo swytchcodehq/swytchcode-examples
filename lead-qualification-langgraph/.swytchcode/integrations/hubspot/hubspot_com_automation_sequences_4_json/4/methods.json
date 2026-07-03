@@ -1,0 +1,24 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Enroll a user in an automation sequence",
+      "canonical_id": "automation.v4.enrollments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a contact's marketing automation sequence enrollments",
+      "canonical_id": "automation.v4.contact.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific automation sequence by its ID",
+      "canonical_id": "automation.v4.sequences.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get automation sequences for a user",
+      "canonical_id": "automation.v4.sequences.list"
+    }
+  ]
+}

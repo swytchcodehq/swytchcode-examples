@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific domain by its ID",
+      "canonical_id": "cms.v3.domains.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve existing domains with filtering and sorting options",
+      "canonical_id": "cms.v3.domains.list"
+    }
+  ]
+}

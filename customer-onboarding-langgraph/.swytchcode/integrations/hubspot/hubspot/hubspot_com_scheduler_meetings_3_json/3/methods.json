@@ -1,0 +1,24 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Book a meeting using a meeting link",
+      "canonical_id": "scheduler.v3.book.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Book a meeting using a meeting link slug",
+      "canonical_id": "scheduler.v3.book.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find available meeting times for a specific booking link",
+      "canonical_id": "scheduler.v3.availabilityPage.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List meeting links with filtering options",
+      "canonical_id": "scheduler.v3.meetingLinks.list"
+    }
+  ]
+}

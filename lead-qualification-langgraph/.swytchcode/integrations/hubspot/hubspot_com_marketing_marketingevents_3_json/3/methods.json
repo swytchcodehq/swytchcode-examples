@@ -1,0 +1,194 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of marketing campaigns",
+      "canonical_id": "marketing.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple campaigns in a batch",
+      "canonical_id": "marketing.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add contacts to a marketing event",
+      "canonical_id": "marketing.v3.attendance.create_45b9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add contacts to a marketing event by email",
+      "canonical_id": "marketing.v3.attendance.create_6afc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add contacts to a marketing event by email",
+      "canonical_id": "marketing.v3.attendance.create_f8cf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple marketing events by ID",
+      "canonical_id": "marketing.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate a list with a marketing event",
+      "canonical_id": "marketing.v3.lists.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate a list with a marketing event using external IDs",
+      "canonical_id": "marketing.v3.lists.update_139"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a marketing event by its ID",
+      "canonical_id": "marketing.v3.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Complete a marketing event",
+      "canonical_id": "marketing.v3.complete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new marketing event",
+      "canonical_id": "marketing.v3.events.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a marketing event by ID",
+      "canonical_id": "marketing.v3.events.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple marketing events",
+      "canonical_id": "marketing.v3.upsert.create_c4ef"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a marketing event by its external ID",
+      "canonical_id": "marketing.v3.events.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a marketing event by its ID",
+      "canonical_id": "marketing.v3.marketingEvents.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete multiple marketing events by their unique identifiers",
+      "canonical_id": "marketing.v3.events.delete_2482"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find marketing events by external ID",
+      "canonical_id": "marketing.v3.identifiers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a breakdown of a contact's marketing event participations",
+      "canonical_id": "marketing.v3.breakdown.get_f3af"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get lists associated with a marketing event",
+      "canonical_id": "marketing.v3.lists.get_5225"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event application settings",
+      "canonical_id": "marketing.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event associated lists by external account and event IDs",
+      "canonical_id": "marketing.v3.lists.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event participation breakdown by external account and event IDs",
+      "canonical_id": "marketing.v3.breakdown.get_1876"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event participation breakdown by ID",
+      "canonical_id": "marketing.v3.breakdown.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event participation counts by account and event ID",
+      "canonical_id": "marketing.v3.participations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing event participation counts by ID",
+      "canonical_id": "marketing.v3.participations.get_e4c5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record a subscriber state by contact ID. + Record a subscriber state between multiple HubSpot contacts and a marketing e",
+      "canonical_id": "marketing.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record marketing event attendance for contacts",
+      "canonical_id": "marketing.v3.attendance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a list from a marketing event",
+      "canonical_id": "marketing.v3.lists.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a list from a marketing event",
+      "canonical_id": "marketing.v3.lists.delete_a8c5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all marketing events with their properties",
+      "canonical_id": "marketing.v3.marketingEvents.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a marketing event using its external ID",
+      "canonical_id": "marketing.v3.events.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve marketing event details by its object ID",
+      "canonical_id": "marketing.v3.marketingEvents.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search marketing events by external event ID",
+      "canonical_id": "marketing.v3.search.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update marketing event details by external ID",
+      "canonical_id": "marketing.v3.events.update_5a3b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update marketing event details by ID",
+      "canonical_id": "marketing.v3.marketingEvents.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update marketing event settings for an application",
+      "canonical_id": "marketing.v3.settings.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple marketing events by object ID",
+      "canonical_id": "marketing.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert subscriber state for contacts by email",
+      "canonical_id": "marketing.v3.emailUpsert.create"
+    }
+  ]
+}

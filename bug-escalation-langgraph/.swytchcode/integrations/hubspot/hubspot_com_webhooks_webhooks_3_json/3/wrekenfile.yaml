@@ -1,0 +1,615 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_hapikey: <HAPIKEY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  webhooks.v3.settings.get:
+    SUMMARY: Read webhook settings
+    DESC: Retrieve the webhook settings for the specified app, including the webhook’s target URL, throttle configuration, and create/update date.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/v3/{appId}/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SettingsResponse)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SettingsResponse)
+        RETURNVAR: webhooks_v3_settings_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_settings_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.settings.get
+  webhooks.v3.settings.update:
+    SUMMARY: Update webhook settings
+    DESC: Update webhook settings for the specified app.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /webhooks/v3/{appId}/settings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SettingsChangeRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SettingsResponse)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SettingsChangeRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SettingsResponse)
+        RETURNVAR: webhooks_v3_settings_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_settings_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.settings.update
+  webhooks.v3.settings.delete:
+    SUMMARY: Delete webhook settings
+    DESC: Delete the webhook settings for the specified app. Event subscriptions will not be deleted, but will be paused until another webhook is created.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webhooks/v3/{appId}/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_settings_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.settings.delete
+  webhooks.v3.subscriptions.get:
+    SUMMARY: Read an event subscription
+    DESC: Retrieve a specific event subscription by ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions/{subscriptionId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SubscriptionResponse)
+    INPUTS:
+      - subscriptionId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SubscriptionResponse)
+        RETURNVAR: webhooks_v3_subscriptions_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_subscriptions_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.subscriptions.get
+  webhooks.v3.subscriptions.delete:
+    SUMMARY: Delete event subscription
+    DESC: Delete an existing event subscription by ID.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions/{subscriptionId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - subscriptionId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_subscriptions_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.subscriptions.delete
+  webhooks.v3.subscriptions.update:
+    SUMMARY: Update an event subscription
+    DESC: Update an existing event subscription by ID.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions/{subscriptionId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SubscriptionPatchRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SubscriptionResponse)
+    INPUTS:
+      - subscriptionId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SubscriptionPatchRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SubscriptionResponse)
+        RETURNVAR: webhooks_v3_subscriptions_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_subscriptions_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.subscriptions.update
+  webhooks.v3.subscriptions.get_4637:
+    SUMMARY: Read event subscriptions
+    DESC: Retrieve event subscriptions for the specified app.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SubscriptionListResponse)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SubscriptionListResponse)
+        RETURNVAR: webhooks_v3_subscriptions_get_4637
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_subscriptions_get_4637_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.subscriptions.get_4637
+  webhooks.v3.subscriptions.create:
+    SUMMARY: Create an event subscription
+    DESC: Create new event subscription for the specified app.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SubscriptionCreateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SubscriptionResponse)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SubscriptionCreateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SubscriptionResponse)
+        RETURNVAR: webhooks_v3_subscriptions_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_subscriptions_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.subscriptions.create
+  webhooks.v3.batch.update:
+    SUMMARY: Batch create event subscriptions
+    DESC: Batch create event subscriptions for the specified app.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks/v3/{appId}/subscriptions/batch/update
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSubscriptionBatchUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSubscriptionResponse)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputSubscriptionBatchUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSubscriptionResponse)
+        RETURNVAR: webhooks_v3_batch_update
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseSubscriptionResponseWithErrors)
+        RETURNVAR: webhooks_v3_batch_update_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: webhooks_v3_batch_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: webhooks.v3.batch.update
+STRUCTS:
+  ThrottlingSettings:
+    - name: maxConcurrentRequests
+      NAME: maxConcurrentRequests
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The maximum number of concurrent HTTP requests HubSpot will attempt to make to your app.
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  BatchResponseSubscriptionResponse:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The date and time when the batch operation was completed.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time when the batch operation was requested.
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The date and time when the batch operation started.
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: A collection of related links associated with the batch operation.
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SubscriptionResponse)"
+      TYPE: "[]STRUCT(SubscriptionResponse)"
+      REQUIRED: true
+      comment: The list of results from the batch operation.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The current status of the batch operation, which can be PENDING, PROCESSING, CANCELED, or COMPLETE.
+  SubscriptionResponse:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: When this subscription was created. Formatted as milliseconds from the [Unix epoch](#).
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The identifier of the object type associated with the subscription.
+    - name: propertyName
+      NAME: propertyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The internal name of the property being monitored for changes. Only applies when `eventType` is `propertyChange`.
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Determines if the subscription is active or paused.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of event to listen for. Can be one of `create`, `delete`, `deletedForPrivacy`, or `propertyChange`.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the subscription.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When this subscription was last updated. Formatted as milliseconds from the [Unix epoch](#).
+  SubscriptionListResponse:
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SubscriptionResponse)"
+      TYPE: "[]STRUCT(SubscriptionResponse)"
+      REQUIRED: true
+      comment: List of event subscriptions for your app
+  SettingsChangeRequest:
+    - name: throttling
+      NAME: throttling
+      type: STRUCT(ThrottlingSettings)
+      TYPE: STRUCT(ThrottlingSettings)
+      REQUIRED: true
+    - name: targetUrl
+      NAME: targetUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A publicly available URL for HubSpot to call where event payloads will be delivered.
+  SubscriptionPatchRequest:
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Determines if the subscription is active or paused.
+  BatchResponseSubscriptionResponseWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SubscriptionResponse)"
+      TYPE: "[]STRUCT(SubscriptionResponse)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SettingsResponse:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: When this subscription was created. Formatted as milliseconds from the [Unix epoch](#).
+    - name: throttling
+      NAME: throttling
+      type: STRUCT(ThrottlingSettings)
+      TYPE: STRUCT(ThrottlingSettings)
+      REQUIRED: true
+    - name: targetUrl
+      NAME: targetUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A publicly available URL for HubSpot to call where event payloads will be delivered. See [link-so-some-doc](#) for details about the format of these event payloads.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When this subscription was last updated. Formatted as milliseconds from the [Unix epoch](#).
+  BatchInputSubscriptionBatchUpdateRequest:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SubscriptionBatchUpdateRequest)"
+      TYPE: "[]STRUCT(SubscriptionBatchUpdateRequest)"
+      REQUIRED: true
+  SubscriptionBatchUpdateRequest:
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  SubscriptionCreateRequest:
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: propertyName
+      NAME: propertyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The internal name of the property to monitor for changes. Only applies when `eventType` is `propertyChange`.
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Determines if the subscription is active or paused. Defaults to false.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of event to listen for. Can be one of `create`, `delete`, `deletedForPrivacy`, or `propertyChange`.

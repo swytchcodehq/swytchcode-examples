@@ -1,0 +1,334 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple blog authors",
+      "canonical_id": "cms.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a blog author to a multi-language group",
+      "canonical_id": "cms.v3.attachToLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new language variation for a blog author",
+      "canonical_id": "cms.v3.createLanguageVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple blog authors at once",
+      "canonical_id": "cms.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a blog author from a multi-language group",
+      "canonical_id": "cms.v3.detachFromLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple blog authors by ID",
+      "canonical_id": "cms.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a blog author as the primary language for a multi-language group",
+      "canonical_id": "cms.v3.setNewLangPrimary.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update blog author languages for multi-language groups",
+      "canonical_id": "cms.v3.updateLanguages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple blog authors at once",
+      "canonical_id": "cms.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a blog to a multi-language group",
+      "canonical_id": "cms.v3.attachToLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new language variation for a blog",
+      "canonical_id": "cms.v3.createLanguageVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a blog from a multi-language group",
+      "canonical_id": "cms.v3.detachFromLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all blog post revisions by blog ID",
+      "canonical_id": "cms.v3.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a new primary language for a multi-language blog",
+      "canonical_id": "cms.v3.setNewLangPrimary.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update blog multi-language settings by setting new languages",
+      "canonical_id": "cms.v3.updateLanguages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple landing page folders",
+      "canonical_id": "cms.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a site page to a multi-language group",
+      "canonical_id": "cms.v3.attachToLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clone a landing page",
+      "canonical_id": "cms.v3.clone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new language variation for a site page",
+      "canonical_id": "cms.v3.createLanguageVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple landing page folders at once",
+      "canonical_id": "cms.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a site page from a multi-language group",
+      "canonical_id": "cms.v3.detachFromLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific past version of a site page",
+      "canonical_id": "cms.v3.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the draft version of a landing page",
+      "canonical_id": "cms.v3.draft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Push landing page draft edits live",
+      "canonical_id": "cms.v3.pushLive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset a landing page draft to its live version",
+      "canonical_id": "cms.v3.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a previous version of a Site Page",
+      "canonical_id": "cms.v3.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a site page to a previous draft version",
+      "canonical_id": "cms.v3.restoreToDraft.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of landing pages by their IDs",
+      "canonical_id": "cms.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Schedule a site page to be published",
+      "canonical_id": "cms.v3.schedule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a landing page as the primary language for a multi-language group",
+      "canonical_id": "cms.v3.setNewLangPrimary.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a landing page draft",
+      "canonical_id": "cms.v3.draft.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update languages for a multi-language landing page group",
+      "canonical_id": "cms.v3.updateLanguages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple site pages at once",
+      "canonical_id": "cms.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple blog posts by ID",
+      "canonical_id": "cms.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a blog post to a multi-language group",
+      "canonical_id": "cms.v3.attachToLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clone a blog post to create a copy",
+      "canonical_id": "cms.v3.clone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a language variation for a blog post",
+      "canonical_id": "cms.v3.createLanguageVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new blog post with specified content",
+      "canonical_id": "cms.v3.posts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple blog posts in a single request",
+      "canonical_id": "cms.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a blog post by its ID",
+      "canonical_id": "cms.v3.posts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a blog post from its multi-language group",
+      "canonical_id": "cms.v3.detachFromLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch blog posts with filtering and sorting",
+      "canonical_id": "cms.v3.posts.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific blog post by its ID",
+      "canonical_id": "cms.v3.posts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific revision of a blog post",
+      "canonical_id": "cms.v3.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all past revisions for a blog post",
+      "canonical_id": "cms.v3.revisions.get_38e2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the full draft of a blog post",
+      "canonical_id": "cms.v3.draft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a blog post draft to live",
+      "canonical_id": "cms.v3.pushLive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset a blog post draft to its live version",
+      "canonical_id": "cms.v3.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a blog post to a previous draft version",
+      "canonical_id": "cms.v3.restoreToDraft.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a blog post to a previous revision",
+      "canonical_id": "cms.v3.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of blog posts by ID",
+      "canonical_id": "cms.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Schedule a blog post for future publication",
+      "canonical_id": "cms.v3.schedule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a new primary language for a multi-language content group",
+      "canonical_id": "cms.v3.setNewLangPrimary.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a blog post by ID",
+      "canonical_id": "cms.v3.posts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a blog post draft by ID",
+      "canonical_id": "cms.v3.draft.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update languages for a multi-language blog post group",
+      "canonical_id": "cms.v3.updateLanguages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple blog posts at once",
+      "canonical_id": "cms.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple blog tags by their IDs",
+      "canonical_id": "cms.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a blog tag to a multi-language group",
+      "canonical_id": "cms.v3.attachToLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new language variation for a blog tag",
+      "canonical_id": "cms.v3.createLanguageVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple blog tags at once",
+      "canonical_id": "cms.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a blog tag from a multi-language group",
+      "canonical_id": "cms.v3.detachFromLangGroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch multiple blog tags by ID",
+      "canonical_id": "cms.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a blog tag as the primary language for a multi-language group",
+      "canonical_id": "cms.v3.setNewLangPrimary.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update languages for multi-language blog tags",
+      "canonical_id": "cms.v3.updateLanguages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple blog tags at once",
+      "canonical_id": "cms.v3.batch.update"
+    }
+  ]
+}

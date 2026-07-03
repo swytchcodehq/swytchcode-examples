@@ -1,0 +1,119 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new brand for your properties",
+      "canonical_id": "brands.brand.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create and upload a reconciliation report to Google",
+      "canonical_id": "reconciliationreports.reconciliationreport.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an account link",
+      "canonical_id": "api.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a reconciliation report with optional filters",
+      "canonical_id": "api.resource.execute_257b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a summary of price accuracy",
+      "canonical_id": "priceaccuracyviews:summarize.priceaccuracyviews:summarize.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all price coverage history for a parent",
+      "canonical_id": "pricecoverageviews.pricecoverageview.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get partner account brands",
+      "canonical_id": "brands.brand.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get partner account icons",
+      "canonical_id": "icons.icon.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get summarized hotel information",
+      "canonical_id": "hotelviews:summarize.hotelviews:summarize.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest price coverage view",
+      "canonical_id": "pricecoverageviews:latest.pricecoverageviews:latest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Link a Hotel Center account to a Google Ads account",
+      "canonical_id": "accountlinks.accountlink.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List account links for a Hotel Center account",
+      "canonical_id": "accountlinks.accountlink.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available price accuracy views for a parent",
+      "canonical_id": "priceaccuracyviews.priceaccuracyview.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List hotel views for a given parent",
+      "canonical_id": "hotelviews.hotelview.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List reconciliation reports by date range",
+      "canonical_id": "reconciliationreports.reconciliationreport.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query free booking links report for an account",
+      "canonical_id": "freebookinglinksreportviews:query.freebookinglinksreportviews:query.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query participation reports for an account",
+      "canonical_id": "participationreportviews:query.participationreportviews:query.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query property performance reports for an account",
+      "canonical_id": "propertyperformancereportviews:query.propertyperformancereportviews:query.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a brand's details",
+      "canonical_id": "api.resource.execute_1eaf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Live on Google status for multiple hotels",
+      "canonical_id": "hotels:setliveongoogle.hotels:setliveongoogle.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a new icon for review",
+      "canonical_id": "icons.icon.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate a reconciliation report",
+      "canonical_id": "reconciliationreports:validate.reconciliationreports:validate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify listings for VR partners and retrieve data issues",
+      "canonical_id": "listings:verify.listings:verify.create"
+    }
+  ]
+}

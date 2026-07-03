@@ -1,0 +1,339 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a contact to a specific segment.",
+      "canonical_id": "contacts.segment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel the scheduled email by its ID.",
+      "canonical_id": "emails.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a list of contacts (deprecated, use Segments instead).",
+      "canonical_id": "audiences.audience.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new API key.",
+      "canonical_id": "api-keys.api-key.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new broadcast with specified options.",
+      "canonical_id": "broadcasts.broadcast.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new contact in the system.",
+      "canonical_id": "contacts.contact.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new contact property.",
+      "canonical_id": "contact-properties.contact-property.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new domain.",
+      "canonical_id": "domains.domain.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new segment with specified options.",
+      "canonical_id": "segments.segment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new template.",
+      "canonical_id": "templates.template.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new topic with specified options.",
+      "canonical_id": "topics.topic.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new webhook configuration.",
+      "canonical_id": "webhooks.webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a contact by ID or email.",
+      "canonical_id": "contacts.contact.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a contact property by its ID.",
+      "canonical_id": "contact-properties.contact-property.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a draft broadcast by its ID.",
+      "canonical_id": "broadcasts.broadcast.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a segment by its ID.",
+      "canonical_id": "segments.segment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a template by its ID.",
+      "canonical_id": "templates.template.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a topic by its ID.",
+      "canonical_id": "topics.topic.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing API key by providing the API key ID.",
+      "canonical_id": "api-keys.api-key.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing domain by providing the domain ID.",
+      "canonical_id": "domains.domain.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing webhook by providing the webhook ID.",
+      "canonical_id": "webhooks.webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Duplicate a template by creating a copy with a new ID.",
+      "canonical_id": "templates.duplicate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a template by specifying its ID.",
+      "canonical_id": "templates.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a contact from a segment.",
+      "canonical_id": "contacts.segment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an existing audience by its ID. Note: Deprecated - Use Segments instead.",
+      "canonical_id": "audiences.audience.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of API keys with optional limit, after, and before parameters.",
+      "canonical_id": "api-keys.api-key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of audiences (Deprecated: Use Segments instead).",
+      "canonical_id": "audiences.audience.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of broadcasts with optional limit, after, and before parameters.",
+      "canonical_id": "broadcasts.broadcast.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of contact properties with options for limiting and pagination.",
+      "canonical_id": "contact-properties.contact-property.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of contacts with optional segmentation, limit, and pagination.",
+      "canonical_id": "contacts.contact.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of domains with optional limit, after, and before parameters.",
+      "canonical_id": "domains.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of emails with optional limit, after, and before parameters.",
+      "canonical_id": "emails.email.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of received emails with options to limit, filter by date, and paginate.",
+      "canonical_id": "emails.receiving.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of segments with optional limit, after, and before parameters.",
+      "canonical_id": "segments.segment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of templates with optional limit, after, and before parameters.",
+      "canonical_id": "templates.template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of topics with optional limit, after, and before parameters.",
+      "canonical_id": "topics.topic.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of webhooks with optional limit, after, and before parameters.",
+      "canonical_id": "webhooks.webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single audience by ID. Note: Use Segments instead as these endpoints will be removed.",
+      "canonical_id": "audiences.audience.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single broadcast by its ID.",
+      "canonical_id": "broadcasts.broadcast.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single contact by ID or email.",
+      "canonical_id": "contacts.contact.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single domain by providing the domain ID.",
+      "canonical_id": "domains.domain.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single received email by providing the email ID.",
+      "canonical_id": "emails.receiving.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single segment by its ID.",
+      "canonical_id": "segments.segment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single template by its ID.",
+      "canonical_id": "templates.template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single topic by its ID.",
+      "canonical_id": "topics.topic.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific attachment for a sent email.",
+      "canonical_id": "emails.attachment.get_24df"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific attachment from a received email.",
+      "canonical_id": "emails.receiving.attachments.get_62bb"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific contact property by ID.",
+      "canonical_id": "contact-properties.contact-property.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific email by its ID.",
+      "canonical_id": "emails.email.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific webhook by providing its ID.",
+      "canonical_id": "webhooks.webhook.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attachments for a received email by providing the email ID, with optional parameters for limiting results and filtering by date.",
+      "canonical_id": "emails.receiving.attachments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attachments for a specific email by email ID, with optional parameters for limiting and filtering results.",
+      "canonical_id": "emails.attachment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve segments associated with a specific contact by providing the contact ID.",
+      "canonical_id": "contacts.segment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve topics associated with a specific contact by providing the contact ID.",
+      "canonical_id": "contacts.topic.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an email with the specified content.",
+      "canonical_id": "emails.email.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send or schedule a broadcast for a specific ID.",
+      "canonical_id": "broadcasts.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger up to 100 batch emails simultaneously.",
+      "canonical_id": "emails.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single contact's information by ID or email.",
+      "canonical_id": "contacts.contact.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single email by providing the email ID.",
+      "canonical_id": "emails.email.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing broadcast with new information.",
+      "canonical_id": "broadcasts.broadcast.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing contact property with new information.",
+      "canonical_id": "contact-properties.contact-property.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing domain with new information.",
+      "canonical_id": "domains.domain.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing template with new information.",
+      "canonical_id": "templates.template.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing topic with new information.",
+      "canonical_id": "topics.topic.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing webhook with new information.",
+      "canonical_id": "webhooks.webhook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update topics for a specific contact.",
+      "canonical_id": "contacts.topic.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify an existing domain by providing the domain ID.",
+      "canonical_id": "domains.verify.create"
+    }
+  ]
+}

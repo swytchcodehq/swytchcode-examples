@@ -1,0 +1,1551 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm.v3.updateListName.update:
+    SUMMARY: Update List Name
+    DESC: Update the name of a list. The name must be globally unique relative to all other public lists in the portal.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/update-list-name
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListUpdateResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - listName:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListUpdateResponse)
+        RETURNVAR: crm_v3_updateListName_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_updateListName_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.updateListName.update
+  crm.v3.memberships.remove:
+    SUMMARY: Add and/or Remove Records from a List
+    DESC: |-
+      Add and/or remove records that have already been created in the system to and/or from a list.
+
+      This endpoint only works for lists that have a `processingType` of `MANUAL` or `SNAPSHOT`.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/memberships/add-and-remove
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MembershipChangeRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MembershipsUpdateResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(MembershipChangeRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MembershipsUpdateResponse)
+        RETURNVAR: crm_v3_memberships_remove
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_memberships_remove_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.memberships.remove
+  crm.v3.lists.get:
+    SUMMARY: Fetch List by ID
+    DESC: Fetch a single list by **ILS list ID**.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/{listId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFetchResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - includeFilters:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFetchResponse)
+        RETURNVAR: crm_v3_lists_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_lists_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.lists.get
+  crm.v3.lists.delete:
+    SUMMARY: Delete a List
+    DESC: Delete a list by **ILS list ID**. Lists deleted through this endpoint can be restored up to 90-days following the delete. After 90-days, the list is purged and can no longer be restored.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/lists/{listId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_lists_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.lists.delete
+  crm.v3.updateListFilters.update:
+    SUMMARY: Update List Filter Definition
+    DESC: Update the filter branch definition of a `DYNAMIC` list. Once updated, the list memberships will be re-evaluated and updated to match the new definition.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/update-list-filters
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ListFilterUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListUpdateResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - enrollObjectsInWorkflows:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - body:
+          TYPE: STRUCT(ListFilterUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListUpdateResponse)
+        RETURNVAR: crm_v3_updateListFilters_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_updateListFilters_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.updateListFilters.update
+  crm.v3.search.create:
+    SUMMARY: Search Lists
+    DESC: Search lists by list name or page through all lists by providing an empty `query` value.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/lists/search
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ListSearchRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListSearchResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ListSearchRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListSearchResponse)
+        RETURNVAR: crm_v3_search_create
+        STATUS: 200
+        PAGINATION:
+          TYPE: offset
+          OFFSET_FIELD: offset
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_search_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.search.create
+  crm.v3.folders.list:
+    SUMMARY: Moves a list to a given folder
+    DESC: Given a list and a folder, the list will be moved to that folder.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/folders/move-list
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ListMoveRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ListMoveRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_folders_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.folders.list
+  crm.v3.add.update:
+    SUMMARY: Add Records to a List
+    DESC: |-
+      Add the records provided to the list. Records that do not exist or that are already members of the list are ignored.
+
+      This endpoint only works for lists that have a `processingType` of `MANUAL` or `SNAPSHOT`.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/memberships/add
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(crm.v3.add.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MembershipsUpdateResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(crm.v3.add.updateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MembershipsUpdateResponse)
+        RETURNVAR: crm_v3_add_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_add_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.add.update
+  crm.v3.name.get:
+    SUMMARY: Fetch List by Name
+    DESC: Fetch a single list by list name and object type.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/object-type-id/{objectTypeId}/name/{listName}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFetchResponse)
+    INPUTS:
+      - listName:
+          TYPE: STRING
+          LOCATION: path
+      - objectTypeId:
+          TYPE: STRING
+          LOCATION: path
+      - includeFilters:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFetchResponse)
+        RETURNVAR: crm_v3_name_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_name_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.name.get
+  crm.v3.move.update:
+    SUMMARY: Moves a folder
+    DESC: This moves the folder from its current location to a new location. It updates the parent of this folder to the new Id given.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/folders/{folderId}/move/{newParentFolderId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFolderFetchResponse)
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+      - newParentFolderId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFolderFetchResponse)
+        RETURNVAR: crm_v3_move_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_move_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.move.update
+  crm.v3.idmapping.list:
+    SUMMARY: Translate Legacy List Id to Modern List Id
+    DESC: This API allows translation of legacy list id to list id. This is a temporary API allowed for mapping old id's to new id's and will expire on May 30th, 2025.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/idmapping
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicMigrationMapping)
+    INPUTS:
+      - legacyListId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicMigrationMapping)
+        RETURNVAR: crm_v3_idmapping_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_idmapping_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.idmapping.list
+  crm.v3.idmapping.create:
+    SUMMARY: Translate Legacy List Id to Modern List Id in Batch
+    DESC: This API allows translation of a batch of legacy list id's to list id's. This allows for a maximum of 10,000 id's. This is a temporary API allowed for mapping old id's to new id's and will expire on May 30th, 2025.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/lists/idmapping
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(crm.v3.idmapping.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicBatchMigrationMapping)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(crm.v3.idmapping.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicBatchMigrationMapping)
+        RETURNVAR: crm_v3_idmapping_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_idmapping_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.idmapping.create
+  crm.v3.restore.update:
+    SUMMARY: Restore a List
+    DESC: Restore a previously deleted list by **ILS list ID**. Deleted lists are eligible to be restored up-to 90-days after the list has been deleted.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/restore
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_restore_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.restore.update
+  crm.v3.rename.update:
+    SUMMARY: Rename a folder
+    DESC: Renames the given folderId with a new name.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/folders/{folderId}/rename
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFolderFetchResponse)
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+      - newFolderName:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFolderFetchResponse)
+        RETURNVAR: crm_v3_rename_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_rename_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.rename.update
+  crm.v3.joinOrder.get:
+    SUMMARY: Fetch List Memberships Ordered by Added to List Date
+    DESC: |-
+      Fetch the memberships of a list in order sorted by the time the records were added to the list.
+
+      The `recordId`s are sorted in *ascending* order if an `after` offset or no offset is provided. If only a `before` offset is provided, then the records are sorted in *descending* order.
+
+      The `after` offset parameter will take precedence over the `before` offset in a case where both are provided.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/{listId}/memberships/join-order
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiCollectionResponseJoinTimeAndRecordId)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiCollectionResponseJoinTimeAndRecordId)
+        RETURNVAR: crm_v3_joinOrder_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_joinOrder_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.joinOrder.get
+  crm.v3.addFrom.update:
+    SUMMARY: Add All Records from a Source List to a Destination List
+    DESC: |-
+      Add all of the records from a *source list* (specified by the `sourceListId`) to a *destination list* (specified by the `listId`). Records that are already members of the *destination list* will be ignored. The *destination* and *source list* IDs must be different. The *destination* and *source lists* must contain records of the same type (e.g. contacts, companies, etc.).
+
+       This endpoint only works for *destination lists* that have a `processingType` of `MANUAL` or `SNAPSHOT`. The *source list* can have any `processingType`.
+
+      This endpoint only supports a `sourceListId` for lists with less than 100,000 memberships.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/memberships/add-from/{sourceListId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - sourceListId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_addFrom_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.addFrom.update
+  crm.v3.memberships.get:
+    SUMMARY: Get lists record is member of
+    DESC: For given record provide lists this record is member of.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/records/{objectTypeId}/{recordId}/memberships
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiCollectionResponseRecordListMembershipNoPaging)
+    INPUTS:
+      - objectTypeId:
+          TYPE: STRING
+          LOCATION: path
+      - recordId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiCollectionResponseRecordListMembershipNoPaging)
+        RETURNVAR: crm_v3_memberships_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_memberships_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.memberships.get
+  crm.v3.lists.list:
+    SUMMARY: Fetch Multiple Lists
+    DESC: Fetch multiple lists in a single request by **ILS list ID**. The response will include the definitions of all lists that exist for the `listIds` provided.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListsByIdResponse)
+    INPUTS:
+      - listIds:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListsByIdResponse)
+        RETURNVAR: crm_v3_lists_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_lists_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.lists.list
+  crm.v3.lists.create:
+    SUMMARY: Create List
+    DESC: Create a new list with the provided object list definition.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/lists/
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ListCreateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListCreateResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ListCreateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListCreateResponse)
+        RETURNVAR: crm_v3_lists_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_lists_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.lists.create
+  crm.v3.folders.list_d1ef:
+    SUMMARY: Retrieves a folder.
+    DESC: Retrieves a folder and recursively includes all folders via the childNodes attribute.  The child lists field will be empty in all child nodes. Only the folder retrieved will include the child lists in that folder.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/folders
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFolderFetchResponse)
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: "0"
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFolderFetchResponse)
+        RETURNVAR: crm_v3_folders_list_d1ef
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_folders_list_d1ef_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.folders.list_d1ef
+  crm.v3.folders.create:
+    SUMMARY: Creates a folder
+    DESC: Creates a folder with the given information.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/lists/folders
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ListFolderCreateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListFolderCreateResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ListFolderCreateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFolderCreateResponse)
+        RETURNVAR: crm_v3_folders_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_folders_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.folders.create
+  crm.v3.folders.delete:
+    SUMMARY: Deletes a folder
+    DESC: Deletes the folder with the given Id.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/lists/folders/{folderId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_folders_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.folders.delete
+  crm.v3.memberships.get_dad5:
+    SUMMARY: Fetch List Memberships Ordered by ID
+    DESC: |-
+      Fetch the memberships of a list in order sorted by the `recordId` of the records in the list.
+
+      The `recordId`s are sorted in *ascending* order if an `after` offset or no offset is provided. If only a `before` offset is provided, then the records are sorted in *descending* order.
+
+      The `after` offset parameter will take precedence over the `before` offset in a case where both are provided.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/lists/{listId}/memberships
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiCollectionResponseJoinTimeAndRecordId)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiCollectionResponseJoinTimeAndRecordId)
+        RETURNVAR: crm_v3_memberships_get_dad5
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_memberships_get_dad5_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.memberships.get_dad5
+  crm.v3.memberships.delete:
+    SUMMARY: Delete All Records from a List
+    DESC: |-
+      Remove **all** of the records from a list. ***Note:*** *The list is not deleted.*
+
+      This endpoint only works for lists that have a `processingType` of `MANUAL` or `SNAPSHOT`.
+
+      This endpoint only supports lists that have less than 100,000 memberships.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/lists/{listId}/memberships
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_memberships_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.memberships.delete
+  crm.v3.memberships.remove_740f:
+    SUMMARY: Remove Records from a List
+    DESC: |-
+      Remove the records provided from the list. Records that do not exist or that are not members of the list are ignored.
+
+      This endpoint only works for lists that have a `processingType` of `MANUAL` or `SNAPSHOT`.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/lists/{listId}/memberships/remove
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(crm.v3.memberships.removeRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MembershipsUpdateResponse)
+    INPUTS:
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(crm.v3.memberships.removeRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MembershipsUpdateResponse)
+        RETURNVAR: crm_v3_memberships_remove_740f
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_memberships_remove_740f_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.memberships.remove_740f
+STRUCTS:
+  ListFolderFetchResponse:
+    - name: folder
+      NAME: folder
+      type: STRUCT(PublicListFolder)
+      TYPE: STRUCT(PublicListFolder)
+      REQUIRED: true
+  PublicListFolder:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time the folder was created at.
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The Id of the folder this folder is in, the root folder is represented as 0.
+    - name: childNodes
+      NAME: childNodes
+      type: "[]STRUCT(PublicListFolder)"
+      TYPE: "[]STRUCT(PublicListFolder)"
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the folder.
+    - name: id
+      NAME: id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The Id of the folder.
+    - name: childLists
+      NAME: childLists
+      type: "[]INT"
+      TYPE: "[]INT"
+      REQUIRED: true
+      comment: An array of list Id's contained in this folder.
+    - name: updatedContentsAt
+      NAME: updatedContentsAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time that the contents of the folder was last updated at.
+    - name: userId
+      NAME: userId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The user Id of the owner of the folder.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time the folder was last updated at.
+  ListSearchRequest:
+    - name: listIds
+      NAME: listIds
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |-
+        The `listIds` that will be used to filter results by `listId`. If values are provided, then the response will only include results that have a `listId` in this array.
+
+        If no value is provided, or if an empty list is provided, then the results will not be filtered by `listId`.
+    - name: offset
+      NAME: offset
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Value used to paginate through lists. The `offset` provided in the response can be used in the next request to fetch the next page of results. Defaults to `0` if no offset is provided.
+    - name: query
+      NAME: query
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The `query` that will be used to search for lists by list name. If no `query` is provided, then the results will include all lists.
+    - name: count
+      NAME: count
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The number of lists to include in the response. Defaults to `20` if no value is provided. The max `count` is `500`.
+    - name: processingTypes
+      NAME: processingTypes
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |-
+        The `processingTypes` that will be used to filter results by `processingType`. If values are provided, then the response will only include results that have a `processingType` in this array.
+
+        If no value is provided, or if an empty list is provided, then results will not be filtered by `processingType`.
+
+        Valid `processingTypes` are: `MANUAL`, `SNAPSHOT`, or `DYNAMIC`.
+    - name: additionalProperties
+      NAME: additionalProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |-
+        The property names of any additional list properties to include in the response. Properties that do not exist or that are empty for a particular list are not included in the response.
+
+        By default, all requests will fetch the following properties for each list: `hs_list_size`, `hs_last_record_added_at`, `hs_last_record_removed_at`, `hs_folder_name`, and `hs_list_reference_count`.
+    - name: sort
+      NAME: sort
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  ListSearchResponse:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The total number of lists that match the search criteria.
+    - name: offset
+      NAME: offset
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Value to be passed in a future request to paginate through list search results.
+    - name: lists
+      NAME: lists
+      type: "[]STRUCT(PublicObjectListSearchResult)"
+      TYPE: "[]STRUCT(PublicObjectListSearchResult)"
+      REQUIRED: true
+      comment: The lists that matched the search criteria.
+    - name: hasMore
+      NAME: hasMore
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether or not there are more results to page through.
+  PublicObjectListSearchResult:
+    - name: processingType
+      NAME: processingType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The processing type of the list.
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The object type of the list.
+    - name: updatedById
+      NAME: updatedById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the user that last updated the list.
+    - name: filtersUpdatedAt
+      NAME: filtersUpdatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the filters for this list were last updated.
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The **ILS ID** of the list.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the list was created.
+    - name: processingStatus
+      NAME: processingStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The processing status of the list.
+    - name: deletedAt
+      NAME: deletedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the list was deleted.
+    - name: listVersion
+      NAME: listVersion
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The version of the list.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the list.
+    - name: additionalProperties
+      NAME: additionalProperties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: The name and value of any additional properties that exist for this list and that were included in the search request.
+    - name: createdById
+      NAME: createdById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the user that created the list.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time the list was last updated.
+  ListsByIdResponse:
+    - name: lists
+      NAME: lists
+      type: "[]STRUCT(PublicObjectList)"
+      TYPE: "[]STRUCT(PublicObjectList)"
+      REQUIRED: true
+      comment: The object list definitions.
+  PublicObjectList:
+    - name: processingType
+      NAME: processingType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The processing type of the list.
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The object type of the list.
+    - name: updatedById
+      NAME: updatedById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the user that last updated the list.
+    - name: filtersUpdatedAt
+      NAME: filtersUpdatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the filters for this list were last updated.
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The **ILS ID** of the list.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the list was created.
+    - name: processingStatus
+      NAME: processingStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The processing status of the list.
+    - name: deletedAt
+      NAME: deletedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when the list was deleted.
+    - name: listVersion
+      NAME: listVersion
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The version of the list.
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the list.
+    - name: createdById
+      NAME: createdById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the user that created the list.
+    - name: filterBranch
+      NAME: filterBranch
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time the list was last updated.
+  PublicBatchMigrationMapping:
+    - name: legacyListIdsToIdsMapping
+      NAME: legacyListIdsToIdsMapping
+      type: "[]STRUCT(PublicMigrationMapping)"
+      TYPE: "[]STRUCT(PublicMigrationMapping)"
+      REQUIRED: true
+    - name: missingLegacyListIds
+      NAME: missingLegacyListIds
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: A list of legacy list ids that were passed in but not found. It will be empty if no id's are missing
+  PublicMigrationMapping:
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The V3 list id for the list
+    - name: legacyListId
+      NAME: legacyListId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The legacy list id for the list
+  ApiCollectionResponseJoinTimeAndRecordId:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(JoinTimeAndRecordId)"
+      TYPE: "[]STRUCT(JoinTimeAndRecordId)"
+      REQUIRED: true
+  Paging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+    - name: prev
+      NAME: prev
+      type: STRUCT(PreviousPage)
+      TYPE: STRUCT(PreviousPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A direct link to the request for the next page of records.
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The offset for the next page of records.
+  PreviousPage:
+    - name: before
+      NAME: before
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The offset of the previous page of records.
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A direct link to the request for the previous page of records.
+  JoinTimeAndRecordId:
+    - name: recordId
+      NAME: recordId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: membershipTimestamp
+      NAME: membershipTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  ListFolderCreateResponse:
+    - name: folder
+      NAME: folder
+      type: STRUCT(PublicListFolder)
+      TYPE: STRUCT(PublicListFolder)
+      REQUIRED: true
+  ListUpdateResponse:
+    - name: updatedList
+      NAME: updatedList
+      type: STRUCT(PublicObjectList)
+      TYPE: STRUCT(PublicObjectList)
+      REQUIRED: false
+  ListCreateResponse:
+    - name: list
+      NAME: list
+      type: STRUCT(PublicObjectList)
+      TYPE: STRUCT(PublicObjectList)
+      REQUIRED: true
+  MembershipsUpdateResponse:
+    - name: recordIdsRemoved
+      NAME: recordIdsRemoved
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: The IDs of the records that were `removed` from the list.
+    - name: recordsIdsAdded
+      NAME: recordsIdsAdded
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: recordIdsMissing
+      NAME: recordIdsMissing
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: The IDs of the records that were `missing` (e.g. did not exist in the portal) and so were not `added` or `removed`.
+  RecordListMembership:
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: listVersion
+      NAME: listVersion
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: lastAddedTimestamp
+      NAME: lastAddedTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: firstAddedTimestamp
+      NAME: firstAddedTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  ListFetchResponse:
+    - name: list
+      NAME: list
+      type: STRUCT(PublicObjectList)
+      TYPE: STRUCT(PublicObjectList)
+      REQUIRED: true
+  ApiCollectionResponseRecordListMembershipNoPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(RecordListMembership)"
+      TYPE: "[]STRUCT(RecordListMembership)"
+      REQUIRED: true
+  MembershipChangeRequest:
+    - name: recordIdsToRemove
+      NAME: recordIdsToRemove
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: recordIdsToAdd
+      NAME: recordIdsToAdd
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+  ListFilterUpdateRequest:
+    - name: filterBranch
+      NAME: filterBranch
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+  ListFolderCreateRequest:
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The folder this should be created in, if not specified will be created in the root folder 0.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the folder to be created.
+  ListMoveRequest:
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The Id of the list to move.
+    - name: newFolderId
+      NAME: newFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The Id of folder to move the list to, the root folder is Id 0.
+  ListCreateRequest:
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The object type ID of the type of objects that the list will store.
+    - name: processingType
+      NAME: processingType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "The processing type of the list. One of: `SNAPSHOT`, `MANUAL`, or `DYNAMIC`."
+    - name: customProperties
+      NAME: customProperties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: The list of custom properties to tie to the list. Custom property name is the key, the value is the value.
+    - name: listFolderId
+      NAME: listFolderId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The ID of the folder that the list should be created in. If left blank, then the list will be created in the root of the list folder structure.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the list, which must be globally unique across all public lists in the portal.
+    - name: filterBranch
+      NAME: filterBranch
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  crm.v3.add.updateRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  crm.v3.idmapping.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  crm.v3.memberships.removeRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

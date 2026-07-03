@@ -1,0 +1,723 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app-legacy: <PRIVATE-APP-LEGACY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  automation.v4.read.create:
+    SUMMARY: Retrieve a batch of workflows
+    DESC: Retrieve a batch of workflows by ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /automation/v4/flows/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ApiFlowBatchInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseApiFlow)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ApiFlowBatchInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseApiFlow)
+        RETURNVAR: automation_v4_read_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseApiFlowWithErrors)
+        RETURNVAR: automation_v4_read_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.read.create
+  automation.v4.emailCampaigns.list:
+    SUMMARY: Retrieve workflow emails
+    DESC: Retrieve emails sent by a workflow by ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /automation/v4/flows/email-campaigns
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseApiFlowEmailCampaign)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - flowId:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseApiFlowEmailCampaign)
+        RETURNVAR: automation_v4_emailCampaigns_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_emailCampaigns_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.emailCampaigns.list
+  automation.v4.read.create_ce2d:
+    SUMMARY: Retrieve migrated workflow mappings
+    DESC: Retrieve the IDs of v3 workflows that have been migrated to the v4 API.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /automation/v4/workflow-id-mappings/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ApiFlowBatchMigrationInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseFlowIdWorkflowIdMappingResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ApiFlowBatchMigrationInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseFlowIdWorkflowIdMappingResponse)
+        RETURNVAR: automation_v4_read_create_ce2d
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseFlowIdWorkflowIdMappingResponseWithErrors)
+        RETURNVAR: automation_v4_read_create_ce2d_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_read_create_ce2d_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.read.create_ce2d
+  automation.v4.flows.list:
+    SUMMARY: Retrieve workflows
+    DESC: Retrieve all workflows from an account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /automation/v4/flows
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseApiFlowListingForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseApiFlowListingForwardPaging)
+        RETURNVAR: automation_v4_flows_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_flows_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.flows.list
+  automation.v4.flows.create:
+    SUMMARY: Create a new workflow
+    DESC: Create a new workflow.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /automation/v4/flows
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ApiFlowCreateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiFlow)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ApiFlowCreateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiFlow)
+        RETURNVAR: automation_v4_flows_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_flows_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.flows.create
+  automation.v4.flows.get:
+    SUMMARY: Retrieve workflow details
+    DESC: Retrieve all details for a specific workflow by ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /automation/v4/flows/{flowId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiFlow)
+    INPUTS:
+      - flowId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiFlow)
+        RETURNVAR: automation_v4_flows_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_flows_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.flows.get
+  automation.v4.flows.update:
+    SUMMARY: Update a workflow
+    DESC: Update a workflow by ID.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /automation/v4/flows/{flowId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ApiFlowPutRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ApiFlow)
+    INPUTS:
+      - flowId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ApiFlowPutRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ApiFlow)
+        RETURNVAR: automation_v4_flows_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_flows_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.flows.update
+  automation.v4.flows.delete:
+    SUMMARY: Delete a workflow
+    DESC: Fully delete a workflow by ID. Deleted workflows cannot be restored via the API. If you need to restore an accidentally deleted flow, you'll need to contact support.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /automation/v4/flows/{flowId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - flowId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: automation_v4_flows_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: automation.v4.flows.delete
+STRUCTS:
+  ApiFlowPutRequest:
+    - name: variant
+      NAME: variant
+      type: STRUCT(ApiFlowPutRequest_Union)
+      TYPE: STRUCT(ApiFlowPutRequest_Union)
+      REQUIRED: false
+  ApiFlowCreateRequest:
+    - name: variant
+      NAME: variant
+      type: STRUCT(ApiFlowCreateRequest_Union)
+      TYPE: STRUCT(ApiFlowCreateRequest_Union)
+      REQUIRED: false
+  ApiFlowCreateRequest_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  BatchResponseApiFlow:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ApiFlow)"
+      TYPE: "[]STRUCT(ApiFlow)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ApiFlow:
+    - name: variant
+      NAME: variant
+      type: STRUCT(ApiFlow_Union)
+      TYPE: STRUCT(ApiFlow_Union)
+      REQUIRED: false
+  ApiFlowPutRequest_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  ApiFlow_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  CollectionResponseApiFlowListingForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ApiFlowListing)"
+      TYPE: "[]STRUCT(ApiFlowListing)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ApiFlowListing:
+    - name: revisionId
+      NAME: revisionId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Deprecated. Will be removed.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp this flow was created.
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The CRM object type for objects that can be enrolled into this flow.
+    - name: isEnabled
+      NAME: isEnabled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: This controls whether or not the flow is "enabled" if it's actively listening for enrollment triggers and executing actions. If this is `false` the flow is not accepting any enrollments or executing any actions.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user-provided name for this flow. Names get auto-created for workflows that are created without a name.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID for this flow. This is auto-generated when creating the flow.
+    - name: uuid
+      NAME: uuid
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional unique key for this flow. This is only unique per-portal.
+    - name: flowType
+      NAME: flowType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Deprecated. Will be removed.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp this flow was last updated.
+  PreviousPage:
+    - name: before
+      NAME: before
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  Paging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+    - name: prev
+      NAME: prev
+      type: STRUCT(PreviousPage)
+      TYPE: STRUCT(PreviousPage)
+      REQUIRED: false
+  ApiFlowEmailCampaign:
+    - name: emailContentId
+      NAME: emailContentId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: emailCampaignId
+      NAME: emailCampaignId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: flowId
+      NAME: flowId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  FlowIdWorkflowIdMappingResponse:
+    - name: flowId
+      NAME: flowId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: workflowId
+      NAME: workflowId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  ApiFlowBatchInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+  BatchResponseFlowIdWorkflowIdMappingResponse:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(FlowIdWorkflowIdMappingResponse)"
+      TYPE: "[]STRUCT(FlowIdWorkflowIdMappingResponse)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponseApiFlowWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ApiFlow)"
+      TYPE: "[]STRUCT(ApiFlow)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ApiFlowBatchMigrationInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+  CollectionResponseApiFlowEmailCampaign:
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ApiFlowEmailCampaign)"
+      TYPE: "[]STRUCT(ApiFlowEmailCampaign)"
+      REQUIRED: true
+  BatchResponseFlowIdWorkflowIdMappingResponseWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(FlowIdWorkflowIdMappingResponse)"
+      TYPE: "[]STRUCT(FlowIdWorkflowIdMappingResponse)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true

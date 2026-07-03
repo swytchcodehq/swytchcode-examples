@@ -1,0 +1,1421 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm.v3.default.update:
+    SUMMARY: Perform operation put-/crm/v3/objects/{fromObjectType}/{fromObjectId}/associations/default/{toObjectType}/{toObjectId}_/crm/v3/objects/{fromObjectType}/{fromObjectId}/associations/default/{toObjectType}/{toObjectId}
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/objects/{fromObjectType}/{fromObjectId}/associations/default/{toObjectType}/{toObjectId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponsePublicDefaultAssociation)
+    INPUTS:
+      - fromObjectId:
+          TYPE: STRING
+          LOCATION: path
+      - fromObjectType:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectId:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectType:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponsePublicDefaultAssociation)
+        RETURNVAR: crm_v3_default_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_default_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.default.update
+  crm.v3.objects.get:
+    SUMMARY: List
+    DESC: Read a page of objects. Control what is returned via the `properties` query param.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/objects/{objectType}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseSimplePublicObjectWithAssociationsForwardPaging)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - associations:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - propertiesWithHistory:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseSimplePublicObjectWithAssociationsForwardPaging)
+        RETURNVAR: crm_v3_objects_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_objects_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.objects.get
+  crm.v3.objects.create:
+    SUMMARY: Create
+    DESC: Create a CRM object with the given properties and return a copy of the object, including the ID. Documentation and examples for creating standard objects is provided.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SimplePublicObjectInputForCreate)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SimplePublicObjectInputForCreate)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_objects_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_objects_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.objects.create
+  crm.v3.archive.create:
+    SUMMARY: Archive a batch of objects by ID
+    DESC: Archive a batch of objects by their unique IDs. This operation moves the specified objects to the recycling bin, effectively marking them as archived.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/batch/archive
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_archive_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.archive.create
+  crm.v3.batch.create:
+    SUMMARY: Create a batch of objects
+    DESC: Create multiple CRM objects in a single request by specifying the object type and providing the necessary properties and associations for each object.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/batch/create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputForCreate)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputForCreate)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_batch_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_batch_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.batch.create
+  crm.v3.read.create:
+    SUMMARY: Read a batch of objects by internal ID, or unique property values
+    DESC: "Retrieve records by record ID or include the `idProperty` parameter to retrieve records by a custom unique value property. "
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchReadInputSimplePublicObjectId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - body:
+          TYPE: STRUCT(BatchReadInputSimplePublicObjectId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_read_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.read.create
+  crm.v3.batch.update:
+    SUMMARY: Update a batch of objects by internal ID, or unique property values
+    DESC: Update a batch of CRM objects by their internal IDs or unique property values, allowing for efficient modifications of multiple records in a single request.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/batch/update
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_batch_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_batch_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.batch.update
+  crm.v3.upsert.create:
+    SUMMARY: Create or update a batch of objects by unique property values
+    DESC: Create or update records identified by a unique property value as specified by the `idProperty` query param. `idProperty` query param refers to a property whose values are unique for the object.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/batch/upsert
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputUpsert)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicUpsertObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputUpsert)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicUpsertObject)
+        RETURNVAR: crm_v3_upsert_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_upsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.upsert.create
+  crm.v3.merge.create:
+    SUMMARY: Merge two objects with same type
+    DESC: Merge two CRM objects of the same type by specifying one as the primary object and the other as the object to be merged into it.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/merge
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicMergeInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicMergeInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_merge_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_merge_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.merge.create
+  crm.v3.search.create:
+    SUMMARY: Search for CRM objects of a specified type.
+    DESC: Execute a search query to find CRM objects of a given type, using specified filters and properties. The search can be customized with filters, sorting, and pagination options.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/{objectType}/search
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicObjectSearchRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalSimplePublicObject)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicObjectSearchRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalSimplePublicObject)
+        RETURNVAR: crm_v3_search_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_search_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.search.create
+  crm.v3.objects.get_7cdd:
+    SUMMARY: Read
+    DESC: Read an Object identified by `{objectId}`. `{objectId}` refers to the internal object ID by default, or optionally any unique property value as specified by the `idProperty` query param.  Control what is returned via the `properties` query param.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/objects/{objectType}/{objectId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObjectWithAssociations)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - associations:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - idProperty:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - propertiesWithHistory:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObjectWithAssociations)
+        RETURNVAR: crm_v3_objects_get_7cdd
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_objects_get_7cdd_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.objects.get_7cdd
+  crm.v3.objects.delete:
+    SUMMARY: Archive
+    DESC: Move an Object identified by `{objectId}` to the recycling bin.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/objects/{objectType}/{objectId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_objects_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.objects.delete
+  crm.v3.objects.update:
+    SUMMARY: Update
+    DESC: Perform a partial update of an Object identified by `{objectId}`or optionally a unique property value as specified by the `idProperty` query param. `{objectId}` refers to the internal object ID by default, and the `idProperty` query param refers to a property whose values are unique for the object. Provided property values will be overwritten. Read-only and non-existent properties will result in an error. Properties values can be cleared by passing an empty string.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /crm/v3/objects/{objectType}/{objectId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SimplePublicObjectInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - idProperty:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(SimplePublicObjectInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_objects_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_objects_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.objects.update
+  crm.v3.associations.update:
+    SUMMARY: Perform operation put-/crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}_/crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(crm.v3.associations.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(LabelsBetweenObjectPair)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectId:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(crm.v3.associations.updateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(LabelsBetweenObjectPair)
+        RETURNVAR: crm_v3_associations_update_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_associations_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.associations.update
+  crm.v3.associations.delete:
+    SUMMARY: Perform operation delete-/crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}_/crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/objects/{objectType}/{objectId}/associations/{toObjectType}/{toObjectId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectId:
+          TYPE: STRING
+          LOCATION: path
+      - toObjectType:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_associations_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.associations.delete
+STRUCTS:
+  StandardError:
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The main category of the error.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+      comment: Additional context-specific information related to the error.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+      comment: The detailed error objects.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique ID for the error instance.
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: URLs linking to documentation or resources associated with the error.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human-readable string describing the error and possible remediation steps.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The HTTP status code associated with the error.
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: A more specific error category within each main category.
+  ErrorDetail:
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+  Paging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+    - name: prev
+      NAME: prev
+      type: STRUCT(PreviousPage)
+      TYPE: STRUCT(PreviousPage)
+      REQUIRED: false
+  NextPage:
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A paging cursor token for retrieving subsequent pages.
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL that can be used to retrieve the next page results.
+  PreviousPage:
+    - name: before
+      NAME: before
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A paging cursor token for retrieving previous pages.
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL that can be used to retrieve the previous pages' results.
+  CollectionResponseWithTotalSimplePublicObject:
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The number of available results
+  SimplePublicObject:
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the object is archived.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the object was archived, in ISO 8601 format.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was created, in ISO 8601 format.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An identifier used for tracing the write request for the object.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key-value pairs representing the properties of the object.
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Key-value pairs representing the properties of the object along with their history.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was last updated, in ISO 8601 format.
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL associated with the object.
+  LabelsBetweenObjectPair:
+    - name: fromObjectId
+      NAME: fromObjectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Source unique ID of the object.
+    - name: fromObjectTypeId
+      NAME: fromObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Source object type.
+    - name: labels
+      NAME: labels
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: toObjectId
+      NAME: toObjectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Target unique ID of the object.
+    - name: toObjectTypeId
+      NAME: toObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Target object type.
+  PublicAssociationsForObject:
+    - name: to
+      NAME: to
+      type: STRUCT(PublicObjectId)
+      TYPE: STRUCT(PublicObjectId)
+      REQUIRED: true
+    - name: types
+      NAME: types
+      type: "[]STRUCT(AssociationSpec)"
+      TYPE: "[]STRUCT(AssociationSpec)"
+      REQUIRED: true
+  PublicObjectId:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+  AssociationSpec:
+    - name: associationCategory
+      NAME: associationCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The category of the association, such as "HUBSPOT_DEFINED".
+    - name: associationTypeId
+      NAME: associationTypeId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The ID representing the specific type of association.
+  BatchResponseSimplePublicObject:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch processing was completed, in ISO 8601 format.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: An object containing relevant links related to the batch request.
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The total number of errors that occurred during the batch operation.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the batch request was initially made, in ISO 8601 format.
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch processing began, in ISO 8601 format.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The status of the batch processing request. The expected value is "COMPLETE".
+  FilterGroup:
+    - name: filters
+      NAME: filters
+      type: "[]STRUCT(Filter)"
+      TYPE: "[]STRUCT(Filter)"
+      REQUIRED: true
+  Filter:
+    - name: highValue
+      NAME: highValue
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The upper boundary value when using ranged-based filters.
+    - name: operator
+      NAME: operator
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "null"
+    - name: propertyName
+      NAME: propertyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the property to apply the filter to.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The value to match against the property.
+    - name: values
+      NAME: values
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The values to match against the property.
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  SimplePublicObjectId:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+  BatchReadInputSimplePublicObjectId:
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: When using a custom unique value property to retrieve records, the name of the property. Do not include this parameter if retrieving by record ID.
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectId)"
+      TYPE: "[]STRUCT(SimplePublicObjectId)"
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Key-value pairs for setting properties for the new object.
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Key-value pairs for setting properties for the new object and their histories.
+  BatchResponseSimplePublicUpsertObject:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch process was completed, in ISO 8601 format.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: An object containing relevant links related to the batch request.
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The total number of errors that occurred during the operation.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the batch process was initiated, in ISO 8601 format.
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicUpsertObject)"
+      TYPE: "[]STRUCT(SimplePublicUpsertObject)"
+      REQUIRED: true
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch process began execution, in ISO 8601 format.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The status of the batch processing request. The expected value is "COMPLETE".
+  SimplePublicUpsertObject:
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the object is archived.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the object was archived, in ISO 8601 format.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was created, in ISO 8601 format.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+    - name: new
+      NAME: new
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the property is new.
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An identifier used for tracing the write request for the object.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key value pairs representing the properties of the object.
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Key-value pairs representing the properties of the object along with their history.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was last updated, in ISO 8601 format.
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL associated with the object.
+  BatchInputSimplePublicObjectId:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectId)"
+      TYPE: "[]STRUCT(SimplePublicObjectId)"
+      REQUIRED: true
+  BatchInputSimplePublicObjectBatchInputUpsert:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInputUpsert)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInputUpsert)"
+      REQUIRED: true
+  SimplePublicObjectBatchInputUpsert:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of a property whose values are unique for this object
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An identifier for tracing the creation request.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key value pairs representing the properties of the object.
+  PublicDefaultAssociation:
+    - name: associationSpec
+      NAME: associationSpec
+      type: STRUCT(AssociationSpec)
+      TYPE: STRUCT(AssociationSpec)
+      REQUIRED: true
+    - name: from
+      NAME: from
+      type: STRUCT(PublicObjectId)
+      TYPE: STRUCT(PublicObjectId)
+      REQUIRED: true
+    - name: to
+      NAME: to
+      type: STRUCT(PublicObjectId)
+      TYPE: STRUCT(PublicObjectId)
+      REQUIRED: true
+  PublicObjectSearchRequest:
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A paging cursor token for retrieving subsequent pages.
+    - name: filterGroups
+      NAME: filterGroups
+      type: "[]STRUCT(FilterGroup)"
+      TYPE: "[]STRUCT(FilterGroup)"
+      REQUIRED: true
+      comment: Up to 6 groups of filters defining additional query criteria.
+    - name: limit
+      NAME: limit
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The maximum results to return, up to 200 objects.
+    - name: properties
+      NAME: properties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: A list of property names to include in the response.
+    - name: query
+      NAME: query
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The search query string, up to 3000 characters.
+    - name: sorts
+      NAME: sorts
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Specifies sorting order based on object properties.
+  SimplePublicObjectInput:
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key value pairs representing the properties of the object.
+  BatchResponsePublicDefaultAssociation:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch process was completed, in ISO 8601 format.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: An object containing relevant links related to the batch request.
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The total number of errors that occurred during the operation.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the batch process was initiated, in ISO 8601 format.
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicDefaultAssociation)"
+      TYPE: "[]STRUCT(PublicDefaultAssociation)"
+      REQUIRED: true
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the batch process began execution, in ISO 8601 format.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "The status of the batch processing request. Can be: \"PENDING\", \"PROCESSING\", \"CANCELED\", or \"COMPLETE\"."
+  CollectionResponseSimplePublicObjectWithAssociationsForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObjectWithAssociations)"
+      TYPE: "[]STRUCT(SimplePublicObjectWithAssociations)"
+      REQUIRED: true
+  SimplePublicObjectWithAssociations:
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the object is archived.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The timestamp when the object was archived, in ISO 8601 format.
+    - name: associations
+      NAME: associations
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A list defining relationships with other objects.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was created, in ISO 8601 format.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the object.
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An identifier used for tracing the creation or update request of the object.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key value pairs representing the properties of the object.
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Key-value pairs representing the properties of the object along with their history.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The timestamp when the object was last updated, in ISO 8601 format.
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL on the API that provide direct navigation to the corresponding UI pages for the connectors.
+  PublicMergeInput:
+    - name: objectIdToMerge
+      NAME: objectIdToMerge
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the object that will be merged into the primary object.
+    - name: primaryObjectId
+      NAME: primaryObjectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the primary object into which another object will be merged.
+  BatchInputSimplePublicObjectBatchInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInput)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInput)"
+      REQUIRED: true
+  SimplePublicObjectBatchInput:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The id to be updated. This can be the object id, or the unique property value of the idProperty property
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of a property whose values are unique for this object
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique identifier for tracing the request.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key-value pairs representing the properties of the object.
+  SimplePublicObjectBatchInputForCreate:
+    - name: associations
+      NAME: associations
+      type: "[]STRUCT(PublicAssociationsForObject)"
+      TYPE: "[]STRUCT(PublicAssociationsForObject)"
+      REQUIRED: true
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An identifier used for tracing the creation or update request of the object.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key value pairs representing the properties of the object.
+  SimplePublicObjectInputForCreate:
+    - name: associations
+      NAME: associations
+      type: "[]STRUCT(PublicAssociationsForObject)"
+      TYPE: "[]STRUCT(PublicAssociationsForObject)"
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Key-value pairs for setting properties for the new object.
+  BatchInputSimplePublicObjectBatchInputForCreate:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInputForCreate)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInputForCreate)"
+      REQUIRED: true
+  crm.v3.associations.updateRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

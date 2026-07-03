@@ -1,0 +1,59 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive association labels between object types",
+      "canonical_id": "crm.v4.archive.create_970f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate two CRM objects with a default association",
+      "canonical_id": "crm.v4.default.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch archive associations between two object types",
+      "canonical_id": "crm.v4.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create associations between CRM objects",
+      "canonical_id": "crm.v4.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read associations between object types",
+      "canonical_id": "crm.v4.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create default associations between two object types",
+      "canonical_id": "crm.v4.default.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all associations for an object by type",
+      "canonical_id": "crm.v4.associations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove associations between two CRM objects",
+      "canonical_id": "crm.v4.associations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request high usage association report for a user",
+      "canonical_id": "crm.v4.highUsageReport.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update associations between two CRM objects",
+      "canonical_id": "crm.v4.associations.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create association configurations between two object types",
+      "canonical_id": "crm.v4.batch.create"
+    }
+  ]
+}

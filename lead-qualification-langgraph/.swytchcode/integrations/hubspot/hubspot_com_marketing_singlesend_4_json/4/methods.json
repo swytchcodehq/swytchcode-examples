@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Send a single marketing email",
+      "canonical_id": "marketing.v4.singleSend.create"
+    }
+  ]
+}

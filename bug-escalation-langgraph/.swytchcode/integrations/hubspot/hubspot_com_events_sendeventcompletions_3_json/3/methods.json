@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Send a custom event completion with associated data",
+      "canonical_id": "events.v3.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send multiple event completions at once",
+      "canonical_id": "events.v3.batch.create"
+    }
+  ]
+}

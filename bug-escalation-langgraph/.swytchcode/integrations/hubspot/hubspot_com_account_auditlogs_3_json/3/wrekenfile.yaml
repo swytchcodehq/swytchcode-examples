@@ -1,0 +1,387 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  account-info.v3.login.list:
+    SUMMARY: Retrieve login activity
+    DESC: Retrieve logs of user actions related to [login activity](https://knowledge.hubspot.com/account-management/view-and-export-account-activity-history#account-login-history).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /account-info/v3/activity/login
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponsePublicLoginAuditForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - userId:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponsePublicLoginAuditForwardPaging)
+        RETURNVAR: account-info_v3_login_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: account-info_v3_login_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: account-info.v3.login.list
+  account-info.v3.auditLogs.list:
+    SUMMARY: Retrieve audit logs
+    DESC: Retrieve activity history for user actions related to approvals, content updates, CRM object updates, security activity, and more (Enterprise only). Learn more about [activities included in audit log exports](https://knowledge.hubspot.com/account-management/view-and-export-account-activity-history-in-a-centralized-audit-log?hubs_content=knowledge.hubspot.com/account-management/view-and-export-account-activity-history&hubs_content-cta=centralized%20audit%20log#data-included-in-the-centralized-audit-log).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /account-info/v3/activity/audit-logs
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponsePublicApiUserActionEventForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - actingUserId:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - occurredAfter:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - occurredBefore:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponsePublicApiUserActionEventForwardPaging)
+        RETURNVAR: account-info_v3_auditLogs_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: account-info_v3_auditLogs_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: account-info.v3.auditLogs.list
+  account-info.v3.security.list:
+    SUMMARY: Retrieve security history
+    DESC: Retrieve logs of user actions related to [security activity](https://knowledge.hubspot.com/account-management/view-and-export-account-activity-history#security-activity-history).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /account-info/v3/activity/security
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseHydratedCriticalActionForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - userId:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - fromTimestamp:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - toTimestamp:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseHydratedCriticalActionForwardPaging)
+        RETURNVAR: account-info_v3_security_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: account-info_v3_security_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: account-info.v3.security.list
+STRUCTS:
+  CollectionResponsePublicLoginAuditForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicLoginAudit)"
+      TYPE: "[]STRUCT(PublicLoginAudit)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicLoginAudit:
+    - name: regionCode
+      NAME: regionCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The approximate region code of the login.
+    - name: countryCode
+      NAME: countryCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The approximate country code of the login.
+    - name: ipAddress
+      NAME: ipAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: IP address where the activity originated.
+    - name: location
+      NAME: location
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: userAgent
+      NAME: userAgent
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Information about the device used for logging in.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The login activity's unique ID.
+    - name: loginAt
+      NAME: loginAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The time the login took place.
+    - name: userId
+      NAME: userId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The user's unique ID.
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address of the user associated with the login.
+    - name: loginSucceeded
+      NAME: loginSucceeded
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the login was successful or not.
+  CollectionResponsePublicApiUserActionEventForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicApiUserActionEvent)"
+      TYPE: "[]STRUCT(PublicApiUserActionEvent)"
+      REQUIRED: true
+  PublicApiUserActionEvent:
+    - name: actingUser
+      NAME: actingUser
+      type: STRUCT(ActingUser)
+      TYPE: STRUCT(ActingUser)
+      REQUIRED: true
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The subcategory of the activity.
+    - name: occurredAt
+      NAME: occurredAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The time that the action occurred at.
+    - name: targetObjectId
+      NAME: targetObjectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the impacted object.
+    - name: action
+      NAME: action
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The type of action taken.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the activity.
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The category of the activity.
+  ActingUser:
+    - name: userEmail
+      NAME: userEmail
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of the user who performed the action.
+    - name: userId
+      NAME: userId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The ID of the user who performed the action.
+  HydratedCriticalAction:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: The time the activity took place.
+    - name: actingUser
+      NAME: actingUser
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address of the user associated with the activity.
+    - name: regionCode
+      NAME: regionCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The approximate region code.
+    - name: infoUrl
+      NAME: infoUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A link to the URL where the action was taken in the account.
+    - name: countryCode
+      NAME: countryCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The approximate country code.
+    - name: ipAddress
+      NAME: ipAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: IP address where the activity originated.
+    - name: location
+      NAME: location
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the activity.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The type of activity.
+    - name: userId
+      NAME: userId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The user's unique ID.
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the affected object.
+  CollectionResponseHydratedCriticalActionForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(HydratedCriticalAction)"
+      TYPE: "[]STRUCT(HydratedCriticalAction)"
+      REQUIRED: true

@@ -1,0 +1,99 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive a conversation thread",
+      "canonical_id": "conversations.v3.threads.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a single conversation inbox by its ID",
+      "canonical_id": "conversations.v3.inboxes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch message history for a specific conversation thread",
+      "canonical_id": "conversations.v3.messages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get and resolve actors from a batch of IDs",
+      "canonical_id": "conversations.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get threads.. +",
+      "canonical_id": "conversations.v3.threads.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of available channels",
+      "canonical_id": "conversations.v3.channels.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of conversations inboxes",
+      "canonical_id": "conversations.v3.inboxes.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific actor by their ID",
+      "canonical_id": "conversations.v3.actors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific channel account by its ID",
+      "canonical_id": "conversations.v3.channelAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific channel by its ID",
+      "canonical_id": "conversations.v3.channels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific conversation thread by its ID",
+      "canonical_id": "conversations.v3.threads.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific message within a conversation thread",
+      "canonical_id": "conversations.v3.messages.get_709"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve channel accounts with filtering options",
+      "canonical_id": "conversations.v3.channelAccounts.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the original content of a specific message within a thread",
+      "canonical_id": "conversations.v3.originalContent.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a message to a conversation thread",
+      "canonical_id": "conversations.v3.messages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a conversation thread or restore an archived one",
+      "canonical_id": "conversations.v3.threads.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get channel accounts for a specific channel",
+      "canonical_id": "conversations.v3.channelAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific message from a custom channel",
+      "canonical_id": "conversations.v3.messages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a message to a custom channel",
+      "canonical_id": "conversations.v3.messages.create"
+    }
+  ]
+}

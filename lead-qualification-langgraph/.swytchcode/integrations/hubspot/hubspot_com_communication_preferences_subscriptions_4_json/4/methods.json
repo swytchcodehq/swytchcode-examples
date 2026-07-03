@@ -1,0 +1,49 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Batch retrieve subscription statuses for multiple contacts",
+      "canonical_id": "communication-preferences.v4.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch update subscription statuses for multiple contacts",
+      "canonical_id": "communication-preferences.v4.write.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a subscriber has unsubscribed from all communications",
+      "canonical_id": "communication-preferences.v4.unsubscribeAll.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a contact's communication preferences by ID",
+      "canonical_id": "communication-preferences.v4.statuses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all subscription status definitions",
+      "canonical_id": "communication-preferences.v4.definitions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get contacts who have unsubscribed from all communications",
+      "canonical_id": "communication-preferences.v4.read.create_3073"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unsubscribe a contact from all communications",
+      "canonical_id": "communication-preferences.v4.unsubscribeAll.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unsubscribe contacts from all communication channels",
+      "canonical_id": "communication-preferences.v4.unsubscribeAll.create_90ad"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a contact's subscription status",
+      "canonical_id": "communication-preferences.v4.statuses.create"
+    }
+  ]
+}

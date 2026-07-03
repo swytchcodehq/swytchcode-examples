@@ -1,0 +1,34 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  appinstalls.v3.install:
+    SUMMARY: Uninstall app
+    DESC: Use this endpoint to uninstall your app from a customer's HubSpot account. If successful, this endpoint will return a 204 and the customer will receive an email notification that the developer has uninstall the app from their account.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /appinstalls/v3/external-install
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: appinstalls_v3_install_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: appinstalls.v3.install
+STRUCTS: {}

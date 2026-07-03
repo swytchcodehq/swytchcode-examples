@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get business units for a specific user",
+      "canonical_id": "business-units.v3.user.get"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get association limits between two object types",
+      "canonical_id": "crm.v3.records.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get association limits for records of a specific object type",
+      "canonical_id": "crm.v3.to.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get calculated property limits and usage",
+      "canonical_id": "crm.v3.calculatedProperties.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom association label limits and usage",
+      "canonical_id": "crm.v3.labels.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom property limits and usage",
+      "canonical_id": "crm.v3.customProperties.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get pipeline limits and usage",
+      "canonical_id": "crm.v3.pipelines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get record limits and usage",
+      "canonical_id": "crm.v3.records.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get records approaching or at association limits",
+      "canonical_id": "crm.v3.from.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read custom object limits. + Returns limits and usage for custom object schemas",
+      "canonical_id": "crm.v3.customObjectTypes.list"
+    }
+  ]
+}

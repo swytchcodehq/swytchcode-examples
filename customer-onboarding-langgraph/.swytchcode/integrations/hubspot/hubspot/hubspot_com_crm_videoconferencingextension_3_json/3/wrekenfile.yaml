@@ -1,0 +1,135 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_hapikey: <HAPIKEY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm.v3.settings.get:
+    SUMMARY: Get settings
+    DESC: Return the settings for a video conference application with the specified ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/extensions/videoconferencing/settings/{appId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalSettings)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalSettings)
+        RETURNVAR: crm_v3_settings_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_settings_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.settings.get
+  crm.v3.settings.update:
+    SUMMARY: Update settings
+    DESC: Updates the settings for a video conference application with the specified ID.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crm/v3/extensions/videoconferencing/settings/{appId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ExternalSettings)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalSettings)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ExternalSettings)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalSettings)
+        RETURNVAR: crm_v3_settings_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_settings_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.settings.update
+  crm.v3.settings.delete:
+    SUMMARY: Delete settings
+    DESC: Deletes the settings for a video conference application with the specified ID.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/extensions/videoconferencing/settings/{appId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_settings_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.settings.delete
+STRUCTS:
+  ExternalSettings:
+    - name: userVerifyUrl
+      NAME: userVerifyUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL that HubSpot will use to verify that a user exists in the video conference application.
+    - name: fetchAccountsUri
+      NAME: fetchAccountsUri
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: createMeetingUrl
+      NAME: createMeetingUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The URL that HubSpot will send requests to create a new video conference.
+    - name: updateMeetingUrl
+      NAME: updateMeetingUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL that HubSpot will send updates to existing meetings. Typically called when the user changes the topic or times of a meeting.
+    - name: deleteMeetingUrl
+      NAME: deleteMeetingUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL that HubSpot will send notifications of meetings that have been deleted in HubSpot.

@@ -1,0 +1,26 @@
+name: release
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Zip each example folder
+        run: |
+          mkdir -p dist
+          for d in */; do
+            name="${d%/}"
+            [ "$name" = "dist" ] && continue
+            zip -r "dist/${name}.zip" "$name"
+          done
+      - name: Publish to the 'latest' release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view latest >/dev/null 2>&1 || \
+            gh release create latest --title latest --notes "Rolling latest examples"
+          gh release upload latest dist/*.zip --clobber

@@ -1,0 +1,84 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a function to an app definition",
+      "canonical_id": "automation.v4.functions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a specific function for an app definition",
+      "canonical_id": "automation.v4.functions.delete_4feb"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive an extension definition by ID",
+      "canonical_id": "automation.v4.actions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Complete a batch of action callbacks or blocked executions",
+      "canonical_id": "automation.v4.complete.create_438f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Complete a blocked action execution using its callback ID",
+      "canonical_id": "automation.v4.complete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new custom workflow action definition",
+      "canonical_id": "automation.v4.actions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a custom workflow action definition by ID",
+      "canonical_id": "automation.v4.actions.get_ca24"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific automation action revision by ID",
+      "canonical_id": "automation.v4.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific function from a given definition",
+      "canonical_id": "automation.v4.functions.get_97c4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all functions for a given app definition",
+      "canonical_id": "automation.v4.functions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom workflow action definitions by app ID",
+      "canonical_id": "automation.v4.actions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all revisions for a given app and definition ID",
+      "canonical_id": "automation.v4.revisions.get_4d61"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List functions for a specific app and definition",
+      "canonical_id": "automation.v4.functions.get_730d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Patch an existing extension definition. + Update an existing action definition by ID.",
+      "canonical_id": "automation.v4.actions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a function from a definition",
+      "canonical_id": "automation.v4.functions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or insert a function for a definition",
+      "canonical_id": "automation.v4.functions.update_84ea"
+    }
+  ]
+}

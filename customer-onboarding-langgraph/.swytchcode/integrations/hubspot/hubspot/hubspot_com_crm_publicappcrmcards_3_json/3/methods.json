@@ -1,0 +1,34 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new card for an app",
+      "canonical_id": "crm.v3.cardsDev.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a card definition by ID",
+      "canonical_id": "crm.v3.cardsDev.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a card definition by app and card ID",
+      "canonical_id": "crm.v3.cardsDev.get_b0e4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get sample card detail response",
+      "canonical_id": "crm.v3.sampleResponse.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all cards for a specific app",
+      "canonical_id": "crm.v3.cardsDev.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a card with new details",
+      "canonical_id": "crm.v3.cardsDev.update"
+    }
+  ]
+}

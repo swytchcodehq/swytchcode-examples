@@ -1,0 +1,4355 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <TOKEN>
+  w_base_url: https://api.resend.com
+METHODS:
+  emails.email.create:
+    SUMMARY: Send an email
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /emails
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendEmailRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SendEmailResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(SendEmailRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendEmailResponse)
+        RETURNVAR: emails_email_create
+        STATUS: 200
+    CANONICAL_ID: emails.email.create
+  emails.email.list:
+    SUMMARY: Retrieve a list of emails
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListEmailsResponse)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListEmailsResponse)
+        RETURNVAR: emails_email_list
+        STATUS: 200
+    CANONICAL_ID: emails.email.list
+  emails.email.get:
+    SUMMARY: Retrieve a single email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/{email_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Email)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Email)
+        RETURNVAR: emails_email_get
+        STATUS: 200
+    CANONICAL_ID: emails.email.get
+  emails.email.update:
+    SUMMARY: Update a single email
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /emails/{email_id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateEmailOptions)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateEmailOptions)
+        RETURNVAR: emails_email_update
+        STATUS: 200
+    CANONICAL_ID: emails.email.update
+  emails.cancel.create:
+    SUMMARY: Cancel the schedule of the e-mail.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /emails/{email_id}/cancel
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Email)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Email)
+        RETURNVAR: emails_cancel_create
+        STATUS: 200
+    CANONICAL_ID: emails.cancel.create
+  emails.batch.create:
+    SUMMARY: Trigger up to 100 batch emails at once.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /emails/batch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(emails.batch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateBatchEmailsResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(emails.batch.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateBatchEmailsResponse)
+        RETURNVAR: emails_batch_create
+        STATUS: 200
+    CANONICAL_ID: emails.batch.create
+  emails.attachment.get:
+    SUMMARY: Retrieve a list of attachments for a sent email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/{email_id}/attachments
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListAttachmentsResponse)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListAttachmentsResponse)
+        RETURNVAR: emails_attachment_get
+        STATUS: 200
+    CANONICAL_ID: emails.attachment.get
+  emails.attachment.get_24df:
+    SUMMARY: Retrieve a single attachment for a sent email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/{email_id}/attachments/{attachment_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RetrievedAttachment)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+      - attachment_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RetrievedAttachment)
+        RETURNVAR: emails_attachment_get_24df
+        STATUS: 200
+    CANONICAL_ID: emails.attachment.get_24df
+  emails.receiving.list:
+    SUMMARY: Retrieve a list of received emails
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/receiving
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListReceivedEmailsResponse)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListReceivedEmailsResponse)
+        RETURNVAR: emails_receiving_list
+        STATUS: 200
+    CANONICAL_ID: emails.receiving.list
+  emails.receiving.get:
+    SUMMARY: Retrieve a single received email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/receiving/{email_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetReceivedEmailResponse)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetReceivedEmailResponse)
+        RETURNVAR: emails_receiving_get
+        STATUS: 200
+    CANONICAL_ID: emails.receiving.get
+  emails.receiving.attachments.get:
+    SUMMARY: Retrieve a list of attachments for a received email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/receiving/{email_id}/attachments
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListAttachmentsResponse)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListAttachmentsResponse)
+        RETURNVAR: emails_receiving_attachments_get
+        STATUS: 200
+    CANONICAL_ID: emails.receiving.attachments.get
+  emails.receiving.attachments.get_62bb:
+    SUMMARY: Retrieve a single attachment for a received email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /emails/receiving/{email_id}/attachments/{attachment_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RetrievedAttachment)
+    INPUTS:
+      - email_id:
+          TYPE: STRING
+          LOCATION: path
+      - attachment_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RetrievedAttachment)
+        RETURNVAR: emails_receiving_attachments_get_62bb
+        STATUS: 200
+    CANONICAL_ID: emails.receiving.attachments.get_62bb
+  domains.domain.create:
+    SUMMARY: Create a new domain
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /domains
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateDomainRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateDomainResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateDomainRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateDomainResponse)
+        RETURNVAR: domains_domain_create_201
+        STATUS: 201
+    CANONICAL_ID: domains.domain.create
+  domains.domain.list:
+    SUMMARY: Retrieve a list of domains
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /domains
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListDomainsResponse)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListDomainsResponse)
+        RETURNVAR: domains_domain_list
+        STATUS: 200
+    CANONICAL_ID: domains.domain.list
+  domains.domain.get:
+    SUMMARY: Retrieve a single domain
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /domains/{domain_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Domain)
+    INPUTS:
+      - domain_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Domain)
+        RETURNVAR: domains_domain_get
+        STATUS: 200
+    CANONICAL_ID: domains.domain.get
+  domains.domain.update:
+    SUMMARY: Update an existing domain
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /domains/{domain_id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateDomainOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateDomainResponseSuccess)
+    INPUTS:
+      - domain_id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateDomainOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateDomainResponseSuccess)
+        RETURNVAR: domains_domain_update
+        STATUS: 200
+    CANONICAL_ID: domains.domain.update
+  domains.domain.delete:
+    SUMMARY: Remove an existing domain
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /domains/{domain_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(DeleteDomainResponse)
+    INPUTS:
+      - domain_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(DeleteDomainResponse)
+        RETURNVAR: domains_domain_delete
+        STATUS: 200
+    CANONICAL_ID: domains.domain.delete
+  domains.verify.create:
+    SUMMARY: Verify an existing domain
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /domains/{domain_id}/verify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VerifyDomainResponse)
+    INPUTS:
+      - domain_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(VerifyDomainResponse)
+        RETURNVAR: domains_verify_create
+        STATUS: 200
+    CANONICAL_ID: domains.verify.create
+  api-keys.api-key.create:
+    SUMMARY: Create a new API key
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /api-keys
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateApiKeyRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateApiKeyResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateApiKeyRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateApiKeyResponse)
+        RETURNVAR: api-keys_api-key_create_201
+        STATUS: 201
+    CANONICAL_ID: api-keys.api-key.create
+  api-keys.api-key.list:
+    SUMMARY: Retrieve a list of API keys
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /api-keys
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListApiKeysResponse)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListApiKeysResponse)
+        RETURNVAR: api-keys_api-key_list
+        STATUS: 200
+    CANONICAL_ID: api-keys.api-key.list
+  api-keys.api-key.delete:
+    SUMMARY: Remove an existing API key
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /api-keys/{api_key_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - api_key_id:
+          TYPE: STRING
+          LOCATION: path
+    CANONICAL_ID: api-keys.api-key.delete
+  templates.template.create:
+    SUMMARY: Create a template
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /templates
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateTemplateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateTemplateResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateTemplateRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateTemplateResponseSuccess)
+        RETURNVAR: templates_template_create_201
+        STATUS: 201
+    CANONICAL_ID: templates.template.create
+  templates.template.list:
+    SUMMARY: Retrieve a list of templates
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /templates
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListTemplatesResponseSuccess)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListTemplatesResponseSuccess)
+        RETURNVAR: templates_template_list
+        STATUS: 200
+    CANONICAL_ID: templates.template.list
+  templates.template.get:
+    SUMMARY: Retrieve a single template
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /templates/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Template)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Template)
+        RETURNVAR: templates_template_get
+        STATUS: 200
+    CANONICAL_ID: templates.template.get
+  templates.template.update:
+    SUMMARY: Update an existing template
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /templates/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateTemplateOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateTemplateResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateTemplateOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateTemplateResponseSuccess)
+        RETURNVAR: templates_template_update
+        STATUS: 200
+    CANONICAL_ID: templates.template.update
+  templates.template.delete:
+    SUMMARY: Remove an existing template
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /templates/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveTemplateResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveTemplateResponseSuccess)
+        RETURNVAR: templates_template_delete
+        STATUS: 200
+    CANONICAL_ID: templates.template.delete
+  templates.publish.create:
+    SUMMARY: Publish a template
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /templates/{id}/publish
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublishTemplateResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublishTemplateResponseSuccess)
+        RETURNVAR: templates_publish_create
+        STATUS: 200
+    CANONICAL_ID: templates.publish.create
+  templates.duplicate.create:
+    SUMMARY: Duplicate a template
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /templates/{id}/duplicate
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(DuplicateTemplateResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(DuplicateTemplateResponseSuccess)
+        RETURNVAR: templates_duplicate_create
+        STATUS: 200
+    CANONICAL_ID: templates.duplicate.create
+  audiences.audience.create:
+    SUMMARY: Create a list of contacts
+    DESC: "Deprecated: Use Segments instead. These endpoints still work, but will be removed in the future."
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /audiences
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateAudienceOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateAudienceResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateAudienceOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateAudienceResponseSuccess)
+        RETURNVAR: audiences_audience_create_201
+        STATUS: 201
+    CANONICAL_ID: audiences.audience.create
+  audiences.audience.list:
+    SUMMARY: Retrieve a list of audiences
+    DESC: "Deprecated: Use Segments instead. These endpoints still work, but will be removed in the future."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /audiences
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListAudiencesResponseSuccess)
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListAudiencesResponseSuccess)
+        RETURNVAR: audiences_audience_list
+        STATUS: 200
+    CANONICAL_ID: audiences.audience.list
+  audiences.audience.delete:
+    SUMMARY: Remove an existing audience
+    DESC: "Deprecated: Use Segments instead. These endpoints still work, but will be removed in the future."
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /audiences/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveAudienceResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveAudienceResponseSuccess)
+        RETURNVAR: audiences_audience_delete
+        STATUS: 200
+    CANONICAL_ID: audiences.audience.delete
+  audiences.audience.get:
+    SUMMARY: Retrieve a single audience
+    DESC: "Deprecated: Use Segments instead. These endpoints still work, but will be removed in the future."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /audiences/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetAudienceResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetAudienceResponseSuccess)
+        RETURNVAR: audiences_audience_get
+        STATUS: 200
+    CANONICAL_ID: audiences.audience.get
+  contacts.contact.create:
+    SUMMARY: Create a new contact
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /contacts
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateContactOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateContactResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateContactOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateContactResponseSuccess)
+        RETURNVAR: contacts_contact_create_201
+        STATUS: 201
+    CANONICAL_ID: contacts.contact.create
+  contacts.contact.list:
+    SUMMARY: Retrieve a list of contacts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contacts
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListContactsResponseSuccess)
+    INPUTS:
+      - segment_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListContactsResponseSuccess)
+        RETURNVAR: contacts_contact_list
+        STATUS: 200
+    CANONICAL_ID: contacts.contact.list
+  contacts.contact.get:
+    SUMMARY: Retrieve a single contact by ID or email
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contacts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetContactResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetContactResponseSuccess)
+        RETURNVAR: contacts_contact_get
+        STATUS: 200
+    CANONICAL_ID: contacts.contact.get
+  contacts.contact.update:
+    SUMMARY: Update a single contact by ID or email
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /contacts/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateContactOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateContactResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateContactOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateContactResponseSuccess)
+        RETURNVAR: contacts_contact_update
+        STATUS: 200
+    CANONICAL_ID: contacts.contact.update
+  contacts.contact.delete:
+    SUMMARY: Remove an existing contact by ID or email
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /contacts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveContactResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveContactResponseSuccess)
+        RETURNVAR: contacts_contact_delete
+        STATUS: 200
+    CANONICAL_ID: contacts.contact.delete
+  broadcasts.broadcast.create:
+    SUMMARY: Create a broadcast
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /broadcasts
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateBroadcastOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateBroadcastResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateBroadcastOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateBroadcastResponseSuccess)
+        RETURNVAR: broadcasts_broadcast_create_201
+        STATUS: 201
+    CANONICAL_ID: broadcasts.broadcast.create
+  broadcasts.broadcast.list:
+    SUMMARY: Retrieve a list of broadcasts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /broadcasts
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListBroadcastsResponseSuccess)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListBroadcastsResponseSuccess)
+        RETURNVAR: broadcasts_broadcast_list
+        STATUS: 200
+    CANONICAL_ID: broadcasts.broadcast.list
+  broadcasts.broadcast.delete:
+    SUMMARY: Remove an existing broadcast that is in the draft status
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /broadcasts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveBroadcastResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveBroadcastResponseSuccess)
+        RETURNVAR: broadcasts_broadcast_delete
+        STATUS: 200
+    CANONICAL_ID: broadcasts.broadcast.delete
+  broadcasts.broadcast.get:
+    SUMMARY: Retrieve a single broadcast
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /broadcasts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetBroadcastResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetBroadcastResponseSuccess)
+        RETURNVAR: broadcasts_broadcast_get
+        STATUS: 200
+    CANONICAL_ID: broadcasts.broadcast.get
+  broadcasts.broadcast.update:
+    SUMMARY: Update an existing broadcast
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /broadcasts/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateBroadcastOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateBroadcastResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateBroadcastOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateBroadcastResponseSuccess)
+        RETURNVAR: broadcasts_broadcast_update
+        STATUS: 200
+    CANONICAL_ID: broadcasts.broadcast.update
+  broadcasts.send.create:
+    SUMMARY: Send or schedule a broadcast
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /broadcasts/{id}/send
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendBroadcastOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SendBroadcastResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SendBroadcastOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendBroadcastResponseSuccess)
+        RETURNVAR: broadcasts_send_create
+        STATUS: 200
+    CANONICAL_ID: broadcasts.send.create
+  webhooks.webhook.create:
+    SUMMARY: Create a new webhook
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateWebhookRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateWebhookResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateWebhookRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateWebhookResponse)
+        RETURNVAR: webhooks_webhook_create_201
+        STATUS: 201
+    CANONICAL_ID: webhooks.webhook.create
+  webhooks.webhook.list:
+    SUMMARY: Retrieve a list of webhooks
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListWebhooksResponse)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListWebhooksResponse)
+        RETURNVAR: webhooks_webhook_list
+        STATUS: 200
+    CANONICAL_ID: webhooks.webhook.list
+  webhooks.webhook.get:
+    SUMMARY: Retrieve a single webhook
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/{webhook_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetWebhookResponse)
+    INPUTS:
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetWebhookResponse)
+        RETURNVAR: webhooks_webhook_get
+        STATUS: 200
+    CANONICAL_ID: webhooks.webhook.get
+  webhooks.webhook.update:
+    SUMMARY: Update an existing webhook
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /webhooks/{webhook_id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateWebhookRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateWebhookResponse)
+    INPUTS:
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateWebhookRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateWebhookResponse)
+        RETURNVAR: webhooks_webhook_update
+        STATUS: 200
+    CANONICAL_ID: webhooks.webhook.update
+  webhooks.webhook.delete:
+    SUMMARY: Remove an existing webhook
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webhooks/{webhook_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(DeleteWebhookResponse)
+    INPUTS:
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(DeleteWebhookResponse)
+        RETURNVAR: webhooks_webhook_delete
+        STATUS: 200
+    CANONICAL_ID: webhooks.webhook.delete
+  segments.segment.create:
+    SUMMARY: Create a new segment
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /segments
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateSegmentOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateSegmentResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateSegmentOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateSegmentResponseSuccess)
+        RETURNVAR: segments_segment_create_201
+        STATUS: 201
+    CANONICAL_ID: segments.segment.create
+  segments.segment.list:
+    SUMMARY: Retrieve a list of segments
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /segments
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListSegmentsResponseSuccess)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListSegmentsResponseSuccess)
+        RETURNVAR: segments_segment_list
+        STATUS: 200
+    CANONICAL_ID: segments.segment.list
+  segments.segment.get:
+    SUMMARY: Retrieve a single segment
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /segments/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetSegmentResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetSegmentResponseSuccess)
+        RETURNVAR: segments_segment_get
+        STATUS: 200
+    CANONICAL_ID: segments.segment.get
+  segments.segment.delete:
+    SUMMARY: Remove an existing segment
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /segments/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveSegmentResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveSegmentResponseSuccess)
+        RETURNVAR: segments_segment_delete
+        STATUS: 200
+    CANONICAL_ID: segments.segment.delete
+  topics.topic.create:
+    SUMMARY: Create a new topic
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /topics
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateTopicOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateTopicResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateTopicOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateTopicResponseSuccess)
+        RETURNVAR: topics_topic_create_201
+        STATUS: 201
+    CANONICAL_ID: topics.topic.create
+  topics.topic.list:
+    SUMMARY: Retrieve a list of topics
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /topics
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListTopicsResponseSuccess)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListTopicsResponseSuccess)
+        RETURNVAR: topics_topic_list
+        STATUS: 200
+    CANONICAL_ID: topics.topic.list
+  topics.topic.get:
+    SUMMARY: Retrieve a single topic
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /topics/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetTopicResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetTopicResponseSuccess)
+        RETURNVAR: topics_topic_get
+        STATUS: 200
+    CANONICAL_ID: topics.topic.get
+  topics.topic.update:
+    SUMMARY: Update an existing topic
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /topics/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateTopicOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateTopicResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateTopicOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateTopicResponseSuccess)
+        RETURNVAR: topics_topic_update
+        STATUS: 200
+    CANONICAL_ID: topics.topic.update
+  topics.topic.delete:
+    SUMMARY: Remove an existing topic
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /topics/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveTopicResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveTopicResponseSuccess)
+        RETURNVAR: topics_topic_delete
+        STATUS: 200
+    CANONICAL_ID: topics.topic.delete
+  contact-properties.contact-property.create:
+    SUMMARY: Create a new contact property
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /contact-properties
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateContactPropertyOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateContactPropertyResponseSuccess)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateContactPropertyOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateContactPropertyResponseSuccess)
+        RETURNVAR: contact-properties_contact-property_create_201
+        STATUS: 201
+    CANONICAL_ID: contact-properties.contact-property.create
+  contact-properties.contact-property.list:
+    SUMMARY: Retrieve a list of contact properties
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contact-properties
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListContactPropertiesResponseSuccess)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListContactPropertiesResponseSuccess)
+        RETURNVAR: contact-properties_contact-property_list
+        STATUS: 200
+    CANONICAL_ID: contact-properties.contact-property.list
+  contact-properties.contact-property.get:
+    SUMMARY: Retrieve a single contact property
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contact-properties/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetContactPropertyResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetContactPropertyResponseSuccess)
+        RETURNVAR: contact-properties_contact-property_get
+        STATUS: 200
+    CANONICAL_ID: contact-properties.contact-property.get
+  contact-properties.contact-property.update:
+    SUMMARY: Update an existing contact property
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /contact-properties/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateContactPropertyOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateContactPropertyResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateContactPropertyOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateContactPropertyResponseSuccess)
+        RETURNVAR: contact-properties_contact-property_update
+        STATUS: 200
+    CANONICAL_ID: contact-properties.contact-property.update
+  contact-properties.contact-property.delete:
+    SUMMARY: Remove an existing contact property
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /contact-properties/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveContactPropertyResponseSuccess)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveContactPropertyResponseSuccess)
+        RETURNVAR: contact-properties_contact-property_delete
+        STATUS: 200
+    CANONICAL_ID: contact-properties.contact-property.delete
+  contacts.segment.get:
+    SUMMARY: Retrieve a list of segments for a contact
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contacts/{contact_id}/segments
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ListContactSegmentsResponseSuccess)
+    INPUTS:
+      - contact_id:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListContactSegmentsResponseSuccess)
+        RETURNVAR: contacts_segment_get
+        STATUS: 200
+    CANONICAL_ID: contacts.segment.get
+  contacts.segment.create:
+    SUMMARY: Add a contact to a segment
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /contacts/{contact_id}/segments/{segment_id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AddContactToSegmentResponseSuccess)
+    INPUTS:
+      - contact_id:
+          TYPE: STRING
+          LOCATION: path
+      - segment_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AddContactToSegmentResponseSuccess)
+        RETURNVAR: contacts_segment_create
+        STATUS: 200
+    CANONICAL_ID: contacts.segment.create
+  contacts.segment.delete:
+    SUMMARY: Remove a contact from a segment
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /contacts/{contact_id}/segments/{segment_id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RemoveContactFromSegmentResponseSuccess)
+    INPUTS:
+      - contact_id:
+          TYPE: STRING
+          LOCATION: path
+      - segment_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RemoveContactFromSegmentResponseSuccess)
+        RETURNVAR: contacts_segment_delete
+        STATUS: 200
+    CANONICAL_ID: contacts.segment.delete
+  contacts.topic.get:
+    SUMMARY: Retrieve topics for a contact
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /contacts/{contact_id}/topics
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(GetContactTopicsResponseSuccess)
+    INPUTS:
+      - contact_id:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(GetContactTopicsResponseSuccess)
+        RETURNVAR: contacts_topic_get
+        STATUS: 200
+    CANONICAL_ID: contacts.topic.get
+  contacts.topic.update:
+    SUMMARY: Update topics for a contact
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /contacts/{contact_id}/topics
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateContactTopicsOptions)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UpdateContactTopicsResponseSuccess)
+    INPUTS:
+      - contact_id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateContactTopicsOptions)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(UpdateContactTopicsResponseSuccess)
+        RETURNVAR: contacts_topic_update
+        STATUS: 200
+    CANONICAL_ID: contacts.topic.update
+STRUCTS:
+  SendEmailRequest:
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Sender email address. To include a friendly name, use the format "Your Name <sender@domain.com>".
+    - name: to
+      NAME: to
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+      comment: Recipient email address. For multiple addresses, send as an array of strings. Max 50.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Email subject.
+    - name: bcc
+      NAME: bcc
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: Bcc recipient email address. For multiple addresses, send as an array of strings.
+    - name: cc
+      NAME: cc
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: Cc recipient email address. For multiple addresses, send as an array of strings.
+    - name: reply_to
+      NAME: reply_to
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: Reply-to email address. For multiple addresses, send as an array of strings.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the message.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the message.
+    - name: template
+      NAME: template
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: headers
+      NAME: headers
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Custom headers to add to the email.
+    - name: scheduled_at
+      NAME: scheduled_at
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Schedule email to be sent later. The date should be in ISO 8601 format.
+    - name: attachments
+      NAME: attachments
+      type: "[]STRUCT(Attachment)"
+      TYPE: "[]STRUCT(Attachment)"
+      REQUIRED: false
+    - name: tags
+      NAME: tags
+      type: "[]STRUCT(Tag)"
+      TYPE: "[]STRUCT(Tag)"
+      REQUIRED: false
+    - name: topic_id
+      NAME: topic_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The topic ID to scope the email to. If the recipient is a contact and opted-in to the topic, the email is sent. If opted-out, the email is not sent. If the recipient is not a contact, the email is sent if the topic's default subscription is opt_in.
+  Attachment:
+    - name: content
+      NAME: content
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Content of an attached file.
+    - name: filename
+      NAME: filename
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of attached file.
+    - name: path
+      NAME: path
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Path where the attachment file is hosted
+    - name: content_type
+      NAME: content_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional content type for the attachment, if not set it will be derived from the filename property
+    - name: content_id
+      NAME: content_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Content ID for embedding inline images using cid references (e.g., cid:image001).
+  Tag:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the email tag. It can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores (_), or dashes (-). It can contain no more than 256 characters.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The value of the email tag.It can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores (_), or dashes (-). It can contain no more than 256 characters.
+  SendEmailResponse:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the sent email.
+  UpdateEmailOptions:
+    - name: scheduled_at
+      NAME: scheduled_at
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Schedule email to be sent later. The date should be in ISO 8601 format.
+  Email:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the email.
+    - name: to
+      NAME: to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of the sender.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time the email was created.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The subject line of the email.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML body of the email.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text body of the email.
+    - name: bcc
+      NAME: bcc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses of the blind carbon copy recipients.
+    - name: cc
+      NAME: cc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses of the carbon copy recipients.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses to which replies should be sent.
+    - name: last_event
+      NAME: last_event
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the email.
+  ListEmailsResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]STRUCT(Email)"
+      TYPE: "[]STRUCT(Email)"
+      REQUIRED: false
+      comment: Array containing email information.
+  CreateBatchEmailsResponse:
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  DomainCapabilities:
+    - name: sending
+      NAME: sending
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Enable or disable sending emails from this domain.
+    - name: receiving
+      NAME: receiving
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Enable or disable receiving emails to this domain.
+  CreateDomainRequest:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the domain you want to create.
+    - name: region
+      NAME: region
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The region where emails will be sent from. Possible values are us-east-1 | eu-west-1 | sa-east-1 | ap-northeast-1
+    - name: custom_return_path
+      NAME: custom_return_path
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: For advanced use cases, choose a subdomain for the Return-Path address. Defaults to 'send' (i.e., send.yourdomain.tld).
+    - name: open_tracking
+      NAME: open_tracking
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Track the open rate of each email.
+    - name: click_tracking
+      NAME: click_tracking
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Track clicks within the body of each HTML email.
+    - name: tls
+      NAME: tls
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: TLS mode. Opportunistic attempts secure connection but falls back to unencrypted. Enforced requires TLS or email won't be sent.
+    - name: capabilities
+      NAME: capabilities
+      type: STRUCT(DomainCapabilities)
+      TYPE: STRUCT(DomainCapabilities)
+      REQUIRED: false
+  CreateDomainResponse:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the domain.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the domain.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time the domain was created.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the domain.
+    - name: capabilities
+      NAME: capabilities
+      type: STRUCT(DomainCapabilities)
+      TYPE: STRUCT(DomainCapabilities)
+      REQUIRED: false
+    - name: records
+      NAME: records
+      type: "[]STRUCT(DomainRecord)"
+      TYPE: "[]STRUCT(DomainRecord)"
+      REQUIRED: false
+    - name: region
+      NAME: region
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The region where the domain is hosted.
+  DomainRecord:
+    - name: record
+      NAME: record
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of record (SPF for sending, DKIM for sending, Receiving for inbound emails).
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the DNS record.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The DNS record type.
+    - name: ttl
+      NAME: ttl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The time to live for the record.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the record.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The value of the record.
+    - name: priority
+      NAME: priority
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The priority of the record (only applicable for MX records).
+  UpdateDomainOptions:
+    - name: open_tracking
+      NAME: open_tracking
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Track the open rate of each email.
+    - name: click_tracking
+      NAME: click_tracking
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Track clicks within the body of each HTML email.
+    - name: tls
+      NAME: tls
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: enforced | opportunistic.
+    - name: capabilities
+      NAME: capabilities
+      type: STRUCT(DomainCapabilities)
+      TYPE: STRUCT(DomainCapabilities)
+      REQUIRED: false
+  Domain:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the domain.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the domain.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the domain.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time the domain was created.
+    - name: region
+      NAME: region
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The region where the domain is hosted.
+    - name: capabilities
+      NAME: capabilities
+      type: STRUCT(DomainCapabilities)
+      TYPE: STRUCT(DomainCapabilities)
+      REQUIRED: false
+    - name: records
+      NAME: records
+      type: "[]STRUCT(DomainRecord)"
+      TYPE: "[]STRUCT(DomainRecord)"
+      REQUIRED: false
+  VerifyDomainResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the domain.
+  ListDomainsResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]STRUCT(ListDomainsItem)"
+      TYPE: "[]STRUCT(ListDomainsItem)"
+      REQUIRED: false
+  ListDomainsItem:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the domain.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the domain.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the domain.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time the domain was created.
+    - name: region
+      NAME: region
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The region where the domain is hosted.
+    - name: capabilities
+      NAME: capabilities
+      type: STRUCT(DomainCapabilities)
+      TYPE: STRUCT(DomainCapabilities)
+      REQUIRED: false
+  UpdateDomainResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the updated domain.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type representing the updated domain.
+  DeleteDomainResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the domain.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the domain was deleted successfully.
+  CreateApiKeyRequest:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The API key name.
+    - name: permission
+      NAME: permission
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The API key can have full access to Resend’s API or be only restricted to send emails. * full_access - Can create, delete, get, and update any resource. * sending_access - Can only send emails.
+    - name: domain_id
+      NAME: domain_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Restrict an API key to send emails only from a specific domain. Only used when the permission is sending_acces.
+  CreateApiKeyResponse:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the API key.
+    - name: token
+      NAME: token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The token of the API key.
+  ListApiKeysResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]STRUCT(ApiKey)"
+      TYPE: "[]STRUCT(ApiKey)"
+      REQUIRED: false
+  ApiKey:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the API key.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the API key.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The date and time the API key was created.
+  CreateAudienceOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the audience you want to create.
+  CreateAudienceResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the audience.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object of the audience.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the audience.
+  GetAudienceResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the audience.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object of the audience.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the audience.
+    - name: created_at
+      NAME: created_at
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The date that the object was created.
+  RemoveAudienceResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the audience.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object of the audience.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: The deleted attribute indicates that the corresponding audience has been deleted.
+  ListAudiencesResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing audience information.
+  CreateContactOptions:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Email address of the contact.
+    - name: first_name
+      NAME: first_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: First name of the contact.
+    - name: last_name
+      NAME: last_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Last name of the contact.
+    - name: unsubscribed
+      NAME: unsubscribed
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: The Contact's global subscription status. If set to true, the contact will be unsubscribed from all Broadcasts.
+    - name: properties
+      NAME: properties
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A map of custom property keys and values to create.
+    - name: segments
+      NAME: segments
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Array of segment IDs to add the contact to.
+    - name: topics
+      NAME: topics
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array of topic subscriptions for the contact.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier of the audience to which the contact belongs.
+  CreateContactResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier for the created contact.
+  GetContactResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier for the contact.
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address of the contact.
+    - name: first_name
+      NAME: first_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: First name of the contact.
+    - name: last_name
+      NAME: last_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Last name of the contact.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the contact was created.
+    - name: unsubscribed
+      NAME: unsubscribed
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the contact is unsubscribed.
+    - name: properties
+      NAME: properties
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A map of custom property keys and values.
+  UpdateContactOptions:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address of the contact.
+    - name: first_name
+      NAME: first_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: First name of the contact.
+    - name: last_name
+      NAME: last_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Last name of the contact.
+    - name: unsubscribed
+      NAME: unsubscribed
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: The Contact's global subscription status. If set to true, the contact will be unsubscribed from all Broadcasts.
+    - name: properties
+      NAME: properties
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A map of custom property keys and values to update.
+  UpdateContactResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier for the updated contact.
+  RemoveContactResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier for the removed contact.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the contact was successfully deleted.
+  ListContactsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing contact information.
+  CreateBroadcastOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the broadcast.
+    - name: segment_id
+      NAME: segment_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Unique identifier of the segment this broadcast will be sent to.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Use `segment_id` instead. Unique identifier of the segment this broadcast will be sent to.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The email address of the sender.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The subject line of the email.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses to which replies should be sent.
+    - name: preview_text
+      NAME: preview_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The preview text of the email.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the message.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the message.
+    - name: topic_id
+      NAME: topic_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The topic ID that the broadcast will be scoped to.
+    - name: send
+      NAME: send
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Whether to send the broadcast immediately or keep it as a draft.
+    - name: scheduled_at
+      NAME: scheduled_at
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        Schedule time to send the broadcast. Can only be used if `send` is true.
+  CreateBroadcastResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the broadcast.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  ListBroadcastsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing broadcast information.
+  GetBroadcastResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier for the broadcast.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the broadcast.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Deprecated: use `segment_id` instead. Unique identifier of the segment this broadcast will be sent to."
+    - name: segment_id
+      NAME: segment_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier of the segment this broadcast will be sent to.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of the sender.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The subject line of the email.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses to which replies should be sent.
+    - name: preview_text
+      NAME: preview_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The preview text of the email.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the broadcast.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the broadcast was created.
+    - name: scheduled_at
+      NAME: scheduled_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the broadcast is scheduled to be sent.
+    - name: sent_at
+      NAME: sent_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the broadcast was sent.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the broadcast content.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the broadcast content.
+    - name: topic_id
+      NAME: topic_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The topic ID that the broadcast is scoped to.
+  UpdateBroadcastOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the broadcast.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Use `segment_id` instead. Unique identifier of the audience this broadcast will be sent to.
+    - name: segment_id
+      NAME: segment_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique identifier of the segment this broadcast will be sent to.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of the sender.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The subject line of the email.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The email addresses to which replies should be sent.
+    - name: preview_text
+      NAME: preview_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The preview text of the email.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the message.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the message.
+    - name: topic_id
+      NAME: topic_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The topic ID that the broadcast will be scoped to.
+  UpdateBroadcastResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the broadcast.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  RemoveBroadcastResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the broadcast.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: The deleted attribute indicates that the corresponding broadcast has been deleted.
+  SendBroadcastOptions:
+    - name: scheduled_at
+      NAME: scheduled_at
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Schedule email to be sent later. The date should be in ISO 8601 format.
+  SendBroadcastResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the broadcast.
+  RetrievedAttachment:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the attachment.
+    - name: filename
+      NAME: filename
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The filename of the attachment.
+    - name: content_type
+      NAME: content_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The MIME type of the attachment.
+    - name: content_id
+      NAME: content_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The content ID for inline attachments.
+    - name: content_disposition
+      NAME: content_disposition
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: How the attachment should be displayed.
+    - name: download_url
+      NAME: download_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Signed URL to download the attachment content.
+    - name: expires_at
+      NAME: expires_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp when the download URL expires.
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Size of the attachment in bytes.
+  ListAttachmentsResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing attachment information.
+  GetReceivedEmailResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the received email.
+    - name: to
+      NAME: to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The recipient email addresses.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The sender email address.
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email subject.
+    - name: message_id
+      NAME: message_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The unique message ID from the email headers.
+    - name: bcc
+      NAME: bcc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The BCC recipients.
+    - name: cc
+      NAME: cc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The CC recipients.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The reply-to addresses.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML content of the email.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text content of the email.
+    - name: headers
+      NAME: headers
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: The email headers.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp when the email was received.
+    - name: attachments
+      NAME: attachments
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array of attachments.
+  ListReceivedEmailsResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing received email information.
+  CreateWebhookRequest:
+    - name: endpoint
+      NAME: endpoint
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The URL where webhook events will be sent.
+    - name: events
+      NAME: events
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Array of event types to subscribe to.
+  CreateWebhookResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the webhook.
+    - name: signing_secret
+      NAME: signing_secret
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The secret key used to verify webhook payloads.
+  GetWebhookResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the webhook.
+    - name: endpoint
+      NAME: endpoint
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL where webhook events are sent.
+    - name: events
+      NAME: events
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Array of event types subscribed to.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the webhook.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the webhook was created.
+    - name: signing_secret
+      NAME: signing_secret
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The secret key used to verify webhook payloads.
+  ListWebhooksResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing webhook information.
+  UpdateWebhookRequest:
+    - name: endpoint
+      NAME: endpoint
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL where webhook events will be sent.
+    - name: events
+      NAME: events
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Array of event types to subscribe to.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status of the webhook.
+  UpdateWebhookResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the updated webhook.
+  DeleteWebhookResponse:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the deleted webhook.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the webhook was successfully deleted.
+  TemplateVariable:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template variable.
+    - name: key
+      NAME: key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The key of the variable.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The type of the variable.
+    - name: fallback_value
+      NAME: fallback_value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The fallback value of the variable.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the variable was created.
+    - name: updated_at
+      NAME: updated_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the variable was last updated.
+  TemplateVariableInput:
+    - name: key
+      NAME: key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The key of the variable.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The type of the variable.
+    - name: fallback_value
+      NAME: fallback_value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The fallback value of the variable.
+  Template:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: current_version_id
+      NAME: current_version_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the current version of the template.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the template.
+    - name: alias
+      NAME: alias
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The alias of the template.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Sender email address. To include a friendly name, use the format "Your Name <sender@domain.com>".
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email subject.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Reply-to email addresses.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the template.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the template.
+    - name: variables
+      NAME: variables
+      type: "[]STRUCT(TemplateVariable)"
+      TYPE: "[]STRUCT(TemplateVariable)"
+      REQUIRED: false
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was created.
+    - name: updated_at
+      NAME: updated_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was last updated.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The publication status of the template.
+    - name: published_at
+      NAME: published_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was published.
+    - name: has_unpublished_versions
+      NAME: has_unpublished_versions
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the template has unpublished versions.
+  TemplateListItem:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the template.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The publication status of the template.
+    - name: published_at
+      NAME: published_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was published.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was created.
+    - name: updated_at
+      NAME: updated_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the template was last updated.
+    - name: alias
+      NAME: alias
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The alias of the template.
+  CreateTemplateRequest:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the template.
+    - name: alias
+      NAME: alias
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The alias of the template.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Sender email address. To include a friendly name, use the format "Your Name <sender@domain.com>".
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email subject.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Reply-to email addresses.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The HTML version of the template.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the template.
+    - name: variables
+      NAME: variables
+      type: "[]STRUCT(TemplateVariableInput)"
+      TYPE: "[]STRUCT(TemplateVariableInput)"
+      REQUIRED: false
+  CreateTemplateResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  ListTemplatesResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: data
+      NAME: data
+      type: "[]STRUCT(TemplateListItem)"
+      TYPE: "[]STRUCT(TemplateListItem)"
+      REQUIRED: false
+      comment: Array containing templates information.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more templates to retrieve.
+  UpdateTemplateOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the template.
+    - name: alias
+      NAME: alias
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The alias of the template.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Sender email address. To include a friendly name, use the format "Your Name <sender@domain.com>".
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email subject.
+    - name: reply_to
+      NAME: reply_to
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Reply-to email addresses.
+    - name: html
+      NAME: html
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The HTML version of the template.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The plain text version of the template.
+    - name: variables
+      NAME: variables
+      type: "[]STRUCT(TemplateVariableInput)"
+      TYPE: "[]STRUCT(TemplateVariableInput)"
+      REQUIRED: false
+  UpdateTemplateResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  RemoveTemplateResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the template was successfully deleted.
+  PublishTemplateResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the template.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  DuplicateTemplateResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the duplicated template.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  CreateSegmentOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the segment.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the audience this segment belongs to.
+    - name: filter
+      NAME: filter
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Filter conditions for the segment.
+  CreateSegmentResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the segment.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  GetSegmentResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the segment.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the segment.
+    - name: audience_id
+      NAME: audience_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the audience this segment belongs to.
+    - name: filter
+      NAME: filter
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Filter conditions for the segment.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the segment was created.
+  ListSegmentsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing segment information.
+  RemoveSegmentResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the segment.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the segment was successfully deleted.
+  CreateTopicOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the topic. Max 50 characters.
+    - name: default_subscription
+      NAME: default_subscription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The default subscription status for the topic. Cannot be changed after creation.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the topic. Max 200 characters.
+    - name: visibility
+      NAME: visibility
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The visibility of the topic. Public topics are visible to all contacts on the unsubscribe page. Private topics are only visible to opted-in contacts.
+  CreateTopicResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the topic.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  GetTopicResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the topic.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the topic.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the topic.
+    - name: default_subscription
+      NAME: default_subscription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The default subscription status for the topic.
+    - name: visibility
+      NAME: visibility
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The visibility of the topic.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the topic was created.
+  ListTopicsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing topic information.
+  UpdateTopicOptions:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the topic. Max 50 characters.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the topic. Max 200 characters.
+    - name: visibility
+      NAME: visibility
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The visibility of the topic.
+  UpdateTopicResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the topic.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+  RemoveTopicResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the topic.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the topic was successfully deleted.
+  CreateContactPropertyOptions:
+    - name: key
+      NAME: key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The property key. Max length is 50 characters. Only alphanumeric characters and underscores are allowed.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The property type.
+    - name: fallback_value
+      NAME: fallback_value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The default value to use when the property is not set for a contact. Must match the type specified in the type field.
+  CreateContactPropertyResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact property.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type of the response.
+  GetContactPropertyResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact property.
+    - name: key
+      NAME: key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The property key.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The property type.
+    - name: fallback_value
+      NAME: fallback_value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The default value when the property is not set for a contact.
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp indicating when the contact property was created.
+  ListContactPropertiesResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing contact property information.
+  UpdateContactPropertyOptions:
+    - name: fallback_value
+      NAME: fallback_value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The default value to use when the property is not set for a contact. Must match the type of the property.
+  UpdateContactPropertyResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact property.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+  RemoveContactPropertyResponseSuccess:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact property.
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the contact property was successfully deleted.
+  AddContactToSegmentResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: contact_id
+      NAME: contact_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact.
+    - name: segment_id
+      NAME: segment_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the segment.
+  ListContactSegmentsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing segment information for this contact.
+  RemoveContactFromSegmentResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: contact_id
+      NAME: contact_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact.
+    - name: segment_id
+      NAME: segment_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the segment.
+    - name: deleted
+      NAME: deleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether the contact was successfully removed from the segment.
+  GetContactTopicsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the response object.
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if there are more results available.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array containing topic subscriptions for this contact.
+  UpdateContactTopicsOptions:
+    - name: topics
+      NAME: topics
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+  UpdateContactTopicsResponseSuccess:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The object type.
+    - name: contact_id
+      NAME: contact_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the contact.
+    - name: topics
+      NAME: topics
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Array of updated topic subscriptions.
+  emails.batch.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

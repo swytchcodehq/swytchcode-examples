@@ -1,0 +1,34 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get calling app settings by app ID",
+      "canonical_id": "crm.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove calling extension settings for an app",
+      "canonical_id": "crm.v3.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update calling extension settings",
+      "canonical_id": "crm.v3.settings.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete video conferencing settings for an app",
+      "canonical_id": "crm.v3.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get video conferencing app settings by ID",
+      "canonical_id": "crm.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update video conferencing settings for an app",
+      "canonical_id": "crm.v3.settings.update"
+    }
+  ]
+}

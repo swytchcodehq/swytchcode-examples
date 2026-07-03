@@ -1,0 +1,277 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.hubapi.com
+METHODS:
+  oauth.v1.accessTokens.get:
+    SUMMARY: Retrieve OAuth token metadata
+    DESC: |-
+      Retrieve a token's metadata, including the email address of the user that the token was created for and the ID of the account it's associated with.
+
+      Note: HubSpot access tokens will fluctuate in size as the information that's encoded in them changes over time. It's recommended to allow for tokens to be up to 300 characters to account for any potential changes.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /oauth/v1/access-tokens/{token}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AccessTokenInfoResponse)
+    INPUTS:
+      - token:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AccessTokenInfoResponse)
+        RETURNVAR: oauth_v1_accessTokens_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: oauth_v1_accessTokens_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: oauth.v1.accessTokens.get
+  oauth.v1.refreshTokens.get:
+    SUMMARY: Retrieve refresh token metadata
+    DESC: Retrieve a refresh token's metadata, including the email address of the user that the token was created for and the ID of the account it's associated with. Learn more about [refresh tokens](https://developers.hubspot.com/docs/guides/api/app-management/oauth-tokens#generate-initial-access-and-refresh-tokens).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /oauth/v1/refresh-tokens/{token}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RefreshTokenInfoResponse)
+    INPUTS:
+      - token:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RefreshTokenInfoResponse)
+        RETURNVAR: oauth_v1_refreshTokens_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: oauth_v1_refreshTokens_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: oauth.v1.refreshTokens.get
+  oauth.v1.refreshTokens.delete:
+    SUMMARY: Delete a refresh token
+    DESC: |-
+      Delete a refresh token, typically after a user uninstalls your app. Access tokens generated with the refresh token will not be affected.
+
+      This will not uninstall the application from HubSpot or inhibit data syncing between an account and the app.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /oauth/v1/refresh-tokens/{token}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - token:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: oauth_v1_refreshTokens_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: oauth.v1.refreshTokens.delete
+  oauth.v1.token.create:
+    SUMMARY: Refresh an access token
+    DESC: |-
+      Use a [previously obtained refresh token](#get-oauth-2.0-access-and-refresh-tokens) to generate a new access token.
+
+      Access tokens are short lived. You can check the `expires_in` parameter when generating an access token to determine its lifetime (in seconds). If you need offline access to HubSpot data, store the refresh token you get when [initiating your OAuth integration](https://developers.hubspot.com/docs/guides/api/app-management/oauth-tokens#initiating-oauth-access) and use it to generate a new access token once the initial one expires.
+
+       Note: HubSpot access tokens will fluctuate in size as the information that's encoded in them changes over time. It's recommended to allow for tokens to be up to 300 characters to account for any potential changes.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /oauth/v1/token
+      HEADERS:
+        Content-Type: application/x-www-form-urlencoded
+      CONTENT_TYPE: application/x-www-form-urlencoded
+      ACCEPT: application/json
+      BODYTYPE: x-www-form-urlencoded
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TokenResponseIF)
+    INPUTS:
+      - grant_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - code:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - redirect_uri:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - client_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - client_secret:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - refresh_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(TokenResponseIF)
+        RETURNVAR: oauth_v1_token_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: oauth_v1_token_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: oauth.v1.token.create
+STRUCTS:
+  RefreshTokenInfoResponse:
+    - name: hub_id
+      NAME: hub_id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: user_id
+      NAME: user_id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: scopes
+      NAME: scopes
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: token_type
+      NAME: token_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: user
+      NAME: user
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: hub_domain
+      NAME: hub_domain
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: client_id
+      NAME: client_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: token
+      NAME: token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  AccessTokenInfoResponse:
+    - name: hub_id
+      NAME: hub_id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: user_id
+      NAME: user_id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: scopes
+      NAME: scopes
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: token_type
+      NAME: token_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: user
+      NAME: user
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: hub_domain
+      NAME: hub_domain
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: app_id
+      NAME: app_id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: expires_in
+      NAME: expires_in
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: token
+      NAME: token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  TokenResponseIF:
+    - name: access_token
+      NAME: access_token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: refresh_token
+      NAME: refresh_token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: id_token
+      NAME: id_token
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: token_type
+      NAME: token_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: expires_in
+      NAME: expires_in
+      type: INT
+      TYPE: INT
+      REQUIRED: true

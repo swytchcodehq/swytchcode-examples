@@ -1,0 +1,545 @@
+{
+  "editor": "none",
+  "integrations": {
+    "resend.resend_api": {
+      "version": "v1.5.0"
+    },
+    "stripe.stripe_api": {
+      "version": "2026-02-25.clover"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "prices.price.create": {
+      "desc": "<p>Creates a new Price for an existing Product. The Price can be recurring or one-time.</p>",
+      "inputs": [
+        {
+          "active": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "billing_scheme": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "currency": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "currency_options": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]ANY"
+          }
+        },
+        {
+          "custom_unit_amount": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "expand": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "lookup_key": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "metadata": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "nickname": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "product": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "product_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "recurring": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "tax_behavior": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "tiers": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]ANY"
+          }
+        },
+        {
+          "tiers_mode": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "transfer_lookup_key": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "transform_quantity": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "unit_amount": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "unit_amount_decimal": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "stripe.stripe_sdk@2026-02-25.clover",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "currency": {
+              "required": true,
+              "type": "string"
+            },
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "unit_amount": {
+              "required": true,
+              "type": "integer"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Create a price",
+      "type": "method"
+    },
+    "resend.email.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "attachments": {
+                  "items": {
+                    "properties": {
+                      "content": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "content_id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "content_type": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "filename": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "path": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "bcc": {
+                  "required": false,
+                  "type": "any"
+                },
+                "cc": {
+                  "required": false,
+                  "type": "any"
+                },
+                "from": {
+                  "required": true,
+                  "type": "string"
+                },
+                "headers": {
+                  "required": false,
+                  "type": "object"
+                },
+                "html": {
+                  "required": false,
+                  "type": "string"
+                },
+                "reply_to": {
+                  "required": false,
+                  "type": "any"
+                },
+                "scheduled_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "subject": {
+                  "required": true,
+                  "type": "string"
+                },
+                "tags": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "value": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "template": {
+                  "required": false,
+                  "type": "any"
+                },
+                "text": {
+                  "required": false,
+                  "type": "string"
+                },
+                "to": {
+                  "required": true,
+                  "type": "any"
+                },
+                "topic_id": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "from",
+                "to",
+                "subject"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "resend.resend@v1.5.0",
+      "method_hash": "6784bf62c80cb75cd7b3ebee051d70f4cc8d1d11798a837df76e54a9a0c4a6fa",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Send an email",
+      "type": "method"
+    },
+    "stripe.payment_link.create": {
+      "desc": "<p>Creates a payment link.</p>",
+      "inputs": [
+        {
+          "after_completion": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "allow_promotion_codes": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "application_fee_amount": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "application_fee_percent": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "FLOAT"
+          }
+        },
+        {
+          "automatic_tax": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "billing_address_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "consent_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "currency": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "custom_fields": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]ANY"
+          }
+        },
+        {
+          "custom_text": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "customer_creation": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "expand": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "inactive_message": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "invoice_creation": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "line_items": {
+            "LOCATION": "body",
+            "TYPE": "[]ANY"
+          }
+        },
+        {
+          "metadata": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "name_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "on_behalf_of": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "optional_items": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]ANY"
+          }
+        },
+        {
+          "payment_intent_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "payment_method_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "payment_method_types": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "phone_number_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "restrictions": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "shipping_address_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "shipping_options": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]ANY"
+          }
+        },
+        {
+          "submit_type": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "subscription_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "tax_id_collection": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "transfer_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "stripe.stripe_sdk@2026-02-25.clover",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "url": {
+              "required": true,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Create a payment link",
+      "type": "method"
+    }
+  },
+  "version": "1"
+}

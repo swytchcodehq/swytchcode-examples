@@ -1,0 +1,874 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a file from a remote service.",
+      "canonical_id": "files.remote.add.files.remote.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a new emoji to the admin panel.",
+      "canonical_id": "admin.emoji.add.admin.emoji.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to an item.",
+      "canonical_id": "reactions.add.reactions.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a star to an item.",
+      "canonical_id": "stars.add.stars.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an alias for an emoji.",
+      "canonical_id": "admin.emoji.addalias.admin.emoji.addalia.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add default channels to an IDP group.",
+      "canonical_id": "admin.usergroups.addchannels.admin.usergroups.addchannel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add IDP groups to allow access to a channel in the admin conversations.",
+      "canonical_id": "admin.conversations.restrictaccess.addgroup.admin.conversations.restrictaccess.addgroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add new participants to a Call.",
+      "canonical_id": "calls.participants.add.calls.participants.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve a workspace invite request.",
+      "canonical_id": "admin.inviterequests.approve.admin.inviterequests.approve.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve an app for installation on a workspace.",
+      "canonical_id": "admin.apps.approve.admin.apps.approve.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a conversation with the specified channel.",
+      "canonical_id": "conversations.archive.conversations.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a public or private channel.",
+      "canonical_id": "admin.conversations.archive.admin.conversations.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an Enterprise user to a workspace.",
+      "canonical_id": "admin.users.assign.admin.users.assign.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate default workspaces with an organization-wide IDP group.",
+      "canonical_id": "admin.usergroups.addteams.admin.usergroups.addteam.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check API calling code for errors and foo parameter.",
+      "canonical_id": "api.test.api.test.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Close a direct message or multi-person chat conversation.",
+      "canonical_id": "conversations.close.conversations.close.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Convert a public channel to a private channel.",
+      "canonical_id": "admin.conversations.converttoprivate.admin.conversations.converttoprivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Enterprise team with specified details like domain, name, and description.",
+      "canonical_id": "admin.teams.create.admin.teams.create.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new public or private channel-based conversation.",
+      "canonical_id": "admin.conversations.create.admin.conversations.create.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new reminder with text and time.",
+      "canonical_id": "reminders.add.reminders.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user group with specified details.",
+      "canonical_id": "usergroups.create.usergroups.create.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Customize unfurl behavior for URLs shared by users in chat.",
+      "canonical_id": "chat.unfurl.chat.unfurl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a file.",
+      "canonical_id": "files.delete.files.delete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a message in a chat.",
+      "canonical_id": "chat.delete.chat.delete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a pending scheduled message from the queue.",
+      "canonical_id": "chat.deletescheduledmessage.chat.deletescheduledmessage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a public or private channel by providing the channel ID.",
+      "canonical_id": "admin.conversations.delete.admin.conversations.delete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a reminder.",
+      "canonical_id": "reminders.delete.reminders.delete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing comment on a file.",
+      "canonical_id": "files.comments.delete.files.comments.delete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete the user profile photo.",
+      "canonical_id": "users.deletephoto.users.deletephoto.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deny a workspace invite request.",
+      "canonical_id": "admin.inviterequests.deny.admin.inviterequests.deny.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable an existing User Group.",
+      "canonical_id": "usergroups.disable.usergroups.disable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disconnect a connected channel from one or more workspaces.",
+      "canonical_id": "admin.conversations.disconnectshared.admin.conversations.disconnectshared.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a file for public/external sharing.",
+      "canonical_id": "files.sharedpublicurl.files.sharedpublicurl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a User Group by specifying the group to activate.",
+      "canonical_id": "usergroups.enable.usergroups.enable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "End a call by providing the call ID and optional duration.",
+      "canonical_id": "calls.end.calls.end.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "End the current user's Do Not Disturb session immediately.",
+      "canonical_id": "dnd.enddnd.dnd.enddnd.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "End the current user's snooze mode immediately.",
+      "canonical_id": "dnd.endsnooze.dnd.endsnooze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange a temporary OAuth verifier code for a workspace token.",
+      "canonical_id": "oauth.token.oauth.token.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange a temporary OAuth verifier code for an access token.",
+      "canonical_id": "oauth.access.oauth.access.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange a temporary OAuth verifier code for an access token.",
+      "canonical_id": "oauth.v2.access.oauth.v2.access.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find a user by email address.",
+      "canonical_id": "users.lookupbyemail.users.lookupbyemail.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Indicate when an app's step in a workflow fails to execute",
+      "canonical_id": "workflows.stepfailed.workflows.stepfailed.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Indicate when an app's workflow step has finished execution.",
+      "canonical_id": "workflows.stepcompleted.workflows.stepcompleted.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a conversation in a public or private channel.",
+      "canonical_id": "conversations.create.conversations.create.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invalidate a user's session by session ID.",
+      "canonical_id": "admin.users.session.invalidate.admin.users.session.invalidate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invite a user to a public or private channel.",
+      "canonical_id": "admin.conversations.invite.admin.conversations.invite.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invite a user to a workspace.",
+      "canonical_id": "admin.users.invite.admin.users.invite.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invite users to a channel.",
+      "canonical_id": "conversations.invite.conversations.invite.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Join an existing conversation.",
+      "canonical_id": "conversations.join.conversations.join.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Leave a conversation.",
+      "canonical_id": "conversations.leave.conversations.leave.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all admins of a specific workspace by providing the workspace ID.",
+      "canonical_id": "admin.teams.admins.list.admin.teams.admins.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all approved workspace invite requests.",
+      "canonical_id": "admin.inviterequests.approved.list.admin.inviterequests.approved.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all channels in a Slack team.",
+      "canonical_id": "conversations.list.conversations.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all denied workspace invite requests for a specific team with optional pagination support.",
+      "canonical_id": "admin.inviterequests.denied.list.admin.inviterequests.denied.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all IDP Groups linked to a channel.",
+      "canonical_id": "admin.conversations.restrictaccess.listgroups.admin.conversations.restrictaccess.listgroup.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all owners on a specific workspace.",
+      "canonical_id": "admin.teams.owners.list.admin.teams.owners.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all pending workspace invite requests.",
+      "canonical_id": "admin.inviterequests.list.admin.inviterequests.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all reminders created by or for a specific user.",
+      "canonical_id": "reminders.list.reminders.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all teams on an Enterprise organization.",
+      "canonical_id": "admin.teams.list.admin.teams.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all User Groups for a team.",
+      "canonical_id": "usergroups.list.usergroups.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all users in a Slack team.",
+      "canonical_id": "users.list.users.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all users in a specific User Group.",
+      "canonical_id": "usergroups.users.list.usergroups.users.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List app requests for a team/workspace.",
+      "canonical_id": "admin.apps.requests.list.admin.apps.requests.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List approved apps for an organization or workspace.",
+      "canonical_id": "admin.apps.approved.list.admin.apps.approved.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List channels linked to an organization-level IDP group.",
+      "canonical_id": "admin.usergroups.listchannels.admin.usergroups.listchannel.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List conversations accessible to the user based on specified parameters.",
+      "canonical_id": "users.conversations.users.conversation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List custom emoji for a team.",
+      "canonical_id": "emoji.list.emoji.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List disconnected channels and their original channel IDs for key revocation with EKM.",
+      "canonical_id": "admin.conversations.ekm.listoriginalconnectedchannelinfo.admin.conversations.ekm.listoriginalconnectedchannelinfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List emoji for an Enterprise Grid organization.",
+      "canonical_id": "admin.emoji.list.admin.emoji.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List files for a team, channel, or user with specified filters.",
+      "canonical_id": "files.list.files.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List items pinned to a channel.",
+      "canonical_id": "pins.list.pins.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List reactions made by a user.",
+      "canonical_id": "reactions.list.reactions.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List restricted apps for an organization or workspace.",
+      "canonical_id": "admin.apps.restricted.list.admin.apps.restricted.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List scheduled messages for a specific channel with optional time range and limit parameters.",
+      "canonical_id": "chat.scheduledmessages.list.chat.scheduledmessages.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List scopes of permissions for this app on a team.",
+      "canonical_id": "apps.permissions.scopes.list.apps.permissions.scopes.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List stars for a user.",
+      "canonical_id": "stars.list.stars.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users on a workspace by providing the team ID.",
+      "canonical_id": "admin.users.list.admin.users.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Map local user IDs to global user IDs for Enterprise Grid workspaces.",
+      "canonical_id": "migration.exchange.migration.exchange.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a reminder as complete.",
+      "canonical_id": "reminders.complete.reminders.complete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a user as active.",
+      "canonical_id": "users.setactive.users.setactive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Open a dialog with a user.",
+      "canonical_id": "dialog.open.dialog.open.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Open a view for a user.",
+      "canonical_id": "views.open.views.open.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Open or resume a direct message or multi-person direct message.",
+      "canonical_id": "conversations.open.conversations.open.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Pin an item to a channel.",
+      "canonical_id": "pins.add.pins.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a static view for a specific user.",
+      "canonical_id": "views.publish.views.publish.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Push a view onto the stack of a root view.",
+      "canonical_id": "views.push.views.push.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register a new call with specified details like unique ID, join URL, and start date.",
+      "canonical_id": "calls.add.calls.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a linked IDP group from a private channel.",
+      "canonical_id": "admin.conversations.restrictaccess.removegroup.admin.conversations.restrictaccess.removegroup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from an item.",
+      "canonical_id": "reactions.remove.reactions.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a remote file.",
+      "canonical_id": "files.remote.remove.files.remote.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a star from an item.",
+      "canonical_id": "stars.remove.stars.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from a conversation.",
+      "canonical_id": "conversations.kick.conversations.kick.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from a workspace.",
+      "canonical_id": "admin.users.remove.admin.users.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an emoji across an Enterprise Grid organization.",
+      "canonical_id": "admin.emoji.remove.admin.emoji.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove default channels from an organization-level IDP group.",
+      "canonical_id": "admin.usergroups.removechannels.admin.usergroups.removechannel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove participants from a call.",
+      "canonical_id": "calls.participants.remove.calls.participants.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rename a conversation with specified channel and name.",
+      "canonical_id": "conversations.rename.conversations.rename.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rename a public or private channel.",
+      "canonical_id": "admin.conversations.rename.admin.conversations.rename.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rename an emoji by providing the token, current name, and new name.",
+      "canonical_id": "admin.emoji.rename.admin.emoji.rename.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request additional scopes for an app.",
+      "canonical_id": "apps.permissions.request.apps.permissions.request.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset all active sessions for a specific user across all devices.",
+      "canonical_id": "admin.users.session.reset.admin.users.session.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restrict an app for installation on a workspace.",
+      "canonical_id": "admin.apps.restrict.admin.apps.restrict.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a conversation's message and event history.",
+      "canonical_id": "conversations.history.conversations.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of authorizations for a specific event context, showing app installations visible to the event.",
+      "canonical_id": "apps.event.authorizations.list.apps.event.authorizations.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a team's profile.",
+      "canonical_id": "team.profile.get.team.profile.get.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a thread of messages posted to a conversation.",
+      "canonical_id": "conversations.replies.conversations.reply.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a user's current Do Not Disturb status.",
+      "canonical_id": "dnd.info.dnd.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a user's identity.",
+      "canonical_id": "users.identity.users.identity.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a user's profile information.",
+      "canonical_id": "users.profile.get.users.profile.get.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve access logs for the current team.",
+      "canonical_id": "team.accesslogs.team.accesslog.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all workspaces connected to a specific public or private channel in the Enterprise organization.",
+      "canonical_id": "admin.conversations.getteams.admin.conversations.getteam.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve billable users information for the current team.",
+      "canonical_id": "team.billableinfo.team.billableinfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve conversation preferences for a public or private channel.",
+      "canonical_id": "admin.conversations.getconversationprefs.admin.conversations.getconversationpref.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details about settings in a workspace for a specific team.",
+      "canonical_id": "admin.teams.settings.info.admin.teams.settings.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a conversation.",
+      "canonical_id": "conversations.info.conversations.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a reminder.",
+      "canonical_id": "reminders.info.reminders.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about a bot user.",
+      "canonical_id": "bots.info.bots.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about a remote file added to Slack.",
+      "canonical_id": "files.remote.list.files.remote.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about a remote file added to Slack.",
+      "canonical_id": "files.remote.info.files.remote.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about a specific call by ID.",
+      "canonical_id": "calls.info.calls.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about a specific file.",
+      "canonical_id": "files.info.files.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about the current team.",
+      "canonical_id": "team.info.team.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve integration logs for the current team.",
+      "canonical_id": "team.integrationlogs.team.integrationlog.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve members of a conversation.",
+      "canonical_id": "conversations.members.conversations.member.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve permalink URL for a specific message.",
+      "canonical_id": "chat.getpermalink.chat.getpermalink.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve reactions for an item with optional parameters like channel, file, or timestamp.",
+      "canonical_id": "reactions.get.reactions.get.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Do Not Disturb status for up to 50 users on a team.",
+      "canonical_id": "dnd.teaminfo.dnd.teaminfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of permissions that this app has on a team.",
+      "canonical_id": "apps.permissions.info.apps.permissions.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of resource grants that this app has on a team.",
+      "canonical_id": "apps.permissions.resources.list.apps.permissions.resources.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of user grants and scopes that this app has on a team.",
+      "canonical_id": "apps.permissions.users.list.apps.permissions.users.list.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve user information by user ID.",
+      "canonical_id": "users.info.users.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve user presence information.",
+      "canonical_id": "users.getpresence.users.getpresence.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke a token.",
+      "canonical_id": "auth.revoke.auth.revoke.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke public/external sharing access for a file.",
+      "canonical_id": "files.revokepublicurl.files.revokepublicurl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Schedule a message to be sent to a channel.",
+      "canonical_id": "chat.schedulemessage.chat.schedulemessage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for public or private channels within an Enterprise organization.",
+      "canonical_id": "admin.conversations.search.admin.conversations.search.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Searches for messages matching a query.",
+      "canonical_id": "search.messages.search.message.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a message to a channel.",
+      "canonical_id": "chat.postmessage.chat.postmessage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an ephemeral message to a user in a channel.",
+      "canonical_id": "chat.postephemeral.chat.postephemeral.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a user as a workspace owner by specifying the team ID and user ID.",
+      "canonical_id": "admin.users.setowner.admin.users.setowner.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set an existing user as a regular user in a team.",
+      "canonical_id": "admin.users.setregular.admin.users.setregular.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set an existing user as an admin within a specific team.",
+      "canonical_id": "admin.users.setadmin.admin.users.setadmin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set an expiration for a guest user.",
+      "canonical_id": "admin.users.setexpiration.admin.users.setexpiration.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set or update Do Not Disturb mode for the current user with specified duration.",
+      "canonical_id": "dnd.setsnooze.dnd.setsnooze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set posting permissions for a public or private channel.",
+      "canonical_id": "admin.conversations.setconversationprefs.admin.conversations.setconversationpref.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set profile information for a user.",
+      "canonical_id": "users.profile.set.users.profile.set.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the default channels for a workspace.",
+      "canonical_id": "admin.teams.settings.setdefaultchannels.admin.teams.settings.setdefaultchannel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the description of a given workspace",
+      "canonical_id": "admin.teams.settings.setdescription.admin.teams.settings.setdescription.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the discoverability of a workspace for admins.",
+      "canonical_id": "admin.teams.settings.setdiscoverability.admin.teams.settings.setdiscoverability.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the icon of a workspace.",
+      "canonical_id": "admin.teams.settings.seticon.admin.teams.settings.seticon.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the name of a specific workspace.",
+      "canonical_id": "admin.teams.settings.setname.admin.teams.settings.setname.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the purpose for a conversation.",
+      "canonical_id": "conversations.setpurpose.conversations.setpurpose.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the read cursor in a channel.",
+      "canonical_id": "conversations.mark.conversations.mark.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the topic for a conversation.",
+      "canonical_id": "conversations.settopic.conversations.settopic.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the user's profile photo.",
+      "canonical_id": "users.setphoto.users.setphoto.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the workspaces in an Enterprise grid org that connect to a public or private channel.",
+      "canonical_id": "admin.conversations.setteams.admin.conversations.setteam.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set user presence manually.",
+      "canonical_id": "users.setpresence.users.setpresence.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Share a \"me\" message into a channel.",
+      "canonical_id": "chat.memessage.chat.memessage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Share a remote file into a channel.",
+      "canonical_id": "files.remote.share.files.remote.share.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a Real Time Messaging session.",
+      "canonical_id": "rtm.connect.rtm.connect.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a permissions modal for an app to request access to a user's access scope.",
+      "canonical_id": "apps.permissions.users.request.apps.permissions.users.request.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Un-pin an item from a channel.",
+      "canonical_id": "pins.remove.pins.remove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unarchive a conversation to reverse its archival status.",
+      "canonical_id": "conversations.unarchive.conversations.unarchive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unarchive a public or private channel.",
+      "canonical_id": "admin.conversations.unarchive.admin.conversations.unarchive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Uninstall your app from a workspace.",
+      "canonical_id": "apps.uninstall.apps.uninstall.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a chat message with new content, attachments, or blocks in a specified channel.",
+      "canonical_id": "chat.update.chat.update.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing remote file with new information.",
+      "canonical_id": "files.remote.update.files.remote.update.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing User Group with new information.",
+      "canonical_id": "usergroups.update.usergroups.update.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing view by providing the view ID, external ID, view content, and hash.",
+      "canonical_id": "views.update.views.update.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update information about a call.",
+      "canonical_id": "calls.update.calls.update.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the configuration for a workflow extension step.",
+      "canonical_id": "workflows.updatestep.workflows.updatestep.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the list of users for a User Group.",
+      "canonical_id": "usergroups.users.update.usergroups.users.update.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Uploads a file with specified details.",
+      "canonical_id": "files.upload.files.upload.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify user authentication and identity.",
+      "canonical_id": "auth.test.auth.test.list"
+    }
+  ]
+}

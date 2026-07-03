@@ -1,0 +1,2018 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://travelpartner.googleapis.com
+METHODS:
+  hotels:setliveongoogle.hotels:setliveongoogle.create:
+    SUMMARY: Collection-level custom method to update the Live on Google status for multiple properties
+    DESC: Collection-level custom method to update the Live on Google status for multiple properties. Each call can turn on or off multiple hotels. To turn some hotels on and turn some hotels off, you will have to make multiple calls.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+account}/hotels:setLiveOnGoogle
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(SetLiveOnGoogleRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - account:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SetLiveOnGoogleRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: hotels:setliveongoogle_hotels:setliveongoogle_create
+        STATUS: 200
+    CANONICAL_ID: hotels:setliveongoogle.hotels:setliveongoogle.create
+  api.resource.execute:
+    SUMMARY: Deletes an account link.
+    DESC: Deletes an account link.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v3/{+name}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: api_resource_execute
+        STATUS: 200
+    CANONICAL_ID: api.resource.execute
+  api.resource.execute_257b:
+    SUMMARY: Returns a reconciliation report.
+    DESC: Returns a reconciliation report.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+name}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+      - includeMatchedPrices:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - includeNonScoring:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - includePixels:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: api_resource_execute_257b
+        STATUS: 200
+    CANONICAL_ID: api.resource.execute_257b
+  api.resource.execute_1eaf:
+    SUMMARY: Updates a brand.
+    DESC: Updates a brand.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v3/{+name}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(Brand)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+      - allowMissing:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - updateMask:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Brand)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: api_resource_execute_1eaf
+        STATUS: 200
+    CANONICAL_ID: api.resource.execute_1eaf
+  freebookinglinksreportviews:query.freebookinglinksreportviews:query.get:
+    SUMMARY: "**DEPRECATED:** Use PropertyPerformanceReportService.QueryPropertyPerformanceReport, which also has impression reporting, instead"
+    DESC: "**DEPRECATED:** Use PropertyPerformanceReportService.QueryPropertyPerformanceReport, which also has impression reporting, instead. Provides the ability to query (get, filter, and segment) a free booking links report for a specific account."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+name}/freeBookingLinksReportViews:query
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+      - aggregateBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - filter:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: freebookinglinksreportviews:query_freebookinglinksreportviews:query_get
+        STATUS: 200
+    CANONICAL_ID: freebookinglinksreportviews:query.freebookinglinksreportviews:query.get
+  participationreportviews:query.participationreportviews:query.get:
+    SUMMARY: Provides the ability to query (get, filter, and segment) a participation report for a particular account.
+    DESC: Provides the ability to query (get, filter, and segment) a participation report for a particular account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+name}/participationReportViews:query
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+      - aggregateBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - filter:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: participationreportviews:query_participationreportviews:query_get
+        STATUS: 200
+    CANONICAL_ID: participationreportviews:query.participationreportviews:query.get
+  propertyperformancereportviews:query.propertyperformancereportviews:query.get:
+    SUMMARY: Provides the ability to query (get, filter, and segment) a property performance links report for a specific account.
+    DESC: Provides the ability to query (get, filter, and segment) a property performance links report for a specific account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+name}/propertyPerformanceReportViews:query
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          LOCATION: path
+      - aggregateBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - filter:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: propertyperformancereportviews:query_propertyperformancereportviews:query_get
+        STATUS: 200
+    CANONICAL_ID: propertyperformancereportviews:query.propertyperformancereportviews:query.get
+  accountlinks.accountlink.get:
+    SUMMARY: Returns the account links for a Hotel Center account.
+    DESC: Returns the account links for a Hotel Center account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/accountLinks
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: accountlinks_accountlink_get
+        STATUS: 200
+    CANONICAL_ID: accountlinks.accountlink.get
+  accountlinks.accountlink.create:
+    SUMMARY: Creates a new account link between a Hotel Center account and a Google Ads account.
+    DESC: Creates a new account link between a Hotel Center account and a Google Ads account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/accountLinks
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(AccountLink)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountLink)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: accountlinks_accountlink_create
+        STATUS: 200
+    CANONICAL_ID: accountlinks.accountlink.create
+  brands.brand.get:
+    SUMMARY: Returns the brands for a partner account.
+    DESC: Returns the brands for a partner account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/brands
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: brands_brand_get
+        STATUS: 200
+    CANONICAL_ID: brands.brand.get
+  brands.brand.create:
+    SUMMARY: Creates a new brand
+    DESC: Creates a new brand. Because Google detects brands from your existing properties, you only need this operation when you want to configure a brand before you send its properties to Google. Note that it might take a couple of days after your listing feed first provides a brand for the brand to appear.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/brands
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(Brand)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - brandId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Brand)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: brands_brand_create
+        STATUS: 200
+    CANONICAL_ID: brands.brand.create
+  hotelviews.hotelview.get:
+    SUMMARY: Returns the list of hotel views.
+    DESC: Returns the list of hotel views.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/hotelViews
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - filter:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: hotelviews_hotelview_get
+        STATUS: 200
+    CANONICAL_ID: hotelviews.hotelview.get
+  hotelviews:summarize.hotelviews:summarize.get:
+    SUMMARY: Returns summarized information about hotels.
+    DESC: Returns summarized information about hotels.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/hotelViews:summarize
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: hotelviews:summarize_hotelviews:summarize_get
+        STATUS: 200
+    CANONICAL_ID: hotelviews:summarize.hotelviews:summarize.get
+  icons.icon.get:
+    SUMMARY: Returns the `Icon`s for a partner account.
+    DESC: Returns the `Icon`s for a partner account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/icons
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: icons_icon_get
+        STATUS: 200
+    CANONICAL_ID: icons.icon.get
+  icons.icon.create:
+    SUMMARY: Uploads a new icon and starts its review process
+    DESC: "Uploads a new icon and starts its review process. Generates an `icon_id` and includes it in the icon's resource name, which is the format `accounts/{account_id}/icons/{icon_id}` Returns HTTP status 400 and doesn't trigger the review process if the icon has any of these conditions: * Image is not in PNG format, or not convertible to PNG format. * Size less than 72 pixels * Size greater than 1200 pixels * Aspect ratio other than 1:1"
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/icons
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(Icon)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Icon)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: icons_icon_create
+        STATUS: 200
+    CANONICAL_ID: icons.icon.create
+  listings:verify.listings:verify.create:
+    SUMMARY: Returns verified listings with data issues and serving eligibilities for VR partners only.
+    DESC: Returns verified listings with data issues and serving eligibilities for VR partners only.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/listings:verify
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(VerifyListingsRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(VerifyListingsRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: listings:verify_listings:verify_create
+        STATUS: 200
+    CANONICAL_ID: listings:verify.listings:verify.create
+  priceaccuracyviews.priceaccuracyview.get:
+    SUMMARY: Lists the available price accuracy views.
+    DESC: Lists the available price accuracy views.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/priceAccuracyViews
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: priceaccuracyviews_priceaccuracyview_get
+        STATUS: 200
+    CANONICAL_ID: priceaccuracyviews.priceaccuracyview.get
+  priceaccuracyviews:summarize.priceaccuracyviews:summarize.get:
+    SUMMARY: Returns the price accuracy summary.
+    DESC: Returns the price accuracy summary.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/priceAccuracyViews:summarize
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: priceaccuracyviews:summarize_priceaccuracyviews:summarize_get
+        STATUS: 200
+    CANONICAL_ID: priceaccuracyviews:summarize.priceaccuracyviews:summarize.get
+  pricecoverageviews.pricecoverageview.get:
+    SUMMARY: Returns the entire price coverage history.
+    DESC: Returns the entire price coverage history.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/priceCoverageViews
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: pricecoverageviews_pricecoverageview_get
+        STATUS: 200
+    CANONICAL_ID: pricecoverageviews.pricecoverageview.get
+  pricecoverageviews:latest.pricecoverageviews:latest.get:
+    SUMMARY: Returns the latest price coverage view in full detail.
+    DESC: Returns the latest price coverage view in full detail.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/priceCoverageViews:latest
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: pricecoverageviews:latest_pricecoverageviews:latest_get
+        STATUS: 200
+    CANONICAL_ID: pricecoverageviews:latest.pricecoverageviews:latest.get
+  reconciliationreports.reconciliationreport.get:
+    SUMMARY: Returns a list of the names of created reconciliation reports.
+    DESC: Returns a list of the names of created reconciliation reports.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{+parent}/reconciliationReports
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: reconciliationreports_reconciliationreport_get
+        STATUS: 200
+    CANONICAL_ID: reconciliationreports.reconciliationreport.get
+  reconciliationreports.reconciliationreport.create:
+    SUMMARY: Creates a reconciliation report and uploads it to Google.
+    DESC: Creates a reconciliation report and uploads it to Google.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/reconciliationReports
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(ReconciliationReport)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ReconciliationReport)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: reconciliationreports_reconciliationreport_create
+        STATUS: 200
+    CANONICAL_ID: reconciliationreports.reconciliationreport.create
+  reconciliationreports:validate.reconciliationreports:validate.create:
+    SUMMARY: Validates a reconciliation report.
+    DESC: Validates a reconciliation report.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{+parent}/reconciliationReports:validate
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: "*/*"
+      BODY:
+        TYPE: STRUCT(ReconciliationReport)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - access_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - alt:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: json
+      - callback:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fields:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - oauth_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - prettyPrint:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - quotaUser:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - upload_protocol:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - uploadType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - $.xgafv:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ReconciliationReport)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: reconciliationreports:validate_reconciliationreports:validate_create
+        STATUS: 200
+    CANONICAL_ID: reconciliationreports:validate.reconciliationreports:validate.create
+STRUCTS:
+  AccountLink:
+    - name: accountLinkTarget
+      NAME: accountLinkTarget
+      type: STRUCT(AccountLinkTarget)
+      TYPE: STRUCT(AccountLinkTarget)
+      REQUIRED: false
+      comment: Required for CREATE requests. The properties in the Hotel Center account that can be managed using the linked Google Ads account.
+    - name: googleAdsCustomerName
+      NAME: googleAdsCustomerName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Required for CREATE requests. The value representing the Google Ads customer ID in the format `customers/{google_ads_customer_id}`. For example: `customers/0123456789`. Note that the `googleAdsCustomerName` field is not returned in responses to GET requests."
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The resource name for the account link in the format `accounts/{account_id}/accountLinks/{account_link_id}`.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The current status of the account link.
+  AccountLinkTarget:
+    - name: allHotels
+      NAME: allHotels
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: True if all properties under the Hotel Center account are made available to the account link. The default is `false`.
+    - name: hotelList
+      NAME: hotelList
+      type: STRUCT(HotelList)
+      TYPE: STRUCT(HotelList)
+      REQUIRED: false
+      comment: List of properties that is made available to the account link.
+  HotelList:
+    - name: partnerHotelIds
+      NAME: partnerHotelIds
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Hotel IDs.
+  Brand:
+    - name: activeDisplayNames
+      NAME: activeDisplayNames
+      type: "[]STRUCT(LocalizedText)"
+      TYPE: "[]STRUCT(LocalizedText)"
+      REQUIRED: false
+      comment: Output only. The brand's active display names in all provided languages, only present if the display name is approved for all provided languages.
+    - name: activeIcon
+      NAME: activeIcon
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The brand's active [accounts.icon](/hotels/hotel-prices/api-reference/rest/v3/accounts.icons#resource:-iconresource). The value refers to the icons's resource name in the format `accounts/{account_id}/icons/{icon_id}`. An active icon is one that has been approved.
+    - name: activeIconUri
+      NAME: activeIconUri
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. URL of the active icon, only present when the icon has been approved.
+    - name: displayNameDisapprovalReason
+      NAME: displayNameDisapprovalReason
+      type: "[]STRUCT(DisplayNameDisapprovalReason)"
+      TYPE: "[]STRUCT(DisplayNameDisapprovalReason)"
+      REQUIRED: false
+      comment: Output only. Display name's disapproval reason. Only applies to display names with the review state 'REJECTED'.
+    - name: displayNameState
+      NAME: displayNameState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The brand's display names review state, which applies to all display name language entries. If there are both submitted and active display names, this refers to the submitted display names.
+    - name: displayNames
+      NAME: displayNames
+      type: "[]STRUCT(LocalizedText)"
+      TYPE: "[]STRUCT(LocalizedText)"
+      REQUIRED: false
+      comment: Input only. The name Google displays for the brand's properties. Setting the display names is only necessary if you want to override the landing page display name or account-level display name for the brand. Google reviews the display names for appropriate content. When there are multiple languages, Google will only show the display names once Google approves all the languages.
+    - name: icon
+      NAME: icon
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Input only. The brand's [accounts.icon](/hotels/hotel-prices/api-reference/rest/v3/accounts.icons#resource:-iconresource) identifying the brand's icon. The value refers to the icons's resource name in the format `accounts/{account_id}/icons/{icon_id}`.
+    - name: iconDisapprovalReasons
+      NAME: iconDisapprovalReasons
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Output only. The icon's disapproval reason(s). Only applies to submitted icons with `REJECTED` state.
+    - name: iconState
+      NAME: iconState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The brand's icon's review state. If there are both submitted and active icons, this refers to the submitted icon.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The resource name for the brand in the format `accounts/{account_id}/brands/{brand_id}`. The `brand_id` corresponds to the partner's brand identifier used for landing page matching and the property-level brand identifier. A default brand is applied to properties that do not have a brand. The `brand_id` of the default brand is `NO_BRAND_ID`. It can be fetched and updated like any configured brand.
+    - name: propertyCount
+      NAME: propertyCount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The number of properties with the corresponding brand ID.
+    - name: submittedDisplayNames
+      NAME: submittedDisplayNames
+      type: "[]STRUCT(LocalizedText)"
+      TYPE: "[]STRUCT(LocalizedText)"
+      REQUIRED: false
+      comment: Output only. The brand's submitted display names in all provided languages, only present if the display name is new or rejected for any language.
+    - name: submittedIcon
+      NAME: submittedIcon
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The brand's submitted [accounts.icon](/hotels/hotel-prices/api-reference/rest/v3/accounts.icons#resource:-iconresource). The value refers to the icons's resource name in the format `accounts/{account_id}/icons/{icon_id}`. A submitted icon is one that is new or rejected.
+  LocalizedText:
+    - name: languageCode
+      NAME: languageCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The text's BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Localized string in the language corresponding to language_code below.
+  DisplayNameDisapprovalReason:
+    - name: disapprovalReason
+      NAME: disapprovalReason
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Disapproval reason.
+    - name: languageCode
+      NAME: languageCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Language of the disapproved display name.
+  ReconciliationReport:
+    - name: contents
+      NAME: contents
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The contents of the commission report. Report contents must conform to the requirements specified in [Reconciliation reports] (//support.google.com/hotelprices/answer/7019060#creating).
+    - name: fileName
+      NAME: fileName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. Desired filename of the reconciliation report.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Resource name in the format `accounts/{account_id}/reconciliationReports/{datetime}~{filename}`. The value for `{datetime}` must be from 0001-01-01T00:00:00 to 9999-12-31T23:59:59 inclusive.
+  Icon:
+    - name: disapprovalReasons
+      NAME: disapprovalReasons
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Output only. The icon's disapproval reason(s). Only applies to icons with `REJECTED` state.
+    - name: iconUri
+      NAME: iconUri
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The approved icon's Google-hosted URI. Only applies to icons with `APPROVED` state.
+    - name: imageData
+      NAME: imageData
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. Input only. The icon contents, which must be in PNG format, or convertible to PNG.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. Output only. The resource name for the icon in the format `accounts/{account_id}/icons/{icon_id}`. Google generates the `icon_id` during the `create` operation. Use the `icon_id` to associate the icon with a brand using the [accounts.brands](/hotels/hotel-prices/api-reference/rest/v3/accounts.brands#resource:-brand) API.
+    - name: reference
+      NAME: reference
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional. Value for tracking the icon. It could be the primary key to your icon in your system, or the icon's filename. Google does not use this value.
+    - name: state
+      NAME: state
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Output only. The icon's current state.
+  SetLiveOnGoogleRequest:
+    - name: liveOnGoogle
+      NAME: liveOnGoogle
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Optional. DEPRECATED. Whether the property will show on Google. When true, Google will show the properties if their integration is complete and the property is available. When false, Google will never show the properties. Superseded by `live_on_google_status`. Only one of `live_on_google` or `live_on_google_status` should be set; if both are set, `live_on_google_status` will be used.
+    - name: liveOnGoogleStatus
+      NAME: liveOnGoogleStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional. Whether the property will show on Google, with more granular controls than the original `live_on_google` boolean field. Only one of `live_on_google` or `live_on_google_status` should be set; if both are set, `live_on_google_status` will be used.
+    - name: partnerHotelIds
+      NAME: partnerHotelIds
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Required. Identifies the properties to update with the liveOnGoogle setting.
+  VerifyListingsRequest:
+    - name: xmlListing
+      NAME: xmlListing
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A listing that follows the XML format specified in https://developers.google.com/hotels/hotel-prices/xml-reference/hotel-list-feed.

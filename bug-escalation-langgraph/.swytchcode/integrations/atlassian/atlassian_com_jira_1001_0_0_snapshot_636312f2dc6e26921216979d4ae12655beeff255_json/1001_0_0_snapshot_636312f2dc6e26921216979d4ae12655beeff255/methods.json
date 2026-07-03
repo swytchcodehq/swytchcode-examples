@@ -1,0 +1,2944 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a comment to an issue",
+      "canonical_id": "rest.api.comment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a field to a screen tab",
+      "canonical_id": "rest.api.fields.create_be10"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a field to the default screen",
+      "canonical_id": "rest.api.addToDefault.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a gadget to a dashboard",
+      "canonical_id": "rest.api.gadget.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a permission to a permission scheme",
+      "canonical_id": "rest.api.permission.create_f193"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a property to a workflow transition",
+      "canonical_id": "rest.api.properties.create_9c51"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a tab to a Jira screen",
+      "canonical_id": "rest.api.tabs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a user to a specified group",
+      "canonical_id": "rest.api.user.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a user to an issue's watch list",
+      "canonical_id": "rest.api.watchers.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an Atlassian team to a plan",
+      "canonical_id": "rest.api.atlassian.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an option to a select list issue field",
+      "canonical_id": "rest.api.option.create_cd87"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add attachments to an issue",
+      "canonical_id": "rest.api.attachments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add custom field options to a context",
+      "canonical_id": "rest.api.option.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add default users or groups to a project role",
+      "canonical_id": "rest.api.actors.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add issue security levels to a scheme",
+      "canonical_id": "rest.api.level.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add issue types to a custom field context",
+      "canonical_id": "rest.api.issuetype.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add issue types to an issue type scheme",
+      "canonical_id": "rest.api.issuetype.update_c2d1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add members to an issue security level",
+      "canonical_id": "rest.api.member.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add notifications to a notification scheme",
+      "canonical_id": "rest.api.notification.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add or update a remote link for an issue",
+      "canonical_id": "rest.api.remotelink.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add related work to a version",
+      "canonical_id": "rest.api.relatedwork.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add share permissions to a filter",
+      "canonical_id": "rest.api.permission.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add users or groups to a project role",
+      "canonical_id": "rest.api.role.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add worklog to an issue",
+      "canonical_id": "rest.api.worklog.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Analyze and validate Jira expressions",
+      "canonical_id": "rest.api.analyse.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a Jira project",
+      "canonical_id": "rest.api.archive.create_9b57"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a specific plan",
+      "canonical_id": "rest.api.archive.update_dd76"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive issues using JQL",
+      "canonical_id": "rest.api.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive Jira issues by ID or key",
+      "canonical_id": "rest.api.archive.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign a field configuration scheme to a project",
+      "canonical_id": "rest.api.project.update_4b06"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign a permission scheme to a project",
+      "canonical_id": "rest.api.permissionscheme.update_c255"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign a workflow scheme to a project",
+      "canonical_id": "rest.api.project.update_805f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an issue to a user",
+      "canonical_id": "rest.api.assignee.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an issue type scheme to a project",
+      "canonical_id": "rest.api.project.update_225a"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an issue type screen scheme to a project",
+      "canonical_id": "rest.api.project.update_2c9a"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign custom field context to projects",
+      "canonical_id": "rest.api.project.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate fields with projects and issue types",
+      "canonical_id": "rest.api.association.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate issue types with field configurations",
+      "canonical_id": "rest.api.mapping.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk delete issue property by filter",
+      "canonical_id": "rest.api.properties.delete_9f2c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk edit dashboards",
+      "canonical_id": "rest.api.edit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk edit multiple issues and their fields",
+      "canonical_id": "rest.api.fields.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk move issues to a new project or issue type",
+      "canonical_id": "rest.api.move.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk set properties for multiple issues",
+      "canonical_id": "rest.api.multi.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk set properties on multiple issues",
+      "canonical_id": "rest.api.properties.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk transition issue statuses",
+      "canonical_id": "rest.api.transition.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk unwatch multiple issues at once",
+      "canonical_id": "rest.api.unwatch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk update custom field values for Connect apps",
+      "canonical_id": "rest.atlassian-connect.field.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk update entity properties for app migration",
+      "canonical_id": "rest.atlassian-connect.properties.update_2750"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk update issue property values",
+      "canonical_id": "rest.api.properties.update_83e3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk update or update individual statuses",
+      "canonical_id": "rest.api.statuses.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk update workflows and their associated statuses",
+      "canonical_id": "rest.api.workflows.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk watch multiple issues",
+      "canonical_id": "rest.api.watch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a specific task by its ID",
+      "canonical_id": "rest.api.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Change the owner of a Jira filter",
+      "canonical_id": "rest.api.owner.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a project key is valid and available",
+      "canonical_id": "rest.api.key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a project name is valid and available",
+      "canonical_id": "rest.api.validProjectName.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if issues match JQL queries",
+      "canonical_id": "rest.api.match.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check user permissions for projects and global permissions",
+      "canonical_id": "rest.api.permissions.check"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check which issues a user is watching",
+      "canonical_id": "rest.api.watching.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Convert JQL queries with user identifiers to account IDs",
+      "canonical_id": "rest.api.pdcleaner.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Copy a dashboard and optionally update its details",
+      "canonical_id": "rest.api.copy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a custom field context for a specific field",
+      "canonical_id": "rest.api.context.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a draft workflow scheme from an active one",
+      "canonical_id": "rest.api.createdraft.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a field configuration scheme for company-managed projects",
+      "canonical_id": "rest.api.fieldconfigurationscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Jira workflow with custom conditions, validators, and post functions",
+      "canonical_id": "rest.api.workflow.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new custom field",
+      "canonical_id": "rest.api.field.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new dashboard",
+      "canonical_id": "rest.api.dashboard.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new field configuration for company-managed projects",
+      "canonical_id": "rest.api.fieldconfiguration.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new filter",
+      "canonical_id": "rest.api.filter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new group",
+      "canonical_id": "rest.api.group.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue link type",
+      "canonical_id": "rest.api.issueLinkType.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue priority",
+      "canonical_id": "rest.api.priority.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue resolution",
+      "canonical_id": "rest.api.resolution.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue type and add it to the default scheme",
+      "canonical_id": "rest.api.issuetype.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue type scheme",
+      "canonical_id": "rest.api.issuetypescheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Jira issue or subtask",
+      "canonical_id": "rest.api.issue.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new notification scheme with custom notifications",
+      "canonical_id": "rest.api.notificationscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new permission scheme",
+      "canonical_id": "rest.api.permissionscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new plan",
+      "canonical_id": "rest.api.plan.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new priority scheme",
+      "canonical_id": "rest.api.priorityscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new project category",
+      "canonical_id": "rest.api.projectCategory.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new project component for organizing issues",
+      "canonical_id": "rest.api.component.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new project role",
+      "canonical_id": "rest.api.role.create_c180"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new project using a template",
+      "canonical_id": "rest.api.project.create_f521"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new project version",
+      "canonical_id": "rest.api.version.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new screen scheme",
+      "canonical_id": "rest.api.screenscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new screen with a default field tab",
+      "canonical_id": "rest.api.screens.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user account in Jira",
+      "canonical_id": "rest.api.user.create_338f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new workflow scheme",
+      "canonical_id": "rest.api.workflowscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a plan-only team and set their planning configurations",
+      "canonical_id": "rest.api.planonly.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an issue security scheme with levels and members",
+      "canonical_id": "rest.api.issuesecurityschemes.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an issue type screen scheme",
+      "canonical_id": "rest.api.issuetypescreenscheme.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple Jira issues and subtasks at once",
+      "canonical_id": "rest.api.bulk.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple statuses for a project or globally",
+      "canonical_id": "rest.api.statuses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple workflows and their associated statuses",
+      "canonical_id": "rest.api.workflows.create_3644"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create UI modifications for your Forge app",
+      "canonical_id": "rest.api.uiModifications.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a comment from an issue",
+      "canonical_id": "rest.api.comment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a comment's property",
+      "canonical_id": "rest.api.properties.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a custom field by its ID",
+      "canonical_id": "rest.api.field.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a custom field option",
+      "canonical_id": "rest.api.option.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a dashboard by its ID",
+      "canonical_id": "rest.api.dashboard.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a dashboard item property",
+      "canonical_id": "rest.api.properties.delete_e9b1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a field configuration for company-managed projects",
+      "canonical_id": "rest.api.fieldconfiguration.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a field configuration scheme",
+      "canonical_id": "rest.api.fieldconfigurationscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Forge app's property",
+      "canonical_id": "rest.forge.properties.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a group and optionally swap its members",
+      "canonical_id": "rest.api.group.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Jira filter by its ID",
+      "canonical_id": "rest.api.filter.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Jira project and its associated data",
+      "canonical_id": "rest.api.project.delete_b2d6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a notification from a notification scheme",
+      "canonical_id": "rest.api.notification.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a notification scheme by its ID",
+      "canonical_id": "rest.api.notificationscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a permission scheme by its ID",
+      "canonical_id": "rest.api.permissionscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project by its ID or key",
+      "canonical_id": "rest.api.project.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project category by its ID",
+      "canonical_id": "rest.api.projectCategory.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project role, optionally reassigning its users",
+      "canonical_id": "rest.api.role.delete_b161"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project version and optionally update related issues",
+      "canonical_id": "rest.api.version.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project's property",
+      "canonical_id": "rest.api.properties.delete_a48f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a screen if it's not in use",
+      "canonical_id": "rest.api.screens.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a screen scheme by its ID",
+      "canonical_id": "rest.api.screenscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific issue type property",
+      "canonical_id": "rest.api.properties.delete_2ad"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific worklog property from an issue",
+      "canonical_id": "rest.api.properties.delete_8068"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a UI modification and its associated contexts",
+      "canonical_id": "rest.api.uiModifications.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user preference and restore default settings",
+      "canonical_id": "rest.api.mypreferences.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a workflow by its ID",
+      "canonical_id": "rest.api.workflow.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a workflow scheme by its ID",
+      "canonical_id": "rest.api.workflowscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a worklog from an issue",
+      "canonical_id": "rest.api.worklog.delete_3943"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an app's property",
+      "canonical_id": "rest.atlassian-connect.properties.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an attachment from an issue",
+      "canonical_id": "rest.api.attachment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an avatar for a project, issue type, or priority",
+      "canonical_id": "rest.api.avatar.delete_2231"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue link type",
+      "canonical_id": "rest.api.issueLinkType.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue priority by its ID",
+      "canonical_id": "rest.api.priority.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue resolution by ID",
+      "canonical_id": "rest.api.resolution.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue security level from a scheme",
+      "canonical_id": "rest.api.level.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue security scheme by its ID",
+      "canonical_id": "rest.api.issuesecurityschemes.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue type scheme",
+      "canonical_id": "rest.api.issuetypescheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue type screen scheme",
+      "canonical_id": "rest.api.issuetypescreenscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue type, optionally reassigning its uses",
+      "canonical_id": "rest.api.issuetype.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue, optionally deleting its subtasks",
+      "canonical_id": "rest.api.issue.delete_bc21"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an issue's property",
+      "canonical_id": "rest.api.properties.delete_bfcf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete draft workflow scheme",
+      "canonical_id": "rest.api.draft.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete multiple issues in bulk",
+      "canonical_id": "rest.api.issues.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete multiple statuses by their IDs",
+      "canonical_id": "rest.api.statuses.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete multiple worklogs from an issue",
+      "canonical_id": "rest.api.worklog.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete workflow transition rule configurations",
+      "canonical_id": "rest.api.config.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deselect and replace an issue field option",
+      "canonical_id": "rest.api.issue.delete_50f4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download attachment content by ID",
+      "canonical_id": "rest.api.content.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Duplicate a plan by its ID",
+      "canonical_id": "rest.api.duplicate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Evaluate Jira expressions and return their values",
+      "canonical_id": "rest.api.eval.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Evaluate Jira expressions using enhanced search",
+      "canonical_id": "rest.api.evaluate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Export archived issues to a CSV file",
+      "canonical_id": "rest.api.export.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Favorite a filter for the current user",
+      "canonical_id": "rest.api.favourite.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a paginated list of all labels",
+      "canonical_id": "rest.api.label.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific custom field option",
+      "canonical_id": "rest.api.customFieldOption.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific issue type by its ID",
+      "canonical_id": "rest.api.issuetype.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all available issue resolution values",
+      "canonical_id": "rest.api.resolution.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all project categories",
+      "canonical_id": "rest.api.projectCategory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all project roles and their default actors",
+      "canonical_id": "rest.api.role.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch changelogs for multiple issues, optionally filtered by fields",
+      "canonical_id": "rest.api.bulkfetch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch details for multiple issues by ID or key",
+      "canonical_id": "rest.api.bulkfetch.create_a8ed"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find all users, including active, inactive, and deleted accounts",
+      "canonical_id": "rest.api.search.list_9551"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find alternative issue types for a given issue type",
+      "canonical_id": "rest.api.alternatives.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find available bulk issue transitions",
+      "canonical_id": "rest.api.transition.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find available transitions for an issue",
+      "canonical_id": "rest.api.transitions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find groups a user belongs to",
+      "canonical_id": "rest.api.groups.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find groups by name, with options to exclude and highlight results",
+      "canonical_id": "rest.api.picker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find issue IDs using JQL",
+      "canonical_id": "rest.api.id.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find issue security schemes, optionally by project",
+      "canonical_id": "rest.api.search.list_4781"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find issue types used by a status in a project",
+      "canonical_id": "rest.api.issueTypeUsages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find issue types using a workflow in a project",
+      "canonical_id": "rest.api.issueTypeUsages.get_1d31"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find JQL function precomputations by their IDs",
+      "canonical_id": "rest.api.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find priorities by ID, project, or default status",
+      "canonical_id": "rest.api.search.list_a240"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find projects associated with a specific priority scheme",
+      "canonical_id": "rest.api.projects.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find projects that use a specific workflow",
+      "canonical_id": "rest.api.projectUsages.get_dfdc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find projects using a specific status",
+      "canonical_id": "rest.api.projectUsages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find projects using a workflow scheme",
+      "canonical_id": "rest.api.projectUsages.get_f92b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find projects where the user has specific permissions",
+      "canonical_id": "rest.api.project.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find published classic workflows by name or list all",
+      "canonical_id": "rest.api.search.list_be94"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find resolutions by ID or default status",
+      "canonical_id": "rest.api.search.list_87d1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find screens associated with a specific field",
+      "canonical_id": "rest.api.screens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find user account IDs by username or key",
+      "canonical_id": "rest.api.migration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find users and groups matching a query",
+      "canonical_id": "rest.api.groupuserpicker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find users assignable to projects",
+      "canonical_id": "rest.api.multiProjectSearch.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find users who can be assigned to an issue",
+      "canonical_id": "rest.api.search.list_ca7f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find users with browse permission by name, issue, or project",
+      "canonical_id": "rest.api.search.list_4c24"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find workflow schemes using a specific workflow",
+      "canonical_id": "rest.api.workflowSchemes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find workflows that use a specific status",
+      "canonical_id": "rest.api.workflowUsages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of groups",
+      "canonical_id": "rest.api.bulk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of screen schemes used in classic projects",
+      "canonical_id": "rest.api.screenscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of users by account ID",
+      "canonical_id": "rest.api.bulk.list_55fd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a notification scheme by its ID",
+      "canonical_id": "rest.api.notificationscheme.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a paginated list of notification schemes",
+      "canonical_id": "rest.api.notificationscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a project category by its ID",
+      "canonical_id": "rest.api.projectCategory.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a project's default data classification level",
+      "canonical_id": "rest.api.default.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a project's sender email address",
+      "canonical_id": "rest.api.email.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a report of issues breaching and approaching limits",
+      "canonical_id": "rest.api.report.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific application role by its key",
+      "canonical_id": "rest.api.applicationrole.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific comment property value",
+      "canonical_id": "rest.api.properties.get_e2ae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific dashboard item property",
+      "canonical_id": "rest.api.properties.get_e0e6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific issue resolution by its ID",
+      "canonical_id": "rest.api.resolution.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific issue type property",
+      "canonical_id": "rest.api.properties.get_f142"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific permission scheme by its ID",
+      "canonical_id": "rest.api.permissionscheme.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific project component by its ID",
+      "canonical_id": "rest.api.component.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific project property value",
+      "canonical_id": "rest.api.properties.get_43ac"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific project version by its ID",
+      "canonical_id": "rest.api.version.get_d43d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific property for an issue",
+      "canonical_id": "rest.api.properties.get_77ac"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific select list option for a field",
+      "canonical_id": "rest.api.option.get_8be0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific share permission for a filter",
+      "canonical_id": "rest.api.permission.get_36e2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific status category by its ID or key",
+      "canonical_id": "rest.api.statuscategory.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific user property by its key",
+      "canonical_id": "rest.api.properties.get_fcdd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's email address by account ID",
+      "canonical_id": "rest.api.email.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's navigation property by key",
+      "canonical_id": "rest.api.nav4OptProperty.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all available issue priorities",
+      "canonical_id": "rest.api.priority.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all available issue types",
+      "canonical_id": "rest.api.issuetype.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all available project types",
+      "canonical_id": "rest.api.type.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all available time tracking providers",
+      "canonical_id": "rest.api.timetracking.list_9537"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all changelogs for an issue",
+      "canonical_id": "rest.api.changelog.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all comments for an issue",
+      "canonical_id": "rest.api.comment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all components for a project",
+      "canonical_id": "rest.api.components.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all fields within a specific field configuration",
+      "canonical_id": "rest.api.fields.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all issue security schemes",
+      "canonical_id": "rest.api.issuesecurityschemes.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all Jira workflows or a specific workflow by name",
+      "canonical_id": "rest.api.workflow.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all licensed project types",
+      "canonical_id": "rest.api.accessible.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all permission schemes",
+      "canonical_id": "rest.api.permissionscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all project avatars",
+      "canonical_id": "rest.api.avatars.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all project property keys for a given project",
+      "canonical_id": "rest.api.properties.get_9c01"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all select list options for a custom field",
+      "canonical_id": "rest.api.option.get_521d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an issue's property keys",
+      "canonical_id": "rest.api.properties.get_4441"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get application properties by key or all editable properties",
+      "canonical_id": "rest.api.applicationProperties.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get approximate issue count using JQL",
+      "canonical_id": "rest.api.approximateCount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get approximate license count for a Jira product",
+      "canonical_id": "rest.api.product.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get attachment metadata by ID",
+      "canonical_id": "rest.api.attachment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get attachment thumbnail by ID",
+      "canonical_id": "rest.api.thumbnail.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get available issue fields",
+      "canonical_id": "rest.api.field.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get available priorities for a priority scheme",
+      "canonical_id": "rest.api.available.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get avatar image by its type and ID",
+      "canonical_id": "rest.api.avatar.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get avatar image by owner",
+      "canonical_id": "rest.api.owner.get_d059"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get avatars for a project, issue type, or priority",
+      "canonical_id": "rest.api.owner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get bulk editable fields for issues",
+      "canonical_id": "rest.api.fields.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get bulk issue operation progress by task ID",
+      "canonical_id": "rest.api.queue.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get changelogs for a specific issue by ID",
+      "canonical_id": "rest.api.changelog.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get classic project issue type screen schemes",
+      "canonical_id": "rest.api.issuetypescreenscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get comment property keys",
+      "canonical_id": "rest.api.properties.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get contexts for a field",
+      "canonical_id": "rest.api.contexts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get counts of issues related to a component",
+      "canonical_id": "rest.api.relatedIssueCounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get counts of issues related to a specific version",
+      "canonical_id": "rest.api.relatedIssueCounts.get_c6bd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get create metadata for a project and issue type",
+      "canonical_id": "rest.api.issuetypes.get_148d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get current announcement banner configuration",
+      "canonical_id": "rest.api.announcementBanner.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get current user's preferences by key",
+      "canonical_id": "rest.api.mypreferences.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom field configurations for a Forge app",
+      "canonical_id": "rest.api.configuration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom field configurations for a list of fields",
+      "canonical_id": "rest.api.configuration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom field contexts for a specific field",
+      "canonical_id": "rest.api.context.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom field default values by ID",
+      "canonical_id": "rest.api.defaultValue.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get dashboard gadgets by ID, module key, or URI",
+      "canonical_id": "rest.api.gadget.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get dashboard item property keys",
+      "canonical_id": "rest.api.properties.get_3c7b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default actors for a project role",
+      "canonical_id": "rest.api.actors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default avatar image by type",
+      "canonical_id": "rest.api.type.get_4b5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default filter sharing settings",
+      "canonical_id": "rest.api.defaultShareScope.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default issue navigator columns",
+      "canonical_id": "rest.api.columns.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific issue",
+      "canonical_id": "rest.api.issue.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for all project roles",
+      "canonical_id": "rest.api.roledetails.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for the current user",
+      "canonical_id": "rest.api.myself.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details of a specific issue link type",
+      "canonical_id": "rest.api.issueLinkType.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get draft workflow for a specific issue type",
+      "canonical_id": "rest.api.issuetype.get_df2b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get dynamically registered app modules",
+      "canonical_id": "rest.atlassian-connect.dynamic.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get editable fields for an issue",
+      "canonical_id": "rest.api.editmeta.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get features for a specific project",
+      "canonical_id": "rest.api.features.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get field configuration issue type mappings",
+      "canonical_id": "rest.api.mapping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get field configuration schemes used by projects",
+      "canonical_id": "rest.api.project.list_2924"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get field configurations by ID, default status, or search query",
+      "canonical_id": "rest.api.fieldconfiguration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get fields that can be added to a screen tab",
+      "canonical_id": "rest.api.availableFields.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get filter columns for a specific filter ID",
+      "canonical_id": "rest.api.columns.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get human-readable attachment metadata, including archive contents",
+      "canonical_id": "rest.api.human.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get information about the Jira instance",
+      "canonical_id": "rest.api.serverInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue security level members by ID or scheme",
+      "canonical_id": "rest.api.member.list_2329"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue security levels for a project",
+      "canonical_id": "rest.api.securitylevel.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue security levels for classic projects",
+      "canonical_id": "rest.api.level.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue security scheme members by ID",
+      "canonical_id": "rest.api.members.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue suggestions based on search query and history",
+      "canonical_id": "rest.api.picker.list_d660"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type hierarchy for a project",
+      "canonical_id": "rest.api.hierarchy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type mappings for a custom field context",
+      "canonical_id": "rest.api.issuetypemapping.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type property keys",
+      "canonical_id": "rest.api.properties.get_fb57"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type scheme items for classic projects",
+      "canonical_id": "rest.api.mapping.list_31f7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type schemes used by projects",
+      "canonical_id": "rest.api.project.list_bf5c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type screen scheme mappings",
+      "canonical_id": "rest.api.mapping.list_b79"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue type screen schemes used by projects",
+      "canonical_id": "rest.api.project.list_2fec"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue types available for a specific project",
+      "canonical_id": "rest.api.project.list_f106"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue types for creating issues in a project",
+      "canonical_id": "rest.api.issuetypes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue types for workflows in a draft workflow scheme",
+      "canonical_id": "rest.api.workflow.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Jira attachment settings",
+      "canonical_id": "rest.api.meta.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Jira instance license information",
+      "canonical_id": "rest.api.license.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get JQL auto-complete suggestions for a field",
+      "canonical_id": "rest.api.suggestions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get JQL autocomplete data for searches",
+      "canonical_id": "rest.api.autocompletedata.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get JQL autocompletion data for fields and functions",
+      "canonical_id": "rest.api.autocompletedata.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get JQL function precomputations and their usage",
+      "canonical_id": "rest.api.computation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get members of a group",
+      "canonical_id": "rest.api.member.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get metadata for contents of an expanded attachment",
+      "canonical_id": "rest.api.raw.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple statuses by their IDs",
+      "canonical_id": "rest.api.statuses.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple workflow schemes by ID or project",
+      "canonical_id": "rest.api.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple workflows by name, ID, or project and issue type",
+      "canonical_id": "rest.api.workflows.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my filters and optionally favorite filters",
+      "canonical_id": "rest.api.my.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my permissions for projects, issues, or comments",
+      "canonical_id": "rest.api.mypermissions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get paginated project versions",
+      "canonical_id": "rest.api.version.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get permission grants for a permission scheme",
+      "canonical_id": "rest.api.permission.get_bf43"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get plan-only team planning settings",
+      "canonical_id": "rest.api.planonly.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get priorities for a given priority scheme",
+      "canonical_id": "rest.api.priorities.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project and issue type creation metadata",
+      "canonical_id": "rest.api.createmeta.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project components",
+      "canonical_id": "rest.api.component.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project details by ID or key",
+      "canonical_id": "rest.api.project.get_8150"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project mappings for a custom field's context",
+      "canonical_id": "rest.api.projectmapping.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project role details and actors for a specific project",
+      "canonical_id": "rest.api.role.get_fad7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project role details and default actors by ID",
+      "canonical_id": "rest.api.role.get_c3ee"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project roles for a specific project",
+      "canonical_id": "rest.api.role.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project statuses by project ID or key",
+      "canonical_id": "rest.api.statuses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project types accessible by key",
+      "canonical_id": "rest.api.accessible.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get projects by notification scheme or project ID",
+      "canonical_id": "rest.api.project.list_9094"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get properties for a workflow transition",
+      "canonical_id": "rest.api.properties.get_2131"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get related work items for a specific version",
+      "canonical_id": "rest.api.relatedwork.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get remote links for an issue",
+      "canonical_id": "rest.api.remotelink.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get required status mappings for workflow scheme update",
+      "canonical_id": "rest.api.workflowscheme.update_50cf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get selectable issue field options for select lists",
+      "canonical_id": "rest.api.edit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get service registry attributes by ID",
+      "canonical_id": "rest.atlassian-connect.serviceRegistry.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get share permissions for a filter",
+      "canonical_id": "rest.api.permission.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get system avatars by type",
+      "canonical_id": "rest.api.system.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get teams associated with a specific plan",
+      "canonical_id": "rest.api.team.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the approximate number of user accounts across all Jira licenses",
+      "canonical_id": "rest.api.approximateLicenseCount.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the count of unresolved issues for a project version",
+      "canonical_id": "rest.api.unresolvedIssueCount.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the currently selected time tracking provider",
+      "canonical_id": "rest.api.timetracking.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the default workflow for a draft workflow scheme",
+      "canonical_id": "rest.api.default.get_695c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the default workflow for a workflow scheme",
+      "canonical_id": "rest.api.default.get_6a31"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the draft version of an active workflow scheme",
+      "canonical_id": "rest.api.draft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the issue security scheme for a project",
+      "canonical_id": "rest.api.issuesecuritylevelscheme.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the notification scheme for a project",
+      "canonical_id": "rest.api.notificationscheme.get_bdc8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the permission scheme for a project",
+      "canonical_id": "rest.api.permissionscheme.get_9766"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the user's current locale preference",
+      "canonical_id": "rest.api.locale.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the user's favorite filters",
+      "canonical_id": "rest.api.favourite.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the workspace's data policy",
+      "canonical_id": "rest.api.dataPolicy.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get time tracking configuration options",
+      "canonical_id": "rest.api.options.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get UI modifications for Forge apps",
+      "canonical_id": "rest.api.uiModifications.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get updated worklog IDs and timestamps",
+      "canonical_id": "rest.api.updated.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user details with privacy controls",
+      "canonical_id": "rest.api.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user email addresses by account ID",
+      "canonical_id": "rest.api.bulk.list_28f9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user property keys for a specific user",
+      "canonical_id": "rest.api.properties.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user's default issue table columns",
+      "canonical_id": "rest.api.columns.list_4707"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get users within a group",
+      "canonical_id": "rest.api.group.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get votes on an issue",
+      "canonical_id": "rest.api.votes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get watchers for a specific issue",
+      "canonical_id": "rest.api.watchers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow capabilities by ID or project and issue type",
+      "canonical_id": "rest.api.capabilities.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow for an issue type in a workflow scheme",
+      "canonical_id": "rest.api.issuetype.get_68c8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow issue type mappings for a workflow scheme",
+      "canonical_id": "rest.api.workflow.get_93bc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow transition rules by type or key",
+      "canonical_id": "rest.api.config.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get worklogs for a specific issue",
+      "canonical_id": "rest.api.worklog.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Link two issues and optionally add a comment",
+      "canonical_id": "rest.api.issueLink.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all classic project issue type schemes",
+      "canonical_id": "rest.api.issuetypescheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available gadgets for dashboards",
+      "canonical_id": "rest.api.gadgets.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available issue link types",
+      "canonical_id": "rest.api.issueLinkType.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available priority schemes with filtering and sorting",
+      "canonical_id": "rest.api.priorityscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List project components with pagination",
+      "canonical_id": "rest.api.component.get_ae79"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects for an issue type screen scheme",
+      "canonical_id": "rest.api.project.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects using issue security schemes",
+      "canonical_id": "rest.api.project.list_2688"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List webhooks registered by the app",
+      "canonical_id": "rest.api.webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List workflow schemes for specified projects",
+      "canonical_id": "rest.api.project.list_92dc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Map custom field contexts to projects and issue types",
+      "canonical_id": "rest.api.mapping.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Merge two project versions and move issues",
+      "canonical_id": "rest.api.mergeto.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a plan to trash",
+      "canonical_id": "rest.api.trash.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a screen tab field",
+      "canonical_id": "rest.api.move.create_ecae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a screen tab to a new position",
+      "canonical_id": "rest.api.move.create_76a9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move multiple worklogs to another issue",
+      "canonical_id": "rest.api.move.create_77f2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Parse and validate JQL queries",
+      "canonical_id": "rest.api.parse.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a draft workflow scheme",
+      "canonical_id": "rest.api.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Refresh webhook expiration dates",
+      "canonical_id": "rest.api.webhook.refresh"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register dynamic modules for your Connect app",
+      "canonical_id": "rest.atlassian-connect.dynamic.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register dynamic webhooks",
+      "canonical_id": "rest.api.webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a custom field context",
+      "canonical_id": "rest.api.context.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a custom project avatar",
+      "canonical_id": "rest.api.avatar.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a field from a screen tab",
+      "canonical_id": "rest.api.fields.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a filter's share permission",
+      "canonical_id": "rest.api.permission.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a gadget from a dashboard",
+      "canonical_id": "rest.api.gadget.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a member from an issue security level",
+      "canonical_id": "rest.api.member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a permission grant from a scheme",
+      "canonical_id": "rest.api.permission.delete_d7ab"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a plan-only team and its planning settings",
+      "canonical_id": "rest.api.planonly.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a priority scheme",
+      "canonical_id": "rest.api.priorityscheme.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a project component",
+      "canonical_id": "rest.api.component.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a remote issue link by its global ID",
+      "canonical_id": "rest.api.remotelink.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a remote link from an issue",
+      "canonical_id": "rest.api.remotelink.delete_db7a"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a tab from a screen",
+      "canonical_id": "rest.api.tabs.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from a group",
+      "canonical_id": "rest.api.user.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from issue watchers",
+      "canonical_id": "rest.api.watchers.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from Jira",
+      "canonical_id": "rest.api.user.delete_8717"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user's property",
+      "canonical_id": "rest.api.properties.delete_de84"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user's vote from an issue",
+      "canonical_id": "rest.api.votes.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a workflow transition property",
+      "canonical_id": "rest.api.properties.delete_f440"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an issue link by its ID",
+      "canonical_id": "rest.api.issueLink.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an issue type from an issue type scheme",
+      "canonical_id": "rest.api.issuetype.delete_8a8f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an option from a select list issue field",
+      "canonical_id": "rest.api.option.delete_758d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove and replace a project version",
+      "canonical_id": "rest.api.removeAndSwap.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove Atlassian team from plan",
+      "canonical_id": "rest.api.atlassian.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove custom field context from projects",
+      "canonical_id": "rest.api.project.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove default data classification level for a project",
+      "canonical_id": "rest.api.default.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove default users or groups from a project role",
+      "canonical_id": "rest.api.actors.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove dynamic app modules by key",
+      "canonical_id": "rest.atlassian-connect.dynamic.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove field associations from projects and issue types",
+      "canonical_id": "rest.api.association.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove issue type from draft workflow scheme",
+      "canonical_id": "rest.api.issuetype.delete_6662"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove issue type screen mappings from a scheme",
+      "canonical_id": "rest.api.mapping.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove issue types from a custom field context",
+      "canonical_id": "rest.api.issuetype.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove issue types from a field configuration scheme",
+      "canonical_id": "rest.api.mapping.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove related work for a specific version",
+      "canonical_id": "rest.api.relatedwork.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove users or groups from a project role",
+      "canonical_id": "rest.api.role.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove webhooks by their IDs",
+      "canonical_id": "rest.api.webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove workflow from a workflow scheme",
+      "canonical_id": "rest.api.workflow.delete_e90b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove workflow from draft workflow scheme",
+      "canonical_id": "rest.api.workflow.delete_f4c0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove workflow from issue type in a scheme",
+      "canonical_id": "rest.api.issuetype.delete_ea95"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reorder custom field options within a context",
+      "canonical_id": "rest.api.move.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reorder issue priorities",
+      "canonical_id": "rest.api.move.update_4492"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reorder issue resolutions",
+      "canonical_id": "rest.api.move.update_53bf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reorder issue types within a scheme",
+      "canonical_id": "rest.api.move.update_3a03"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reorder project versions to change their display sequence",
+      "canonical_id": "rest.api.move.create_12a2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace actors for a project role",
+      "canonical_id": "rest.api.role.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace custom field options for a specific issue",
+      "canonical_id": "rest.api.issue.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset default workflow for a workflow scheme",
+      "canonical_id": "rest.api.default.delete_df4e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset draft default workflow to system default",
+      "canonical_id": "rest.api.default.delete_5243"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset filter columns to default",
+      "canonical_id": "rest.api.columns.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset user locale to default",
+      "canonical_id": "rest.api.locale.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset user's default issue table columns",
+      "canonical_id": "rest.api.columns.delete_ac99"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a custom field from the trash",
+      "canonical_id": "rest.api.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted or archived project",
+      "canonical_id": "rest.api.restore.create_fc02"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all users, including their profile visibility settings",
+      "canonical_id": "rest.api.users.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of field configuration schemes",
+      "canonical_id": "rest.api.fieldconfigurationscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of Jira screens",
+      "canonical_id": "rest.api.screens.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of recently viewed projects",
+      "canonical_id": "rest.api.recent.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a paginated list of plans",
+      "canonical_id": "rest.api.plan.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific comment from an issue",
+      "canonical_id": "rest.api.comment.get_8c22"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific dashboard by its ID",
+      "canonical_id": "rest.api.dashboard.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific filter by its ID",
+      "canonical_id": "rest.api.filter.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific issue priority by its ID",
+      "canonical_id": "rest.api.priority.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific permission grant within a permission scheme",
+      "canonical_id": "rest.api.permission.get_3f7b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific plan by its ID",
+      "canonical_id": "rest.api.plan.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific remote issue link for an issue",
+      "canonical_id": "rest.api.remotelink.get_eba3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific worklog entry for an issue",
+      "canonical_id": "rest.api.worklog.get_9da2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific worklog property for an issue",
+      "canonical_id": "rest.api.properties.get_3f27"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a workflow scheme by its ID",
+      "canonical_id": "rest.api.workflowscheme.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a workflow status by its ID or name",
+      "canonical_id": "rest.api.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve advanced Jira system settings",
+      "canonical_id": "rest.api.advancedSettings.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all available permissions",
+      "canonical_id": "rest.api.permissions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all available status categories",
+      "canonical_id": "rest.api.statuscategory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all available statuses",
+      "canonical_id": "rest.api.status.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all available workflow schemes",
+      "canonical_id": "rest.api.workflowscheme.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all classification levels",
+      "canonical_id": "rest.api.classificationLevels.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all fields for a specific screen tab",
+      "canonical_id": "rest.api.fields.get_42f5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all issue events",
+      "canonical_id": "rest.api.events.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all Jira application roles",
+      "canonical_id": "rest.api.applicationrole.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all property keys for a specific worklog",
+      "canonical_id": "rest.api.properties.get_a7bc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all tabs associated with a specific screen",
+      "canonical_id": "rest.api.tabs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all versions for a specific project",
+      "canonical_id": "rest.api.versions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all visible projects",
+      "canonical_id": "rest.api.project.list_b201"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an app's property by its key",
+      "canonical_id": "rest.atlassian-connect.properties.get_bf65"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an issue security scheme and its security levels",
+      "canonical_id": "rest.api.issuesecurityschemes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Atlassian team details for a specific plan",
+      "canonical_id": "rest.api.atlassian.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve audit records with filtering options",
+      "canonical_id": "rest.api.record.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve comments by a list of IDs",
+      "canonical_id": "rest.api.comment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve custom field options for a specific context",
+      "canonical_id": "rest.api.option.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve dashboards owned by or shared with the user",
+      "canonical_id": "rest.api.dashboard.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve data policies for specified projects",
+      "canonical_id": "rest.api.project.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve deleted worklog IDs and their deletion timestamps",
+      "canonical_id": "rest.api.deleted.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details about a specific issue link",
+      "canonical_id": "rest.api.issueLink.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific issue security level by its ID",
+      "canonical_id": "rest.api.securitylevel.get_8db2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Jira's global configuration settings",
+      "canonical_id": "rest.api.configuration.list_bdf9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve project type details by its key",
+      "canonical_id": "rest.api.type.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve properties for a specific app",
+      "canonical_id": "rest.atlassian-connect.properties.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve recently failed webhook deliveries",
+      "canonical_id": "rest.api.failed.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve screen tabs for multiple screens",
+      "canonical_id": "rest.api.tabs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the status and results of a long-running task",
+      "canonical_id": "rest.api.task.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve trashed custom fields with search and pagination",
+      "canonical_id": "rest.api.trashed.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve worklog details for a list of worklog IDs",
+      "canonical_id": "rest.api.worklog.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sanitize JQL queries for users without browse permission",
+      "canonical_id": "rest.api.sanitize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search and retrieve a paginated list of projects",
+      "canonical_id": "rest.api.search.list_22fd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for custom or all Jira fields",
+      "canonical_id": "rest.api.search.list_c9f8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for dashboards by name, owner, or project",
+      "canonical_id": "rest.api.search.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for filters by various criteria",
+      "canonical_id": "rest.api.search.list_9386"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for issues using JQL",
+      "canonical_id": "rest.api.search.create_1837"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for issues using JQL",
+      "canonical_id": "rest.api.jql.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for issues using JQL",
+      "canonical_id": "rest.api.search.list_e317"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for Jira issues using JQL",
+      "canonical_id": "rest.api.jql.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for select list options for a specific issue field",
+      "canonical_id": "rest.api.search.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for statuses by name or project",
+      "canonical_id": "rest.api.search.list_f182"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users by name or email",
+      "canonical_id": "rest.api.picker.list_89fd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users by name, ID, or property",
+      "canonical_id": "rest.api.search.list_4600"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users by query and get their keys",
+      "canonical_id": "rest.api.key.list_5681"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for workflow transition rule configurations",
+      "canonical_id": "rest.atlassian-connect.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for workflows by name, scope, or status",
+      "canonical_id": "rest.api.search.list_c0ec"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search users by name or permission for a project",
+      "canonical_id": "rest.api.search.list_21b7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search users by structured query and return paginated results",
+      "canonical_id": "rest.api.query.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send email notification for a specific issue",
+      "canonical_id": "rest.api.notify.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a Forge app's property value",
+      "canonical_id": "rest.forge.properties.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a specific property for a worklog entry",
+      "canonical_id": "rest.api.properties.update_d89b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a user's custom property",
+      "canonical_id": "rest.api.properties.update_f7e9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set dashboard item property value",
+      "canonical_id": "rest.api.properties.update_935a"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default issue navigator columns",
+      "canonical_id": "rest.api.columns.update_9ce"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default issue security levels for schemes",
+      "canonical_id": "rest.api.default.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default issue table columns for a user",
+      "canonical_id": "rest.api.columns.update_e126"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default sharing for new filters and dashboards",
+      "canonical_id": "rest.api.defaultShareScope.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default values for custom field contexts",
+      "canonical_id": "rest.api.defaultValue.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set or update a custom property for a comment",
+      "canonical_id": "rest.api.properties.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the default issue priority",
+      "canonical_id": "rest.api.default.update_6bd6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the default issue resolution",
+      "canonical_id": "rest.api.default.update_7e26"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the user's locale",
+      "canonical_id": "rest.api.locale.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set your Jira time tracking provider",
+      "canonical_id": "rest.api.timetracking.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Suggest priorities needing mapping for a scheme",
+      "canonical_id": "rest.api.mappings.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transition an issue and update its fields",
+      "canonical_id": "rest.api.transitions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trash a custom field by its ID",
+      "canonical_id": "rest.api.trash.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unarchive Jira issues by ID or key",
+      "canonical_id": "rest.api.unarchive.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unfavorite a Jira filter",
+      "canonical_id": "rest.api.favourite.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a classic project screen's details",
+      "canonical_id": "rest.api.screens.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a company-managed workflow scheme",
+      "canonical_id": "rest.api.workflowscheme.update_382"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom field's context",
+      "canonical_id": "rest.api.context.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom field's details",
+      "canonical_id": "rest.api.field.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a dashboard gadget's title, position, and color",
+      "canonical_id": "rest.api.gadget.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a field configuration by ID",
+      "canonical_id": "rest.api.fieldconfiguration.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a field configuration scheme for company-managed projects",
+      "canonical_id": "rest.api.fieldconfigurationscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a filter's details, JQL, or sharing settings",
+      "canonical_id": "rest.api.filter.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a notification scheme",
+      "canonical_id": "rest.api.notificationscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a permission scheme's details and grants",
+      "canonical_id": "rest.api.permissionscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a plan-only team's settings",
+      "canonical_id": "rest.api.planonly.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a priority scheme's details, priorities, and associated projects",
+      "canonical_id": "rest.api.priorityscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project category by its ID",
+      "canonical_id": "rest.api.projectCategory.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project component's details",
+      "canonical_id": "rest.api.component.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project role's name and description",
+      "canonical_id": "rest.api.role.update_d5f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project role's name or description",
+      "canonical_id": "rest.api.role.create_f3c8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project version",
+      "canonical_id": "rest.api.version.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project's avatar",
+      "canonical_id": "rest.api.avatar.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project's custom property",
+      "canonical_id": "rest.api.properties.update_dd20"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project's default data classification level",
+      "canonical_id": "rest.api.default.update_59f8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a remote issue link for an issue",
+      "canonical_id": "rest.api.remotelink.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a screen scheme for classic projects",
+      "canonical_id": "rest.api.screenscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a screen tab's name",
+      "canonical_id": "rest.api.tabs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific worklog entry for an issue",
+      "canonical_id": "rest.api.worklog.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a UI modification for your Forge app",
+      "canonical_id": "rest.api.uiModifications.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's Nav4 preference",
+      "canonical_id": "rest.api.nav4OptProperty.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a version's related work",
+      "canonical_id": "rest.api.relatedwork.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a workflow transition property",
+      "canonical_id": "rest.api.properties.update_ddde"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an app's property with custom data",
+      "canonical_id": "rest.atlassian-connect.properties.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an application property value",
+      "canonical_id": "rest.api.applicationProperties.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing comment on an issue",
+      "canonical_id": "rest.api.comment.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing issue's details",
+      "canonical_id": "rest.api.issue.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue field option for a select list",
+      "canonical_id": "rest.api.option.update_2cab"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue link type",
+      "canonical_id": "rest.api.issueLinkType.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue resolution by ID",
+      "canonical_id": "rest.api.resolution.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue security level's details",
+      "canonical_id": "rest.api.level.update_525d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue security scheme by its ID",
+      "canonical_id": "rest.api.issuesecurityschemes.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue type by its ID",
+      "canonical_id": "rest.api.issuetype.update_6cca"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue type scheme by its ID",
+      "canonical_id": "rest.api.issuetypescheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue type screen scheme",
+      "canonical_id": "rest.api.issuetypescreenscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue's custom property value",
+      "canonical_id": "rest.api.properties.update_de20"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue's priority",
+      "canonical_id": "rest.api.priority.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Atlassian team settings in a plan",
+      "canonical_id": "rest.api.atlassian.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom field configurations for a Forge app",
+      "canonical_id": "rest.api.configuration.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom field options for a specific context",
+      "canonical_id": "rest.api.option.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom field values on issues",
+      "canonical_id": "rest.api.value.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom field values on issues",
+      "canonical_id": "rest.api.value.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update dashboard details by ID",
+      "canonical_id": "rest.api.dashboard.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update default workflow for a workflow scheme",
+      "canonical_id": "rest.api.default.update_cc70"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update field configuration items",
+      "canonical_id": "rest.api.fields.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update filter columns to display specific fields",
+      "canonical_id": "rest.api.columns.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update issue type screen scheme mappings",
+      "canonical_id": "rest.api.mapping.update_4b0a"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update issue type workflow in draft workflow scheme",
+      "canonical_id": "rest.api.issuetype.update_4237"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create a draft workflow scheme",
+      "canonical_id": "rest.api.draft.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create an issue type property",
+      "canonical_id": "rest.api.properties.update_fdb6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create user preferences",
+      "canonical_id": "rest.api.mypreferences.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update plan details using JSON Patch",
+      "canonical_id": "rest.api.plan.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update precomputation values for app-defined JQL functions",
+      "canonical_id": "rest.api.computation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update project details",
+      "canonical_id": "rest.api.project.update_7cc3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update project sender email address",
+      "canonical_id": "rest.api.email.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update project's issue security scheme",
+      "canonical_id": "rest.api.project.update_e0c1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the announcement banner configuration",
+      "canonical_id": "rest.api.announcementBanner.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the default screen scheme for an issue type screen scheme",
+      "canonical_id": "rest.api.default.update_86e7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the default workflow for a draft workflow scheme",
+      "canonical_id": "rest.api.default.update_4a61"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the state of a project feature",
+      "canonical_id": "rest.api.features.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update time tracking configuration settings",
+      "canonical_id": "rest.api.options.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update workflow for an issue type in a workflow scheme",
+      "canonical_id": "rest.api.issuetype.update_4e3c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update workflow for issue types in a draft workflow scheme",
+      "canonical_id": "rest.api.workflow.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update workflow mappings for issue types in a workflow scheme",
+      "canonical_id": "rest.api.workflow.update_d62d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update workflow schemes for projects",
+      "canonical_id": "rest.api.workflowscheme.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update workflow transition rule configurations",
+      "canonical_id": "rest.api.config.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a project avatar image",
+      "canonical_id": "rest.api.avatar2.create_ac5f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload an avatar for an issue type",
+      "canonical_id": "rest.api.avatar2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload custom avatar for project, issue type, or priority",
+      "canonical_id": "rest.api.owner.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate bulk workflow updates",
+      "canonical_id": "rest.api.workflows.update_d50e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate creation of new workflows",
+      "canonical_id": "rest.api.workflows.create_91ae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate or generate a project key",
+      "canonical_id": "rest.api.validProjectKey.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Vote on a Jira issue",
+      "canonical_id": "rest.api.votes.create"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "editor": "none",
+  "integrations": {
+    "googleapis.sheets": {
+      "version": "4"
+    },
+    "notion.notion_api": {
+      "version": "latest"
+    },
+    "resend.resend_api": {
+      "version": "v1.5.0"
+    }
+  },
+  "mode": "production",
+  "tools": {
+    "pages.page.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "Notion-Version": {
+            "TYPE": "STRING",
+            "LOCATION": "header"
+          }
+        },
+        {
+          "body": {
+            "TYPE": "STRUCT(pages.page.createRequest)",
+            "REQUIRED": true,
+            "LOCATION": "body"
+          }
+        }
+      ],
+      "integration": "notion.notion_api@latest",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create pages",
+      "type": "method"
+    },
+    "spreadsheets.values:batchget.get": {
+      "desc": "Returns one or more ranges of values from a spreadsheet",
+      "inputs": [
+        {
+          "spreadsheetId": {
+            "TYPE": "STRING",
+            "LOCATION": "path"
+          }
+        },
+        {
+          "ranges": {
+            "TYPE": "[]STRING",
+            "REQUIRED": false,
+            "LOCATION": "query"
+          }
+        }
+      ],
+      "integration": "googleapis.sheets@4",
+      "method_hash": "",
+      "output": {
+        "schema": {},
+        "status": 200
+      },
+      "summary": "Returns one or more ranges of values from a spreadsheet",
+      "type": "method"
+    },
+    "emails.email.create": {
+      "desc": "Send an email",
+      "inputs": [
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "from": {
+                  "required": true,
+                  "type": "string"
+                },
+                "html": {
+                  "required": false,
+                  "type": "string"
+                },
+                "subject": {
+                  "required": true,
+                  "type": "string"
+                },
+                "text": {
+                  "required": false,
+                  "type": "string"
+                },
+                "to": {
+                  "required": true,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "resend.resend_api@v1.5.0",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Send an email",
+      "type": "method"
+    }
+  },
+  "version": "1"
+}

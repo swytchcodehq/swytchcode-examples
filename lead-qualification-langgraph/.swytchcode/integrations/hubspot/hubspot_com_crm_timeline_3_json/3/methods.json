@@ -1,0 +1,69 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a token to an event template",
+      "canonical_id": "integrators.timeline.tokens.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a timeline event from a template",
+      "canonical_id": "integrators.timeline.events.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a timeline event template for your app",
+      "canonical_id": "integrators.timeline.eventTemplates.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple timeline events from a template",
+      "canonical_id": "integrators.timeline.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a token from an event template",
+      "canonical_id": "integrators.timeline.tokens.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an event template and its associated events",
+      "canonical_id": "integrators.timeline.eventTemplates.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific event template and its tokens for an app",
+      "canonical_id": "integrators.timeline.eventTemplates.get_2c0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Gets the detailTemplate as rendered. + This will take the `detailTemplate` from the event template and return an object ",
+      "canonical_id": "integrators.timeline.detail.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Gets the event. + This returns the previously created event. It contains all existing info for the event, but not necess",
+      "canonical_id": "integrators.timeline.events.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all event templates for your app",
+      "canonical_id": "integrators.timeline.eventTemplates.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Render event header or detail as HTML",
+      "canonical_id": "integrators.timeline.render.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an event template and its tokens",
+      "canonical_id": "integrators.timeline.eventTemplates.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an event template token's value",
+      "canonical_id": "integrators.timeline.tokens.update"
+    }
+  ]
+}

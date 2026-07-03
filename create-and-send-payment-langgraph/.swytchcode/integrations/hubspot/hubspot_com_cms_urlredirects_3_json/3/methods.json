@@ -1,0 +1,29 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new URL redirect",
+      "canonical_id": "cms.v3.urlRedirects.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a URL redirect by its ID",
+      "canonical_id": "cms.v3.urlRedirects.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get current redirects. + Returns all existing URL redirects. Results can be limited and filtered by creation or updated ",
+      "canonical_id": "cms.v3.urlRedirects.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific URL redirect by its ID",
+      "canonical_id": "cms.v3.urlRedirects.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a URL redirect's settings",
+      "canonical_id": "cms.v3.urlRedirects.update"
+    }
+  ]
+}

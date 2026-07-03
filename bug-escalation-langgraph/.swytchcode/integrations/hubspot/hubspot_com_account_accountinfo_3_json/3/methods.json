@@ -1,0 +1,19 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get account details like type, timezone, and currency",
+      "canonical_id": "account-info.v3.details.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily private app API usage and limits",
+      "canonical_id": "account-info.v3.privateApps.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get account details for a HubSpot account.. + Get account details",
+      "canonical_id": "account-info.v3.details.list"
+    }
+  ]
+}

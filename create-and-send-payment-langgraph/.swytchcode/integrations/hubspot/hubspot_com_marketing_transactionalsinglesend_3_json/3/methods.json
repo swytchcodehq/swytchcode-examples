@@ -1,0 +1,34 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a SMTP API token",
+      "canonical_id": "marketing.v3.smtpTokens.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a transactional SMTP token by its ID",
+      "canonical_id": "marketing.v3.smtpTokens.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific transactional SMTP token by its ID",
+      "canonical_id": "marketing.v3.smtpTokens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get SMTP API tokens by campaign name or email campaign ID",
+      "canonical_id": "marketing.v3.smtpTokens.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset a transactional email token's password",
+      "canonical_id": "marketing.v3.passwordReset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a single transactional email",
+      "canonical_id": "marketing.v3.send.create"
+    }
+  ]
+}
