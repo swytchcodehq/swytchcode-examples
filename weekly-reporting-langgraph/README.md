@@ -6,7 +6,6 @@ A LangGraph agent that turns a Google Sheet of metrics into a published Notion p
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue?style=flat-square)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/swytchcodehq/Weekly-Reporting-Langgraph?style=flat-square)](https://github.com/swytchcodehq/Weekly-Reporting-Langgraph/commits)
 
 ## What this does
 
@@ -39,8 +38,8 @@ load_report -> create_notion_page -> email_stakeholders
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/swytchcodehq/Weekly-Reporting-Langgraph.git
-   cd Weekly-Reporting-Langgraph
+   git clone https://github.com/swytchcodehq/swytchcode-examples.git
+   cd swytchcode-examples/weekly-reporting-langgraph
    ```
 2. Install dependencies:
    ```bash
@@ -104,12 +103,12 @@ After a run you should see a new page in your Notion database, titled for the we
 
 Runnable LangGraph + Swytchcode examples:
 
-- [Bug-Escalation-Langgraph](https://github.com/swytchcodehq/Bug-Escalation-Langgraph)
-- [Create-And-Send-Payment-Langgraph](https://github.com/swytchcodehq/Create-And-Send-Payment-Langgraph)
-- [Customer-Onboarding-Langgraph](https://github.com/swytchcodehq/Customer-Onboarding-Langgraph)
-- [Fintech-Compliance-Langgraph-Demo](https://github.com/swytchcodehq/Fintech-Compliance-Langgraph-Demo)
-- [Lead-Qualification-Langgraph](https://github.com/swytchcodehq/Lead-Qualification-Langgraph)
-- [Weekly-Reporting-Langgraph](https://github.com/swytchcodehq/Weekly-Reporting-Langgraph)
+- [bug-escalation-langgraph](../bug-escalation-langgraph)
+- [create-and-send-payment-langgraph](../create-and-send-payment-langgraph)
+- [customer-onboarding-langgraph](../customer-onboarding-langgraph)
+- [fintech-compliance-langgraph](../fintech-compliance-langgraph)
+- [lead-qualification-langgraph](../lead-qualification-langgraph)
+- [weekly-reporting-langgraph](../weekly-reporting-langgraph)
 
 ## License
 

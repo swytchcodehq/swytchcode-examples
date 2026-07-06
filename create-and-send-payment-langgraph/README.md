@@ -19,8 +19,8 @@ Built with [LangGraph](https://github.com/langchain-ai/langgraph) and [Swytchcod
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/swytchcodehq/Create-And-Send-Payment-Langgraph.git
-   cd Create-And-Send-Payment-Langgraph
+   git clone https://github.com/swytchcodehq/swytchcode-examples.git
+   cd swytchcode-examples/create-and-send-payment-langgraph
    ```
 2. Install dependencies:
    ```bash
@@ -48,12 +48,12 @@ python main.py
 
 Runnable LangGraph + Swytchcode examples:
 
-- [Bug-Escalation-Langgraph](https://github.com/swytchcodehq/Bug-Escalation-Langgraph)
-- [Create-And-Send-Payment-Langgraph](https://github.com/swytchcodehq/Create-And-Send-Payment-Langgraph)
-- [Customer-Onboarding-Langgraph](https://github.com/swytchcodehq/Customer-Onboarding-Langgraph)
-- [Fintech-Compliance-Langgraph-Demo](https://github.com/swytchcodehq/Fintech-Compliance-Langgraph-Demo)
-- [Lead-Qualification-Langgraph](https://github.com/swytchcodehq/Lead-Qualification-Langgraph)
-- [Weekly-Reporting-Langgraph](https://github.com/swytchcodehq/Weekly-Reporting-Langgraph)
+- [bug-escalation-langgraph](../bug-escalation-langgraph)
+- [create-and-send-payment-langgraph](../create-and-send-payment-langgraph)
+- [customer-onboarding-langgraph](../customer-onboarding-langgraph)
+- [fintech-compliance-langgraph](../fintech-compliance-langgraph)
+- [lead-qualification-langgraph](../lead-qualification-langgraph)
+- [weekly-reporting-langgraph](../weekly-reporting-langgraph)
 
 ## License
 
