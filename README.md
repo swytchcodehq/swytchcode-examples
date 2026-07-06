@@ -19,7 +19,7 @@ swytchcode examples          # choose a demo interactively
 Set it up and run it (requires Python 3.9+):
 
 ```bash
-cd 
+cd <demo>
 pip install -r requirements.txt
 cp .env.example .env          # then add your credentials
 python main.py
