@@ -1,0 +1,1641 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://eth-mainnetbeacon.g.alchemy.com/v2/{apiKey}
+METHODS:
+  eth.v2.attestations.get:
+    SUMMARY: /v2/beacon/blocks/{block_id}/attestations
+    DESC: |
+      Retrieves attestations included in the requested block.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v2/beacon/blocks/{block_id}/attestations
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v2.attestations.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v2.attestations.getResponse200)
+        RETURNVAR: eth_v2_attestations_get
+        STATUS: 200
+    CANONICAL_ID: eth.v2.attestations.get
+  eth.v1.root.get:
+    SUMMARY: /v1/beacon/blocks/{block_id}/root
+    DESC: |
+      Retrieves the hashTreeRoot of a BeaconBlock or BeaconBlockHeader.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/blocks/{block_id}/root
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.root.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.root.getResponse200)
+        RETURNVAR: eth_v1_root_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.root.get
+  eth.v1.blobSidecars.get:
+    SUMMARY: /v1/beacon/blob_sidecars/{block_id}
+    DESC: |
+      Retrieves blob sidecars for a given block.
+      If the `indices` query parameter is specified, only the blob sidecars with the given indices will be returned.   Ordering of returned blob sidecars is not guaranteed.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/blob_sidecars/{block_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.blobSidecars.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+      - indices:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.blobSidecars.getResponse200)
+        RETURNVAR: eth_v1_blobSidecars_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.blobSidecars.get
+  eth.v2.blocks.get:
+    SUMMARY: /v2/beacon/blocks/{block_id}
+    DESC: |
+      Retrieves full block details for the given block identifier.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v2/beacon/blocks/{block_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v2.blocks.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v2.blocks.getResponse200)
+        RETURNVAR: eth_v2_blocks_get
+        STATUS: 200
+    CANONICAL_ID: eth.v2.blocks.get
+  eth.v1.genesis.list:
+    SUMMARY: /v1/beacon/genesis
+    DESC: |
+      Retrieve details of the chain's genesis which can be used to identify the chain.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/genesis
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.genesis.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.genesis.listResponse200)
+        RETURNVAR: eth_v1_genesis_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.genesis.list
+  eth.v1.headers.list:
+    SUMMARY: /v1/beacon/headers
+    DESC: |
+      Retrieves block headers matching the given query.   By default, it will fetch the current head slot blocks.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/headers
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.headers.listResponse200)
+    INPUTS:
+      - slot:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parent_root:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.headers.listResponse200)
+        RETURNVAR: eth_v1_headers_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.headers.list
+  eth.v1.headers.get:
+    SUMMARY: /v1/beacon/headers/{block_id}
+    DESC: |
+      Retrieves the block header for the given block identifier.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/headers/{block_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.headers.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.headers.getResponse200)
+        RETURNVAR: eth_v1_headers_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.headers.get
+  eth.v1.voluntaryExits.list:
+    SUMMARY: /v1/beacon/pool/voluntary_exits
+    DESC: |
+      Retrieves voluntary exits known by the node, but not necessarily incorporated into any block.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/pool/voluntary_exits
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.voluntaryExits.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.voluntaryExits.listResponse200)
+        RETURNVAR: eth_v1_voluntaryExits_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.voluntaryExits.list
+  eth.v2.attestations.list:
+    SUMMARY: /v2/beacon/pool/attestations
+    DESC: |
+      Retrieves attestations known by the beacon node but not necessarily incorporated into any block.
+      This endpoint returns attestations currently present in the node’s operation pool.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v2/beacon/pool/attestations
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v2.attestations.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v2.attestations.listResponse200)
+        RETURNVAR: eth_v2_attestations_list
+        STATUS: 200
+    CANONICAL_ID: eth.v2.attestations.list
+  eth.v1.committees.get:
+    SUMMARY: /v1/beacon/states/{state_id}/committees
+    DESC: |
+      Retrieves the committees for the given state.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/committees
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.committees.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - epoch:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - index:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - slot:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.committees.getResponse200)
+        RETURNVAR: eth_v1_committees_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.committees.get
+  eth.v1.finalityCheckpoints.get:
+    SUMMARY: /v1/beacon/states/{state_id}/finality_checkpoints
+    DESC: |
+      Returns finality checkpoints for the given state.   If finality is not yet achieved, the checkpoint will return epoch `0` and `ZERO_HASH` as root.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/finality_checkpoints
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.finalityCheckpoints.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.finalityCheckpoints.getResponse200)
+        RETURNVAR: eth_v1_finalityCheckpoints_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.finalityCheckpoints.get
+  eth.v1.fork.get:
+    SUMMARY: /v1/beacon/states/{state_id}/fork
+    DESC: |
+      Returns the Fork object for the given state.   The Fork contains information about protocol versioning (previous and current fork versions, plus the epoch at which they apply).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/fork
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.fork.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.fork.getResponse200)
+        RETURNVAR: eth_v1_fork_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.fork.get
+  eth.v1.pendingConsolidations.get:
+    SUMMARY: /v1/beacon/states/{state_id}/pending_consolidations
+    DESC: |
+      Returns pending consolidations for the given state.   Pending consolidations represent validator indices that are scheduled to consolidate.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/pending_consolidations
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.pendingConsolidations.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.pendingConsolidations.getResponse200)
+        RETURNVAR: eth_v1_pendingConsolidations_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.pendingConsolidations.get
+  eth.v1.root.get_8b75:
+    SUMMARY: /v1/beacon/states/{state_id}/root
+    DESC: |
+      Calculates the `HashTreeRoot` for the state with the given `stateId`.   If `stateId` itself is a root, the same value will be returned.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/root
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.root.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.root.getResponse200)
+        RETURNVAR: eth_v1_root_get_8b75
+        STATUS: 200
+    CANONICAL_ID: eth.v1.root.get_8b75
+  eth.v1.syncCommittees.get:
+    SUMMARY: /v1/beacon/states/{state_id}/sync_committees
+    DESC: |
+      Retrieves the current sync committee for the given state.   Also returns the subcommittee assignments.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/sync_committees
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.syncCommittees.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - epoch:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.syncCommittees.getResponse200)
+        RETURNVAR: eth_v1_syncCommittees_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.syncCommittees.get
+  eth.v1.randao.get:
+    SUMMARY: /v1/beacon/states/{state_id}/randao
+    DESC: |
+      Fetches the RANDAO mix for the requested epoch from the state identified by `state_id`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/randao
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.randao.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - epoch:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.randao.getResponse200)
+        RETURNVAR: eth_v1_randao_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.randao.get
+  eth.v1.validatorBalances.get:
+    SUMMARY: /v1/beacon/states/{state_id}/validator_balances
+    DESC: |
+      Returns a filterable list of validator balances.   Balances will be returned for all indices or public keys that match known validators.   If an index or public key does not match any known validator, no balance will be returned,   but this will not cause an error.   The response does not guarantee ordering, so the `index` should be used to match inputs.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/validator_balances
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.validatorBalances.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - id:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.validatorBalances.getResponse200)
+        RETURNVAR: eth_v1_validatorBalances_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.validatorBalances.get
+  eth.v1.validators.get:
+    SUMMARY: /v1/beacon/states/{state_id}/validators
+    DESC: |
+      Returns a filterable list of validators with their balance, status, and index.   Information will be returned for all indices or public keys that match known validators.   If an index or public key does not match any known validator, no information will be returned,   but this will not cause an error.   The response does not guarantee ordering, so both the `index` and `pubkey` can be used to confirm inputs.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/validators
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.validators.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - id:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.validators.getResponse200)
+        RETURNVAR: eth_v1_validators_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.validators.get
+  eth.v1.validators.get_107f:
+    SUMMARY: /v1/beacon/states/{state_id}/validators/{validator_id}
+    DESC: |
+      Returns validator specified by state and ID or public key,   along with its status and balance.   The validator can be referenced by its index (numeric) or hex-encoded public key (`bytes48` with 0x prefix).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/states/{state_id}/validators/{validator_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.validators.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+      - validator_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.validators.getResponse200)
+        RETURNVAR: eth_v1_validators_get_107f
+        STATUS: 200
+    CANONICAL_ID: eth.v1.validators.get_107f
+  eth.v1.syncCommittee.create:
+    SUMMARY: /v1/beacon/rewards/sync_committee/{block_id}
+    DESC: |
+      Retrieves rewards info for sync committee members specified by array of public keys or validator indices.   If no array is provided, the rewards for **all sync committee members** are returned.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /eth/v1/beacon/rewards/sync_committee/{block_id}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(eth.v1.syncCommittee.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.syncCommittee.createResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(eth.v1.syncCommittee.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.syncCommittee.createResponse200)
+        RETURNVAR: eth_v1_syncCommittee_create
+        STATUS: 200
+    CANONICAL_ID: eth.v1.syncCommittee.create
+  eth.v1.blocks.get:
+    SUMMARY: /v1/beacon/rewards/blocks/{block_id}
+    DESC: |
+      Retrieve block reward info for a single block.   The `total` reward is the sum of proposer rewards from **attestations**, **sync committees**, and **slashings** included in the proposal.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/rewards/blocks/{block_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.blocks.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.blocks.getResponse200)
+        RETURNVAR: eth_v1_blocks_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.blocks.get
+  eth.v1.attestations.create:
+    SUMMARY: /v1/beacon/rewards/attestations/{epoch}
+    DESC: |
+      Retrieve attestation reward info for validators specified by an array of **public keys** or **validator indices**.   If no array is provided, reward info for **every validator** will be returned.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /eth/v1/beacon/rewards/attestations/{epoch}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(eth.v1.attestations.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.attestations.createResponse200)
+    INPUTS:
+      - epoch:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(eth.v1.attestations.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.attestations.createResponse200)
+        RETURNVAR: eth_v1_attestations_create
+        STATUS: 200
+    CANONICAL_ID: eth.v1.attestations.create
+  eth.v1.blindedBlocks.get:
+    SUMMARY: /v1/beacon/blinded_blocks/{block_id}
+    DESC: |
+      Retrieves a blinded beacon block for the given block identifier.   The response can be returned as JSON or SSZ bytes depending on the Accept header.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/beacon/blinded_blocks/{block_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.blindedBlocks.getResponse200)
+    INPUTS:
+      - block_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.blindedBlocks.getResponse200)
+        RETURNVAR: eth_v1_blindedBlocks_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.blindedBlocks.get
+  eth.v1.depositContract.list:
+    SUMMARY: /v1/config/deposit_contract
+    DESC: |
+      Retrieve the **Ethereum 1.0 deposit contract** address and chain ID.   This contract is used for staking deposits into the Beacon Chain.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/config/deposit_contract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.depositContract.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.depositContract.listResponse200)
+        RETURNVAR: eth_v1_depositContract_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.depositContract.list
+  eth.v1.forkSchedule.list:
+    SUMMARY: /v1/config/fork_schedule
+    DESC: |
+      Retrieve all forks (past, present, and future) known to the node.   Each fork entry contains the previous and current protocol version along with the epoch at which the fork occurred.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/config/fork_schedule
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.forkSchedule.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.forkSchedule.listResponse200)
+        RETURNVAR: eth_v1_forkSchedule_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.forkSchedule.list
+  eth.v1.spec.list:
+    SUMMARY: /v1/config/spec
+    DESC: |
+      Retrieve the specification configuration used on this node.
+      The configuration includes: - Constants for all hard forks known by the beacon node (e.g. Phase0, Altair, Bellatrix, Capella, Deneb, Electra, etc.) - Presets for hard forks supplied to the node - Mainnet or testnet specific configuration values
+      **Format rules:** - Any value starting with `0x` is returned as a hex string. - Numeric values are returned as a quoted integer.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/config/spec
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.spec.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.spec.listResponse200)
+        RETURNVAR: eth_v1_spec_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.spec.list
+  eth.v1.events.list:
+    SUMMARY: /v1/events
+    DESC: |
+      Stream real-time beacon chain events from the beacon node. Subscribe by specifying one or more event topics using the
+      `topics` query parameter.
+
+      <Info>
+      **Note:** This is an EventSource (Server-Sent Events) style endpoint.
+      The HTTP connection remains open and continuously pushes events as they
+      occur.
+      </Info>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/events
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: text/event-stream
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - topics:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: eth_v1_events_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.events.list
+  eth.v1.peerCount.list:
+    SUMMARY: /v1/node/peer_count
+    DESC: |
+      Retrieves the number of peers the beacon node knows about, grouped by connection status.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/node/peer_count
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.peerCount.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.peerCount.listResponse200)
+        RETURNVAR: eth_v1_peerCount_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.peerCount.list
+  eth.v1.peers.list:
+    SUMMARY: /v1/node/peers
+    DESC: |
+      Retrieves data about the node's network peers.   By default this returns all peers.   Multiple query params are combined using **AND** conditions.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/node/peers
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.peers.listResponse200)
+    INPUTS:
+      - state:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - direction:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.peers.listResponse200)
+        RETURNVAR: eth_v1_peers_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.peers.list
+  eth.v1.syncing.list:
+    SUMMARY: /v1/node/syncing
+    DESC: |
+      Requests the beacon node to describe if it's currently syncing or not, and if it is,   what block it is up to.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/node/syncing
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.syncing.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.syncing.listResponse200)
+        RETURNVAR: eth_v1_syncing_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.syncing.list
+  eth.v1.version.list:
+    SUMMARY: /v1/node/version
+    DESC: |
+      Requests that the beacon node identify information about its implementation,   in a format similar to a HTTP `User-Agent` field.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/node/version
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.version.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.version.listResponse200)
+        RETURNVAR: eth_v1_version_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.version.list
+  eth.v2.states.get:
+    SUMMARY: /v2/debug/beacon/states/{state_id}
+    DESC: |
+      Returns the full BeaconState object for the given state identifier. This is a debug endpoint intended for advanced inspection and troubleshooting.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v2/debug/beacon/states/{state_id}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v2.states.getResponse200)
+    INPUTS:
+      - state_id:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v2.states.getResponse200)
+        RETURNVAR: eth_v2_states_get
+        STATUS: 200
+    CANONICAL_ID: eth.v2.states.get
+  eth.v1.forkChoice.list:
+    SUMMARY: /v1/debug/fork_choice
+    DESC: |
+      Retrieves the current fork choice context of the beacon node. This debug endpoint exposes internal fork choice data and is intended for advanced inspection and troubleshooting.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/debug/fork_choice
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.forkChoice.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.forkChoice.listResponse200)
+        RETURNVAR: eth_v1_forkChoice_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.forkChoice.list
+  eth.v2.aggregateAttestation.list:
+    SUMMARY: /v2/validator/aggregate_attestation
+    DESC: |
+      Aggregates all attestations matching the given attestation data root, slot and committee index. Returns a single aggregated attestation. 503 is returned if the block identified by the response `beacon_block_root` is optimistic (i.e., the aggregated attestation attests to a block not fully verified by an execution engine). 404 is returned if no attestation is available for the requested `attestation_data_root`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v2/validator/aggregate_attestation
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v2.aggregateAttestation.listResponse200)
+    INPUTS:
+      - attestation_data_root:
+          TYPE: STRING
+          LOCATION: query
+      - slot:
+          TYPE: STRING
+          LOCATION: query
+      - committee_index:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v2.aggregateAttestation.listResponse200)
+        RETURNVAR: eth_v2_aggregateAttestation_list
+        STATUS: 200
+    CANONICAL_ID: eth.v2.aggregateAttestation.list
+  eth.v1.attester.create:
+    SUMMARY: /v1/validator/duties/attester/{epoch}
+    DESC: |
+      Requests the beacon node to provide a set of attestation duties, which should be performed by validators, for a particular epoch. Duties should only need to be checked once per epoch, however a chain reorganization could occur, resulting in a change of duties.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /eth/v1/validator/duties/attester/{epoch}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(eth.v1.attester.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.attester.createResponse200)
+    INPUTS:
+      - epoch:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(eth.v1.attester.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.attester.createResponse200)
+        RETURNVAR: eth_v1_attester_create
+        STATUS: 200
+    CANONICAL_ID: eth.v1.attester.create
+  eth.v1.proposer.get:
+    SUMMARY: /v1/validator/duties/proposer/{epoch}
+    DESC: |
+      Return all validators scheduled to propose a block in the given epoch. Duties are typically stable within an epoch, but may change after a chain reorg. For full safety, monitor head events and confirm the dependent root in this response matches:
+        • event.current_duty_dependent_root when compute_epoch_at_slot(event.slot) == epoch
+        • event.block otherwise
+      The dependent_root is get_block_root_at_slot(state, compute_start_slot_at_epoch(epoch) - 1), or the genesis block root in case of underflow.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/validator/duties/proposer/{epoch}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.proposer.getResponse200)
+    INPUTS:
+      - epoch:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.proposer.getResponse200)
+        RETURNVAR: eth_v1_proposer_get
+        STATUS: 200
+    CANONICAL_ID: eth.v1.proposer.get
+  eth.v1.sync.create:
+    SUMMARY: /v1/validator/duties/sync/{epoch}
+    DESC: |
+      Returns the sync committee duties for the given epoch and the specified validator indices. The `epoch` must satisfy: ``` EPOCHS_PER_SYNC_COMMITTEE_PERIOD <= current_epoch <= EPOCHS_PER_SYNC_COMMITTEE_PERIOD + 1 ```
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /eth/v1/validator/duties/sync/{epoch}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(eth.v1.sync.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.sync.createResponse200)
+    INPUTS:
+      - epoch:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(eth.v1.sync.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.sync.createResponse200)
+        RETURNVAR: eth_v1_sync_create
+        STATUS: 200
+    CANONICAL_ID: eth.v1.sync.create
+  eth.v1.syncCommitteeContribution.list:
+    SUMMARY: /v1/validator/sync_committee_contribution
+    DESC: |
+      Requests that the beacon node produce a sync committee contribution.
+      - Return **503** if the block identified by the response `beacon_block_root` is optimistic
+        (i.e., the contribution refers to a block not fully verified by an execution engine).
+      - Return **404** if no sync committee contribution is available for the requested `beacon_block_root`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /eth/v1/validator/sync_committee_contribution
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(eth.v1.syncCommitteeContribution.listResponse200)
+    INPUTS:
+      - slot:
+          TYPE: STRING
+          LOCATION: query
+      - subcommittee_index:
+          TYPE: STRING
+          LOCATION: query
+      - beacon_block_root:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(eth.v1.syncCommitteeContribution.listResponse200)
+        RETURNVAR: eth_v1_syncCommitteeContribution_list
+        STATUS: 200
+    CANONICAL_ID: eth.v1.syncCommitteeContribution.list
+  eth.v1.contributionAndProofs.create:
+    SUMMARY: /v1/validator/contribution_and_proofs
+    DESC: |
+      Publishes multiple signed sync committee contribution and proofs to the beacon node.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /eth/v1/validator/contribution_and_proofs
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(eth.v1.contributionAndProofs.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(eth.v1.contributionAndProofs.createRequest)
+          LOCATION: body
+    CANONICAL_ID: eth.v1.contributionAndProofs.create
+STRUCTS:
+  eth.v2.attestations.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Schema version of the response.
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of attestations in this block.
+  eth.v1.root.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.blobSidecars.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Protocol version (e.g. "electra").
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  eth.v2.blocks.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Protocol version (e.g. "electra").
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Block contents.
+  eth.v1.genesis.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.headers.listResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of block headers.
+  eth.v1.headers.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the block is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.voluntaryExits.listResponse200:
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of voluntary exit messages.
+  eth.v2.attestations.listResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Protocol version of the response.
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of attestations in the pool.
+  eth.v1.committees.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of committees in this state.
+  eth.v1.finalityCheckpoints.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.fork.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.pendingConsolidations.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Protocol version (Electra).
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of pending consolidations in this state.
+  eth.v1.syncCommittees.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.randao.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.validatorBalances.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of validator balances.
+  eth.v1.validators.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the state is finalized.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of validators matching the query.
+  eth.v1.syncCommittee.createResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Rewards info.
+  eth.v1.blocks.getResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.attestations.createResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.blindedBlocks.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.depositContract.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.forkSchedule.listResponse200:
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of forks known by the node.
+  eth.v1.spec.listResponse200:
+    - name: data
+      NAME: data
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: |
+        Key-value pairs of specification constants and configuration values.
+  eth.v1.peerCount.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.peers.listResponse200:
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of peers.
+    - name: meta
+      NAME: meta
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Metadata about peer list.
+  eth.v1.syncing.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.version.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v2.states.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Protocol version.
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: finalized
+      NAME: finalized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Full BeaconState (debug).
+  eth.v1.forkChoice.listResponse200:
+    - name: data
+      NAME: data
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Fork choice context (debug).
+  eth.v2.aggregateAttestation.listResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.attester.createResponse200:
+    - name: dependent_root
+      NAME: dependent_root
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Dependent root for these duties.
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of attester duties for the requested indices.
+  eth.v1.proposer.getResponse200:
+    - name: dependent_root
+      NAME: dependent_root
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Root that duties depend on; must be checked against head events as documented.
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Proposer duties for the epoch.
+  eth.v1.sync.createResponse200:
+    - name: execution_optimistic
+      NAME: execution_optimistic
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the execution payload is optimistic.
+    - name: data
+      NAME: data
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  eth.v1.syncCommitteeContribution.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  eth.v1.syncCommittee.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  eth.v1.attestations.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  eth.v1.attester.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  eth.v1.sync.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  eth.v1.contributionAndProofs.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

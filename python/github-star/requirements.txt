@@ -1,0 +1,4 @@
+swytchcode-runtime
+openai-agents
+rich
+python-dotenv

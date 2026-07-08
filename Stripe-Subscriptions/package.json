@@ -1,0 +1,25 @@
+{
+  "name": "stripe-subscriptions",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Stripe Subscriptions monorepo built on Swytchcode",
+  "workspaces": [
+    "services/*",
+    "examples/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0"
+  }
+}

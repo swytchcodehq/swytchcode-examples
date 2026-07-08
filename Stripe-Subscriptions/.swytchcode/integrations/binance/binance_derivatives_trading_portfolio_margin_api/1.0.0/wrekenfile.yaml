@@ -1,0 +1,3527 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://papi.binance.com
+  testnet_url: https://testnet.binancefuture.com
+METHODS:
+  papi.v1.account.list:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.account.list
+  papi.v1.assetCollection.create:
+    SUMMARY: Create asset-collection
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/asset-collection
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.assetCollection.create
+  papi.v1.autoCollection.create:
+    SUMMARY: Create auto-collection
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/auto-collection
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.autoCollection.create
+  papi.v1.balance.list:
+    SUMMARY: Fetch balance
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/balance
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.balance.list
+  papi.v1.bnbTransfer.create:
+    SUMMARY: Create bnb-transfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/bnb-transfer
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - transferSide:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.bnbTransfer.create
+  papi.v1.account.list_6e77:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.account.list_6e77
+  papi.v1.commissionRate.list:
+    SUMMARY: Fetch commissionRate
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/commissionRate
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.commissionRate.list
+  papi.v1.income.list:
+    SUMMARY: Fetch income
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/income
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.income.list
+  papi.v1.leverage.create:
+    SUMMARY: Create leverage
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/cm/leverage
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - leverage:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.leverage.create
+  papi.v1.leverageBracket.list:
+    SUMMARY: Fetch leverageBracket
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/leverageBracket
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.leverageBracket.list
+  papi.v1.positionRisk.list:
+    SUMMARY: Fetch positionRisk
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/positionRisk
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.positionRisk.list
+  papi.v1.dual.create:
+    SUMMARY: Create dual
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/cm/positionSide/dual
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - dualSidePosition:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.dual.create
+  papi.v1.dual.list:
+    SUMMARY: Fetch dual
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/positionSide/dual
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.dual.list
+  papi.v1.marginInterestHistory.list:
+    SUMMARY: Fetch marginInterestHistory
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/marginInterestHistory
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.marginInterestHistory.list
+  papi.v1.marginLoan.list:
+    SUMMARY: Fetch marginLoan
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/marginLoan
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.marginLoan.list
+  papi.v1.maxBorrowable.list:
+    SUMMARY: Fetch maxBorrowable
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/maxBorrowable
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.maxBorrowable.list
+  papi.v1.maxWithdraw.list:
+    SUMMARY: Fetch maxWithdraw
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/maxWithdraw
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.maxWithdraw.list
+  papi.v1.repayLoan.list:
+    SUMMARY: Fetch repayLoan
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/repayLoan
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayLoan.list
+  papi.v1.interestHistory.list:
+    SUMMARY: Fetch interest-history
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/portfolio/interest-history
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.interestHistory.list
+  papi.v1.negativeBalanceExchangeRecord.list:
+    SUMMARY: Fetch negative-balance-exchange-record
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/portfolio/negative-balance-exchange-record
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.negativeBalanceExchangeRecord.list
+  papi.v1.order.list:
+    SUMMARY: Fetch order
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/rateLimit/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.list
+  papi.v1.repayFuturesNegativeBalance.create:
+    SUMMARY: Create repay-futures-negative-balance
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/repay-futures-negative-balance
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayFuturesNegativeBalance.create
+  papi.v1.repayFuturesSwitch.create:
+    SUMMARY: Create repay-futures-switch
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/repay-futures-switch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - autoRepay:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayFuturesSwitch.create
+  papi.v1.repayFuturesSwitch.list:
+    SUMMARY: Fetch repay-futures-switch
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/repay-futures-switch
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayFuturesSwitch.list
+  papi.v1.account.list_af53:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.account.list_af53
+  papi.v1.accountConfig.list:
+    SUMMARY: Fetch accountConfig
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/accountConfig
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.accountConfig.list
+  papi.v1.apiTradingStatus.list:
+    SUMMARY: Fetch apiTradingStatus
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/apiTradingStatus
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.apiTradingStatus.list
+  papi.v1.commissionRate.list_6b00:
+    SUMMARY: Fetch commissionRate
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/commissionRate
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.commissionRate.list_6b00
+  papi.v1.income.list_3342:
+    SUMMARY: Fetch income
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/income
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.income.list_3342
+  papi.v1.asyn.list:
+    SUMMARY: Fetch asyn
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/income/asyn
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.asyn.list
+  papi.v1.id.list:
+    SUMMARY: Fetch id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/income/asyn/id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - downloadId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.id.list
+  papi.v1.leverage.create_d672:
+    SUMMARY: Create leverage
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/um/leverage
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - leverage:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.leverage.create_d672
+  papi.v1.leverageBracket.list_697c:
+    SUMMARY: Fetch leverageBracket
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/leverageBracket
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.leverageBracket.list_697c
+  papi.v1.asyn.list_8d6d:
+    SUMMARY: Fetch asyn
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/order/asyn
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.asyn.list_8d6d
+  papi.v1.id.list_d25c:
+    SUMMARY: Fetch id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/order/asyn/id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - downloadId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.id.list_d25c
+  papi.v1.positionRisk.list_1827:
+    SUMMARY: Fetch positionRisk
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/positionRisk
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.positionRisk.list_1827
+  papi.v1.dual.create_839:
+    SUMMARY: Create dual
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/um/positionSide/dual
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - dualSidePosition:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.dual.create_839
+  papi.v1.dual.list_ff87:
+    SUMMARY: Fetch dual
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/positionSide/dual
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.dual.list_ff87
+  papi.v1.symbolConfig.list:
+    SUMMARY: Fetch symbolConfig
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/symbolConfig
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.symbolConfig.list
+  papi.v1.asyn.list_7e2d:
+    SUMMARY: Fetch asyn
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/trade/asyn
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.asyn.list_7e2d
+  papi.v1.id.list_75b0:
+    SUMMARY: Fetch id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/trade/asyn/id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - downloadId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.id.list_75b0
+  papi.v2.account.list:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v2/um/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v2.account.list
+  papi.v1.adlQuantile.list:
+    SUMMARY: Fetch adlQuantile
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/adlQuantile
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.adlQuantile.list
+  papi.v1.allOpenOrders.delete:
+    SUMMARY: Delete allOpenOrders
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/cm/allOpenOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOpenOrders.delete
+  papi.v1.allOrders.list:
+    SUMMARY: Fetch allOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/allOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrders.list
+  papi.v1.allOpenOrders.delete_986b:
+    SUMMARY: Delete allOpenOrders
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/cm/conditional/allOpenOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOpenOrders.delete_986b
+  papi.v1.allOrders.list_6ca6:
+    SUMMARY: Fetch allOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/conditional/allOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrders.list_6ca6
+  papi.v1.openOrder.list:
+    SUMMARY: Fetch openOrder
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/conditional/openOrder
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrder.list
+  papi.v1.openOrders.list:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/conditional/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrders.list
+  papi.v1.order.delete:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/cm/conditional/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.delete
+  papi.v1.order.create:
+    SUMMARY: Create order
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/cm/conditional/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - strategyType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.create
+  papi.v1.orderHistory.list:
+    SUMMARY: Fetch orderHistory
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/conditional/orderHistory
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderHistory.list
+  papi.v1.forceOrders.list:
+    SUMMARY: Fetch forceOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/forceOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.forceOrders.list
+  papi.v1.openOrder.list_7e59:
+    SUMMARY: Fetch openOrder
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/openOrder
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrder.list_7e59
+  papi.v1.openOrders.list_aaae:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrders.list_aaae
+  papi.v1.order.delete_fc5f:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/cm/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.delete_fc5f
+  papi.v1.order.update:
+    SUMMARY: Update order
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /papi/v1/cm/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - price:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.update
+  papi.v1.order.create_cbd7:
+    SUMMARY: Create order
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/cm/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.create_cbd7
+  papi.v1.order.list_73b7:
+    SUMMARY: Fetch order
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.list_73b7
+  papi.v1.orderAmendment.list:
+    SUMMARY: Fetch orderAmendment
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/orderAmendment
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderAmendment.list
+  papi.v1.userTrades.list:
+    SUMMARY: Fetch userTrades
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/cm/userTrades
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.userTrades.list
+  papi.v1.allOpenOrders.delete_d2e:
+    SUMMARY: Delete allOpenOrders
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/margin/allOpenOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOpenOrders.delete_d2e
+  papi.v1.allOrderList.list:
+    SUMMARY: Fetch allOrderList
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/allOrderList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrderList.list
+  papi.v1.allOrders.list_9bf1:
+    SUMMARY: Fetch allOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/allOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrders.list_9bf1
+  papi.v1.forceOrders.list_d4f2:
+    SUMMARY: Fetch forceOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/forceOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.forceOrders.list_d4f2
+  papi.v1.myTrades.list:
+    SUMMARY: Fetch myTrades
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/myTrades
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.myTrades.list
+  papi.v1.openOrderList.list:
+    SUMMARY: Fetch openOrderList
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/openOrderList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrderList.list
+  papi.v1.openOrders.list_4b60:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrders.list_4b60
+  papi.v1.order.delete_e67f:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/margin/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.delete_e67f
+  papi.v1.order.create_474f:
+    SUMMARY: Create order
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/margin/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.create_474f
+  papi.v1.order.list_4360:
+    SUMMARY: Fetch order
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.list_4360
+  papi.v1.oco.create:
+    SUMMARY: Create oco
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/margin/order/oco
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - price:
+          TYPE: STRING
+          LOCATION: query
+      - stopPrice:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.oco.create
+  papi.v1.orderList.delete:
+    SUMMARY: Delete orderList
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/margin/orderList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderList.delete
+  papi.v1.orderList.list:
+    SUMMARY: Fetch orderList
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/margin/orderList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderList.list
+  papi.v1.repayDebt.create:
+    SUMMARY: Create repay-debt
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/margin/repay-debt
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayDebt.create
+  papi.v1.marginLoan.create:
+    SUMMARY: Create marginLoan
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/marginLoan
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.marginLoan.create
+  papi.v1.repayLoan.create:
+    SUMMARY: Create repayLoan
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/repayLoan
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.repayLoan.create
+  papi.v1.adlQuantile.list_7777:
+    SUMMARY: Fetch adlQuantile
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/adlQuantile
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.adlQuantile.list_7777
+  papi.v1.allOpenOrders.delete_f2fb:
+    SUMMARY: Delete allOpenOrders
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/um/allOpenOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOpenOrders.delete_f2fb
+  papi.v1.allOrders.list_cd12:
+    SUMMARY: Fetch allOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/allOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrders.list_cd12
+  papi.v1.allOpenOrders.delete_f514:
+    SUMMARY: Delete allOpenOrders
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/um/conditional/allOpenOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOpenOrders.delete_f514
+  papi.v1.allOrders.list_7c82:
+    SUMMARY: Fetch allOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/conditional/allOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.allOrders.list_7c82
+  papi.v1.openOrder.list_9770:
+    SUMMARY: Fetch openOrder
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/conditional/openOrder
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrder.list_9770
+  papi.v1.openOrders.list_d19e:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/conditional/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrders.list_d19e
+  papi.v1.order.delete_d27d:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/um/conditional/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.delete_d27d
+  papi.v1.order.create_8f74:
+    SUMMARY: Create order
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/um/conditional/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - strategyType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.create_8f74
+  papi.v1.orderHistory.list_70a8:
+    SUMMARY: Fetch orderHistory
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/conditional/orderHistory
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderHistory.list_70a8
+  papi.v1.feeBurn.list:
+    SUMMARY: Fetch feeBurn
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/feeBurn
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.feeBurn.list
+  papi.v1.feeBurn.create:
+    SUMMARY: Create feeBurn
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/um/feeBurn
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - feeBurn:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.feeBurn.create
+  papi.v1.forceOrders.list_53dd:
+    SUMMARY: Fetch forceOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/forceOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.forceOrders.list_53dd
+  papi.v1.openOrder.list_d892:
+    SUMMARY: Fetch openOrder
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/openOrder
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrder.list_d892
+  papi.v1.openOrders.list_e86e:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.openOrders.list_e86e
+  papi.v1.order.delete_861f:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/um/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.delete_861f
+  papi.v1.order.update_505f:
+    SUMMARY: Update order
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /papi/v1/um/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - price:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.update_505f
+  papi.v1.order.create_4544:
+    SUMMARY: Create order
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/um/order
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.create_4544
+  papi.v1.order.list_a654:
+    SUMMARY: Fetch order
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.order.list_a654
+  papi.v1.orderAmendment.list_c33c:
+    SUMMARY: Fetch orderAmendment
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/orderAmendment
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.orderAmendment.list_c33c
+  papi.v1.userTrades.list_e0c5:
+    SUMMARY: Fetch userTrades
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/um/userTrades
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.userTrades.list_e0c5
+  papi.v1.listenKey.delete:
+    SUMMARY: Delete listenKey
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /papi/v1/listenKey
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.listenKey.delete
+  papi.v1.listenKey.update:
+    SUMMARY: Update listenKey
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /papi/v1/listenKey
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.listenKey.update
+  papi.v1.listenKey.create:
+    SUMMARY: Create listenKey
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /papi/v1/listenKey
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.listenKey.create
+  papi.v1.ping.list:
+    SUMMARY: Fetch ping
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /papi/v1/ping
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: papi.v1.ping.list

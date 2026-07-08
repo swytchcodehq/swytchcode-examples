@@ -1,0 +1,2853 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://{network}.g.alchemy.com/nft
+METHODS:
+  getnftsforowner.getnftsforowner.get:
+    SUMMARY: NFTs By Owner
+    DESC: getNFTsForOwner - Retrieves all NFTs currently owned by a specified address. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getNFTsForOwner
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsforowner.getnftsforowner.getResponse200)
+    INPUTS:
+      - owner:
+          TYPE: STRING
+          LOCATION: query
+      - contractAddresses[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - excludeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - spamConfidenceLevel:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsforowner.getnftsforowner.getResponse200)
+        RETURNVAR: getnftsforowner_getnftsforowner_get
+        STATUS: 200
+    CANONICAL_ID: getnftsforowner.getnftsforowner.get
+  getnftsforcontract.getnftsforcontract.get:
+    SUMMARY: NFTs By Contract
+    DESC: getNFTsForContract - Retrieves all NFTs associated with a specific NFT contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getNFTsForContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsforcontract.getnftsforcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - startToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsforcontract.getnftsforcontract.getResponse200)
+        RETURNVAR: getnftsforcontract_getnftsforcontract_get
+        STATUS: 200
+    CANONICAL_ID: getnftsforcontract.getnftsforcontract.get
+  getnftsforcollection.getnftsforcollection.get:
+    SUMMARY: NFTs By Collection
+    DESC: getNFTsForCollection - Retrieves all NFTs associated with a specific NFT collection. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getNFTsForCollection
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsforcollection.getnftsforcollection.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - collectionSlug:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - startToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsforcollection.getnftsforcollection.getResponse200)
+        RETURNVAR: getnftsforcollection_getnftsforcollection_get
+        STATUS: 200
+    CANONICAL_ID: getnftsforcollection.getnftsforcollection.get
+  getnftmetadata.getnftmetadata.get:
+    SUMMARY: NFT Metadata By Token ID
+    DESC: getNFTMetadata - Retrieves the metadata associated with a specific NFT. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getNFTMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ownedNFTv3)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+      - tokenType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - refreshCache:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ownedNFTv3)
+        RETURNVAR: getnftmetadata_getnftmetadata_get
+        STATUS: 200
+    CANONICAL_ID: getnftmetadata.getnftmetadata.get
+  getnftmetadatabatch.getnftmetadatabatch.create:
+    SUMMARY: NFT Metadata By Token ID [Batch]
+    DESC: getNFTMetadataBatch - Retrieves metadata for up to 100 specified NFT contracts in a single request. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{apiKey}/getNFTMetadataBatch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(getnftmetadatabatch.getnftmetadatabatch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(ownedNFTv3)"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(getnftmetadatabatch.getnftmetadatabatch.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(ownedNFTv3)"
+        RETURNVAR: getnftmetadatabatch_getnftmetadatabatch_create
+        STATUS: 200
+    CANONICAL_ID: getnftmetadatabatch.getnftmetadatabatch.create
+  getcontractmetadata.getcontractmetadata.get:
+    SUMMARY: Contract Metadata By Address
+    DESC: getContractMetadata - Retrieves high-level collection or contract-level information for an NFT. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getContractMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(contractMetadatav3)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(contractMetadatav3)
+        RETURNVAR: getcontractmetadata_getcontractmetadata_get
+        STATUS: 200
+    CANONICAL_ID: getcontractmetadata.getcontractmetadata.get
+  getcollectionmetadata.getcollectionmetadata.get:
+    SUMMARY: Collection Metadata By Slug
+    DESC: getCollectionMetadata - Retrieves high-level collection or contract-level information for an NFT collection. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getCollectionMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(collectionMetadatav3)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - collectionSlug:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(collectionMetadatav3)
+        RETURNVAR: getcollectionmetadata_getcollectionmetadata_get
+        STATUS: 200
+    CANONICAL_ID: getcollectionmetadata.getcollectionmetadata.get
+  invalidatecontract.invalidatecontract.get:
+    SUMMARY: Invalidate Contract Cache
+    DESC: |
+      Marks all cached tokens for the specified contract as stale, ensuring the next query fetches live data instead of cached data.
+
+      <Note>Please note that this endpoint is only available on **Ethereum**, **Polygon**, **Arbitrum**, **Optimism** & **Base** networks.</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/invalidateContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(invalidatecontract.invalidatecontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(invalidatecontract.invalidatecontract.getResponse200)
+        RETURNVAR: invalidatecontract_invalidatecontract_get
+        STATUS: 200
+    CANONICAL_ID: invalidatecontract.invalidatecontract.get
+  getcontractmetadatabatch.getcontractmetadatabatch.create:
+    SUMMARY: Contract Metadata By Address [Batch]
+    DESC: getContractMetadataBatch - Retrieves metadata for a list of specified contract addresses in a single request.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{apiKey}/getContractMetadataBatch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(getcontractmetadatabatch.getcontractmetadatabatch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(contractMetadatav3)"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(getcontractmetadatabatch.getcontractmetadatabatch.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(contractMetadatav3)"
+        RETURNVAR: getcontractmetadatabatch_getcontractmetadatabatch_create
+        STATUS: 200
+    CANONICAL_ID: getcontractmetadatabatch.getcontractmetadatabatch.create
+  getownersfornft.getownersfornft.get:
+    SUMMARY: Owners By NFT
+    DESC: getOwnersForNFT - Retrieves the owner(s) for a specific token. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getOwnersForNFT
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getownersfornft.getownersfornft.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getownersfornft.getownersfornft.getResponse200)
+        RETURNVAR: getownersfornft_getownersfornft_get
+        STATUS: 200
+    CANONICAL_ID: getownersfornft.getownersfornft.get
+  getownersforcontract.getownersforcontract.get:
+    SUMMARY: Owners By Contract
+    DESC: getOwnersForContract - Retrieves all owners associated with a specific NFT contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getOwnersForContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getownersforcontract.getownersforcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x495f947276749ce646f68ac8c248420045cb7b5e"
+      - withTokenBalances:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getownersforcontract.getownersforcontract.getResponse200)
+        RETURNVAR: getownersforcontract_getownersforcontract_get
+        STATUS: 200
+    CANONICAL_ID: getownersforcontract.getownersforcontract.get
+  getspamcontracts.getspamcontract.get:
+    SUMMARY: Spam Contracts
+    DESC: |
+      Returns a list of all spam contracts marked by Alchemy.
+
+      <Note>Please note that this API endpoint is only available to paid tier customers. Upgrade your account [here](https://dashboard.alchemy.com/account).</Note>
+
+      <Note>Spam NFT functionality is available on Mainnet for the following chains: Base, Arbitrum, Optimism, Ethereum, Polygon, Worldchain, Avax, BNB, Gnosis, Zksync, Unichain, and Blast. More to come soon!</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getSpamContracts
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getspamcontracts.getspamcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getspamcontracts.getspamcontract.getResponse200)
+        RETURNVAR: getspamcontracts_getspamcontract_get
+        STATUS: 200
+    CANONICAL_ID: getspamcontracts.getspamcontract.get
+  isspamcontract.isspamcontract.get:
+    SUMMARY: Is Spam Contract
+    DESC: |
+      Determines whether a specific contract is marked as spam by Alchemy.
+
+      <Note>Please note that this API endpoint is only available to paid tier customers. Upgrade your account [here](https://dashboard.alchemy.com/account).</Note>
+
+      <Note>Spam NFT functionality is available on Mainnet for the following chains: Base, Arbitrum, Optimism, Ethereum, Polygon, Worldchain, Avax, BNB, Gnosis, Zksync, Unichain, and Blast. More to come soon!</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/isSpamContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(isspamcontract.isspamcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x495f947276749ce646f68ac8c248420045cb7b5e"
+    RETURNS:
+      - RETURNTYPE: STRUCT(isspamcontract.isspamcontract.getResponse200)
+        RETURNVAR: isspamcontract_isspamcontract_get
+        STATUS: 200
+    CANONICAL_ID: isspamcontract.isspamcontract.get
+  isairdropnft.isairdropnft.get:
+    SUMMARY: Is Airdrop NFT
+    DESC: |
+      Determines whether a specific token is marked as an airdrop. Airdrops are defined as NFTs minted to a user address in a transaction sent by a different address.
+
+      <Note>Please note that this endpoint is only available on Ethereum (mainnet only) & Polygon (mainnet, amoy & mumbai).</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/isAirdropNFT
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(isairdropnft.isairdropnft.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(isairdropnft.isairdropnft.getResponse200)
+        RETURNVAR: isairdropnft_isairdropnft_get
+        STATUS: 200
+    CANONICAL_ID: isairdropnft.isairdropnft.get
+  summarizenftattributes.summarizenftattribute.get:
+    SUMMARY: Attributes Summary By Contract
+    DESC: |
+      Generates a summary of attribute prevalence for a specific NFT collection.
+
+      <Note>Please note that this endpoint is only available on Ethereum (mainnet) & Polygon (mainnet & mumbai).</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/summarizeNFTAttributes
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(summarizenftattributes.summarizenftattribute.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(summarizenftattributes.summarizenftattribute.getResponse200)
+        RETURNVAR: summarizenftattributes_summarizenftattribute_get
+        STATUS: 200
+    CANONICAL_ID: summarizenftattributes.summarizenftattribute.get
+  getfloorprice.getfloorprice.get:
+    SUMMARY: Floor Prices By Slug
+    DESC: |
+      Retrieves the floor prices of an NFT collection across different marketplaces.
+
+      <Note>Please note that this endpoint is only available on Ethereum mainnet for Opensea & Looksrare marketplaces.</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getFloorPrice
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getfloorprice.getfloorprice.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x1f02bf9dde7c79137a08b2dd4fc964bfd2499734"
+      - collectionSlug:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getfloorprice.getfloorprice.getResponse200)
+        RETURNVAR: getfloorprice_getfloorprice_get
+        STATUS: 200
+    CANONICAL_ID: getfloorprice.getfloorprice.get
+  searchcontractmetadata.searchcontractmetadata.get:
+    SUMMARY: Search Contract Metadata
+    DESC: |
+      Searches for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
+
+      <Warning>This endpoint is currently in BETA. If you have any questions or feedback, please contact us at support@alchemy.com or open a ticket in the dashboard.</Warning>
+
+      <Note>Please note that this endpoint is only available on **Ethereum**, **Polygon**, **Arbitrum**, **Optimism** & **Base** networks.</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/searchContractMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(contractMetadatav3)"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - query:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(contractMetadatav3)"
+        RETURNVAR: searchcontractmetadata_searchcontractmetadata_get
+        STATUS: 200
+    CANONICAL_ID: searchcontractmetadata.searchcontractmetadata.get
+  isholderofcontract.isholderofcontract.get:
+    SUMMARY: Is Holder Of Contract
+    DESC: isHolderOfContract - Determines whether a specific wallet holds any NFT from a given contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/isHolderOfContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(isholderofcontract.isholderofcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - wallet:
+          TYPE: STRING
+          LOCATION: query
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(isholderofcontract.isholderofcontract.getResponse200)
+        RETURNVAR: isholderofcontract_isholderofcontract_get
+        STATUS: 200
+    CANONICAL_ID: isholderofcontract.isholderofcontract.get
+  computerarity.computerarity.get:
+    SUMMARY: Attribute Rarity By NFT
+    DESC: |
+      Calculates the rarity of each attribute within an NFT.
+
+      <Note>Please note that this endpoint is only available on Ethereum (mainnet) & Polygon (mainnet & mumbai).</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/computeRarity
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(computerarity.computerarity.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(computerarity.computerarity.getResponse200)
+        RETURNVAR: computerarity_computerarity_get
+        STATUS: 200
+    CANONICAL_ID: computerarity.computerarity.get
+  getnftsales.getnftsale.get:
+    SUMMARY: NFT Sales
+    DESC: |
+      Retrieves NFT sales that have occurred through on-chain marketplaces.
+
+      <Note>Please note that this endpoint is only available on Ethereum (Seaport, Wyvern, X2Y2, Blur, LooksRare, Cryptopunks), Polygon (Seaport) & Optimism (Seaport) mainnets.</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getNFTSales
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsales.getnftsale.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - fromBlock:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - toBlock:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: latest
+      - order:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - marketplace:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - buyerAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - sellerAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - taker:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsales.getnftsale.getResponse200)
+        RETURNVAR: getnftsales_getnftsale_get
+        STATUS: 200
+    CANONICAL_ID: getnftsales.getnftsale.get
+  getcontractsforowner.getcontractsforowner.get:
+    SUMMARY: Contracts By Owner
+    DESC: getContractsForOwner - Retrieves all NFT contracts held by a specified owner address.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getContractsForOwner
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getcontractsforowner.getcontractsforowner.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - owner:
+          TYPE: STRING
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - excludeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - spamConfidenceLevel:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getcontractsforowner.getcontractsforowner.getResponse200)
+        RETURNVAR: getcontractsforowner_getcontractsforowner_get
+        STATUS: 200
+    CANONICAL_ID: getcontractsforowner.getcontractsforowner.get
+  getcollectionsforowner.getcollectionsforowner.get:
+    SUMMARY: Collections By Owner
+    DESC: |
+      Retrieves all NFT collections held by a specified owner address.
+
+      <Note>This endpoint is only supported on Ethereum. Use `getContractsForOwner` for support across all other chains we support!</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/getCollectionsForOwner
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getcollectionsforowner.getcollectionsforowner.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - owner:
+          TYPE: STRING
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - excludeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getcollectionsforowner.getcollectionsforowner.getResponse200)
+        RETURNVAR: getcollectionsforowner_getcollectionsforowner_get
+        STATUS: 200
+    CANONICAL_ID: getcollectionsforowner.getcollectionsforowner.get
+  reportspam.reportspam.get:
+    SUMMARY: Report Spam Address
+    DESC: |
+      Reports a specific address to the API if it is suspected to be spam.
+
+      <Note>Spam NFT functionality is available on Mainnet for the following chains: Base, Arbitrum, Optimism, Ethereum, Polygon, Worldchain, Avax, BNB, Gnosis, Zksync, Unichain, and Blast. More to come soon!</Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v3/{apiKey}/reportSpam
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRING
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - address:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x495f947276749ce646f68ac8c248420045cb7b5e"
+      - isSpam:
+          TYPE: BOOL
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: true
+    RETURNS:
+      - RETURNTYPE: STRING
+        RETURNVAR: reportspam_reportspam_get
+        STATUS: 200
+    CANONICAL_ID: reportspam.reportspam.get
+  refreshnftmetadata.refreshnftmetadata.create:
+    SUMMARY: Refresh NFT Metadata
+    DESC: |
+      Submits a request for Alchemy to refresh the cached metadata of a specific NFT token.
+
+      <Note>Please note that this endpoint is only supported on Ethereum (Mainnet & Sepolia), Polygon (Mainnet, Mumbai & Amoy), Arbitrum One (mainnet), Optimism (mainnet) & Base (mainnet). For other chains, you could use the `getNFTMetadata` endpoint with the `refreshCache` parameter set to `true` to refresh the metadata!</Note>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v3/{apiKey}/refreshNftMetadata
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(refreshnftmetadata.refreshnftmetadata.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(refreshnftmetadata.refreshnftmetadata.createResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(refreshnftmetadata.refreshnftmetadata.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(refreshnftmetadata.refreshnftmetadata.createResponse200)
+        RETURNVAR: refreshnftmetadata_refreshnftmetadata_create
+        STATUS: 200
+    CANONICAL_ID: refreshnftmetadata.refreshnftmetadata.create
+  getnfts.getnft.get:
+    SUMMARY: getNFTs
+    DESC: Gets all NFTs currently owned by a given address.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getNFTs
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnfts.getnft.getResponse200)
+    INPUTS:
+      - owner:
+          TYPE: STRING
+          LOCATION: query
+      - contractAddresses[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - excludeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - spamConfidenceLevel:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnfts.getnft.getResponse200)
+        RETURNVAR: getnfts_getnft_get
+        STATUS: 200
+    CANONICAL_ID: getnfts.getnft.get
+  getnftmetadata.getnftmetadata.get_b538:
+    SUMMARY: getNFTMetadata
+    DESC: Gets the metadata associated with a given NFT.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getNFTMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ownedNFT)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+      - tokenType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - refreshCache:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ownedNFT)
+        RETURNVAR: getnftmetadata_getnftmetadata_get_b538
+        STATUS: 200
+    CANONICAL_ID: getnftmetadata.getnftmetadata.get_b538
+  getnftmetadatabatch.getnftmetadatabatch.create_f8ce:
+    SUMMARY: getNFTMetadataBatch
+    DESC: Gets the metadata associated with up to 100 given NFT contracts.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/{apiKey}/getNFTMetadataBatch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(getnftmetadatabatch.getnftmetadatabatch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(ownedNFT)"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(getnftmetadatabatch.getnftmetadatabatch.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(ownedNFT)"
+        RETURNVAR: getnftmetadatabatch_getnftmetadatabatch_create_f8ce
+        STATUS: 200
+    CANONICAL_ID: getnftmetadatabatch.getnftmetadatabatch.create_f8ce
+  getcontractmetadata.getcontractmetadata.get_2f2e:
+    SUMMARY: getContractMetadata
+    DESC: Queries NFT high-level collection/contract level information.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getContractMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getcontractmetadata.getcontractmetadata.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getcontractmetadata.getcontractmetadata.getResponse200)
+        RETURNVAR: getcontractmetadata_getcontractmetadata_get_2f2e
+        STATUS: 200
+    CANONICAL_ID: getcontractmetadata.getcontractmetadata.get_2f2e
+  getcontractmetadatabatch.getcontractmetadatabatch.create_d9f4:
+    SUMMARY: getContractMetadataBatch
+    DESC: Gets the metadata associated with the given list of contract addresses
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/{apiKey}/getContractMetadataBatch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(getcontractmetadatabatch.getcontractmetadatabatch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(getcontractmetadatabatch.getcontractmetadatabatch.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: getcontractmetadatabatch_getcontractmetadatabatch_create_d9f4
+        STATUS: 200
+    CANONICAL_ID: getcontractmetadatabatch.getcontractmetadatabatch.create_d9f4
+  getnftsforcollection.getnftsforcollection.get_a5a2:
+    SUMMARY: getNFTsForCollection
+    DESC: Gets all NFTs for a given NFT contract.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getNFTsForCollection
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsforcollection.getnftsforcollection.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - collectionSlug:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - startToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - tokenUriTimeoutInMs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsforcollection.getnftsforcollection.getResponse200)
+        RETURNVAR: getnftsforcollection_getnftsforcollection_get_a5a2
+        STATUS: 200
+    CANONICAL_ID: getnftsforcollection.getnftsforcollection.get_a5a2
+  getownersfortoken.getownersfortoken.get:
+    SUMMARY: getOwnersForToken
+    DESC: Get the owner(s) for a token.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getOwnersForToken
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getownersfortoken.getownersfortoken.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getownersfortoken.getownersfortoken.getResponse200)
+        RETURNVAR: getownersfortoken_getownersfortoken_get
+        STATUS: 200
+    CANONICAL_ID: getownersfortoken.getownersfortoken.get
+  getownersforcollection.getownersforcollection.get:
+    SUMMARY: getOwnersForCollection
+    DESC: Gets all owners for a given NFT contract.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getOwnersForCollection
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x1f02bf9dde7c79137a08b2dd4fc964bfd2499734"
+      - withTokenBalances:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: getownersforcollection_getownersforcollection_get
+        STATUS: 200
+    CANONICAL_ID: getownersforcollection.getownersforcollection.get
+  getspamcontracts.getspamcontract.get_7cd2:
+    SUMMARY: getSpamContracts
+    DESC: Returns a list of all spam contracts marked by Alchemy.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getSpamContracts
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getspamcontracts.getspamcontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getspamcontracts.getspamcontract.getResponse200)
+        RETURNVAR: getspamcontracts_getspamcontract_get_7cd2
+        STATUS: 200
+    CANONICAL_ID: getspamcontracts.getspamcontract.get_7cd2
+  isspamcontract.isspamcontract.get_4cd8:
+    SUMMARY: isSpamContract
+    DESC: Returns whether a contract is marked as spam or not by Alchemy.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/isSpamContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: BOOL
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x495f947276749ce646f68ac8c248420045cb7b5e"
+    RETURNS:
+      - RETURNTYPE: BOOL
+        RETURNVAR: isspamcontract_isspamcontract_get_4cd8
+        STATUS: 200
+    CANONICAL_ID: isspamcontract.isspamcontract.get_4cd8
+  isairdrop.isairdrop.get:
+    SUMMARY: isAirdrop
+    DESC: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/isAirdrop
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: BOOL
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: BOOL
+        RETURNVAR: isairdrop_isairdrop_get
+        STATUS: 200
+    CANONICAL_ID: isairdrop.isairdrop.get
+  invalidatecontract.invalidatecontract.get_b9c8:
+    SUMMARY: invalidateContract
+    DESC: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/invalidateContract
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(invalidatecontract.invalidatecontract.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(invalidatecontract.invalidatecontract.getResponse200)
+        RETURNVAR: invalidatecontract_invalidatecontract_get_b9c8
+        STATUS: 200
+    CANONICAL_ID: invalidatecontract.invalidatecontract.get_b9c8
+  getfloorprice.getfloorprice.get_8cae:
+    SUMMARY: getFloorPrice
+    DESC: Returns the floor prices of a NFT collection by marketplace.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getFloorPrice
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getfloorprice.getfloorprice.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getfloorprice.getfloorprice.getResponse200)
+        RETURNVAR: getfloorprice_getfloorprice_get_8cae
+        STATUS: 200
+    CANONICAL_ID: getfloorprice.getfloorprice.get_8cae
+  computerarity.computerarity.get_10ee:
+    SUMMARY: computeRarity
+    DESC: Computes the rarity of each attribute of an NFT.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/computeRarity
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(computerarity.computerarity.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(computerarity.computerarity.getResponse200)
+        RETURNVAR: computerarity_computerarity_get_10ee
+        STATUS: 200
+    CANONICAL_ID: computerarity.computerarity.get_10ee
+  searchcontractmetadata.searchcontractmetadata.get_ada0:
+    SUMMARY: searchContractMetadata
+    DESC: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/searchContractMetadata
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - query:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: searchcontractmetadata_searchcontractmetadata_get_ada0
+        STATUS: 200
+    CANONICAL_ID: searchcontractmetadata.searchcontractmetadata.get_ada0
+  summarizenftattributes.summarizenftattribute.get_e1b2:
+    SUMMARY: summarizeNFTAttributes
+    DESC: Generate a summary of attribute prevalence for an NFT collection.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/summarizeNFTAttributes
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(summarizenftattributes.summarizenftattribute.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(summarizenftattributes.summarizenftattribute.getResponse200)
+        RETURNVAR: summarizenftattributes_summarizenftattribute_get_e1b2
+        STATUS: 200
+    CANONICAL_ID: summarizenftattributes.summarizenftattribute.get_e1b2
+  isholderofcollection.isholderofcollection.get:
+    SUMMARY: isHolderOfCollection
+    DESC: Checks whether a wallet holds a NFT in a given collection
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/isHolderOfCollection
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(isholderofcollection.isholderofcollection.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - wallet:
+          TYPE: STRING
+          LOCATION: query
+      - contractAddress:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(isholderofcollection.isholderofcollection.getResponse200)
+        RETURNVAR: isholderofcollection_isholderofcollection_get
+        STATUS: 200
+    CANONICAL_ID: isholderofcollection.isholderofcollection.get
+  getnftsales.getnftsale.get_1d0e:
+    SUMMARY: getNFTSales
+    DESC: Gets NFT sales that have happened through on-chain marketplaces
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getNFTSales
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getnftsales.getnftsale.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - fromBlock:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - toBlock:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: latest
+      - order:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - marketplace:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - contractAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tokenId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - buyerAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - sellerAddress:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - taker:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getnftsales.getnftsale.getResponse200)
+        RETURNVAR: getnftsales_getnftsale_get_1d0e
+        STATUS: 200
+    CANONICAL_ID: getnftsales.getnftsale.get_1d0e
+  getcontractsforowner.getcontractsforowner.get_9fd8:
+    SUMMARY: getContractsForOwner
+    DESC: Gets all NFT contracts held by an owner address.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/getContractsForOwner
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(getcontractsforowner.getcontractsforowner.getResponse200)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - owner:
+          TYPE: STRING
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - withMetadata:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - includeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - excludeFilters[]:
+          TYPE: ANY
+          REQUIRED: false
+          LOCATION: query
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - spamConfidenceLevel:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(getcontractsforowner.getcontractsforowner.getResponse200)
+        RETURNVAR: getcontractsforowner_getcontractsforowner_get_9fd8
+        STATUS: 200
+    CANONICAL_ID: getcontractsforowner.getcontractsforowner.get_9fd8
+  reportspam.reportspam.get_dd28:
+    SUMMARY: reportSpam
+    DESC: Report a particular address to our APIs if you think it is spam
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{apiKey}/reportSpam
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRING
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          LOCATION: path
+      - address:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: "0x495f947276749ce646f68ac8c248420045cb7b5e"
+      - isSpam:
+          TYPE: BOOL
+          REQUIRED: true
+          LOCATION: query
+          DEFAULT: true
+    RETURNS:
+      - RETURNTYPE: STRING
+        RETURNVAR: reportspam_reportspam_get_dd28
+        STATUS: 200
+    CANONICAL_ID: reportspam.reportspam.get_dd28
+STRUCTS:
+  rawv3:
+    - name: tokenUri
+      NAME: tokenUri
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated.
+    - name: metadata
+      NAME: metadata
+      type: STRUCT(metadatav3)
+      TYPE: STRUCT(metadatav3)
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.
+  metadatav3:
+    - name: image
+      NAME: image
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - URL to the NFT asset image. Can be standard URLs pointing to images on conventional servers, IPFS, or Arweave. Most types of images (SVGs, PNGs, JPEGs, etc.) are supported by NFT marketplaces.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Name of the NFT asset.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Human-readable description of the NFT asset. (Markdown is supported/rendered on OpenSea and other NFT platforms)
+    - name: attributes
+      NAME: attributes
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Object - Traits/attributes/characteristics for each NFT asset.
+  collectionv3:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Collection name
+    - name: slug
+      NAME: slug
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - OpenSea collection slug
+    - name: externalUrl
+      NAME: externalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - URL for the external site of the collection
+    - name: bannerImageUrl
+      NAME: bannerImageUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Banner image URL for the collection
+  imagev3:
+    - name: cachedUrl
+      NAME: cachedUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Url of the image stored in Alchemy cache
+    - name: thumbnailUrl
+      NAME: thumbnailUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Url that has the thumbnail version of the NFT
+    - name: pngUrl
+      NAME: pngUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Url that has the NFT image in png
+    - name: contentType
+      NAME: contentType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Url of the image stored in Alchemy cache
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The size of the media asset in bytes.
+    - name: originalUrl
+      NAME: originalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The original Url of the image coming straight from the smart contract
+  id:
+    - name: tokenId
+      NAME: tokenId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenMetadata
+      NAME: tokenMetadata
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  tokenUri:
+    - name: raw
+      NAME: raw
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: gateway
+      NAME: gateway
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  metadata:
+    - name: image
+      NAME: image
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - URL to the NFT asset image. Can be standard URLs pointing to images on conventional servers, IPFS, or Arweave. Most types of images (SVGs, PNGs, JPEGs, etc.) are supported by NFT marketplaces.
+    - name: external_url
+      NAME: external_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - The image URL that appears alongside the asset image on NFT platforms.
+    - name: background_color
+      NAME: background_color
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Background color of the NFT item. Usually must be defined as a six-character hexadecimal.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Name of the NFT asset.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Human-readable description of the NFT asset. (Markdown is supported/rendered on OpenSea and other NFT platforms)
+    - name: attributes
+      NAME: attributes
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: Object - Traits/attributes/characteristics for each NFT asset.
+    - name: media
+      NAME: media
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  opensea:
+    - name: floorPrice
+      NAME: floorPrice
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: NFT floor price
+    - name: collectionName
+      NAME: collectionName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: OpenSea collection name
+    - name: safelistRequestStatus
+      NAME: safelistRequestStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Collection approval status within OpenSea. For more info, see the Opensea docs at docs.opensea.io/reference/collection-model
+    - name: imageUrl
+      NAME: imageUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: OpenSea CDN image URL
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "OpenSea collection description. Note: this value is truncated to 255 characters."
+    - name: externalUrl
+      NAME: externalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Collection homepage
+    - name: twitterUsername
+      NAME: twitterUsername
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The twitter username of the collection
+    - name: discordUrl
+      NAME: discordUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The discord URL of the collection
+    - name: bannerImageUrl
+      NAME: bannerImageUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The banner image URL of the collection
+    - name: lastIngestedAt
+      NAME: lastIngestedAt
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The timestamp when the collection was last ingested by us
+  ownedContractv3:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the contract, i.e. "Bored Ape Yacht Club".
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The symbol of the contract, i.e. BAYC.
+    - name: totalSupply
+      NAME: totalSupply
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contractDeployer
+      NAME: contractDeployer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Address that deployed the smart contract
+    - name: deployedBlockNumber
+      NAME: deployedBlockNumber
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number - The Block Number when the deployment transaction is successfully mined
+    - name: openseaMetadata
+      NAME: openseaMetadata
+      type: STRUCT(opensea)
+      TYPE: STRUCT(opensea)
+      REQUIRED: false
+    - name: totalBalance
+      NAME: totalBalance
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.
+    - name: numDistinctTokensOwned
+      NAME: numDistinctTokensOwned
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.
+    - name: isSpam
+      NAME: isSpam
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: "`True` if the contract is detected as spam contract. `False` if it is not spam or has not been evaluated by our system yet"
+    - name: displayNft
+      NAME: displayNft
+      type: STRUCT(displaynftv3)
+      TYPE: STRUCT(displaynftv3)
+      REQUIRED: false
+    - name: image
+      NAME: image
+      type: STRUCT(imagev3)
+      TYPE: STRUCT(imagev3)
+      REQUIRED: false
+  displaynftv3:
+    - name: tokenId
+      NAME: tokenId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: One of the tokens from this contract held by the owner.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The title of the token held by the owner i.e. \"Something #22\"."
+  ownedCollectionv3:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the collection, i.e. "Bored Ape Yacht Club".
+    - name: slug
+      NAME: slug
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The human-readable string used to identify the collection on OpenSea.
+    - name: floorPrice
+      NAME: floorPrice
+      type: STRUCT(collectionFloorPrice)
+      TYPE: STRUCT(collectionFloorPrice)
+      REQUIRED: false
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "OpenSea collection description. Note: this value is truncated to 255 characters."
+    - name: externalUrl
+      NAME: externalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Collection homepage
+    - name: twitterUsername
+      NAME: twitterUsername
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The twitter username of the collection
+    - name: discordUrl
+      NAME: discordUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The discord URL of the collection
+    - name: contract
+      NAME: contract
+      type: STRUCT(ownedCollectionContract)
+      TYPE: STRUCT(ownedCollectionContract)
+      REQUIRED: false
+    - name: totalBalance
+      NAME: totalBalance
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.
+    - name: numDistinctTokensOwned
+      NAME: numDistinctTokensOwned
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.
+    - name: isSpam
+      NAME: isSpam
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "\"true\" if contract is spam, else \"false\". **Only available on paid tiers.**"
+    - name: displayNft
+      NAME: displayNft
+      type: STRUCT(displaynftv3)
+      TYPE: STRUCT(displaynftv3)
+      REQUIRED: false
+    - name: image
+      NAME: image
+      type: STRUCT(imagev3)
+      TYPE: STRUCT(imagev3)
+      REQUIRED: false
+  collectionFloorPrice:
+    - name: marketplace
+      NAME: marketplace
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The marketplace the floor price is on
+    - name: floorPrice
+      NAME: floorPrice
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Floor price of the collection on the marketplace
+    - name: priceCurrency
+      NAME: priceCurrency
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The currency of the floor price
+  ownedCollectionContract:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Address of the contract
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract name.
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract symbol abbreviation.
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contractDeployer
+      NAME: contractDeployer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Address that deployed the smart contract
+    - name: deployedBlockNumber
+      NAME: deployedBlockNumber
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number - The Block Number when the deployment transaction is successfully mined
+  ownedNFT:
+    - name: contract
+      NAME: contract
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Object - Contract for returned NFT
+    - name: id
+      NAME: id
+      type: STRUCT(id)
+      TYPE: STRUCT(id)
+      REQUIRED: false
+    - name: balance
+      NAME: balance
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Token balance
+    - name: title
+      NAME: title
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Name of the NFT asset.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Brief human-readable description
+    - name: tokenUri
+      NAME: tokenUri
+      type: STRUCT(tokenUri)
+      TYPE: STRUCT(tokenUri)
+      REQUIRED: false
+    - name: media
+      NAME: media
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: metadata
+      NAME: metadata
+      type: STRUCT(metadata)
+      TYPE: STRUCT(metadata)
+      REQUIRED: false
+    - name: timeLastUpdated
+      NAME: timeLastUpdated
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - ISO timestamp of the last cache refresh for the information returned in the metadata field.
+    - name: error
+      NAME: error
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.
+    - name: contractMetadata
+      NAME: contractMetadata
+      type: STRUCT(contractMetadata)
+      TYPE: STRUCT(contractMetadata)
+      REQUIRED: false
+    - name: spamInfo
+      NAME: spamInfo
+      type: STRUCT(spamInfo)
+      TYPE: STRUCT(spamInfo)
+      REQUIRED: false
+    - name: acquiredAt
+      NAME: acquiredAt
+      type: STRUCT(acquiredAt)
+      TYPE: STRUCT(acquiredAt)
+      REQUIRED: false
+  contractMetadata:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract name.
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract symbol abbreviation.
+    - name: totalSupply
+      NAME: totalSupply
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contractDeployer
+      NAME: contractDeployer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Address that deployed the smart contract
+    - name: deployedBlockNumber
+      NAME: deployedBlockNumber
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number - The Block Number when the deployment transaction is successfully mined
+    - name: opensea
+      NAME: opensea
+      type: STRUCT(opensea)
+      TYPE: STRUCT(opensea)
+      REQUIRED: false
+  spamInfo:
+    - name: isSpam
+      NAME: isSpam
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "\"true\" if contract is spam, else \"false\". **Only available on paid tiers.**"
+    - name: spamClassifications
+      NAME: spamClassifications
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of reasons why a contract was classified as spam. **Only available on paid tiers.**
+  acquiredAt:
+    - name: blockTimestamp
+      NAME: blockTimestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Block timestamp of the block where the NFT was most recently acquired.
+    - name: blockNumber
+      NAME: blockNumber
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Block number of the block where the NFT was most recently acquired.
+  ownedNFTv3:
+    - name: contract
+      NAME: contract
+      type: STRUCT(contractv3)
+      TYPE: STRUCT(contractv3)
+      REQUIRED: false
+    - name: tokenId
+      NAME: tokenId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Name of the NFT asset.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Brief human-readable description
+    - name: image
+      NAME: image
+      type: STRUCT(imagev3)
+      TYPE: STRUCT(imagev3)
+      REQUIRED: false
+    - name: raw
+      NAME: raw
+      type: STRUCT(rawv3)
+      TYPE: STRUCT(rawv3)
+      REQUIRED: false
+    - name: collection
+      NAME: collection
+      type: STRUCT(collectionv3)
+      TYPE: STRUCT(collectionv3)
+      REQUIRED: false
+    - name: tokenUri
+      NAME: tokenUri
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated.
+    - name: timeLastUpdated
+      NAME: timeLastUpdated
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - ISO timestamp of the last cache refresh for the information returned in the metadata field.
+    - name: acquiredAt
+      NAME: acquiredAt
+      type: STRUCT(acquiredAt)
+      TYPE: STRUCT(acquiredAt)
+      REQUIRED: false
+    - name: animation
+      NAME: animation
+      type: STRUCT(animation)
+      TYPE: STRUCT(animation)
+      REQUIRED: false
+    - name: mint
+      NAME: mint
+      type: STRUCT(mint)
+      TYPE: STRUCT(mint)
+      REQUIRED: false
+    - name: owners
+      NAME: owners
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  contractv3:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Address of the held contract
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract name.
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract symbol abbreviation.
+    - name: totalSupply
+      NAME: totalSupply
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contractDeployer
+      NAME: contractDeployer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Address that deployed the smart contract
+    - name: deployedBlockNumber
+      NAME: deployedBlockNumber
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number - The Block Number when the deployment transaction is successfully mined
+    - name: openseaMetadata
+      NAME: openseaMetadata
+      type: STRUCT(opensea)
+      TYPE: STRUCT(opensea)
+      REQUIRED: false
+    - name: isSpam
+      NAME: isSpam
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "\"true\" if contract is spam, else \"false\". **Only available on paid tiers.**"
+    - name: spamClassifications
+      NAME: spamClassifications
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of reasons why a contract was classified as spam. **Only available on paid tiers.**
+  animation:
+    - name: cachedUrl
+      NAME: cachedUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contentType
+      NAME: contentType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: orginalUrl
+      NAME: orginalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  mint:
+    - name: mintAddress
+      NAME: mintAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Address that minted the NFT
+    - name: blockNumber
+      NAME: blockNumber
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Block number when the NFT was minted
+    - name: timestamp
+      NAME: timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Timestamp when the NFT was minted
+    - name: transactionHash
+      NAME: transactionHash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction hash of the mint transaction
+  contractMetadatav3:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Contract address for the queried NFT collection
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract name.
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - NFT contract symbol abbreviation.
+    - name: totalSupply
+      NAME: totalSupply
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: tokenType
+      NAME: tokenType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contractDeployer
+      NAME: contractDeployer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Address that deployed the smart contract
+    - name: deployedBlockNumber
+      NAME: deployedBlockNumber
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: Number - The Block Number when the deployment transaction is successfully mined
+    - name: openseaMetadata
+      NAME: openseaMetadata
+      type: STRUCT(opensea)
+      TYPE: STRUCT(opensea)
+      REQUIRED: false
+  collectionMetadatav3:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Name of the queried NFT Collection
+    - name: slug
+      NAME: slug
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The human-readable string used to identify the collection on OpenSea.
+    - name: floorPrice
+      NAME: floorPrice
+      type: STRUCT(collectionFloorPrice)
+      TYPE: STRUCT(collectionFloorPrice)
+      REQUIRED: false
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "OpenSea collection description. Note: this value is truncated to 255 characters."
+    - name: externalUrl
+      NAME: externalUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Collection homepage
+    - name: twitterUsername
+      NAME: twitterUsername
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The twitter username of the collection
+    - name: discordUrl
+      NAME: discordUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The discord URL of the collection
+  validAt:
+    - name: blockNumber
+      NAME: blockNumber
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The block number above information is valid as of
+    - name: blockHash
+      NAME: blockHash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The block hash above information is valid as of
+    - name: blockTimestamp
+      NAME: blockTimestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The block timestamp above information is valid as of
+  getnftsforowner.getnftsforowner.getResponse200:
+    - name: ownedNfts
+      NAME: ownedNfts
+      type: "[]STRUCT(ownedNFTv3)"
+      TYPE: "[]STRUCT(ownedNFTv3)"
+      REQUIRED: false
+      comment: Array of the NFT objects corresponding to the NFTs owned by the owner
+    - name: totalCount
+      NAME: totalCount
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: validAt
+      NAME: validAt
+      type: STRUCT(validAt)
+      TYPE: STRUCT(validAt)
+      REQUIRED: false
+  getnftsforcontract.getnftsforcontract.getResponse200:
+    - name: nfts
+      NAME: nfts
+      type: "[]STRUCT(ownedNFTv3)"
+      TYPE: "[]STRUCT(ownedNFTv3)"
+      REQUIRED: false
+      comment: List of objects that represent NFTs stored under the queried contract address.
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.
+  getnftsforcollection.getnftsforcollection.getResponse200:
+    - name: nfts
+      NAME: nfts
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of objects that represent NFTs stored under the queried contract address or collection slug.
+    - name: nextToken
+      NAME: nextToken
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.
+  getnftmetadatabatch.getnftmetadatabatch.createRequest:
+    - name: tokens
+      NAME: tokens
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+      comment: List of token objects to batch request NFT metadata for. Maximum 100.
+    - name: tokenUriTimeoutInMs
+      NAME: tokenUriTimeoutInMs
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: refreshCache
+      NAME: refreshCache
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  invalidatecontract.invalidatecontract.getResponse200:
+    - name: success
+      NAME: success
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        True if the contract was invalidated.
+        False - if it wasn't.
+    - name: numTokensInvalidated
+      NAME: numTokensInvalidated
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: The number of tokens that were invalidated as a result of running this query.
+  getcontractmetadatabatch.getcontractmetadatabatch.createRequest:
+    - name: contractAddresses
+      NAME: contractAddresses
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of contract addresses to batch metadata requests for.
+  getownersfornft.getownersfornft.getResponse200:
+    - name: owners
+      NAME: owners
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  getownersforcontract.getownersforcontract.getResponse200:
+    - name: owners
+      NAME: owners
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of all addresses that own one of the NFTs from the queried contract address. The format is applicable when `withTokenBalances=true`.
+  getspamcontracts.getspamcontract.getResponse200:
+    - name: contractAddresses
+      NAME: contractAddresses
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of contract addresses earmarked as spam by Alchemy.
+  isspamcontract.isspamcontract.getResponse200:
+    - name: isSpamContract
+      NAME: isSpamContract
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        True - if the queried contract is marked as spam.
+        False - if the queried contract is considered valid.
+  isairdropnft.isairdropnft.getResponse200:
+    - name: isAirdrop
+      NAME: isAirdrop
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        True - if the queried token is marked as an airdrop.
+        False - if the queried token is not marked as an airdrop.
+  summarizenftattributes.summarizenftattribute.getResponse200:
+    - name: totalSupply
+      NAME: totalSupply
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: summary
+      NAME: summary
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Object mapping trait types to the prevalence of each trait within that type.
+    - name: contractAddress
+      NAME: contractAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  getfloorprice.getfloorprice.getResponse200:
+    - name: nftMarketplaceName
+      NAME: nftMarketplaceName
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported - `openSea`, `looksRare`. So instead of the word `nftMarketplaceName` you will see marketplace names like `openSea` here.
+  isholderofcontract.isholderofcontract.getResponse200:
+    - name: isHolderOfContract
+      NAME: isHolderOfContract
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the given wallet owns any token in the given NFT contract.
+  computerarity.computerarity.getResponse200:
+    - name: rarities
+      NAME: rarities
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: NFT attributes and their associated prevalence.
+  getnftsales.getnftsale.getResponse200:
+    - name: nftSales
+      NAME: nftSales
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of NFT sales that match the query.
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+    - name: validAt
+      NAME: validAt
+      type: STRUCT(validAt)
+      TYPE: STRUCT(validAt)
+      REQUIRED: false
+  getcontractsforowner.getcontractsforowner.getResponse200:
+    - name: contracts
+      NAME: contracts
+      type: "[]STRUCT(ownedContractv3)"
+      TYPE: "[]STRUCT(ownedContractv3)"
+      REQUIRED: false
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: totalCount
+      NAME: totalCount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  getcollectionsforowner.getcollectionsforowner.getResponse200:
+    - name: collections
+      NAME: collections
+      type: "[]STRUCT(ownedCollectionv3)"
+      TYPE: "[]STRUCT(ownedCollectionv3)"
+      REQUIRED: false
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: totalCount
+      NAME: totalCount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Total number of NFT collections held by the given address.
+  refreshnftmetadata.refreshnftmetadata.createRequest:
+    - name: contractAddress
+      NAME: contractAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Contract address of the token you want to refresh.
+    - name: tokenId
+      NAME: tokenId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Token ID of the token you want to refresh. Must belong to the contract address.
+  refreshnftmetadata.refreshnftmetadata.createResponse200:
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: If the token is successfully queued for ingestion the value will be "Queued".
+    - name: estimatedMsToRefresh
+      NAME: estimatedMsToRefresh
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Estimated time until the metadata refresh is complete for this token.
+  getnfts.getnft.getResponse200:
+    - name: ownedNfts
+      NAME: ownedNfts
+      type: "[]STRUCT(ownedNFT)"
+      TYPE: "[]STRUCT(ownedNFT)"
+      REQUIRED: false
+    - name: pageKey
+      NAME: pageKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: totalCount
+      NAME: totalCount
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: blockHash
+      NAME: blockHash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`
+  getcontractmetadata.getcontractmetadata.getResponse200:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String - Contract address for the queried NFT collection
+    - name: contractMetadata
+      NAME: contractMetadata
+      type: STRUCT(contractMetadata)
+      TYPE: STRUCT(contractMetadata)
+      REQUIRED: false
+  getownersfortoken.getownersfortoken.getResponse200:
+    - name: owners
+      NAME: owners
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  isholderofcollection.isholderofcollection.getResponse200:
+    - name: isHolderOfCollection
+      NAME: isHolderOfCollection
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the given wallet owns any token in the given NFT collection.

@@ -1,0 +1,588 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <TOKEN>
+  w_base_url: https://api.g.alchemy.com/signer/v1
+METHODS:
+  signup.signup.create:
+    SUMMARY: Create Wallet
+    DESC: |
+      Enables the creation of a Smart Wallet using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. A Smart Wallet is either an on-chain Modular Account with Alchemy Signer as the owner, a standalone EOA signer managed through Alchemy Signer, or a standalone Solana Wallet managed through the Alchemy Signer.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /signup
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(signup.signup.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(signup.signup.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(signup.signup.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(signup.signup.createResponse200)
+        RETURNVAR: signup_signup_create
+        STATUS: 200
+    CANONICAL_ID: signup.signup.create
+  auth.auth.create:
+    SUMMARY: Send Auth Email
+    DESC: |
+      Sends a user an email containing a magic link for authentication, allowing them to complete the login process and access their Smart Wallet through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /auth
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(auth.auth.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(auth.auth.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(auth.auth.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(auth.auth.createResponse200)
+        RETURNVAR: auth_auth_create
+        STATUS: 200
+    CANONICAL_ID: auth.auth.create
+  whoami.whoami.create:
+    SUMMARY: Authenticate User
+    DESC: |
+      Authenticates a user and returns their identity and wallet information, enabling the application to grant the user access to their Smart Wallet functionalities. This endpoint is used to confirm user authentication via email or passkey, thereby authorizing them to perform actions as the owner of a smart account or to conduct transactions as an EOA signer. It ensures that only authenticated users can access and manage their wallets.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /whoami
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(whoami.whoami.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(whoami.whoami.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(whoami.whoami.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(whoami.whoami.createResponse200)
+        RETURNVAR: whoami_whoami_create
+        STATUS: 200
+    CANONICAL_ID: whoami.whoami.create
+  lookup.lookup.create:
+    SUMMARY: Get User
+    DESC: |
+      Enables applications to query the existence of a user wallet based on an email address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /lookup
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(lookup.lookup.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(lookup.lookup.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(lookup.lookup.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(lookup.lookup.createResponse200)
+        RETURNVAR: lookup_lookup_create
+        STATUS: 200
+    CANONICAL_ID: lookup.lookup.create
+  otp.otp.create:
+    SUMMARY: Verify OTP Code
+    DESC: |
+      Verifies a one-time password (OTP) code sent to the user's email for authentication. This endpoint allows users to complete the authentication process by providing the OTP code they received, enabling secure access to their Smart Wallet functionalities.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /otp
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(otp.otp.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(otp.otp.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(otp.otp.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(otp.otp.createResponse200)
+        RETURNVAR: otp_otp_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(Error400)
+        STATUS: 400
+        WHEN: Invalid OTP code or expired OTP. (HTTP 400)
+      - TYPE: STRUCT(Error429)
+        STATUS: 429
+        WHEN: Too many OTP verification attempts. Please wait before trying again. (HTTP 429)
+    CANONICAL_ID: otp.otp.create
+  auth-jwt.auth-jwt.create:
+    SUMMARY: Authenticate with JWT
+    DESC: |
+      Authenticates a user using a JSON Web Token (JWT) for secure access to their Smart Wallet functionalities. This endpoint validates the provided JWT token and can be used for authenticating an existing user or to pregenerate a wallet.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /auth-jwt
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(auth-jwt.auth-jwt.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(auth-jwt.auth-jwt.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(auth-jwt.auth-jwt.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(auth-jwt.auth-jwt.createResponse200)
+        RETURNVAR: auth-jwt_auth-jwt_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(Error400)
+        STATUS: 400
+        WHEN: Invalid JWT token or authentication failed. (HTTP 400)
+      - TYPE: STRUCT(Error401)
+        STATUS: 401
+        WHEN: Unauthorized - JWT token is invalid, expired, or malformed. (HTTP 401)
+      - TYPE: STRUCT(Error429)
+        STATUS: 429
+        WHEN: Too many authentication attempts. Please wait before trying again. (HTTP 429)
+    CANONICAL_ID: auth-jwt.auth-jwt.create
+  sign-payload.sign-payload.create:
+    SUMMARY: Sign Message
+    DESC: |
+      Allows for the signing of arbitrary payloads using the authenticated user's signer. The payload to be signed should be included within the body of a stamped request, ensuring the integrity and authenticity of the message to be signed. This operation is important for executing transactions and interactions on the blockchain that require verified signatures from the user's wallet.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sign-payload
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(sign-payload.sign-payload.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(sign-payload.sign-payload.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(sign-payload.sign-payload.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(sign-payload.sign-payload.createResponse200)
+        RETURNVAR: sign-payload_sign-payload_create
+        STATUS: 200
+    CANONICAL_ID: sign-payload.sign-payload.create
+STRUCTS:
+  SignedTurnkeyRequestStamp:
+    - name: stampHeaderName
+      NAME: stampHeaderName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        For WebAuthN based stamps, this should be `X-Stamp-Webauthn`. For all other stamps, this should be `X-Stamp`.
+    - name: stampHeaderValue
+      NAME: stampHeaderValue
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        The stamp over the request body. See the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps) for information on the format of this value.
+  SignedTurnkeyRequest:
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Generated by the turnkey client, but will be ignored on our end.
+    - name: body
+      NAME: body
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: JSON stringified request body.
+    - name: stamp
+      NAME: stamp
+      type: STRUCT(SignedTurnkeyRequestStamp)
+      TYPE: STRUCT(SignedTurnkeyRequestStamp)
+      REQUIRED: true
+  signup.signup.createRequest:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Used for user authentication when passkey is not provided. Specifies the user's email address.
+    - name: passkey
+      NAME: passkey
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Used for authentication when email is not provided. Enables passkey-based authentication.
+    - name: targetPublicKey
+      NAME: targetPublicKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: expirationSeconds
+      NAME: expirationSeconds
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: redirectParams
+      NAME: redirectParams
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  signup.signup.createResponse200:
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: userId
+      NAME: userId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique identifier for the user.
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The EVM address of the signer.
+    - name: solanaAddress
+      NAME: solanaAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Solana address of the signer.
+    - name: otpId
+      NAME: otpId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  auth.auth.createRequest:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The email address of the user requesting access. This is where the authentication email, containing the magic link, will be sent.
+    - name: targetPublicKey
+      NAME: targetPublicKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: expirationSeconds
+      NAME: expirationSeconds
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: redirectParams
+      NAME: redirectParams
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  auth.auth.createResponse200:
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The organization ID associated with the user and the application, facilitating the authentication process within the context of the user's application.
+    - name: otpId
+      NAME: otpId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  whoami.whoami.createRequest:
+    - name: stampedRequest
+      NAME: stampedRequest
+      type: STRUCT(SignedTurnkeyRequest)
+      TYPE: STRUCT(SignedTurnkeyRequest)
+      REQUIRED: true
+      comment: |
+        A stamped [Turnkey Whoami Request](https://docs.turnkey.com/api#tag/Sessions/operation/GetWhoami).
+  whoami.whoami.createResponse200:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The authenticated user's email address.
+    - name: userId
+      NAME: userId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique identifier for the authenticated user.
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The organization ID associated with the authenticated user's account.
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The Ethereum address of the user's signer. Essential for executing transactions and managing the wallet.
+    - name: solanaAddress
+      NAME: solanaAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Solana address of the user's signer. Required for Solana transactions and wallet management.
+  lookup.lookup.createRequest:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The email address of the user to look up. This is used to verify if an associated account exists within the system.
+  lookup.lookup.createResponse200:
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        The organization ID associated with the user. This ID is returned if an account exists for the given email address. If no account is found, this value will be null. The response is intentionally limited to this information to protect user privacy and security.
+  otp.otp.createRequest:
+    - name: otpCode
+      NAME: otpCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The one-time password code sent to the user's email or phone number. This code is typically 6-8 digits long and expires after a short period.
+    - name: otpId
+      NAME: otpId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The OTP request identifier returned from the initial authentication request. This links the verification attempt to the original OTP generation.
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: targetPublicKey
+      NAME: targetPublicKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: expirationSeconds
+      NAME: expirationSeconds
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  otp.otp.createResponse200:
+    - name: credentialBundle
+      NAME: credentialBundle
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: An encrypted API key credential bundle that can be used for subsequent authenticated requests. This bundle contains the authentication credentials encrypted with the provided targetPublicKey and can be decrypted client-side for stamping requests.
+  auth-jwt.auth-jwt.createRequest:
+    - name: jwt
+      NAME: jwt
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        The JSON Web Token (JWT) used for authentication. The JWT must be a valid OIDC ID Token containing the required claims for user identification and authentication.
+        **Required OIDC Claims:**
+        - `iss` (Issuer): The identity of the OIDC provider. Should be the same as issuer URL specified in your /.well-known/openid-configuration, for example see the [Google OpenID configuration](https://accounts.google.com/.well-known/openid-configuration)
+        - `sub` (Subject): A unique identifier that identifies the user with this auth provider.
+        - `aud` (Audience): A unique identifier for the project that can be found on the [Alchemy Dashboard](https://dashboard.alchemy.com/apps/latest/services/smart-wallets).
+        - `exp` (Expiration): Token expiration time as Unix timestamp
+        - `iat` (Issued At): Token issuance time as Unix timestamp
+        - `nonce` (Nonce): toHex(sha256(targetPublicKey)) without the leading 0x
+        **Example JWT Payload:**
+        ```json
+        {
+          "iss": "https://accounts.google.com",
+          "sub": "1234567890abcdef",
+          "aud": "project_id",
+          "exp": 1640995200,
+          "iat": 1640991600,
+          "nonce": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        }
+        ```
+    - name: targetPublicKey
+      NAME: targetPublicKey
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required for authentication. Optional for pregeneration.
+    - name: expirationSeconds
+      NAME: expirationSeconds
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  auth-jwt.auth-jwt.createResponse200:
+    - name: isSignup
+      NAME: isSignup
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: If true, indicates a new wallet was created.
+    - name: orgId
+      NAME: orgId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The organization ID associated with the authenticated user and the application.
+    - name: credentialBundle
+      NAME: credentialBundle
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An encrypted API key credential bundle that shall be used for subsequent authenticated requests. This bundle contains the authentication credentials encrypted with the provided targetPublicKey and can be decrypted client-side for stamping requests. A credential bundle will be returned when this endpoint is being used for authentication and would require a targetPublicKey in the request params
+    - name: userId
+      NAME: userId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique identifier for the authenticated user.
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Ethereum address of the user's signer, available after successful authentication.
+    - name: solanaAddress
+      NAME: solanaAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The Solana address of the user's signer, available after successful authentication.
+  sign-payload.sign-payload.createRequest:
+    - name: stampedRequest
+      NAME: stampedRequest
+      type: STRUCT(SignedTurnkeyRequest)
+      TYPE: STRUCT(SignedTurnkeyRequest)
+      REQUIRED: true
+      comment: |
+        A stamped request that includes the payload to be signed. The payload is part of the stamped request's body, which should conform to the structure outlined in the Turnkey API documentation for signing raw payloads.
+
+        Because users are given wallets for both Ethereum and Solana, it's possible to request signatures for both chains. The following is an example of the payload structure for signing bytes on Ethereum and Solana:
+
+        Signing bytes for Ethereum:
+        ```
+        {
+          organizationId: this.user.orgId,
+          type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
+          timestampMs: Date.now().toString(),
+          parameters: {
+            encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
+            hashFunction: "HASH_FUNCTION_NO_OP",
+            payload: msg,
+            signWith: this.user.address,
+          },
+        }
+        ```
+
+        Signing bytes for Solana:
+        ```
+        {
+          organizationId: this.user.orgId,
+          type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
+          timestampMs: Date.now().toString(),
+          parameters: {
+            encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
+            hashFunction: "HASH_FUNCTION_NOT_APPLICABLE",
+            payload: msg,
+            signWith: this.user.solanaAddress,
+          },
+        }
+        ```
+
+        For more details on the parameters of the request body, see [Turnkey's API Reference](https://docs.turnkey.com/api#tag/Signing/operation/SignRawPayload).
+  sign-payload.sign-payload.createResponse200:
+    - name: signature
+      NAME: signature
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The signature generated for the specified payload.
+  Error400:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  Error429:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  Error401:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

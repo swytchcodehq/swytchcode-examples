@@ -1,0 +1,474 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a monitoring address for rewards tracking, supporting Ethereum, Solana, Ink, and XLayer addresses.",
+      "canonical_id": "rewards.monitor.address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add one or more account members to a given account.",
+      "canonical_id": "identity.account-member.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add one or more institution members to a given institution.",
+      "canonical_id": "identity.institution-member.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Affirm settlement transaction for eligibility within a specified settlement window for the owning customer profile.",
+      "canonical_id": "settlement.transaction.affirm.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate guaranteed fee for crypto withdrawal with specified amount or total to avoid withdrawal rejection.",
+      "canonical_id": "transfer.fee.cryptoWithdrawal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a Settlement Transaction.",
+      "canonical_id": "settlement.transaction.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a stablecoin conversion by providing the conversion ID.",
+      "canonical_id": "conversion.stablecoin.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel an order by submitting a cancellation request for a specific profile and order ID.",
+      "canonical_id": "profiles.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a deposit address on a blockchain network for depositing to a profile, with automatic setup for Stellar PYUSD.",
+      "canonical_id": "transfer.deposit-address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Fiat Withdrawal to withdraw fiat to the specified destination.",
+      "canonical_id": "transfer.fiat-withdrawal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new bilateral Settlement Transaction with one or more legs, ensuring balances are sufficient for settlement.",
+      "canonical_id": "settlement.transaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Person or Institution Identity on the Paxos Platform, with a status of 'PENDING' approval.",
+      "canonical_id": "identity.identity.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new profile for this account with a type of 'NORMAL'.",
+      "canonical_id": "profiles.profile.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a one-time orchestration to move assets between profiles on the Paxos platform.",
+      "canonical_id": "orchestration.orchestration.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Paxos transfer to move assets between profiles of different entities.",
+      "canonical_id": "transfer.paxo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a persistent orchestration rule to trigger orchestrations automatically based on matching deposits.",
+      "canonical_id": "orchestration.rule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a request for a quote with Paxos as the issuer, excluding PAXG quotes during London gold market closure.",
+      "canonical_id": "issuer-quote.issuer-quote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Stablecoin Conversion request to exchange assets 1:1, handling errors like Insufficient Funds or Already Exists.",
+      "canonical_id": "conversion.stablecoin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a test deposit to fund a profile in the sandbox environment.",
+      "canonical_id": "sandbox.profile.deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an internal transfer to move assets between two profiles under the same customer.",
+      "canonical_id": "transfer.internal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create different types of orders such as limit, market, stop market, and stop limit orders for buying or selling assets with specified conditions and maximum notional values.",
+      "canonical_id": "profiles.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create Fiat Account - Set up a new account for initiating fiat withdrawals, specifying routing details as needed for wire transfers.",
+      "canonical_id": "transfer.fiat-account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create instructions for depositing fiat.",
+      "canonical_id": "transfer.fiat-deposit-instruction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create joint account with primary owner and additional members, including a financial advisor, for tax and ownership purposes.",
+      "canonical_id": "identity.account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deactivate a profile by ID, preventing it from receiving deposits. Profiles with non-zero balances cannot be deactivated.",
+      "canonical_id": "profiles.deactivate.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Fiat Account and prevent transfers to it.",
+      "canonical_id": "transfer.fiat-account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete API Credentials by client ID.",
+      "canonical_id": "api-creds.credential.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete Orchestration Rule to deactivate and stop triggering new orchestrations while allowing existing ones to continue processing.",
+      "canonical_id": "orchestration.rule.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute Issuer Quote for a specific quote created by Paxos.",
+      "canonical_id": "issuer-quote.issuer-quote.create_486d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute on a quote to buy or sell an asset with specified details like side, market, and price.",
+      "canonical_id": "profiles.quote-execution.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of events created by the system. Filter by `created_at`, limit results, paginate using `page_cursor`, and control sort order with `order`.",
+      "canonical_id": "events.event.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of Identities with filtering options like `created_at`, `updated_at`, `summary_status`, and `identity_type`. Supports pagination.",
+      "canonical_id": "identity.identity.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of Settlement Transactions based on source or target profile ID, with options to filter by statuses and support for pagination.",
+      "canonical_id": "settlement.transaction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get specific orchestration by ID.",
+      "canonical_id": "orchestration.orchestration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a test fiat deposit in the sandbox environment based on a previous `memo_id` from Fiat Deposit Instructions.",
+      "canonical_id": "sandbox.fiat-deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate Crypto Withdrawal with Trustline Verification for PYUSD on Stellar Network.",
+      "canonical_id": "transfer.crypto-withdrawal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List accounts with pagination, allowing retrieval of subsequent pages by passing the `page_cursor` value.",
+      "canonical_id": "identity.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all created API credentials.",
+      "canonical_id": "api-creds.credential.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all documents associated with an identity, including pending ones.",
+      "canonical_id": "identity.identity.documents.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available markets for trading.",
+      "canonical_id": "markets.market.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available quotes for buying or selling assets, including the latest quotes for all supported assets.",
+      "canonical_id": "quotes.quote.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deposit addresses with optional filters and pagination.",
+      "canonical_id": "transfer.deposit-address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List executions for a profile with optional filters, retrieving full details of underlying executions. Default 20 items per response.",
+      "canonical_id": "profiles.execution.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List executions with optional filters based on account or profile ID, order ID, or date range.",
+      "canonical_id": "executions.execution.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Fiat Accounts with optional filters and pagination, returning abbreviated account details. Use pagination for large result sets.",
+      "canonical_id": "transfer.fiat-account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List issuer quote executions with full details where Paxos is the issuer, based on specified parameters.",
+      "canonical_id": "issuer-quotes.issuer-quote.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Orchestration Rules with filtering and pagination options based on profile ID, status, source asset, and destination asset.",
+      "canonical_id": "orchestration.rule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List orchestrations with filtering and pagination capabilities, including operations like deposits, withdrawals, and conversions.",
+      "canonical_id": "orchestration.orchestration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List payments based on provided filters.",
+      "canonical_id": "statements.payment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Profiles associated with the current Account, with options to filter by creation date, order, and pagination using page cursors.",
+      "canonical_id": "profiles.profile.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List quote executions within a specific profile with optional filters like side, market, and status.",
+      "canonical_id": "profiles.quote-execution.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Stablecoin Conversions with filtering and pagination. Retrieve conversions in reverse chronological order, with optional parameters.",
+      "canonical_id": "conversion.stablecoin.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List statements based on provided filters.",
+      "canonical_id": "statements.statement.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List tax forms for specified account IDs and tax year, with the most recent revision number. Links expire after 60 seconds.",
+      "canonical_id": "tax.tax-form.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List the most recent executions in the order book for a specific market.",
+      "canonical_id": "markets.recent-execution.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List transfer limits for a specific transaction type.",
+      "canonical_id": "transfer.limit.utilizations.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List transfers with filtering and paging options, defaulting to reverse chronological order. Recommended polling workflow included.",
+      "canonical_id": "transfer.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reject a crypto deposit awaiting travel rule info about the originator address. Only the deposit creator can reject it.",
+      "canonical_id": "transfer.crypto-deposit.reject.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an account member from an account.",
+      "canonical_id": "identity.account-member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an institution member from an institution.",
+      "canonical_id": "identity.institution-member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a URL to upload a document for identity verification or enhanced due diligence, specifying document type.",
+      "canonical_id": "identity.identity.documents.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of crypto destination addresses with optional filtering and pagination capabilities.",
+      "canonical_id": "transfer.crypto-destination-address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of monitoring addresses filtered by network or a single record by network and address.",
+      "canonical_id": "rewards.monitor.address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a monitoring address by ID.",
+      "canonical_id": "rewards.monitor.address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a profile by ID or get the default profile using the \"default\" alias.",
+      "canonical_id": "profiles.profile.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a profile's available and trading balances by listing balances, with the option to specify assets.",
+      "canonical_id": "profiles.balance.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a quote execution for buying or selling an asset.",
+      "canonical_id": "profiles.quote-execution.get_13f0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a settlement transaction by its ID, requiring ownership of the source or target profile ID.",
+      "canonical_id": "settlement.transaction.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single stablecoin conversion using the transaction ID from the Create Stablecoin Conversion response.",
+      "canonical_id": "conversion.stablecoin.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific transfer by ID to monitor status changes in the polling workflow.",
+      "canonical_id": "transfer.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account details by ID.",
+      "canonical_id": "identity.account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all versions of tax forms for a specific account and tax year, including the most recent revisions.",
+      "canonical_id": "tax.tax-form-revision.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve current and 24-hour prior prices for specified markets, excluding any failed retrievals.",
+      "canonical_id": "all-markets.price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed order information associated with a Profile ID, with optional filters like account ID, market, status, and order time range.",
+      "canonical_id": "orders.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific Fiat Account by ID, including account number, beneficiary name, and address.",
+      "canonical_id": "transfer.fiat-account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve event details by event ID.",
+      "canonical_id": "events.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Fiat Deposit Instructions for the current Account based on search criteria, with pagination support.",
+      "canonical_id": "transfer.fiat-deposit-instruction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve full details of orders associated with a profile ID, with optional filters like market, status, and order time.",
+      "canonical_id": "profiles.order.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve historical average prices for a specific market at set time intervals without detailed execution data.",
+      "canonical_id": "markets.historical-price.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve identity details by ID, with options to include person or institution details and institution members.",
+      "canonical_id": "identity.identity.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve instructions for depositing fiat using a specific Paxos Fiat Deposit Instructions ID.",
+      "canonical_id": "transfer.fiat-deposit-instruction.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve order book statistics for a specific market including the last 24 hours and current data.",
+      "canonical_id": "markets.ticker.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve order book statistics for all markets over the last 24 hours and from midnight UTC until current time, including external venue pricing when itBit exchange is unavailable.",
+      "canonical_id": "all-markets.ticker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve profile balance for a specific asset.",
+      "canonical_id": "profiles.balance.get_e11"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current status of an order for a specific profile. Historical data before May 16, 2022 is not available.",
+      "canonical_id": "profiles.order.get_101"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the full list of bids and asks with resting quantities per price level in the order book for a specific market.",
+      "canonical_id": "markets.order-book.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set sandbox identity statuses including ID verification, sanctions verification, document verification, and additional screening.",
+      "canonical_id": "identity.identity.sandboxStatus.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a crypto deposit with required travel rule information for the originator address.",
+      "canonical_id": "transfer.crypto-deposit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a monitored address name.",
+      "canonical_id": "rewards.monitor.address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update account details such as description, reference ID, metadata, and members' roles.",
+      "canonical_id": "identity.account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Fiat Account details, modify or add values in specified fields for the given account, and return it in `PENDING` status.",
+      "canonical_id": "transfer.fiat-account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Identity with delta changes, including person/institution details, user disablement, tax details, and KYC refresh date.",
+      "canonical_id": "identity.identity.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create a specified crypto destination address.",
+      "canonical_id": "transfer.crypto-destination-address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the nickname label for a specific profile.",
+      "canonical_id": "profiles.profile.update"
+    }
+  ]
+}

@@ -1,0 +1,3474 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order for futures trading with specified symbol, side, quantity, urgency, timestamp, and signature.",
+      "canonical_id": "sapi.v1.newOrderVp.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new TWAP order for a spot trading algorithm with specified parameters.",
+      "canonical_id": "sapi.v1.newOrderTwap.create_93cf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new TWAP order for futures trading.",
+      "canonical_id": "sapi.v1.newOrderTwap.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a futures order for a specific algorithm.",
+      "canonical_id": "sapi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a spot order for a specific algorithm by providing the URL, algorithm ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.order.delete_a403"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical orders based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.historicalOrders.list_dfc4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical orders for algorithmic futures trading.",
+      "canonical_id": "sapi.v1.historicalOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for algorithmic futures trading.",
+      "canonical_id": "sapi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for spot trading algorithm.",
+      "canonical_id": "sapi.v1.openOrders.list_b4fe"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subOrders for a specific algoId using timestamp and signature.",
+      "canonical_id": "sapi.v1.subOrders.list_d9b0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve subOrders for a specific algorithm in futures trading.",
+      "canonical_id": "sapi.v1.subOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of all alpha tokens available in the CEX wallet of the BUW wallet in the public BAPI.",
+      "canonical_id": "bapi.defi.token.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch aggregated trades for a specific symbol.",
+      "canonical_id": "bapi.defi.aggTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch klines data for a specific symbol and interval.",
+      "canonical_id": "bapi.defi.klines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ticker information for a specific symbol.",
+      "canonical_id": "bapi.defi.ticker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange information for a specific URL.",
+      "canonical_id": "bapi.defi.getExchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user order history based on the provided timestamp and signature.",
+      "canonical_id": "sapi.v1.listUserOrderHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Accept a quote conversion by providing the URL, quote ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.acceptQuote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel an order limit conversion.",
+      "canonical_id": "sapi.v1.cancelOrder.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order status conversion for a specific URL and timestamp with a signature.",
+      "canonical_id": "sapi.v1.orderStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch queryOpenOrders with specified limit.",
+      "canonical_id": "sapi.v1.queryOpenOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch tradeFlow data based on specified URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "sapi.v1.tradeFlow.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a quote conversion based on specified assets and timestamp.",
+      "canonical_id": "sapi.v1.getQuote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Place an order with specified limit price, assets, and other parameters.",
+      "canonical_id": "sapi.v1.placeOrder.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve asset information for a specified URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.assetInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange information.",
+      "canonical_id": "sapi.v1.exchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the lead symbol for copy trading futures.",
+      "canonical_id": "sapi.v1.leadSymbol.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the user's status for futures copy trading.",
+      "canonical_id": "sapi.v1.userStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Adjust the loan-to-value ratio for a flexible loan.",
+      "canonical_id": "sapi.v2.ltv.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a flexible loan borrowing transaction.",
+      "canonical_id": "sapi.v2.borrow.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a flexible loan repayment.",
+      "canonical_id": "sapi.v2.repay.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adjustment history for flexible loan-to-value.",
+      "canonical_id": "sapi.v2.history.list_6457"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adjustment history for loan-to-value ratio.",
+      "canonical_id": "sapi.v1.history.list_d2ac"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch borrowing history for flexible loans.",
+      "canonical_id": "sapi.v2.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch borrowing history.",
+      "canonical_id": "sapi.v1.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch collateral repayment rate for a loan using specified coins and repayment amount.",
+      "canonical_id": "sapi.v1.rate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch flexible collateral loan data with specified URL, timestamp, and signature.",
+      "canonical_id": "sapi.v2.data.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch flexible loan repayment rate for a specific loan and collateral coin.",
+      "canonical_id": "sapi.v2.rate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income details for a loan application.",
+      "canonical_id": "sapi.v1.income.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch interest rate history for a specific coin.",
+      "canonical_id": "sapi.v2.interestRateHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch liquidation history for flexible loans.",
+      "canonical_id": "sapi.v2.history.list_8e10"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch loanable data for flexible loans.",
+      "canonical_id": "sapi.v2.data.list_573c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ongoing flexible loan orders.",
+      "canonical_id": "sapi.v2.orders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch repayment history for a flexible loan.",
+      "canonical_id": "sapi.v2.history.list_1301"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch repayment history for a loan.",
+      "canonical_id": "sapi.v1.history.list_8d04"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel all countdowns for a specified symbol at a given time with a signature.",
+      "canonical_id": "dapi.v1.countdownCancelAll.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a dual position side with specified parameters.",
+      "canonical_id": "dapi.v1.dual.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a listenKey for a specified URL.",
+      "canonical_id": "dapi.v1.listenKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new margin type for a specific symbol with the provided details.",
+      "canonical_id": "dapi.v1.marginType.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order with specified details.",
+      "canonical_id": "dapi.v1.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create batch orders with specified URL, batch orders, timestamp, and signature.",
+      "canonical_id": "dapi.v1.batchOrders.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create leverage for a specified symbol with a given URL, leverage value, timestamp, and signature.",
+      "canonical_id": "dapi.v1.leverage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create position margin for a specified symbol with a given amount and type, along with timestamp and signature.",
+      "canonical_id": "dapi.v1.positionMargin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a listenKey from the specified URL.",
+      "canonical_id": "dapi.v1.listenKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using timestamp and signature.",
+      "canonical_id": "dapi.v1.allOpenOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order.",
+      "canonical_id": "dapi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete batch orders by providing the URL, symbol, timestamp, and signature.",
+      "canonical_id": "dapi.v1.batchOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information using URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adlQuantile by providing the URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.adlQuantile.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch aggregated trades data for a specific symbol.",
+      "canonical_id": "dapi.v1.aggTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders with URL, timestamp, and signature parameters.",
+      "canonical_id": "dapi.v1.allOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous income data within a specified time range using a provided URL and authentication parameters.",
+      "canonical_id": "dapi.v1.asyn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous order data with specified URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "dapi.v1.asyn.list_9f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous trade data within a specified time range using the provided URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "dapi.v1.asyn.list_64b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch balance information using specified parameters.",
+      "canonical_id": "dapi.v1.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch basis data for futures contracts by URL, pair, contract type, and period.",
+      "canonical_id": "futures.data.basis.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission rate for a specific symbol at a given timestamp using the provided URL, signature, and parameters.",
+      "canonical_id": "dapi.v1.commissionRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch constituents by symbol from the API.",
+      "canonical_id": "dapi.v1.constituents.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch continuous Klines data for a specific pair and contract type at a specified interval.",
+      "canonical_id": "dapi.v1.continuousKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current time.",
+      "canonical_id": "dapi.v1.time.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch depth data for a specific symbol.",
+      "canonical_id": "dapi.v1.depth.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch dual position side data using specified URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.dual.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch forceOrders data using URL, timestamp, and signature parameters.",
+      "canonical_id": "dapi.v1.forceOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch funding information by URL.",
+      "canonical_id": "dapi.v1.fundingInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch funding rate for a specific symbol.",
+      "canonical_id": "dapi.v1.fundingRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch global long and short account ratio data for a specific trading pair and time period.",
+      "canonical_id": "futures.data.globalLongShortAccountRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical open interest data for futures contracts.",
+      "canonical_id": "futures.data.openInterestHist.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical trades for a specific symbol.",
+      "canonical_id": "dapi.v1.historicalTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income data based on the provided URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.income.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income details asynchronously by id.",
+      "canonical_id": "dapi.v1.id.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch index price klines for a specific pair and interval.",
+      "canonical_id": "dapi.v1.indexPriceKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch klines data for a specific symbol and interval.",
+      "canonical_id": "dapi.v1.klines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket data based on the provided URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.leverageBracket.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket information.",
+      "canonical_id": "dapi.v2.leverageBracket.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch mark price klines for a specific symbol and interval.",
+      "canonical_id": "dapi.v1.markPriceKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for a specific symbol at a given timestamp using a signature for authentication.",
+      "canonical_id": "dapi.v1.openOrder.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for a specified URL with timestamp and signature.",
+      "canonical_id": "dapi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch openInterest data for a specific symbol using the provided URL.",
+      "canonical_id": "dapi.v1.openInterest.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order amendment details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "dapi.v1.orderAmendment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "dapi.v1.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order ID asynchronously by providing the URL, download ID, timestamp, and signature.",
+      "canonical_id": "dapi.v1.id.list_b2a0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ping information by providing the URL as input parameter.",
+      "canonical_id": "dapi.v1.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch pmAccountInfo using URL, asset, timestamp, and signature parameters.",
+      "canonical_id": "dapi.v1.pmAccountInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch position margin history by symbol and timestamp.",
+      "canonical_id": "dapi.v1.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch premium index klines for a specific symbol and interval.",
+      "canonical_id": "dapi.v1.premiumIndexKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch premiumIndex data by providing the URL.",
+      "canonical_id": "dapi.v1.premiumIndex.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch takerBuySellVol data for specified pair and contract type within a specific period.",
+      "canonical_id": "futures.data.takerBuySellVol.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch top long and short account ratio data for a specific symbol and period.",
+      "canonical_id": "futures.data.topLongShortAccountRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch top long and short position ratio for futures data.",
+      "canonical_id": "futures.data.topLongShortPositionRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trade ID asynchronously by providing the URL, download ID, timestamp, and signature.",
+      "canonical_id": "dapi.v1.id.list_4776"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trades based on the specified symbol.",
+      "canonical_id": "dapi.v1.trades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user trades by providing the URL, timestamp, and signature.",
+      "canonical_id": "dapi.v1.userTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get bookTicker information from the specified URL.",
+      "canonical_id": "dapi.v1.bookTicker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the current price of a ticker.",
+      "canonical_id": "dapi.v1.price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve 24-hour ticker information.",
+      "canonical_id": "dapi.v1.24hr.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange information.",
+      "canonical_id": "dapi.v1.exchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve position risk data based on the specified timestamp and signature.",
+      "canonical_id": "dapi.v1.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update batch orders with specified URL, timestamp, and signature parameters.",
+      "canonical_id": "dapi.v1.batchOrders.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update order details for a specific order in the system.",
+      "canonical_id": "dapi.v1.order.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the listenKey with a new URL path.",
+      "canonical_id": "dapi.v1.listenKey.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel all countdowns for a specific URL using timestamp and signature.",
+      "canonical_id": "eapi.v1.countdownCancelAll.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel all countdowns for a specific URL with provided parameters.",
+      "canonical_id": "eapi.v1.countdownCancelAll.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel all heartbeats for specified underlyings with a timestamp and signature.",
+      "canonical_id": "eapi.v1.countdownCancelAllHeartBeat.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new listenKey for a specified URL.",
+      "canonical_id": "eapi.v1.listenKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new mmpReset with specified URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.mmpReset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new mmpSet with specified URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.mmpSet.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order block with specified URL, liquidity, legs, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.create_ddb9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order with specified details.",
+      "canonical_id": "eapi.v1.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple batch orders with specified details using the API.",
+      "canonical_id": "eapi.v1.batchOrders.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a created order block by matching key, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.create_e863"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a listenKey from the specified URL path.",
+      "canonical_id": "eapi.v1.listenKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using the provided timestamp and signature.",
+      "canonical_id": "eapi.v1.allOpenOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific underlying asset.",
+      "canonical_id": "eapi.v1.allOpenOrdersByUnderlying.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order.",
+      "canonical_id": "eapi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete batch orders by providing the URL, symbol, timestamp, and signature.",
+      "canonical_id": "eapi.v1.batchOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute a block order by providing the necessary parameters like URL, matching key, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch bill details using URL, currency, timestamp, and signature parameters.",
+      "canonical_id": "eapi.v1.bill.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch blockTrades by providing a URL.",
+      "canonical_id": "eapi.v1.blockTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission details using URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.commission.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current time.",
+      "canonical_id": "eapi.v1.time.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch depth data for a specific symbol.",
+      "canonical_id": "eapi.v1.depth.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exercise history data.",
+      "canonical_id": "eapi.v1.exerciseHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exercise record by URL and timestamp with signature.",
+      "canonical_id": "eapi.v1.exerciseRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch history orders by URL, symbol, timestamp, and signature.",
+      "canonical_id": "eapi.v1.historyOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch index data with specified URL and underlying information.",
+      "canonical_id": "eapi.v1.index.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch klines data for a specific symbol and interval.",
+      "canonical_id": "eapi.v1.klines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin account details for a specified URL with timestamp and signature.",
+      "canonical_id": "eapi.v1.marginAccount.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch mark information by providing the URL path.",
+      "canonical_id": "eapi.v1.mark.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch MMP data with specified URL, timestamp, and signature parameters.",
+      "canonical_id": "eapi.v1.mmp.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open interest data for a specific underlying asset and expiration date.",
+      "canonical_id": "eapi.v1.openInterest.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders with specified URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order execution details by providing the URL, block order matching key, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.execute_bf4c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch orders based on URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.orders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ping information by URL.",
+      "canonical_id": "eapi.v1.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch position data based on the provided URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.position.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trades by URL and symbol.",
+      "canonical_id": "eapi.v1.trades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user trades based on URL, timestamp, and signature.",
+      "canonical_id": "eapi.v1.userTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user-trades for a specific timestamp with signature verification.",
+      "canonical_id": "eapi.v1.userTrades.list_a94e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange information.",
+      "canonical_id": "eapi.v1.exchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve ticker information.",
+      "canonical_id": "eapi.v1.ticker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update order creation by blocking it with specified matching key, timestamp, and signature.",
+      "canonical_id": "eapi.v1.order.create_f103"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the listenKey URL for enhanced functionality.",
+      "canonical_id": "eapi.v1.listenKey.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a BNB transfer with specified details like URL, amount, transfer side, timestamp, and signature.",
+      "canonical_id": "papi.v1.bnbTransfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a conditional order for a specific symbol, side, and strategy type with a timestamp and signature.",
+      "canonical_id": "papi.v1.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a conditional order with specified parameters.",
+      "canonical_id": "papi.v1.order.create_8f74"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a dual position side with specified details.",
+      "canonical_id": "papi.v1.dual.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a dual position side with specified parameters.",
+      "canonical_id": "papi.v1.dual.create_839"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a feeBurn with specified details like URL, feeBurn value, timestamp, and signature.",
+      "canonical_id": "papi.v1.feeBurn.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a margin order with specified details.",
+      "canonical_id": "papi.v1.order.create_474f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new asset-collection with specified URL, asset, timestamp, and signature parameters.",
+      "canonical_id": "papi.v1.assetCollection.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new listenKey for a specified URL.",
+      "canonical_id": "papi.v1.listenKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new margin loan with specified asset, amount, timestamp, and signature.",
+      "canonical_id": "papi.v1.marginLoan.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new OCO order for margin trading with specified details like symbol, side, quantity, price, and stop price.",
+      "canonical_id": "papi.v1.oco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order for a specified symbol, side, type, timestamp, and signature.",
+      "canonical_id": "papi.v1.order.create_cbd7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order in the system.",
+      "canonical_id": "papi.v1.order.create_4544"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new repay-futures-switch with specified parameters.",
+      "canonical_id": "papi.v1.repayFuturesSwitch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repayment for a loan.",
+      "canonical_id": "papi.v1.repayLoan.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repayment for futures negative balance.",
+      "canonical_id": "papi.v1.repayFuturesNegativeBalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an auto-collection with specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.autoCollection.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create leverage for a specified symbol with a given leverage value, timestamp, and signature.",
+      "canonical_id": "papi.v1.leverage.create_d672"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create leverage for a specified symbol with a given URL, leverage, timestamp, and signature.",
+      "canonical_id": "papi.v1.leverage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a listenKey by providing the URL.",
+      "canonical_id": "papi.v1.listenKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a margin order.",
+      "canonical_id": "papi.v1.order.delete_e67f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific order conditionally.",
+      "canonical_id": "papi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific order list from the margin.",
+      "canonical_id": "papi.v1.orderList.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders based on specified conditions.",
+      "canonical_id": "papi.v1.allOpenOrders.delete_f514"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using the provided URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.allOpenOrders.delete_986b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using timestamp and signature for authentication.",
+      "canonical_id": "papi.v1.allOpenOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using timestamp and signature for verification.",
+      "canonical_id": "papi.v1.allOpenOrders.delete_f2fb"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol.",
+      "canonical_id": "papi.v1.allOpenOrders.delete_d2e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order from the system.",
+      "canonical_id": "papi.v1.order.delete_861f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order from the system.",
+      "canonical_id": "papi.v1.order.delete_fc5f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete order based on specified conditions.",
+      "canonical_id": "papi.v1.order.delete_d27d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account configuration details.",
+      "canonical_id": "papi.v1.accountConfig.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information based on the provided URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.account.list_6e77"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information by providing URL, timestamp, and signature.",
+      "canonical_id": "papi.v2.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information using specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adlQuantile data by providing the URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.adlQuantile.list_7777"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adlQuantile data using a specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.adlQuantile.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all conditional orders based on specified timestamp and signature.",
+      "canonical_id": "papi.v1.allOrders.list_6ca6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all margin orders for a specific symbol and timestamp.",
+      "canonical_id": "papi.v1.allOrders.list_9bf1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders based on conditions.",
+      "canonical_id": "papi.v1.allOrders.list_7c82"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders from the API.",
+      "canonical_id": "papi.v1.allOrders.list_cd12"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders from the API.",
+      "canonical_id": "papi.v1.allOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders in the margin account.",
+      "canonical_id": "papi.v1.allOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous income data with specified start and end times using a URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.asyn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous order details by URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "papi.v1.asyn.list_8d6d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous trade data with specified URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "papi.v1.asyn.list_7e2d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch balance information based on the provided timestamp and signature.",
+      "canonical_id": "papi.v1.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission rate by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.commissionRate.list_6b00"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission rates by symbol and timestamp.",
+      "canonical_id": "papi.v1.commissionRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch conditional order history by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.orderHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch dual position side using specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.dual.list_ff87"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch dual position side with timestamp and signature.",
+      "canonical_id": "papi.v1.dual.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch feeBurn data based on URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.feeBurn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch forceOrders data with specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.forceOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch forceOrders using specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.forceOrders.list_53dd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch forceOrders with specified URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.forceOrders.list_d4f2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income details asynchronously by ID.",
+      "canonical_id": "papi.v1.id.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income details based on URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.income.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income information.",
+      "canonical_id": "papi.v1.income.list_3342"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket for a specific URL using timestamp and signature.",
+      "canonical_id": "papi.v1.leverageBracket.list_697c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket using the provided URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.leverageBracket.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin interest history by providing a URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.marginInterestHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin loan information by URL, asset, timestamp, and signature.",
+      "canonical_id": "papi.v1.marginLoan.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.order.list_4360"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin order list with specified parameters.",
+      "canonical_id": "papi.v1.orderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch my trades with margin details.",
+      "canonical_id": "papi.v1.myTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch negative balance exchange record within a specified time frame using URL, start time, end time, and timestamp.",
+      "canonical_id": "papi.v1.negativeBalanceExchangeRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open margin orders for a specific symbol using timestamp and signature.",
+      "canonical_id": "papi.v1.openOrders.list_4b60"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open order details based on the provided URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.openOrder.list_9770"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.openOrder.list_7e59"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open order details for a specific symbol and timestamp using a signature.",
+      "canonical_id": "papi.v1.openOrder.list_d892"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders based on conditions.",
+      "canonical_id": "papi.v1.openOrders.list_d19e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders with timestamp and signature verification.",
+      "canonical_id": "papi.v1.openOrders.list_e86e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders with timestamp and signature verification.",
+      "canonical_id": "papi.v1.openOrders.list_aaae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch openOrder for a specific symbol using URL, timestamp, and signature parameters.",
+      "canonical_id": "papi.v1.openOrder.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch openOrders based on conditional criteria.",
+      "canonical_id": "papi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order amendment details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.orderAmendment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order amendments by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.orderAmendment.list_c33c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.order.list_73b7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.order.list_a654"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order ID asynchronously with specified parameters.",
+      "canonical_id": "papi.v1.id.list_d25c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order rate limit information by providing the URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ping by URL.",
+      "canonical_id": "papi.v1.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch positionRisk data based on the provided URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.positionRisk.list_1827"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch positionRisk data by providing the URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch repay-futures-switch data with specified URL, timestamp, and signature parameters.",
+      "canonical_id": "papi.v1.repayFuturesSwitch.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch repayment details for a loan.",
+      "canonical_id": "papi.v1.repayLoan.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch symbol configuration using the provided URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.symbolConfig.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the current trading status of the API.",
+      "canonical_id": "papi.v1.apiTradingStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the list of open orders for margin trading.",
+      "canonical_id": "papi.v1.openOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trade ID asynchronously by providing the download ID, timestamp, and signature in the URL.",
+      "canonical_id": "papi.v1.id.list_75b0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user account details.",
+      "canonical_id": "papi.v1.account.list_af53"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user trades by URL, timestamp, and signature.",
+      "canonical_id": "papi.v1.userTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user trades for a specific symbol and timestamp using the provided URL, signature, and parameters.",
+      "canonical_id": "papi.v1.userTrades.list_e0c5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Repay a debt by creating a new repayment transaction with specified asset and details.",
+      "canonical_id": "papi.v1.repayDebt.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve conditional order history based on URL, symbol, timestamp, and signature.",
+      "canonical_id": "papi.v1.orderHistory.list_70a8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the interest history for a portfolio using the specified URL and timestamp.",
+      "canonical_id": "papi.v1.interestHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the maximum borrowable amount for a specified asset at a given timestamp using the provided URL and signature.",
+      "canonical_id": "papi.v1.maxBorrowable.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the maximum withdrawal amount for a specific asset.",
+      "canonical_id": "papi.v1.maxWithdraw.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update order details for a specific order in the system.",
+      "canonical_id": "papi.v1.order.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update order details in the system.",
+      "canonical_id": "papi.v1.order.update_505f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the listenKey with a new URL path.",
+      "canonical_id": "papi.v1.listenKey.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a BNB transfer with specified amount, transfer side, timestamp, and signature.",
+      "canonical_id": "sapi.v1.bnbTransfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a delta-mode for the portfolio with specified parameters.",
+      "canonical_id": "sapi.v1.deltaMode.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new asset collection with specified URL, asset, timestamp, and signature.",
+      "canonical_id": "sapi.v1.assetCollection.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repayment in the portfolio.",
+      "canonical_id": "sapi.v1.repay.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a switch to repay futures in the portfolio.",
+      "canonical_id": "sapi.v1.repayFuturesSwitch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create auto-collection with specified URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.autoCollection.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information from the portfolio.",
+      "canonical_id": "sapi.v2.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch earn asset balance for a specific asset and transfer type.",
+      "canonical_id": "sapi.v1.earnAssetBalance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch interest history for a specific portfolio based on the provided timestamp.",
+      "canonical_id": "sapi.v1.interestHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch pmLoan details from the portfolio.",
+      "canonical_id": "sapi.v1.pmLoan.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch pmloan history with specified timestamp and signature.",
+      "canonical_id": "sapi.v1.pmloanHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the repay-futures-switch information from the specified URL with timestamp and signature parameters.",
+      "canonical_id": "sapi.v1.repayFuturesSwitch.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Repay negative balance for futures in the portfolio.",
+      "canonical_id": "sapi.v1.repayFuturesNegativeBalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account portfolio information.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve margin asset leverage information.",
+      "canonical_id": "sapi.v1.marginAssetLeverage.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve portfolio balance.",
+      "canonical_id": "sapi.v1.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the asset index price by providing the URL.",
+      "canonical_id": "sapi.v1.assetIndexPrice.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the collateral rate for a specific URL at a given timestamp using the provided signature.",
+      "canonical_id": "sapi.v2.collateralRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the collateral rate for a specific URL.",
+      "canonical_id": "sapi.v1.collateralRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the delta-mode for the portfolio using the specified URL and timestamp with a signature.",
+      "canonical_id": "sapi.v1.deltaMode.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer assets to earn portfolio with specified amount, asset, and transfer type using timestamp and signature.",
+      "canonical_id": "sapi.v1.earnAssetTransfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Accept a quote conversion by providing the URL, quote ID, timestamp, and signature.",
+      "canonical_id": "fapi.v1.acceptQuote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel all countdowns for a specific symbol with a given countdown time, timestamp, and signature.",
+      "canonical_id": "fapi.v1.countdownCancelAll.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a dual position side with specified parameters.",
+      "canonical_id": "fapi.v1.dual.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a feeBurn with specified URL, feeBurn value, timestamp, and signature.",
+      "canonical_id": "fapi.v1.feeBurn.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a listenKey for a specified URL path.",
+      "canonical_id": "fapi.v1.listenKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a multi-assets margin with specified parameters.",
+      "canonical_id": "fapi.v1.multiAssetsMargin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new algoOrder for a specified symbol and parameters.",
+      "canonical_id": "fapi.v1.algoOrder.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new contract for stock trading.",
+      "canonical_id": "fapi.v1.contract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new margin type for a specific symbol with the provided details.",
+      "canonical_id": "fapi.v1.marginType.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order with specified details.",
+      "canonical_id": "fapi.v1.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a quote conversion using specified assets, URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.getQuote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a test order with specified parameters.",
+      "canonical_id": "fapi.v1.test.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create batch orders with specified URL, batch orders, timestamp, and signature.",
+      "canonical_id": "fapi.v1.batchOrders.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create leverage for a specified symbol with a given leverage, timestamp, and signature.",
+      "canonical_id": "fapi.v1.leverage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create position margin for a specific symbol with a specified amount and type, along with timestamp and signature.",
+      "canonical_id": "fapi.v1.positionMargin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a listenKey by providing the URL.",
+      "canonical_id": "fapi.v1.listenKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete algoOpenOrders for a specific symbol using URL, timestamp, and signature parameters.",
+      "canonical_id": "fapi.v1.algoOpenOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete algoOrder by providing the necessary parameters like URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.algoOrder.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all open orders for a specific symbol using timestamp and signature for authentication.",
+      "canonical_id": "fapi.v1.allOpenOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order.",
+      "canonical_id": "fapi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete batch orders by providing the URL, symbol, timestamp, and signature.",
+      "canonical_id": "fapi.v1.batchOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch 24-hour ticker information.",
+      "canonical_id": "fapi.v1.24hr.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account configuration details.",
+      "canonical_id": "fapi.v1.accountConfig.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information with URL, timestamp, and signature parameters.",
+      "canonical_id": "fapi.v2.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch adlQuantile using the provided URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.adlQuantile.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch aggregated trades for a specific symbol.",
+      "canonical_id": "fapi.v1.aggTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch algoOrder using URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.algoOrder.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all algorithmic orders for a specific symbol and timestamp using the provided URL, signature, and parameters.",
+      "canonical_id": "fapi.v1.allAlgoOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders with specified symbol, timestamp, and signature.",
+      "canonical_id": "fapi.v1.allOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch assetIndex data by providing the URL path.",
+      "canonical_id": "fapi.v1.assetIndex.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous income data based on specified URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "fapi.v1.asyn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous order ID by download ID, timestamp, and signature.",
+      "canonical_id": "fapi.v1.id.list_55de"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous order information by URL, start time, end time, timestamp, and signature.",
+      "canonical_id": "fapi.v1.asyn.list_6721"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous trade data within a specified time range using the provided URL and authentication parameters.",
+      "canonical_id": "fapi.v1.asyn.list_6ccd"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asynchronous trade ID by URL with download ID, timestamp, and signature parameters.",
+      "canonical_id": "fapi.v1.id.list_6678"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch balance information.",
+      "canonical_id": "fapi.v2.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch basis data for futures contracts by URL, pair, contract type, period, and limit.",
+      "canonical_id": "futures.data.basis.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch bookTicker data.",
+      "canonical_id": "fapi.v1.bookTicker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission rate for a specific symbol at a given timestamp using the provided URL, signature, and symbol.",
+      "canonical_id": "fapi.v1.commissionRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch constituents by symbol.",
+      "canonical_id": "fapi.v1.constituents.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch continuousKlines for a specified pair and contract type at a given interval.",
+      "canonical_id": "fapi.v1.continuousKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current time.",
+      "canonical_id": "fapi.v1.time.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch delivery price data for futures by providing the URL and pair.",
+      "canonical_id": "futures.data.deliveryPrice.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch depth data for a specific symbol.",
+      "canonical_id": "fapi.v1.depth.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch dual position side information.",
+      "canonical_id": "fapi.v1.dual.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exchange information.",
+      "canonical_id": "fapi.v1.exchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch feeBurn data by providing the URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.feeBurn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch forceOrders data using URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.forceOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch funding information by URL path.",
+      "canonical_id": "fapi.v1.fundingInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical open interest data for futures.",
+      "canonical_id": "futures.data.openInterestHist.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical trades for a specific symbol.",
+      "canonical_id": "fapi.v1.historicalTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income data based on the provided URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.income.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch income details asynchronously by ID.",
+      "canonical_id": "fapi.v1.id.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch index information by providing the URL.",
+      "canonical_id": "fapi.v1.indexInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch indexPriceKlines for a specific pair and interval.",
+      "canonical_id": "fapi.v1.indexPriceKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch insurance balance.",
+      "canonical_id": "fapi.v1.insuranceBalance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch klines data for a specific symbol and interval.",
+      "canonical_id": "fapi.v1.klines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket information.",
+      "canonical_id": "fapi.v1.leverageBracket.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch mark price klines for a specific symbol and interval.",
+      "canonical_id": "fapi.v1.markPriceKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch multi-assets margin data using the specified URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.multiAssetsMargin.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open interest data for a specific symbol using the provided URL.",
+      "canonical_id": "fapi.v1.openInterest.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for a specific symbol and timestamp using a signature for authentication.",
+      "canonical_id": "fapi.v1.openOrder.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open orders for a specific user.",
+      "canonical_id": "fapi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch openAlgoOrders using specified parameters.",
+      "canonical_id": "fapi.v1.openAlgoOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order amendment details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "fapi.v1.orderAmendment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "fapi.v1.order.list_4a04"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order rate limit status.",
+      "canonical_id": "fapi.v1.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ping status.",
+      "canonical_id": "fapi.v1.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch pmAccountInfo with specified asset, timestamp, and signature.",
+      "canonical_id": "fapi.v1.pmAccountInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch position margin history for a specific symbol and timestamp.",
+      "canonical_id": "fapi.v1.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch positionRisk data based on the provided timestamp and signature.",
+      "canonical_id": "fapi.v2.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch premium index Klines for a specific symbol and interval.",
+      "canonical_id": "fapi.v1.premiumIndexKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch symbolAdlRisk data for a specific URL.",
+      "canonical_id": "fapi.v1.symbolAdlRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch takerlongshortRatio data for a specified symbol and period.",
+      "canonical_id": "futures.data.takerlongshortRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the current price.",
+      "canonical_id": "fapi.v1.price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the current price.",
+      "canonical_id": "fapi.v2.price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the depth of a specific symbol in the RPI market.",
+      "canonical_id": "fapi.v1.rpiDepth.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the funding rate.",
+      "canonical_id": "fapi.v1.fundingRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the top long and short account ratio data for a specific symbol and period.",
+      "canonical_id": "futures.data.topLongShortAccountRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the top long and short position ratio data for a specific symbol and period.",
+      "canonical_id": "futures.data.topLongShortPositionRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trades based on the specified symbol.",
+      "canonical_id": "fapi.v1.trades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trading schedule by URL path.",
+      "canonical_id": "fapi.v1.tradingSchedule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user trades by URL, symbol, timestamp, and signature.",
+      "canonical_id": "fapi.v1.userTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account information.",
+      "canonical_id": "fapi.v3.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve current balance.",
+      "canonical_id": "fapi.v3.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange information.",
+      "canonical_id": "fapi.v1.exchangeInfo.list_111b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve position risk data based on the specified timestamp and URL with a provided signature.",
+      "canonical_id": "fapi.v3.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve symbol configuration information.",
+      "canonical_id": "fapi.v1.symbolConfig.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current trading status from the API.",
+      "canonical_id": "fapi.v1.apiTradingStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the global long and short account ratio for futures data by providing the symbol and period.",
+      "canonical_id": "futures.data.globalLongShortAccountRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the order status conversion using the provided URL, timestamp, and signature.",
+      "canonical_id": "fapi.v1.orderStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the premium index using the specified URL path.",
+      "canonical_id": "fapi.v1.premiumIndex.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update batch orders in the system.",
+      "canonical_id": "fapi.v1.batchOrders.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update order details in the system.",
+      "canonical_id": "fapi.v1.order.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the listenKey with a new URL path.",
+      "canonical_id": "fapi.v1.listenKey.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Edit the status of an auto-compound product.",
+      "canonical_id": "sapi.v1.editStatus.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of products with specified options, exercised coin, and investment coin.",
+      "canonical_id": "sapi.v1.product.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch product accounts with signature verification using timestamp.",
+      "canonical_id": "sapi.v1.accounts.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch product positions by timestamp and signature.",
+      "canonical_id": "sapi.v1.positions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to a product with specified details like order ID, deposit amount, and auto-compound plan.",
+      "canonical_id": "sapi.v1.subscribe.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a fiat deposit with specified currency, payment method, and amount.",
+      "canonical_id": "sapi.v1.deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a withdraw request with specified currency, amount, and payment method.",
+      "canonical_id": "sapi.v2.withdraw.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch fiat orders based on transaction type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.orders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch fiat payments with specified transaction type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.payments.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by order number, timestamp, and signature.",
+      "canonical_id": "sapi.v1.getOrderDetail.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a buyCode for a gift card purchase.",
+      "canonical_id": "sapi.v1.buyCode.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch RSA public key for gift card cryptography.",
+      "canonical_id": "sapi.v1.rsaPublicKey.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch token-limit for buying a gift card.",
+      "canonical_id": "sapi.v1.tokenLimit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a gift card code with specified amount.",
+      "canonical_id": "sapi.v1.createCode.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem a gift card code for a specified URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.redeemCode.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify gift card by reference number, timestamp, and signature.",
+      "canonical_id": "sapi.v1.verify.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a margin order for a specific symbol, specifying the side and type, with a timestamp and signature.",
+      "canonical_id": "sapi.v1.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new apiKey for margin trading with specified URL, apiName, timestamp, and signature.",
+      "canonical_id": "sapi.v1.apiKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new isolated margin account.",
+      "canonical_id": "sapi.v1.account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new listen-key for margin trading.",
+      "canonical_id": "sapi.v1.listenKey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new OCO order for margin trading.",
+      "canonical_id": "sapi.v1.oco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a one-cancels-the-other order with specified details for margin trading.",
+      "canonical_id": "sapi.v1.oto.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a small liability exchange for margin trading with specified asset names, URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.exchangeSmallLiability.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an OTOCO order in the margin trading system.",
+      "canonical_id": "sapi.v1.otoco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a margin order by providing the order URL, symbol, timestamp, and signature.",
+      "canonical_id": "sapi.v1.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a margin order list.",
+      "canonical_id": "sapi.v1.orderList.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific listen-key.",
+      "canonical_id": "sapi.v1.listenKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete apiKey from the margin API by providing the necessary parameters.",
+      "canonical_id": "sapi.v1.apiKey.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete isolated margin account by symbol.",
+      "canonical_id": "sapi.v1.account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete open margin orders for a specific symbol using timestamp and signature.",
+      "canonical_id": "sapi.v1.openOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of API keys for margin trading.",
+      "canonical_id": "sapi.v1.margin.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all available trading pairs for margin trading.",
+      "canonical_id": "sapi.v1.allPairs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all margin orders for a specific symbol using the provided URL, symbol, timestamp, and signature.",
+      "canonical_id": "sapi.v1.allOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders from the margin account.",
+      "canonical_id": "sapi.v1.allOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch available limit-price-pairs for margin trading.",
+      "canonical_id": "sapi.v1.limitPricePairs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch available margin trading inventory.",
+      "canonical_id": "sapi.v1.availableInventory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch bnbBurn data by providing URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.bnbBurn.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch borrow-repay information for margin trading.",
+      "canonical_id": "sapi.v1.borrowRepay.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch capital-flow data by providing the URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.capitalFlow.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch delist schedule information.",
+      "canonical_id": "sapi.v1.delistSchedule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exchange-small-liability history with specified parameters.",
+      "canonical_id": "sapi.v1.exchangeSmallLiabilityHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exchange-small-liability information.",
+      "canonical_id": "sapi.v1.exchangeSmallLiability.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch force liquidation record by URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.forceLiquidationRec.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch information about restricted assets.",
+      "canonical_id": "sapi.v1.restrictedAsset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch isolated margin data for a specific URL and timestamp with a signature.",
+      "canonical_id": "sapi.v1.isolatedMarginData.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch isolated margin tier for a specific symbol at a given timestamp.",
+      "canonical_id": "sapi.v1.isolatedMarginTier.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch leverage bracket information.",
+      "canonical_id": "sapi.v1.leverageBracket.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin interest history by URL and timestamp.",
+      "canonical_id": "sapi.v1.interestHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin interest rate history for a specific asset at a given timestamp.",
+      "canonical_id": "sapi.v1.interestRateHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin list-schedule by URL.",
+      "canonical_id": "sapi.v1.listSchedule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin order details by symbol using timestamp and signature.",
+      "canonical_id": "sapi.v1.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin orderList with specified parameters.",
+      "canonical_id": "sapi.v1.orderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch margin transfer details.",
+      "canonical_id": "sapi.v1.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch my trades from the margin account.",
+      "canonical_id": "sapi.v1.myTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch myPreventedMatches for a specific symbol and timestamp.",
+      "canonical_id": "sapi.v1.myPreventedMatches.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch open margin orders.",
+      "canonical_id": "sapi.v1.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order rate limit information.",
+      "canonical_id": "sapi.v1.order.list_da7b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the list of open orders from the margin account.",
+      "canonical_id": "sapi.v1.openOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the next hourly interest rate for margin trading.",
+      "canonical_id": "sapi.v1.nextHourlyInterestRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the price index for a specific symbol.",
+      "canonical_id": "sapi.v1.priceIndex.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the maximum transferable amount for margin trading based on the specified asset and timestamp.",
+      "canonical_id": "sapi.v1.maxTransferable.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate manual liquidation for margin trading.",
+      "canonical_id": "sapi.v1.manualLiquidation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Repay borrowed margin with specified asset, amount, and type.",
+      "canonical_id": "sapi.v1.borrowRepay.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all available assets in the margin trading platform.",
+      "canonical_id": "sapi.v1.allAssets.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve cross margin data for a specific URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.crossMarginData.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information for all isolated margin trading pairs.",
+      "canonical_id": "sapi.v1.allPairs.list_6d31"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve isolated margin account information.",
+      "canonical_id": "sapi.v1.account.list_b77c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve isolated margin account limit.",
+      "canonical_id": "sapi.v1.accountLimit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve margin account information.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the apiKey for margin trading by providing the required parameters.",
+      "canonical_id": "sapi.v1.apiKey.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the cross margin collateral ratio.",
+      "canonical_id": "sapi.v1.crossMarginCollateralRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the maximum borrowable amount for a specific asset on margin trading.",
+      "canonical_id": "sapi.v1.maxBorrowable.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the risk-based liquidation ratio.",
+      "canonical_id": "sapi.v1.riskBasedLiquidationRatio.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the trade coefficient for margin trading.",
+      "canonical_id": "sapi.v1.tradeCoeff.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the maximum leverage for margin trading.",
+      "canonical_id": "sapi.v1.maxLeverage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update IP address for a specific API key in the margin trading system.",
+      "canonical_id": "sapi.v1.ip.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the listen-key for margin trading.",
+      "canonical_id": "sapi.v1.listenKey.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a mining hash transfer configuration.",
+      "canonical_id": "sapi.v1.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a mining hash transfer configuration.",
+      "canonical_id": "sapi.v1.config.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of available coins for mining.",
+      "canonical_id": "sapi.v1.coinList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of mining workers by URL, algorithm, username, timestamp, and signature.",
+      "canonical_id": "sapi.v1.worker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch detailed information about a mining worker using specified parameters.",
+      "canonical_id": "sapi.v1.detail.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch details of mining hash transfer profit with specified configuration ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.details.list_bd49"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of mining hash transfer configuration details.",
+      "canonical_id": "sapi.v1.details.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of mining payment details based on URL, algorithm, username, timestamp, and signature.",
+      "canonical_id": "sapi.v1.payment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of mining statistics for a user by URL, algorithm, username, and timestamp.",
+      "canonical_id": "sapi.v1.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch mining statistics user status by URL, algorithm, username, timestamp, and signature.",
+      "canonical_id": "sapi.v1.status.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch other mining payment details by URL, algorithm, username, timestamp, and signature.",
+      "canonical_id": "sapi.v1.other.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch uid for mining payment with specified algorithm, timestamp, and signature.",
+      "canonical_id": "sapi.v1.uid.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of available mining algorithms.",
+      "canonical_id": "sapi.v1.algoList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch deposit history for NFT transactions.",
+      "canonical_id": "sapi.v1.deposit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch NFT transaction history with order type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.transactions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch NFT withdrawal history by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.withdraw.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch user's NFT asset by URL with timestamp and signature verification.",
+      "canonical_id": "sapi.v1.getAsset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch payment transactions by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.transactions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch taxQuery data using URL, timestamp, and signature parameters.",
+      "canonical_id": "sapi.v1.taxQuery.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a redeem transaction with specified amount, type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a redeem transaction with specified amount, type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create_c721"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of flexible earnings.",
+      "canonical_id": "sapi.v1.flexible.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of locked simple earn items.",
+      "canonical_id": "sapi.v1.locked.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account details for BFUSD account.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information for simple earnings.",
+      "canonical_id": "sapi.v1.account.list_4b46"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch collateral record history for flexible earnings.",
+      "canonical_id": "sapi.v1.collateralRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch flexible position with timestamp and signature.",
+      "canonical_id": "sapi.v1.position.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch locked history of subscriptionRecord.",
+      "canonical_id": "sapi.v1.subscriptionRecord.list_5922"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch locked position with timestamp and signature.",
+      "canonical_id": "sapi.v1.position.list_131c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch locked rewards record history.",
+      "canonical_id": "sapi.v1.rewardsRecord.list_c43"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch quota information based on the provided URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.quota.list_289c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch quota information for BFUSD.",
+      "canonical_id": "sapi.v1.quota.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rate history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.rateHistory.list_b99b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rate history for a specific product and timestamp.",
+      "canonical_id": "sapi.v1.rateHistory.list_e764"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rate history for BFUSD.",
+      "canonical_id": "sapi.v1.rateHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch redemption history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redemptionHistory.list_ab7b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch redemption history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redemptionHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch redemption record by URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.redemptionRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch redemption record for locked history.",
+      "canonical_id": "sapi.v1.redemptionRecord.list_2362"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rewards history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.rewardsHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rewards history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.rewardsHistory.list_f95"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rewardsRecord history for flexible earnings.",
+      "canonical_id": "sapi.v1.rewardsRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch RWUSD account details with URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.account.list_ef87"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subscription history based on timestamp and signature.",
+      "canonical_id": "sapi.v1.subscriptionHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subscription history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscriptionHistory.list_1914"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subscription preview for a flexible earning plan with specified product, amount, and timestamp.",
+      "canonical_id": "sapi.v1.subscriptionPreview.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subscription record history for flexible earnings.",
+      "canonical_id": "sapi.v1.subscriptionRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the personal left quota for a specific product based on the provided timestamp and signature.",
+      "canonical_id": "sapi.v1.personalLeftQuota.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem a flexible product by providing the URL, product ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create_d0c1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem locked earnings for a specific position using provided parameters.",
+      "canonical_id": "sapi.v1.redeem.create_e843"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a preview of a locked subscription for a specified project with the given amount and timestamp.",
+      "canonical_id": "sapi.v1.subscriptionPreview.list_1907"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the personal left quota for a specific project using the provided URL, project ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.personalLeftQuota.list_3eb8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set auto-subscription for a locked simple earning position.",
+      "canonical_id": "sapi.v1.setAutoSubscribe.create_d031"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set automatic subscription for a flexible earning product with specified parameters.",
+      "canonical_id": "sapi.v1.setAutoSubscribe.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set redeem option for a locked simple earn position.",
+      "canonical_id": "sapi.v1.setRedeemOption.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to a flexible earning plan by providing the URL, product ID, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscribe.create_6809"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to a locked simple earn program by providing the URL, project ID, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscribe.create_74cb"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to a service by providing URL, asset, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscribe.create_69d9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to a service with specified URL, asset, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscribe.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a cancelReplace order for a specific symbol, side, and order type with timestamp and signature.",
+      "canonical_id": "api.v3.cancelReplace.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new One-Cancels-the-Other order for a specific symbol, with quantity, price, and stop price specified.",
+      "canonical_id": "api.v3.oco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new opo with specified details like symbol, price, and quantity.",
+      "canonical_id": "api.v3.opo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new opoco order with specified details like symbol, price, and quantity.",
+      "canonical_id": "api.v3.opoco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order for a stock with specified details.",
+      "canonical_id": "api.v3.order.create_b2fa"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new order with specified details.",
+      "canonical_id": "api.v3.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a test order with specified details like symbol, side, type, quantity, timestamp, and signature.",
+      "canonical_id": "api.v3.test.create_4040"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a test order with specified details.",
+      "canonical_id": "api.v3.test.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an otoco order with specified details like symbol, price, and quantity.",
+      "canonical_id": "api.v3.otoco.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create One-Cancels-the-Other order for a specific symbol, quantity, and conditions.",
+      "canonical_id": "api.v3.oco.create_2882"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create one-time order with specified details like symbol, price, and quantity.",
+      "canonical_id": "api.v3.oto.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an order from the system.",
+      "canonical_id": "api.v3.order.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an orderList.",
+      "canonical_id": "api.v3.orderList.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete open orders for a specific symbol with a provided timestamp and signature.",
+      "canonical_id": "api.v3.openOrders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account details using the provided URL, timestamp, and signature.",
+      "canonical_id": "api.v3.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch aggregated trades data for a specific symbol from the API.",
+      "canonical_id": "api.v3.aggTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders from the list.",
+      "canonical_id": "api.v3.allOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all orders with specified symbol, timestamp, and signature.",
+      "canonical_id": "api.v3.allOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch average price for a specific symbol using the provided URL.",
+      "canonical_id": "api.v3.avgPrice.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch calculation for a reference price using a specified symbol and URL.",
+      "canonical_id": "api.v3.calculation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch commission details for a specific account.",
+      "canonical_id": "api.v3.commission.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current time.",
+      "canonical_id": "api.v3.time.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch depth data for a specific symbol.",
+      "canonical_id": "api.v3.depth.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch exchange information.",
+      "canonical_id": "api.v3.exchangeInfo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch execution rules by URL path.",
+      "canonical_id": "api.v3.executionRules.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch historical trades for a specific symbol.",
+      "canonical_id": "api.v3.historicalTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch klines data for a specific symbol and interval.",
+      "canonical_id": "api.v3.klines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch my trades based on symbol, timestamp, and signature.",
+      "canonical_id": "api.v3.myTrades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch myAllocations for a specific symbol and timestamp using the provided URL and signature.",
+      "canonical_id": "api.v3.myAllocations.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch myFilters based on URL, symbol, timestamp, and signature.",
+      "canonical_id": "api.v3.myFilters.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch myPreventedMatches using specified parameters.",
+      "canonical_id": "api.v3.myPreventedMatches.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order amendments by URL, symbol, order ID, timestamp, and signature.",
+      "canonical_id": "api.v3.amendments.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by providing the URL, timestamp, and signature.",
+      "canonical_id": "api.v3.order.list_dd8f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch order details by URL, symbol, timestamp, and signature.",
+      "canonical_id": "api.v3.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch orderList with url, timestamp, and signature.",
+      "canonical_id": "api.v3.orderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ping information by providing a URL.",
+      "canonical_id": "api.v3.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch reference price by symbol from a specified URL.",
+      "canonical_id": "api.v3.referencePrice.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the list of open orders with the specified URL, timestamp, and signature.",
+      "canonical_id": "api.v3.openOrderList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ticker information from the specified URL.",
+      "canonical_id": "api.v3.ticker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trades based on the specified symbol.",
+      "canonical_id": "api.v3.trades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch tradingDay information by providing the URL path.",
+      "canonical_id": "api.v3.tradingDay.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch uiKlines data for a specific symbol and interval.",
+      "canonical_id": "api.v3.uiKlines.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get bookTicker information from the API.",
+      "canonical_id": "api.v3.bookTicker.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the 24-hour ticker information.",
+      "canonical_id": "api.v3.24hr.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve open orders with specified parameters.",
+      "canonical_id": "api.v3.openOrders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current price.",
+      "canonical_id": "api.v3.price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the keepPriority of an order in API version 3.",
+      "canonical_id": "api.v3.keepPriority.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a claim for Solana staking.",
+      "canonical_id": "sapi.v1.claim.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a stake for Ethereum staking with specified amount, timestamp, and signature.",
+      "canonical_id": "sapi.v2.stake.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a stake for Solana staking with specified amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.stake.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a wrap for a specified amount of WBETH using the provided URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.wrap.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of locked on-chain yields with specified timestamp and signature.",
+      "canonical_id": "sapi.v1.locked.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a set for soft staking with specified URL, soft staking value, timestamp, and signature.",
+      "canonical_id": "sapi.v1.set.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information for on-chain yields with specified URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch account information for Solana staking.",
+      "canonical_id": "sapi.v1.account.list_bd11"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch bnsolRewardsHistory based on timestamp and signature.",
+      "canonical_id": "sapi.v1.bnsolRewardsHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch boost rewards history based on URL, type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.boostRewardsHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ETH staking history by providing URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.stakingHistory.list_4870"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ETH staking quota for a specific timestamp and signature.",
+      "canonical_id": "sapi.v1.quota.list_4a86"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch Ethereum staking account details.",
+      "canonical_id": "sapi.v2.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch Ethereum staking redemption history by timestamp and signature.",
+      "canonical_id": "sapi.v1.redemptionHistory.list_d7a0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of soft staking activities.",
+      "canonical_id": "sapi.v1.softStaking.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch locked history rewards record by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.rewardsRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch locked position details for on-chain yields.",
+      "canonical_id": "sapi.v1.position.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch personal left quota for a specific project using URL, project ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.personalLeftQuota.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rate history for Ethereum staking.",
+      "canonical_id": "sapi.v1.rateHistory.list_d1d5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch rate history for Solana staking.",
+      "canonical_id": "sapi.v1.rateHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch redemption history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redemptionHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch soft staking rewards record by timestamp.",
+      "canonical_id": "sapi.v1.rewardsRecord.list_502b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch Solana staking quota using URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.quota.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch staking history based on URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.stakingHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subscription record history for on-chain yields with locked status.",
+      "canonical_id": "sapi.v1.subscriptionRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the history of wbeth rewards.",
+      "canonical_id": "sapi.v1.wbethRewardsHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch unclaimed rewards for Solana staking history.",
+      "canonical_id": "sapi.v1.unclaimedRewards.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch unwrap history for WBETH staking.",
+      "canonical_id": "sapi.v1.unwrapHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch wrapHistory for wETH staking with specified timestamp and signature.",
+      "canonical_id": "sapi.v1.wrapHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Preview subscription details for a locked on-chain yield project by providing the URL, project ID, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscriptionPreview.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem ETH staking rewards with specified amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create_3e55"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem locked on-chain yields by providing the URL, position ID, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeem SOL staking rewards by creating a redeem request with specified amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.redeem.create_39ec"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the redemption record history for locked on-chain yields.",
+      "canonical_id": "sapi.v1.redemptionRecord.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set auto-subscription for locked on-chain yields.",
+      "canonical_id": "sapi.v1.setAutoSubscribe.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set redeem option for a locked on-chain yield position.",
+      "canonical_id": "sapi.v1.setRedeemOption.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Subscribe to locked on-chain yields by providing the URL, project ID, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subscribe.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a deposit for a managed subaccount.",
+      "canonical_id": "sapi.v1.deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a universal transfer between different account types with specified asset, amount, and timestamp.",
+      "canonical_id": "sapi.v1.universalTransfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a virtual sub-account with specified details.",
+      "canonical_id": "sapi.v1.virtualSubAccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create IP restriction for a sub-account API using specified parameters.",
+      "canonical_id": "sapi.v2.ipRestriction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete IP address from the IP restriction list for a sub-account API.",
+      "canonical_id": "sapi.v1.ipList.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable futures trading for a sub-account with specified URL, email, timestamp, and signature.",
+      "canonical_id": "sapi.v1.enable.create_a307"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable sub-account eOptions with specified URL, email, timestamp, and signature.",
+      "canonical_id": "sapi.v1.enable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch accountSnapshot for a managed subaccount using specified parameters.",
+      "canonical_id": "sapi.v1.accountSnapshot.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asset details for a managed subaccount by providing the URL, email, timestamp, and signature.",
+      "canonical_id": "sapi.v1.asset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch deposit address for a managed subaccount.",
+      "canonical_id": "sapi.v1.address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch future asset details for a managed subaccount by providing the URL, email, timestamp, and signature.",
+      "canonical_id": "sapi.v1.fetchFutureAsset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch information about a managed subaccount.",
+      "canonical_id": "sapi.v1.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch internal transfer details for a sub-account's futures transactions.",
+      "canonical_id": "sapi.v1.internalTransfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch IP restrictions for a sub-account API using specified parameters.",
+      "canonical_id": "sapi.v1.ipRestriction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of sub-accounts.",
+      "canonical_id": "sapi.v1.subAccount.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch marginAsset for a managed subaccount.",
+      "canonical_id": "sapi.v1.marginAsset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch position risk data for a sub-account's futures positions.",
+      "canonical_id": "sapi.v1.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch spotSummary for a sub-account using specified parameters.",
+      "canonical_id": "sapi.v1.spotSummary.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account assets by email with timestamp and signature.",
+      "canonical_id": "sapi.v4.assets.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account assets by email, timestamp, and signature.",
+      "canonical_id": "sapi.v3.assets.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account futures account details by email with timestamp and signature.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account futures account details by email, futures type, timestamp, and signature.",
+      "canonical_id": "sapi.v2.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account futures account summary.",
+      "canonical_id": "sapi.v2.accountSummary.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account margin account details by email with timestamp and signature.",
+      "canonical_id": "sapi.v1.account.list_e1d4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account margin account summary.",
+      "canonical_id": "sapi.v1.accountSummary.list_57ab"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account transfer history by timestamp and signature.",
+      "canonical_id": "sapi.v1.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch sub-account transfer history for a sub-user by providing a timestamp and signature.",
+      "canonical_id": "sapi.v1.subUserHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subAddress for a specified email, coin, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subAddress.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch subHisrec for a specific user's deposit history using URL, email, timestamp, and signature.",
+      "canonical_id": "sapi.v1.subHisrec.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch transaction logs for a managed subaccount by querying with email, start/end time, page, and limit.",
+      "canonical_id": "sapi.v1.queryTransLogForInvestor.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch transaction logs for a managed subaccount by querying with email, start/end time, page, limit, timestamp, and signature.",
+      "canonical_id": "sapi.v1.queryTransLogForTradeParent.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch transaction logs for a managed subaccount within a specified time range, with pagination support.",
+      "canonical_id": "sapi.v1.queryTransLog.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch transaction statistics for a sub-account based on a specified timestamp.",
+      "canonical_id": "sapi.v1.transactionStatistics.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch universalTransfer data for a sub-account with specified parameters.",
+      "canonical_id": "sapi.v1.universalTransfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a transfer between sub-accounts for futures trading.",
+      "canonical_id": "sapi.v1.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a transfer between sub-accounts with specified details like email, asset, amount, and type.",
+      "canonical_id": "sapi.v1.transfer.create_fe71"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a withdrawal from a managed subaccount with specified details like URL, email, asset, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.withdraw.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate an internal transfer between sub-accounts for futures trading.",
+      "canonical_id": "sapi.v1.internalTransfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move futures position for a sub-account.",
+      "canonical_id": "sapi.v1.movePosition.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move futures position from one sub-account to another.",
+      "canonical_id": "sapi.v1.movePosition.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve position risk details for a sub-account's futures positions.",
+      "canonical_id": "sapi.v2.positionRisk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve sub-account status by providing URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.status.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the account summary for a sub-account's futures trading.",
+      "canonical_id": "sapi.v1.accountSummary.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer assets from a sub-account to the master account.",
+      "canonical_id": "sapi.v1.subToMaster.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer assets from one sub-account to another sub-account.",
+      "canonical_id": "sapi.v1.subToSub.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a borrow request with specified loan and collateral details.",
+      "canonical_id": "sapi.v1.borrow.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a loan renewal for a VIP customer.",
+      "canonical_id": "sapi.v1.renew.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repayment for a VIP loan order.",
+      "canonical_id": "sapi.v1.repay.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch accrued interest for a VIP loan using specified timestamp and signature.",
+      "canonical_id": "sapi.v1.accruedInterest.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch loanable data for VIP loans.",
+      "canonical_id": "sapi.v1.data.list_718d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch ongoing VIP loan orders.",
+      "canonical_id": "sapi.v1.orders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VIP collateral account details.",
+      "canonical_id": "sapi.v1.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VIP loan collateral data by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.data.list_2fd4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VIP loan interest rate by providing loanCoin, timestamp, and signature.",
+      "canonical_id": "sapi.v1.interestRate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VIP loan interest rate history.",
+      "canonical_id": "sapi.v1.interestRateHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VIP loan request data by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.data.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Apply for a local entity withdrawal with specified details like coin, address, amount, and questionnaire.",
+      "canonical_id": "sapi.v1.apply.create_ee76"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Apply for a withdrawal of capital with specified coin, address, amount, timestamp, and signature.",
+      "canonical_id": "sapi.v1.apply.create_a399"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Apply for a withdrawal with specified details and questionnaire.",
+      "canonical_id": "sapi.v1.apply.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Convert dust assets to a specified asset with timestamp and signature verification.",
+      "canonical_id": "sapi.v1.convert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a bnbBurn with specified URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.bnbBurn.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a credit application for deposit capital.",
+      "canonical_id": "sapi.v1.creditApply.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create dust for a specific asset with the provided URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.dust.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create dust-btc asset in the specified URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.dustBtc.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable fast withdraw switch for an account.",
+      "canonical_id": "sapi.v1.disableFastWithdrawSwitch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable fast withdraw switch for an account.",
+      "canonical_id": "sapi.v1.enableFastWithdrawSwitch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of deposit addresses for a specific coin.",
+      "canonical_id": "sapi.v1.address.list_a71f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of withdrawal addresses.",
+      "canonical_id": "sapi.v1.address.list_3a8c"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch accountSnapshot data using specified parameters.",
+      "canonical_id": "sapi.v1.accountSnapshot.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all capital configurations.",
+      "canonical_id": "sapi.v1.getall.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch asset dividend information by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.assetDividend.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch cloud mining ledger transfers by page with specified query parameters.",
+      "canonical_id": "sapi.v1.queryByPage.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch delist schedule for a specific URL.",
+      "canonical_id": "sapi.v1.delistSchedule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch deposit address for a specific coin by providing the URL, coin, timestamp, and signature.",
+      "canonical_id": "sapi.v1.address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch deposit history for a local entity.",
+      "canonical_id": "sapi.v2.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch deposit history for a local entity.",
+      "canonical_id": "sapi.v1.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch dribblet by URL with timestamp and signature.",
+      "canonical_id": "sapi.v1.dribblet.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch list of address verifications.",
+      "canonical_id": "sapi.v1.addressVerify.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the list of open symbols.",
+      "canonical_id": "sapi.v1.spot.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch trade fee information for a specific asset.",
+      "canonical_id": "sapi.v1.tradeFee.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch transfer details by URL, type, timestamp, and signature.",
+      "canonical_id": "sapi.v1.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch VASP details by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.vasp.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch wallet balance by providing the URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch withdrawal history by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.history.list_bf78"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch withdrawal history by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v2.history.list_9166"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch withdrawal history for a local entity.",
+      "canonical_id": "sapi.v1.history.list_c218"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate asset transfer with specified details.",
+      "canonical_id": "sapi.v1.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query convertible assets for dust conversion.",
+      "canonical_id": "sapi.v1.queryConvertibleAssets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account information.",
+      "canonical_id": "sapi.v1.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account status with timestamp and signature verification.",
+      "canonical_id": "sapi.v1.status.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve API restrictions for the account.",
+      "canonical_id": "sapi.v1.apiRestrictions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve asset details by providing the URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.assetDetail.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve custody transfer history for a specified user by providing email, start time, end time, timestamp, and signature.",
+      "canonical_id": "sapi.v1.transferHistory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve deposit history records by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.hisrec.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve funding asset information by URL, timestamp, and signature.",
+      "canonical_id": "sapi.v1.getFundingAsset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve questionnaire requirements for a local entity.",
+      "canonical_id": "sapi.v1.questionnaireRequirements.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve system status.",
+      "canonical_id": "sapi.v1.status.list_6265"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current status of API trading.",
+      "canonical_id": "sapi.v1.apiTradingStatus.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve user's asset information.",
+      "canonical_id": "sapi.v3.getUserAsset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve withdrawal quota information.",
+      "canonical_id": "sapi.v1.quota.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update provide-info for a local entity broker deposit by providing necessary information.",
+      "canonical_id": "sapi.v1.provideInfo.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update provide-info for a local entity deposit with specified details like URL, transaction ID, questionnaire, timestamp, and signature.",
+      "canonical_id": "sapi.v1.provideInfo.update_5460"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update provide-info for a local entity deposit with specified details.",
+      "canonical_id": "sapi.v2.provideInfo.update"
+    }
+  ]
+}

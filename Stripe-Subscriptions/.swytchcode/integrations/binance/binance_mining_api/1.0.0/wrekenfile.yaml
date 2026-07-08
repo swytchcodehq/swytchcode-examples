@@ -1,0 +1,480 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://api.binance.com
+METHODS:
+  sapi.v1.config.create:
+    SUMMARY: Create config
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/mining/hash-transfer/config
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          LOCATION: query
+      - startDate:
+          TYPE: STRING
+          LOCATION: query
+      - toPoolUser:
+          TYPE: STRING
+          LOCATION: query
+      - hashRate:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.config.create
+  sapi.v1.cancel.create:
+    SUMMARY: Create cancel
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/mining/hash-transfer/config/cancel
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - configId:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.cancel.create
+  sapi.v1.details.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/hash-transfer/config/details/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.details.list
+  sapi.v1.details.list_bd49:
+    SUMMARY: Fetch details
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/hash-transfer/profit/details
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - configId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.details.list_bd49
+  sapi.v1.payment.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/payment/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.payment.list
+  sapi.v1.other.list:
+    SUMMARY: Fetch other
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/payment/other
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.other.list
+  sapi.v1.uid.list:
+    SUMMARY: Fetch uid
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/payment/uid
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.uid.list
+  sapi.v1.algoList.list:
+    SUMMARY: Fetch algoList
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/pub/algoList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.algoList.list
+  sapi.v1.coinList.list:
+    SUMMARY: Fetch coinList
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/pub/coinList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.coinList.list
+  sapi.v1.user.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/statistics/user/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.user.list
+  sapi.v1.status.list:
+    SUMMARY: Fetch status
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/statistics/user/status
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.status.list
+  sapi.v1.detail.list:
+    SUMMARY: Fetch detail
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/worker/detail
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - workerName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.detail.list
+  sapi.v1.worker.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/mining/worker/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algo:
+          TYPE: STRING
+          LOCATION: query
+      - userName:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.worker.list

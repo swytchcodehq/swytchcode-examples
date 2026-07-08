@@ -1,0 +1,5504 @@
+VERSION: 2.0.2
+DEFAULTS:
+  api-key: <API-KEY>
+  w_base_url: https://api.bridge.xyz/v0
+METHODS:
+  wallets.wallet.list:
+    SUMMARY: Get all Bridge Wallets
+    DESC: List of Bridge Wallets
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /wallets
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BridgeWalletsList)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(BridgeWalletsList)
+        RETURNVAR: wallets_wallet_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: wallets.wallet.list
+  wallets.total_balance.list:
+    SUMMARY: Get total balances of all Bridge Wallets
+    DESC: Get the total balances of all Bridge Wallets
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /wallets/total_balances
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(BridgeWalletTotalBalance)"
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(BridgeWalletTotalBalance)"
+        RETURNVAR: wallets_total_balance_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: wallets.total_balance.list
+  wallets.history.get:
+    SUMMARY: Get transaction history for a Bridge Wallet
+    DESC: Get the list of transactions involving this Bridge Wallet
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /wallets/{bridgeWalletID}/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BridgeWalletHistory)
+    INPUTS:
+      - bridgeWalletID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(BridgeWalletHistory)
+        RETURNVAR: wallets_history_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: wallets.history.get
+  customers.customer.list:
+    SUMMARY: Get all customers
+    DESC: Get the full list of all customers created on Bridge
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.customer.listResponse200)
+    INPUTS:
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - email:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.customer.listResponse200)
+        RETURNVAR: customers_customer_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.customer.list
+  customers.customer.create:
+    SUMMARY: Create a customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(customers.customer.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Customer)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(customers.customer.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Customer)
+        RETURNVAR: customers_customer_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.customer.create
+  customers.customer.get:
+    SUMMARY: Get a single customer object
+    DESC: Retrieve a customer object from the passed in customer ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Customer)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Customer)
+        RETURNVAR: customers_customer_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.customer.get
+  customers.customer.update:
+    SUMMARY: Update a single customer object
+    DESC: |
+      Updates to be made to the specified customer.
+
+      No fields are strictly required by the API. It is generally valid to provide any subset of data in a PUT request. For business customers, associated persons cannot be updated via PUT, and should instead be managed using v0/associated_persons.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(customers.customer.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Customer)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(customers.customer.updateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Customer)
+        RETURNVAR: customers_customer_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.customer.update
+  customers.customer.delete:
+    SUMMARY: Delete a single customer object
+    DESC: Delete a customer object from the passed in customer ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /customers/{customerID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Customer)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Customer)
+        RETURNVAR: customers_customer_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.customer.delete
+  customers.external_account.get:
+    SUMMARY: Get all External Accounts
+    DESC: Get all External Accounts for a passed in customer.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/external_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.external_account.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.external_account.getResponse200)
+        RETURNVAR: customers_external_account_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.external_account.get
+  customers.external_account.create:
+    SUMMARY: Create a new External Account
+    DESC: |
+      _Note_: If adding US external accounts, we recommend reading through the US Beneficiary Address Validation doc ([link](https://apidocs.bridge.xyz/docs/us-beneficiary-address-validation)) to avoid issues related to incorrect addresses.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/external_accounts
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateExternalAccountInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateExternalAccountInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalAccountResponse)
+        RETURNVAR: customers_external_account_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.external_account.create
+  customers.external_account.get_2237:
+    SUMMARY: Retrieve an External Account object
+    DESC: Retrieve an External Account object (banks, debit cards etc) from the passed in customer ID and External Account ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/external_accounts/{externalAccountID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalAccountResponse)
+        RETURNVAR: customers_external_account_get_2237
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.external_account.get_2237
+  customers.external_account.update:
+    SUMMARY: Update an External Account
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}/external_accounts/{externalAccountID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateExternalAccountInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateExternalAccountInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalAccountResponse)
+        RETURNVAR: customers_external_account_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.external_account.update
+  customers.external_account.delete:
+    SUMMARY: Delete a single External Account object
+    DESC: Delete an External Account object from the passed in External Account ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /customers/{customerID}/external_accounts/{externalAccountID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalAccountResponse)
+        RETURNVAR: customers_external_account_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.external_account.delete
+  customers.associated_person.get:
+    SUMMARY: Get associated persons for a business customer
+    DESC: Get all associated persons for a business customer.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/associated_persons
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.associated_person.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.associated_person.getResponse200)
+        RETURNVAR: customers_associated_person_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.associated_person.get
+  customers.associated_person.create:
+    SUMMARY: Create a new associated person for a business customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/associated_persons
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AssociatedPerson)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(AssociatedPerson)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: customers_associated_person_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.associated_person.create
+  customers.associated_person.get_fb0f:
+    SUMMARY: Get a single associated person
+    DESC: Retrieve an associated person by ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/associated_persons/{associatedPersonID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: customers_associated_person_get_fb0f
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.associated_person.get_fb0f
+  customers.associated_person.update:
+    SUMMARY: Update a single associated person
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}/associated_persons/{associatedPersonID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AssociatedPerson)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AssociatedPerson)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: customers_associated_person_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.associated_person.update
+  customers.associated_person.delete:
+    SUMMARY: Delete a single associated person
+    DESC: Delete an associated person by ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /customers/{customerID}/associated_persons/{associatedPersonID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: customers_associated_person_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.associated_person.delete
+  customers.fiat_payout_configuration.get:
+    SUMMARY: Get the fiat payout configuration for a customer
+    DESC: |
+      Retrieve the fiat payout configuration for the given customer ID. This configuration determines which payout method (bridge, developer, payment_provider, or customer) is used for each currency and payment rail combination.
+
+      The configuration is a nested hash structure where:
+      - Top-level keys are currency codes (e.g., "usd", "eur", "brl", "mxn")
+      - Second-level keys are payment rail codes (e.g., "wire", "ach", "sepa", "pix", "spei")
+      - Values are payout names: `bridge`, `developer`, `payment_provider`, or `customer`
+
+      Currently, only the following values are supported for the payout method:
+      - usd.wire: `developer`, `customer`
+      - usd.ach: `bridge`
+      - eur.sepa: `bridge`
+      - brl.pix: `payment_provider`
+      - mxn.spei: `payment_provider`
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/fiat_payout_configuration
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FiatPayoutConfigurationResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(FiatPayoutConfigurationResponse)
+        RETURNVAR: customers_fiat_payout_configuration_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.fiat_payout_configuration.get
+  customers.fiat_payout_configuration.update:
+    SUMMARY: Update the fiat payout configuration for a customer
+    DESC: |
+      Update the fiat payout configuration for the given customer ID. This configuration determines which payout method (bridge, developer, payment_provider, or customer) is used for each currency and payment rail combination.
+
+      The configuration is a nested hash structure where:
+      - Top-level keys are currency codes (e.g., "usd", "eur", "brl", "mxn")
+      - Second-level keys are payment rail codes (e.g., "wire", "ach", "sepa", "pix", "spei")
+      - Values are payout names: `bridge`, `developer`, `payment_provider`, or `customer`
+
+      Currently, only the following values are supported for the payout method:
+      - usd.wire: `developer`, `customer`
+      - usd.ach: `bridge`
+      - eur.sepa: `bridge`
+      - brl.pix: `payment_provider`
+      - mxn.spei: `payment_provider`
+
+      Only the currency/payment rail combinations provided will be updated. Other existing configurations will remain unchanged.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /customers/{customerID}/fiat_payout_configuration
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PatchFiatPayoutConfigurationInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FiatPayoutConfigurationResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PatchFiatPayoutConfigurationInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(FiatPayoutConfigurationResponse)
+        RETURNVAR: customers_fiat_payout_configuration_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: STRUCT(Error)
+        STATUS: 403
+        WHEN: Request not allowed. Contact your account manager to be enabled for this feature. Additional fees apply. (HTTP 403)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.fiat_payout_configuration.update
+  customers.external_account.reactivate.create:
+    SUMMARY: Reactivate an External Account
+    DESC: Reactivate a previously deactivated External Account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/external_accounts/{externalAccountID}/reactivate
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ExternalAccountResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ExternalAccountResponse)
+        RETURNVAR: customers_external_account_reactivate_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+    CANONICAL_ID: customers.external_account.reactivate.create
+  customers.tos_acceptance_link.get:
+    SUMMARY: Retrieve a hosted URL for ToS acceptance for an existing customer
+    DESC: The page at the returned URL will guide the user through the Bridge Terms of Service (ToS) acceptance flow. This can be used by existing customers to accept a new version of the ToS.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/tos_acceptance_link
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.tos_acceptance_link.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.tos_acceptance_link.getResponse200)
+        RETURNVAR: customers_tos_acceptance_link_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.tos_acceptance_link.get
+  customers.kyc_link.get:
+    SUMMARY: Retrieve a hosted KYC Link for an existing customer
+    DESC: |-
+      The page at the returned URL will guide the user through a Bridge KYC flow. This can be used by existing customers to provide additional KYC information required for certain features or services that Bridge offers.
+
+      For example, to enable an existing customer to use the `SEPA`/`Euro` services, they are required to provide `proof of address`. An additional parameter, `endorsement=sepa`, can be included to request a KYC link specifically for this purpose
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/kyc_link
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.kyc_link.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - endorsement:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - redirect_uri:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.kyc_link.getResponse200)
+        RETURNVAR: customers_kyc_link_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.kyc_link.get
+  customers.transfer.get:
+    SUMMARY: Get all transfers
+    DESC: Get all active and completed transfers for a customer.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/transfers
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.transfer.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - state:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.transfer.getResponse200)
+        RETURNVAR: customers_transfer_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.transfer.get
+  customers.static_template.get:
+    SUMMARY: Get all static templates for a customer
+    DESC: Get all static templates for a customer. Static templates are transfers that are used as templates for other transfers and can be created using the static_templates feature flag.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/static_templates
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.static_template.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.static_template.getResponse200)
+        RETURNVAR: customers_static_template_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.static_template.get
+  customers.tos_link.create:
+    SUMMARY: Request a hosted URL for ToS acceptance for new customer creation
+    DESC: The URL endpoint returned will guide the user through a Bridge TOS flow. Signing this acceptance flow is a requirement for creating customers.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/tos_links
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.tos_link.createResponse201)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.tos_link.createResponse201)
+        RETURNVAR: customers_tos_link_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.tos_link.create
+  customers.plaid_link_request.create:
+    SUMMARY: Generate a Plaid Link token for a customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/plaid_link_requests
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PlaidLinkRequest)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PlaidLinkRequest)
+        RETURNVAR: customers_plaid_link_request_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.plaid_link_request.create
+  plaid_exchange_public_token.plaid_exchange_public_token.create:
+    SUMMARY: Exchange Plaid public token for an access token
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /plaid_exchange_public_token/{link_token}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PlaidExchangePublicToken)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(plaid_exchange_public_token.plaid_exchange_public_token.createResponse201)
+    INPUTS:
+      - link_token:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PlaidExchangePublicToken)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(plaid_exchange_public_token.plaid_exchange_public_token.createResponse201)
+        RETURNVAR: plaid_exchange_public_token_plaid_exchange_public_token_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: plaid_exchange_public_token.plaid_exchange_public_token.create
+  transfers.transfer.list:
+    SUMMARY: Get all transfers
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /transfers
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transfers.transfer.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - template_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - state:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(transfers.transfer.listResponse200)
+        RETURNVAR: transfers_transfer_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.transfer.list
+  transfers.transfer.create:
+    SUMMARY: Create a transfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /transfers
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TransferRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(TransferRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: transfers_transfer_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: Client error (HTTP 403)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.transfer.create
+  transfers.transfer.get:
+    SUMMARY: Get a transfer
+    DESC: Retrieve a transfer object from the passed in transfer ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /transfers/{transferID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TransferResponse)
+    INPUTS:
+      - transferID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(TransferResponse)
+        RETURNVAR: transfers_transfer_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.transfer.get
+  transfers.transfer.update:
+    SUMMARY: Update a transfer
+    DESC: Update a transfer that was previously created. Must be in the awaiting_funds state.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /transfers/{transferID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TransferUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TransferResponse)
+    INPUTS:
+      - transferID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(TransferUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(TransferResponse)
+        RETURNVAR: transfers_transfer_update_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: Client error (HTTP 403)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.transfer.update
+  transfers.transfer.delete:
+    SUMMARY: Delete a transfer
+    DESC: Delete a transfer that was previously created. Must be in the awaiting_funds state.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /transfers/{transferID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - transferID:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.transfer.delete
+  transfers.static_template.list:
+    SUMMARY: Get all static templates
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /transfers/static_templates
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transfers.static_template.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(transfers.static_template.listResponse200)
+        RETURNVAR: transfers_static_template_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: transfers.static_template.list
+  prefunded_accounts.prefunded_account.list:
+    SUMMARY: Get a list of all Prefunded Account
+    DESC: Retrieve a all Prefunded Accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /prefunded_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(prefunded_accounts.prefunded_account.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(prefunded_accounts.prefunded_account.listResponse200)
+        RETURNVAR: prefunded_accounts_prefunded_account_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: prefunded_accounts.prefunded_account.list
+  prefunded_accounts.prefunded_account.get:
+    SUMMARY: Get details for a specific Prefunded Account
+    DESC: Retrieve a Prefunded Account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /prefunded_accounts/{prefundedAccountID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PrefundedAccount)
+    INPUTS:
+      - prefundedAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PrefundedAccount)
+        RETURNVAR: prefunded_accounts_prefunded_account_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: prefunded_accounts.prefunded_account.get
+  prefunded_accounts.history.get:
+    SUMMARY: Get funding history of a Prefunded Account
+    DESC: Retrieve the funding events and returns for a Prefunded Account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /prefunded_accounts/{prefundedAccountID}/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PrefundedAccountHistory)
+    INPUTS:
+      - prefundedAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PrefundedAccountHistory)
+        RETURNVAR: prefunded_accounts_history_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: prefunded_accounts.history.get
+  customers.wallet.get:
+    SUMMARY: Get all Bridge Wallets for a customer
+    DESC: List of Bridge Wallets for the specified Customer ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/wallets
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BridgeWalletsList)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(BridgeWalletsList)
+        RETURNVAR: customers_wallet_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.wallet.get
+  customers.wallet.create:
+    SUMMARY: Create a Bridge Wallet
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/wallets
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateBridgeWallet)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateBridgeWalletResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateBridgeWallet)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateBridgeWalletResponse)
+        RETURNVAR: customers_wallet_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.wallet.create
+  customers.wallet.get_2da5:
+    SUMMARY: Get a Bridge Wallet
+    DESC: Retrieve a Bridge Wallet for the specified Bridge Wallet ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/wallets/{bridgeWalletID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BridgeWalletWithBalances)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - bridgeWalletID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(BridgeWalletWithBalances)
+        RETURNVAR: customers_wallet_get_2da5
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.wallet.get_2da5
+  customers.liquidation_address.create:
+    SUMMARY: Create a Liquidation Address
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/liquidation_addresses
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateLiquidationAddress)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CreateLiquidationAddressResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateLiquidationAddress)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CreateLiquidationAddressResponse)
+        RETURNVAR: customers_liquidation_address_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.create
+  customers.liquidation_address.get:
+    SUMMARY: Get all Liquidation Addresses for a customer
+    DESC: Get Liquidation Addresses
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/liquidation_addresses
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.liquidation_address.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.liquidation_address.getResponse200)
+        RETURNVAR: customers_liquidation_address_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.get
+  liquidation_addresses.liquidation_address.list:
+    SUMMARY: Get all Liquidation Addresses
+    DESC: Get Liquidation Addresses
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /liquidation_addresses
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(liquidation_addresses.liquidation_address.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(liquidation_addresses.liquidation_address.listResponse200)
+        RETURNVAR: liquidation_addresses_liquidation_address_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: liquidation_addresses.liquidation_address.list
+  customers.liquidation_address.get_a43d:
+    SUMMARY: Get a Liquidation Address
+    DESC: Retrieve a Liquidation Address for the specified Liquidation Address ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/liquidation_addresses/{liquidationAddressID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(LiquidationAddress)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - liquidationAddressID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(LiquidationAddress)
+        RETURNVAR: customers_liquidation_address_get_a43d
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.get_a43d
+  customers.liquidation_address.update:
+    SUMMARY: Update a Liquidation Address
+    DESC: Update a Liquidation Address for the specified liquidation address ID. Note that `external_account_id` and `custom_developer_fee_percent` can be updated independently and are not both required.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}/liquidation_addresses/{liquidationAddressID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateLiquidationAddress)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(LiquidationAddress)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - liquidationAddressID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateLiquidationAddress)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(LiquidationAddress)
+        RETURNVAR: customers_liquidation_address_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.update
+  customers.liquidation_address.drains.get:
+    SUMMARY: Get drain history of a Liquidation Address
+    DESC: Get drain history of a Liquidation Address
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/liquidation_addresses/{liquidationAddressID}/drains
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - liquidationAddressID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: customers_liquidation_address_drains_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.drains.get
+  customers.liquidation_address.balances.get:
+    SUMMARY: Get the balance of a Liquidation Address (deprecated)
+    DESC: Get the balance of a Liquidation Address. Note that most Liquidation Addresses no longer hold a balance. To check recent activity on a Liquidation Address, use the `/customers/{customerID}/liquidation_addresses/{liquidationAddressID}/drains` endpoint.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/liquidation_addresses/{liquidationAddressID}/balances
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - liquidationAddressID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: customers_liquidation_address_balances_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.liquidation_address.balances.get
+  customers.virtual_account.create:
+    SUMMARY: Create a Virtual Account
+    DESC: Create a Virtual Account or Virtual IBAN for the specified customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/virtual_accounts
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateVirtualAccount)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VirtualAccountResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(CreateVirtualAccount)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(VirtualAccountResponse)
+        RETURNVAR: customers_virtual_account_create
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.create
+  customers.virtual_account.get:
+    SUMMARY: List Virtual Accounts by Customer
+    DESC: List all Virtual Account objects for a customer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/virtual_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.virtual_account.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.virtual_account.getResponse200)
+        RETURNVAR: customers_virtual_account_get
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.get
+  customers.virtual_account.get_27f3:
+    SUMMARY: Get a Virtual Account
+    DESC: Retrieve the Virtual Account object from the passed ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/virtual_accounts/{virtualAccountID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VirtualAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - virtualAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(VirtualAccountResponse)
+        RETURNVAR: customers_virtual_account_get_27f3
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.get_27f3
+  customers.virtual_account.update:
+    SUMMARY: Update a Virtual Account
+    DESC: Update instructions for an existing Virtual Account
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}/virtual_accounts/{virtualAccountID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateVirtualAccount)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VirtualAccountResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - virtualAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateVirtualAccount)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(VirtualAccountResponse)
+        RETURNVAR: customers_virtual_account_update
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.update
+  customers.virtual_account.deactivate.create:
+    SUMMARY: Deactivate a Virtual Account
+    DESC: Deactivate a Virtual Account to prevent it from acceping new incoming transactions
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/virtual_accounts/{virtualAccountID}/deactivate
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - virtualAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: customers_virtual_account_deactivate_create
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.deactivate.create
+  customers.virtual_account.reactivate.create:
+    SUMMARY: Reactivate a Virtual Account
+    DESC: Reactivate a previously deactivated Virtual Account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/virtual_accounts/{virtualAccountID}/reactivate
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VirtualAccountResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - virtualAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(VirtualAccountResponse)
+        RETURNVAR: customers_virtual_account_reactivate_create
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.reactivate.create
+  customers.virtual_account.history.get:
+    SUMMARY: Virtual Account Activity
+    DESC: History of activity for a Virtual Account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/virtual_accounts/{virtualAccountID}/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.virtual_account.history.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - virtualAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - deposit_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - deposit_ids:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - event_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.virtual_account.history.getResponse200)
+        RETURNVAR: customers_virtual_account_history_get
+        STATUS: 200
+    CANONICAL_ID: customers.virtual_account.history.get
+  static_memos.static_memo.list:
+    SUMMARY: List Static Memos
+    DESC: List all Static Memo objects
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /static_memos
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(static_memos.static_memo.listResponse200)
+    INPUTS:
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(static_memos.static_memo.listResponse200)
+        RETURNVAR: static_memos_static_memo_list
+        STATUS: 200
+    CANONICAL_ID: static_memos.static_memo.list
+  customers.static_memo.create:
+    SUMMARY: Create a Static Memo
+    DESC: Create a Static Memo for the specified customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/static_memos
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateStaticMemo)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(StaticMemoResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(CreateStaticMemo)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(StaticMemoResponse)
+        RETURNVAR: customers_static_memo_create
+        STATUS: 200
+    CANONICAL_ID: customers.static_memo.create
+  customers.static_memo.get:
+    SUMMARY: List Static Memos for Customer
+    DESC: List all Static Memo objects for a customer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/static_memos
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.static_memo.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.static_memo.getResponse200)
+        RETURNVAR: customers_static_memo_get
+        STATUS: 200
+    CANONICAL_ID: customers.static_memo.get
+  customers.static_memo.get_ea0f:
+    SUMMARY: Get a Static Memo
+    DESC: Retrieve the Static Memo object from the passed ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/static_memos/{staticMemoID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(StaticMemoResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - staticMemoID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(StaticMemoResponse)
+        RETURNVAR: customers_static_memo_get_ea0f
+        STATUS: 200
+    CANONICAL_ID: customers.static_memo.get_ea0f
+  customers.static_memo.update:
+    SUMMARY: Update a Static Memo
+    DESC: Update instructions for an existing Static Memo
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /customers/{customerID}/static_memos/{staticMemoID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UpdateStaticMemo)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(StaticMemoResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - staticMemoID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UpdateStaticMemo)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(StaticMemoResponse)
+        RETURNVAR: customers_static_memo_update
+        STATUS: 200
+    CANONICAL_ID: customers.static_memo.update
+  customers.card_account.pin.create:
+    SUMMARY: Create Card PIN Update URL
+    DESC: Generates a URL that can be used to render a secure frame to update the PIN for a card account. The URL is single-use and time-limited.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/pin
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardPinUpdateResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardPinUpdateResponse)
+        RETURNVAR: customers_card_account_pin_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.pin.create
+  customers.card_account.ephemeralKeys.create:
+    SUMMARY: Generate an Ephemeral Key to Reveal Card Details
+    DESC: Generates a one-time ephemeral key that can be used to reveal card details. Please see the integration guide on [safely revealing card details](https://apidocs.bridge.xyz/docs/safely-reveal-card-details-to-customers) for more information.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/ephemeral_keys
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardAccountEphemeralKeyInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardAccountEphemeralKeyResponse)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardAccountEphemeralKeyInput)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardAccountEphemeralKeyResponse)
+        RETURNVAR: customers_card_account_ephemeralKeys_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.ephemeralKeys.create
+  customers.static_memo.history.get:
+    SUMMARY: Static Memo Activity
+    DESC: History of activity for a Static Memo
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/static_memos/{staticMemoID}/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.static_memo.history.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - staticMemoID:
+          TYPE: STRING
+          LOCATION: path
+      - deposit_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - deposit_ids:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - event_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.static_memo.history.getResponse200)
+        RETURNVAR: customers_static_memo_history_get
+        STATUS: 200
+    CANONICAL_ID: customers.static_memo.history.get
+  customers.batch_settlement_schedule.create:
+    SUMMARY: Create a Batch Settlement Schedule
+    DESC: Creates a Batch Settlement Schedule that can be used as the destination of a liquidation address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/batch_settlement_schedules
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateBatchSettlementSchedule)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.batch_settlement_schedule.createResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateBatchSettlementSchedule)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.batch_settlement_schedule.createResponse200)
+        RETURNVAR: customers_batch_settlement_schedule_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.batch_settlement_schedule.create
+  external_accounts.external_account.list:
+    SUMMARY: Get all External Accounts
+    DESC: Get all External Accounts.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /external_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(external_accounts.external_account.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(external_accounts.external_account.listResponse200)
+        RETURNVAR: external_accounts_external_account_list
+        STATUS: 200
+    CANONICAL_ID: external_accounts.external_account.list
+  virtual_accounts.virtual_account.list:
+    SUMMARY: List Virtual Accounts
+    DESC: List all Virtual Account objects
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /virtual_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(virtual_accounts.virtual_account.listResponse200)
+    INPUTS:
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(virtual_accounts.virtual_account.listResponse200)
+        RETURNVAR: virtual_accounts_virtual_account_list
+        STATUS: 200
+    CANONICAL_ID: virtual_accounts.virtual_account.list
+  virtual_accounts.history.list:
+    SUMMARY: Virtual Account Activity Across All Customers
+    DESC: History of activity across all customers and Virtual Accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /virtual_accounts/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(virtual_accounts.history.listResponse200)
+    INPUTS:
+      - deposit_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - deposit_ids:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - event_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(virtual_accounts.history.listResponse200)
+        RETURNVAR: virtual_accounts_history_list
+        STATUS: 200
+    CANONICAL_ID: virtual_accounts.history.list
+  developer.fee.list:
+    SUMMARY: Get the configured fees
+    DESC: Get fees that have been configured for supported products.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /developer/fees
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(DeveloperFees)
+    RETURNS:
+      - RETURNTYPE: STRUCT(DeveloperFees)
+        RETURNVAR: developer_fee_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.fee.list
+  developer.fee.create:
+    SUMMARY: Update the configured fees
+    DESC: Update fees for supported products.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /developer/fees
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(DeveloperFees)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(DeveloperFees)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: developer_fee_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.fee.create
+  developer.fee_external_account.list:
+    SUMMARY: Get the configured fee External Account
+    DESC: Get the configured fee External Account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /developer/fee_external_account
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FeeExternalAccount)
+    RETURNS:
+      - RETURNTYPE: STRUCT(FeeExternalAccount)
+        RETURNVAR: developer_fee_external_account_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.fee_external_account.list
+  developer.fee_external_account.create:
+    SUMMARY: Configure a fee External Account
+    DESC: Configure a fee External Account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /developer/fee_external_account
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateFeeExternalAccountInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FeeExternalAccount)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateFeeExternalAccountInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(FeeExternalAccount)
+        RETURNVAR: developer_fee_external_account_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.fee_external_account.create
+  developer.card.summary.list:
+    SUMMARY: Get a summary of your card program
+    DESC: Get a summary of your card program, optionally for a specific period.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /developer/cards/summary
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardProgramSummary)
+    INPUTS:
+      - period:
+          TYPE: STRING
+          LOCATION: query
+      - period_key:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardProgramSummary)
+        RETURNVAR: developer_card_summary_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.card.summary.list
+  developer.card.designs.list:
+    SUMMARY: Get a listing of your card program's card designs
+    DESC: Get a listing of the designs that you can use to issue a card with.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /developer/cards/designs
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardDesigns)
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardDesigns)
+        RETURNVAR: developer_card_designs_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: developer.card.designs.list
+  kyc_links.kyc_link.create:
+    SUMMARY: Generate the Links needs to complete KYC for an individual or business
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /kyc_links
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateKycLinks)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(IndividualKycLinkResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateKycLinks)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(IndividualKycLinkResponse)
+        RETURNVAR: kyc_links_kyc_link_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: kyc_links.kyc_link.create
+  kyc_links.kyc_link.list:
+    SUMMARY: Get all KYC links.
+    DESC: Retrieve the full list of kyc links.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /kyc_links
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(kyc_links.kyc_link.listResponse200)
+    INPUTS:
+      - customer_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - email:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(kyc_links.kyc_link.listResponse200)
+        RETURNVAR: kyc_links_kyc_link_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: kyc_links.kyc_link.list
+  kyc_links.kyc_link.get:
+    SUMMARY: Check the status of a KYC link
+    DESC: Retrieve the status of a KYC request from the passed in KYC link id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /kyc_links/{kycLinkID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(IndividualKycLinkResponse)
+    INPUTS:
+      - kycLinkID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(IndividualKycLinkResponse)
+        RETURNVAR: kyc_links_kyc_link_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: kyc_links.kyc_link.get
+  static_memos.history.list:
+    SUMMARY: Static Memo Activity Across All Customers
+    DESC: History of activity across all customers and Virtual Accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /static_memos/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(static_memos.history.listResponse200)
+    INPUTS:
+      - deposit_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - deposit_ids:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - tx_hash:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - event_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(static_memos.history.listResponse200)
+        RETURNVAR: static_memos_history_list
+        STATUS: 200
+    CANONICAL_ID: static_memos.history.list
+  funds_requests.funds_request.list:
+    SUMMARY: Get all funds requests
+    DESC: Retrieve a list of all funds requests submitted by partnered banks and financial institutions
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /funds_requests
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(funds_requests.funds_request.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - customer_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - fraud:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - notice_date_starting_on:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - notice_date_ending_on:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(funds_requests.funds_request.listResponse200)
+        RETURNVAR: funds_requests_funds_request_list
+        STATUS: 200
+    CANONICAL_ID: funds_requests.funds_request.list
+  webhooks.webhook.list:
+    SUMMARY: Get all webhook endpoints
+    DESC: Get the full list of active and disabled webhook endpoints configured on Bridge
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhooks.webhook.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhooks.webhook.listResponse200)
+        RETURNVAR: webhooks_webhook_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.webhook.list
+  webhooks.webhook.create:
+    SUMMARY: Create a webhook endpoint
+    DESC: Create a new webhook endpoint to receive events from Bridge. Webhook endpoints begin in a disabled state and can be enabled with a PUT request. A maximum of 5 webhooks can be active or disabled at one time. Webhook endpoints can be created in Sandbox, but no webhook events will be sent.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateWebhook)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Webhook)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(CreateWebhook)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Webhook)
+        RETURNVAR: webhooks_webhook_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.webhook.create
+  webhooks.webhook.update:
+    SUMMARY: Update a webhook
+    DESC: Update the specified webhook object
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /webhooks/{webhookID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PutWebhookPayload)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Webhook)
+    INPUTS:
+      - webhookID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PutWebhookPayload)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Webhook)
+        RETURNVAR: webhooks_webhook_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.webhook.update
+  webhooks.webhook.delete:
+    SUMMARY: Delete a webhook
+    DESC: Delete the specified webhook object. This webhook will no longer be accessible via API.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webhooks/{webhookID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Webhook)
+    INPUTS:
+      - webhookID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Webhook)
+        RETURNVAR: webhooks_webhook_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.webhook.delete
+  webhooks.event.get:
+    SUMMARY: List upcoming events
+    DESC: List the next 10 events that will be delivered to the specified webhook.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/{webhookID}/events
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhooks.event.getResponse200)
+    INPUTS:
+      - webhookID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhooks.event.getResponse200)
+        RETURNVAR: webhooks_event_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.event.get
+  webhooks.log.get:
+    SUMMARY: View logs
+    DESC: Display the most recent logs for deliveries to the specified webhook.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/{webhookID}/logs
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhooks.log.getResponse200)
+    INPUTS:
+      - webhookID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhooks.log.getResponse200)
+        RETURNVAR: webhooks_log_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.log.get
+  webhooks.send.create:
+    SUMMARY: Send event
+    DESC: Send an event to the specified webhook endpoint. This will not effect other events in the delivery queue. This operation is possible for both active and disabled webhook endpoints.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks/{webhookID}/send
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendWebhookPayload)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhooks.send.createResponse200)
+    INPUTS:
+      - webhookID:
+          TYPE: STRING
+          LOCATION: path
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(SendWebhookPayload)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhooks.send.createResponse200)
+        RETURNVAR: webhooks_send_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhooks.send.create
+  webhook_events.webhook_event.list:
+    SUMMARY: List webhook events
+    DESC: List all webhook events for your account. Events are ordered by their event_sequence in ascending order. Only events with assigned event_sequence values are returned. Results are limited to the last 90 days by default (configurable via feature flag).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhook_events
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhook_events.webhook_event.listResponse200)
+    INPUTS:
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - category:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhook_events.webhook_event.listResponse200)
+        RETURNVAR: webhook_events_webhook_event_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: webhook_events.webhook_event.list
+  associated_persons.associated_person.get:
+    SUMMARY: Get a single associated person
+    DESC: Retrieve an associated person by ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /associated_persons/{associatedPersonID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: associated_persons_associated_person_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: associated_persons.associated_person.get
+  associated_persons.associated_person.update:
+    SUMMARY: Update a single associated person
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /associated_persons/{associatedPersonID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AssociatedPerson)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AssociatedPerson)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: associated_persons_associated_person_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: associated_persons.associated_person.update
+  associated_persons.associated_person.delete:
+    SUMMARY: Delete a single associated person
+    DESC: Delete an associated person by ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /associated_persons/{associatedPersonID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociatedPersonResponse)
+    INPUTS:
+      - associatedPersonID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociatedPersonResponse)
+        RETURNVAR: associated_persons_associated_person_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: associated_persons.associated_person.delete
+  exchange_rates.exchange_rate.list:
+    SUMMARY: Get current exchange rate between two currencies.
+    DESC: |
+      Returns the current exchange rate from the "from" currency to the "to" currency.
+      The exchange rate is updated roughly every 30s. Note that as of this writing,
+      Bridge does not offer a "quote" by which a user can lock in a rate for a given
+      amount of time. This is provided only as a courtesy to estimate what you are
+      likely to get in a subsequent transfer request that involves currency exchange.
+
+      As of January 2026, we support:
+        - `USD <> EUR`
+        - `USD <> MXN`
+        - `USD <> BRL`
+        - `USD <> GBP`
+        - `USD <> USDT`
+        - `BTC > USD`
+        - `ETH > USD`
+        - `SOL > USD`
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /exchange_rates
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(exchange_rates.exchange_rate.listResponse200)
+    INPUTS:
+      - from:
+          TYPE: STRING
+          LOCATION: query
+      - to:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(exchange_rates.exchange_rate.listResponse200)
+        RETURNVAR: exchange_rates_exchange_rate_list
+        STATUS: 200
+    CANONICAL_ID: exchange_rates.exchange_rate.list
+  lists.occupation_code.list:
+    SUMMARY: Get occupation codes
+    DESC: |
+      Provide this list of occupation codes to your users as possible answers to the Source of Funds section in the KYC flow. The returned list will resemble the list of occupation codes found [here](https://apidocs.bridge.xyz/page/sof-eu-most-recent-occupation-list).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /lists/occupation_codes
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: lists_occupation_code_list
+        STATUS: 200
+    CANONICAL_ID: lists.occupation_code.list
+  lists.country.list:
+    SUMMARY: Get countries
+    DESC: Returns a list of countries and subdivisions recognized by Bridge. Inclusion in this list does not guarantee Bridge product support for any country or subdivision.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /lists/countries
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(lists.country.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(lists.country.listResponse200)
+        RETURNVAR: lists_country_list
+        STATUS: 200
+    CANONICAL_ID: lists.country.list
+  crypto_return_policies.crypto_return_policy.list:
+    SUMMARY: Get all crypto return policies
+    DESC: Retrieve all crypto return policies for the authenticated developer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crypto_return_policies
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(CryptoReturnPolicy)"
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(CryptoReturnPolicy)"
+        RETURNVAR: crypto_return_policies_crypto_return_policy_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: crypto_return_policies.crypto_return_policy.list
+  crypto_return_policies.crypto_return_policy.create:
+    SUMMARY: Create a new crypto return policy
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crypto_return_policies
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCryptoReturnPoliciesInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CryptoReturnPolicy)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(PostCryptoReturnPoliciesInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CryptoReturnPolicy)
+        RETURNVAR: crypto_return_policies_crypto_return_policy_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: crypto_return_policies.crypto_return_policy.create
+  crypto_return_policies.crypto_return_policy.update:
+    SUMMARY: Update an existing crypto return policy
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /crypto_return_policies/{policyID}
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCryptoReturnPoliciesInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CryptoReturnPolicy)
+    INPUTS:
+      - policyID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCryptoReturnPoliciesInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CryptoReturnPolicy)
+        RETURNVAR: crypto_return_policies_crypto_return_policy_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: crypto_return_policies.crypto_return_policy.update
+  crypto_return_policies.crypto_return_policy.delete:
+    SUMMARY: Delete a single crypto return policy object
+    DESC: Delete a crypto return policy object from the passed in crypto return policy ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crypto_return_policies/{policyID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CryptoReturnPolicy)
+    INPUTS:
+      - policyID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CryptoReturnPolicy)
+        RETURNVAR: crypto_return_policies_crypto_return_policy_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Client error (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: crypto_return_policies.crypto_return_policy.delete
+  customers.card_account.get:
+    SUMMARY: Retrieve a card account
+    DESC: Retrieve the card account with the specified ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardAccount)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardAccount)
+        RETURNVAR: customers_card_account_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.get
+  customers.card_account.get_8c13:
+    SUMMARY: Get all card accounts
+    DESC: Retrieve all card accounts for a customer. Currently, only one account is supported. An empty array will be returned if no card has been provisioned
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.card_account.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.card_account.getResponse200)
+        RETURNVAR: customers_card_account_get_8c13
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.get_8c13
+  customers.card_account.create:
+    SUMMARY: Provision a card account
+    DESC: Provision a card account. Currently, only one account can be provisioned per customer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardAccountsInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardAccount)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardAccountsInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardAccount)
+        RETURNVAR: customers_card_account_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.create
+  customers.card_account.freeze.create:
+    SUMMARY: Place a freeze on the card account
+    DESC: Place a freeze on the card account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/freeze
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardFreezeInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardFreezeInput)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: customers_card_account_freeze_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.freeze.create
+  customers.card_account.unfreeze.create:
+    SUMMARY: Unfreeze the card account
+    DESC: Remove the freeze on the card account placed by the specified initiator
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/unfreeze
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardUnfreezeInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardUnfreezeResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardUnfreezeInput)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardUnfreezeResponse)
+        RETURNVAR: customers_card_account_unfreeze_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.unfreeze.create
+  customers.card_account.createMobileWalletProvisioningRequest.create:
+    SUMMARY: Create a mobile wallet push provisioning request
+    DESC: Create a request to push-provision a virtual card to a mobile wallet. This endpoint is part of a multiple-step integration that must be completed with each mobile wallet partner
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/create_mobile_wallet_provisioning_request
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardPushProvisioningInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardPushProvisioningResponse)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardPushProvisioningInput)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardPushProvisioningResponse)
+        RETURNVAR: customers_card_account_createMobileWalletProvisioningRequest_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.createMobileWalletProvisioningRequest.create
+  customers.card_account.authorizations.get:
+    SUMMARY: Retrieve pending card authorizations
+    DESC: |-
+      Retrieve pending card authorizations.
+      Note: this endpoint is not paginated
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/authorizations
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.card_account.authorizations.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_time:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_time:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.card_account.authorizations.getResponse200)
+        RETURNVAR: customers_card_account_authorizations_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.authorizations.get
+  customers.card_account.transactions.get:
+    SUMMARY: Retrieve card transactions
+    DESC: Retrieve completed card transactions and card-related crypto transaction activities
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/transactions
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.card_account.transactions.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_time:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_time:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - pagination_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - category_family:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.card_account.transactions.getResponse200)
+        RETURNVAR: customers_card_account_transactions_get
+        STATUS: 200
+        PAGINATION:
+          TYPE: page
+          PAGE_SIZE_FIELD: limit
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.transactions.get
+  customers.card_account.transactions.get_7941:
+    SUMMARY: Retrieve a card transaction
+    DESC: Retrieve a card transaction with the specified ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/transactions/{transactionID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardTransaction)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - transactionID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardTransaction)
+        RETURNVAR: customers_card_account_transactions_get_7941
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.transactions.get_7941
+  customers.card_account.authControls.get:
+    SUMMARY: Retrieve authorization controls
+    DESC: Retrieve the applicable spend limits for the given card account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/auth_controls
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.card_account.authControls.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.card_account.authControls.getResponse200)
+        RETURNVAR: customers_card_account_authControls_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.authControls.get
+  customers.card_account.depositAddresses.create:
+    SUMMARY: Provision an additional top-up deposit address for the card account
+    DESC: Provision an additional deposit address for the card account, to allow topping up the card from multiple chains. This is only applicable to Bridge-custodied top-up card accounts. These additional deposit addresses will also be shown in the `additional_funding_instructions` field when fetching the card account details afterwards.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/deposit_addresses
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PostCardAccountDepositAddressInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardAccountFundingInstructions)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PostCardAccountDepositAddressInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardAccountFundingInstructions)
+        RETURNVAR: customers_card_account_depositAddresses_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.depositAddresses.create
+  customers.card_account.withdrawals.create:
+    SUMMARY: Create a funds withdrawal request
+    DESC: Request a funds withdrawal from the card account, applicable to top-up accounts only. For Bridge wallets, create a [transfer](/api-reference/transfers/create-a-transfer) from the Bridge wallet.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/withdrawals
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CardWithdrawal)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardWithdrawal)
+    INPUTS:
+      - Idempotency-Key:
+          TYPE: STRING
+          LOCATION: header
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(CardWithdrawal)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardWithdrawal)
+        RETURNVAR: customers_card_account_withdrawals_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.withdrawals.create
+  customers.card_account.withdrawals.get:
+    SUMMARY: Retrieve the withdrawal history of funds
+    DESC: Retrieve the withdrawal history of funds, applicable to top-up accounts only
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/withdrawals
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(customers.card_account.withdrawals.getResponse200)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(customers.card_account.withdrawals.getResponse200)
+        RETURNVAR: customers_card_account_withdrawals_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.withdrawals.get
+  customers.card_account.withdrawals.get_5d15:
+    SUMMARY: Retrieve a card withdrawal
+    DESC: Retrieve a card withdrawal with the specified ID, applicable to top-up accounts only
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/withdrawals/{cardWithdrawalID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CardWithdrawal)
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - cardWithdrawalID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CardWithdrawal)
+        RETURNVAR: customers_card_account_withdrawals_get_5d15
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.withdrawals.get_5d15
+  customers.card_account.{period}.pdf.create:
+    SUMMARY: Generate a card account statement
+    DESC: Generate a card account statement for the specified period
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /customers/{customerID}/card_accounts/{cardAccountID}/statements/{period}.pdf
+      HEADERS:
+        Content-Type: application/json
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/pdf
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+      - cardAccountID:
+          TYPE: STRING
+          LOCATION: path
+      - period:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: customers_card_account_{period}_pdf_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: customers.card_account.{period}.pdf.create
+  liquidation_addresses.drain.list:
+    SUMMARY: Liquidation Address Activity Across All Customers
+    DESC: History of activity across all customers and Liquidation Addresses
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /liquidation_addresses/drains
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(liquidation_addresses.drain.listResponse200)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - starting_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - ending_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updated_after_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - updated_before_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(liquidation_addresses.drain.listResponse200)
+        RETURNVAR: liquidation_addresses_drain_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Client error (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: liquidation_addresses.drain.list
+  rewards.reward.get:
+    SUMMARY: Get a summary of all rewards for a given stablecoin
+    DESC: Get a summary of all rewards for a given stablecoin
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /rewards/{currency}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(DeveloperRewardSummary)
+    INPUTS:
+      - currency:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(DeveloperRewardSummary)
+        RETURNVAR: rewards_reward_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: rewards.reward.get
+  rewards.customer.get:
+    SUMMARY: Get a summary of a customer's rewards
+    DESC: Get a summary of a customer's rewards
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /rewards/{currency}/customer/{customerID}
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CustomerRewardSummary)
+    INPUTS:
+      - currency:
+          TYPE: STRING
+          LOCATION: path
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CustomerRewardSummary)
+        RETURNVAR: rewards_customer_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: rewards.customer.get
+  rewards.customer.history.get:
+    SUMMARY: Get a history of a customer's rewards
+    DESC: Get a history of a customer's rewards
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /rewards/{currency}/customer/{customerID}/history
+      HEADERS:
+        Api-Key: api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CustomerRewardHistory)
+    INPUTS:
+      - currency:
+          TYPE: STRING
+          LOCATION: path
+      - customerID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CustomerRewardHistory)
+        RETURNVAR: rewards_customer_history_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Client error (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Server error (HTTP 500)
+    CANONICAL_ID: rewards.customer.history.get
+STRUCTS:
+  BridgeWalletTotalBalance:
+    - name: balance
+      type: STRING
+      REQUIRED: true
+      comment: The total balance of wallets in the given currency  ex. "10.95"
+    - name: currency
+      type: STRING
+      REQUIRED: true
+      comment: The currency of the total balance
+    - name: chain
+      type: STRING
+      REQUIRED: true
+      comment: The chain of the total balance
+    - name: contract_address
+      type: STRING
+      REQUIRED: false
+      comment: The contract address of the currency, or null if it is a native currency
+  BridgeWalletsList:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(BridgeWallet)"
+      REQUIRED: true
+  BridgeWalletHistory:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]ANY"
+      REQUIRED: true
+  AssociatedPersonResponse:
+    - name: id
+      type: STRING
+      REQUIRED: true
+      comment: Unique identifier for the associated person
+    - name: email
+      type: STRING
+      REQUIRED: false
+      comment: The email address of the associated person
+    - name: first_name
+      type: STRING
+      REQUIRED: false
+      comment: The first name of the associated person
+    - name: last_name
+      type: STRING
+      REQUIRED: false
+      comment: The last name of the associated person
+    - name: has_ownership
+      type: BOOL
+      REQUIRED: false
+      comment: True if this person has at least 25% ownership of the business.
+    - name: has_control
+      type: BOOL
+      REQUIRED: false
+      comment: True if this is the control person of the company, having significant responsibility to control, manage or influence the activities of the business entity.
+    - name: is_signer
+      type: BOOL
+      REQUIRED: false
+      comment: True if this person is able to authorize transactions on behalf of the business.
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: The title of this associated person at the company, e.g. CEO, CFO, etc.
+    - name: attested_ownership_structure_at
+      type: STRING
+      REQUIRED: false
+      comment: When this individual attested to the correctness of the ownership structure provided to Bridge. If provided by at least one control person, ownership documents for the business are not required.
+    - name: relationship_established_at
+      type: STRING
+      REQUIRED: false
+      comment: When the associated person relationship was established in format yyyy-mm-dd.
+    - name: created_at
+      type: INT
+      REQUIRED: true
+      comment: Created timestamp in milliseconds since Unix epoch
+    - name: updated_at
+      type: INT
+      REQUIRED: true
+      comment: Last updated timestamp in milliseconds since Unix epoch
+  FiatPayoutConfiguration:
+    - name: usd
+      type: OBJECT
+      REQUIRED: false
+      comment: Payment rail configuration for USD
+    - name: eur
+      type: OBJECT
+      REQUIRED: false
+      comment: Payment rail configuration for EUR
+    - name: brl
+      type: OBJECT
+      REQUIRED: false
+      comment: Payment rail configuration for BRL
+    - name: mxn
+      type: OBJECT
+      REQUIRED: false
+      comment: Payment rail configuration for MXN
+  PatchFiatPayoutConfigurationInput:
+    - name: fiat_payout_configuration
+      type: STRUCT(FiatPayoutConfiguration)
+      REQUIRED: true
+  FiatPayoutConfigurationResponse:
+    - name: fiat_payout_configuration
+      type: STRUCT(FiatPayoutConfiguration)
+      REQUIRED: true
+  ExternalAccountResponse:
+    - name: variant
+      type: STRUCT(ExternalAccountResponse_Union)
+      REQUIRED: false
+  FeeExternalAccount:
+    - name: account_type
+      type: STRING
+      REQUIRED: true
+      comment: Type of the bank account.
+    - name: currency
+      type: STRING
+      REQUIRED: true
+      comment: Currency associated with the bank account. Must be `usd` for US accounts.
+    - name: account
+      type: STRUCT(UsBankAccount)
+      REQUIRED: true
+    - name: beneficiary_address_valid
+      type: BOOL
+      REQUIRED: false
+      comment: Whether the beneficiary address is valid. A valid beneficiary address is required for all US External Accounts
+    - name: last_4
+      type: STRING
+      REQUIRED: false
+      comment: Last 4 digits of the bank account number. This field is getting deprecated in favor of the `account.last_4` field
+    - name: account_number
+      type: STRING
+      REQUIRED: false
+      comment: Account number of your bank account. This field is getting deprecated in favor of the `account.account_number` field for US accounts.
+    - name: routing_number
+      type: STRING
+      REQUIRED: false
+      comment: Routing number of your bank account. This field is getting deprecated in favor of the `account.routing_number` field for US accounts.
+  CreateExternalAccountInput:
+    - name: variant
+      type: STRUCT(CreateExternalAccountInput_Union)
+      REQUIRED: false
+  CreateExternalAccountInput_Union:
+    - name: value
+      type: ANY
+      REQUIRED: false
+  CreateFeeExternalAccountInput:
+    - name: account_type
+      type: STRING
+      REQUIRED: true
+      comment: Type of the bank account.
+    - name: currency
+      type: STRING
+      REQUIRED: true
+      comment: Currency associated with the bank account. Must be `usd` for US accounts.
+    - name: account
+      type: STRUCT(UsBankAccount)
+      REQUIRED: true
+    - name: beneficiary_address_valid
+      type: BOOL
+      REQUIRED: false
+      comment: Whether the beneficiary address is valid. A valid beneficiary address is required for all US External Accounts
+    - name: last_4
+      type: STRING
+      REQUIRED: false
+      comment: Last 4 digits of the bank account number. This field is getting deprecated in favor of the `account.last_4` field
+    - name: account_number
+      type: STRING
+      REQUIRED: false
+      comment: Account number of your bank account. This field is getting deprecated in favor of the `account.account_number` field for US accounts.
+    - name: routing_number
+      type: STRING
+      REQUIRED: false
+      comment: Routing number of your bank account. This field is getting deprecated in favor of the `account.routing_number` field for US accounts.
+  CryptoReturnPolicy:
+    - name: id
+      type: STRING
+      REQUIRED: false
+    - name: developer_id
+      type: STRING
+      REQUIRED: false
+    - name: refund_destination_address
+      type: STRING
+      REQUIRED: false
+    - name: refund_destination_blockchain_memo
+      type: STRING
+      REQUIRED: false
+    - name: refund_destination_chain
+      type: STRING
+      REQUIRED: false
+    - name: refund_destination_currency
+      type: STRING
+      REQUIRED: false
+    - name: strategy
+      type: STRING
+      REQUIRED: false
+  PostCryptoReturnPoliciesInput:
+    - name: refund_destination_address
+      type: STRING
+      REQUIRED: false
+      comment: The address to which the refund will be sent. Required if the strategy is `static_address`, but must be unset if the strategy is `refund_to_sender`.
+    - name: refund_destination_blockchain_memo
+      type: STRING
+      REQUIRED: false
+      comment: The memo to include with the refund transaction. Must be unset if the strategy is `refund_to_sender`.
+    - name: refund_destination_chain
+      type: STRING
+      REQUIRED: false
+      comment: The blockchain on which the refund will be sent. Required if the strategy is `static_address`, but must be unset if the strategy is `refund_to_sender`.
+    - name: refund_destination_currency
+      type: STRING
+      REQUIRED: false
+      comment: The currency to which the refund will be sent. Required if the strategy is `static_address`, but must be unset if the strategy is `refund_to_sender`.
+    - name: strategy
+      type: STRING
+      REQUIRED: false
+      comment: The strategy to use for the refund. Can be `refund_to_sender` or `static_address`. We only support multiple policies for `static_address`; different strategies cannot have multiple policies. If multiple `static_address` policies exist, the policy that matches both the currency and chain will be used first. If no such policy is found, the policy that matches only the currency will be used instead.
+  CardAccount:
+    - name: id
+      type: STRING
+      REQUIRED: true
+      comment: ID of the card account
+    - name: client_reference_id
+      type: STRING
+      REQUIRED: false
+      comment: The client-provided reference ID
+    - name: customer_id
+      type: STRING
+      REQUIRED: true
+      comment: ID of the customer
+    - name: cardholder_name
+      type: STRUCT(CardholderName)
+      REQUIRED: false
+    - name: card_image_url
+      type: STRING
+      REQUIRED: false
+      comment: An expiring URL used to render the card image, with a validity period of 5 minutes. _Note:_ This field will be deprecated in favor of the more secure and scalable card details API. Please see the integration guide on [safely revealing card details](https://apidocs.bridge.xyz/docs/safely-reveal-card-details-to-customers) for more information.
+    - name: status
+      type: STRING
+      REQUIRED: true
+      comment: Status of the card account
+    - name: status_reason
+      type: STRING
+      REQUIRED: false
+      comment: An optional detailed explanation for the card account status
+    - name: card_details
+      type: STRUCT(CardDetails)
+      REQUIRED: false
+    - name: balances
+      type: STRUCT(CardBalances)
+      REQUIRED: true
+    - name: freezes
+      type: "[]ANY"
+      REQUIRED: true
+    - name: crypto_account
+      type: STRUCT(CardCryptoAccount)
+      REQUIRED: false
+    - name: funding_instructions
+      type: STRUCT(CardAccountFundingInstructions)
+      REQUIRED: false
+    - name: additional_funding_instructions
+      type: "[]STRUCT(CardAccountFundingInstructions)"
+      REQUIRED: false
+  CardholderName:
+    - name: first_name
+      type: STRING
+      REQUIRED: true
+    - name: middle_name
+      type: STRING
+      REQUIRED: false
+    - name: last_name
+      type: STRING
+      REQUIRED: true
+  CardDetails:
+    - name: last_4
+      type: STRING
+      REQUIRED: true
+      comment: The last four digits of the card number
+    - name: expiry
+      type: STRING
+      REQUIRED: true
+      comment: The expiration date of the card, in MM/YY format
+    - name: bin
+      type: STRING
+      REQUIRED: true
+      comment: The BIN of the card, including the first 8 digits
+    - name: pin_status
+      type: STRING
+      REQUIRED: false
+      comment: The current status of the card PIN
+  CardBalances:
+    - name: available
+      type: STRUCT(CardBalance)
+      REQUIRED: true
+      comment: The available balance of the card account
+    - name: hold
+      type: STRUCT(CardBalance)
+      REQUIRED: true
+      comment: The balance tha is placed on hold for pending authorizations
+  CardPinUpdateResponse:
+    - name: url
+      type: STRING
+      REQUIRED: true
+      comment: Single-use, time-limited URL that can be used to securely update the card PIN in an iframe
+  CardProgramSummary:
+    - name: period
+      type: STRING
+      REQUIRED: false
+      comment: The period type of the card program summary
+    - name: period_starting
+      type: STRING
+      REQUIRED: false
+      comment: The starting date of the period, in ISO8601 format
+    - name: cards_provisioned_count
+      type: INT
+      REQUIRED: false
+      comment: The number of cards provisioned during the period
+    - name: card_transactions_count
+      type: INT
+      REQUIRED: false
+      comment: The number of card transactions during the period, excluding refunds.
+    - name: provisioned_cards_by_country
+      type: OBJECT
+      REQUIRED: false
+      comment: The number of cards provisioned during the period, by issuing country. The key is the ISO-3166-1 alpha-3 country code, and the value is the number of cards provisioned for that issuing country.
+    - name: transaction_volume
+      type: STRING
+      REQUIRED: false
+      comment: The total transaction volume during the period, in USD
+    - name: transacting_card_accounts_count
+      type: INT
+      REQUIRED: false
+      comment: The number of card accounts that transacted during the period
+    - name: card_transactions_count_by_country
+      type: OBJECT
+      REQUIRED: false
+      comment: The number of card transactions during the period, by merchant country. The key is the ISO-3166-1 alpha-3 country code, and the value is the number of card transactions for that merchant country.
+    - name: transaction_volume_by_country
+      type: OBJECT
+      REQUIRED: false
+      comment: The transaction volume during the period, by merchant country. The key is the ISO-3166-1 alpha-3 country code, and the value is the transaction volume for that merchant country.
+    - name: transacting_cards_by_country
+      type: OBJECT
+      REQUIRED: false
+      comment: The number of cards that transacted during the period, by issuing country. The key is the ISO-3166-1 alpha-3 country code, and the value is the number of cards transacted for that issuing country.
+  CardDesigns:
+    - name: card_designs
+      type: "[]ANY"
+      REQUIRED: false
+      comment: A listing of the designs that you can use to issue a card with.
+    - name: default_card_design_shortname
+      type: STRING
+      REQUIRED: false
+      comment: The shortname of the default card design
+  CustomerRewardSummary:
+    - name: developer_id
+      type: STRING
+      REQUIRED: false
+      comment: The developer ID of the customer
+    - name: customer_id
+      type: STRING
+      REQUIRED: false
+      comment: The customer ID of the customer
+    - name: currency
+      type: STRING
+      REQUIRED: false
+      comment: The stablecoin symbol for the reward summary
+    - name: balance
+      type: STRING
+      REQUIRED: false
+      comment: The balance of the customer in the given stablecoin
+    - name: rewards
+      type: STRING
+      REQUIRED: false
+      comment: The rewards of the customer in the given stablecoin
+    - name: updated_at
+      type: STRING
+      REQUIRED: false
+      comment: The timestamp of the last update to the reward summary, in ISO8601 format
+  DeveloperRewardSummary:
+    - name: developer_id
+      type: STRING
+      REQUIRED: false
+      comment: The developer ID of the developer
+    - name: currency
+      type: STRING
+      REQUIRED: false
+      comment: The stablecoin symbol for the reward summary
+    - name: balance
+      type: STRING
+      REQUIRED: false
+      comment: The balance of the developer in the given stablecoin
+    - name: rewards
+      type: STRING
+      REQUIRED: false
+      comment: The rewards of the developer in the given stablecoin
+    - name: updated_at
+      type: STRING
+      REQUIRED: false
+      comment: The timestamp of the last update to the reward summary, in ISO8601 format
+  CustomerRewardHistory:
+    - name: customer_id
+      type: STRING
+      REQUIRED: false
+      comment: The customer ID of the customer
+    - name: rewards
+      type: "[]ANY"
+      REQUIRED: false
+      comment: The rewards of the customer in the given stablecoin
+  customers.customer.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(Customer)"
+      REQUIRED: true
+  customers.customer.createRequest:
+    - name: variant
+      type: STRUCT(customers.customer.createRequest_Union)
+      REQUIRED: false
+  customers.customer.updateRequest:
+    - name: variant
+      type: STRUCT(customers.customer.updateRequest_Union)
+      REQUIRED: false
+  customers.external_account.getResponse200:
+    - name: data
+      type: "[]STRUCT(ExternalAccountResponse)"
+      REQUIRED: true
+    - name: count
+      type: INT
+      REQUIRED: false
+      comment: total number of items in data
+  customers.associated_person.getResponse200:
+    - name: data
+      type: "[]STRUCT(AssociatedPersonResponse)"
+      REQUIRED: true
+  customers.tos_acceptance_link.getResponse200:
+    - name: url
+      type: STRING
+      REQUIRED: true
+      comment: A hosted URL for ToS acceptance
+  customers.kyc_link.getResponse200:
+    - name: url
+      type: STRING
+      REQUIRED: true
+      comment: A hosted KYC link
+  customers.transfer.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of transfers returned
+    - name: data
+      type: "[]STRUCT(TransferResponse)"
+      REQUIRED: true
+  customers.static_template.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of static templates returned
+    - name: data
+      type: "[]STRUCT(TransferResponse)"
+      REQUIRED: true
+  customers.tos_link.createResponse201:
+    - name: url
+      type: STRING
+      REQUIRED: true
+      comment: A Bridge hosted URL for users to complete terms of service signing.
+  plaid_exchange_public_token.plaid_exchange_public_token.createResponse201:
+    - name: message
+      type: STRING
+      REQUIRED: false
+      comment: Message indicating the status of the request
+  transfers.transfer.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of transfers returned
+    - name: data
+      type: "[]STRUCT(TransferResponse)"
+      REQUIRED: true
+  transfers.static_template.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of static templates returned
+    - name: data
+      type: "[]STRUCT(TransferResponse)"
+      REQUIRED: true
+  prefunded_accounts.prefunded_account.listResponse200:
+    - name: data
+      type: "[]STRUCT(PrefundedAccount)"
+      REQUIRED: true
+  customers.liquidation_address.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(LiquidationAddress)"
+      REQUIRED: true
+  liquidation_addresses.liquidation_address.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(LiquidationAddress)"
+      REQUIRED: true
+  customers.virtual_account.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(VirtualAccountResponse)"
+      REQUIRED: true
+  customers.virtual_account.history.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of events returned
+    - name: data
+      type: "[]STRUCT(VirtualAccountEvent)"
+      REQUIRED: true
+  static_memos.static_memo.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(StaticMemoResponse)"
+      REQUIRED: true
+  customers.static_memo.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(StaticMemoResponse)"
+      REQUIRED: true
+  customers.static_memo.history.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of events returned
+    - name: data
+      type: "[]STRUCT(StaticMemoEvent)"
+      REQUIRED: true
+  customers.batch_settlement_schedule.createResponse200:
+    - name: id
+      type: STRING
+      REQUIRED: true
+      comment: ID of the batch settlement schedule
+  external_accounts.external_account.listResponse200:
+    - name: data
+      type: "[]STRUCT(ExternalAccountResponse)"
+      REQUIRED: true
+    - name: count
+      type: INT
+      REQUIRED: false
+      comment: total number of items in data
+  virtual_accounts.virtual_account.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(VirtualAccountResponse)"
+      REQUIRED: true
+  virtual_accounts.history.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of events returned
+    - name: data
+      type: "[]STRUCT(VirtualAccountEvent)"
+      REQUIRED: true
+  kyc_links.kyc_link.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: total number of items in data
+    - name: data
+      type: "[]STRUCT(IndividualKycLinkResponse)"
+      REQUIRED: true
+  static_memos.history.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of events returned
+    - name: data
+      type: "[]STRUCT(StaticMemoEvent)"
+      REQUIRED: true
+  funds_requests.funds_request.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of items returned
+    - name: data
+      type: "[]STRUCT(FundsRequest)"
+      REQUIRED: true
+  webhooks.webhook.listResponse200:
+    - name: data
+      type: "[]STRUCT(Webhook)"
+      REQUIRED: true
+  webhooks.event.getResponse200:
+    - name: data
+      type: "[]STRUCT(WebhookEvent)"
+      REQUIRED: true
+  webhooks.log.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of logs returned
+    - name: data
+      type: "[]STRUCT(WebhookEventDeliveryLog)"
+      REQUIRED: true
+  webhooks.send.createResponse200:
+    - name: message
+      type: STRING
+      REQUIRED: true
+      comment: Message indicating the status of the request
+  webhook_events.webhook_event.listResponse200:
+    - name: data
+      type: "[]STRUCT(WebhookEvent)"
+      REQUIRED: true
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: Number of webhook events returned in this response
+  exchange_rates.exchange_rate.listResponse200:
+    - name: midmarket_rate
+      type: STRING
+      REQUIRED: false
+      comment: The midmarket exchange rate.
+    - name: buy_rate
+      type: STRING
+      REQUIRED: false
+      comment: The rate for buying the target currency, including Bridge's fee.
+    - name: sell_rate
+      type: STRING
+      REQUIRED: false
+      comment: The rate for selling the target currency, including Bridge's fee.
+  lists.country.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The total number of countries recognized by Bridge
+    - name: data
+      type: "[]STRUCT(Country)"
+      REQUIRED: true
+      comment: The list of countries recognized by Bridge
+  customers.card_account.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of card accounts returned
+    - name: data
+      type: "[]STRUCT(CardAccount)"
+      REQUIRED: true
+  customers.card_account.authorizations.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of card authorizations returned
+    - name: data
+      type: "[]STRUCT(CardAuthorization)"
+      REQUIRED: true
+  customers.card_account.transactions.getResponse200:
+    - name: page
+      type: INT
+      REQUIRED: true
+      comment: The current page number, starting at 1. Note that this will be returned only for navigating posted transactions.
+    - name: pagination_token
+      type: STRING
+      REQUIRED: false
+      comment: The pagination token to be used to retrieve the next page of transactions. If not provided, use the `page` parameter to navigate by page number.
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of transactions returned
+    - name: total_pages
+      type: INT
+      REQUIRED: true
+      comment: The total number of pages
+    - name: total_count
+      type: INT
+      REQUIRED: true
+      comment: The total number of transactions
+    - name: data
+      type: "[]STRUCT(CardTransaction)"
+      REQUIRED: true
+  customers.card_account.authControls.getResponse200:
+    - name: customer_id
+      type: STRING
+      REQUIRED: true
+      comment: The ID of the customer
+    - name: card_account_id
+      type: STRING
+      REQUIRED: true
+      comment: The ID of the card account
+    - name: spending_limits
+      type: "[]STRUCT(CardSpendingLimit)"
+      REQUIRED: true
+      comment: The various spending limits for the card account for the current time period
+  customers.card_account.withdrawals.getResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of withdrawals returned
+    - name: data
+      type: "[]STRUCT(CardWithdrawal)"
+      REQUIRED: true
+  liquidation_addresses.drain.listResponse200:
+    - name: count
+      type: INT
+      REQUIRED: true
+      comment: The number of events returned
+    - name: data
+      type: "[]STRUCT(Drain)"
+      REQUIRED: true

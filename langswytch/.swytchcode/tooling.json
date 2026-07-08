@@ -1,0 +1,2382 @@
+{
+  "integrations": {
+    "agentql.agentql": {
+      "version": "0.1.0"
+    },
+    "binance.binance_convert_api": {
+      "version": "1.0.0"
+    },
+    "binance.binance_fiat_api": {
+      "version": "1.0.0"
+    },
+    "binance.binance_margin_trading_api": {
+      "version": "1.0.0"
+    },
+    "binance.binance_wallet_api": {
+      "version": "1.0.0"
+    },
+    "bridge.bridge": {
+      "version": "v1"
+    },
+    "bridge.bridge.1.0": {
+      "version": "0"
+    },
+    "circle.circle": {
+      "version": "1"
+    },
+    "persona.persona": {
+      "version": "080122025"
+    },
+    "resend.resend": {
+      "version": "v1.5.0"
+    },
+    "stripe.stripe": {
+      "version": "2026-02-25.clover"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "customers.funding_instruction.create": {
+      "desc": "\u003cp\u003eRetrieve funding instructions for a customer cash balance. If funding instructions do not yet exist for the customer, new\nfunding instructions will be created. If funding instructions have already been created for a given customer, the same\nfunding instructions will be retrieved. In other words, we will return the same funding instructions each time.\u003c/p\u003e",
+      "inputs": [
+        {
+          "customer": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "bank_transfer": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "currency": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "expand": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "funding_type": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "stripe.stripe@2026-02-25.clover",
+      "output": {
+        "schema": {
+          "properties": {
+            "bank_transfer": {
+              "properties": {
+                "country": {
+                  "required": true,
+                  "type": "string"
+                },
+                "financial_addresses": {
+                  "items": {
+                    "properties": {
+                      "aba": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "account_type": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bank_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "routing_number": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "account_holder_name",
+                          "account_number",
+                          "account_type",
+                          "bank_address",
+                          "bank_name",
+                          "routing_number"
+                        ],
+                        "type": "object"
+                      },
+                      "iban": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bic": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "country": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "iban": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "account_holder_name",
+                          "bank_address",
+                          "bic",
+                          "country",
+                          "iban"
+                        ],
+                        "type": "object"
+                      },
+                      "sort_code": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "sort_code": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "account_holder_name",
+                          "account_number",
+                          "bank_address",
+                          "sort_code"
+                        ],
+                        "type": "object"
+                      },
+                      "spei": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bank_code": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "clabe": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "account_holder_name",
+                          "bank_address",
+                          "bank_code",
+                          "bank_name",
+                          "clabe"
+                        ],
+                        "type": "object"
+                      },
+                      "supported_networks": {
+                        "required": false,
+                        "type": "[]STRING"
+                      },
+                      "swift": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "account_type": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bank_name": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "swift_code": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "account_holder_name",
+                          "account_number",
+                          "account_type",
+                          "bank_address",
+                          "bank_name",
+                          "swift_code"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "required": true,
+                        "type": "string"
+                      },
+                      "zengin": {
+                        "properties": {
+                          "account_holder_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "account_holder_name": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "account_type": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "bank_address": {
+                            "properties": {
+                              "city": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "country": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line1": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "line2": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "state": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bank_code": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "bank_name": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "branch_code": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "branch_name": {
+                            "required": false,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "account_holder_address",
+                          "bank_address"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ],
+                    "type": "object"
+                  },
+                  "required": true,
+                  "type": "array"
+                },
+                "type": {
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "country",
+                "financial_addresses",
+                "type"
+              ],
+              "type": "object"
+            },
+            "currency": {
+              "required": true,
+              "type": "string"
+            },
+            "funding_type": {
+              "required": true,
+              "type": "string"
+            },
+            "livemode": {
+              "required": true,
+              "type": "boolean"
+            },
+            "object": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "bank_transfer",
+            "currency",
+            "funding_type",
+            "livemode",
+            "object"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Create or retrieve funding instructions for a customer cash balance",
+      "type": "method"
+    },
+    "customers.plaid_link_request.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "customerID": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "bridge.bridge@1.0.0",
+      "method_hash": "da09251015ac44d535b2c8b5073f91f9c5d88c50acb0dccfdfccdd9f83831de4",
+      "output": {
+        "schema": {
+          "properties": {
+            "value": {
+              "required": false,
+              "type": "any"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Generate a Plaid Link token for a customer",
+      "type": "method"
+    },
+    "customers.wallet.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "customerID": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "value": {
+                  "required": false,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "bridge.bridge@1.0.0",
+      "method_hash": "55f21e9e434a2237da88560f915c5574faf900009018710399f947831f6ddff3",
+      "output": {
+        "schema": {
+          "properties": {
+            "value": {
+              "required": false,
+              "type": "any"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Create a Bridge Wallet",
+      "type": "method"
+    },
+    "emails.email.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "attachments": {
+                  "items": {
+                    "properties": {
+                      "content": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "content_id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "content_type": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "filename": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "path": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "bcc": {
+                  "required": false,
+                  "type": "any"
+                },
+                "cc": {
+                  "required": false,
+                  "type": "any"
+                },
+                "from": {
+                  "required": true,
+                  "type": "string"
+                },
+                "headers": {
+                  "required": false,
+                  "type": "object"
+                },
+                "html": {
+                  "required": false,
+                  "type": "string"
+                },
+                "reply_to": {
+                  "required": false,
+                  "type": "any"
+                },
+                "scheduled_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "subject": {
+                  "required": true,
+                  "type": "string"
+                },
+                "tags": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "value": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "template": {
+                  "required": false,
+                  "type": "any"
+                },
+                "text": {
+                  "required": false,
+                  "type": "string"
+                },
+                "to": {
+                  "required": true,
+                  "type": "any"
+                },
+                "topic_id": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "from",
+                "to",
+                "subject"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "resend.resend@v1.5.0",
+      "method_hash": "6784bf62c80cb75cd7b3ebee051d70f4cc8d1d11798a837df76e54a9a0c4a6fa",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Send an email",
+      "type": "method"
+    },
+    "inquiries.generate-one-time-link.create": {
+      "desc": "Creates a new inquiry session and returns `meta.one-time-link`.",
+      "inputs": [
+        {
+          "Key-Inflection": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "include": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fields": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "inquiry-id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "meta": {
+                  "required": false,
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "persona.persona@080122025",
+      "method_hash": "76ab2f8cbbb521aeea62a37017d84e4103adffa988cb836fffeb9bb5b69a1bfd",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "attributes": {
+                  "required": true,
+                  "type": "object"
+                },
+                "id": {
+                  "required": true,
+                  "type": "string"
+                },
+                "relationships": {
+                  "required": true,
+                  "type": "object"
+                },
+                "type": {
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "attributes",
+                "relationships"
+              ],
+              "type": "object"
+            },
+            "included": {
+              "required": false,
+              "type": "any"
+            },
+            "meta": {
+              "required": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Generate a one-time link for an Inquiry",
+      "type": "method"
+    },
+    "inquiries.inquiry.create": {
+      "desc": "Creates a new inquiry with optional pre-filled attributes.\n\nSee [Sessions](https://docs.withpersona.com/inquiry-sessions) for how to continue the inquiry in [Embedded Flow](https://docs.withpersona.com/embedded-flow) or [Hosted Flow](https://docs.withpersona.com/hosted-flow).",
+      "inputs": [
+        {
+          "Key-Inflection": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "include": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fields": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "data": {
+                  "required": true,
+                  "type": "object"
+                },
+                "meta": {
+                  "required": false,
+                  "type": "object"
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "persona.persona@080122025",
+      "method_hash": "a361baf12ebf3b678b67dd850aa58880791ca610a0896d97d38bc6305e333640",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "attributes": {
+                  "required": true,
+                  "type": "object"
+                },
+                "id": {
+                  "required": true,
+                  "type": "string"
+                },
+                "relationships": {
+                  "required": true,
+                  "type": "object"
+                },
+                "type": {
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "attributes",
+                "relationships"
+              ],
+              "type": "object"
+            },
+            "included": {
+              "required": false,
+              "type": "any"
+            },
+            "meta": {
+              "required": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ]
+        },
+        "status": 201
+      },
+      "summary": "Create an Inquiry",
+      "type": "method"
+    },
+    "inquiries.inquiry.get": {
+      "desc": "Retrieves the details of an existing Inquiry.\n\nIn the [Embedded Flow](https://docs.withpersona.com/embedded-flow), the `inquiry-id` is the first parameter of the onStart callback. In the [Hosted Flow](https://docs.withpersona.com/hosted-flow), the `inquiry-id` is a query parameter in the onComplete callback.\n\nTemplate information will be found in `data.relationships.inquiry-template` if the inquiry is a Dynamic Flow inquiry, and in `data.relationships.template` if the inquiry is a Legacy 2.0 inquiry. For more information, see [Dynamic Flow vs. Legacy Templates](https://docs.withpersona.com/inquiry-templates#dynamic-flow-vs-legacy-templates).",
+      "inputs": [
+        {
+          "Key-Inflection": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "include": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fields": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "inquiry-id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "persona.persona@080122025",
+      "method_hash": "6131a7297275809b623152fad908b56b4903398426e63e06c32c463f163bcd5f",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "attributes": {
+                  "required": true,
+                  "type": "object"
+                },
+                "id": {
+                  "required": true,
+                  "type": "string"
+                },
+                "relationships": {
+                  "required": true,
+                  "type": "object"
+                },
+                "type": {
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "attributes",
+                "relationships"
+              ],
+              "type": "object"
+            },
+            "included": {
+              "required": false,
+              "type": "any"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Retrieve an Inquiry",
+      "type": "method"
+    },
+    "payment_intents.payment_intent.create": {
+      "desc": "\u003cp\u003eCreates a PaymentIntent object.\u003c/p\u003e\n\n\u003cp\u003eAfter the PaymentIntent is created, attach a payment method and \u003ca href=\"/docs/api/payment_intents/confirm\"\u003econfirm\u003c/a\u003e\nto continue the payment. Learn more about \u003ca href=\"/docs/payments/payment-intents\"\u003ethe available payment flows\nwith the Payment Intents API\u003c/a\u003e.\u003c/p\u003e\n\n\u003cp\u003eWhen you use \u003ccode\u003econfirm=true\u003c/code\u003e during creation, it’s equivalent to creating\nand confirming the PaymentIntent in the same call. You can use any parameters\navailable in the \u003ca href=\"/docs/api/payment_intents/confirm\"\u003econfirm API\u003c/a\u003e when you supply\n\u003ccode\u003econfirm=true\u003c/code\u003e.\u003c/p\u003e",
+      "inputs": [
+        {
+          "amount": {
+            "LOCATION": "body",
+            "TYPE": "INT"
+          }
+        },
+        {
+          "amount_details": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "application_fee_amount": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "automatic_payment_methods": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "capture_method": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "confirm": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "confirmation_method": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "confirmation_token": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "currency": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "customer": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "customer_account": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "description": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "error_on_requires_action": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "excluded_payment_method_types": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "expand": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "hooks": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "mandate": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "mandate_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "ANY"
+          }
+        },
+        {
+          "metadata": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "off_session": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "ANY"
+          }
+        },
+        {
+          "on_behalf_of": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "payment_details": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "payment_method": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "payment_method_configuration": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "payment_method_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "payment_method_options": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "payment_method_types": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "[]STRING"
+          }
+        },
+        {
+          "radar_options": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "receipt_email": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "return_url": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "setup_future_usage": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "shipping": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "statement_descriptor": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "statement_descriptor_suffix": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "transfer_data": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        },
+        {
+          "transfer_group": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "use_stripe_sdk": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        }
+      ],
+      "integration": "stripe.stripe@2026-02-25.clover",
+      "output": {
+        "schema": {
+          "properties": {
+            "amount": {
+              "required": false,
+              "type": "integer"
+            },
+            "amount_capturable": {
+              "required": false,
+              "type": "integer"
+            },
+            "amount_details": {
+              "required": false,
+              "type": "any"
+            },
+            "amount_received": {
+              "required": false,
+              "type": "integer"
+            },
+            "application": {
+              "required": false,
+              "type": "any"
+            },
+            "application_fee_amount": {
+              "required": false,
+              "type": "integer"
+            },
+            "automatic_payment_methods": {
+              "required": false,
+              "type": "any"
+            },
+            "canceled_at": {
+              "required": false,
+              "type": "integer"
+            },
+            "cancellation_reason": {
+              "required": false,
+              "type": "string"
+            },
+            "capture_method": {
+              "required": false,
+              "type": "string"
+            },
+            "client_secret": {
+              "required": false,
+              "type": "string"
+            },
+            "confirmation_method": {
+              "required": false,
+              "type": "string"
+            },
+            "created": {
+              "required": true,
+              "type": "integer"
+            },
+            "currency": {
+              "required": false,
+              "type": "string"
+            },
+            "customer": {
+              "required": false,
+              "type": "any"
+            },
+            "customer_account": {
+              "required": false,
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "type": "string"
+            },
+            "excluded_payment_method_types": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "hooks": {
+              "properties": {
+                "inputs": {
+                  "properties": {
+                    "tax": {
+                      "properties": {
+                        "calculation": {
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "calculation"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "last_payment_error": {
+              "required": false,
+              "type": "any"
+            },
+            "latest_charge": {
+              "required": false,
+              "type": "any"
+            },
+            "livemode": {
+              "required": true,
+              "type": "boolean"
+            },
+            "metadata": {
+              "required": false,
+              "type": "map[STRING]STRING"
+            },
+            "next_action": {
+              "required": false,
+              "type": "any"
+            },
+            "object": {
+              "required": true,
+              "type": "string"
+            },
+            "on_behalf_of": {
+              "required": false,
+              "type": "any"
+            },
+            "payment_details": {
+              "properties": {
+                "customer_reference": {
+                  "required": false,
+                  "type": "string"
+                },
+                "order_reference": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "payment_method": {
+              "required": false,
+              "type": "any"
+            },
+            "payment_method_configuration_details": {
+              "required": false,
+              "type": "any"
+            },
+            "payment_method_options": {
+              "required": false,
+              "type": "any"
+            },
+            "payment_method_types": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "presentment_details": {
+              "properties": {
+                "presentment_amount": {
+                  "required": true,
+                  "type": "integer"
+                },
+                "presentment_currency": {
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "presentment_amount",
+                "presentment_currency"
+              ],
+              "type": "object"
+            },
+            "processing": {
+              "required": false,
+              "type": "any"
+            },
+            "receipt_email": {
+              "required": false,
+              "type": "string"
+            },
+            "review": {
+              "required": false,
+              "type": "any"
+            },
+            "setup_future_usage": {
+              "required": false,
+              "type": "string"
+            },
+            "shipping": {
+              "required": false,
+              "type": "any"
+            },
+            "statement_descriptor": {
+              "required": false,
+              "type": "string"
+            },
+            "statement_descriptor_suffix": {
+              "required": false,
+              "type": "string"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            },
+            "transfer_data": {
+              "required": false,
+              "type": "any"
+            },
+            "transfer_group": {
+              "required": false,
+              "type": "string"
+            }
+          },
+          "required": [
+            "created",
+            "id",
+            "livemode",
+            "object",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Create a PaymentIntent",
+      "type": "method"
+    },
+    "plaid_exchange_public_token.plaid_exchange_public_token.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "link_token": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "value": {
+                  "required": false,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "bridge.bridge@1.0.0",
+      "method_hash": "c402a911a6c0c89e35a89dea3eec8a261e467e91ad9eb2c7d46891d8c4e5579c",
+      "output": {
+        "schema": {
+          "properties": {
+            "message": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Exchange Plaid public token for an access token",
+      "type": "method"
+    },
+    "query-data.query-data.create": {
+      "desc": "Get the AgentQL response for the data query.\n\nIf the AQL query is not provided, generate it using the prompt from request.",
+      "inputs": [
+        {
+          "X-TF-Request-Origin": {
+            "DEFAULT": "rest-api-data",
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "content-type": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "html": {
+                  "required": false,
+                  "type": "any"
+                },
+                "params": {
+                  "properties": {
+                    "browser_profile": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "is_screenshot_enabled": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "is_scroll_to_bottom_enabled": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "mode": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "proxy": {
+                      "required": false,
+                      "type": "any"
+                    },
+                    "wait_for": {
+                      "required": false,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "prompt": {
+                  "required": false,
+                  "type": "any"
+                },
+                "query": {
+                  "required": false,
+                  "type": "any"
+                },
+                "url": {
+                  "required": false,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "agentql.agentql@0.1.0",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "required": true,
+              "type": "map[STRING]ANY"
+            },
+            "metadata": {
+              "required": false,
+              "type": "any"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Query Data Service",
+      "type": "method"
+    },
+    "sapi.v1.acceptQuote.create": {
+      "desc": "Accept a conversion quote",
+      "inputs": [
+        {
+          "url": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "quoteId": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "timestamp": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "signature": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "X-MBX-APIKEY": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Accept": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "binance.binance_convert_api@1.0.0",
+      "summary": "Create acceptQuote",
+      "type": "method"
+    },
+    "sapi.v1.account.create": {
+      "desc": "Create a Binance sub-account",
+      "inputs": [
+        {
+          "url": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "symbol": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "timestamp": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "signature": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "X-MBX-APIKEY": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Accept": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "binance.binance_margin_trading_api@1.0.0",
+      "summary": "Create account",
+      "type": "method"
+    },
+    "sapi.v1.address.list": {
+      "desc": "Get deposit address for a coin",
+      "inputs": [
+        {
+          "url": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "coin": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "timestamp": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "signature": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "X-MBX-APIKEY": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Accept": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "binance.binance_wallet_api@1.0.0",
+      "summary": "Fetch address",
+      "type": "method"
+    },
+    "sapi.v1.deposit.create": {
+      "desc": "Create a fiat deposit",
+      "inputs": [
+        {
+          "url": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "timestamp": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "signature": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "X-MBX-APIKEY": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Accept": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "currency": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "apiPaymentMethod": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "amount": {
+            "LOCATION": "body",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "ext": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "binance.binance_fiat_api@1.0.0",
+      "summary": "Create deposit",
+      "type": "method"
+    },
+    "sapi.v1.getQuote.create": {
+      "desc": "Get a conversion quote",
+      "inputs": [
+        {
+          "url": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fromAsset": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "toAsset": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "timestamp": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "signature": {
+            "LOCATION": "query",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "X-MBX-APIKEY": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Accept": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "binance.binance_convert_api@1.0.0",
+      "summary": "Create getQuote",
+      "type": "method"
+    },
+    "transfers.transfer.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "value": {
+                  "required": false,
+                  "type": "any"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "bridge.bridge@1.0.0",
+      "method_hash": "e2b3953715da03a8bde66a835895cdca01c97d30fb5197226faf3da638b10795",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 201
+      },
+      "summary": "Create a transfer",
+      "type": "method"
+    },
+    "verification.government-id.get": {
+      "desc": "Retrieve a government ID verification",
+      "inputs": [
+        {
+          "Key-Inflection": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "include": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fields": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "verification-id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "persona.persona@080122025",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "attributes": {
+                  "required": false,
+                  "type": "any"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "relationships": {
+                  "required": false,
+                  "type": "any"
+                },
+                "type": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Retrieve a Government ID Verification",
+      "type": "method"
+    },
+    "verifications.verification.get": {
+      "desc": "Retrieves the details of an existing Verification.",
+      "inputs": [
+        {
+          "Key-Inflection": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Idempotency-Key": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "include": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "fields": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "map[STRING]STRING"
+          }
+        },
+        {
+          "verification-id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "persona.persona@080122025",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "variant": {
+                  "properties": {
+                    "value": {
+                      "required": false,
+                      "type": "any"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Retrieve a Verification",
+      "type": "method"
+    },
+    "w3s.developer.walletSets.create": {
+      "desc": "Creates a new developer-controlled wallet set.\n\n**Note:** A developer account can create up to 1,000 wallet sets, with each set supporting up to 10 million wallets.\nTo ensure EVM wallets are created with the same address across chains, see [Unified Wallet Addressing on EVM Chains](/w3s/unified-wallet-addressing-evm).\n",
+      "inputs": [
+        {
+          "X-Request-Id": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "circle.circle@1",
+      "method_hash": "5a6bc6a3b0a44618d8e35dac14327ae74612b8927c3da47e7ed26f01b99002c2",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "required": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Create a new wallet set",
+      "type": "method"
+    },
+    "w3s.developer.wallets.create": {
+      "desc": "Creates a new developer-controlled wallet or a batch of wallets within a wallet set, given the target blockchain and wallet name.\n\n**Note:** Each `walletSetId` supports a maximum of 10 million wallets.\n",
+      "inputs": [
+        {
+          "X-Request-Id": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "circle.circle@1",
+      "method_hash": "a11474a25de086ec72a13c5b8478e14fd66310e27058579970fb950980aed9a6",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "required": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Create wallets",
+      "type": "method"
+    },
+    "w3s.user.create": {
+      "desc": "Create a user.",
+      "inputs": null,
+      "integration": "circle.circle@1",
+      "method_hash": "4edea64ccca60ffb6a5586410f5d5604fb0272afd00d5b2f208f15f93a8fff13",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "createDate": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "pinDetails": {
+                  "required": false,
+                  "type": "any"
+                },
+                "pinStatus": {
+                  "required": false,
+                  "type": "string"
+                },
+                "securityQuestionDetails": {
+                  "required": false,
+                  "type": "any"
+                },
+                "securityQuestionStatus": {
+                  "required": false,
+                  "type": "string"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "status": 201
+      },
+      "summary": "Create a user",
+      "type": "method"
+    }
+  },
+  "version": "1.0.0"
+}

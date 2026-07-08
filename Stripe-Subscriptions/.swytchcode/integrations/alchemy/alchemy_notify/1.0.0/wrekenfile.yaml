@@ -1,0 +1,761 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://dashboard.alchemy.com/api
+METHODS:
+  graphql.variable.get:
+    SUMMARY: Get Variable Elements
+    DESC: |
+      This endpoint allows you to read the values within a Custom Webhook variable.
+      It supports pagination with `limit` and `after` (and optionally `pageKey`) query parameters.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /graphql/variables/{variable}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(webhook_addresses_response)"
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - variable:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: "0"
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(webhook_addresses_response)"
+        RETURNVAR: graphql_variable_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Not found- The requested resource could not be found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Internal Server Error- Try again (HTTP 500)
+    CANONICAL_ID: graphql.variable.get
+  graphql.variable.create:
+    SUMMARY: Create a Variable
+    DESC: |
+      This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement.
+
+      If the variable does not exist, it is created with the provided items. If it already exists, the call is additive: existing items are unchanged, new items are appended, and duplicates are ignored (no error is thrown).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /graphql/variables/{variable}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(create_custom_webhook)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - variable:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(create_custom_webhook)
+          REQUIRED: false
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Internal Server Error- Try again (HTTP 500)
+    CANONICAL_ID: graphql.variable.create
+  graphql.variable.delete:
+    SUMMARY: Delete a Variable
+    DESC: This endpoint allows you to delete a Custom Webhook variable
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /graphql/variables/{variable}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - variable:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Not found- The requested resource could not be found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Internal Server Error- Try again (HTTP 500)
+    CANONICAL_ID: graphql.variable.delete
+  graphql.variable.update:
+    SUMMARY: Update a Variable
+    DESC: |
+      Add and remove elements within a Custom Webhook variable
+
+      <Info>The use of both `add` and `delete` arrays within a single request is currently not supported. Attempting to send both will result in a 400 error. To add and remove elements, make separate API calls for each action.</Info>
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /graphql/variables/{variable}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(update_custom_webhook_variable)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - variable:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(update_custom_webhook_variable)
+          REQUIRED: false
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+      - TYPE: ANY
+        STATUS: 401
+        WHEN: Unauthorized- missing or invalid authentication credentials (HTTP 401)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Internal Server Error- Try again (HTTP 500)
+    CANONICAL_ID: graphql.variable.update
+  team-webhooks.team-webhook.list:
+    SUMMARY: Get all webhooks
+    DESC: This endpoint allows you to get all webhooks on your team.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /team-webhooks
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]STRUCT(webhook_object_response)"
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: "[]STRUCT(webhook_object_response)"
+        RETURNVAR: team-webhooks_team-webhook_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: team-webhooks.team-webhook.list
+  webhook-addresses.webhook-address.list:
+    SUMMARY: Get all addresses for an Address Activity webhook
+    DESC: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhook-addresses
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhook_addresses_response)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: "0"
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhook_addresses_response)
+        RETURNVAR: webhook-addresses_webhook-address_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: webhook-addresses.webhook-address.list
+  create-webhook.create-webhook.create:
+    SUMMARY: Create webhook
+    DESC: This endpoint allows you to create a webhook.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /create-webhook
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(create_webhook)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(create_webhook_response)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(create_webhook)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(create_webhook_response)
+        RETURNVAR: create-webhook_create-webhook_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: create-webhook.create-webhook.create
+  update-webhook-addresses.update-webhook-address.update:
+    SUMMARY: Add and remove webhook addresses
+    DESC: |
+      Add or remove addresses from a specific webhook.
+      *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times with the same effect.*
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /update-webhook-addresses
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(update_webhook_addresses)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(update-webhook-addresses.update-webhook-address.updateResponse200)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(update_webhook_addresses)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(update-webhook-addresses.update-webhook-address.updateResponse200)
+        RETURNVAR: update-webhook-addresses_update-webhook-address_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: update-webhook-addresses.update-webhook-address.update
+  update-webhook-addresses.update-webhook-address.update_c5dc:
+    SUMMARY: Replace webhook addresses
+    DESC: Replace entire list of addresses tracked in a given webhook.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /update-webhook-addresses
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(replace_webhook_addresses)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(update-webhook-addresses.update-webhook-address.updateResponse200)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(replace_webhook_addresses)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(update-webhook-addresses.update-webhook-address.updateResponse200)
+        RETURNVAR: update-webhook-addresses_update-webhook-address_update_c5dc
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: update-webhook-addresses.update-webhook-address.update_c5dc
+  update-webhook.update-webhook.update:
+    SUMMARY: Update webhook
+    DESC: Update webhook properties such as name or status.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /update-webhook
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(update_webhook)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(update_webhook_response)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(update_webhook)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(update_webhook_response)
+        RETURNVAR: update-webhook_update-webhook_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: update-webhook.update-webhook.update
+  update-webhook-nft-filters.update-webhook-nft-filter.update:
+    SUMMARY: Update webhook NFT filters
+    DESC: Add and remove webhook NFT filters
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /update-webhook-nft-filters
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(update_webhook_nft_filters)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(update-webhook-nft-filters.update-webhook-nft-filter.updateResponse200)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(update_webhook_nft_filters)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(update-webhook-nft-filters.update-webhook-nft-filter.updateResponse200)
+        RETURNVAR: update-webhook-nft-filters_update-webhook-nft-filter_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: update-webhook-nft-filters.update-webhook-nft-filter.update
+  webhook-nft-filters.webhook-nft-filter.list:
+    SUMMARY: Get all webhook NFT filters
+    DESC: Paginated endpoint to list all of the NFT filter objects a given webhook is subscribed to.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhook-nft-filters
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(webhook_nft_filters_response)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageKey:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: "0"
+    RETURNS:
+      - RETURNTYPE: STRUCT(webhook_nft_filters_response)
+        RETURNVAR: webhook-nft-filters_webhook-nft-filter_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: webhook-nft-filters.webhook-nft-filter.list
+  delete-webhook.delete-webhook.delete:
+    SUMMARY: Delete webhook
+    DESC: Allows you to delete a webhook.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /delete-webhook
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(delete-webhook.delete-webhook.deleteResponse200)
+    INPUTS:
+      - X-Alchemy-Token:
+          TYPE: STRING
+          LOCATION: header
+      - webhook_id:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(delete-webhook.delete-webhook.deleteResponse200)
+        RETURNVAR: delete-webhook_delete-webhook_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad Request- The server cannot understand the request. (HTTP 400)
+    CANONICAL_ID: delete-webhook.delete-webhook.delete
+STRUCTS:
+  nft_filter_object:
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Contract address for an NFT. If this field and the `token_id` aren't set, all NFT activity updates will be sent.
+    - name: token_id
+      NAME: token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token ID for an NFT (decimal or "0x" prefixed hex string). Cannot be set if `contract_address` is not provided.
+  create_webhook:
+    - name: network
+      NAME: network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: webhook_type
+      NAME: webhook_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: webhook_url
+      NAME: webhook_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: URL where requests are sent
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the webhook
+    - name: graphql_query
+      NAME: graphql_query
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: addresses
+      NAME: addresses
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of addresses to track. Required for ADDRESS_ACTIVITY webhook type.
+    - name: nft_filters
+      NAME: nft_filters
+      type: "[]STRUCT(nft_filter_object)"
+      TYPE: "[]STRUCT(nft_filter_object)"
+      REQUIRED: false
+      comment: List of NFT filter objects to track. Required for NFT_ACTIVITY webhook type.
+  create_custom_webhook:
+    - name: items
+      NAME: items
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: A variable defined as a set of addresses or byte32 elements. Must be non-empty.
+  update_webhook_addresses:
+    - name: webhook_id
+      NAME: webhook_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the address activity webhook
+    - name: addresses_to_add
+      NAME: addresses_to_add
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: List of addresses to add **(empty array if none)**.
+    - name: addresses_to_remove
+      NAME: addresses_to_remove
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: List of addresses to remove **(empty array if none)**.
+  update_webhook_nft_filters:
+    - name: webhook_id
+      NAME: webhook_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the address activity webhook
+    - name: nft_filters_to_add
+      NAME: nft_filters_to_add
+      type: "[]STRUCT(nft_filter_object)"
+      TYPE: "[]STRUCT(nft_filter_object)"
+      REQUIRED: false
+      comment: List of NFT filters to add (empty array if none).
+    - name: nft_filters_to_remove
+      NAME: nft_filters_to_remove
+      type: "[]STRUCT(nft_filter_object)"
+      TYPE: "[]STRUCT(nft_filter_object)"
+      REQUIRED: false
+      comment: List of NFT filters to remove (empty array if none).
+  update_custom_webhook_variable:
+    - name: add
+      NAME: add
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Set of elements to be added to a Custom Webhook variable
+    - name: delete
+      NAME: delete
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Set of elements to be deleted from a Custom Webhook variable
+  replace_webhook_addresses:
+    - name: webhook_id
+      NAME: webhook_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the address activity webhook.
+    - name: addresses
+      NAME: addresses
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: New list of addresses to track (replaces any existing addresses).
+  update_webhook:
+    - name: webhook_id
+      NAME: webhook_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the webhook
+    - name: is_active
+      NAME: is_active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Set webhook status (true for active, false for inactive)
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Update the webhook name
+  webhook_object_response:
+    - name: data
+      NAME: data
+      type: "[]STRUCT(webhook_creation_data)"
+      TYPE: "[]STRUCT(webhook_creation_data)"
+      REQUIRED: false
+      comment: List of webhooks for your team.
+  webhook_creation_data:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unique ID for the webhook.
+    - name: network
+      NAME: network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: webhook_type
+      NAME: webhook_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: webhook_url
+      NAME: webhook_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: URL endpoint where the webhook is sent
+    - name: is_active
+      NAME: is_active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: True if the webhook is active, false otherwise.
+    - name: time_created
+      NAME: time_created
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Timestamp when the webhook was created.
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Webhook version (v1 or v2)
+    - name: signing_key
+      NAME: signing_key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Signing key for the webhook.
+  create_webhook_response:
+    - name: data
+      NAME: data
+      type: STRUCT(webhook_creation_data)
+      TYPE: STRUCT(webhook_creation_data)
+      REQUIRED: false
+  update_webhook_response:
+    - name: data
+      NAME: data
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  webhook_nft_filters_response:
+    - name: data
+      NAME: data
+      type: "[]STRUCT(nft_filter_object)"
+      TYPE: "[]STRUCT(nft_filter_object)"
+      REQUIRED: false
+      comment: List of NFT filter objects.
+    - name: pagination
+      NAME: pagination
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Pagination information.
+  webhook_addresses_response:
+    - name: data
+      NAME: data
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of addresses associated with the webhook.
+    - name: pagination
+      NAME: pagination
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Pagination information.
+  update-webhook-addresses.update-webhook-address.updateResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  update-webhook-nft-filters.update-webhook-nft-filter.updateResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  delete-webhook.delete-webhook.deleteResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

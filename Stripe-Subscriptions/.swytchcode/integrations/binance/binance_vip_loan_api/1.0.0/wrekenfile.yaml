@@ -1,0 +1,399 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://api.binance.com
+METHODS:
+  sapi.v1.borrow.create:
+    SUMMARY: Create borrow
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/loan/vip/borrow
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - loanAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - loanCoin:
+          TYPE: STRING
+          LOCATION: query
+      - loanAmount:
+          TYPE: STRING
+          LOCATION: query
+      - collateralAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - collateralCoin:
+          TYPE: STRING
+          LOCATION: query
+      - isFlexibleRate:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.borrow.create
+  sapi.v1.renew.create:
+    SUMMARY: Create renew
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/loan/vip/renew
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - orderId:
+          TYPE: STRING
+          LOCATION: query
+      - loanTerm:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.renew.create
+  sapi.v1.repay.create:
+    SUMMARY: Create repay
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/loan/vip/repay
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - orderId:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.repay.create
+  sapi.v1.accruedInterest.list:
+    SUMMARY: Fetch accruedInterest
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/accruedInterest
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.accruedInterest.list
+  sapi.v1.account.list:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/collateral/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.account.list
+  sapi.v1.orders.list:
+    SUMMARY: Fetch orders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/ongoing/orders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.orders.list
+  sapi.v1.data.list:
+    SUMMARY: Fetch data
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/request/data
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.data.list
+  sapi.v1.data.list_2fd4:
+    SUMMARY: Fetch data
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/collateral/data
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.data.list_2fd4
+  sapi.v1.interestRateHistory.list:
+    SUMMARY: Fetch interestRateHistory
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/interestRateHistory
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - coin:
+          TYPE: STRING
+          LOCATION: query
+      - recvWindow:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.interestRateHistory.list
+  sapi.v1.data.list_718d:
+    SUMMARY: Fetch data
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/loanable/data
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.data.list_718d
+  sapi.v1.interestRate.list:
+    SUMMARY: Fetch interestRate
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/loan/vip/request/interestRate
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - loanCoin:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.interestRate.list

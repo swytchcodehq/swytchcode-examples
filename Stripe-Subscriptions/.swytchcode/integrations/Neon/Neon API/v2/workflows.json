@@ -1,0 +1,52 @@
+{
+  "workflows": [
+    {
+      "name": "Account bootstrap",
+      "canonical_id": "",
+      "steps": [
+        {
+          "name": "List projects for an organization.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Create a Neon project within an organization, specifying region and PostgreSQL version.",
+          "canonical_id": ""
+        },
+        {
+          "name": "List project branches for a specified project, including the root branch named 'main' and any child branches.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Retrieve connection URI for a specified database by obtaining project ID, database name, and role name.",
+          "canonical_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Core data-plane setup",
+      "canonical_id": "",
+      "steps": [
+        {
+          "name": "Create a branch in a project.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Create a database in a specific branch within a project.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Create a Postgres role in a specified branch for a project in your Neon account.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Retrieve branch details for a specified branch in a Neon project, including parent branch information.",
+          "canonical_id": ""
+        },
+        {
+          "name": "Retrieve database details for a specified project branch.",
+          "canonical_id": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "integrations": {
+    "plaid.plaid": {
+      "version": "2020-09-14_1.682.2"
+    },
+    "persona.persona": {
+      "version": "2025-12-08"
+    },
+    "dwolla.dwolla_api": {
+      "version": "1.0.0"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "sandbox.public_token.create": {
+      "desc": "Create a test Item in Plaid Sandbox",
+      "inputs": [
+        {
+          "plaid-client-id": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-secret": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-version": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "plaid.plaid@2020-09-14_1.682.2",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create a test Item",
+      "type": "method"
+    },
+    "item.public_token.exchange.create": {
+      "desc": "Exchange public token for an access token",
+      "inputs": [
+        {
+          "plaid-client-id": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-secret": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-version": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "plaid.plaid@2020-09-14_1.682.2",
+      "method_hash": "",
+      "output": {},
+      "summary": "Exchange public token for an access token",
+      "type": "method"
+    },
+    "accounts.get.create": {
+      "desc": "Retrieve accounts associated with an Item",
+      "inputs": [
+        {
+          "plaid-client-id": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-secret": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "plaid-version": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "plaid.plaid@2020-09-14_1.682.2",
+      "method_hash": "",
+      "output": {},
+      "summary": "Retrieve accounts",
+      "type": "method"
+    },
+    "inquiries.approve.create": {
+      "desc": "Directly approve a Persona inquiry (sandbox)",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "inquiry-id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "persona.persona@2025-12-08",
+      "method_hash": "",
+      "output": {},
+      "summary": "Approve an Inquiry",
+      "type": "method"
+    },
+    "inquiries.inquiry.create": {
+      "desc": "Create a new Persona inquiry",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "persona.persona@2025-12-08",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create an Inquiry",
+      "type": "method"
+    },
+    "inquiries.perform-simulate-action.create": {
+      "desc": "Perform simulated actions on a Sandbox Inquiry",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "inquiry-id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "persona.persona@2025-12-08",
+      "method_hash": "",
+      "output": {},
+      "summary": "Perform Simulate Actions",
+      "type": "method"
+    },
+    "inquiries.inquiry.get": {
+      "desc": "Retrieve an existing Persona inquiry",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Persona-Version": {
+            "LOCATION": "header",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "inquiry-id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "persona.persona@2025-12-08",
+      "method_hash": "",
+      "output": {},
+      "summary": "Retrieve an Inquiry",
+      "type": "method"
+    },
+    "token.token.create": {
+      "desc": "Create Dwolla OAuth application access token",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "grant_type": {
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "dwolla.dwolla_api@1.0.0",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create an application access token",
+      "type": "method"
+    },
+    "customers.customer.create": {
+      "desc": "Create a Dwolla customer",
+      "inputs": [
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE":

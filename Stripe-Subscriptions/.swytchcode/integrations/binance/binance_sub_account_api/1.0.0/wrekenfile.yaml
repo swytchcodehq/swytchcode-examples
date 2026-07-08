@@ -1,0 +1,1710 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://api.binance.com
+METHODS:
+  sapi.v1.accountSnapshot.list:
+    SUMMARY: Fetch accountSnapshot
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/accountSnapshot
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.accountSnapshot.list
+  sapi.v1.asset.list:
+    SUMMARY: Fetch asset
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/asset
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.asset.list
+  sapi.v1.deposit.create:
+    SUMMARY: Create deposit
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/managed-subaccount/deposit
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - toEmail:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.deposit.create
+  sapi.v1.address.list:
+    SUMMARY: Fetch address
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/deposit/address
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - coin:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.address.list
+  sapi.v1.fetchFutureAsset.list:
+    SUMMARY: Fetch fetch-future-asset
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/fetch-future-asset
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.fetchFutureAsset.list
+  sapi.v1.info.list:
+    SUMMARY: Fetch info
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/info
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.info.list
+  sapi.v1.marginAsset.list:
+    SUMMARY: Fetch marginAsset
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/marginAsset
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.marginAsset.list
+  sapi.v1.queryTransLog.list:
+    SUMMARY: Fetch query-trans-log
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/query-trans-log
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - page:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.queryTransLog.list
+  sapi.v1.queryTransLogForInvestor.list:
+    SUMMARY: Fetch queryTransLogForInvestor
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/queryTransLogForInvestor
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - page:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.queryTransLogForInvestor.list
+  sapi.v1.queryTransLogForTradeParent.list:
+    SUMMARY: Fetch queryTransLogForTradeParent
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/managed-subaccount/queryTransLogForTradeParent
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - startTime:
+          TYPE: STRING
+          LOCATION: query
+      - endTime:
+          TYPE: STRING
+          LOCATION: query
+      - page:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.queryTransLogForTradeParent.list
+  sapi.v1.withdraw.create:
+    SUMMARY: Create withdraw
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/managed-subaccount/withdraw
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - fromEmail:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.withdraw.create
+  sapi.v1.subAddress.list:
+    SUMMARY: Fetch subAddress
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/capital/deposit/subAddress
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - coin:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subAddress.list
+  sapi.v1.subHisrec.list:
+    SUMMARY: Fetch subHisrec
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/capital/deposit/subHisrec
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subHisrec.list
+  sapi.v1.account.list:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/futures/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.account.list
+  sapi.v1.accountSummary.list:
+    SUMMARY: Fetch accountSummary
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/futures/accountSummary
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - page:
+          TYPE: STRING
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.accountSummary.list
+  sapi.v1.internalTransfer.list:
+    SUMMARY: Fetch internalTransfer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/futures/internalTransfer
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - futuresType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.internalTransfer.list
+  sapi.v1.internalTransfer.create:
+    SUMMARY: Create internalTransfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/futures/internalTransfer
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - fromEmail:
+          TYPE: STRING
+          LOCATION: query
+      - toEmail:
+          TYPE: STRING
+          LOCATION: query
+      - futuresType:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.internalTransfer.create
+  sapi.v1.movePosition.list:
+    SUMMARY: Fetch move-position
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/futures/move-position
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - page:
+          TYPE: STRING
+          LOCATION: query
+      - row:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.movePosition.list
+  sapi.v1.movePosition.create:
+    SUMMARY: Create move-position
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/futures/move-position
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - fromUserEmail:
+          TYPE: STRING
+          LOCATION: query
+      - toUserEmail:
+          TYPE: STRING
+          LOCATION: query
+      - productType:
+          TYPE: STRING
+          LOCATION: query
+      - orderArgs:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.movePosition.create
+  sapi.v1.transfer.create:
+    SUMMARY: Create transfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/futures/transfer
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.transfer.create
+  sapi.v1.account.list_e1d4:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/margin/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.account.list_e1d4
+  sapi.v1.accountSummary.list_57ab:
+    SUMMARY: Fetch accountSummary
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/margin/accountSummary
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.accountSummary.list_57ab
+  sapi.v1.transfer.create_fe71:
+    SUMMARY: Create transfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/margin/transfer
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.transfer.create_fe71
+  sapi.v1.spotSummary.list:
+    SUMMARY: Fetch spotSummary
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/spotSummary
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.spotSummary.list
+  sapi.v1.history.list:
+    SUMMARY: Fetch history
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/sub/transfer/history
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.history.list
+  sapi.v1.subToMaster.create:
+    SUMMARY: Create subToMaster
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/transfer/subToMaster
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subToMaster.create
+  sapi.v1.subToSub.create:
+    SUMMARY: Create subToSub
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/transfer/subToSub
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - toEmail:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subToSub.create
+  sapi.v1.subUserHistory.list:
+    SUMMARY: Fetch subUserHistory
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/transfer/subUserHistory
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subUserHistory.list
+  sapi.v1.universalTransfer.list:
+    SUMMARY: Fetch universalTransfer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/universalTransfer
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.universalTransfer.list
+  sapi.v1.universalTransfer.create:
+    SUMMARY: Create universalTransfer
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/universalTransfer
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - fromAccountType:
+          TYPE: STRING
+          LOCATION: query
+      - toAccountType:
+          TYPE: STRING
+          LOCATION: query
+      - asset:
+          TYPE: STRING
+          LOCATION: query
+      - amount:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.universalTransfer.create
+  sapi.v2.account.list:
+    SUMMARY: Fetch account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v2/sub-account/futures/account
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - futuresType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v2.account.list
+  sapi.v2.accountSummary.list:
+    SUMMARY: Fetch accountSummary
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v2/sub-account/futures/accountSummary
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - futuresType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v2.accountSummary.list
+  sapi.v3.assets.list:
+    SUMMARY: Fetch assets
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v3/sub-account/assets
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v3.assets.list
+  sapi.v4.assets.list:
+    SUMMARY: Fetch assets
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v4/sub-account/assets
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v4.assets.list
+  sapi.v1.enable.create:
+    SUMMARY: Create enable
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/eoptions/enable
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.enable.create
+  sapi.v1.enable.create_a307:
+    SUMMARY: Create enable
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/futures/enable
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.enable.create_a307
+  sapi.v1.positionRisk.list:
+    SUMMARY: Fetch positionRisk
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/futures/positionRisk
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.positionRisk.list
+  sapi.v1.subAccount.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subAccount.list
+  sapi.v1.status.list:
+    SUMMARY: Fetch status
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/status
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.status.list
+  sapi.v1.transactionStatistics.list:
+    SUMMARY: Fetch transaction-statistics
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/transaction-statistics
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.transactionStatistics.list
+  sapi.v1.virtualSubAccount.create:
+    SUMMARY: Create virtualSubAccount
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/sub-account/virtualSubAccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - subAccountString:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.virtualSubAccount.create
+  sapi.v2.positionRisk.list:
+    SUMMARY: Fetch positionRisk
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v2/sub-account/futures/positionRisk
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - futuresType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v2.positionRisk.list
+  sapi.v1.ipRestriction.list:
+    SUMMARY: Fetch ipRestriction
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/sub-account/subAccountApi/ipRestriction
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - subAccountApiKey:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.ipRestriction.list
+  sapi.v1.ipList.delete:
+    SUMMARY: Delete ipList
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /sapi/v1/sub-account/subAccountApi/ipRestriction/ipList
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - subAccountApiKey:
+          TYPE: STRING
+          LOCATION: query
+      - ipAddress:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.ipList.delete
+  sapi.v2.ipRestriction.create:
+    SUMMARY: Create ipRestriction
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v2/sub-account/subAccountApi/ipRestriction
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - email:
+          TYPE: STRING
+          LOCATION: query
+      - subAccountApiKey:
+          TYPE: STRING
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v2.ipRestriction.create

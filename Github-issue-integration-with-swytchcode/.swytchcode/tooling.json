@@ -1,0 +1,71 @@
+{
+  "editor": "none",
+  "integrations": {
+    "github.github_api": {
+      "version": "1.1.4"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "repos.issue.create": {
+      "desc": "Create an issue",
+      "inputs": [
+        {
+          "owner": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "repo": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "Authorization": {
+            "LOCATION": "header",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "title": {
+                  "required": true,
+                  "type": "string"
+                },
+                "body": {
+                  "required": false,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "github.github_api@1.1.4",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "number": {
+              "type": "integer"
+            },
+            "html_url": {
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Create an issue",
+      "type": "method"
+    }
+  },
+  "version": "1"
+}

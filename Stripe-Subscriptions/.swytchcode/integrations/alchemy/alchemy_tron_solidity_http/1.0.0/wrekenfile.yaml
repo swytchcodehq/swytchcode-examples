@@ -1,0 +1,1181 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://tron-mainnet.g.alchemy.com/v2/{apiKey}
+METHODS:
+  walletsolidity.gettransactionbyid.create:
+    SUMMARY: Get transaction by ID
+    DESC: Retrieves a transaction's full raw data and metadata by its txID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/gettransactionbyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.gettransactionbyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.gettransactionbyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.gettransactionbyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.gettransactionbyid.createResponse200)
+        RETURNVAR: walletsolidity_gettransactionbyid_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.gettransactionbyid.create
+  walletsolidity.gettransactioninfobyid.create:
+    SUMMARY: Get transaction info by ID
+    DESC: Retrieves transaction information by its txID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/gettransactioninfobyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.gettransactioninfobyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.gettransactioninfobyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.gettransactioninfobyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.gettransactioninfobyid.createResponse200)
+        RETURNVAR: walletsolidity_gettransactioninfobyid_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.gettransactioninfobyid.create
+  walletsolidity.gettransactioninfobyblocknum.create:
+    SUMMARY: Get transaction info by block number
+    DESC: Retrieves all transaction information for a specific block number.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/gettransactioninfobyblocknum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.gettransactioninfobyblocknum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.gettransactioninfobyblocknum.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: walletsolidity_gettransactioninfobyblocknum_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.gettransactioninfobyblocknum.create
+  walletsolidity.gettransactioncountbyblocknum.create:
+    SUMMARY: Get transaction count by block number
+    DESC: Retrieves the number of transactions in a specific block by block number.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/gettransactioncountbyblocknum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.gettransactioncountbyblocknum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.gettransactioncountbyblocknum.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.gettransactioncountbyblocknum.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.gettransactioncountbyblocknum.createResponse200)
+        RETURNVAR: walletsolidity_gettransactioncountbyblocknum_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.gettransactioncountbyblocknum.create
+  walletsolidity.getnowblock.create:
+    SUMMARY: Get latest block
+    DESC: Retrieves the latest block on Tron.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getnowblock
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getnowblock.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getnowblock.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getnowblock.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getnowblock.createResponse200)
+        RETURNVAR: walletsolidity_getnowblock_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getnowblock.create
+  walletsolidity.getblock.create:
+    SUMMARY: Get block by number
+    DESC: Retrieves a block's details by its block number.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getblock
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getblock.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getblock.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getblock.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getblock.createResponse200)
+        RETURNVAR: walletsolidity_getblock_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getblock.create
+  walletsolidity.getblockbynum.create:
+    SUMMARY: Get block by number (alias)
+    DESC: Retrieves block details by block number using the `getblockbynum` endpoint.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getblockbynum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getblockbynum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getblockbynum.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getblockbynum.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getblockbynum.createResponse200)
+        RETURNVAR: walletsolidity_getblockbynum_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getblockbynum.create
+  walletsolidity.getblockbyid.create:
+    SUMMARY: Get block by ID
+    DESC: Retrieves block details using a block ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getblockbyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getblockbyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getblockbyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getblockbyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getblockbyid.createResponse200)
+        RETURNVAR: walletsolidity_getblockbyid_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getblockbyid.create
+  walletsolidity.getblockbylatestnum.create:
+    SUMMARY: Get latest N blocks
+    DESC: Retrieves the latest `num` blocks from the blockchain, starting from the current block and going backward.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getblockbylatestnum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getblockbylatestnum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getblockbylatestnum.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getblockbylatestnum.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getblockbylatestnum.createResponse200)
+        RETURNVAR: walletsolidity_getblockbylatestnum_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getblockbylatestnum.create
+  walletsolidity.getblockbylimitnext.create:
+    SUMMARY: Get blocks by range
+    DESC: Retrieves blocks between startNum and endNum (inclusive).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getblockbylimitnext
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getblockbylimitnext.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getblockbylimitnext.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getblockbylimitnext.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getblockbylimitnext.createResponse200)
+        RETURNVAR: walletsolidity_getblockbylimitnext_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getblockbylimitnext.create
+  walletsolidity.getaccount.create:
+    SUMMARY: Get account information
+    DESC: Retrieves account details for a given address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getaccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getaccount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getaccount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getaccount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getaccount.createResponse200)
+        RETURNVAR: walletsolidity_getaccount_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getaccount.create
+  walletsolidity.getdelegatedresource.create:
+    SUMMARY: Get delegated resource
+    DESC: Retrieves information about resources delegated from one address to another.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getdelegatedresource
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getdelegatedresource.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getdelegatedresource.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getdelegatedresource.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getdelegatedresource.createResponse200)
+        RETURNVAR: walletsolidity_getdelegatedresource_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getdelegatedresource.create
+  walletsolidity.getdelegatedresourceaccountindex.create:
+    SUMMARY: Get delegated resource account index
+    DESC: Retrieves the delegated resource account index for a given address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getdelegatedresourceaccountindex
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindex.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindex.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindex.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindex.createResponse200)
+        RETURNVAR: walletsolidity_getdelegatedresourceaccountindex_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getdelegatedresourceaccountindex.create
+  walletsolidity.getcandelegatedmaxsize.create:
+    SUMMARY: Get max delegatable resource size
+    DESC: Retrieves the maximum resource size that can be delegated for a specific address and type.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getcandelegatedmaxsize
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getcandelegatedmaxsize.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getcandelegatedmaxsize.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getcandelegatedmaxsize.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getcandelegatedmaxsize.createResponse200)
+        RETURNVAR: walletsolidity_getcandelegatedmaxsize_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getcandelegatedmaxsize.create
+  walletsolidity.getavailableunfreezecount.create:
+    SUMMARY: Get available unfreeze count
+    DESC: Retrieves the number of available unfreezes for a given account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getavailableunfreezecount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getavailableunfreezecount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getavailableunfreezecount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getavailableunfreezecount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getavailableunfreezecount.createResponse200)
+        RETURNVAR: walletsolidity_getavailableunfreezecount_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getavailableunfreezecount.create
+  walletsolidity.getcanwithdrawunfreezeamount.create:
+    SUMMARY: Get withdrawable unfreeze amount
+    DESC: Retrieves the amount that can be withdrawn from unfreezing at a given timestamp.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getcanwithdrawunfreezeamount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getcanwithdrawunfreezeamount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getcanwithdrawunfreezeamount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getcanwithdrawunfreezeamount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getcanwithdrawunfreezeamount.createResponse200)
+        RETURNVAR: walletsolidity_getcanwithdrawunfreezeamount_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getcanwithdrawunfreezeamount.create
+  walletsolidity.getdelegatedresourceaccountindexv2.create:
+    SUMMARY: Get delegated resource account index V2
+    DESC: Retrieves the delegated resource account index (v2) for a given address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getdelegatedresourceaccountindexv2
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindexv2.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindexv2.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindexv2.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getdelegatedresourceaccountindexv2.createResponse200)
+        RETURNVAR: walletsolidity_getdelegatedresourceaccountindexv2_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getdelegatedresourceaccountindexv2.create
+  walletsolidity.getburntrx.create:
+    SUMMARY: Get burned TRX amount
+    DESC: Retrieves the total amount of burned TRX.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getburntrx
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getburntrx.createResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getburntrx.createResponse200)
+        RETURNVAR: walletsolidity_getburntrx_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getburntrx.create
+  walletsolidity.triggerconstantcontract.create:
+    SUMMARY: Trigger constant contract
+    DESC: Executes a read-only smart contract function locally without broadcasting a transaction.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/triggerconstantcontract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.triggerconstantcontract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.triggerconstantcontract.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.triggerconstantcontract.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.triggerconstantcontract.createResponse200)
+        RETURNVAR: walletsolidity_triggerconstantcontract_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.triggerconstantcontract.create
+  walletsolidity.estimateenergy.create:
+    SUMMARY: Estimate energy usage
+    DESC: Estimates the energy consumption for executing a smart contract method locally without broadcasting it.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/estimateenergy
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.estimateenergy.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.estimateenergy.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.estimateenergy.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.estimateenergy.createResponse200)
+        RETURNVAR: walletsolidity_estimateenergy_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.estimateenergy.create
+  walletsolidity.getassetissuebyname.create:
+    SUMMARY: Get asset issue by name
+    DESC: Retrieves asset issuance details based on the asset's name (in hex format).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getassetissuebyname
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getassetissuebyname.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getassetissuebyname.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getassetissuebyname.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getassetissuebyname.createResponse200)
+        RETURNVAR: walletsolidity_getassetissuebyname_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getassetissuebyname.create
+  walletsolidity.getassetissuebyid.create:
+    SUMMARY: Get asset issue by ID
+    DESC: Retrieves asset issuance details based on asset ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getassetissuebyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getassetissuebyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getassetissuebyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getassetissuebyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getassetissuebyid.createResponse200)
+        RETURNVAR: walletsolidity_getassetissuebyid_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getassetissuebyid.create
+  walletsolidity.getassetissuelist.create:
+    SUMMARY: Get all asset issues
+    DESC: Retrieves a list of all assets issued on the blockchain.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getassetissuelist
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getassetissuelist.createResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getassetissuelist.createResponse200)
+        RETURNVAR: walletsolidity_getassetissuelist_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getassetissuelist.create
+  walletsolidity.getassetissuelistbyname.create:
+    SUMMARY: Get asset issue list by name
+    DESC: Retrieves a list of assets matching the provided name in hex format.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getassetissuelistbyname
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getassetissuelistbyname.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getassetissuelistbyname.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getassetissuelistbyname.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getassetissuelistbyname.createResponse200)
+        RETURNVAR: walletsolidity_getassetissuelistbyname_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getassetissuelistbyname.create
+  walletsolidity.getpaginatedassetissuelist.create:
+    SUMMARY: Get paginated asset issue list
+    DESC: Retrieves a paginated list of all asset issues.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getpaginatedassetissuelist
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getpaginatedassetissuelist.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getpaginatedassetissuelist.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getpaginatedassetissuelist.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getpaginatedassetissuelist.createResponse200)
+        RETURNVAR: walletsolidity_getpaginatedassetissuelist_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getpaginatedassetissuelist.create
+  walletsolidity.listexchange.create:
+    SUMMARY: List all exchanges
+    DESC: Retrieves all active token exchanges.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/listexchanges
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.listexchange.createResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.listexchange.createResponse200)
+        RETURNVAR: walletsolidity_listexchange_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.listexchange.create
+  walletsolidity.getexchangebyid.create:
+    SUMMARY: Get exchange by ID
+    DESC: Retrieves exchange details by its unique ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /walletsolidity/getexchangebyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(walletsolidity.getexchangebyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(walletsolidity.getexchangebyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(walletsolidity.getexchangebyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(walletsolidity.getexchangebyid.createResponse200)
+        RETURNVAR: walletsolidity_getexchangebyid_create
+        STATUS: 200
+    CANONICAL_ID: walletsolidity.getexchangebyid.create
+STRUCTS:
+  walletsolidity.gettransactionbyid.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.gettransactionbyid.createResponse200:
+    - name: ret
+      NAME: ret
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+    - name: signature
+      NAME: signature
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.gettransactioninfobyid.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.gettransactioninfobyblocknum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.gettransactioncountbyblocknum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.gettransactioncountbyblocknum.createResponse200:
+    - name: count
+      NAME: count
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getblock.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.getblockbynum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getblockbyid.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.getblockbylatestnum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getblockbylatestnum.createResponse200:
+    - name: block
+      NAME: block
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  walletsolidity.getblockbylimitnext.createRequest:
+    - name: startNum
+      NAME: startNum
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: endNum
+      NAME: endNum
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getblockbylimitnext.createResponse200:
+    - name: block
+      NAME: block
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  walletsolidity.getaccount.createRequest:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getdelegatedresource.createRequest:
+    - name: fromAddress
+      NAME: fromAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: toAddress
+      NAME: toAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getdelegatedresourceaccountindex.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getcandelegatedmaxsize.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Resource type (0 for BANDWIDTH, 1 for ENERGY)
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getavailableunfreezecount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getavailableunfreezecount.createResponse200:
+    - name: count
+      NAME: count
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getcanwithdrawunfreezeamount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: timestamp
+      NAME: timestamp
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getdelegatedresourceaccountindexv2.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getdelegatedresourceaccountindexv2.createResponse200:
+    - name: account
+      NAME: account
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: fromAccounts
+      NAME: fromAccounts
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+  walletsolidity.getburntrx.createResponse200:
+    - name: burnTrxAmount
+      NAME: burnTrxAmount
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.triggerconstantcontract.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: function_selector
+      NAME: function_selector
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.estimateenergy.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: function_selector
+      NAME: function_selector
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.estimateenergy.createResponse200:
+    - name: result
+      NAME: result
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: energy_required
+      NAME: energy_required
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getassetissuebyname.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Asset name in hex (e.g., "62747474657374")
+  walletsolidity.getassetissuebyid.createRequest:
+    - name: value
+      NAME: value
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  walletsolidity.getassetissuelist.createResponse200:
+    - name: assetIssue
+      NAME: assetIssue
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  walletsolidity.getassetissuelistbyname.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Asset name in hex
+  walletsolidity.getpaginatedassetissuelist.createRequest:
+    - name: offset
+      NAME: offset
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: limit
+      NAME: limit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.getpaginatedassetissuelist.createResponse200:
+    - name: assetIssue
+      NAME: assetIssue
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  walletsolidity.listexchange.createResponse200:
+    - name: exchanges
+      NAME: exchanges
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  walletsolidity.getexchangebyid.createRequest:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  walletsolidity.getexchangebyid.createResponse200:
+    - name: exchange_id
+      NAME: exchange_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: creator_address
+      NAME: creator_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: create_time
+      NAME: create_time
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: first_token_id
+      NAME: first_token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: first_token_balance
+      NAME: first_token_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: second_token_id
+      NAME: second_token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: second_token_balance
+      NAME: second_token_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  walletsolidity.gettransactioninfobyid.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getnowblock.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getnowblock.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getblock.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getblockbynum.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getblockbyid.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getaccount.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getdelegatedresource.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getdelegatedresourceaccountindex.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getcandelegatedmaxsize.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getcanwithdrawunfreezeamount.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.triggerconstantcontract.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getassetissuebyname.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getassetissuebyid.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  walletsolidity.getassetissuelistbyname.createResponse200:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

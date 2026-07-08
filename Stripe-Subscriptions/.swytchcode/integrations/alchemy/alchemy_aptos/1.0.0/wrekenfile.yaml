@@ -1,0 +1,1334 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://aptos-mainnet.g.alchemy.com/v2/{apiKey}
+METHODS:
+  v1.v1.list:
+    SUMMARY: /v1
+    DESC: |
+      Retrieves the latest information from the Aptos blockchain ledger, including the current chain ID, node role, latest and oldest ledger versions, epoch, block height, and more.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(v1.v1.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(v1.v1.listResponse200)
+        RETURNVAR: v1_v1_list
+        STATUS: 200
+    CANONICAL_ID: v1.v1.list
+  spec.spec.list:
+    SUMMARY: /v1/spec
+    DESC: |
+      Provides a web-based UI for exploring the Aptos REST API.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/spec
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: text/html
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: spec_spec_list
+        STATUS: 200
+    CANONICAL_ID: spec.spec.list
+  view.view.create:
+    SUMMARY: /v1/view
+    DESC: |
+      Executes a Move view function with the provided arguments and returns the result.
+      The function must be marked as a view function in the Move module. If a `ledger_version` is specified and has been pruned, the server will respond with a 410 error.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/view
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(view.view.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(view.view.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: view_view_create
+        STATUS: 200
+    CANONICAL_ID: view.view.create
+  "-.healthy.list":
+    SUMMARY: /v1/-/healthy
+    DESC: |
+      Checks whether the node is healthy.
+      By default, this endpoint just verifies that the node can retrieve the latest ledger info and returns a `200 OK`.
+      If the optional `duration_secs` query parameter is specified, the endpoint returns a `200` only if:
+      `server_latest_ledger_info_timestamp >= server_current_time_timestamp - duration_secs`
+      Otherwise, it returns a `503 Service Unavailable`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/-/healthy
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(-.healthy.listResponse200)
+    INPUTS:
+      - duration_secs:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(-.healthy.listResponse200)
+        RETURNVAR: "-_healthy_list"
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(Error503)
+        STATUS: 503
+        WHEN: Server is not healthy (e.g., too far behind). (HTTP 503)
+    CANONICAL_ID: "-.healthy.list"
+  accounts.account.get:
+    SUMMARY: /v1/accounts/{address}
+    DESC: |
+      Retrieves high-level information about an account such as its sequence number and authentication key.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(accounts.account.getResponse200)
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(accounts.account.getResponse200)
+        RETURNVAR: accounts_account_get
+        STATUS: 200
+    CANONICAL_ID: accounts.account.get
+  accounts.resource.get:
+    SUMMARY: /v1/accounts/{address}/resources
+    DESC: |
+      Retrieves all account resources for a given account and a specific ledger version.
+      If the ledger version is not specified, the latest ledger version is used.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/resources
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: accounts_resource_get
+        STATUS: 200
+    CANONICAL_ID: accounts.resource.get
+  accounts.resource.get_58d9:
+    SUMMARY: /v1/accounts/{address}/resource/{resource_type}
+    DESC: |
+      Retrieves an individual resource from a given account and at a specific ledger version.
+      If the ledger version is not specified, the latest ledger version is used.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/resource/{resource_type}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(accounts.resource.getResponse200)
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - resource_type:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(accounts.resource.getResponse200)
+        RETURNVAR: accounts_resource_get_58d9
+        STATUS: 200
+    CANONICAL_ID: accounts.resource.get_58d9
+  accounts.module.get:
+    SUMMARY: /v1/accounts/{address}/modules
+    DESC: |
+      Retrieves all account modules' bytecode for a given account at a specific ledger version.
+      If the ledger version is not specified, the latest ledger version is used.
+      The Aptos nodes prune account state history, via a configurable time window. If the requested ledger version has been pruned, the server responds with a 410.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/modules
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: accounts_module_get
+        STATUS: 200
+    CANONICAL_ID: accounts.module.get
+  accounts.module.get_de79:
+    SUMMARY: /v1/accounts/{address}/module/{module_name}
+    DESC: |
+      Retrieves an individual module from a given account and at a specific ledger version.
+      If the ledger version is not specified, the latest ledger version is used.
+      The Aptos nodes prune account state history, via a configurable time window. If the requested ledger version has been pruned, the server responds with a 410.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/module/{module_name}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(accounts.module.getResponse200)
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - module_name:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(accounts.module.getResponse200)
+        RETURNVAR: accounts_module_get_de79
+        STATUS: 200
+    CANONICAL_ID: accounts.module.get_de79
+  accounts.event.get:
+    SUMMARY: /v1/accounts/{address}/events/{creation_number}
+    DESC: |
+      Retrieves events by account address and creation number. Optionally supports pagination via `start` and `limit`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/events/{creation_number}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - creation_number:
+          TYPE: STRING
+          LOCATION: path
+      - start:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: accounts_event_get
+        STATUS: 200
+    CANONICAL_ID: accounts.event.get
+  accounts.event.get_443:
+    SUMMARY: /v1/accounts/{address}/events/{event_handle}/{field_name}
+    DESC: |
+      Uses the given account `address`, `event_handle`, and `field_name` to retrieve events emitted to the account that match the corresponding event type.
+      The combination of these parameters constructs a globally unique event stream identifier.
+      Pagination is supported via `start` and `limit`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/events/{event_handle}/{field_name}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - event_handle:
+          TYPE: STRING
+          LOCATION: path
+      - field_name:
+          TYPE: STRING
+          LOCATION: path
+      - start:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: accounts_event_get_443
+        STATUS: 200
+    CANONICAL_ID: accounts.event.get_443
+  blocks.by_height.get:
+    SUMMARY: /v1/blocks/by_height/{block_height}
+    DESC: |
+      Retrieves block metadata and optionally the transactions contained in the block.
+      If the block is pruned, the server will return a 410 error. To avoid partial results when `with_transactions=true`, consider checking the total number of transactions expected.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/blocks/by_height/{block_height}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.by_height.getResponse200)
+    INPUTS:
+      - block_height:
+          TYPE: INT
+          LOCATION: path
+      - with_transactions:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.by_height.getResponse200)
+        RETURNVAR: blocks_by_height_get
+        STATUS: 200
+    CANONICAL_ID: blocks.by_height.get
+  blocks.by_version.get:
+    SUMMARY: /v1/blocks/by_version/{version}
+    DESC: |
+      Retrieves block metadata and optionally the transactions contained in the block, based on a specific ledger version.
+      If the block is pruned, the server will return a 410 error. To avoid partial results when `with_transactions=true`, consider checking the total number of transactions expected.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/blocks/by_version/{version}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.by_version.getResponse200)
+    INPUTS:
+      - version:
+          TYPE: INT
+          LOCATION: path
+      - with_transactions:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.by_version.getResponse200)
+        RETURNVAR: blocks_by_version_get
+        STATUS: 200
+    CANONICAL_ID: blocks.by_version.get
+  tables.item.create:
+    SUMMARY: /v1/tables/{table_handle}/item
+    DESC: |
+      Retrieves a specific item from the table identified by `{table_handle}` using the provided key. This is a POST endpoint because the key can be complex and not suitable for query parameters.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/tables/{table_handle}/item
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(tables.item.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRING
+    INPUTS:
+      - table_handle:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(tables.item.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRING
+        RETURNVAR: tables_item_create
+        STATUS: 200
+    CANONICAL_ID: tables.item.create
+  tables.raw_item.create:
+    SUMMARY: /v1/tables/{table_handle}/raw_item
+    DESC: |
+      Get a raw table item at a specific ledger version from the table identified by `{table_handle}` and the key provided in the request body.
+      The `get_raw_table_item` endpoint only requires a serialized key (hex string) and returns the value in binary canonical serialization (BCS) format.
+      The Aptos nodes prune account state history via a configurable time window. If the requested ledger version has been pruned, the server responds with a 410.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/tables/{table_handle}/raw_item
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/x-bcs
+      BODY:
+        TYPE: STRUCT(tables.raw_item.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - table_handle:
+          TYPE: STRING
+          LOCATION: path
+      - ledger_version:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(tables.raw_item.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: tables_raw_item_create
+        STATUS: 200
+    CANONICAL_ID: tables.raw_item.create
+  accounts.transaction.get:
+    SUMMARY: /v1/accounts/{address}/transactions
+    DESC: |
+      Retrieves transactions sent from a specific account. If `start` is not provided, retrieval starts at sequence number 0. If `start` is too far in the past and pruned, a 410 will be returned.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/accounts/{address}/transactions
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - address:
+          TYPE: STRING
+          LOCATION: path
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - start:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: accounts_transaction_get
+        STATUS: 200
+    CANONICAL_ID: accounts.transaction.get
+  estimate_gas_price.estimate_gas_price.list:
+    SUMMARY: /v1/estimate_gas_price
+    DESC: |
+      Estimates a suitable gas price based on recent network activity.
+      The estimate is derived from the median gas unit price of the last 100,000 transactions. If there have been no transactions in that window, the estimate defaults to 1.
+      Users can choose to pay more to prioritize their transaction or less if they're willing to wait.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/estimate_gas_price
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(estimate_gas_price.estimate_gas_price.listResponse200)
+    RETURNS:
+      - RETURNTYPE: STRUCT(estimate_gas_price.estimate_gas_price.listResponse200)
+        RETURNVAR: estimate_gas_price_estimate_gas_price_list
+        STATUS: 200
+    CANONICAL_ID: estimate_gas_price.estimate_gas_price.list
+  transactions.transaction.list:
+    SUMMARY: /v1/transactions
+    DESC: |
+      Retrieves on-chain committed transactions from the ledger.
+      Supports optional pagination via the `start` and `limit` query parameters.
+      If the starting version has been pruned due to the node's data retention policy, a 410 error will be returned.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/transactions
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - start:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: transactions_transaction_list
+        STATUS: 200
+    CANONICAL_ID: transactions.transaction.list
+  transactions.transaction.create:
+    SUMMARY: /v1/transactions
+    DESC: |
+      Submits a transaction to the Aptos network.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/transactions
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(transactions.transaction.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transactions.transaction.createResponse202)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(transactions.transaction.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(transactions.transaction.createResponse202)
+        RETURNVAR: transactions_transaction_create_202
+        STATUS: 202
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: Bad request - invalid transaction format. (HTTP 400)
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: Forbidden - transaction rejected. (HTTP 403)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Not found - resource not available. (HTTP 404)
+      - TYPE: ANY
+        STATUS: 413
+        WHEN: Payload too large. (HTTP 413)
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: Internal server error. (HTTP 500)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: Service unavailable. (HTTP 503)
+      - TYPE: ANY
+        STATUS: 507
+        WHEN: Insufficient storage. (HTTP 507)
+    CANONICAL_ID: transactions.transaction.create
+  transactions.batch.create:
+    SUMMARY: /v1/transactions/batch
+    DESC: |
+      Submits a batch of transactions to the Aptos network. Each transaction in the batch includes full transaction details, such as sender, sequence number, gas settings, and a payload.
+      If any transaction in the batch fails, the response will include the corresponding failure details.
+      Note: The API credit cost for this endpoint is 10.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/transactions/batch
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(transactions.batch.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transactions.batch.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(transactions.batch.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(transactions.batch.createResponse200)
+        RETURNVAR: transactions_batch_create
+        STATUS: 200
+    CANONICAL_ID: transactions.batch.create
+  transactions.by_hash.get:
+    SUMMARY: /v1/transactions/by_hash/{txn_hash}
+    DESC: |
+      Retrieves a transaction from the Aptos blockchain by transaction hash.
+      If the transaction is not found or has been pruned, the API may return a 404 or 410 respectively.
+      This endpoint has a credit cost of 10.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/transactions/by_hash/{txn_hash}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transactions.by_hash.getResponse200)
+    INPUTS:
+      - txn_hash:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(transactions.by_hash.getResponse200)
+        RETURNVAR: transactions_by_hash_get
+        STATUS: 200
+    CANONICAL_ID: transactions.by_hash.get
+  transactions.by_version.get:
+    SUMMARY: /v1/transactions/by_version/{txn_version}
+    DESC: |
+      Retrieves a transaction from the Aptos blockchain by ledger version.
+      If the version has been pruned, the server responds with a 410.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/transactions/by_version/{txn_version}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transactions.by_version.getResponse200)
+    INPUTS:
+      - txn_version:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(transactions.by_version.getResponse200)
+        RETURNVAR: transactions_by_version_get
+        STATUS: 200
+    CANONICAL_ID: transactions.by_version.get
+  transactions.encode_submission.create:
+    SUMMARY: /v1/transactions/encode_submission
+    DESC: |
+      This endpoint accepts an `EncodeSubmissionRequest`, validates the request format, and returns that request encoded in BCS format as a hex string.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/transactions/encode_submission
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(transactions.encode_submission.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(transactions.encode_submission.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(transactions.encode_submission.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(transactions.encode_submission.createResponse200)
+        RETURNVAR: transactions_encode_submission_create
+        STATUS: 200
+    CANONICAL_ID: transactions.encode_submission.create
+  transactions.simulate.create:
+    SUMMARY: /v1/transactions/simulate
+    DESC: |
+      Simulates a transaction without committing it to the chain. The output includes transaction events and execution results,  but omits state hashes. Useful for estimating gas usage and transaction validity.
+      You must provide a SignedTransaction with a zero-padded signature.
+      Optional flags allow estimating gas price, max gas amount, or using a prioritized gas price.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/transactions/simulate
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(transactions.simulate.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: "[]ANY"
+    INPUTS:
+      - estimate_gas_unit_price:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - estimate_max_gas_amount:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - estimate_prioritized_gas_unit_price:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(transactions.simulate.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: transactions_simulate_create
+        STATUS: 200
+    CANONICAL_ID: transactions.simulate.create
+STRUCTS:
+  v1.v1.listResponse200:
+    - name: chain_id
+      NAME: chain_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: ID of the blockchain chain.
+    - name: epoch
+      NAME: epoch
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Current epoch number.
+    - name: ledger_version
+      NAME: ledger_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Latest ledger version.
+    - name: oldest_ledger_version
+      NAME: oldest_ledger_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Earliest available ledger version (due to pruning).
+    - name: ledger_timestamp
+      NAME: ledger_timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Timestamp of the latest ledger version in microseconds.
+    - name: node_role
+      NAME: node_role
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Role of this node in the network.
+    - name: oldest_block_height
+      NAME: oldest_block_height
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Lowest block height available.
+    - name: block_height
+      NAME: block_height
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Current block height.
+    - name: git_hash
+      NAME: git_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Git hash of the node build.
+  view.view.createRequest:
+    - name: function
+      NAME: function
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        Fully qualified Move function to execute, in the format `{address}::{module name}::{function name}`. Both module name and function name are case-sensitive.
+    - name: type_arguments
+      NAME: type_arguments
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Type arguments passed to the function.
+    - name: arguments
+      NAME: arguments
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Arguments passed to the function.
+  "-.healthy.listResponse200":
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  accounts.account.getResponse200:
+    - name: sequence_number
+      NAME: sequence_number
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A string containing a 64-bit unsigned integer.
+    - name: authentication_key
+      NAME: authentication_key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: All bytes (Vec) data is represented as hex-encoded string prefixed with 0x and fulfilled with two hex digits per byte.
+  accounts.resource.getResponse200:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: String representation of a MoveStructTag (e.g. 0x1::account::Account).
+    - name: data
+      NAME: data
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: JSON representation of Move struct data within the resource.
+  accounts.module.getResponse200:
+    - name: bytecode
+      NAME: bytecode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded bytecode of the module.
+    - name: abi
+      NAME: abi
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  blocks.by_height.getResponse200:
+    - name: block_height
+      NAME: block_height
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_hash
+      NAME: block_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_timestamp
+      NAME: block_timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: first_version
+      NAME: first_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: last_version
+      NAME: last_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: transactions
+      NAME: transactions
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  blocks.by_version.getResponse200:
+    - name: block_height
+      NAME: block_height
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_hash
+      NAME: block_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_timestamp
+      NAME: block_timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: first_version
+      NAME: first_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: last_version
+      NAME: last_version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: transactions
+      NAME: transactions
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  tables.item.createRequest:
+    - name: key_type
+      NAME: key_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        The Move type of the key.
+    - name: value_type
+      NAME: value_type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        The Move type of the value.
+    - name: key
+      NAME: key
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+      comment: |
+        The key to identify the item in the table. Can be a primitive or a complex object.
+  tables.raw_item.createRequest:
+    - name: key
+      NAME: key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        Serialized BCS key for the item, as a hex-encoded string prefixed with `0x`.
+        The hex string must have an even number of characters (after 0x).  If the BCS-encoded key results in an odd-length hex string, it must be left-padded with 0 to ensure valid decoding.
+  estimate_gas_price.estimate_gas_price.listResponse200:
+    - name: deprioritized_gas_estimate
+      NAME: deprioritized_gas_estimate
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Estimated gas price for deprioritized transactions.
+    - name: gas_estimate
+      NAME: gas_estimate
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Median estimated gas price (standard).
+    - name: prioritized_gas_estimate
+      NAME: prioritized_gas_estimate
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Estimated gas price for prioritized transactions.
+  transactions.transaction.createRequest:
+    - name: sender
+      NAME: sender
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A hex encoded 32 byte Aptos account address.
+    - name: sequence_number
+      NAME: sequence_number
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: max_gas_amount
+      NAME: max_gas_amount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: gas_unit_price
+      NAME: gas_unit_price
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: expiration_timestamp_secs
+      NAME: expiration_timestamp_secs
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: payload
+      NAME: payload
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: An enum of the possible transaction payloads.
+    - name: replay_protection_nonce
+      NAME: replay_protection_nonce
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A string containing a 64-bit unsigned integer for replay protection.
+    - name: signature
+      NAME: signature
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: An enum representing the different transaction signatures available.
+  transactions.transaction.createResponse202:
+    - name: hash
+      NAME: hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Transaction hash.
+    - name: sender
+      NAME: sender
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A hex encoded 32 byte Aptos account address.
+    - name: sequence_number
+      NAME: sequence_number
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: max_gas_amount
+      NAME: max_gas_amount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: gas_unit_price
+      NAME: gas_unit_price
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: expiration_timestamp_secs
+      NAME: expiration_timestamp_secs
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string containing a 64-bit unsigned integer.
+    - name: payload
+      NAME: payload
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: An enum of the possible transaction payloads.
+    - name: signature
+      NAME: signature
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: An enum representing the different transaction signatures available.
+    - name: replay_protection_nonce
+      NAME: replay_protection_nonce
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A string containing a 64-bit unsigned integer.
+  transactions.batch.createResponse200:
+    - name: transaction_failures
+      NAME: transaction_failures
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  transactions.by_hash.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: hash
+      NAME: hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: state_change_hash
+      NAME: state_change_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: event_root_hash
+      NAME: event_root_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: state_checkpoint_hash
+      NAME: state_checkpoint_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: gas_used
+      NAME: gas_used
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: success
+      NAME: success
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: vm_status
+      NAME: vm_status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: accumulator_root_hash
+      NAME: accumulator_root_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: changes
+      NAME: changes
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  transactions.by_version.getResponse200:
+    - name: version
+      NAME: version
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: hash
+      NAME: hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: state_change_hash
+      NAME: state_change_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: event_root_hash
+      NAME: event_root_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: state_checkpoint_hash
+      NAME: state_checkpoint_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: gas_used
+      NAME: gas_used
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: success
+      NAME: success
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: vm_status
+      NAME: vm_status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: accumulator_root_hash
+      NAME: accumulator_root_hash
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: changes
+      NAME: changes
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of state changes made by the transaction.
+    - name: timestamp
+      NAME: timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  transactions.encode_submission.createRequest:
+    - name: sender
+      NAME: sender
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: sequence_number
+      NAME: sequence_number
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: max_gas_amount
+      NAME: max_gas_amount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: gas_unit_price
+      NAME: gas_unit_price
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: expiration_timestamp_secs
+      NAME: expiration_timestamp_secs
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: payload
+      NAME: payload
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+  transactions.encode_submission.createResponse200:
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: BCS-encoded transaction as a hex string.
+  transactions.simulate.createRequest:
+    - name: sender
+      NAME: sender
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: sequence_number
+      NAME: sequence_number
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: max_gas_amount
+      NAME: max_gas_amount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: gas_unit_price
+      NAME: gas_unit_price
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: expiration_timestamp_secs
+      NAME: expiration_timestamp_secs
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: payload
+      NAME: payload
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: signature
+      NAME: signature
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+  Error503:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  transactions.batch.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

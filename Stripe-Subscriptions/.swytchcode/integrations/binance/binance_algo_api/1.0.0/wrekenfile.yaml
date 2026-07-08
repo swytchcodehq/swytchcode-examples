@@ -1,0 +1,408 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://api.binance.com
+METHODS:
+  sapi.v1.historicalOrders.list:
+    SUMMARY: Fetch historicalOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/futures/historicalOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.historicalOrders.list
+  sapi.v1.newOrderTwap.create:
+    SUMMARY: Create newOrderTwap
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/algo/futures/newOrderTwap
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - duration:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.newOrderTwap.create
+  sapi.v1.newOrderVp.create:
+    SUMMARY: Create newOrderVp
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/algo/futures/newOrderVp
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - urgency:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.newOrderVp.create
+  sapi.v1.openOrders.list:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/futures/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.openOrders.list
+  sapi.v1.order.delete:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /sapi/v1/algo/futures/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algoId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.order.delete
+  sapi.v1.subOrders.list:
+    SUMMARY: Fetch subOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/futures/subOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algoId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subOrders.list
+  sapi.v1.historicalOrders.list_dfc4:
+    SUMMARY: Fetch historicalOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/spot/historicalOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.historicalOrders.list_dfc4
+  sapi.v1.newOrderTwap.create_93cf:
+    SUMMARY: Create newOrderTwap
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/algo/spot/newOrderTwap
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - side:
+          TYPE: STRING
+          LOCATION: query
+      - quantity:
+          TYPE: STRING
+          LOCATION: query
+      - duration:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.newOrderTwap.create_93cf
+  sapi.v1.openOrders.list_b4fe:
+    SUMMARY: Fetch openOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/spot/openOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.openOrders.list_b4fe
+  sapi.v1.order.delete_a403:
+    SUMMARY: Delete order
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /sapi/v1/algo/spot/order
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algoId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.order.delete_a403
+  sapi.v1.subOrders.list_d9b0:
+    SUMMARY: Fetch subOrders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/algo/spot/subOrders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - algoId:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.subOrders.list_d9b0

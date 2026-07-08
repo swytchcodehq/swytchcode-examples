@@ -1,0 +1,22 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.g.alchemy.com/data/v1
+METHODS:
+  transactions.history.byAddress.create:
+    SUMMARY: Create By Address
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /{apiKey}/transactions/history/by-address
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    CANONICAL_ID: transactions.history.byAddress.create
+STRUCTS: {}

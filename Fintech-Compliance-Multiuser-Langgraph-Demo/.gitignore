@@ -1,0 +1,11 @@
+# Environment variables
+.env
+
+# Workflow run state — tracks completed users for resumability
+# Delete this file to start a fresh run
+run_state.json
+
+# Python
+__pycache__/
+*.pyc
+*.log

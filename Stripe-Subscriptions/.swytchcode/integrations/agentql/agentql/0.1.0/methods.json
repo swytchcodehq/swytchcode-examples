@@ -1,0 +1,44 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Tetra browser session.",
+      "canonical_id": "tetra.session.create_6ff6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Tetra browser session.",
+      "canonical_id": "tetra.session.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Tetra browser session usage for the authenticated user.",
+      "canonical_id": "tetra.usage.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Tetra browser session usage for the authenticated user.",
+      "canonical_id": "tetra.usage.list_bfb2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query data and retrieve AgentQL response based on provided data query or generate one using the request prompt.",
+      "canonical_id": "query-data.query-data.create_8046"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query data service to retrieve AgentQL response for a data query, with the option to generate AQL query from the request prompt.",
+      "canonical_id": "query-data.query-data.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve API key usage and subscription information for your account.",
+      "canonical_id": "usage.usage.list_cf75"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve API key usage and subscription information for your account.",
+      "canonical_id": "usage.usage.list"
+    }
+  ]
+}

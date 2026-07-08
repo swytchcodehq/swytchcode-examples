@@ -1,0 +1,207 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://api.binance.com
+METHODS:
+  sapi.v1.deposit.create:
+    SUMMARY: Create deposit
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v1/fiat/deposit
+      HEADERS:
+        Content-Type: application/x-www-form-urlencoded
+      CONTENT_TYPE: application/x-www-form-urlencoded
+      ACCEPT: application/json
+      BODYTYPE: x-www-form-urlencoded
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+      - currency:
+          TYPE: STRING
+          LOCATION: body
+      - apiPaymentMethod:
+          TYPE: STRING
+          LOCATION: body
+      - amount:
+          TYPE: STRING
+          LOCATION: body
+      - ext:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: sapi.v1.deposit.create
+  sapi.v1.getOrderDetail.list:
+    SUMMARY: Fetch get-order-detail
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/fiat/get-order-detail
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - orderNo:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.getOrderDetail.list
+  sapi.v1.orders.list:
+    SUMMARY: Fetch orders
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/fiat/orders
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - transactionType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.orders.list
+  sapi.v1.payments.list:
+    SUMMARY: Fetch payments
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /sapi/v1/fiat/payments
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - transactionType:
+          TYPE: STRING
+          LOCATION: query
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: sapi.v1.payments.list
+  sapi.v2.withdraw.create:
+    SUMMARY: Create withdraw
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /sapi/v2/fiat/withdraw
+      HEADERS:
+        Content-Type: application/x-www-form-urlencoded
+      CONTENT_TYPE: application/x-www-form-urlencoded
+      ACCEPT: application/json
+      BODYTYPE: x-www-form-urlencoded
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - timestamp:
+          TYPE: STRING
+          LOCATION: query
+      - signature:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+      - currency:
+          TYPE: STRING
+          LOCATION: body
+      - apiPaymentMethod:
+          TYPE: STRING
+          LOCATION: body
+      - amount:
+          TYPE: STRING
+          LOCATION: body
+      - accountInfo:
+          TYPE: STRING
+          LOCATION: body
+      - ext:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: sapi.v2.withdraw.create

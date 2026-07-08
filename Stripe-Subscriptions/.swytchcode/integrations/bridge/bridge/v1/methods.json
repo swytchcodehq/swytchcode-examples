@@ -1,0 +1,1144 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a new top-up deposit address for a card account, enabling top-ups from multiple chains. Only for Bridge-custodied top-up card accounts.",
+      "canonical_id": "customers.card_account.depositAddresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure a fee External Account.",
+      "canonical_id": "developer.fee_external_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure a fee External Account.",
+      "canonical_id": "developer.fee_external_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Batch Settlement Schedule for liquidation address destination.",
+      "canonical_id": "customers.batch_settlement_schedule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Batch Settlement Schedule for liquidation addresses.",
+      "canonical_id": "customers.batch_settlement_schedule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Bridge Wallet for a customer.",
+      "canonical_id": "customers.wallet.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new associated person for a business customer.",
+      "canonical_id": "customers.associated_person.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new associated person for a business customer.",
+      "canonical_id": "customers.associated_person.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Bridge Wallet.",
+      "canonical_id": "customers.wallet.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new crypto return policy.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new crypto return policy.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new customer profile.",
+      "canonical_id": "customers.customer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new customer profile.",
+      "canonical_id": "customers.customer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new External Account for a customer.",
+      "canonical_id": "customers.external_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new External Account for customers, with a recommendation for US address validation to prevent issues.",
+      "canonical_id": "customers.external_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new liquidation address for a specific customer.",
+      "canonical_id": "customers.liquidation_address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new liquidation address.",
+      "canonical_id": "customers.liquidation_address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new transfer.",
+      "canonical_id": "transfers.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new webhook endpoint to receive events from Bridge, which can be enabled and have a maximum of 5 active or disabled webhooks at a time.",
+      "canonical_id": "webhooks.webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a request to push-provision a virtual card to a mobile wallet in a multi-step integration process.",
+      "canonical_id": "customers.card_account.createMobileWalletProvisioningRequest.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a static memo for a specific customer.",
+      "canonical_id": "customers.static_memo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Static Memo for a specific customer.",
+      "canonical_id": "customers.static_memo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a transfer.",
+      "canonical_id": "transfers.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Virtual Account for a specific customer.",
+      "canonical_id": "customers.virtual_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Virtual Account or Virtual IBAN for a specified customer.",
+      "canonical_id": "customers.virtual_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a webhook endpoint to receive events from Bridge, which can be enabled and have a maximum of 5 active/disabled webhooks at a time.",
+      "canonical_id": "webhooks.webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deactivate a Virtual Account to prevent new incoming transactions.",
+      "canonical_id": "customers.virtual_account.deactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deactivate a Virtual Account to prevent new incoming transactions.",
+      "canonical_id": "customers.virtual_account.deactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a customer object by customer ID.",
+      "canonical_id": "customers.customer.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a customer object by customer ID.",
+      "canonical_id": "customers.customer.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a single associated person by ID.",
+      "canonical_id": "customers.associated_person.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a single associated person by ID.",
+      "canonical_id": "associated_persons.associated_person.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific crypto return policy by its ID.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific crypto return policy object by its ID.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a transfer that is in the awaiting_funds state.",
+      "canonical_id": "transfers.transfer.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a transfer that is in the awaiting_funds state.",
+      "canonical_id": "transfers.transfer.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a webhook by its ID to remove it from the system and make it inaccessible via the API.",
+      "canonical_id": "webhooks.webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a webhook to remove its accessibility via API.",
+      "canonical_id": "webhooks.webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an associated person by ID from a customer's profile.",
+      "canonical_id": "customers.associated_person.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an associated person by ID.",
+      "canonical_id": "associated_persons.associated_person.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an External Account object using the provided External Account ID within a specific customer's account.",
+      "canonical_id": "customers.external_account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an External Account object using the provided External Account ID.",
+      "canonical_id": "customers.external_account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange a Plaid public token for an access token.",
+      "canonical_id": "plaid_exchange_public_token.plaid_exchange_public_token.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange a Plaid public token for an access token.",
+      "canonical_id": "plaid_exchange_public_token.plaid_exchange_public_token.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Freeze a card account for a specific customer.",
+      "canonical_id": "customers.card_account.freeze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Freeze a card account.",
+      "canonical_id": "customers.card_account.freeze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a card account statement for the specified period.",
+      "canonical_id": "customers.card_account.{period}.pdf.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a card account statement for the specified period.",
+      "canonical_id": "customers.card_account.{period}.pdf.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a one-time ephemeral key to safely reveal card details.",
+      "canonical_id": "customers.card_account.ephemeralKeys.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a one-time key to safely reveal card details for a specific customer and card account.",
+      "canonical_id": "customers.card_account.ephemeralKeys.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a Plaid Link token for a customer.",
+      "canonical_id": "customers.plaid_link_request.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a Plaid Link token for a specific customer.",
+      "canonical_id": "customers.plaid_link_request.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a secure URL to update a card PIN for a card account, which is single-use and time-limited.",
+      "canonical_id": "customers.card_account.pin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate KYC completion links for individuals or businesses.",
+      "canonical_id": "kyc_links.kyc_link.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate KYC completion links for individuals or businesses.",
+      "canonical_id": "kyc_links.kyc_link.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate secure URL to update card PIN for a specific customer's card account.",
+      "canonical_id": "customers.card_account.pin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of countries and subdivisions recognized by Bridge, but note that inclusion does not guarantee product support.",
+      "canonical_id": "lists.country.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all Bridge Wallets available.",
+      "canonical_id": "wallets.wallet.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all funds requests submitted by partnered banks and financial institutions.",
+      "canonical_id": "funds_requests.funds_request.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all static memo objects for a customer by customer ID, with optional filtering by status, limit, starting after, and ending before.",
+      "canonical_id": "customers.static_memo.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all static memo objects for a customer.",
+      "canonical_id": "customers.static_memo.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all static memo objects.",
+      "canonical_id": "static_memos.static_memo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all static memos with options to filter by status, limit results, and paginate.",
+      "canonical_id": "static_memos.static_memo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all virtual account objects for a specific customer.",
+      "canonical_id": "customers.virtual_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all Virtual Account objects.",
+      "canonical_id": "virtual_accounts.virtual_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all webhook events for your account in ascending order based on event sequence, limited to the last 90 days.",
+      "canonical_id": "webhook_events.webhook_event.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all webhook events for your account, ordered by event sequence, within the last 90 days.",
+      "canonical_id": "webhook_events.webhook_event.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available card designs for your card program.",
+      "canonical_id": "developer.card.designs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List the next 10 events scheduled for delivery to a specific webhook.",
+      "canonical_id": "webhooks.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List upcoming events for the specified webhook.",
+      "canonical_id": "webhooks.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List virtual account activity across all customers.",
+      "canonical_id": "virtual_accounts.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Virtual Accounts for a Customer by ID with optional status, limit, starting_after, and ending_before filters.",
+      "canonical_id": "customers.virtual_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Virtual Accounts with options to filter by status, limit results, and paginate through the list.",
+      "canonical_id": "virtual_accounts.virtual_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Provision a card account for a customer. Only one account can be provisioned per customer.",
+      "canonical_id": "customers.card_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Provision a card account for a customer. Only one account can be provisioned per customer.",
+      "canonical_id": "customers.card_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Provision an additional top-up deposit address for the card account allowing top-ups from multiple chains.",
+      "canonical_id": "customers.card_account.depositAddresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Push-provision a virtual card to a mobile wallet for a specific customer's card account.",
+      "canonical_id": "customers.card_account.createMobileWalletProvisioningRequest.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reactivate a previously deactivated External Account.",
+      "canonical_id": "customers.external_account.reactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reactivate a previously deactivated External Account.",
+      "canonical_id": "customers.external_account.reactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reactivate a previously deactivated Virtual Account for a specific customer.",
+      "canonical_id": "customers.virtual_account.reactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reactivate a previously deactivated Virtual Account.",
+      "canonical_id": "customers.virtual_account.reactivate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a funds withdrawal from a card account, applicable to top-up accounts. For Bridge wallets, create a transfer from the Bridge wallet.",
+      "canonical_id": "customers.card_account.withdrawals.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a funds withdrawal from the card account for top-up accounts or create a transfer for Bridge wallets.",
+      "canonical_id": "customers.card_account.withdrawals.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a hosted URL for new customer ToS acceptance during creation.",
+      "canonical_id": "customers.tos_link.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a hosted URL to guide new customers through Terms of Service acceptance for creation.",
+      "canonical_id": "customers.tos_link.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a Bridge Wallet by Bridge Wallet ID.",
+      "canonical_id": "customers.wallet.get_2da5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a card account by ID.",
+      "canonical_id": "customers.card_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a customer object using the provided customer ID.",
+      "canonical_id": "customers.customer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a customer object using the provided customer ID.",
+      "canonical_id": "customers.customer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a customer's rewards history.",
+      "canonical_id": "rewards.customer.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a customer's rewards summary.",
+      "canonical_id": "rewards.customer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a hosted KYC Link for an existing customer to guide them through a Bridge KYC flow, optionally for specific purposes.",
+      "canonical_id": "customers.kyc_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a hosted KYC Link to guide existing customers through providing additional KYC information for specific services.",
+      "canonical_id": "customers.kyc_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a hosted URL for an existing customer to accept Terms of Service (ToS) updates.",
+      "canonical_id": "customers.tos_acceptance_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a hosted URL for existing customer to accept updated Terms of Service (ToS) through a guided flow.",
+      "canonical_id": "customers.tos_acceptance_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a Liquidation Address by ID.",
+      "canonical_id": "customers.liquidation_address.get_a43d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all Bridge Wallets with options to limit and paginate the results.",
+      "canonical_id": "wallets.wallet.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all customers created on Bridge, with optional filters like starting_after, ending_before, and limit.",
+      "canonical_id": "customers.customer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all customers created on Bridge.",
+      "canonical_id": "customers.customer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all External Accounts.",
+      "canonical_id": "external_accounts.external_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all funds requests submitted by partnered banks and financial institutions.",
+      "canonical_id": "funds_requests.funds_request.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all Liquidation Addresses available.",
+      "canonical_id": "liquidation_addresses.liquidation_address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all Prefunded Accounts.",
+      "canonical_id": "prefunded_accounts.prefunded_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all Prefunded Accounts.",
+      "canonical_id": "prefunded_accounts.prefunded_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all transfers.",
+      "canonical_id": "transfers.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of countries and subdivisions recognized by Bridge.",
+      "canonical_id": "lists.country.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of occupation codes for KYC Source of Funds section, similar to the codes found in the provided link.",
+      "canonical_id": "lists.occupation_code.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of occupation codes for the Source of Funds section in the KYC flow.",
+      "canonical_id": "lists.occupation_code.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a single associated person by their ID.",
+      "canonical_id": "customers.associated_person.get_fb0f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific associated person by their ID.",
+      "canonical_id": "customers.associated_person.get_fb0f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Bridge Wallet for the provided Bridge Wallet ID.",
+      "canonical_id": "customers.wallet.get_2da5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific card account for a customer.",
+      "canonical_id": "customers.card_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific card transaction by ID.",
+      "canonical_id": "customers.card_account.transactions.get_7941"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific card transaction for a customer's card account.",
+      "canonical_id": "customers.card_account.transactions.get_7941"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific card withdrawal for a top-up account by its ID.",
+      "canonical_id": "customers.card_account.withdrawals.get_5d15"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific card withdrawal for top-up accounts by ID.",
+      "canonical_id": "customers.card_account.withdrawals.get_5d15"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Liquidation Address for a customer by providing the Liquidation Address ID.",
+      "canonical_id": "customers.liquidation_address.get_a43d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Static Memo object by providing the customer ID and Static Memo ID.",
+      "canonical_id": "customers.static_memo.get_ea0f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a Static Memo object by ID.",
+      "canonical_id": "customers.static_memo.get_ea0f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a summary of a customer's rewards based on the specified currency and customer ID.",
+      "canonical_id": "rewards.customer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a summary of rewards available for a specific stablecoin.",
+      "canonical_id": "rewards.reward.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a summary of rewards available for a specific stablecoin.",
+      "canonical_id": "rewards.reward.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a summary of your card program, optionally for a specific period.",
+      "canonical_id": "developer.card.summary.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a summary of your card program, with an option to specify a period.",
+      "canonical_id": "developer.card.summary.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transfer object by transfer ID.",
+      "canonical_id": "transfers.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transfer object using the provided transfer ID.",
+      "canonical_id": "transfers.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a Virtual Account by ID for a specific customer.",
+      "canonical_id": "customers.virtual_account.get_27f3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a Virtual Account object by ID.",
+      "canonical_id": "customers.virtual_account.get_27f3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all associated persons linked to a business customer by providing the customer ID.",
+      "canonical_id": "customers.associated_person.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all associated persons linked to a business customer.",
+      "canonical_id": "customers.associated_person.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all available static templates.",
+      "canonical_id": "transfers.static_template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all Bridge Wallets associated with a specific customer by providing the customer ID.",
+      "canonical_id": "customers.wallet.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all Bridge Wallets associated with a specific customer ID.",
+      "canonical_id": "customers.wallet.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all card accounts for a customer, supporting only one account. Returns an empty array if no card is provisioned.",
+      "canonical_id": "customers.card_account.get_8c13"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all card accounts for a customer.",
+      "canonical_id": "customers.card_account.get_8c13"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all crypto return policies for the authenticated developer.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all crypto return policies for the authenticated developer.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all external accounts for a specific customer by providing the customer ID.",
+      "canonical_id": "customers.external_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all external accounts for a specific customer.",
+      "canonical_id": "customers.external_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all external accounts.",
+      "canonical_id": "external_accounts.external_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all liquidation addresses associated with a specific customer by providing the customer ID.",
+      "canonical_id": "customers.liquidation_address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all liquidation addresses associated with a specific customer.",
+      "canonical_id": "customers.liquidation_address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all liquidation addresses.",
+      "canonical_id": "liquidation_addresses.liquidation_address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all static templates available for a specific customer.",
+      "canonical_id": "customers.static_template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all static templates available for a specific customer.",
+      "canonical_id": "customers.static_template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all static templates with optional parameters for limiting results and pagination.",
+      "canonical_id": "transfers.static_template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all transfers for a customer, including active and completed ones.",
+      "canonical_id": "customers.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all transfers for a specific customer, including active and completed transfers, with optional filtering by various parameters.",
+      "canonical_id": "customers.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all transfers with optional filters like limit, starting/ending before, transaction hash, updated timestamp, template, and state.",
+      "canonical_id": "transfers.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all webhook endpoints configured on Bridge, including active and disabled ones.",
+      "canonical_id": "webhooks.webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all webhook endpoints, including active and disabled ones, configured on Bridge.",
+      "canonical_id": "webhooks.webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an External Account object (banks, debit cards etc) from a specific customer and external account ID.",
+      "canonical_id": "customers.external_account.get_2237"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve authorization controls and applicable spend limits for a specific card account.",
+      "canonical_id": "customers.card_account.authControls.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve authorization controls and applicable spend limits for a specific card account.",
+      "canonical_id": "customers.card_account.authControls.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve available card designs for your card program.",
+      "canonical_id": "developer.card.designs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve completed card transactions and card-related crypto transaction activities for a specific customer and card account.",
+      "canonical_id": "customers.card_account.transactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve completed card transactions and card-related crypto transaction activities.",
+      "canonical_id": "customers.card_account.transactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific Prefunded Account.",
+      "canonical_id": "prefunded_accounts.prefunded_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific Prefunded Account.",
+      "canonical_id": "prefunded_accounts.prefunded_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific associated person by their ID.",
+      "canonical_id": "associated_persons.associated_person.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific associated person by their ID.",
+      "canonical_id": "associated_persons.associated_person.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve External Account details for a specific customer and account ID.",
+      "canonical_id": "customers.external_account.get_2237"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve funding history for a Prefunded Account, including funding events and returns.",
+      "canonical_id": "prefunded_accounts.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve history of static memo activity across all customers and Virtual Accounts.",
+      "canonical_id": "static_memos.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve liquidation address activity across all customers and history of activity across all customers and liquidation addresses.",
+      "canonical_id": "liquidation_addresses.drain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve liquidation address drains history for all customers and addresses.",
+      "canonical_id": "liquidation_addresses.drain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve pending card authorizations for a specific customer's card account.",
+      "canonical_id": "customers.card_account.authorizations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve pending card authorizations.",
+      "canonical_id": "customers.card_account.authorizations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve static memo activity history for all customers and virtual accounts.",
+      "canonical_id": "static_memos.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the balance of a Liquidation Address. Note: Most Liquidation Addresses are now empty. Check recent activity using the drains endpoint.",
+      "canonical_id": "customers.liquidation_address.balances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the balance of a specific Liquidation Address. Note: Most Liquidation Addresses no longer have a balance.",
+      "canonical_id": "customers.liquidation_address.balances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the configured fee External Account.",
+      "canonical_id": "developer.fee_external_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the configured fee External Account.",
+      "canonical_id": "developer.fee_external_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the configured fees for supported products.",
+      "canonical_id": "developer.fee.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current exchange rate between two currencies, updated every 30 seconds.",
+      "canonical_id": "exchange_rates.exchange_rate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current exchange rate between two specified currencies.",
+      "canonical_id": "exchange_rates.exchange_rate.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the drain history of a specific Liquidation Address.",
+      "canonical_id": "customers.liquidation_address.drains.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the drain history of a specific Liquidation Address.",
+      "canonical_id": "customers.liquidation_address.drains.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the fiat payout configuration for a customer by customer ID.",
+      "canonical_id": "customers.fiat_payout_configuration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the fiat payout configuration for a specific customer, determining the payout method for each currency and payment rail combination.",
+      "canonical_id": "customers.fiat_payout_configuration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the full list of KYC links by customer ID, email, or pagination.",
+      "canonical_id": "kyc_links.kyc_link.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the full list of KYC links.",
+      "canonical_id": "kyc_links.kyc_link.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the funding history and events for a Prefunded Account.",
+      "canonical_id": "prefunded_accounts.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the history of activity across all customers and Virtual Accounts, including deposit details and transaction events.",
+      "canonical_id": "virtual_accounts.history.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the history of activity for a specific Static Memo associated with a customer.",
+      "canonical_id": "customers.static_memo.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the history of activity for a specific Virtual Account belonging to a customer.",
+      "canonical_id": "customers.virtual_account.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the history of activity for a Static Memo.",
+      "canonical_id": "customers.static_memo.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the history of activity for a Virtual Account.",
+      "canonical_id": "customers.virtual_account.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of configured fees for supported products.",
+      "canonical_id": "developer.fee.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the rewards history for a specific customer based on their currency and customer ID.",
+      "canonical_id": "rewards.customer.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the status of a KYC request using the provided KYC link ID.",
+      "canonical_id": "kyc_links.kyc_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the status of a KYC request using the provided KYC link ID.",
+      "canonical_id": "kyc_links.kyc_link.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the total balances of all Bridge Wallets.",
+      "canonical_id": "wallets.total_balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the total balances of all Bridge Wallets.",
+      "canonical_id": "wallets.total_balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the withdrawal history of funds for a specific card account within a customer's account.",
+      "canonical_id": "customers.card_account.withdrawals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the withdrawal history of funds for top-up accounts.",
+      "canonical_id": "customers.card_account.withdrawals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transaction history for a Bridge Wallet.",
+      "canonical_id": "wallets.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transaction history for a specific Bridge Wallet, including a list of transactions associated with it.",
+      "canonical_id": "wallets.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send event to webhook endpoint.",
+      "canonical_id": "webhooks.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send event to webhook. Deliver a specific event to the designated webhook without affecting other queued events.",
+      "canonical_id": "webhooks.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unfreeze a card account and remove the freeze placed by a specified initiator.",
+      "canonical_id": "customers.card_account.unfreeze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unfreeze a card account and remove the freeze placed by a specified initiator.",
+      "canonical_id": "customers.card_account.unfreeze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Liquidation Address for a specific customer and liquidation address ID, allowing modifications to `external_account_id` and `custom_developer_fee_percent`.",
+      "canonical_id": "customers.liquidation_address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Liquidation Address with the option to modify `external_account_id` and `custom_developer_fee_percent` independently.",
+      "canonical_id": "customers.liquidation_address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single associated person for a customer by providing the associated person's ID and the updated details.",
+      "canonical_id": "customers.associated_person.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single associated person in the system.",
+      "canonical_id": "customers.associated_person.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single customer object with specified changes.",
+      "canonical_id": "customers.customer.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a single customer object with specified changes.",
+      "canonical_id": "customers.customer.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific webhook object by providing the webhook ID and the updated payload.",
+      "canonical_id": "webhooks.webhook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a transfer that is in the awaiting_funds state.",
+      "canonical_id": "transfers.transfer.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a transfer that was previously created and is in the awaiting_funds state.",
+      "canonical_id": "transfers.transfer.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a webhook object.",
+      "canonical_id": "webhooks.webhook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing crypto return policy by providing the policy ID and new details.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing crypto return policy.",
+      "canonical_id": "crypto_return_policies.crypto_return_policy.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an external account for a customer.",
+      "canonical_id": "customers.external_account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an External Account.",
+      "canonical_id": "customers.external_account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update configured fees and adjust fees for supported products.",
+      "canonical_id": "developer.fee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update configured fees and fees for supported products.",
+      "canonical_id": "developer.fee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update details of a specific associated person.",
+      "canonical_id": "associated_persons.associated_person.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update details of a specific associated person.",
+      "canonical_id": "associated_persons.associated_person.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update instructions for an existing Static Memo for a specific customer.",
+      "canonical_id": "customers.static_memo.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update instructions for an existing Static Memo.",
+      "canonical_id": "customers.static_memo.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update instructions for an existing Virtual Account for a specific customer.",
+      "canonical_id": "customers.virtual_account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update instructions for an existing Virtual Account.",
+      "canonical_id": "customers.virtual_account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the fiat payout configuration for a customer based on specified currency and payment rail combinations.",
+      "canonical_id": "customers.fiat_payout_configuration.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the fiat payout configuration for a customer by specifying payout methods for currency and payment rail combinations.",
+      "canonical_id": "customers.fiat_payout_configuration.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "View delivery logs for a specific webhook. Display the latest logs for deliveries sent to the specified webhook.",
+      "canonical_id": "webhooks.log.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "View the most recent delivery logs for a specified webhook.",
+      "canonical_id": "webhooks.log.get"
+    }
+  ]
+}
