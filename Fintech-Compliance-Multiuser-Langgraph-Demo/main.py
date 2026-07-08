@@ -111,7 +111,7 @@ def exec_with_retry(canonical_id: str, params: dict, label: str) -> dict:
     """
     last_result: dict = {}
     for attempt in range(1, MAX_RETRIES + 1):
-        result = swytchcode_exec(canonical_id, params)
+        result = swytchcode_exec(canonical_id, params) or {"error": f"{label}: no response from swytchcode_exec"}
         if not result.get("error"):
             return result
         if attempt < MAX_RETRIES:
