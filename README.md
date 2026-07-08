@@ -1,4 +1,4 @@
-<h1 align="center">Swytchcode Enterprise Examples & Reference Architectures</h1>
+<h1 align="center">Swytchcode Examples & Reference Architectures</h1>
 
 <div align="center">
   <strong>Production-ready AI agent workflows, integration templates, and compliance guardrails.</strong>
@@ -8,9 +8,9 @@
 
 ## Overview
 
-**Swytchcode** is the enterprise standard for connecting autonomous AI agents to real-world APIs, databases, and tooling. By providing a unified interface and native SDKs for frameworks like **LangGraph**, **OpenAI Agents SDK**, and the **Vercel AI SDK**, Swytchcode enables developers to build agentic workflows with built-in idempotency, audit trails, and strict policy enforcement.
+**Swytchcode** is the standard for connecting autonomous AI agents to real-world APIs, databases, and tooling. By providing a unified interface and native SDKs for frameworks like **LangGraph**, **OpenAI Agents SDK**, and the **Vercel AI SDK**, Swytchcode enables developers to build agentic workflows with built-in idempotency, audit trails, and strict policy enforcement.
 
-This centralized repository houses our official starter templates, enterprise reference architectures, and multi-API orchestration demos.
+This centralized repository houses our official starter templates, reference architectures, and multi-API orchestration demos.
 
 ---
 
@@ -63,13 +63,13 @@ These foundational templates are accessible directly via the `swytchcode example
 <br/>
 
 ### Advanced Reference Architectures
-Complex, multi-agent enterprise deployments and deep framework integrations.
+Complex, multi-agent deployments and deep framework integrations.
 
 | Repository | Description | Focus Area |
 | :--- | :--- | :--- |
 | [**`openclaw-swytchcode-demo`**](./openclaw-swytchcode-demo) | Multi-API customer onboarding workflow demonstrating core agent guardrails and state recovery. | Reliability & Idempotency |
 | [**`Github-issue-integration`**](./Github-issue-integration-with-swytchcode) | Autonomous repository maintenance, automated issue triaging, and PR commentary. | Developer Productivity |
-| [**`Fintech-Compliance-Multiuser`**](./Fintech-Compliance-Multiuser-Langgraph-Demo) | Scalable multi-user compliance workflows tailored for financial institutions. | Enterprise Security |
+| [**`Fintech-Compliance-Multiuser`**](./Fintech-Compliance-Multiuser-Langgraph-Demo) | Scalable multi-user compliance workflows tailored for financial institutions. | Compliance Security |
 | [**`Stripe-Subscriptions`**](./Stripe-Subscriptions) | Complete subscription lifecycle management, dunning, and entitlement synchronization. | Revenue Automation |
 | [**`langswytch`**](./langswytch) | Deep integration examples showcasing advanced LangGraph cognitive architectures with Swytchcode. | Cognitive Architecture |
 
