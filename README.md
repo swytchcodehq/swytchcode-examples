@@ -2,14 +2,6 @@
 
 <div align="center">
   <strong>Production-ready AI agent workflows, integration templates, and compliance guardrails.</strong>
-  <br />
-  <br />
-
-  <a href="https://swytchcode.com/docs">Documentation</a>
-  ·
-  <a href="https://github.com/swytchcodehq/swytchcode-cli/issues">Report Bug</a>
-  ·
-  <a href="https://github.com/swytchcodehq/swytchcode-cli/issues">Request Feature</a>
 </div>
 
 <br />
