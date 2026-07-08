@@ -1,9 +1,3 @@
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://via.placeholder.com/600x150/000000/FFFFFF?text=Swytchcode+Examples">
-    <img src="https://via.placeholder.com/600x150/FFFFFF/000000?text=Swytchcode+Examples" alt="Swytchcode" width="400">
-  </picture>
-</div>
 
 <h1 align="center">Swytchcode Enterprise Examples & Reference Architectures</h1>
 
