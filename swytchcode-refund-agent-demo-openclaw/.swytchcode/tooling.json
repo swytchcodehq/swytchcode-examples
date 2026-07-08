@@ -1,0 +1,40 @@
+{
+  "editor": "openclaw",
+  "integrations": {
+    "hubspot_crm_contacts.hubspot_crm_contacts": {
+      "version": "3"
+    },
+    "resend.resend_api": {
+      "version": "v1.5.0"
+    },
+    "stripe.sdk": {
+      "version": "2026-02-25.clover"
+    }
+  },
+  "permissions": {
+    "network": [
+      "api.stripe.com",
+      "api.resend.com",
+      "api.hubapi.com"
+    ]
+  },
+  "mode": "production",
+  "tools": {
+    "charges.charge.create": {
+      "integration": "stripe.sdk@2026-02-25.clover"
+    },
+    "customers.customer.create": {
+      "integration": "stripe.sdk@2026-02-25.clover"
+    },
+    "emails.email.create": {
+      "integration": "resend.resend_api@v1.5.0"
+    },
+    "hubspot_crm_contacts.crm.contacts.create": {
+      "integration": "hubspot_crm_contacts.hubspot_crm_contacts@3"
+    },
+    "refunds.refund.create": {
+      "integration": "stripe.sdk@2026-02-25.clover"
+    }
+  },
+  "version": "1"
+}

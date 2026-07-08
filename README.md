@@ -72,6 +72,7 @@ Complex, multi-agent deployments and deep framework integrations.
 | [**`Fintech-Compliance-Multiuser`**](./Fintech-Compliance-Multiuser-Langgraph-Demo) | Scalable multi-user compliance workflows tailored for financial institutions. | Compliance Security |
 | [**`Stripe-Subscriptions`**](./Stripe-Subscriptions) | Complete subscription lifecycle management, dunning, and entitlement synchronization. | Revenue Automation |
 | [**`langswytch`**](./langswytch) | Deep integration examples showcasing advanced LangGraph cognitive architectures with Swytchcode. | Cognitive Architecture |
+| [**`refund-agent-demo-openclaw`**](./swytchcode-refund-agent-demo-openclaw) | Automated refund agent processing workflows leveraging Swytchcode tool calling and OpenClaw. | Customer Support |
 
 ---
 
