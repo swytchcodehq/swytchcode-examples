@@ -48,3 +48,4 @@ Explore our more advanced multi-agent and custom framework integrations:
 - **Fintech-Compliance-Multiuser-Langgraph-Demo** — Multi-user compliance workflows using Swytchcode.
 - **Stripe-Subscriptions** — End-to-end Stripe subscription management.
 - **langswytch** — LangGraph + Swytchcode deep integration examples.
+- **openclaw-swytchcode-demo** — A multi-API customer onboarding workflow (HubSpot, Stripe, Resend) demonstrating Swytchcode's core agent guardrails.
