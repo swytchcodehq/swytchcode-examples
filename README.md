@@ -1,4 +1,3 @@
-
 <h1 align="center">Swytchcode Enterprise Examples & Reference Architectures</h1>
 
 <div align="center">
@@ -15,7 +14,7 @@
 
 <br />
 
-## 📖 Overview
+## Overview
 
 **Swytchcode** is the enterprise standard for connecting autonomous AI agents to real-world APIs, databases, and tooling. By providing a unified interface and native SDKs for frameworks like **LangGraph**, **OpenAI Agents SDK**, and the **Vercel AI SDK**, Swytchcode enables developers to build agentic workflows with built-in idempotency, audit trails, and strict policy enforcement.
 
@@ -23,7 +22,7 @@ This centralized repository houses our official starter templates, enterprise re
 
 ---
 
-## 🚀 Quick Start (CLI Templates)
+## Quick Start (CLI Templates)
 
 The fastest way to scaffold a production-ready agent is via the **Swytchcode CLI**. The CLI provides instant access to our core templates, pre-wired with environment configurations and dependency management.
 
@@ -55,9 +54,9 @@ python main.py
 
 ---
 
-## 📂 Project Directory
+## Project Directory
 
-### 🛠️ Core CLI Templates
+### Core CLI Templates
 These foundational templates are accessible directly via the `swytchcode examples` interactive CLI.
 
 | Template | Description | Integrations |
@@ -71,7 +70,7 @@ These foundational templates are accessible directly via the `swytchcode example
 
 <br/>
 
-### 🏛️ Advanced Reference Architectures
+### Advanced Reference Architectures
 Complex, multi-agent enterprise deployments and deep framework integrations.
 
 | Repository | Description | Focus Area |
@@ -84,19 +83,6 @@ Complex, multi-agent enterprise deployments and deep framework integrations.
 
 ---
 
-## 🔒 Enterprise Guardrails
-
-Every example in this repository is built to demonstrate Swytchcode's core enterprise promises:
-- **Idempotency:** Agents can safely retry tool calls without double-charging customers or duplicating records.
-- **Policy Enforcement:** Strict, declarative constraints on what actions agents are permitted to take.
-- **Audit Trails:** Complete visibility into the execution lifecycle of every API invocation.
-
----
-
-## 🤝 Contributing
-
-We welcome contributions from the community! Whether you are submitting a new reference implementation or improving an existing template, please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a Pull Request.
-
-## 📄 License
+## License
 
 This repository is licensed under the [MIT License](LICENSE).
