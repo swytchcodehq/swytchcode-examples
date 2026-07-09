@@ -35,7 +35,8 @@ def create_hubspot_contact(state: OnboardingState) -> dict:
         },
         "Authorization": f"Bearer {os.environ['HUBSPOT_API_KEY']}",
     })
-    if result.get("status_code") == 409 and "Existing ID:" in result.get("data", {}).get("message", ""):
+    result = result or {"error": "HubSpot contact create: no response from swytchcode_exec"}
+    if result.get("status_code") == 409 and "Existing ID:" in (result.get("data", {}) or {}).get("message", ""):
         msg = result["data"]["message"]
         contact_id = msg.split("Existing ID: ")[1].split()[0]
     elif result.get("status_code") not in (200, 201):
@@ -103,6 +104,14 @@ app = workflow.compile()
 # ── Run ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # Validate required environment variables before doing any work
+    required = ["HUBSPOT_API_KEY", "STRIPE_SECRET_KEY", "RESEND_API_KEY", "CUSTOMER_EMAIL", "SWYTCHCODE_TOKEN"]
+    missing = [k for k in required if not os.environ.get(k)]
+    if missing:
+        print(f"\n❌ Missing required environment variables: {missing}")
+        print("   Copy .env.example to .env and fill in your credentials.")
+        sys.exit(1)
+
     result = app.invoke({
         "customer_name":      os.environ.get("CUSTOMER_NAME", "Jane Doe"),
         "customer_email":     os.environ["CUSTOMER_EMAIL"],

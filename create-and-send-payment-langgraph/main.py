@@ -94,6 +94,14 @@ app = workflow.compile()
 # ── Run ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # Validate required environment variables before doing any work
+    required = ["STRIPE_SECRET_KEY", "RESEND_API_KEY", "CUSTOMER_EMAIL", "SWYTCHCODE_TOKEN"]
+    missing = [k for k in required if not os.environ.get(k)]
+    if missing:
+        print(f"\n❌ Missing required environment variables: {missing}")
+        print("   Copy .env.example to .env and fill in your credentials.")
+        sys.exit(1)
+
     result = app.invoke({
         "customer_email":   os.environ["CUSTOMER_EMAIL"],
         "customer_name":    os.environ.get("CUSTOMER_NAME", "John Smith"),
