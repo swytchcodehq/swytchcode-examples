@@ -38,7 +38,9 @@ def create_payment_link(state: PaymentState) -> dict:
         },
         "Authorization": f"Bearer {os.environ['STRIPE_SECRET_KEY']}",
     })
-    price_id = (price_result or {}).get("id") or (price_result.get("data") or {}).get("id")
+    if (price_result or {}).get("error"):
+        raise RuntimeError(f"Stripe price create failed: {price_result['error']}")
+    price_id = (price_result or {}).get("id") or (price_result or {}).get("data", {}).get("id")
 
     # Step 1b: Create payment link using the Price ID
     result = swytchcode_exec("stripe.payment_link.create", {
@@ -48,8 +50,10 @@ def create_payment_link(state: PaymentState) -> dict:
         },
         "Authorization": f"Bearer {os.environ['STRIPE_SECRET_KEY']}",
     })
-    payment_link_url = (result or {}).get("url") or (result.get("data") or {}).get("url")
-    payment_link_id  = (result or {}).get("id") or (result.get("data") or {}).get("id")
+    if (result or {}).get("error"):
+        raise RuntimeError(f"Stripe payment link create failed: {result['error']}")
+    payment_link_url = (result or {}).get("url") or (result or {}).get("data", {}).get("url")
+    payment_link_id  = (result or {}).get("id") or (result or {}).get("data", {}).get("id")
     print(f"    ✔ Payment link created: {payment_link_url}")
     return {
         "payment_link_url": payment_link_url,
@@ -61,7 +65,7 @@ def create_payment_link(state: PaymentState) -> dict:
 
 def email_payment_link(state: PaymentState) -> dict:
     print(f"[2/2] Emailing payment link to {state['customer_email']}...")
-    swytchcode_exec("resend.email.create", {
+    result = swytchcode_exec("resend.email.create", {
         "body": {
             "from":    "onboarding@resend.dev",
             "to":      [state["customer_email"]],
@@ -74,6 +78,8 @@ def email_payment_link(state: PaymentState) -> dict:
         },
         "Authorization": f"Bearer {os.environ['RESEND_API_KEY']}",
     })
+    if (result or {}).get("error"):
+        raise RuntimeError(f"Resend email send failed: {result['error']}")
     print(f"    ✔ Payment link emailed")
     return {"email_sent": True}
 
