@@ -57,10 +57,8 @@ def create_jira_ticket(state: BugEscalationState) -> dict:
     jira_creds = base64.b64encode(
         f"{os.environ['JIRA_EMAIL']}:{os.environ['JIRA_API_TOKEN']}".encode()
     ).decode()
-    import requests
-    response = requests.post(
-        f"{os.environ['JIRA_BASE_URL']}/rest/api/3/issue",
-        json={
+    result = swytchcode_exec("rest.api.issue.create", {
+        "body": {
             "fields": {
                 "project":     {"key": os.environ["JIRA_PROJECT_KEY"]},
                 "summary":     f"[{state['severity'].upper()}] {state['bug_title']}",
@@ -82,20 +80,17 @@ def create_jira_ticket(state: BugEscalationState) -> dict:
                 "issuetype":   {"name": "Task"},
             }
         },
-        headers={
-            "Authorization": f"Basic {jira_creds}",
-            "Content-Type": "application/json"
-        }
-    )
-    if not response.ok:
-        if "The target project doesn't exist" in response.text:
+        "Authorization": f"Basic {jira_creds}",
+    })
+    error = (result or {}).get("error")
+    if error:
+        if "The target project doesn't exist" in str(error):
             print(f"    [WARN] Jira project {os.environ['JIRA_PROJECT_KEY']} doesn't exist. Using mock ticket key for demo.")
             jira_key = f"{os.environ['JIRA_PROJECT_KEY']}-123"
         else:
-            raise RuntimeError(f"Jira ticket create failed: {response.text}")
+            raise RuntimeError(f"Jira ticket create failed: {error}")
     else:
-        result = response.json()
-        jira_key = result.get("key")
+        jira_key = (result or {}).get("data", {}).get("key")
     print(f"    ✔ Jira ticket created: {jira_key}")
     return {"jira_issue_key": jira_key}
 
