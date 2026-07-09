@@ -160,10 +160,10 @@ This README is the orientation. For the full reference, see [DOCUMENTATION.md](.
 
 Langswytch is part of the Swytchcode demo collection. Related runnable examples:
 
-- [openclaw-swytchcode-demo](https://github.com/swytchcodehq/openclaw-swytchcode-demo): OpenClaw agent plus Swytchcode for GitHub issue triage (Go)
-- [Stripe-Subscriptions](https://github.com/swytchcodehq/Stripe-Subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
+- [openclaw-swytchcode](../openclaw-swytchcode): OpenClaw agent plus Swytchcode for GitHub issue triage (Go)
+- [stripe-subscriptions](../stripe-subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
 - [swytchcode-google-analytics](https://github.com/swytchcodehq/swytchcode-google-analytics): Google Analytics reporting built on the Swytchcode CLI (TypeScript)
-- [Weekly-Reporting-Langgraph](https://github.com/swytchcodehq/Weekly-Reporting-Langgraph), [Customer-Onboarding-Langgraph](https://github.com/swytchcodehq/Customer-Onboarding-Langgraph), [Lead-Qualification-Langgraph](https://github.com/swytchcodehq/Lead-Qualification-Langgraph), [Bug-Escalation-Langgraph](https://github.com/swytchcodehq/Bug-Escalation-Langgraph), [Create-And-Send-Payment-Langgraph](https://github.com/swytchcodehq/Create-And-Send-Payment-Langgraph): single-purpose LangGraph agents
+- [weekly-reporting-langgraph](../weekly-reporting-langgraph), [customer-onboarding-langgraph](../customer-onboarding-langgraph), [lead-qualification-langgraph](../lead-qualification-langgraph), [bug-escalation-langgraph](../bug-escalation-langgraph), [create-and-send-payment-langgraph](../create-and-send-payment-langgraph): single-purpose LangGraph agents
 
 ---
 

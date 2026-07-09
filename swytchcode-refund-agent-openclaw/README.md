@@ -39,8 +39,8 @@ graph TD
 ### 2. Environment Setup
 Clone the repository and set up your test keys:
 ```bash
-git clone https://github.com/swytchcodehq/swytchcode-refund-agent-demo-openclaw-.git
-cd swytchcode-refund-agent-demo-openclaw-
+git clone https://github.com/swytchcodehq/swytchcode-examples.git
+cd swytchcode-examples/swytchcode-refund-agent-openclaw
 cp .env.example .env
 ```
 
