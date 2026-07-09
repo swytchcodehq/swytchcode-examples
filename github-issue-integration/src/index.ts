@@ -59,7 +59,14 @@ async function main() {
         title: title,
         body: body
       }
-    }) as any;
+    }) as { error?: string; data?: { html_url: string; number: number } };
+
+    if (result.error) {
+      throw new Error(`GitHub issue create failed: ${result.error}`);
+    }
+    if (!result.data) {
+      throw new Error(`GitHub issue create: unexpected response shape: ${JSON.stringify(result)}`);
+    }
 
     console.log('\nSuccess! Issue created.');
     console.log(`Issue URL: ${result.data.html_url}`);
