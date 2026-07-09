@@ -1,9 +1,0 @@
-# Environment variables
-.env
-
-# Python caching
-__pycache__/
-*.pyc
-
-# Logs
-*.log

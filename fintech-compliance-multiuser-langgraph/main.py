@@ -24,7 +24,6 @@ import time
 from datetime import datetime, timezone
 from typing import Optional
 
-import requests
 from dotenv import load_dotenv
 from langgraph.graph import END, StateGraph
 from swytchcode_runtime import exec as swytchcode_exec
@@ -427,35 +426,20 @@ def step_dwolla(state: ComplianceState) -> ComplianceState:
     last_name  = name_parts[1] if len(name_parts) > 1 else "User"
     user_email = state["user_email"]
 
-    # 3a. Dwolla OAuth token (direct requests.post — not via swytchcode_exec)
+    # 3a. Dwolla OAuth token
     print("    [3a] Fetching Dwolla OAuth token...")
-    dwolla_token = None
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            tok_resp = requests.post(
-                "https://api-sandbox.dwolla.com/token",
-                headers={
-                    "Content-Type":  "application/x-www-form-urlencoded",
-                    "Authorization": _dwolla_basic_auth(),
-                },
-                data={"grant_type": "client_credentials"},
-                timeout=15,
-            )
-            tok_resp.raise_for_status()
-            dwolla_token = tok_resp.json().get("access_token")
-            if dwolla_token:
-                break
-            # Token missing in response — retry
-            if attempt < MAX_RETRIES:
-                print(f"    ⚠️  [dwolla:token] Attempt {attempt}/{MAX_RETRIES} — no token in response, retrying in {RETRY_DELAY}s...")
-                time.sleep(RETRY_DELAY)
-        except Exception as e:
-            if attempt < MAX_RETRIES:
-                print(f"    ⚠️  [dwolla:token] Attempt {attempt}/{MAX_RETRIES} failed — retrying in {RETRY_DELAY}s...")
-                time.sleep(RETRY_DELAY)
-            else:
-                return {**state, "error": f"Dwolla token request failed after {MAX_RETRIES} attempts: {e}"}
+    tok_result = exec_with_retry(
+        "token.token.create",
+        {
+            "Authorization": _dwolla_basic_auth(),
+            "body": {"grant_type": "client_credentials"},
+        },
+        "dwolla:token",
+    )
+    if tok_result.get("error"):
+        return {**state, "error": f"Dwolla token request failed: {tok_result['error']}"}
 
+    dwolla_token = tok_result.get("access_token") or (tok_result.get("data") or {}).get("access_token")
     if not dwolla_token:
         return {**state, "error": "Dwolla: could not obtain access_token after all retries"}
 
