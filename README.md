@@ -48,22 +48,22 @@ python main.py
 
 ## Project Directory
 
-Every entry below lives in this repository. **CLI** entries are also scaffoldable via the `swytchcode examples` interactive CLI; **Repo** entries are browsed and cloned directly.
+The first six examples can be scaffolded fresh via the `swytchcode examples` interactive CLI; the rest are reference architectures meant to be explored and cloned directly.
 
-| Example | Type | Framework | Tags |
+| Example | Description | Framework | Tags |
 | :--- | :--- | :--- | :--- |
-| [**`customer-onboarding`**](./customer-onboarding-langgraph) | CLI | LangGraph | CRM • Onboarding • HubSpot • Stripe • Resend |
-| [**`create-and-send-payment`**](./create-and-send-payment-langgraph) | CLI | LangGraph | Payments • Stripe • Resend |
-| [**`bug-escalation`**](./bug-escalation-langgraph) | CLI | LangGraph | Engineering • GitHub • Jira • Slack |
-| [**`lead-qualification`**](./lead-qualification-langgraph) | CLI | LangGraph | CRM • Sales • HubSpot |
-| [**`weekly-reporting`**](./weekly-reporting-langgraph) | CLI | LangGraph | Analytics • Sheets • Notion • Resend |
-| [**`fintech-compliance`**](./fintech-compliance-langgraph) | CLI | LangGraph | Finance • Compliance • Plaid • Persona • Dwolla |
-| [**`openclaw-swytchcode`**](./openclaw-swytchcode) | Repo | OpenClaw (Go) | GitHub • Automation • Reliability |
-| [**`github-issue-integration`**](./github-issue-integration) | Repo | Swytchcode SDK | GitHub • Automation |
-| [**`fintech-compliance-multiuser`**](./fintech-compliance-multiuser-langgraph) | Repo | LangGraph | Finance • Compliance • Multi-user |
-| [**`stripe-subscriptions`**](./stripe-subscriptions) | Repo | Swytchcode SDK | Billing • Stripe • Webhooks |
-| [**`langswytch`**](./langswytch) | Repo | LangGraph | Multi-Agent • Orchestration • Memory |
-| [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Repo | OpenClaw | Support • Refunds |
+| [**`customer-onboarding`**](./customer-onboarding-langgraph) | B2B onboarding + billing setup | LangGraph | CRM • Onboarding • HubSpot • Stripe • Resend |
+| [**`create-and-send-payment`**](./create-and-send-payment-langgraph) | Generate and send payment links | LangGraph | Payments • Stripe • Resend |
+| [**`bug-escalation`**](./bug-escalation-langgraph) | GitHub + Jira + Slack triage | LangGraph | Engineering • GitHub • Jira • Slack |
+| [**`lead-qualification`**](./lead-qualification-langgraph) | Lead enrichment and CRM routing | LangGraph | CRM • Sales • HubSpot |
+| [**`weekly-reporting`**](./weekly-reporting-langgraph) | Automated analytics report distribution | LangGraph | Analytics • Sheets • Notion • Resend |
+| [**`fintech-compliance`**](./fintech-compliance-langgraph) | KYC, bank linking, secure payments | LangGraph | Finance • Compliance • Plaid • Persona • Dwolla |
+| [**`openclaw-swytchcode`**](./openclaw-swytchcode) | GitHub issue triage bot | OpenClaw (Go) | GitHub • Automation • Reliability |
+| [**`github-issue-integration`**](./github-issue-integration) | Automated GitHub issue creation | Swytchcode SDK | GitHub • Automation |
+| [**`fintech-compliance-multiuser`**](./fintech-compliance-multiuser-langgraph) | Multi-user compliance workflows | LangGraph | Finance • Compliance • Multi-user |
+| [**`stripe-subscriptions`**](./stripe-subscriptions) | Subscription lifecycle + dunning | Swytchcode SDK | Billing • Stripe • Webhooks |
+| [**`langswytch`**](./langswytch) | Advanced LangGraph cognitive patterns | LangGraph | Multi-Agent • Orchestration • Memory |
+| [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
 
 ---
 
