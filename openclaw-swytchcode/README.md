@@ -4,7 +4,7 @@
 
 [![Go 1.26](https://img.shields.io/badge/go-1.26-00ADD8)](https://go.dev/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/swytchcodehq/openclaw-swytchcode-demo)](https://github.com/swytchcodehq/openclaw-swytchcode-demo/commits)
+[![Last commit](https://img.shields.io/github/last-commit/swytchcodehq/swytchcode-examples)](https://github.com/swytchcodehq/swytchcode-examples/commits)
 
 ---
 
@@ -130,8 +130,8 @@ issues_log.csv  (audit trail)
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/swytchcodehq/openclaw-swytchcode-demo.git
-cd openclaw-swytchcode-demo
+git clone https://github.com/swytchcodehq/swytchcode-examples.git
+cd swytchcode-examples/openclaw-swytchcode
 ```
 
 ### 2. Initialise Swytchcode
@@ -227,10 +227,10 @@ With Swytchcode, the agent only decides *what* to call — the kernel handles *h
 
 This bot is one of several runnable examples showing Swytchcode as the execution layer for AI agents and integration-heavy apps:
 
-- [langswytch](https://github.com/swytchcodehq/langswytch): a LangGraph agent that turns natural language into validated API calls across 2,000+ integrations (Python)
-- [Stripe-Subscriptions](https://github.com/swytchcodehq/Stripe-Subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
+- [langswytch](../langswytch): a LangGraph agent that turns natural language into validated API calls across 2,000+ integrations (Python)
+- [stripe-subscriptions](../stripe-subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
 - [swytchcode-google-analytics](https://github.com/swytchcodehq/swytchcode-google-analytics): Google Analytics reporting built on the Swytchcode CLI (TypeScript)
-- [Weekly-Reporting-Langgraph](https://github.com/swytchcodehq/Weekly-Reporting-Langgraph), [Customer-Onboarding-Langgraph](https://github.com/swytchcodehq/Customer-Onboarding-Langgraph), [Lead-Qualification-Langgraph](https://github.com/swytchcodehq/Lead-Qualification-Langgraph), [Bug-Escalation-Langgraph](https://github.com/swytchcodehq/Bug-Escalation-Langgraph), [Create-And-Send-Payment-Langgraph](https://github.com/swytchcodehq/Create-And-Send-Payment-Langgraph): single-purpose LangGraph agents
+- [weekly-reporting-langgraph](../weekly-reporting-langgraph), [customer-onboarding-langgraph](../customer-onboarding-langgraph), [lead-qualification-langgraph](../lead-qualification-langgraph), [bug-escalation-langgraph](../bug-escalation-langgraph), [create-and-send-payment-langgraph](../create-and-send-payment-langgraph): single-purpose LangGraph agents
 
 ---
 

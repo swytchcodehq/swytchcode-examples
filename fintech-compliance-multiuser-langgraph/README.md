@@ -255,8 +255,8 @@ This is built into swytchcode — no extra configuration needed.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/swytchcodehq/Fintech-Compliance-Multiuser-Demo.git
-cd Fintech-Compliance-Multiuser-Demo
+git clone https://github.com/swytchcodehq/swytchcode-examples.git
+cd swytchcode-examples/fintech-compliance-multiuser-langgraph
 ```
 
 ### 2. Install Python dependencies
@@ -466,7 +466,7 @@ COMPLIANCE RUN SUMMARY
 ## Project Structure
 
 ```
-fintech-compliance-multiuser-demo/
+fintech-compliance-multiuser-langgraph/
 |
 |-- main.py                          # Main demo script
 |-- requirements.txt                 # Python dependencies

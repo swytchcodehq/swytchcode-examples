@@ -32,17 +32,10 @@ swytchcode examples
 *Select your desired use case (e.g., Customer Onboarding, Bug Escalation) and framework (e.g., LangGraph).*
 
 ### 3. Run the Agent
-*(Requires Python 3.9+)*
 ```bash
 cd <your-scaffolded-demo>
-pip install -r requirements.txt
-
-# Configure your environment variables
-cp .env.example .env
-
-# Execute the agent workflow
-python main.py
 ```
+Then follow that project's own README for its setup and run steps — see the [Project Directory](#project-directory) below for every available example.
 
 ---
 

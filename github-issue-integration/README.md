@@ -15,10 +15,10 @@ npm install -g swytchcode
 ```
 
 ### 2. Fork and Clone
-Fork this repository to your own account, then clone it locally:
+Fork the [`swytchcode-examples`](https://github.com/swytchcodehq/swytchcode-examples) monorepo to your own account, then clone it locally:
 ```bash
-git clone https://github.com/<YOUR_GITHUB_USERNAME>/github-issue-swytchcode.git
-cd github-issue-swytchcode
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/swytchcode-examples.git
+cd swytchcode-examples/github-issue-integration
 ```
 
 ### 3. Install Dependencies
