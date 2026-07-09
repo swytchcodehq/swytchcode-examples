@@ -172,6 +172,14 @@ app = workflow.compile()
 # ── Run ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # Validate required environment variables before doing any work
+    required = ["REPORT_EMAIL", "NOTION_DATABASE_ID", "RESEND_API_KEY", "SWYTCHCODE_TOKEN"]
+    missing = [k for k in required if not os.environ.get(k)]
+    if missing:
+        print(f"\n❌ Missing required environment variables: {missing}")
+        print("   Copy .env.example to .env and fill in your credentials.")
+        sys.exit(1)
+
     result = app.invoke({
         "week_label":          f"Week of {datetime.now(timezone.utc).strftime('%B %d, %Y')}",
         "report_email":        os.environ["REPORT_EMAIL"],
