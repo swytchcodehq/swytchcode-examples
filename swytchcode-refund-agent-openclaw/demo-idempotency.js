@@ -15,7 +15,7 @@ console.log(`TESTING IDEMPOTENCY FOR: ${email}`);
 console.log(`========================================`);
 
 const req = {
-  tool: "emails.email.create",
+  tool: "resend.email.create",
   args: { 
     headers: { "Idempotency-Key": "idempotency-demo-" + email },
     body: { 
