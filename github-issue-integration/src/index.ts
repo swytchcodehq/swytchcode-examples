@@ -51,7 +51,7 @@ async function main() {
 
   try {
     // 3. Execute Swytchcode GitHub Integration
-    const result = await exec('repos.issue.create', {
+    const result = await exec('github.repo.issues.create', {
       owner: owner,
       repo: repo,
       Authorization: `Bearer ${token}`,

@@ -1,13 +1,13 @@
 {
   "editor": "none",
   "integrations": {
-    "github.github_api": {
+    "github.github": {
       "version": "1.1.4"
     }
   },
   "mode": "sandbox",
   "tools": {
-    "repos.issue.create": {
+    "github.repo.issues.create": {
       "desc": "Create an issue",
       "inputs": [
         {
@@ -48,7 +48,7 @@
           }
         }
       ],
-      "integration": "github.github_api@1.1.4",
+      "integration": "github.github@1.1.4",
       "method_hash": "",
       "output": {
         "schema": {
