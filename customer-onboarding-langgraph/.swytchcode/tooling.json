@@ -1,10 +1,10 @@
 {
   "editor": "none",
   "integrations": {
-    "resend.resend_api": {
+    "resend.resend": {
       "version": "v1.5.0"
     },
-    "stripe.stripe_api": {
+    "stripe.stripe": {
       "version": "2026-02-25.clover"
     },
     "hubspot.hubspot_com_crm_contacts_3_json": {
@@ -284,7 +284,7 @@
           }
         }
       ],
-      "integration": "stripe.stripe_sdk@2026-02-25.clover",
+      "integration": "stripe.stripe@2026-02-25.clover",
       "method_hash": "",
       "output": {},
       "summary": "Create a customer",
