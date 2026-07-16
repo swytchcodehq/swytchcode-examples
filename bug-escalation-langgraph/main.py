@@ -29,7 +29,7 @@ class BugEscalationState(TypedDict):
 
 def create_github_issue(state: BugEscalationState) -> dict:
     print(f"[1/3] Creating GitHub issue: {state['bug_title']}...")
-    result = swytchcode_exec("repos.issue.create", {
+    result = swytchcode_exec("github.repo.issues.create", {
         "owner": os.environ["GITHUB_OWNER"],
         "repo":  os.environ["GITHUB_REPO"].split("/")[-1],
         "body": {
@@ -57,7 +57,7 @@ def create_jira_ticket(state: BugEscalationState) -> dict:
     jira_creds = base64.b64encode(
         f"{os.environ['JIRA_EMAIL']}:{os.environ['JIRA_API_TOKEN']}".encode()
     ).decode()
-    result = swytchcode_exec("rest.api.issue.create", {
+    result = swytchcode_exec("jira.rest.issue.create", {
         "body": {
             "fields": {
                 "project":     {"key": os.environ["JIRA_PROJECT_KEY"]},
@@ -104,7 +104,7 @@ def notify_slack(state: BugEscalationState) -> dict:
         "high":     ":large_orange_circle:",
         "medium":   ":large_yellow_circle:"
     }.get(state["severity"], ":white_circle:")
-    result = swytchcode_exec("chat.postmessage.chat.postmessage.create", {
+    result = swytchcode_exec("slack.chat.postmessage.create", {
         "body": {
             "channel": state["slack_channel"],
             "text": (

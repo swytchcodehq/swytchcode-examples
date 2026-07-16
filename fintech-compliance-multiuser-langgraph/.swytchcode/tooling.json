@@ -283,9 +283,27 @@
     },
     "customers.customer.create": {
       "desc": "Create a Dwolla customer",
-      "inputs": [
-        {
-          "Authorization": {
-            "LOCATION": "header",
-            "REQUIRED": true,
-            "TYPE":
+      "integration": "dwolla.dwolla_api@1.0.0",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create a customer",
+      "type": "method"
+    },
+    "customers.customer.list": {
+      "desc": "List and search Dwolla customers",
+      "integration": "dwolla.dwolla_api@1.0.0",
+      "method_hash": "",
+      "output": {},
+      "summary": "List customers",
+      "type": "method"
+    },
+    "customers.funding-source.create": {
+      "desc": "Create a funding source for a Dwolla customer",
+      "integration": "dwolla.dwolla_api@1.0.0",
+      "method_hash": "",
+      "output": {},
+      "summary": "Create a funding source",
+      "type": "method"
+    }
+  }
+}
