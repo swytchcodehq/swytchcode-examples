@@ -57,6 +57,7 @@ The first six examples can be scaffolded fresh via the `swytchcode examples` int
 | [**`stripe-subscriptions`**](./stripe-subscriptions) | Subscription lifecycle + dunning | Swytchcode SDK | Billing • Stripe • Webhooks |
 | [**`langswytch`**](./langswytch) | Advanced LangGraph cognitive patterns | LangGraph | Multi-Agent • Orchestration • Memory |
 | [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
+| [**`star-repo-openai-agents-python`**](./star-repo-openai-agents-python) | Star a GitHub repository via Swytchcode CLI | OpenAI Agents SDK | GitHub • OpenAI • Python |
 
 ---
 
