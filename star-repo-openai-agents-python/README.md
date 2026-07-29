@@ -1,9 +1,9 @@
-# Star Repo Agent — OpenAI Agents SDK (Python)
+# Star Repo Agent - OpenAI Agents SDK (Python)
 
 Minimal example showing an AI agent star a GitHub repository
 (`github.com/swytchcodehq/swytchcode-examples`) by calling the GitHub API
 **through the Swytchcode CLI**. You never write the GitHub API call, the tool
-schema, or the auth — Swytchcode provides the tool and handles GitHub
+schema, or the auth - Swytchcode provides the tool and handles GitHub
 authorization via WorkOS OAuth.
 
 The agent code is only two Swytchcode lines; everything else is the agent
@@ -51,6 +51,6 @@ Type a prompt (or press Enter for the default) and the agent stars the repo.
 
 ## Notes
 
-- Use **production** mode at `swytchcode init` — sandbox won't perform the real call.
+- Use **production** mode at `swytchcode init` - sandbox won't perform the real call.
 - The `.swytchcode/` project state and your `.env` are gitignored; regenerate the
   former with the `init` / `get` / `add` commands above.

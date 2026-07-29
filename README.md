@@ -12,8 +12,6 @@
 
 This centralized repository houses our official starter templates, reference architectures, and multi-API orchestration demos.
 
----
-
 ## Quick Start (CLI Templates)
 
 The fastest way to scaffold a production-ready agent is via the **Swytchcode CLI**. The CLI provides instant access to our core templates, pre-wired with environment configurations and dependency management.
@@ -35,9 +33,7 @@ swytchcode examples
 ```bash
 cd <your-scaffolded-demo>
 ```
-Then follow that project's own README for its setup and run steps — see the [Project Directory](#project-directory) below for every available example.
-
----
+Then follow that project's own README for its setup and run steps - see the [Project Directory](#project-directory) below for every available example.
 
 ## Project Directory
 
@@ -58,8 +54,6 @@ The first six examples can be scaffolded fresh via the `swytchcode examples` int
 | [**`langswytch`**](./langswytch) | Advanced LangGraph cognitive patterns | LangGraph | Multi-Agent • Orchestration • Memory |
 | [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
 | [**`star-repo-openai-agents-python`**](./star-repo-openai-agents-python) | Star a GitHub repository via Swytchcode CLI | OpenAI Agents SDK | GitHub • OpenAI • Python |
-
----
 
 ## License
 
