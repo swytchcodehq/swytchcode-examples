@@ -49,8 +49,3 @@ python main.py
 
 Type a prompt (or press Enter for the default) and the agent stars the repo.
 
-## Notes
-
-- Use **production** mode at `swytchcode init` - sandbox won't perform the real call.
-- The `.swytchcode/` project state and your `.env` are gitignored; regenerate the
-  former with the `init` / `get` / `add` commands above.
