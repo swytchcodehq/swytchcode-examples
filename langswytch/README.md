@@ -161,7 +161,7 @@ This README is the orientation. For the full reference, see [DOCUMENTATION.md](.
 Langswytch is part of the Swytchcode demo collection. Related runnable examples:
 
 - [openclaw-swytchcode](../openclaw-swytchcode): OpenClaw agent plus Swytchcode for GitHub issue triage (Go)
-- [stripe-subscriptions](../stripe-subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
+- [stripe-subscriptions](../Stripe-Subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
 - [swytchcode-google-analytics](https://github.com/swytchcodehq/swytchcode-google-analytics): Google Analytics reporting built on the Swytchcode CLI (TypeScript)
 - [weekly-reporting-langgraph](../weekly-reporting-langgraph), [customer-onboarding-langgraph](../customer-onboarding-langgraph), [lead-qualification-langgraph](../lead-qualification-langgraph), [bug-escalation-langgraph](../bug-escalation-langgraph), [create-and-send-payment-langgraph](../create-and-send-payment-langgraph): single-purpose LangGraph agents
 

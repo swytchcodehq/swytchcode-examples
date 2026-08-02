@@ -228,7 +228,7 @@ With Swytchcode, the agent only decides *what* to call — the kernel handles *h
 This bot is one of several runnable examples showing Swytchcode as the execution layer for AI agents and integration-heavy apps:
 
 - [langswytch](../langswytch): a LangGraph agent that turns natural language into validated API calls across 2,000+ integrations (Python)
-- [stripe-subscriptions](../stripe-subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
+- [stripe-subscriptions](../Stripe-Subscriptions): subscription lifecycle services on the Swytchcode runtime (TypeScript)
 - [swytchcode-google-analytics](https://github.com/swytchcodehq/swytchcode-google-analytics): Google Analytics reporting built on the Swytchcode CLI (TypeScript)
 - [weekly-reporting-langgraph](../weekly-reporting-langgraph), [customer-onboarding-langgraph](../customer-onboarding-langgraph), [lead-qualification-langgraph](../lead-qualification-langgraph), [bug-escalation-langgraph](../bug-escalation-langgraph), [create-and-send-payment-langgraph](../create-and-send-payment-langgraph): single-purpose LangGraph agents
 
