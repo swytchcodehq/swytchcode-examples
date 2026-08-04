@@ -1,71 +1,168 @@
 # Gmail Assistant - Anthropic SDK (TypeScript)
 
-An agent that searches, reads, marks as read, drafts, and sends Gmail messages
-by calling the Gmail API through the Swytchcode CLI. You never write the
-Gmail API call, the tool schema, or the OAuth flow. Swytchcode provides the
-tools and handles Gmail authorization via WorkOS OAuth.
+An AI agent that searches, reads, marks as read, drafts, and sends Gmail messages through the Swytchcode CLI. You never write custom API integration code, JSON tool schemas, or OAuth token refresh logic. Swytchcode provides ready-to-use tool definitions and handles Gmail authorization securely via WorkOS OAuth.
 
-The agent code is only two Swytchcode lines. Everything else is the Anthropic
-SDK's own tool-use loop in src/index.ts.
+The agent integration requires only two Swytchcode lines; everything else is standard Anthropic tool-use loop boilerplate in `src/index.ts`.
 
-## How it works
-
-```
-your prompt
-   -> Claude (via the Anthropic SDK) decides which Gmail tool(s) to call
-   -> swytchcode-runtime forwards the call
-   -> Swytchcode CLI executes the Gmail API request
-      using WorkOS-brokered OAuth
-   -> mailbox searched / message marked read / draft created / email sent
+```typescript
+const swx = new Swytchcode(new AnthropicProvider());
+const tools = await swx.tools.get({ toolkits: ["gmail"] });
 ```
 
-Two credentials, two jobs: the Anthropic API key pays for model inference,
-while WorkOS OAuth authorizes the Gmail action.
+---
 
-## Example prompts
+## Architecture & Data Flow
 
-| Prompt | Tool called | Notes |
-|---|---|---|
-| "Find unread emails from Amazon" | `gmail.gmail.messages.get` (search, `q=from:amazon is:unread`) | |
-| "List the last 10 emails in my inbox" | `gmail.gmail.messages.get` (list, no `q`) | |
-| "Mark the latest email as read" | `gmail.gmail.modify.create` | removes the `UNREAD` label |
-| "Draft a thank-you email to ..." | `gmail.gmail.drafts.create` | creates a draft only, never sends |
-| "Send a test email to ..." | `gmail.gmail.send.create.1` | blocked by guard policy |
+```
++-------------------------------------------------------------------------------+
+| 1. User Prompt (e.g. "Find unread emails from Amazon")                       |
++-------------------------------------------------------------------------------+
+                                        |
+                                        v
++-------------------------------------------------------------------------------+
+| 2. Anthropic Claude (via @anthropic-ai/sdk)                                   |
+|    - Evaluates user prompt against tools loaded from swx.tools.get()          |
+|    - Selects tool and parameter: `gmail_gmail_messages_get(q: "...")`        |
++-------------------------------------------------------------------------------+
+                                        |
+                                        v
++-------------------------------------------------------------------------------+
+| 3. Swytchcode Runtime (`swx.handleToolCalls(response)`)                        |
+|    - Intercepts tool call from Claude                                         |
+|    - Evaluates active guard policies (.swytchcode/integrations/policies.json)  |
+|    - Executes `swytchcode exec` CLI command in production mode                |
++-------------------------------------------------------------------------------+
+                                        |
+                                        v
++-------------------------------------------------------------------------------+
+| 4. Swytchcode CLI & WorkOS Gateway                                            |
+|    - Attaches stored WorkOS OAuth token                                     |
+|    - Dispatches HTTP request to Google Gmail API                              |
++-------------------------------------------------------------------------------+
+                                        |
+                                        v
++-------------------------------------------------------------------------------+
+| 5. Output returned back to Claude -> Final response printed in user terminal   |
++-------------------------------------------------------------------------------+
+```
 
-## Guard policy: sends require approval
+Two credentials, two roles:
+- **Anthropic API Key**: Pays for model inference and tool decision-making.
+- **WorkOS OAuth Token**: Authorizes the Gmail API actions securely out-of-band.
 
-This example includes `policies.example.json`, a guard policy that blocks
-`gmail.gmail.send.create.1` with `POLICY_BLOCKED` and directs the agent to create
-drafts instead.
+---
+
+## Canonical Methods & Action Matrix
+
+| Example Prompt | Expected Action | Canonical Method ID | Parameters Used | Notes |
+|---|---|---|---|---|
+| *"Find unread emails from Amazon"* | Search Inbox | `gmail.gmail.messages.get` | `q: "is:unread from:Amazon"` | Gmail search query syntax |
+| *"List the last 10 emails in my inbox"* | Read Inbox | `gmail.gmail.messages.get` | `maxResults: 10` | Omits `q` parameter to list recent mail |
+| *"Mark the latest email as read"* | Modify Email | `gmail.gmail.modify.create` | `id: "<msg_id>", body: { removeLabelIds: ["UNREAD"] }` | Removes UNREAD label |
+| *"Draft a thank-you email to..."* | Create Draft | `gmail.gmail.drafts.create` | `userId: "me", body: { message: { raw: "..." } }` | Drafts message in inbox |
+| *"Send a test email to..."* | Send Email | `gmail.gmail.send.create.1` | `userId: "me", body: { raw: "..." }` | **Blocked by policy** in this demo |
+
+---
+
+## Guard Policy: Sends Require Approval
+
+This project ships with `policies.example.json`, a method-level guard policy that intercepts and blocks `gmail.gmail.send.create.1` with `POLICY_BLOCKED`. When blocked, the agent informs the user and creates a draft instead so a human can inspect and send it.
+
+```json
+{
+  "defaults": {
+    "on_violation": "fail",
+    "evaluation": "pre_execution"
+  },
+  "policies": [
+    {
+      "id": "gmail-send-requires-approval",
+      "target": ["gmail.gmail.send.create.1"],
+      "when": {
+        "operator": "always"
+      },
+      "action": {
+        "type": "block",
+        "message": "Direct email sending is blocked by safety policy. Create a draft instead."
+      }
+    }
+  ]
+}
+```
+
+---
+
+## Project Structure
+
+```
+gmail-assistant-anthropic-typescript/
+├── src/
+│   └── index.ts               # Anthropic SDK tool-use loop + Swytchcode wiring
+├── .env.example               # ANTHROPIC_API_KEY placeholder
+├── .gitignore                 # Ignores .env, node_modules/, dist/, .swytchcode/
+├── package.json               # Dependencies: @anthropic-ai/sdk, @swytchcode/runtime, zod
+├── tsconfig.json              # TypeScript ES2022 / NodeNext config
+├── policies.example.json      # Sample guard policy blocking direct sends
+├── LICENSE                    # MIT License
+└── README.md                  # Detailed documentation and quick start guide
+```
+
+---
 
 ## Prerequisites
 
-- Swytchcode CLI installed and `swytchcode login` completed
+- [Swytchcode CLI](https://swytchcode.com) installed and logged in (`swytchcode login`)
 - Node.js v22+
-- An `ANTHROPIC_API_KEY` in `.env`
+- An `ANTHROPIC_API_KEY` set in `.env`
 - A Google/Gmail account to connect
 
-## Quick start
+---
 
+## Step-by-Step Setup Guide
+
+### 1. Install Dependencies & Set Environment
 ```bash
-# 1. environment
 npm install
-cp .env.example .env                                        # add your ANTHROPIC_API_KEY
+cp .env.example .env
+# Edit .env and paste your ANTHROPIC_API_KEY=sk-ant-...
+```
 
-# 2. one-time Swytchcode setup
-swytchcode init                                              # editor: none | mode: production
+### 2. Initialize Swytchcode in Production Mode
+```bash
+swytchcode init
+```
+*(Select `editor: none` and `mode: PRODUCTION`. Production mode ensures real API requests reach Gmail rather than routing to a local sandbox mock).*
+
+### 3. Fetch Gmail Integration & Register Canonical Methods
+```bash
 swytchcode get gmail
 swytchcode add method gmail.gmail.messages.get
 swytchcode add method gmail.gmail.send.create.1
 swytchcode add method gmail.gmail.modify.create
 swytchcode add method gmail.gmail.drafts.create
-swytchcode auth connect gmail                                # WorkOS OAuth in your browser
-cp policies.example.json .swytchcode/integrations/policies.json
-swytchcode policy validate                                   # confirm the guard is active
+```
 
-# 3. run
+### 4. Authenticate via WorkOS OAuth
+```bash
+swytchcode auth connect gmail
+```
+*(Follow the browser prompt to log into your Google account. Confirm connection status by running `swytchcode auth status`).*
+
+### 5. Activate Guard Policy
+```bash
+cp policies.example.json .swytchcode/integrations/policies.json
+swytchcode policy validate
+```
+
+---
+
+## Running the Agent
+
+Start the interactive terminal agent:
+```bash
 npm start
 ```
 
-Type a prompt (or press Enter for default) and the agent acts on your inbox.
-Run `swytchcode audit` to view recorded CLI executions.
+1. Enter a custom prompt or press `Enter` to run the default prompt (*"List the last 10 emails in my inbox"*).
+2. The agent executes tool calls against your connected Gmail account.
+3. Run `swytchcode audit` to view recorded CLI executions and verified API responses.
