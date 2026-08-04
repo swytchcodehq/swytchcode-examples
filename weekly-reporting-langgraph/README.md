@@ -106,7 +106,7 @@ Runnable LangGraph + Swytchcode examples:
 - [bug-escalation-langgraph](../bug-escalation-langgraph)
 - [create-and-send-payment-langgraph](../create-and-send-payment-langgraph)
 - [customer-onboarding-langgraph](../customer-onboarding-langgraph)
-- [fintech-compliance-langgraph](../fintech-compliance-langgraph)
+- [fintech-compliance-multiuser-langgraph](../fintech-compliance-multiuser-langgraph)
 - [lead-qualification-langgraph](../lead-qualification-langgraph)
 - [weekly-reporting-langgraph](../weekly-reporting-langgraph)
 

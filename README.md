@@ -46,11 +46,10 @@ The first six examples can be scaffolded fresh via the `swytchcode examples` int
 | [**`bug-escalation`**](./bug-escalation-langgraph) | GitHub + Jira + Slack triage | LangGraph | Engineering • GitHub • Jira • Slack |
 | [**`lead-qualification`**](./lead-qualification-langgraph) | Lead enrichment and CRM routing | LangGraph | CRM • Sales • HubSpot |
 | [**`weekly-reporting`**](./weekly-reporting-langgraph) | Automated analytics report distribution | LangGraph | Analytics • Sheets • Notion • Resend |
-| [**`fintech-compliance`**](./fintech-compliance-langgraph) | KYC, bank linking, secure payments | LangGraph | Finance • Compliance • Plaid • Persona • Dwolla |
 | [**`openclaw-swytchcode`**](./openclaw-swytchcode) | GitHub issue triage bot | OpenClaw (Go) | GitHub • Automation • Reliability |
 | [**`github-issue-integration`**](./github-issue-integration) | Automated GitHub issue creation | Swytchcode SDK | GitHub • Automation |
 | [**`fintech-compliance-multiuser`**](./fintech-compliance-multiuser-langgraph) | Multi-user compliance workflows | LangGraph | Finance • Compliance • Multi-user |
-| [**`stripe-subscriptions`**](./stripe-subscriptions) | Subscription lifecycle + dunning | Swytchcode SDK | Billing • Stripe • Webhooks |
+| [**`stripe-subscriptions`**](./Stripe-Subscriptions) | Subscription lifecycle + dunning | Swytchcode SDK | Billing • Stripe • Webhooks |
 | [**`langswytch`**](./langswytch) | Advanced LangGraph cognitive patterns | LangGraph | Multi-Agent • Orchestration • Memory |
 | [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
 | [**`star-repo-openai-agents-python`**](./star-repo-openai-agents-python) | Star a GitHub repository via Swytchcode CLI | OpenAI Agents SDK | GitHub • OpenAI • Python |
