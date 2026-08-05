@@ -1,0 +1,8 @@
+{
+  "Zoom.zoom": {
+    "version": "v2",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "https://api.zoom.us/v2",
+    "methods": 155
+  }
+}

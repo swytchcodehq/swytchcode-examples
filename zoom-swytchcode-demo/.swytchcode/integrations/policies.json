@@ -1,0 +1,17 @@
+{
+  "defaults": {
+    "on_violation": "fail",
+    "evaluation": "pre_execution"
+  },
+  "policies": [
+    {
+      "id": "zoom-meeting-recording-delete-approval",
+      "target": ["zoom.meeting.recordings.delete"],
+      "when": { "field": "meetingId", "operator": "exists" },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Deleting a Zoom meeting recording requires approval. Remove or comment out the 'zoom-meeting-recording-delete-approval' policy in .swytchcode/integrations/policies.json to allow this action."
+      }
+    }
+  ]
+}
