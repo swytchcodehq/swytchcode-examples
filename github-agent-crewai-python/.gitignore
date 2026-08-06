@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.swytchcode/
+
+.swytchcode/workspace.json
+
+# temporary verification helper (not part of the shipped demo)
+verify_all_actions.py
