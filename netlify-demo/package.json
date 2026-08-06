@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@openai/agents": "^0.12.1",
+    "@swytchcode/runtime": "^1.1.4",
+    "dotenv": "^17.4.2",
+    "openai": "^7.4.0"
+  }
+}
