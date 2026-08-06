@@ -79,11 +79,12 @@ This project ships with `policies.example.json`, a method-level guard policy tha
       "id": "gmail-send-requires-approval",
       "target": ["gmail.gmail.send.create.1"],
       "when": {
-        "operator": "always"
+        "field": "userId",
+        "operator": "not_empty"
       },
       "action": {
-        "type": "block",
-        "message": "Direct email sending is blocked by safety policy. Create a draft instead."
+        "type": "POLICY_BLOCKED",
+        "message": "Direct sends are blocked by policy in this demo - create a draft with gmail.gmail.drafts.create and have a human review and send it instead."
       }
     }
   ]

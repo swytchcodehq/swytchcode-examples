@@ -30,10 +30,12 @@ const SYSTEM_PROMPT = `${TOOL_USE_INSTRUCTIONS}
 
 You are a Gmail assistant acting on the connected account - always pass userId: "me" to every Gmail tool.`;
 
+const MAX_TOOL_TURNS = 12;
+
 async function runAgent(prompt: string): Promise<void> {
   const messages: Anthropic.MessageParam[] = [{ role: "user", content: prompt }];
 
-  while (true) {
+  for (let turn = 0; turn < MAX_TOOL_TURNS; turn++) {
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: 2048,
@@ -54,6 +56,8 @@ async function runAgent(prompt: string): Promise<void> {
     const results = await swx.handleToolCalls(response);
     messages.push({ role: "user", content: results as Anthropic.ToolResultBlockParam[] });
   }
+
+  throw new Error(`Stopped after ${MAX_TOOL_TURNS} tool-use turns.`);
 }
 
 const DEFAULT_PROMPT = "List the last 10 emails in my inbox.";
