@@ -99,7 +99,7 @@ gmail-assistant-anthropic-typescript/
 ├── src/
 │   └── index.ts               # Anthropic SDK tool-use loop + Swytchcode wiring
 ├── .env.example               # ANTHROPIC_API_KEY placeholder
-├── .gitignore                 # Ignores .env, node_modules/, dist/, .swytchcode/
+├── .gitignore                 # Ignores .env, node_modules/, dist/, wrekenfile.yaml & methods.json
 ├── package.json               # Dependencies: @anthropic-ai/sdk, @swytchcode/runtime, zod
 ├── tsconfig.json              # TypeScript ES2022 / NodeNext config
 ├── policies.example.json      # Sample guard policy blocking direct sends
@@ -133,13 +133,9 @@ swytchcode init
 ```
 *(Select `editor: none` and `mode: PRODUCTION`. Production mode ensures real API requests reach Gmail rather than routing to a local sandbox mock).*
 
-### 3. Fetch Gmail Integration & Register Canonical Methods
+### 3. Fetch Integrations from tooling.json
 ```bash
-swytchcode get gmail
-swytchcode add method gmail.gmail.messages.get
-swytchcode add method gmail.gmail.send.create.1
-swytchcode add method gmail.gmail.modify.create
-swytchcode add method gmail.gmail.drafts.create
+swytchcode bootstrap
 ```
 
 ### 4. Authenticate via WorkOS OAuth
