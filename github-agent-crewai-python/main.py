@@ -20,6 +20,8 @@ One-time setup (run once in THIS folder - see README.md):
     swytchcode add method github.repo.pulls.get.1        # list pull requests
     swytchcode auth connect github               # WorkOS OAuth in your browser
 """
+import os
+
 from dotenv import load_dotenv
 
 from swytchcode_runtime import Swytchcode, TOOL_USE_INSTRUCTIONS
@@ -48,7 +50,7 @@ github_agent = Agent(
         "You always prefer calling a tool over guessing.\n\n" + TOOL_USE_INSTRUCTIONS
     ),
     tools=tools,
-    llm="gpt-4o",
+    llm=os.environ.get("OPENAI_MODEL_NAME", "gpt-4o"),
     verbose=True,
     allow_delegation=False,
 )
