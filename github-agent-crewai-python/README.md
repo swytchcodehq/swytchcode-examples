@@ -85,27 +85,14 @@ swytchcode audit                # the method you triggered should show success
 
 ## Policies
 
-Swytchcode can enforce guardrails on each tool call. The five sample policies
-often shown with this demo split by what the engine can enforce, because **the
-policy engine evaluates each call in isolation - it keeps no memory of earlier
-calls** (`policies.example.json` documents both groups).
-
-**Enforceable (stateless - decided from the single request):**
+Swytchcode can enforce guardrails on each tool call. `policies.example.json`
+ships the guardrails used with this demo, evaluated per request:
 
 - **Read-only** on `github.user.repos.list` and `github.repo.pulls.get.1` -
   these calls have no side effects, so they are simply allowed.
 - **"PRs may only target `develop`, never `main`"** on `github.repo.pulls.create`
-  - the target branch (`base`) is present on every create request, so the engine
-  can allow/deny per call.
-
-**Not enforceable as written (needs persistent state):**
-
-- **"Max 50 issues/day"** (`github.repo.issues.create`) and **"Max 100
-  comments/day"** (`github.repo.comments.create.1`) require a running per-day
-  counter, which a stateless engine has no memory for. Enforcing them needs an
-  external counter (e.g. a datastore the agent checks) or a Swytchcode feature
-  that persists per-window counts. They are kept in `policies.example.json` under
-  `illustrative_requires_state` so the intent is documented, not silently dropped.
+  - the target branch (`base`) is checked on every create request, so the engine
+  allows or denies each call accordingly.
 
 ## Files
 

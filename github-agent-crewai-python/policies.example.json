@@ -1,7 +1,7 @@
 {
-  "_comment": "Illustrative Swytchcode policy set for the GitHub demo. Copy the relevant blocks into your workspace policy config, then run `swytchcode audit` to see enforcement. NOTE: the policy engine evaluates each call in isolation (stateless). See the 'Policies' section of README.md for which of these are actually enforceable.",
+  "_comment": "Illustrative Swytchcode policy set for the GitHub demo. Copy the relevant blocks into your workspace policy config, then run `swytchcode audit` to see enforcement. Each policy is evaluated per request.",
 
-  "enforceable_stateless": [
+  "policies": [
     {
       "action": "github.user.repos.list",
       "rule": "read-only",
@@ -17,22 +17,7 @@
       "rule": "allow_only_if",
       "condition": { "field": "body.base", "in": ["develop"] },
       "deny_message": "Pull requests may only target 'develop', never 'main'.",
-      "note": "Branch target is present on every create call, so this is enforceable per-request."
-    }
-  ],
-
-  "illustrative_requires_state": [
-    {
-      "action": "github.repo.issues.create",
-      "rule": "rate_limit",
-      "limit": { "count": 50, "per": "day" },
-      "note": "REQUIRES a persistent counter. A stateless policy engine cannot count issues created earlier today, so this cannot be enforced as written - see README."
-    },
-    {
-      "action": "github.repo.comments.create.1",
-      "rule": "rate_limit",
-      "limit": { "count": 100, "per": "day" },
-      "note": "REQUIRES a persistent counter. Same limitation as the issue rate limit above."
+      "note": "The target branch is present on every create request, so this is enforced per request."
     }
   ]
 }
