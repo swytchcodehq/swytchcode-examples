@@ -76,12 +76,17 @@ python main.py                  # type a prompt, or press Enter for the default
 swytchcode audit                # the method you triggered should show success
 ```
 
-> **PRODUCTION mode.** This example commits `.swytchcode/tooling.json` set to
-> `mode: production`, so `swytchcode bootstrap` wires up real GitHub calls. In
-> sandbox/demo mode the provider routes to `http://localhost` and responses are
-> simulated. If you ever see a `demo_mode` / `"_simulated": true` warning, the
-> CLI could not resolve this project - re-run `swytchcode bootstrap` in this
-> folder, or set `SWYTCHCODE_BIN` to the correct CLI binary.
+> **Heads up: this example runs in PRODUCTION mode and performs real writes.**
+> `.swytchcode/tooling.json` ships with `mode: production` and enables write
+> tools (create issue, comment, open PR), so running it acts on a **real GitHub
+> repository on the first run**. Point it at a repository you own (or a
+> throwaway), and apply `policies.example.json` first if you want to restrict
+> what the agent can do. Production mode is intentional: in sandbox mode the
+> provider routes to `http://localhost` and responses are simulated, so the demo
+> would not perform real actions. If you ever see a `demo_mode` /
+> `"_simulated": true` warning, the CLI could not resolve this project - re-run
+> `swytchcode bootstrap` in this folder, or set `SWYTCHCODE_BIN` to the correct
+> CLI binary.
 
 ## Policies
 
