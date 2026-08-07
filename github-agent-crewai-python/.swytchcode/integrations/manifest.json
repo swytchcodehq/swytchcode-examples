@@ -1,0 +1,8 @@
+{
+  "GitHub.github": {
+    "version": "1.1.4",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "https://api.github.com",
+    "methods": 1204
+  }
+}

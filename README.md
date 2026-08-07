@@ -53,6 +53,7 @@ The first six examples can be scaffolded fresh via the `swytchcode examples` int
 | [**`langswytch`**](./langswytch) | Advanced LangGraph cognitive patterns | LangGraph | Multi-Agent • Orchestration • Memory |
 | [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
 | [**`star-repo-openai-agents-python`**](./star-repo-openai-agents-python) | Star a GitHub repository via Swytchcode CLI | OpenAI Agents SDK | GitHub • OpenAI • Python |
+| [**`github-agent-crewai-python`**](./github-agent-crewai-python) | GitHub operations agent with CrewAI | CrewAI | GitHub • CrewAI • Python |
 
 ## License
 

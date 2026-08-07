@@ -1,0 +1,23 @@
+{
+  "_comment": "Illustrative Swytchcode policy set for the GitHub demo. Copy the relevant blocks into your workspace policy config, then run `swytchcode audit` to see enforcement. Each policy is evaluated per request.",
+
+  "policies": [
+    {
+      "action": "github.user.repos.list",
+      "rule": "read-only",
+      "note": "List repositories. Read-only calls carry no side effects; allow."
+    },
+    {
+      "action": "github.repo.pulls.get.1",
+      "rule": "read-only",
+      "note": "List pull requests. Read-only; allow."
+    },
+    {
+      "action": "github.repo.pulls.create",
+      "rule": "allow_only_if",
+      "condition": { "field": "body.base", "in": ["develop"] },
+      "deny_message": "Pull requests may only target 'develop', never 'main'.",
+      "note": "The target branch is present on every create request, so this is enforced per request."
+    }
+  ]
+}
