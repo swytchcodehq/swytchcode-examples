@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.env
+# Commit .swytchcode project state, but not the large regenerable bundles
+.swytchcode/**/wrekenfile.yaml
+.swytchcode/**/methods.json
