@@ -17,10 +17,10 @@ tools = swx.tools.get(toolkits=["github"])
 Switching language or framework never changes how you use Swytchcode - only the
 wiring around these two lines.
 
-> **Why Python?** CrewAI is a Python-native framework, and tool-calling is fully
-> supported here. (There is no official CrewAI TypeScript SDK - the community TS
-> ports either don't import or don't yet implement tool usage, so CrewAI + agentic
-> tool calls only works in Python today.)
+> **Why Python?** CrewAI is a Python-native framework with first-class tool
+> calling. There is no working CrewAI TypeScript SDK today (the `crewai` npm
+> package is an empty placeholder, and `crewai-ts` has no tool-calling yet), so a
+> CrewAI agent that actually executes tools must run in Python.
 
 ## How it works
 
@@ -28,8 +28,7 @@ wiring around these two lines.
 your prompt
    -> CrewAI agent (OpenAI LLM) decides which GitHub tool to call
    -> swytchcode-runtime wraps each tool as a crewai BaseTool and forwards the call
-   -> Swytchcode CLI executes the GitHub REST request
-      using WorkOS-brokered OAuth
+   -> Swytchcode CLI executes the GitHub REST request using WorkOS-brokered OAuth
    -> action performed (issue created / PR opened / list returned)
 ```
 
@@ -38,6 +37,8 @@ OAuth** authorizes the *GitHub action* - there is no GitHub token for you to
 manage.
 
 ## What the agent can do
+
+Each action below has been verified end-to-end against a live repository.
 
 | Prompt | Swytchcode method (canonical ID) | Action |
 | :--- | :--- | :--- |
@@ -63,7 +64,7 @@ pip install -r requirements.txt
 copy .env.example .env          # add your OPENAI_API_KEY  (cp on macOS/Linux)
 
 # 2. one-time Swytchcode setup (run in this folder)
-swytchcode init                 # editor: none | mode: PRODUCTION  (not sandbox)
+swytchcode init                 # editor: none | mode: PRODUCTION  (see note below)
 swytchcode get github
 swytchcode add method github.user.repos.list
 swytchcode add method github.repo.issues.create
@@ -80,16 +81,19 @@ python main.py                  # type a prompt, or press Enter for the default
 swytchcode audit                # the method you triggered should show success
 ```
 
-> **PRODUCTION mode matters.** In sandbox mode the provider is routed to
-> localhost and the real GitHub action will **not** happen. Choose `production`
-> at `swytchcode init`.
+> **Choose PRODUCTION mode at `swytchcode init`.** In sandbox/demo mode the
+> provider is routed to `http://localhost`, so the real GitHub action will **not**
+> happen and responses are simulated. If you ever see a `demo_mode` /
+> `"_simulated": true` warning, the CLI could not resolve this project - re-run
+> `swytchcode init`/`get`/`add` in this folder, or set `SWYTCHCODE_BIN` to the
+> correct CLI binary.
 
 ## Policies
 
-Swytchcode can enforce guardrails on each tool call. The ticket that inspired
-this demo proposed five sample policies; `policies.example.json` splits them by
-what the engine can actually do, because **the policy engine evaluates each call
-in isolation - it keeps no memory of earlier calls**.
+Swytchcode can enforce guardrails on each tool call. The five sample policies
+often shown with this demo split by what the engine can enforce, because **the
+policy engine evaluates each call in isolation - it keeps no memory of earlier
+calls** (`policies.example.json` documents both groups).
 
 **Enforceable (stateless - decided from the single request):**
 
@@ -102,13 +106,11 @@ in isolation - it keeps no memory of earlier calls**.
 **Not enforceable as written (needs persistent state):**
 
 - **"Max 50 issues/day"** (`github.repo.issues.create`) and **"Max 100
-  comments/day"** (`github.repo.comments.create.1`) require a running counter of
-  how many calls already happened today. A stateless engine has no such memory,
-  so a daily rate limit cannot be enforced from policy alone. To implement it you
-  would need an external counter (e.g. a datastore the agent checks) or a
-  Swytchcode feature that persists per-window counts. These are included in
-  `policies.example.json` under `illustrative_requires_state` so the intent is
-  documented, not silently dropped.
+  comments/day"** (`github.repo.comments.create.1`) require a running per-day
+  counter, which a stateless engine has no memory for. Enforcing them needs an
+  external counter (e.g. a datastore the agent checks) or a Swytchcode feature
+  that persists per-window counts. They are kept in `policies.example.json` under
+  `illustrative_requires_state` so the intent is documented, not silently dropped.
 
 ## Files
 
