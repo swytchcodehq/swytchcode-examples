@@ -46,7 +46,7 @@ Netlify auth is handled by Swytchcode itself, not by a `.env` variable. This
 opens an inline prompt for your Netlify token:
 
 ```bash
-swytchcode auth connect netlify --type api_key
+swytchcode auth connect netlify
 ```
 
 Paste the Personal Access Token you generated above when prompted. Verify it
