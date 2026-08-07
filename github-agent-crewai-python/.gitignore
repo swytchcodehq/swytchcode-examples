@@ -2,9 +2,14 @@
 __pycache__/
 *.pyc
 .env
-.swytchcode/
 
-.swytchcode/workspace.json
+# Swytchcode project config: commit the lightweight config so `swytchcode
+# bootstrap` sets everything up on clone (tooling.json, workspace.json,
+# integrations/manifest.json). Ignore the large, regenerable integration
+# bundles - bootstrap re-fetches them.
+.swytchcode/integrations/*/
+.swytchcode/**/methods.json
+.swytchcode/**/wrekenfile.yaml
 
 # temporary verification helper (not part of the shipped demo)
 verify_all_actions.py

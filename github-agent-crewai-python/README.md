@@ -63,14 +63,9 @@ python -m venv .venv
 pip install -r requirements.txt
 copy .env.example .env          # add your OPENAI_API_KEY  (cp on macOS/Linux)
 
-# 2. one-time Swytchcode setup (run in this folder)
-swytchcode init                 # editor: none | mode: PRODUCTION  (see note below)
-swytchcode get github
-swytchcode add method github.user.repos.list
-swytchcode add method github.repo.issues.create
-swytchcode add method github.repo.comments.create.1
-swytchcode add method github.repo.pulls.create
-swytchcode add method github.repo.pulls.get.1
+# 2. Swytchcode: fetch the integration bundles declared in the committed
+#    .swytchcode/tooling.json (already configured for PRODUCTION mode)
+swytchcode bootstrap
 swytchcode auth connect github  # WorkOS OAuth opens in your browser
 swytchcode auth status          # confirm "connected"
 
@@ -81,12 +76,12 @@ python main.py                  # type a prompt, or press Enter for the default
 swytchcode audit                # the method you triggered should show success
 ```
 
-> **Choose PRODUCTION mode at `swytchcode init`.** In sandbox/demo mode the
-> provider is routed to `http://localhost`, so the real GitHub action will **not**
-> happen and responses are simulated. If you ever see a `demo_mode` /
-> `"_simulated": true` warning, the CLI could not resolve this project - re-run
-> `swytchcode init`/`get`/`add` in this folder, or set `SWYTCHCODE_BIN` to the
-> correct CLI binary.
+> **PRODUCTION mode.** This example commits `.swytchcode/tooling.json` set to
+> `mode: production`, so `swytchcode bootstrap` wires up real GitHub calls. In
+> sandbox/demo mode the provider routes to `http://localhost` and responses are
+> simulated. If you ever see a `demo_mode` / `"_simulated": true` warning, the
+> CLI could not resolve this project - re-run `swytchcode bootstrap` in this
+> folder, or set `SWYTCHCODE_BIN` to the correct CLI binary.
 
 ## Policies
 
@@ -119,8 +114,10 @@ github-agent-crewai-python/
   main.py                 # agent code (2 Swytchcode lines + CrewAI wiring)
   requirements.txt        # swytchcode-runtime, crewai, python-dotenv
   .env.example            # OPENAI_API_KEY placeholder
-  .gitignore              # .env, .venv/, __pycache__/, .swytchcode/
+  .gitignore              # ignores .env, .venv/, and regenerable Swytchcode bundles
   policies.example.json   # sample guardrails (see Policies above)
+  .swytchcode/            # committed project config (tooling.json, workspace.json,
+                          #   integrations/manifest.json) -> powers `swytchcode bootstrap`
 ```
 
 ## License
