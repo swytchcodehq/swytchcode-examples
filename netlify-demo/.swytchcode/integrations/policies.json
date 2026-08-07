@@ -1,0 +1,23 @@
+{
+  "defaults": {
+    "on_violation": "fail",
+    "evaluation": "pre_execution"
+  },
+  "policies": [
+    {
+      "id": "1be99edaec38",
+      "target": [
+        "netlify.site.deploys.create"
+      ],
+      "when": {
+        "field": "production",
+        "operator": "==",
+        "value": "true"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Agents cannot do prod deployment"
+      }
+    }
+  ]
+}
