@@ -22,7 +22,7 @@ const tools = await swx.tools.get({ toolkits: ["gmail"] });
 +-------------------------------------------------------------------------------+
 | 2. Anthropic Claude (via @anthropic-ai/sdk)                                   |
 |    - Evaluates user prompt against tools loaded from swx.tools.get()          |
-|    - Selects tool and parameter: `gmail_gmail_messages_get(q: "...")`        |
+|    - Selects tool and parameter: `gmail_user_messages_get(q: "...")`        |
 +-------------------------------------------------------------------------------+
                                         |
                                         v
@@ -56,17 +56,17 @@ Two credentials, two roles:
 
 | Example Prompt | Expected Action | Canonical Method ID | Parameters Used | Notes |
 |---|---|---|---|---|
-| *"Find unread emails from Amazon"* | Search Inbox | `gmail.gmail.messages.get` | `q: "is:unread from:Amazon"` | Gmail search query syntax |
-| *"List the last 10 emails in my inbox"* | Read Inbox | `gmail.gmail.messages.get` | `maxResults: 10` | Omits `q` parameter to list recent mail |
-| *"Mark the latest email as read"* | Modify Email | `gmail.gmail.modify.create` | `id: "<msg_id>", body: { removeLabelIds: ["UNREAD"] }` | Removes UNREAD label |
-| *"Draft a thank-you email to..."* | Create Draft | `gmail.gmail.drafts.create` | `userId: "me", body: { message: { raw: "..." } }` | Drafts message in inbox |
-| *"Send a test email to..."* | Send Email | `gmail.gmail.send.create.1` | `userId: "me", body: { raw: "..." }` | **Blocked by policy** in this demo |
+| *"Find unread emails from Amazon"* | Search Inbox | `gmail.user.messages.get` | `q: "is:unread from:Amazon"` | Gmail search query syntax |
+| *"List the last 10 emails in my inbox"* | Read Inbox | `gmail.user.messages.get` | `maxResults: 10` | Omits `q` parameter to list recent mail |
+| *"Mark the latest email as read"* | Modify Email | `gmail.user.modify.create` | `id: "<msg_id>", body: { removeLabelIds: ["UNREAD"] }` | Removes UNREAD label |
+| *"Draft a thank-you email to..."* | Create Draft | `gmail.user.drafts.create` | `userId: "me", body: { message: { raw: "..." } }` | Drafts message in inbox |
+| *"Send a test email to..."* | Send Email | `gmail.user.send.create1` | `userId: "me", body: { raw: "..." }` | **Blocked by policy** in this demo |
 
 ---
 
 ## Guard Policy: Sends Require Approval
 
-This project ships with `policies.example.json`, a method-level guard policy that intercepts and blocks `gmail.gmail.send.create.1` with `POLICY_BLOCKED`. When blocked, the agent informs the user and creates a draft instead so a human can inspect and send it.
+This project ships with `policies.example.json`, a method-level guard policy that intercepts and blocks `gmail.user.send.create1` with `POLICY_BLOCKED`. When blocked, the agent informs the user and creates a draft instead so a human can inspect and send it.
 
 ```json
 {
@@ -77,14 +77,14 @@ This project ships with `policies.example.json`, a method-level guard policy tha
   "policies": [
     {
       "id": "gmail-send-requires-approval",
-      "target": ["gmail.gmail.send.create.1"],
+      "target": ["gmail.user.send.create1"],
       "when": {
         "field": "userId",
         "operator": "not_empty"
       },
       "action": {
         "type": "POLICY_BLOCKED",
-        "message": "Direct sends are blocked by policy in this demo - create a draft with gmail.gmail.drafts.create and have a human review and send it instead."
+        "message": "Direct sends are blocked by policy in this demo - create a draft with gmail.user.drafts.create and have a human review and send it instead."
       }
     }
   ]

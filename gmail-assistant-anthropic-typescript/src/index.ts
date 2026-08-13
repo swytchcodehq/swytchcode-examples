@@ -7,10 +7,10 @@
  * Prereqs (run once in this folder):
  *   swytchcode init
  *   swytchcode get gmail
- *   swytchcode add method gmail.gmail.messages.get
- *   swytchcode add method gmail.gmail.send.create.1
- *   swytchcode add method gmail.gmail.modify.create
- *   swytchcode add method gmail.gmail.drafts.create
+ *   swytchcode add method gmail.user.messages.get
+ *   swytchcode add method gmail.user.send.create1
+ *   swytchcode add method gmail.user.modify.create
+ *   swytchcode add method gmail.user.drafts.create
  *   swytchcode auth connect gmail
  */
 import "dotenv/config";

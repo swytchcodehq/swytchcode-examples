@@ -6,14 +6,14 @@
   "policies": [
     {
       "id": "gmail-send-requires-approval",
-      "target": ["gmail.gmail.send.create.1"],
+      "target": ["gmail.user.send.create1"],
       "when": {
         "field": "userId",
         "operator": "not_empty"
       },
       "action": {
         "type": "POLICY_BLOCKED",
-        "message": "Direct sends are blocked by policy in this demo - create a draft with gmail.gmail.drafts.create and have a human review and send it instead."
+        "message": "Direct sends are blocked by policy in this demo - create a draft with gmail.user.drafts.create and have a human review and send it instead."
       }
     }
   ]
