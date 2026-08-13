@@ -40,7 +40,7 @@ cp .env.example .env                                # add your OPENAI_API_KEY
 # 2. one-time Swytchcode setup
 swytchcode init                                     # editor: none | mode: production
 swytchcode get github
-swytchcode add method github.user.starred.update
+swytchcode add method github.starred.update
 swytchcode auth connect github                      # WorkOS OAuth in your browser
 
 # 3. run

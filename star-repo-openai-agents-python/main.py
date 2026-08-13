@@ -7,7 +7,7 @@ The Swytchcode part is two lines; the OpenAI Agents SDK runs the tool loop.
 Prereq (run once in this folder, see setup commands):
     swytchcode init            # editor: none | mode: PRODUCTION
     swytchcode get github
-    swytchcode add method github.user.starred.update
+    swytchcode add method github.starred.update
     swytchcode auth connect github
 """
 from dotenv import load_dotenv
