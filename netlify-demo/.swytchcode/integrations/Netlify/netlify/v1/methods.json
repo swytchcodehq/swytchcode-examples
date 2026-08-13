@@ -1,0 +1,904 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a member to an account",
+      "canonical_id": "netlify.member.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive an agent runner",
+      "canonical_id": "netlify.agent_runner.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a site deployment",
+      "canonical_id": "netlify.deploy.cancel"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Commit changes to a specific agent runner branch",
+      "canonical_id": "netlify.agent_runner.commit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure DNS settings for a specific site",
+      "canonical_id": "netlify.site.dns.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a build hook for a specific site",
+      "canonical_id": "netlify.site.buildHooks.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a database for a site, or get existing connection",
+      "canonical_id": "netlify.site.database.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a database snapshot for a specific site",
+      "canonical_id": "netlify.site.snapshot.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a development server for a specific site",
+      "canonical_id": "netlify.site.devServers.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a DNS record within a zone",
+      "canonical_id": "netlify.dns_zone.dnsRecords.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new agent runner with specified details",
+      "canonical_id": "netlify.agent_runner.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new asset for a specific site",
+      "canonical_id": "netlify.site.assets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new database branch or get the existing one",
+      "canonical_id": "netlify.site.branch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new deploy key",
+      "canonical_id": "netlify.deploy_key.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new development server hook for a specific site",
+      "canonical_id": "netlify.site.devServerHooks.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new DNS zone",
+      "canonical_id": "netlify.dns_zone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new OAuth ticket",
+      "canonical_id": "netlify.oauth.tickets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new service instance for a site and addon",
+      "canonical_id": "netlify.site.instances.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new session for an agent runner",
+      "canonical_id": "netlify.agent_runner.sessions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new site and configure its settings",
+      "canonical_id": "netlify.site.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new site deployment with optional preview and production flags",
+      "canonical_id": "netlify.site.deploys.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new site for an account",
+      "canonical_id": "netlify.site.create.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new snippet for a specific site",
+      "canonical_id": "netlify.site.snippets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new traffic split test for a site",
+      "canonical_id": "netlify.site.trafficSplits.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user account",
+      "canonical_id": "netlify.account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a plugin run for a specific deploy",
+      "canonical_id": "netlify.deploy.pluginRuns.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a pull request for an agent runner",
+      "canonical_id": "netlify.agent_runner.pullRequest.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a webhook for a specific site",
+      "canonical_id": "netlify.hook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an agent runner hook for a specific site",
+      "canonical_id": "netlify.site.agentRunnerHooks.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create environment variables for an account",
+      "canonical_id": "netlify.account.env.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a database branch for a specific site",
+      "canonical_id": "netlify.site.branch.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a DNS record from a zone",
+      "canonical_id": "netlify.dns_zone.dnsRecords.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a DNS zone by its ID",
+      "canonical_id": "netlify.dns_zone.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific agent runner session",
+      "canonical_id": "netlify.agent_runner.sessions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific build hook for a site",
+      "canonical_id": "netlify.site.buildHooks.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific database snapshot for a site",
+      "canonical_id": "netlify.site.snapshot.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific deploy from a site",
+      "canonical_id": "netlify.site.deploys.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific deployment by its ID",
+      "canonical_id": "netlify.deploy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific development server hook for a site",
+      "canonical_id": "netlify.site.devServerHooks.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific environment variable value by ID",
+      "canonical_id": "netlify.account.value.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific form from a site",
+      "canonical_id": "netlify.site.forms.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific service instance for an addon on a site",
+      "canonical_id": "netlify.site.instances.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific site by its ID",
+      "canonical_id": "netlify.site.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific snippet from a site",
+      "canonical_id": "netlify.site.snippets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific submission by its ID",
+      "canonical_id": "netlify.submission.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific webhook by its ID",
+      "canonical_id": "netlify.hook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an account by its ID",
+      "canonical_id": "netlify.account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an agent runner by its ID",
+      "canonical_id": "netlify.agent_runner.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an agent runner hook for a specific site",
+      "canonical_id": "netlify.site.agentRunnerHooks.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete site database and all associated data",
+      "canonical_id": "netlify.site.database.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable a site and prevent it from serving content",
+      "canonical_id": "netlify.site.disable.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a specific hook by its ID",
+      "canonical_id": "netlify.hook.enable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Exchange an OAuth ticket for access",
+      "canonical_id": "netlify.oauth.exchange.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of accounts for a user",
+      "canonical_id": "netlify.account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of members for a specific account",
+      "canonical_id": "netlify.member.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a secure URL to upload an agent runner file",
+      "canonical_id": "netlify.agent_runner.uploadUrl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific agent runner hook for a site",
+      "canonical_id": "netlify.site.agentRunnerHooks.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific agent runner session by its IDs",
+      "canonical_id": "netlify.agent_runner.sessions.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific developer server hook for a site",
+      "canonical_id": "netlify.site.devServerHooks.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific development server for a site",
+      "canonical_id": "netlify.site.devServers.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific environment variable for an account",
+      "canonical_id": "netlify.account.env.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific file from a site by its path",
+      "canonical_id": "netlify.site.files.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific form submission with optional filtering and pagination",
+      "canonical_id": "netlify.submission.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific service instance for a site and addon",
+      "canonical_id": "netlify.site.instances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific site build hook by its ID",
+      "canonical_id": "netlify.site.buildHooks.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific traffic split test for a site",
+      "canonical_id": "netlify.site.trafficSplits.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all database branches for a site",
+      "canonical_id": "netlify.site.branches.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all database snapshots for a specific site",
+      "canonical_id": "netlify.site.snapshots.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all environment variables for a specific site",
+      "canonical_id": "netlify.api.env.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all submissions for a specific form",
+      "canonical_id": "netlify.form.submissions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an AI Gateway token for a specific account",
+      "canonical_id": "netlify.account.token.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an AI Gateway token for a specific site",
+      "canonical_id": "netlify.site.token.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get database compute settings for a site",
+      "canonical_id": "netlify.site.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get database connection string for a specific branch",
+      "canonical_id": "netlify.site.branch.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details about a specific add-on service",
+      "canonical_id": "netlify.service.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get DNS records for a specific site",
+      "canonical_id": "netlify.site.dns.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get DNS records for a specific zone",
+      "canonical_id": "netlify.dns_zone.dnsRecords.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get environment variables for an account or site",
+      "canonical_id": "netlify.account.env.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get information about a specific asset within a site",
+      "canonical_id": "netlify.site.assets.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get metadata for a specific site",
+      "canonical_id": "netlify.site.metadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get site database migrations and applied status",
+      "canonical_id": "netlify.site.migrations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get site environment variables",
+      "canonical_id": "netlify.site.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the build status for a specific account",
+      "canonical_id": "netlify.build.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the contents of a specific migration file",
+      "canonical_id": "netlify.site.migrations.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the current logged-in user's information",
+      "canonical_id": "netlify.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the database connection string for a specific site",
+      "canonical_id": "netlify.site.database.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest plugin run for a specific site",
+      "canonical_id": "netlify.site.latest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the manifest for a specific add-on service",
+      "canonical_id": "netlify.service.manifest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the public signature for a specific site asset",
+      "canonical_id": "netlify.site.publicSignature.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the SSL certificate for a specific site",
+      "canonical_id": "netlify.site.ssl.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get traffic split tests for a specific site",
+      "canonical_id": "netlify.site.trafficSplits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List account types for a user",
+      "canonical_id": "netlify.account.types.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List agent runner hooks for a specific site",
+      "canonical_id": "netlify.site.agentRunnerHooks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List agent runner sessions by ID",
+      "canonical_id": "netlify.agent_runner.sessions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List agent runners for a given account and site",
+      "canonical_id": "netlify.agent_runner.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all assets for a given site",
+      "canonical_id": "netlify.site.assets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all builds for a given site",
+      "canonical_id": "netlify.site.builds.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all code snippets for a specific site",
+      "canonical_id": "netlify.site.snippets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all deploy keys",
+      "canonical_id": "netlify.deploy_key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all forms for a specific site",
+      "canonical_id": "netlify.site.forms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all sites for an account",
+      "canonical_id": "netlify.site.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List audit events for a specific account",
+      "canonical_id": "netlify.account.audit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available payment methods for a user",
+      "canonical_id": "netlify.billing.paymentMethods.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available services with optional search",
+      "canonical_id": "netlify.service.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available webhook types",
+      "canonical_id": "netlify.hook.types.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List build hooks for a specific site",
+      "canonical_id": "netlify.site.buildHooks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deployed branches for a specific site",
+      "canonical_id": "netlify.site.deployedBranches.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deploys for a specific site",
+      "canonical_id": "netlify.site.deploys.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List development server hooks for a specific site",
+      "canonical_id": "netlify.site.devServerHooks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List development servers for a specific site",
+      "canonical_id": "netlify.site.devServers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List DNS zones for an account",
+      "canonical_id": "netlify.dns_zone.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List files for a specific site",
+      "canonical_id": "netlify.site.files.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List functions for a specific site",
+      "canonical_id": "netlify.site.functions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List hooks for a specific site",
+      "canonical_id": "netlify.hook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List service instances for a specific site",
+      "canonical_id": "netlify.site.serviceInstances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List submissions for a specific site",
+      "canonical_id": "netlify.site.submissions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Lock a specific deployment",
+      "canonical_id": "netlify.deploy.lock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a developer server as active",
+      "canonical_id": "netlify.site.activity.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Provision or update a TLS certificate for a site",
+      "canonical_id": "netlify.site.ssl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a traffic split test for a specific site",
+      "canonical_id": "netlify.site.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Purge cached content from Netlify's CDN",
+      "canonical_id": "netlify.purge.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Re-enable a disabled site, excluding those marked for spam or usage exceeded",
+      "canonical_id": "netlify.site.enable.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a deploy key by its ID",
+      "canonical_id": "netlify.deploy_key.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a member from an account",
+      "canonical_id": "netlify.member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific asset from a site",
+      "canonical_id": "netlify.site.assets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an environment variable for an account",
+      "canonical_id": "netlify.account.env.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove development servers for a specific site",
+      "canonical_id": "netlify.site.devServers.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset a non-production database branch",
+      "canonical_id": "netlify.site.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset project compute settings to default",
+      "canonical_id": "netlify.site.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a database snapshot to a specific branch",
+      "canonical_id": "netlify.site.restore.create.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a specific site deploy",
+      "canonical_id": "netlify.site.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of available AI gateway providers",
+      "canonical_id": "netlify.ai-gateway.providers.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific deploy for a given site",
+      "canonical_id": "netlify.site.deploys.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific deploy key by its ID",
+      "canonical_id": "netlify.deploy_key.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific DNS record within a zone",
+      "canonical_id": "netlify.dns_zone.dnsRecords.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific DNS zone by its ID",
+      "canonical_id": "netlify.dns_zone.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific member from an account",
+      "canonical_id": "netlify.member.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific site build",
+      "canonical_id": "netlify.build.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific snippet from a site",
+      "canonical_id": "netlify.site.snippets.get.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific ticket by its ID",
+      "canonical_id": "netlify.oauth.tickets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific webhook by its ID",
+      "canonical_id": "netlify.hook.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account details by account ID",
+      "canonical_id": "netlify.account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific agent runner",
+      "canonical_id": "netlify.agent_runner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific deployment",
+      "canonical_id": "netlify.deploy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve site environment variables",
+      "canonical_id": "netlify.site.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve SSL certificates for a specific site and domain",
+      "canonical_id": "netlify.site.certificates.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Roll back a site deployment to a previous version",
+      "canonical_id": "netlify.site.rollback.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Run a site build with optional parameters",
+      "canonical_id": "netlify.site.builds.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Run database migrations for a specific deploy",
+      "canonical_id": "netlify.site.migrations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a build and optionally provide buildbot and task details",
+      "canonical_id": "netlify.build.start"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer a DNS zone to another account or user",
+      "canonical_id": "netlify.dns_zone.transfer.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unlink a repository from a site",
+      "canonical_id": "netlify.site.unlinkRepo.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unlock a specific deployment",
+      "canonical_id": "netlify.deploy.unlock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unpublish a traffic split test for a given site",
+      "canonical_id": "netlify.site.unpublish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a member's details for a specific account",
+      "canonical_id": "netlify.member.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a plugin's configuration for a specific site",
+      "canonical_id": "netlify.site.plugins.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a site agent runner hook by ID",
+      "canonical_id": "netlify.site.agentRunnerHooks.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a site asset's state",
+      "canonical_id": "netlify.site.assets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a site build log message",
+      "canonical_id": "netlify.build.log.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a site's configuration settings",
+      "canonical_id": "netlify.site.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a site's deploy with new files and commit reference",
+      "canonical_id": "netlify.site.deploys.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific development server hook for a site",
+      "canonical_id": "netlify.site.devServerHooks.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific function within a deployment",
+      "canonical_id": "netlify.deploy.functions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific service instance for a site",
+      "canonical_id": "netlify.site.instances.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific site build hook",
+      "canonical_id": "netlify.site.buildHooks.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific snippet for a given site",
+      "canonical_id": "netlify.site.snippets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a traffic split test for a specific site",
+      "canonical_id": "netlify.site.trafficSplits.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an agent runner by its ID",
+      "canonical_id": "netlify.agent_runner.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an agent runner session's published status",
+      "canonical_id": "netlify.agent_runner.sessions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an edge function for a specific deployment",
+      "canonical_id": "netlify.deploy.edgeFunctions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing account with new details",
+      "canonical_id": "netlify.account.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing hook by its ID",
+      "canonical_id": "netlify.hook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update compute settings for a specific database branch",
+      "canonical_id": "netlify.site.settings.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update database compute settings for a site",
+      "canonical_id": "netlify.site.settings.update.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update deploy validations report",
+      "canonical_id": "netlify.deploy.validationsReport.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update environment variable and its values for an account",
+      "canonical_id": "netlify.account.env.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update metadata for a specific site",
+      "canonical_id": "netlify.site.metadata.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create an environment variable for an account",
+      "canonical_id": "netlify.account.env.update.1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the state of a development server for a specific site",
+      "canonical_id": "netlify.site.state.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a file to a specific deploy path",
+      "canonical_id": "netlify.deploy.files.update"
+    }
+  ]
+}
