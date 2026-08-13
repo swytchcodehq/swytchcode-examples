@@ -22,7 +22,7 @@ const tools = await swx.tools.get({ toolkits: ["gmail"] });
 +-------------------------------------------------------------------------------+
 | 2. Anthropic Claude (via @anthropic-ai/sdk)                                   |
 |    - Evaluates user prompt against tools loaded from swx.tools.get()          |
-|    - Selects tool and parameter: `gmail_gmail_messages_get(q: "...")`        |
+|    - Selects tool and parameter: `gmail_user_messages_get(q: "...")`        |
 +-------------------------------------------------------------------------------+
                                         |
                                         v
