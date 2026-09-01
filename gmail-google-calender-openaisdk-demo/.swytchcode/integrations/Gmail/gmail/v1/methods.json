@@ -1,0 +1,399 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a custom send-as email alias",
+      "canonical_id": "gmail.user.sendAs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a Gmail delegate without verification",
+      "canonical_id": "gmail.user.delegates.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a new forwarding email address",
+      "canonical_id": "gmail.user.forwardingAddresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch delete multiple Gmail messages by ID",
+      "canonical_id": "gmail.user.batchDelete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a client-side encryption identity for sending mail",
+      "canonical_id": "gmail.user.identities.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new draft email for a user",
+      "canonical_id": "gmail.user.drafts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new Gmail filter for a user",
+      "canonical_id": "gmail.user.filters.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new label for a Gmail user",
+      "canonical_id": "gmail.user.labels.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a client-side encryption identity",
+      "canonical_id": "gmail.user.identities.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a draft email permanently",
+      "canonical_id": "gmail.user.drafts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Gmail label and its associations",
+      "canonical_id": "gmail.user.labels.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific Gmail filter",
+      "canonical_id": "gmail.user.filters.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete S/MIME config for a send-as alias",
+      "canonical_id": "gmail.user.smimeInfo.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable a client-side encryption key pair",
+      "canonical_id": "gmail.user.keyPairIddisable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a specific message attachment",
+      "canonical_id": "gmail.user.attachments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a client-side encryption key pair",
+      "canonical_id": "gmail.user.keyPairIdenable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of draft emails from a user's mailbox",
+      "canonical_id": "gmail.user.drafts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of email threads in a user's mailbox",
+      "canonical_id": "gmail.user.threads.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific forwarding email address",
+      "canonical_id": "gmail.user.forwardingAddresses.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific Gmail label by its ID",
+      "canonical_id": "gmail.user.labels.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's client-side encryption key pair",
+      "canonical_id": "gmail.user.keypairs.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all labels in a user's Gmail mailbox",
+      "canonical_id": "gmail.user.labels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get client-side encryption identity configuration",
+      "canonical_id": "gmail.user.identities.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Gmail POP settings for a user",
+      "canonical_id": "gmail.user.pop.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get IMAP settings for a Gmail account",
+      "canonical_id": "gmail.user.imap.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get S/MIME configurations for a send-as alias",
+      "canonical_id": "gmail.user.smimeInfo.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get send-as aliases for a Gmail account",
+      "canonical_id": "gmail.user.sendAs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the authenticated user's Gmail profile",
+      "canonical_id": "gmail.user.profile.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the history of changes to a Gmail mailbox",
+      "canonical_id": "gmail.user.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user's Gmail language settings",
+      "canonical_id": "gmail.user.language.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get vacation responder settings for a user",
+      "canonical_id": "gmail.user.vacation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Import an email message into a user's mailbox",
+      "canonical_id": "gmail.user.import.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Insert a message directly into a user's mailbox",
+      "canonical_id": "gmail.user.messages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List client-side encrypted identities for a user",
+      "canonical_id": "gmail.user.identities.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List client-side encryption key pairs for a user",
+      "canonical_id": "gmail.user.keypairs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List delegates for a Gmail account",
+      "canonical_id": "gmail.user.delegates.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List forwarding addresses for a Gmail account",
+      "canonical_id": "gmail.user.forwardingAddresses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Gmail user message filters",
+      "canonical_id": "gmail.user.filters.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List messages in a Gmail mailbox",
+      "canonical_id": "gmail.user.messages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Modify message labels and classification",
+      "canonical_id": "gmail.user.modify.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Modify message labels and classification labels in bulk",
+      "canonical_id": "gmail.user.batchModify.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Permanently delete a client-side encryption key pair",
+      "canonical_id": "gmail.user.keyPairIdobliterate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Permanently delete a Gmail thread and its messages",
+      "canonical_id": "gmail.user.threads.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Permanently delete a specific email message",
+      "canonical_id": "gmail.user.messages.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a forwarding email address",
+      "canonical_id": "gmail.user.forwardingAddresses.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a Gmail delegate and revoke their verification",
+      "canonical_id": "gmail.user.delegates.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a send-as alias and its verification",
+      "canonical_id": "gmail.user.sendAs.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a message from the trash",
+      "canonical_id": "gmail.user.untrash.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific delegate's email address",
+      "canonical_id": "gmail.user.delegates.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific draft email by its ID",
+      "canonical_id": "gmail.user.drafts.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific email thread by its ID",
+      "canonical_id": "gmail.user.threads.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Gmail filter by its ID",
+      "canonical_id": "gmail.user.filters.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Gmail message by its ID",
+      "canonical_id": "gmail.user.messages.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific send-as email alias",
+      "canonical_id": "gmail.user.sendAs.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Gmail auto-forwarding settings for an account",
+      "canonical_id": "gmail.user.autoForwarding.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve S/MIME configuration for a specific send-as alias",
+      "canonical_id": "gmail.user.smimeInfo.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an email message to specified recipients",
+      "canonical_id": "gmail.user.send.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an existing draft email",
+      "canonical_id": "gmail.user.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default S/MIME config for a send-as alias",
+      "canonical_id": "gmail.user.setDefault.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set up push notifications for a user's Gmail mailbox",
+      "canonical_id": "gmail.user.watch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop push notifications for a Gmail user",
+      "canonical_id": "gmail.user.stop"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trash a specific email thread and its messages",
+      "canonical_id": "gmail.user.trash.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trash a specific Gmail message by its ID",
+      "canonical_id": "gmail.user.trash.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Untrash a specific Gmail thread and its messages",
+      "canonical_id": "gmail.user.untrash.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a draft email with new content",
+      "canonical_id": "gmail.user.drafts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Gmail label",
+      "canonical_id": "gmail.user.labels.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Gmail label",
+      "canonical_id": "gmail.user.labels.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a send-as alias for a Gmail account",
+      "canonical_id": "gmail.user.sendAs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a send-as alias for a user",
+      "canonical_id": "gmail.user.sendAs.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update auto-forwarding settings for a Gmail account",
+      "canonical_id": "gmail.user.autoForwarding.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update client-side encryption identity with a new key pair",
+      "canonical_id": "gmail.user.identities.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update IMAP settings for a Gmail account",
+      "canonical_id": "gmail.user.imap.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update POP settings for a Gmail account",
+      "canonical_id": "gmail.user.pop.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update thread labels",
+      "canonical_id": "gmail.user.modify.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update user's Gmail display language settings",
+      "canonical_id": "gmail.user.language.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update vacation responder settings",
+      "canonical_id": "gmail.user.vacation.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload client-side encryption S/MIME keypairs for users",
+      "canonical_id": "gmail.user.keypairs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload S/MIME config for a send-as alias",
+      "canonical_id": "gmail.user.smimeInfo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify a Gmail send-as alias email address",
+      "canonical_id": "gmail.user.verify.create"
+    }
+  ]
+}

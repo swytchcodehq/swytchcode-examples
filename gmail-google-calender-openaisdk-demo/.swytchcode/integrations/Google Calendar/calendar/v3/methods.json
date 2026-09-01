@@ -1,0 +1,194 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a new event to a calendar",
+      "canonical_id": "calendar.event.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a user to a calendar's access list",
+      "canonical_id": "calendar.acl.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an existing calendar to the user's calendar list",
+      "canonical_id": "calendar.me.calendarList.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clear all events from a primary calendar",
+      "canonical_id": "calendar.clear.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a secondary calendar for a user",
+      "canonical_id": "calendar.calendar.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a secondary calendar",
+      "canonical_id": "calendar.calendar.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific event from a calendar",
+      "canonical_id": "calendar.event.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific calendar access control rule",
+      "canonical_id": "calendar.acl.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific calendar from the user's calendar list",
+      "canonical_id": "calendar.me.calendarList.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific event from a calendar by its ID",
+      "canonical_id": "calendar.event.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific user setting",
+      "canonical_id": "calendar.me.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all settings for the current user",
+      "canonical_id": "calendar.me.settings.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get calendar access control list rules",
+      "canonical_id": "calendar.acl.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get calendar metadata by ID",
+      "canonical_id": "calendar.calendar.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get color definitions for calendars and events",
+      "canonical_id": "calendar.color.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get events for a specific calendar",
+      "canonical_id": "calendar.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get free/busy times for specified calendars",
+      "canonical_id": "calendar.freebusy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get instances of a recurring event",
+      "canonical_id": "calendar.event.instances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the user's calendar list",
+      "canonical_id": "calendar.me.calendarList.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Import an event into a calendar",
+      "canonical_id": "calendar.event.import.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move an event to a different calendar",
+      "canonical_id": "calendar.event.move.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Quickly add a calendar event from text",
+      "canonical_id": "calendar.event.quickAdd.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Receive notifications for calendar list changes",
+      "canonical_id": "calendar.me.watch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a calendar from the user's calendar list",
+      "canonical_id": "calendar.me.calendarList.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an access control rule from a calendar",
+      "canonical_id": "calendar.acl.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop watching resources through this channel",
+      "canonical_id": "calendar.stop.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer a secondary calendar to a new owner",
+      "canonical_id": "calendar.transferownership.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's calendar entry",
+      "canonical_id": "calendar.me.calendarList.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's calendar entry",
+      "canonical_id": "calendar.me.calendarList.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an access control rule for a calendar",
+      "canonical_id": "calendar.acl.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an access control rule for a calendar",
+      "canonical_id": "calendar.acl.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an event in a calendar",
+      "canonical_id": "calendar.event.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing calendar event",
+      "canonical_id": "calendar.event.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update calendar metadata",
+      "canonical_id": "calendar.calendar.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update calendar metadata by ID",
+      "canonical_id": "calendar.calendar.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Watch for changes to calendar ACLs",
+      "canonical_id": "calendar.acl.watch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Watch for changes to calendar events",
+      "canonical_id": "calendar.event.watch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Watch for changes to settings resources",
+      "canonical_id": "calendar.me.watch.create1"
+    }
+  ]
+}

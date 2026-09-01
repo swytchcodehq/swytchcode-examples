@@ -1,0 +1,776 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://gmailpostmastertools.googleapis.com
+METHODS:
+  gmailpostmastertools.domainstatsbatchquery.create:
+    SUMMARY: Executes a batch of QueryDomainStats requests for multiple domains
+    DESC: Executes a batch of QueryDomainStats requests for multiple domains. Returns PERMISSION_DENIED if you don't have permission to access DomainStats for any of the requested domains.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/domainStats:batchQuery
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchQueryDomainStatsRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.traffic.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.traffic.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchQueryDomainStatsRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchQueryDomainStatsResponse)
+        RETURNVAR: gmailpostmastertools_domainstatsbatchquery_create
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.domainstatsbatchquery.create
+  gmailpostmastertools.domain.list:
+    SUMMARY: Retrieves a list of all domains registered by you, along with their corresponding metadata
+    DESC: Retrieves a list of all domains registered by you, along with their corresponding metadata. The order of domains in the response is unspecified and non-deterministic. Newly registered domains will not necessarily be added to the end of this list.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/domains
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListDomainsResponse)
+        RETURNVAR: gmailpostmastertools_domain_list
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.domain.list
+  gmailpostmastertools.domain.create:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Adds a domain to the user's account"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Adds a domain to the user's account. Returns INVALID_ARGUMENT if a domain is not provided. Returns ALREADY_EXISTS if the domain is already registered by the user."
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/domains
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateDomainRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateDomainRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Domain)
+        RETURNVAR: gmailpostmastertools_domain_create
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.domain.create
+  gmailpostmastertools.resource.execute:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Deletes a user from a domain"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Deletes a user from a domain. Returns NOT_FOUND if the user does not exist."
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v2/{+name}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - name:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Empty)
+        RETURNVAR: gmailpostmastertools_resource_execute
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.resource.execute
+  gmailpostmastertools.resource.execute1:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Retrieves detailed information about a user that has access to a domain"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Retrieves detailed information about a user that has access to a domain. Returns NOT_FOUND if the user does not exist."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{+name}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - name:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - verificationMethod:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - DOMAIN_VERIFICATION_METHOD_UNSPECIFIED
+            - TXT
+            - CNAME
+    RETURNS:
+      - RETURNTYPE: STRUCT(User)
+        RETURNVAR: gmailpostmastertools_resource_execute1
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.resource.execute1
+  gmailpostmastertools.resource.execute2:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Updates a user for a domain"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Updates a user for a domain. Only Owners and Admins can execute this RPC, only a user's domain permission will be allowed to be updated. Returns NOT_FOUND if the user does not exist. Returns INVALID_ARGUMENT if a permission is not provided or is PERMISSION_UNSPECIFIED, NONE, or OWNER."
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v2/{+name}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(User)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - name:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - updateMask:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(User)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(User)
+        RETURNVAR: gmailpostmastertools_resource_execute2
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.resource.execute2
+  gmailpostmastertools.nameverify.create:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Verifies a user's ownership of a domain at the DNS level"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Verifies a user's ownership of a domain at the DNS level. Note that this is distinct from checking if the user has OWNER status within IRDB."
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/{+name}:verify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(VerifyDomainRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.domain
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - name:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(VerifyDomainRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(VerifyDomainResponse)
+        RETURNVAR: gmailpostmastertools_nameverify_create
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.nameverify.create
+  gmailpostmastertools.domainstatsquery.create:
+    SUMMARY: Retrieves a list of domain statistics for a given domain and time period
+    DESC: Retrieves a list of domain statistics for a given domain and time period. Returns statistics only for dates where data is available. Returns PERMISSION_DENIED if you don't have permission to access DomainStats for the domain.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/{+parent}/domainStats:query
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(QueryDomainStatsRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.traffic.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.traffic.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - parent:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(QueryDomainStatsRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(QueryDomainStatsResponse)
+        RETURNVAR: gmailpostmastertools_domainstatsquery_create
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.domainstatsquery.create
+  gmailpostmastertools.user.get:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Lists the users that have access to a domain."
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Lists the users that have access to a domain."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/{+parent}/users
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - parent:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListUsersResponse)
+        RETURNVAR: gmailpostmastertools_user_get
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.user.get
+  gmailpostmastertools.user.create:
+    SUMMARY: "[Developer Preview](https://developers.google.com/workspace/preview): Creates a user, who has access to a domain"
+    DESC: "[Developer Preview](https://developers.google.com/workspace/preview): Creates a user, who has access to a domain. Returns INVALID_ARGUMENT if a user is not provided."
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/{+parent}/users
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateUserRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.user
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - parent:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(CreateUserRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(User)
+        RETURNVAR: gmailpostmastertools_user_create
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.user.create
+STRUCTS:
+  BaseMetric:
+    - name: standardMetric
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - STANDARD_METRIC_UNSPECIFIED
+        - FEEDBACK_LOOP_ID
+        - FEEDBACK_LOOP_SPAM_RATE
+        - SPAM_RATE
+        - AUTH_SUCCESS_RATE
+        - TLS_ENCRYPTION_MESSAGE_COUNT
+        - TLS_ENCRYPTION_RATE
+        - DELIVERY_ERROR_COUNT
+        - DELIVERY_ERROR_RATE
+      comment: A predefined standard metric.
+  BatchQueryDomainStatsRequest:
+    - name: requests
+      TYPE: "[]STRUCT(QueryDomainStatsRequest)"
+      REQUIRED: false
+      comment: Required. A list of individual query requests. Each request can be for a different domain. A maximum of 100 requests can be included in a single batch.
+  BatchQueryDomainStatsResponse:
+    - name: results
+      TYPE: "[]STRUCT(BatchQueryDomainStatsResult)"
+      REQUIRED: false
+      comment: A list of responses, one for each query in the BatchQueryDomainStatsRequest. The order of responses will correspond to the order of requests.
+  BatchQueryDomainStatsResult:
+    - name: error
+      TYPE: STRUCT(Status)
+      REQUIRED: false
+      comment: The error status if the individual query failed.
+    - name: response
+      TYPE: STRUCT(QueryDomainStatsResponse)
+      REQUIRED: false
+      comment: The successful response for the individual query.
+  CreateDomainRequest:
+    - name: domainId
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The domain to add. e.g., "example.com"
+  CreateUserRequest:
+    - name: permission
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - PERMISSION_UNSPECIFIED
+        - READER
+        - ADMIN
+        - OWNER
+        - NONE
+      comment: Optional. Specifies the permission level to give the user for the specified domain. If not specified, the default value for this field is READER.
+    - name: userId
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The user to create.
+  Date:
+    - name: day
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+    - name: month
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+    - name: year
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+  DateList:
+    - name: dates
+      TYPE: "[]STRUCT(Date)"
+      REQUIRED: false
+      comment: Required. The list of specific dates for which to retrieve data.
+  DateRange:
+    - name: end
+      TYPE: STRUCT(Date)
+      REQUIRED: false
+      comment: Required. The inclusive end date of the date range.
+    - name: start
+      TYPE: STRUCT(Date)
+      REQUIRED: false
+      comment: Required. The inclusive start date of the date range.
+  DateRanges:
+    - name: dateRanges
+      TYPE: "[]STRUCT(DateRange)"
+      REQUIRED: false
+      comment: Required. The list of date ranges for which to retrieve data.
+  Domain:
+    - name: createTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: google-datetime
+      READ_ONLY: true
+      comment: Output only. Immutable. The timestamp at which the domain was added to the user's account.
+    - name: lastVerifyTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: google-datetime
+      comment: The timestamp at which the domain was last verified by the user.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Identifier. The resource name of the domain. Format: `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com)."
+    - name: permission
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - PERMISSION_UNSPECIFIED
+        - READER
+        - ADMIN
+        - OWNER
+        - NONE
+      READ_ONLY: true
+      comment: Output only. User's permission of this domain.
+    - name: verificationState
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - VERIFICATION_STATE_UNSPECIFIED
+        - UNVERIFIED
+        - VERIFIED
+      READ_ONLY: true
+      comment: Output only. Information about a user's verification history and properties for the domain.
+  DomainStat:
+    - name: date
+      TYPE: STRUCT(Date)
+      REQUIRED: false
+      comment: Optional. The specific date for these stats, if granularity is DAILY. This field is populated if the QueryDomainStatsRequest specified a DAILY aggregation granularity.
+    - name: metric
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user-defined name from MetricDefinition.name in the request, used to correlate this result with the requested metric.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      READ_ONLY: true
+      comment: "Output only. The resource name of the DomainStat resource. Format: domains/{domain}/domainStats/{domain_stat} The `{domain_stat}` segment is an opaque, server-generated ID. We recommend using the `metric` field to identify queried metrics instead of parsing the name."
+    - name: value
+      TYPE: STRUCT(StatisticValue)
+      REQUIRED: false
+      comment: The value of the corresponding metric.
+  Empty:
+    - name: value
+      TYPE: ANY
+      REQUIRED: false
+  ListDomainsResponse:
+    - name: domains
+      TYPE: "[]STRUCT(Domain)"
+      REQUIRED: false
+      comment: The domains that have been registered by the user.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results, or empty if there are no more results in the list.
+  ListUsersResponse:
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results, or empty if there are no more results in the list.
+    - name: users
+      TYPE: "[]STRUCT(User)"
+      REQUIRED: false
+      comment: The users that have access to the domain.
+  MetricDefinition:
+    - name: baseMetric
+      TYPE: STRUCT(BaseMetric)
+      REQUIRED: false
+      comment: Required. The underlying metric to query.
+    - name: filter
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional. Optional filters to apply to the metric.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The user-defined name for this metric. This name will be used as the key for this metric's value in the response.
+  QueryDomainStatsRequest:
+    - name: aggregationGranularity
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - AGGREGATION_GRANULARITY_UNSPECIFIED
+        - DAILY
+        - OVERALL
+      comment: Optional. The granularity at which to aggregate the statistics. If unspecified, defaults to DAILY.
+    - name: metricDefinitions
+      TYPE: "[]STRUCT(MetricDefinition)"
+      REQUIRED: false
+      comment: Required. The specific metrics to query. You can define a custom name for each metric, which will be used in the response.
+    - name: pageSize
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Optional. The maximum number of DomainStats resources to return in the response. The server may return fewer than this value. If unspecified, a default value of 10 will be used. The maximum value is 200.
+    - name: pageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional. The next_page_token value returned from a previous List request, if any. If the aggregation granularity is DAILY, the page token will be the encoded date + "/" + metric name. If the aggregation granularity is OVERALL, the page token will be the encoded metric name.
+    - name: parent
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Required. The parent resource name where the stats are queried. Format: domains/{domain}"
+    - name: timeQuery
+      TYPE: STRUCT(TimeQuery)
+      REQUIRED: false
+      comment: Required. The time range or specific dates for which to retrieve the metrics.
+  QueryDomainStatsResponse:
+    - name: domainStats
+      TYPE: "[]STRUCT(DomainStat)"
+      REQUIRED: false
+      comment: The list of domain statistics. Each DomainStat object contains the value for a metric requested in the QueryDomainStatsRequest.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results, or empty if there are no more results in the list.
+  StatisticValue:
+    - name: doubleValue
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: Double value.
+    - name: floatValue
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: float
+      comment: Float value.
+    - name: intValue
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: Integer value.
+    - name: stringList
+      TYPE: STRUCT(StringList)
+      REQUIRED: false
+      comment: List of string values.
+    - name: stringValue
+      TYPE: STRING
+      REQUIRED: false
+      comment: String value.
+  Status:
+    - name: code
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The status code, which should be an enum value of google.rpc.Code.
+    - name: details
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: A list of messages that carry the error details. There is a common set of message types for APIs to use.
+    - name: message
+      TYPE: STRING
+      REQUIRED: false
+      comment: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+  StringList:
+    - name: values
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The string values.
+  TimeQuery:
+    - name: dateList
+      TYPE: STRUCT(DateList)
+      REQUIRED: false
+      comment: A list of specific dates.
+    - name: dateRanges
+      TYPE: STRUCT(DateRanges)
+      REQUIRED: false
+      comment: A list of date ranges.
+  User:
+    - name: accessGranter
+      TYPE: STRING
+      REQUIRED: false
+      READ_ONLY: true
+      comment: Output only. The user that added the current user.
+    - name: createTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: google-datetime
+      READ_ONLY: true
+      comment: Output only. The time the user was granted access.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Identifier. The resource name of the user. Format: users/{user} Note: {user} is the user's email address."
+    - name: permission
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - PERMISSION_UNSPECIFIED
+        - READER
+        - ADMIN
+        - OWNER
+        - NONE
+      comment: The permission level that the user has for the specified domain.
+    - name: user
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user's email address.
+  VerifyDomainRequest:
+    - name: verificationMethod
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - DOMAIN_VERIFICATION_METHOD_UNSPECIFIED
+        - TXT
+        - CNAME
+      comment: Required. The verification method used. Must be specified, i.e. TXT or CNAME.
+  VerifyDomainResponse:
+    - name: value
+      TYPE: ANY
+      REQUIRED: false

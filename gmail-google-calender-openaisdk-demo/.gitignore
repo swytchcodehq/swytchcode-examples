@@ -1,0 +1,16 @@
+# swytchcode: workspace binding is machine-local; tooling.json + policies.json are committed
+.swytchcode/workspace.json
+
+# secrets
+.env
+.env*.local
+
+# next / node
+/node_modules
+/.next
+/out
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+*.log
+.DS_Store

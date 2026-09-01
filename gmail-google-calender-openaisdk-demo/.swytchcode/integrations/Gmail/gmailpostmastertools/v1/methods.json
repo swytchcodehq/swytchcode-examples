@@ -1,0 +1,39 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user from a domain",
+      "canonical_id": "gmailpostmastertools.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of registered domains",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get traffic statistics for a domain on a specific date",
+      "canonical_id": "gmailpostmastertools.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get traffic statistics for a given date range",
+      "canonical_id": "gmailpostmastertools.trafficstat.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get traffic statistics for a specified date range",
+      "canonical_id": "gmailpostmastertools.trafficstat.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all your registered domains and their metadata",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List registered domains",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    }
+  ]
+}
