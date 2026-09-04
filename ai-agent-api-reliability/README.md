@@ -603,7 +603,7 @@ The difference is the ability to distinguish what the system said happened from 
 
 This repository accompanies a technical demonstration showing the failure mode, investigation, controlled agent execution, and final audit trail.
 
-[Add the video link here once the final video is published.]
+
 
 ---
 
