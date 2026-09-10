@@ -1,0 +1,308 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://gmailpostmastertools.googleapis.com
+METHODS:
+  gmailpostmastertools.domain.list:
+    SUMMARY: Lists the domains that have been registered by the client
+    DESC: Lists the domains that have been registered by the client. The order of domains in the response is unspecified and non-deterministic. Newly created domains will not necessarily be added to the end of this list.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1beta1/domains
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListDomainsResponse)
+        RETURNVAR: gmailpostmastertools_domain_list
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.domain.list
+  gmailpostmastertools.v1beta1.get:
+    SUMMARY: Get traffic statistics for a domain on a specific date
+    DESC: Get traffic statistics for a domain on a specific date. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1beta1/{+name}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - name:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(TrafficStats)
+        RETURNVAR: gmailpostmastertools_v1beta1_get
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.v1beta1.get
+  gmailpostmastertools.trafficstat.get:
+    SUMMARY: List traffic statistics for all available days
+    DESC: List traffic statistics for all available days. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1beta1/{+parent}/trafficStats
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/postmaster.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - parent:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - endDate.day:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - endDate.month:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - endDate.year:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - startDate.day:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - startDate.month:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - startDate.year:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListTrafficStatsResponse)
+        RETURNVAR: gmailpostmastertools_trafficstat_get
+        STATUS: 200
+    CANONICAL_ID: gmailpostmastertools.trafficstat.get
+STRUCTS:
+  DeliveryError:
+    - name: errorClass
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - DELIVERY_ERROR_CLASS_UNSPECIFIED
+        - PERMANENT_ERROR
+        - TEMPORARY_ERROR
+      comment: The class of delivery error.
+    - name: errorRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of messages where the error occurred vs all authenticated traffic.
+    - name: errorType
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - DELIVERY_ERROR_TYPE_UNSPECIFIED
+        - RATE_LIMIT_EXCEEDED
+        - SUSPECTED_SPAM
+        - CONTENT_SPAMMY
+        - BAD_ATTACHMENT
+        - BAD_DMARC_POLICY
+        - LOW_IP_REPUTATION
+        - LOW_DOMAIN_REPUTATION
+        - IP_IN_RBL
+        - DOMAIN_IN_RBL
+        - BAD_PTR_RECORD
+      comment: The type of delivery error.
+  Domain:
+    - name: createTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: google-datetime
+      comment: Timestamp when the user registered this domain. Assigned by the server.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).
+    - name: permission
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - PERMISSION_UNSPECIFIED
+        - OWNER
+        - READER
+        - NONE
+      comment: User’s permission for this domain. Assigned by the server.
+  FeedbackLoop:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: Feedback loop identifier that uniquely identifies individual campaigns.
+    - name: spamRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of user marked spam messages with the identifier vs the total number of inboxed messages with that identifier.
+  IpReputation:
+    - name: ipCount
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).
+    - name: numIps
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      DEPRECATED: true
+      comment: Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/). Deprecated to be complied with ApiLinter for Quantities. Use ip_count instead.
+    - name: reputation
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - REPUTATION_CATEGORY_UNSPECIFIED
+        - HIGH
+        - MEDIUM
+        - LOW
+        - BAD
+      comment: The reputation category this IP reputation represents.
+    - name: sampleIps
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A sample of IPs in this reputation category.
+  ListDomainsResponse:
+    - name: domains
+      TYPE: "[]STRUCT(Domain)"
+      REQUIRED: false
+      comment: The list of domains.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results, or empty if there are no more results in the list.
+  ListTrafficStatsResponse:
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results, or empty if there are no more results in the list.
+    - name: trafficStats
+      TYPE: "[]STRUCT(TrafficStats)"
+      REQUIRED: false
+      comment: The list of TrafficStats.
+  TrafficStats:
+    - name: deliveryErrors
+      TYPE: "[]STRUCT(DeliveryError)"
+      REQUIRED: false
+      comment: Delivery errors for the domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).
+    - name: dkimSuccessRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of mail that successfully authenticated with DKIM vs. all mail that attempted to authenticate with [DKIM](http://www.dkim.org/). Spoofed mail is excluded.
+    - name: dmarcSuccessRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of mail that passed [DMARC](https://dmarc.org/) alignment checks vs all mail received from the domain that successfully authenticated with either of [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).
+    - name: domainReputation
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - REPUTATION_CATEGORY_UNSPECIFIED
+        - HIGH
+        - MEDIUM
+        - LOW
+        - BAD
+      comment: Reputation of the domain.
+    - name: inboundEncryptionRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of incoming mail (to Gmail), that passed secure transport (TLS) vs all mail received from that domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).
+    - name: ipReputations
+      TYPE: "[]STRUCT(IpReputation)"
+      REQUIRED: false
+      comment: Reputation information pertaining to the IP addresses of the email servers for the domain. There is exactly one entry for each reputation category except REPUTATION_CATEGORY_UNSPECIFIED.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807"
+    - name: outboundEncryptionRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of outgoing mail (from Gmail) that was accepted over secure transport (TLS).
+    - name: spammyFeedbackLoops
+      TYPE: "[]STRUCT(FeedbackLoop)"
+      REQUIRED: false
+      comment: Spammy [Feedback loop identifiers] (https://support.google.com/mail/answer/6254652) with their individual spam rates. This metric only pertains to traffic that is authenticated by [DKIM](http://www.dkim.org/).
+    - name: spfSuccessRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of mail that successfully authenticated with SPF vs. all mail that attempted to authenticate with [SPF](http://www.openspf.org/). Spoofed mail is excluded.
+    - name: userReportedSpamRatio
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The ratio of user-report spam vs. email that was sent to the inbox. This is potentially inexact -- users may want to refer to the description of the interval fields userReportedSpamRatioLowerBound and userReportedSpamRatioUpperBound for more explicit accuracy guarantees. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/).
+    - name: userReportedSpamRatioLowerBound
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The lower bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this lower bound and the corresponding upper bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/).
+    - name: userReportedSpamRatioUpperBound
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: The upper bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this upper bound and the corresponding lower bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/).
