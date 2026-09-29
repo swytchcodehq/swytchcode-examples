@@ -1,0 +1,55 @@
+{
+  "defaults": {
+    "on_violation": "fail",
+    "evaluation": "pre_execution"
+  },
+  "policies": [
+    {
+      "id": "no-calendar-deletes",
+      "target": [
+        "calendar.event.delete",
+        "calendar.clear.create",
+        "calendar.calendar.delete",
+        "calendar.me.calendarList.delete"
+      ],
+      "when": {
+        "field": "calendarId",
+        "operator": "exists"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Deleting calendar events or calendars is blocked by policy. This agent is read-and-create only for Calendar."
+      }
+    },
+    {
+      "id": "no-destructive-event-titles",
+      "target": [
+        "calendar.event.quickAdd.create"
+      ],
+      "when": {
+        "field": "text",
+        "operator": "matches",
+        "value": "(?i)\\b(delete|deleting|cancel|cancelling|canceling|remove|removing|clear)\\b"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "That looks like a request to remove something, not add a real event. Event creation with delete/cancel wording is blocked by policy."
+      }
+    },
+    {
+      "id": "no-destructive-event-summary",
+      "target": [
+        "calendar.event.create"
+      ],
+      "when": {
+        "field": "summary",
+        "operator": "matches",
+        "value": "(?i)\\b(delete|deleting|cancel|cancelling|canceling|remove|removing|clear)\\b"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "That looks like a request to remove something, not add a real event. Event creation with delete/cancel wording is blocked by policy."
+      }
+    }
+  ]
+}

@@ -1,0 +1,1078 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_hapikey: <HAPIKEY>
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  conversations.v3.customChannels.get:
+    SUMMARY: Get a custom channel
+    DESC: Retrieve the details about a custom channel. This API allows you to see a custom channel's current capabilties and other configuration metadata
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelIntegrationChannel)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelIntegrationChannel)
+        RETURNVAR: conversations_v3_customChannels_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_customChannels_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.customChannels.get
+  conversations.v3.customChannels.delete:
+    SUMMARY: Archive a custom channel
+    DESC: Use this API to archive a registered custom channel
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_customChannels_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.customChannels.delete
+  conversations.v3.customChannels.update:
+    SUMMARY: Update a custom channel
+    DESC: This endpoint can be used to update a channel's capabilities. You can also use it to update the channel's webhookUri and its channelAccountConnectionRedirectUrl.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelIntegrationChannelPatch)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelIntegrationChannel)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicChannelIntegrationChannelPatch)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelIntegrationChannel)
+        RETURNVAR: conversations_v3_customChannels_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_customChannels_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.customChannels.update
+  conversations.v3.messages.get:
+    SUMMARY: Get a message
+    DESC: Get the PublicConversationsMessage that represents a message sent over a custom channel
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/messages/{messageId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicConversationsMessage)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - messageId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicConversationsMessage)
+        RETURNVAR: conversations_v3_messages_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.get
+  conversations.v3.messages.update:
+    SUMMARY: "Update message "
+    DESC: Use this API to update a message's status to indicate if it was successfully sent, failed to send, or was read
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/messages/{messageId}
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelIntegrationMessageUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicConversationsMessage)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - messageId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicChannelIntegrationMessageUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicConversationsMessage)
+        RETURNVAR: conversations_v3_messages_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.update
+  conversations.v3.channelAccountStagingTokens.update:
+    SUMMARY: Update a channel account staging token
+    DESC: This API is used for integrators creating public apps. Use this API to update a channel account staging token's account name and delivery identifier. This information will be applied to the channel account created from this staging token.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/channel-account-staging-tokens/{accountToken}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelAccountStagingTokenUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelAccountStagingToken)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - accountToken:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicChannelAccountStagingTokenUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelAccountStagingToken)
+        RETURNVAR: conversations_v3_channelAccountStagingTokens_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccountStagingTokens_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccountStagingTokens.update
+  conversations.v3.channelAccounts.get:
+    SUMMARY: Query channel accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/channel-accounts
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicChannelAccountForwardPaging)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - deliveryIdentifierType:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - deliveryIdentifierValue:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - defaultPageLength:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicChannelAccountForwardPaging)
+        RETURNVAR: conversations_v3_channelAccounts_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.get
+  conversations.v3.channelAccounts.create:
+    SUMMARY: Create a channel account
+    DESC: This API allows you to create one or more accounts that all talk over a single channel but using different delivery identifiers.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/channel-accounts
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelAccountEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelAccount)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicChannelAccountEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelAccount)
+        RETURNVAR: conversations_v3_channelAccounts_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.create
+  conversations.v3.channelAccounts.get_cd69:
+    SUMMARY: Get a channel account by id
+    DESC: Retrieve a PublicChannelAccount that contains all the metadata about your channel account. This includes information like its channel, associated inbox id, and delivery identifier information.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelAccount)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - channelAccountId:
+          TYPE: INT
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelAccount)
+        RETURNVAR: conversations_v3_channelAccounts_get_cd69
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_get_cd69_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.get_cd69
+  conversations.v3.channelAccounts.update:
+    SUMMARY: Update a channel account
+    DESC: This API is used to update the name of the channel account and it's isAuthorized status. Setting to isAuthorized flag to False disables the channel account.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelAccountUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelAccount)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - channelAccountId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicChannelAccountUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelAccount)
+        RETURNVAR: conversations_v3_channelAccounts_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.update
+  conversations.v3.customChannels.list:
+    SUMMARY: Get all channels for app
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/custom-channels/
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicChannelIntegrationChannelForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - defaultPageLength:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicChannelIntegrationChannelForwardPaging)
+        RETURNVAR: conversations_v3_customChannels_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_customChannels_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.customChannels.list
+  conversations.v3.customChannels.create:
+    SUMMARY: Create a custom channel
+    DESC: Register a new channel along with its capabilities and the webhook url that will be used to receive messages published over the channel
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /conversations/v3/custom-channels/
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicChannelIntegrationChannelCreate)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelIntegrationChannel)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicChannelIntegrationChannelCreate)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelIntegrationChannel)
+        RETURNVAR: conversations_v3_customChannels_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_customChannels_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.customChannels.create
+  conversations.v3.messages.create:
+    SUMMARY: Publish a message
+    DESC: Publish a message over your custom channel
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /conversations/v3/custom-channels/{channelId}/messages
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ChannelIntegrationMessageEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicConversationsMessage)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ChannelIntegrationMessageEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicConversationsMessage)
+        RETURNVAR: conversations_v3_messages_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.create
+STRUCTS:
+  PublicRecipient:
+    - name: actorId
+      NAME: actorId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: true
+    - name: recipientField
+      NAME: recipientField
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  PublicDeliveryIdentifier:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicChannelIntegrationChannelCreate:
+    - name: channelDescription
+      NAME: channelDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: capabilities
+      NAME: capabilities
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: channelAccountConnectionRedirectUrl
+      NAME: channelAccountConnectionRedirectUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: channelLogoUrl
+      NAME: channelLogoUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: webhookUrl
+      NAME: webhookUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  PublicChannelAccount:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: authorized
+      NAME: authorized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: inboxId
+      NAME: inboxId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: channelId
+      NAME: channelId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicChannelAccountEgg:
+    - name: authorized
+      NAME: authorized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: false
+    - name: inboxId
+      NAME: inboxId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicMessageFailureDetails:
+    - name: errorMessageTokens
+      NAME: errorMessageTokens
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: errorMessage
+      NAME: errorMessage
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  CollectionResponseWithTotalPublicChannelIntegrationChannelForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicChannelIntegrationChannel)"
+      TYPE: "[]STRUCT(PublicChannelIntegrationChannel)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicChannelIntegrationChannel:
+    - name: channelDescription
+      NAME: channelDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: capabilities
+      NAME: capabilities
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: channelAccountConnectionRedirectUrl
+      NAME: channelAccountConnectionRedirectUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: channelLogoUrl
+      NAME: channelLogoUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: webhookUrl
+      NAME: webhookUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  PublicSender:
+    - name: actorId
+      NAME: actorId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: senderField
+      NAME: senderField
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: false
+  PublicClient:
+    - name: clientType
+      NAME: clientType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: integrationAppId
+      NAME: integrationAppId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  PublicMessageStatus:
+    - name: statusType
+      NAME: statusType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: failureDetails
+      NAME: failureDetails
+      type: STRUCT(PublicMessageFailureDetails)
+      TYPE: STRUCT(PublicMessageFailureDetails)
+      REQUIRED: false
+  PublicConversationsMessage:
+    - name: attachments
+      NAME: attachments
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+    - name: subject
+      NAME: subject
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: conversationsThreadId
+      NAME: conversationsThreadId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: richText
+      NAME: richText
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: inReplyToId
+      NAME: inReplyToId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: createdBy
+      NAME: createdBy
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: recipients
+      NAME: recipients
+      type: "[]STRUCT(PublicRecipient)"
+      TYPE: "[]STRUCT(PublicRecipient)"
+      REQUIRED: true
+    - name: truncationStatus
+      NAME: truncationStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: client
+      NAME: client
+      type: STRUCT(PublicClient)
+      TYPE: STRUCT(PublicClient)
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: channelAccountId
+      NAME: channelAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: senders
+      NAME: senders
+      type: "[]STRUCT(PublicSender)"
+      TYPE: "[]STRUCT(PublicSender)"
+      REQUIRED: true
+    - name: channelId
+      NAME: channelId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRUCT(PublicMessageStatus)
+      TYPE: STRUCT(PublicMessageStatus)
+      REQUIRED: false
+    - name: direction
+      NAME: direction
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicChannelIntegrationMessageUpdateRequest:
+    - name: statusType
+      NAME: statusType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Valid status are SENT, FAILED, and READ
+    - name: errorMessage
+      NAME: errorMessage
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  ChannelIntegrationMessageEgg:
+    - name: messageDirection
+      NAME: messageDirection
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: attachments
+      NAME: attachments
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+    - name: recipients
+      NAME: recipients
+      type: "[]STRUCT(ChannelIntegrationParticipant)"
+      TYPE: "[]STRUCT(ChannelIntegrationParticipant)"
+      REQUIRED: true
+    - name: integrationThreadId
+      NAME: integrationThreadId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: integrationIdempotencyId
+      NAME: integrationIdempotencyId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: richText
+      NAME: richText
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: channelAccountId
+      NAME: channelAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: senders
+      NAME: senders
+      type: "[]STRUCT(ChannelIntegrationParticipant)"
+      TYPE: "[]STRUCT(ChannelIntegrationParticipant)"
+      REQUIRED: true
+    - name: inReplyToId
+      NAME: inReplyToId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: timestamp
+      NAME: timestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  ChannelIntegrationParticipant:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: true
+  PublicChannelAccountStagingTokenUpdateRequest:
+    - name: accountName
+      NAME: accountName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: true
+  PublicChannelAccountUpdateRequest:
+    - name: authorized
+      NAME: authorized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  PublicChannelAccountStagingToken:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: accountName
+      NAME: accountName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: genericChannelId
+      NAME: genericChannelId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: false
+    - name: accountToken
+      NAME: accountToken
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: userId
+      NAME: userId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: inboxId
+      NAME: inboxId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  CollectionResponseWithTotalPublicChannelAccountForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicChannelAccount)"
+      TYPE: "[]STRUCT(PublicChannelAccount)"
+      REQUIRED: true
+  PublicChannelIntegrationChannelPatch:
+    - name: channelDescription
+      NAME: channelDescription
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: capabilities
+      NAME: capabilities
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: channelAccountConnectionRedirectUrl
+      NAME: channelAccountConnectionRedirectUrl
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: channelLogoUrl
+      NAME: channelLogoUrl
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: webhookUrl
+      NAME: webhookUrl
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false

@@ -1,0 +1,23 @@
+{
+  "hubspot.hubspot_com_crm_contacts_3_json": {
+    "version": "3",
+    "sandbox_endpoint": "https://api.hubapi.com",
+    "production_endpoint": "https://api.hubapi.com",
+    "methods": 0,
+    "workflows": 0
+  },
+  "resend.resend": {
+    "version": "v1.5.0",
+    "sandbox_endpoint": "https://api.resend.com",
+    "production_endpoint": "https://api.resend.com",
+    "methods": 0,
+    "workflows": 0
+  },
+  "stripe.stripe_sdk": {
+    "version": "2026-02-25.clover",
+    "sandbox_endpoint": "https://api.stripe.com",
+    "production_endpoint": "https://api.stripe.com",
+    "methods": 1121,
+    "workflows": 0
+  }
+}

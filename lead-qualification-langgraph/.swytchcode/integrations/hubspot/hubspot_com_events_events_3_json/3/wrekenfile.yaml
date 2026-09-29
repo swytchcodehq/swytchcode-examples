@@ -1,0 +1,203 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  events.v3.events.list:
+    SUMMARY: Retrieve event data
+    DESC: Retrieve instances of event completion data. For example, retrieve all event completions associated with a specific contact.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /events/v3/events/
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseExternalUnifiedEvent)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - eventType:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - occurredAfter:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - occurredBefore:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - objectId:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - objectProperty.{propname}:
+          TYPE: OBJECT
+          REQUIRED: false
+          LOCATION: query
+      - property.{propname}:
+          TYPE: OBJECT
+          REQUIRED: false
+          LOCATION: query
+      - id:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseExternalUnifiedEvent)
+        RETURNVAR: events_v3_events_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: events_v3_events_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: events.v3.events.list
+  events.v3.eventTypes.list:
+    SUMMARY: Event Types
+    DESC: This endpoint returns a list of event type names which are visible to you. You may use these event type names to query the API for specific event instances of a desired type.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /events/v3/events/event-types
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(VisibleExternalEventTypeNames)
+    RETURNS:
+      - RETURNTYPE: STRUCT(VisibleExternalEventTypeNames)
+        RETURNVAR: events_v3_eventTypes_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: events_v3_eventTypes_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: events.v3.eventTypes.list
+STRUCTS:
+  CollectionResponseExternalUnifiedEvent:
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ExternalUnifiedEvent)"
+      TYPE: "[]STRUCT(ExternalUnifiedEvent)"
+      REQUIRED: true
+  Paging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+    - name: prev
+      NAME: prev
+      type: STRUCT(PreviousPage)
+      TYPE: STRUCT(PreviousPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PreviousPage:
+    - name: before
+      NAME: before
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  ExternalUnifiedEvent:
+    - name: occurredAt
+      NAME: occurredAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: An ISO 8601 timestamp when the event occurred.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The format of the `eventType` string is `ae{appId}_{eventTypeLabel}`, `pe{portalId}_{eventTypeLabel}`, or just `e_{eventTypeLabel}` for HubSpot events.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique identifier for the event.
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The objectId of the object which did the event.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: objectType
+      NAME: objectType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The objectType for the object which did the event.
+  VisibleExternalEventTypeNames:
+    - name: eventTypes
+      NAME: eventTypes
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: List of event type names.

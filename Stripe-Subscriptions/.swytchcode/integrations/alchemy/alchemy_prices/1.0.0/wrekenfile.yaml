@@ -1,0 +1,258 @@
+VERSION: 2.0.2
+DEFAULTS:
+  authorization: <AUTHORIZATION>
+  w_base_url: https://api.g.alchemy.com/prices/v1
+METHODS:
+  tokens.by-symbol.get:
+    SUMMARY: Token Prices By Symbol
+    DESC: |
+      Fetches current prices for multiple tokens using their symbols. Returns a list of token prices, each containing the symbol, prices, and an optional error field.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /{apiKey}/tokens/by-symbol
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TokenPricesResponse)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: docs-demo
+      - symbols:
+          TYPE: "[]STRING"
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(TokenPricesResponse)
+        RETURNVAR: tokens_by-symbol_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 400
+        WHEN: "Bad Request: Malformed request or missing parameters. (HTTP 400)"
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 429
+        WHEN: "Too Many Requests: Rate limit exceeded. (HTTP 429)"
+    CANONICAL_ID: tokens.by-symbol.get
+  tokens.by-address.create:
+    SUMMARY: Token Prices By Address
+    DESC: |
+      Fetches current prices for multiple tokens using network and address pairs. Returns a list of token prices, each containing the network, address, prices, and an optional error field.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /{apiKey}/tokens/by-address
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ByAddressRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AddressPricesResponse)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: docs-demo
+      - body:
+          TYPE: STRUCT(ByAddressRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AddressPricesResponse)
+        RETURNVAR: tokens_by-address_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 400
+        WHEN: "Bad Request: Invalid input (e.g., malformed JSON). (HTTP 400)"
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 429
+        WHEN: "Too Many Requests: Rate limit exceeded. (HTTP 429)"
+    CANONICAL_ID: tokens.by-address.create
+  tokens.historical.create:
+    SUMMARY: Historical Token Prices
+    DESC: |
+      Provides historical price data for a single token over a time range. You can identify the token by symbol or by network and contract address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /{apiKey}/tokens/historical
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(HistoricalPricesRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(HistoricalPricesResponse)
+    INPUTS:
+      - apiKey:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: docs-demo
+      - body:
+          TYPE: STRUCT(HistoricalPricesRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(HistoricalPricesResponse)
+        RETURNVAR: tokens_historical_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 400
+        WHEN: "Bad Request: Invalid input (e.g., malformed request, missing parameters). (HTTP 400)"
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 404
+        WHEN: "Not Found: Token not found. (HTTP 404)"
+      - TYPE: STRUCT(ErrorResponse)
+        STATUS: 429
+        WHEN: "Too Many Requests: Rate limit exceeded. (HTTP 429)"
+    CANONICAL_ID: tokens.historical.create
+STRUCTS:
+  TokenPricesResponse:
+    - name: data
+      NAME: data
+      type: "[]STRUCT(TokenPriceResponseItem)"
+      TYPE: "[]STRUCT(TokenPriceResponseItem)"
+      REQUIRED: true
+      comment: List of token price data.
+  TokenPriceResponseItem:
+    - name: symbol
+      NAME: symbol
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Token symbol.
+    - name: prices
+      NAME: prices
+      type: "[]STRUCT(Price)"
+      TYPE: "[]STRUCT(Price)"
+      REQUIRED: true
+      comment: List of price information.
+    - name: error
+      NAME: error
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Error message if applicable.
+  Price:
+    - name: currency
+      NAME: currency
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Currency code (e.g., USD).
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Price value as a string.
+    - name: lastUpdatedAt
+      NAME: lastUpdatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Time when the price was last updated.
+  ByAddressRequest:
+    - name: addresses
+      NAME: addresses
+      type: "[]STRUCT(AddressItem)"
+      TYPE: "[]STRUCT(AddressItem)"
+      REQUIRED: true
+      comment: |
+        Array of token network and address pairs (limit 25 addresses, max 3 networks). Networks should match network enums.
+  AddressItem:
+    - name: network
+      NAME: network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Network identifier (e.g., eth-mainnet). Find more network enums [here](https://dashboard.alchemy.com/chains)
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Token contract address.
+  AddressPricesResponse:
+    - name: data
+      NAME: data
+      type: "[]STRUCT(AddressPriceResponseItem)"
+      TYPE: "[]STRUCT(AddressPriceResponseItem)"
+      REQUIRED: true
+      comment: List of token prices by address.
+  AddressPriceResponseItem:
+    - name: network
+      NAME: network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Network identifier.
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Token contract address.
+    - name: prices
+      NAME: prices
+      type: "[]STRUCT(Price)"
+      TYPE: "[]STRUCT(Price)"
+      REQUIRED: true
+      comment: List of price information.
+    - name: error
+      NAME: error
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Error message if applicable.
+  ErrorResponse:
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: Error details.
+  HistoricalPricesRequest:
+    - name: variant
+      NAME: variant
+      type: STRUCT(HistoricalPricesRequest_Union)
+      TYPE: STRUCT(HistoricalPricesRequest_Union)
+      REQUIRED: false
+  HistoricalPricesRequest_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  HistoricalPricesResponse:
+    - name: variant
+      NAME: variant
+      type: STRUCT(HistoricalPricesResponse_Union)
+      TYPE: STRUCT(HistoricalPricesResponse_Union)
+      REQUIRED: false
+  HistoricalPricesResponse_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false

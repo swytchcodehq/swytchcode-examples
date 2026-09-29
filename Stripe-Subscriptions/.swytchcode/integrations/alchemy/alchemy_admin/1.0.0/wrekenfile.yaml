@@ -1,0 +1,636 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <TOKEN>
+  w_base_url: https://manage.g.alchemy.com
+METHODS:
+  api.gasmanager.policy.create:
+    SUMMARY: Create Policy
+    DESC: |
+      Creates a new gas manager policy with the specified rules. The newly created policy will be in the `inactive` status.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /api/gasManager/policy
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.gasmanager.policy.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.policy.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.gasmanager.policy.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.policy.createResponse200)
+        RETURNVAR: api_gasmanager_policy_create
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.policy.create
+  api.gasmanager.policy.get:
+    SUMMARY: Get Policy
+    DESC: |
+      Returns a policy by id.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /api/gasManager/policy/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.policy.getResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: a844e221-3c13-40c6-95db-d2db390e14b5
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.policy.getResponse200)
+        RETURNVAR: api_gasmanager_policy_get
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.policy.get
+  api.gasmanager.policy.delete:
+    SUMMARY: Delete Policy
+    DESC: |
+      Deletes a policy by id.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /api/gasManager/policy/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.policy.deleteResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: 6d834x9k1yh4dx6z
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.policy.deleteResponse200)
+        RETURNVAR: api_gasmanager_policy_delete
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.policy.delete
+  api.gasmanager.policy.update:
+    SUMMARY: Replace Policy
+    DESC: |
+      Replaces all rules in an existing policy by id.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /api/gasManager/policy/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.gasmanager.policy.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.policy.updateResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: a844e221-3c13-40c6-95db-d2db390e14b5
+      - body:
+          TYPE: STRUCT(api.gasmanager.policy.updateRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.policy.updateResponse200)
+        RETURNVAR: api_gasmanager_policy_update
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.policy.update
+  api.gasmanager.policies.list:
+    SUMMARY: Get All Policies
+    DESC: |
+      Returns all policies. The results are paginated.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /api/gasManager/policies
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.policies.listResponse200)
+    INPUTS:
+      - appId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 6d834x9k1yh4dx6z
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.policies.listResponse200)
+        RETURNVAR: api_gasmanager_policies_list
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.policies.list
+  api.gasmanager.status.update:
+    SUMMARY: Update Policy Status
+    DESC: |
+      Modifies the status of a policy to either "active" or "inactive".
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /api/gasManager/policy/{id}/status
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.gasmanager.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.status.updateResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: a844e221-3c13-40c6-95db-d2db390e14b5
+      - body:
+          TYPE: STRUCT(api.gasmanager.status.updateRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.status.updateResponse200)
+        RETURNVAR: api_gasmanager_status_update
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.status.update
+  api.gasmanager.details.get:
+    SUMMARY: Get Policy Stats
+    DESC: |
+      Returns stats about a policy specified by ID.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /api/gasManager/policy/{id}/stats/details
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.details.getResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: a844e221-3c13-40c6-95db-d2db390e14b5
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.details.getResponse200)
+        RETURNVAR: api_gasmanager_details_get
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.details.get
+  api.gasmanager.sponsorships.get:
+    SUMMARY: Get Sponsorships
+    DESC: |
+      Returns a list of sponsorships associated with the specified policy ID. The results are paginated.
+
+      <Note title="Header Access Token">
+        To call this endpoint, you must use your [access token](/docs/how-to-create-access-keys) in the [authorization header](/docs/how-to-use-api-keys-in-http-headers) of the API request.
+      </Note>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /api/gasManager/policy/{id}/sponsorships
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(api.gasmanager.sponsorships.getResponse200)
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: a844e221-3c13-40c6-95db-d2db390e14b5
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 5
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.gasmanager.sponsorships.getResponse200)
+        RETURNVAR: api_gasmanager_sponsorships_get
+        STATUS: 200
+    CANONICAL_ID: api.gasmanager.sponsorships.get
+STRUCTS:
+  Rules:
+    - name: maxSpendUsd
+      NAME: maxSpendUsd
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum amount of USD that can be sponsored
+    - name: maxSpendPerSenderUsd
+      NAME: maxSpendPerSenderUsd
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum amount of USD that can be sponsored for a single sender (not enforced on testnets)
+    - name: maxSpendPerUoUsd
+      NAME: maxSpendPerUoUsd
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum amount of USD that can be sponsored for a single userOperation (not enforced on testnets)
+    - name: maxCount
+      NAME: maxCount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum number of userOperations that can be sponsored
+    - name: maxCountPerSender
+      NAME: maxCountPerSender
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum number of userOperations that can be sponsored for a single sender
+    - name: senderAllowlist
+      NAME: senderAllowlist
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of addresses that are eligible for sponsorship
+    - name: senderBlocklist
+      NAME: senderBlocklist
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of addresses that are banned from receiving sponsorship
+    - name: startTimeUnix
+      NAME: startTimeUnix
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Unix timestamp of when the policy starts
+    - name: endTimeUnix
+      NAME: endTimeUnix
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unix timestamp of when the policy ends
+    - name: sponsorshipExpiryMs
+      NAME: sponsorshipExpiryMs
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Milliseconds from signing that the sponsorship expires
+    - name: webhookRules
+      NAME: webhookRules
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: Enable conditional gas sponsorship by making a request to your server to verify sponsorship eligibility
+  SolanaRules:
+    - name: maxSpendUsd
+      NAME: maxSpendUsd
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum amount of USD that can be sponsored
+    - name: maxSpendPerTxnUsd
+      NAME: maxSpendPerTxnUsd
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum amount of USD that can be sponsored per transaction (not enforced on testnet)
+    - name: maxCount
+      NAME: maxCount
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Maximum number of transactions that can be sponsored
+    - name: startTimeUnix
+      NAME: startTimeUnix
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unix timestamp of when the policy starts
+    - name: endTimeUnix
+      NAME: endTimeUnix
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Unix timestamp of when the policy ends
+  Erc20Token:
+    - name: network
+      NAME: network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Network of the Erc20 token
+    - name: token_address
+      NAME: token_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Erc20 token contract address
+    - name: price_reference_network
+      NAME: price_reference_network
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Network to be used to calculate conversion rate (required for testnet ERC-20 tokens)
+    - name: price_reference_token_address
+      NAME: price_reference_token_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Erc20 token contract address (on `price_reference_network`) to be used to calculate conversion rate (required for testnet ERC-20 tokens)
+  Erc20Rules:
+    - name: tokens
+      NAME: tokens
+      type: "[]STRUCT(Erc20Token)"
+      TYPE: "[]STRUCT(Erc20Token)"
+      REQUIRED: false
+      comment: Erc20 tokens allowed under this policy
+    - name: recipient_address
+      NAME: recipient_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Wallet address that will receive the tokens paid by users. Please ensure that you own this address across all networks enabled under this policy
+    - name: use_post_op
+      NAME: use_post_op
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Erc20 transfer mode
+        - [Recommended] True: The user pays for the gas after the userOp execution. Enables the user to allow the paymaster contract to spend the ERC-20 token on their behalf (`approve()`) without a separate tx, improving ux. If the transfer fails, the userOp will revert but you’ll remain liable for the gas costs.
+        - False: The user pays for the gas before the userOp execution. Requires the paymaster contract to have allowance onchain before the userOp gets submitted. If the allowance doesn’t exist, the userOp will fail immediately.
+    - name: price_multiplier
+      NAME: price_multiplier
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+      comment: |
+        Adjust the Erc20 amount the user pays. For example:
+        - `1.1` means that they user pays 10% more (you monetize gas payments)
+        - `0.95` means that the user pays 5% less (you partially sponsor gas)
+    - name: rules
+      NAME: rules
+      type: STRUCT(Rules)
+      TYPE: STRUCT(Rules)
+      REQUIRED: false
+      comment: Rules for `erc20` policy type.
+  api.gasmanager.policy.createRequest:
+    - name: policyName
+      NAME: policyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Name of the policy
+    - name: policyType
+      NAME: policyType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of the policy. Currently we support `sponsorship` (for sponsoring gas on EVM networks), `erc20` (for enabling users to pay gas with any ERC-20 token on EVM networks), and `solana` (for sponsoring fees and rent on Solana).
+    - name: appId
+      NAME: appId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        ID for the app associated with the new policy.
+    - name: networks
+      NAME: networks
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: |
+        Networks to be enabled for the policy. Example: `ETH_MAINNET`. For Solana policies, valid values are `SOLANA_MAINNET` and `SOLANA_DEVNET`.
+    - name: rules
+      NAME: rules
+      type: STRUCT(Rules)
+      TYPE: STRUCT(Rules)
+      REQUIRED: false
+      comment: Rules for `sponsorship` policy type. Empty if `policyType` is not `sponsorship`.
+    - name: solana_rules
+      NAME: solana_rules
+      type: STRUCT(SolanaRules)
+      TYPE: STRUCT(SolanaRules)
+      REQUIRED: false
+      comment: Rules for `solana` policy type. Empty if `policyType` is not `solana`.
+    - name: erc20_rules
+      NAME: erc20_rules
+      type: STRUCT(Erc20Rules)
+      TYPE: STRUCT(Erc20Rules)
+      REQUIRED: false
+      comment: Rules for `erc20` policy type. Empty if `policyType` is not `erc20`.
+  api.gasmanager.policy.createResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+  api.gasmanager.policy.getResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.policy.deleteResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.policy.updateRequest:
+    - name: policyName
+      NAME: policyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the policy
+    - name: rules
+      NAME: rules
+      type: STRUCT(Rules)
+      TYPE: STRUCT(Rules)
+      REQUIRED: false
+      comment: Rules for "sponsorship" policy type. Empty if `policyType` is not "sponsorship".
+    - name: networks
+      NAME: networks
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |
+        Networks for the policy. Example: `ETH_MAINNET`. For Solana policies, valid values are `SOLANA_MAINNET` and `SOLANA_DEVNET`.
+    - name: solana_rules
+      NAME: solana_rules
+      type: STRUCT(SolanaRules)
+      TYPE: STRUCT(SolanaRules)
+      REQUIRED: false
+      comment: Rules for `solana` policy type. Empty if `policyType` is not `solana`.
+    - name: erc20_rules
+      NAME: erc20_rules
+      type: STRUCT(Erc20Rules)
+      TYPE: STRUCT(Erc20Rules)
+      REQUIRED: false
+      comment: Rules for `erc20` policy type. Empty if `policyType` is not `erc20`.
+  api.gasmanager.policy.updateResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.policies.listResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.status.updateRequest:
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The new status of the policy
+  api.gasmanager.status.updateResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.details.getResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  api.gasmanager.sponsorships.getResponse200:
+    - name: data
+      NAME: data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: error
+      NAME: error
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false

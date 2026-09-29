@@ -1,0 +1,430 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app-legacy: <PRIVATE-APP-LEGACY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  marketing.v3.send.create:
+    SUMMARY: Send a single transactional email asynchronously.
+    DESC: Asynchronously send a transactional email. Returns the status of the email send with a statusId that can be used to continuously query for the status using the Email Send Status API.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/transactional/single-email/send
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicSingleSendRequestEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(EmailSendStatusView)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicSingleSendRequestEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(EmailSendStatusView)
+        RETURNVAR: marketing_v3_send_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_send_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.send.create
+  marketing.v3.smtpTokens.list:
+    SUMMARY: Query SMTP API tokens by campaign name or an emailCampaignId.
+    DESC: Query multiple SMTP API tokens by campaign name or a single token by emailCampaignId.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/transactional/smtp-tokens
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseSmtpApiTokenViewForwardPaging)
+    INPUTS:
+      - campaignName:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - emailCampaignId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseSmtpApiTokenViewForwardPaging)
+        RETURNVAR: marketing_v3_smtpTokens_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_smtpTokens_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.smtpTokens.list
+  marketing.v3.smtpTokens.create:
+    SUMMARY: Create a SMTP API token.
+    DESC: Create a SMTP API token.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/transactional/smtp-tokens
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SmtpApiTokenRequestEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SmtpApiTokenView)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(SmtpApiTokenRequestEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SmtpApiTokenView)
+        RETURNVAR: marketing_v3_smtpTokens_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_smtpTokens_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.smtpTokens.create
+  marketing.v3.passwordReset.create:
+    SUMMARY: Reset the password of an existing token.
+    DESC: Allows the creation of a replacement password for a given token. Once the password is successfully reset, the old password for the token will be invalid.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/transactional/smtp-tokens/{tokenId}/password-reset
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SmtpApiTokenView)
+    INPUTS:
+      - tokenId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SmtpApiTokenView)
+        RETURNVAR: marketing_v3_passwordReset_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_passwordReset_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.passwordReset.create
+  marketing.v3.smtpTokens.get:
+    SUMMARY: Query a single token by ID.
+    DESC: Query a single token by ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/transactional/smtp-tokens/{tokenId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SmtpApiTokenView)
+    INPUTS:
+      - tokenId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SmtpApiTokenView)
+        RETURNVAR: marketing_v3_smtpTokens_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_smtpTokens_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.smtpTokens.get
+  marketing.v3.smtpTokens.delete:
+    SUMMARY: Delete a single token by ID.
+    DESC: Delete a single token by ID.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/transactional/smtp-tokens/{tokenId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - tokenId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_smtpTokens_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.smtpTokens.delete
+STRUCTS:
+  CollectionResponseSmtpApiTokenViewForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SmtpApiTokenView)"
+      TYPE: "[]STRUCT(SmtpApiTokenView)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SmtpApiTokenView:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp generated when a token is created.
+    - name: password
+      NAME: password
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Password used to log into the HubSpot SMTP server.
+    - name: createdBy
+      NAME: createdBy
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Email address of the user that sent the token creation request.
+    - name: createContact
+      NAME: createContact
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Indicates whether a contact should be created for email recipients.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: User name to log into the HubSpot SMTP server.
+    - name: emailCampaignId
+      NAME: emailCampaignId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Identifier assigned to the campaign provided in the token creation request.
+    - name: campaignName
+      NAME: campaignName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A name for the campaign tied to the token.
+  EmailSendStatusView:
+    - name: eventId
+      NAME: eventId
+      type: STRUCT(EventIdView)
+      TYPE: STRUCT(EventIdView)
+      REQUIRED: false
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Time when the send was completed.
+    - name: statusId
+      NAME: statusId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Identifier used to query the status of the send.
+    - name: sendResult
+      NAME: sendResult
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Result of the send.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Time when the send was requested.
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Time when the send began processing.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Status of the send request.
+  EventIdView:
+    - name: created
+      NAME: created
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Time of event creation.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Identifier of event.
+  SmtpApiTokenRequestEgg:
+    - name: createContact
+      NAME: createContact
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Indicates whether a contact should be created for email recipients.
+    - name: campaignName
+      NAME: campaignName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A name for the campaign tied to the SMTP API token.
+  PublicSingleSendRequestEgg:
+    - name: customProperties
+      NAME: customProperties
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: |-
+        The customProperties field is a map of property values. Each property value contains a name and value property. Each property will be visible in the template under {{ custom.NAME }}.
+        Note: Custom properties do not currently support arrays. To provide a listing in an email, one workaround is to build an HTML list (either with tables or ul) and specify it as a custom property.
+    - name: emailId
+      NAME: emailId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The content ID for the transactional email, which can be found in email tool UI.
+    - name: message
+      NAME: message
+      type: STRUCT(PublicSingleSendEmail)
+      TYPE: STRUCT(PublicSingleSendEmail)
+      REQUIRED: true
+    - name: contactProperties
+      NAME: contactProperties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: The contactProperties field is a map of contact property values. Each contact property value contains a name and value property. Each property will get set on the contact record and will be visible in the template under {{ contact.NAME }}. Use these properties when you want to set a contact property while you’re sending the email. For example, when sending a reciept you may want to set a last_paid_date property, as the sending of the receipt will have information about the last payment.
+  PublicSingleSendEmail:
+    - name: cc
+      NAME: cc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of email addresses to send as Cc.
+    - name: sendId
+      NAME: sendId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: ID for a particular send. No more than one email will be sent per sendId.
+    - name: bcc
+      NAME: bcc
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of email addresses to send as Bcc.
+    - name: replyTo
+      NAME: replyTo
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of Reply-To header values for the email.
+    - name: from
+      NAME: from
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The From header for the email.
+    - name: to
+      NAME: to
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The recipient of the email.

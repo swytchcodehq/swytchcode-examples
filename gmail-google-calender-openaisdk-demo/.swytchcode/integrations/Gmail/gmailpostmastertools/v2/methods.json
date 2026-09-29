@@ -1,0 +1,69 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a domain to the user's account",
+      "canonical_id": "gmailpostmastertools.domain.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch query statistics for multiple domains",
+      "canonical_id": "gmailpostmastertools.domainstatsbatchquery.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user for a domain",
+      "canonical_id": "gmailpostmastertools.user.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user from a domain",
+      "canonical_id": "gmailpostmastertools.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of registered domains",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get detailed user information for a domain",
+      "canonical_id": "gmailpostmastertools.resource.execute1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get traffic statistics for a domain on a specific date",
+      "canonical_id": "gmailpostmastertools.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all your registered domains and their metadata",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List registered domains",
+      "canonical_id": "gmailpostmastertools.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users with domain access",
+      "canonical_id": "gmailpostmastertools.user.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query domain statistics for a specific domain and date range",
+      "canonical_id": "gmailpostmastertools.domainstatsquery.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's domain permission",
+      "canonical_id": "gmailpostmastertools.resource.execute2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify domain ownership via DNS",
+      "canonical_id": "gmailpostmastertools.nameverify.create"
+    }
+  ]
+}

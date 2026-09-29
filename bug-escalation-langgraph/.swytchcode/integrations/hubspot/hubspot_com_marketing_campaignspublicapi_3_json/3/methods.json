@@ -1,0 +1,134 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a budget item to a marketing campaign",
+      "canonical_id": "marketing.v3.budget.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add spend to a marketing campaign",
+      "canonical_id": "marketing.v3.spend.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of marketing campaigns",
+      "canonical_id": "marketing.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Associate an asset with a marketing campaign",
+      "canonical_id": "marketing.v3.assets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new marketing campaign",
+      "canonical_id": "marketing.v3.campaigns.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple marketing campaigns in a single request",
+      "canonical_id": "marketing.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a marketing campaign by its unique identifier",
+      "canonical_id": "marketing.v3.campaigns.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific campaign spend item by its ID",
+      "canonical_id": "marketing.v3.spend.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get campaign attribution metrics",
+      "canonical_id": "marketing.v3.metrics.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get campaign budget totals and spend details",
+      "canonical_id": "marketing.v3.totals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get campaign details and associated assets, with optional metrics",
+      "canonical_id": "marketing.v3.campaigns.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get contact IDs for a campaign by type",
+      "canonical_id": "marketing.v3.contacts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple campaigns with their assets",
+      "canonical_id": "marketing.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get revenue and attribution report data for a campaign",
+      "canonical_id": "marketing.v3.revenue.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List assets. + This endpoint lists all assets of the campaign by asset type. The assetType parameter is required, and ea",
+      "canonical_id": "marketing.v3.assets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific budget item from a campaign",
+      "canonical_id": "marketing.v3.budget.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific campaign spend item by ID",
+      "canonical_id": "marketing.v3.spend.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an asset from a campaign",
+      "canonical_id": "marketing.v3.assets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific budget item for a campaign",
+      "canonical_id": "marketing.v3.budget.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search and retrieve campaigns with filtering and pagination",
+      "canonical_id": "marketing.v3.campaigns.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a marketing campaign by its ID",
+      "canonical_id": "marketing.v3.campaigns.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific campaign budget item by ID",
+      "canonical_id": "marketing.v3.budget.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific campaign spend item by ID",
+      "canonical_id": "marketing.v3.spend.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple campaigns in a batch",
+      "canonical_id": "marketing.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple marketing events by ID",
+      "canonical_id": "marketing.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple marketing events by object ID",
+      "canonical_id": "marketing.v3.batch.update"
+    }
+  ]
+}

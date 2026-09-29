@@ -1,0 +1,74 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a new stage to a pipeline",
+      "canonical_id": "crm.v3.stages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new pipeline with provided properties",
+      "canonical_id": "crm.v3.pipelines.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a CRM pipeline by its ID",
+      "canonical_id": "crm.v3.pipelines.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a reverse chronological audit of pipeline changes",
+      "canonical_id": "crm.v3.audit.get_afe9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific pipeline by its ID",
+      "canonical_id": "crm.v3.pipelines.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific pipeline stage by its ID",
+      "canonical_id": "crm.v3.stages.get_ac24"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all CRM pipelines for a specific object type",
+      "canonical_id": "crm.v3.pipelines.get_7eaf"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all pipeline stages for a specific pipeline",
+      "canonical_id": "crm.v3.stages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get audit history for a specific pipeline stage",
+      "canonical_id": "crm.v3.audit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific pipeline stage from a pipeline",
+      "canonical_id": "crm.v3.stages.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace a CRM pipeline with new details",
+      "canonical_id": "crm.v3.pipelines.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a CRM pipeline by ID",
+      "canonical_id": "crm.v3.pipelines.update_177b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a pipeline stage's properties",
+      "canonical_id": "crm.v3.stages.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific pipeline stage's details",
+      "canonical_id": "crm.v3.stages.update_9f5f"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm.v3.upsert.create:
+    SUMMARY: Create or replace deal splits for deals with the provided IDs. Deal split percentages for each deal must sum up to 1.0 (100%) and may have up to 8 decimal places
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/deals/splits/batch/upsert
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicDealSplitsBatchCreateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseDealToDealSplits)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicDealSplitsBatchCreateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseDealToDealSplits)
+        RETURNVAR: crm_v3_upsert_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseDealToDealSplitsWithErrors)
+        RETURNVAR: crm_v3_upsert_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_upsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.upsert.create
+  crm.v3.read.create:
+    SUMMARY: Read a batch of deal split objects by their associated deal object internal ID
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/deals/splits/batch/read
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputPublicObjectId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseDealToDealSplits)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputPublicObjectId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseDealToDealSplits)
+        RETURNVAR: crm_v3_read_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseDealToDealSplitsWithErrors)
+        RETURNVAR: crm_v3_read_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.read.create
+STRUCTS:
+  PublicObjectId:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+      comment: Context about the error condition
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: A map of link names to associated URIs containing documentation about the error or recommended remediation steps
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The id of the error
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The error category
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The error message
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  PublicDealSplitInput:
+    - name: percentage
+      NAME: percentage
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: true
+    - name: ownerId
+      NAME: ownerId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  DealToDealSplits:
+    - name: splits
+      NAME: splits
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SimplePublicObject:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  BatchInputPublicObjectId:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicObjectId)"
+      TYPE: "[]STRUCT(PublicObjectId)"
+      REQUIRED: true
+  PublicDealSplitsCreateRequest:
+    - name: splits
+      NAME: splits
+      type: "[]STRUCT(PublicDealSplitInput)"
+      TYPE: "[]STRUCT(PublicDealSplitInput)"
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  PublicDealSplitsBatchCreateRequest:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicDealSplitsCreateRequest)"
+      TYPE: "[]STRUCT(PublicDealSplitsCreateRequest)"
+      REQUIRED: true
+  BatchResponseDealToDealSplits:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(DealToDealSplits)"
+      TYPE: "[]STRUCT(DealToDealSplits)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponseDealToDealSplitsWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(DealToDealSplits)"
+      TYPE: "[]STRUCT(DealToDealSplits)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true

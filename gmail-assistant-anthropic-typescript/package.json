@@ -1,0 +1,20 @@
+{
+  "name": "gmail-assistant-anthropic-typescript",
+  "version": "1.0.0",
+  "description": "Gmail assistant agent using the Anthropic SDK and Swytchcode (TypeScript)",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
+    "@swytchcode/runtime": "^1.1.3",
+    "dotenv": "^16.4.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}

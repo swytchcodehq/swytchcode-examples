@@ -1,0 +1,1228 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app-legacy: <PRIVATE-APP-LEGACY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  conversations.v3.inboxes.list:
+    SUMMARY: Get conversations inboxes.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/inboxes
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicInboxForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - defaultPageLength:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicInboxForwardPaging)
+        RETURNVAR: conversations_v3_inboxes_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_inboxes_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.inboxes.list
+  conversations.v3.threads.get:
+    SUMMARY: Get a single thread.
+    DESC: Returns a single thread.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicThread)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - association:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicThread)
+        RETURNVAR: conversations_v3_threads_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_threads_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.threads.get
+  conversations.v3.threads.delete:
+    SUMMARY: Archives a thread.
+    DESC: Archives a single thread. The thread will be permanently deleted 30 days after placed in an archived state.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}
+      HEADERS:
+        private-app-legacy: private-app-legacy
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_threads_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.threads.delete
+  conversations.v3.threads.update:
+    SUMMARY: Update a thread.
+    DESC: Updates a single thread. Either a thread's status can be updated, or the thread can be restored.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}
+      HEADERS:
+        Content-Type: application/json
+        private-app-legacy: private-app-legacy
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicThreadUpdateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicThread)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(PublicThreadUpdateRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicThread)
+        RETURNVAR: conversations_v3_threads_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_threads_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.threads.update
+  conversations.v3.originalContent.get:
+    SUMMARY: Get the original content of a single message.
+    DESC: Returns the complete original text and rich text bodies of a message. This will be different from the text and rich text in the message itself if the message's `truncationStatus` is anything other than `NOT_TRUNCATED`.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}/messages/{messageId}/original-content
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicMessageContent)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - messageId:
+          TYPE: STRING
+          LOCATION: path
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicMessageContent)
+        RETURNVAR: conversations_v3_originalContent_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_originalContent_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.originalContent.get
+  conversations.v3.messages.get:
+    SUMMARY: Get message history for a thread.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}/messages
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponsePublicMessageForwardPaging)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponsePublicMessageForwardPaging)
+        RETURNVAR: conversations_v3_messages_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.get
+  conversations.v3.messages.create:
+    SUMMARY: Send a message to a thread.
+    DESC: Send a new message on a thread at the current timestamp.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}/messages
+      HEADERS:
+        Content-Type: application/json
+        private-app-legacy: private-app-legacy
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicMessageEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicMessage)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicMessageEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicMessage)
+        RETURNVAR: conversations_v3_messages_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.create
+  conversations.v3.read.create:
+    SUMMARY: Get actors
+    DESC: Resolve `ActorId`s to the underlying actors/participants.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /conversations/v3/conversations/actors/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputString)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponsePublicActor)
+    INPUTS:
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputString)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponsePublicActor)
+        RETURNVAR: conversations_v3_read_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponsePublicActorWithErrors)
+        RETURNVAR: conversations_v3_read_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.read.create
+  conversations.v3.channelAccounts.list:
+    SUMMARY: Get channel accounts.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/channel-accounts
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicChannelAccountForwardPaging)
+    INPUTS:
+      - channelId:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - inboxId:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - defaultPageLength:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicChannelAccountForwardPaging)
+        RETURNVAR: conversations_v3_channelAccounts_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.list
+  conversations.v3.channels.get:
+    SUMMARY: Get a single channel.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/channels/{channelId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannel)
+    INPUTS:
+      - channelId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannel)
+        RETURNVAR: conversations_v3_channels_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channels_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channels.get
+  conversations.v3.messages.get_709:
+    SUMMARY: Get a single message.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/threads/{threadId}/messages/{messageId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicMessage)
+    INPUTS:
+      - threadId:
+          TYPE: INT
+          LOCATION: path
+      - messageId:
+          TYPE: STRING
+          LOCATION: path
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicMessage)
+        RETURNVAR: conversations_v3_messages_get_709
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_messages_get_709_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.messages.get_709
+  conversations.v3.channels.list:
+    SUMMARY: Get channels.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/channels
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicChannelForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - defaultPageLength:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicChannelForwardPaging)
+        RETURNVAR: conversations_v3_channels_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channels_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channels.list
+  conversations.v3.actors.get:
+    SUMMARY: Get a single actor.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/actors/{actorId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicActor)
+    INPUTS:
+      - actorId:
+          TYPE: STRING
+          LOCATION: path
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicActor)
+        RETURNVAR: conversations_v3_actors_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_actors_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.actors.get
+  conversations.v3.threads.list:
+    SUMMARY: Get threads.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/threads
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponsePublicThreadForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - inboxId:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - associatedContactId:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - threadStatus:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - latestMessageTimestampAfter:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - association:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - property:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponsePublicThreadForwardPaging)
+        RETURNVAR: conversations_v3_threads_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_threads_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.threads.list
+  conversations.v3.channelAccounts.get:
+    SUMMARY: Get a single channel account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/channel-accounts/{channelAccountId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicChannelAccount)
+    INPUTS:
+      - channelAccountId:
+          TYPE: INT
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicChannelAccount)
+        RETURNVAR: conversations_v3_channelAccounts_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_channelAccounts_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.channelAccounts.get
+  conversations.v3.inboxes.get:
+    SUMMARY: Get a single conversations inbox.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /conversations/v3/conversations/inboxes/{inboxId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app-legacy: private-app-legacy
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicInbox)
+    INPUTS:
+      - inboxId:
+          TYPE: INT
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicInbox)
+        RETURNVAR: conversations_v3_inboxes_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: conversations_v3_inboxes_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: conversations.v3.inboxes.get
+STRUCTS:
+  PublicDeliveryIdentifier:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.
+  PublicMessageEgg:
+    - name: variant
+      NAME: variant
+      type: STRUCT(PublicMessageEgg_Union)
+      TYPE: STRUCT(PublicMessageEgg_Union)
+      REQUIRED: false
+  PublicMessageEgg_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  PublicChannelAccount:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: authorized
+      NAME: authorized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the channel account.
+    - name: active
+      NAME: active
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the channel account is turned on.
+    - name: deliveryIdentifier
+      NAME: deliveryIdentifier
+      type: STRUCT(PublicDeliveryIdentifier)
+      TYPE: STRUCT(PublicDeliveryIdentifier)
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the channel account.
+    - name: inboxId
+      NAME: inboxId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the conversations inbox that contains the channel account.
+    - name: channelId
+      NAME: channelId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the channel that the channel account is an instance of.
+  CollectionResponseWithTotalPublicChannelForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicChannel)"
+      TYPE: "[]STRUCT(PublicChannel)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicChannel:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the channel.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the channel.
+  CollectionResponsePublicThreadForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicThread)"
+      TYPE: "[]STRUCT(PublicThread)"
+      REQUIRED: true
+  PublicThread:
+    - name: associatedContactId
+      NAME: associatedContactId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the associated Contact in the CRM. If the Contact for the thread has not yet been added or created, the `associatedContactId` returned will be a visitorID and cannot be used to search for the Contact in the CRM
+    - name: threadAssociations
+      NAME: threadAssociations
+      type: STRUCT(PublicThreadAssociations)
+      TYPE: STRUCT(PublicThreadAssociations)
+      REQUIRED: false
+    - name: assignedTo
+      NAME: assignedTo
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: When the thread was created.
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this thread is archived.
+    - name: originalChannelId
+      NAME: originalChannelId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: latestMessageTimestamp
+      NAME: latestMessageTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time that the latest message was sent or received on the thread.
+    - name: latestMessageSentTimestamp
+      NAME: latestMessageSentTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time that the latest message was sent on the thread.
+    - name: originalChannelAccountId
+      NAME: originalChannelAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The unique ID of the thread.
+    - name: closedAt
+      NAME: closedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the thread was closed. Only set if the thread is closed.
+    - name: spam
+      NAME: spam
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Whether the thread is marked as spam.
+    - name: inboxId
+      NAME: inboxId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the conversations inbox containing the thread.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "The thread's status: `OPEN` or `CLOSED`."
+    - name: latestMessageReceivedTimestamp
+      NAME: latestMessageReceivedTimestamp
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time that the latest message was sent on the thread.
+  PublicThreadAssociations:
+    - name: associatedTicketId
+      NAME: associatedTicketId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  BatchResponsePublicActorWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicActor)"
+      TYPE: "[]STRUCT(PublicActor)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicActor:
+    - name: variant
+      NAME: variant
+      type: STRUCT(PublicActor_Union)
+      TYPE: STRUCT(PublicActor_Union)
+      REQUIRED: false
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicMessage:
+    - name: variant
+      NAME: variant
+      type: STRUCT(PublicMessage_Union)
+      TYPE: STRUCT(PublicMessage_Union)
+      REQUIRED: false
+  CollectionResponseWithTotalPublicInboxForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicInbox)"
+      TYPE: "[]STRUCT(PublicInbox)"
+      REQUIRED: true
+  PublicInbox:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the inbox was created.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the inbox.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the inbox.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Specifies whether this refers to a Conversations Inbox or to the Help Desk. Valid values are INBOX or HELP_DESK
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+  CollectionResponseWithTotalPublicChannelAccountForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicChannelAccount)"
+      TYPE: "[]STRUCT(PublicChannelAccount)"
+      REQUIRED: true
+  PublicActor_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  PublicThreadUpdateRequest:
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this thread is archived. Set to false to restore the thread.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The thread's status: `OPEN` or `CLOSED`."
+  BatchResponsePublicActor:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicActor)"
+      TYPE: "[]STRUCT(PublicActor)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchInputString:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+  CollectionResponsePublicMessageForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+  PublicMessage_Union:
+    - name: value
+      NAME: value
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  PublicMessageContent:
+    - name: text
+      NAME: text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: richText
+      NAME: richText
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false

@@ -1,0 +1,156 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  account-info.v3.privateApps.list:
+    SUMMARY: Retrieve private app daily API usage
+    DESC: Retrieve the daily API usage for private apps in the account, along with information about usage limits.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /account-info/v3/api-usage/daily/private-apps
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseApiUsageNoPaging)
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseApiUsageNoPaging)
+        RETURNVAR: account-info_v3_privateApps_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: account-info_v3_privateApps_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: account-info.v3.privateApps.list
+  account-info.v3.details.list:
+    SUMMARY: Retrieve account details
+    DESC: "Retrieve account details such as the account type, time zone, currencies, and data hosting location. "
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /account-info/v3/details
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalInformationResponse)
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalInformationResponse)
+        RETURNVAR: account-info_v3_details_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: account-info_v3_details_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: account-info.v3.details.list
+STRUCTS:
+  ApiUsage:
+    - name: collectedAt
+      NAME: collectedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Indicates when the cache was last updated.
+    - name: usageLimit
+      NAME: usageLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Limits by which a single integration can consume the HubSpot public APIs.
+    - name: fetchStatus
+      NAME: fetchStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Status of fetching the information, including if the data came from the cache.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Name of the limit type.
+    - name: currentUsage
+      NAME: currentUsage
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: How many API calls an account has made for the current day.
+    - name: resetsAt
+      NAME: resetsAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Time that the limit will reset.
+  PortalInformationResponse:
+    - name: additionalCurrencies
+      NAME: additionalCurrencies
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: utcOffset
+      NAME: utcOffset
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: companyCurrency
+      NAME: companyCurrency
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: portalId
+      NAME: portalId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: accountType
+      NAME: accountType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: uiDomain
+      NAME: uiDomain
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: timeZone
+      NAME: timeZone
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: dataHostingLocation
+      NAME: dataHostingLocation
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: utcOffsetMilliseconds
+      NAME: utcOffsetMilliseconds
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  CollectionResponseApiUsageNoPaging:
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ApiUsage)"
+      TYPE: "[]STRUCT(ApiUsage)"
+      REQUIRED: true

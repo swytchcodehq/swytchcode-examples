@@ -1,0 +1,74 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Define a new CRM object schema with properties and associations",
+      "canonical_id": "crm-object-schemas.v3.schemas.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Define new associations between CRM object types",
+      "canonical_id": "crm-object-schemas.v3.associations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a CRM object schema",
+      "canonical_id": "crm-object-schemas.v3.schemas.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an association from a schema",
+      "canonical_id": "crm-object-schemas.v3.associations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a CRM object schema by its type",
+      "canonical_id": "crm-object-schemas.v3.schemas.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all defined CRM object schemas for your account",
+      "canonical_id": "crm-object-schemas.v3.schemas.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an object schema's details",
+      "canonical_id": "crm-object-schemas.v3.schemas.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Define a new CRM object schema with properties and associations",
+      "canonical_id": "crm-object-schemas.v3.schemas.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Define new associations between CRM object types",
+      "canonical_id": "crm-object-schemas.v3.associations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a CRM object schema",
+      "canonical_id": "crm-object-schemas.v3.schemas.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an association from a CRM object schema",
+      "canonical_id": "crm-object-schemas.v3.associations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a CRM object schema by its type",
+      "canonical_id": "crm-object-schemas.v3.schemas.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all custom object schemas for your account",
+      "canonical_id": "crm-object-schemas.v3.schemas.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing CRM object schema",
+      "canonical_id": "crm-object-schemas.v3.schemas.update"
+    }
+  ]
+}

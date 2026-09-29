@@ -1,0 +1,9 @@
+# Environment variables (contains sensitive API keys)
+.env
+
+# Dependencies
+node_modules/
+
+# Swytchcode temporary files
+.swytchcode/integrations/
+.swytchcode/*.pid

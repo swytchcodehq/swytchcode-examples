@@ -1,0 +1,104 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Asynchronously import a file from a URL",
+      "canonical_id": "files.v3.async.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Asynchronously update folder properties and all its children",
+      "canonical_id": "files.v3.folders.update_4623"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new folder",
+      "canonical_id": "files.v3.folders.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a file for GDPR compliance",
+      "canonical_id": "files.v3.files.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a file using its unique identifier",
+      "canonical_id": "files.v3.files.delete_b237"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a folder and its contents by its ID",
+      "canonical_id": "files.v3.folders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a folder by its path",
+      "canonical_id": "files.v3.folders.delete_4cb3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a file using its unique identifier",
+      "canonical_id": "files.v3.files.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a temporary signed URL to access a private file",
+      "canonical_id": "files.v3.signedUrl.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get file statistics by path",
+      "canonical_id": "files.v3.stat.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get folder details by its ID",
+      "canonical_id": "files.v3.folders.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get folder details by its path",
+      "canonical_id": "files.v3.folders.get_e584"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of a file import task",
+      "canonical_id": "files.v3.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of an asynchronous folder update task",
+      "canonical_id": "files.v3.folders.update_40e1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace file content with new data",
+      "canonical_id": "files.v3.files.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search files by various criteria",
+      "canonical_id": "files.v3.search.list_b6d3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for folders by various criteria",
+      "canonical_id": "files.v3.search.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update file properties by ID",
+      "canonical_id": "files.v3.files.update_f868"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update folder properties by folder ID",
+      "canonical_id": "files.v3.folders.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a file to a specified folder",
+      "canonical_id": "files.v3.files.create"
+    }
+  ]
+}

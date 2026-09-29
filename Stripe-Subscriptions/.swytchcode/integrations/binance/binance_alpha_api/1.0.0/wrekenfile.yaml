@@ -1,0 +1,147 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.default.com
+  prod_url: https://www.binance.com
+METHODS:
+  bapi.defi.aggTrades.list:
+    SUMMARY: Fetch agg-trades
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /bapi/defi/v1/public/alpha-trade/agg-trades
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: bapi.defi.aggTrades.list
+  bapi.defi.getExchangeInfo.list:
+    SUMMARY: Fetch get-exchange-info
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /bapi/defi/v1/public/alpha-trade/get-exchange-info
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: bapi.defi.getExchangeInfo.list
+  bapi.defi.klines.list:
+    SUMMARY: Fetch klines
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /bapi/defi/v1/public/alpha-trade/klines
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - interval:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: bapi.defi.klines.list
+  bapi.defi.ticker.list:
+    SUMMARY: Fetch ticker
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /bapi/defi/v1/public/alpha-trade/ticker
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - symbol:
+          TYPE: STRING
+          LOCATION: query
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: bapi.defi.ticker.list
+  bapi.defi.token.list:
+    SUMMARY: Fetch list
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - url:
+          TYPE: STRING
+          LOCATION: path
+      - X-MBX-APIKEY:
+          TYPE: STRING
+          LOCATION: header
+      - Accept:
+          TYPE: STRING
+          LOCATION: header
+    CANONICAL_ID: bapi.defi.token.list

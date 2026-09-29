@@ -1,0 +1,44 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a file at a specific path and environment",
+      "canonical_id": "cms.v3.content.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete content file by path and environment",
+      "canonical_id": "cms.v3.content.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download file content from a specific environment and path",
+      "canonical_id": "cms.v3.content.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Extract a zip file asynchronously from the developer file system",
+      "canonical_id": "cms.v3.async.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get file metadata by environment and path",
+      "canonical_id": "cms.v3.metadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of an asynchronous code extraction task",
+      "canonical_id": "cms.v3.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload or update content file in a specific environment",
+      "canonical_id": "cms.v3.content.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate source code file contents by path and environment",
+      "canonical_id": "cms.v3.sourceCode.validate"
+    }
+  ]
+}

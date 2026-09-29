@@ -1,0 +1,5630 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_access_token: <ACCESS_TOKEN>
+  w_base_url: https://api.zoom.us/v2
+METHODS:
+  zoom.account.list:
+    SUMMARY: List sub accounts
+    DESC: List all the sub accounts under the master account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_account_list
+        STATUS: 200
+    CANONICAL_ID: zoom.account.list
+  zoom.account.create:
+    SUMMARY: Create a sub account
+    DESC: Create a sub account under the master account. <aside>Your account must be a master account and have this privilege to create sub account. Zoom only assigns this privilege to trusted partners. The created user will not receive a confirmation email.</aside>.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /accounts
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Account)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(Account)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_account_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Account with that email already exists (HTTP 409)
+    CANONICAL_ID: zoom.account.create
+  zoom.account.get:
+    SUMMARY: Retrieve a sub account
+    DESC: Retrieve a sub account under the master account. <aside>Your account must be a master account and have this privilege to read sub accounts. Zoom only assigns this privilege to trusted partners</aside>.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts/{accountId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_account_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.account.get
+  zoom.account.delete:
+    SUMMARY: Disassociate an account
+    DESC: Disassociate a sub account from the master account. This will leave the account intact but the sub account will not longer be associated with the master account.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /accounts/{accountId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.delete
+  zoom.account.options.update:
+    SUMMARY: Update a sub account's options
+    DESC: Update a sub account's options under the master account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /accounts/{accountId}/options
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AccountOptions)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountOptions)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.options.update
+  zoom.account.settings.get:
+    SUMMARY: Retrieve a sub account's settings
+    DESC: Retrieve a sub account's settings under the master account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts/{accountId}/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AccountSettings)
+        RETURNVAR: zoom_account_settings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.settings.get
+  zoom.account.settings.update:
+    SUMMARY: Update a sub account's settings
+    DESC: Update a sub account's settings under the master account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /accounts/{accountId}/settings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AccountSettings)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountSettings)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.settings.update
+  zoom.account.managedDomains.get:
+    SUMMARY: Retrieve a sub account's managed domains
+    DESC: Retrieve a sub account's managed domains under the master account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts/{accountId}/managed_domains
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(DomainsList)
+        RETURNVAR: zoom_account_managedDomains_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.managedDomains.get
+  zoom.account.billing.get:
+    SUMMARY: Retrieve billing information for a sub account
+    DESC: Retrieve billing information for a sub account under the master account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts/{accountId}/billing
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(BillingContactRequired)
+        RETURNVAR: zoom_account_billing_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.billing.get
+  zoom.account.billing.update:
+    SUMMARY: Update billing information for a sub account
+    DESC: Update billing information for a sub account under the master account <aside>Only for the sub account which is a paid account and paid by master account</aside>
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /accounts/{accountId}/billing
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BillingContact)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BillingContact)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.account.billing.update
+  zoom.account.plans.get:
+    SUMMARY: Retrieve plan information for a sub account
+    DESC: Retrieve plan information for a sub account under the master account  <aside>Only for the sub account which is paid by master account</aside>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /accounts/{accountId}/plans
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AccountPlans)
+        RETURNVAR: zoom_account_plans_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not fond (HTTP 404)
+    CANONICAL_ID: zoom.account.plans.get
+  zoom.account.plans.create:
+    SUMMARY: Subscribe plans for a sub account
+    DESC: Subscribe plans for a sub account of the master account <aside>Can only subscribe plans for the sub account which is a free account and paid by master account</aside>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /accounts/{accountId}/plans
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.account.plans.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.account.plans.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AccountPlans)
+        RETURNVAR: zoom_account_plans_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.account.plans.create
+  zoom.account.base.update:
+    SUMMARY: Update a base plan for a sub account
+    DESC: Update a base plan for a sub account <aside>Can only update a base plan for the sub account which is a paid account and paid by master account</aside>
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /accounts/{accountId}/plans/base
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AccountPlanBaseRequired)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountPlanBaseRequired)
+          LOCATION: body
+    CANONICAL_ID: zoom.account.base.update
+  zoom.account.addons.create:
+    SUMMARY: Add an additional plan for sub account
+    DESC: Add an additional plan for sub account <aside>Can only add an Additional plan for the sub account which is a paid account and paid by master account</aside>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /accounts/{accountId}/plans/addons
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AccountPlanRequired)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountPlanRequired)
+          LOCATION: body
+    CANONICAL_ID: zoom.account.addons.create
+  zoom.account.addons.update:
+    SUMMARY: Update an additional plan for sub account
+    DESC: Update an additional plan for sub account<aside>Can only update an Additional plan for the sub account which is a paid account and paid by master account</aside>
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /accounts/{accountId}/plans/addons
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AccountPlanRequired)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - accountId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AccountPlanRequired)
+          LOCATION: body
+    CANONICAL_ID: zoom.account.addons.update
+  zoom.group.list:
+    SUMMARY: List groups
+    DESC: List groups under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /groups
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(GroupList)
+        RETURNVAR: zoom_group_list
+        STATUS: 200
+    CANONICAL_ID: zoom.group.list
+  zoom.group.create:
+    SUMMARY: Create a group
+    DESC: Create a group under your account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /groups
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.group.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.group.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_group_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.group.create
+  zoom.group.get:
+    SUMMARY: Retrieve a group
+    DESC: Retrieve a group under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /groups/{groupId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_group_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group not found (HTTP 404)
+    CANONICAL_ID: zoom.group.get
+  zoom.group.update:
+    SUMMARY: Update a group
+    DESC: Update a group under your account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /groups/{groupId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.group.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.group.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group not found (HTTP 404)
+    CANONICAL_ID: zoom.group.update
+  zoom.group.delete:
+    SUMMARY: Delete a group
+    DESC: Delete a group under your account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /groups/{groupId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group not found (HTTP 404)
+    CANONICAL_ID: zoom.group.delete
+  zoom.group.members.get:
+    SUMMARY: List a group's members
+    DESC: List a group's members under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /groups/{groupId}/members
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_group_members_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group not found (HTTP 404)
+    CANONICAL_ID: zoom.group.members.get
+  zoom.group.members.create:
+    SUMMARY: Add group members
+    DESC: Add members to a group under your account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /groups/{groupId}/members
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.group.members.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.group.members.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_group_members_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group not found (HTTP 404)
+    CANONICAL_ID: zoom.group.members.create
+  zoom.group.members.delete:
+    SUMMARY: Delete a group member
+    DESC: Delete a member from a group under your account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /groups/{groupId}/members/{memberId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - memberId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Group or Group member not found (HTTP 404)
+    CANONICAL_ID: zoom.group.members.delete
+  zoom.h323.devices.list:
+    SUMMARY: List H.323/SIP Devices.
+    DESC: List H.323/SIP Devices on your Zoom account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /h323/devices
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_h323_devices_list
+        STATUS: 200
+    CANONICAL_ID: zoom.h323.devices.list
+  zoom.h323.devices.create:
+    SUMMARY: Create a H.323/SIP Device
+    DESC: Create a H.323/SIP Device on your Zoom account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /h323/devices
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Device)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(Device)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_h323_devices_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.h323.devices.create
+  zoom.h323.devices.update:
+    SUMMARY: Update a H.323/SIP Device
+    DESC: Update a H.323/SIP Device on your Zoom account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /h323/devices/{deviceId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Device)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - deviceId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Device)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: H.323/SIP Device not found (HTTP 404)
+    CANONICAL_ID: zoom.h323.devices.update
+  zoom.h323.devices.delete:
+    SUMMARY: Delete a H.323/SIP Device
+    DESC: Delete a H.323/SIP Device on your Zoom account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /h323/devices/{deviceId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - deviceId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: H.323/SIP Device not found (HTTP 404)
+    CANONICAL_ID: zoom.h323.devices.delete
+  zoom.tracking_field.list:
+    SUMMARY: List Tracking Fields.
+    DESC: List Tracking Fields on your Zoom account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/tracking_fields
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_tracking_field_list
+        STATUS: 200
+    CANONICAL_ID: zoom.tracking_field.list
+  zoom.tracking_field.create:
+    SUMMARY: Create a Tracking Field
+    DESC: Create a Tracking Field on your Zoom account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v2/tracking_fields
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TrackingField)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(TrackingField)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_tracking_field_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.tracking_field.create
+  zoom.tracking_field.get:
+    SUMMARY: Retrieve a tracking field
+    DESC: Retrieve a tracking field
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v2/tracking_fields/{fieldId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - fieldId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_tracking_field_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Tracking Field not found (HTTP 404)
+    CANONICAL_ID: zoom.tracking_field.get
+  zoom.tracking_field.update:
+    SUMMARY: Update a Tracking Field
+    DESC: Update a Tracking Field on your Zoom account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v2/tracking_fields/{fieldId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TrackingField)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - fieldId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(TrackingField)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Tracking Field not found (HTTP 404)
+    CANONICAL_ID: zoom.tracking_field.update
+  zoom.tracking_field.delete:
+    SUMMARY: Delete a Tracking Field
+    DESC: Delete a Tracking Field on your Zoom account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v2/tracking_fields/{fieldId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - fieldId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Tracking Field not found (HTTP 404)
+    CANONICAL_ID: zoom.tracking_field.delete
+  zoom.im.groups.list:
+    SUMMARY: List IM Groups
+    DESC: List IM groups under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /im/groups
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_im_groups_list
+        STATUS: 200
+    CANONICAL_ID: zoom.im.groups.list
+  zoom.im.groups.create:
+    SUMMARY: Create an IM Group
+    DESC: Create a IM Group under your account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /im/groups
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.im.groups.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.im.groups.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_im_groups_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.im.groups.create
+  zoom.im.groups.get:
+    SUMMARY: Retrieve an IM Group
+    DESC: Retrieve an IM Group under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /im/groups/{groupId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_im_groups_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group not found (HTTP 404)
+    CANONICAL_ID: zoom.im.groups.get
+  zoom.im.groups.update:
+    SUMMARY: Update an IM Group
+    DESC: Update an IM Group under your account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /im/groups/{groupId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.im.groups.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.im.groups.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group not found (HTTP 404)
+    CANONICAL_ID: zoom.im.groups.update
+  zoom.im.groups.delete:
+    SUMMARY: Delete an IM Group
+    DESC: Delete an IM Group under your account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /im/groups/{groupId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group not found (HTTP 404)
+    CANONICAL_ID: zoom.im.groups.delete
+  zoom.im.members.get:
+    SUMMARY: List an IM Group's members
+    DESC: List an IM Group's members under your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /im/groups/{groupId}/members
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_im_members_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group not found (HTTP 404)
+    CANONICAL_ID: zoom.im.members.get
+  zoom.im.members.create:
+    SUMMARY: Add IM Group members
+    DESC: Add members to an IM Group under your account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /im/groups/{groupId}/members
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.im.members.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.im.members.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_im_members_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group not found (HTTP 404)
+    CANONICAL_ID: zoom.im.members.create
+  zoom.im.members.delete:
+    SUMMARY: Delete an IM Group member
+    DESC: Delete a member from an IM Group under your account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /im/groups/{groupId}/members/{memberId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - groupId:
+          TYPE: STRING
+          LOCATION: path
+      - memberId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: IM Group or IM Group member not found (HTTP 404)
+    CANONICAL_ID: zoom.im.members.delete
+  zoom.im.sessions.list:
+    SUMMARY: Retrieve IM Chat sessions
+    DESC: Retrieve IM Chat sessions for a specified period <aside>This API only supports oauth2.</aside>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /im/chat/sessions
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_im_sessions_list
+        STATUS: 200
+    CANONICAL_ID: zoom.im.sessions.list
+  zoom.im.sessions.get:
+    SUMMARY: Retrieve IM Chat messages
+    DESC: Retrieve IM Chat messages for a specified period <aside>This API only supports oauth2.</aside>
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /im/chat/sessions/{sessionId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - sessionId:
+          TYPE: STRING
+          LOCATION: path
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_im_sessions_get
+        STATUS: 200
+    CANONICAL_ID: zoom.im.sessions.get
+  zoom.user.meetings.get:
+    SUMMARY: List meetings
+    DESC: List meetings for a user
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/meetings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_user_meetings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.meetings.get
+  zoom.user.meetings.create:
+    SUMMARY: Create a meeting
+    DESC: Create a meeting for a user <aside>The expiration time of start_url is two hours. But for API users, the expiration time is 90 days.</aside>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/{userId}/meetings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.user.meetings.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.user.meetings.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_meetings_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.meetings.create
+  zoom.meeting.get:
+    SUMMARY: Retrieve a meeting
+    DESC: Retrieve a meeting's details
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_meeting_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.get
+  zoom.meeting.update:
+    SUMMARY: Update a meeting
+    DESC: Update a meeting's details
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /meetings/{meetingId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.update
+  zoom.meeting.delete:
+    SUMMARY: Delete a meeting
+    DESC: Delete a meeting
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /meetings/{meetingId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.delete
+  zoom.meeting.status.update:
+    SUMMARY: Update a meeting's status
+    DESC: Update a meeting's status
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /meetings/{meetingId}/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.status.update
+  zoom.meeting.invitation.get:
+    SUMMARY: Retrieve meeting invitation
+    DESC: Retrieve a meeting invitation
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/invitation
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(MeetingInvitation)
+        RETURNVAR: zoom_meeting_invitation_get
+        STATUS: 200
+    CANONICAL_ID: zoom.meeting.invitation.get
+  zoom.meeting.registrants.get:
+    SUMMARY: List a meeting's registrants
+    DESC: List registrants of a meeting
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/registrants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_meeting_registrants_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.registrants.get
+  zoom.meeting.registrants.create:
+    SUMMARY: Add a meeting registrant
+    DESC: Register a participant for a meeting
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /meetings/{meetingId}/registrants
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: OBJECT
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_ids:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: OBJECT
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.meeting.registrants.createResponse201)
+        RETURNVAR: zoom_meeting_registrants_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.registrants.create
+  zoom.meeting.status.update.1:
+    SUMMARY: Update a meeting registrant's status
+    DESC: Update a meeting registrant's status
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /meetings/{meetingId}/registrants/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(RegistrantStatus)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(RegistrantStatus)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting or Registrant not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.status.update.1
+  zoom.meeting.livestream.update:
+    SUMMARY: Update a meeting live stream
+    DESC: Update a meeting's live stream
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /meetings/{meetingId}/livestream
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MeetingLiveStream)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(MeetingLiveStream)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.livestream.update
+  zoom.meeting.status.update.2:
+    SUMMARY: Update a meeting live stream status
+    DESC: Update a meeting's live stream status
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /meetings/{meetingId}/livestream/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MeetingLiveStreamStatus)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(MeetingLiveStreamStatus)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.status.update.2
+  zoom.past_meeting.get:
+    SUMMARY: Retrieve past meeting details
+    DESC: Retrieve ended meeting details
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /past_meetings/{meetingUUID}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingUUID:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_past_meeting_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.past_meeting.get
+  zoom.past_meeting.participants.get:
+    SUMMARY: Retrieve past meeting participants
+    DESC: Retrieve ended meeting participants
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /past_meetings/{meetingUUID}/participants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingUUID:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_past_meeting_participants_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.past_meeting.participants.get
+  zoom.past_meeting.instances.get:
+    SUMMARY: List of ended meeting instances
+    DESC: List of ended meeting instances
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /past_meetings/{meetingId}/instances
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_past_meeting_instances_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.past_meeting.instances.get
+  zoom.meeting.polls.get:
+    SUMMARY: "List a meeting's polls "
+    DESC: List polls of a meeting
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/polls
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_meeting_polls_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.polls.get
+  zoom.meeting.polls.create:
+    SUMMARY: Create a meeting's poll
+    DESC: Create a poll for a meeting
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /meetings/{meetingId}/polls
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.polls.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.polls.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_meeting_polls_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.polls.create
+  zoom.meeting.polls.get.1:
+    SUMMARY: Retrieve a meeting's poll
+    DESC: Retrieve a meeting's poll
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/polls/{pollId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_meeting_polls_get_1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.polls.get.1
+  zoom.meeting.polls.update:
+    SUMMARY: Update a meeting's poll
+    DESC: Update a meeting's poll
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /meetings/{meetingId}/polls/{pollId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.polls.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.polls.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.polls.update
+  zoom.meeting.polls.delete:
+    SUMMARY: Delete a meeting's Poll
+    DESC: Delete a meeting's Poll
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /meetings/{meetingId}/polls/{pollId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.polls.delete
+  zoom.user.recordings.get:
+    SUMMARY: List all the recordings
+    DESC: List all the recordings
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/recordings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - mc:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - trash:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_user_recordings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.recordings.get
+  zoom.meeting.recordings.get:
+    SUMMARY: Retrieve a meeting’s all recordings
+    DESC: Retrieve a meeting’s all recordings
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/recordings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_meeting_recordings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.recordings.get
+  zoom.meeting.recordings.delete:
+    SUMMARY: Delete a meeting's recordings
+    DESC: Delete a meeting's recordings
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /meetings/{meetingId}/recordings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - action:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.recordings.delete
+  zoom.meeting.recordings.delete.1:
+    SUMMARY: Delete one meeting recording file
+    DESC: Delete one meeting recording file
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /meetings/{meetingId}/recordings/{recordingId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - recordingId:
+          TYPE: STRING
+          LOCATION: path
+      - action:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording file not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.recordings.delete.1
+  zoom.meeting.status.update.3:
+    SUMMARY: Recover a meeting's recordings
+    DESC: Recover a meeting's recordings
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /meetings/{meetingId}/recordings/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.status.update.3
+  zoom.meeting.status.update.4:
+    SUMMARY: Recover a single recording
+    DESC: Recover a single recording
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /meetings/{meetingId}/recordings/{recordingId}/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.meeting.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - recordingId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.meeting.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.status.update.4
+  zoom.meeting.settings.get:
+    SUMMARY: Retrieve a meeting recording's settings
+    DESC: Retrieve a meeting recording's settings
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /meetings/{meetingId}/recordings/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(RecordingSettings)
+        RETURNVAR: zoom_meeting_settings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.settings.get
+  zoom.meeting.settings.update:
+    SUMMARY: Update a meeting recording's settings
+    DESC: Update a meeting recording's settings
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /meetings/{meetingId}/recordings/settings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(RecordingSettings)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(RecordingSettings)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting recording not found (HTTP 404)
+    CANONICAL_ID: zoom.meeting.settings.update
+  zoom.metric.meetings.list:
+    SUMMARY: List meetings
+    DESC: List live meetings or past meetings for a specified period
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_meetings_list
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.meetings.list
+  zoom.metric.meetings.get:
+    SUMMARY: Retrieve meeting detail
+    DESC: Retrieve live or past meetings detail
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings/{meetingId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(MeetingMetric)
+        RETURNVAR: zoom_metric_meetings_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.meetings.get
+  zoom.metric.participants.get:
+    SUMMARY: Retrieve meeting participants
+    DESC: Retrieve live or past meetings participants
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings/{meetingId}/participants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_participants_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.participants.get
+  zoom.metric.qos.get:
+    SUMMARY: Retrieve meeting participant QOS
+    DESC: Retrieve live or past meetings participant quality of service
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings/{meetingId}/participants/{participantId}/qos
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - participantId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(QOSParticipant)
+        RETURNVAR: zoom_metric_qos_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.qos.get
+  zoom.metric.qos.get.1:
+    SUMMARY: List meeting participants QOS
+    DESC: Retrieve list of live or past meetings participants quality of service
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings/{meetingId}/participants/qos
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_metric_qos_get_1
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.qos.get.1
+  zoom.metric.sharing.get:
+    SUMMARY: Retrieve sharing/recording details of meeting participant
+    DESC: Retrieve sharing/recording details of live or past meetings participant
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/meetings/{meetingId}/participants/sharing
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_sharing_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.sharing.get
+  zoom.metric.webinars.list:
+    SUMMARY: List webinars
+    DESC: List live webinars or past webinars for a specified period
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_webinars_list
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.webinars.list
+  zoom.metric.webinars.get:
+    SUMMARY: Retrieve webinar detail
+    DESC: Retrieve live  or past webinars detail
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars/{webinarId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(WebinarMetric)
+        RETURNVAR: zoom_metric_webinars_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.webinars.get
+  zoom.metric.participants.get.1:
+    SUMMARY: Retrieve webinar participants
+    DESC: Retrieve live or past webinar participants
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars/{webinarId}/participants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_participants_get_1
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.participants.get.1
+  zoom.metric.qos.get.2:
+    SUMMARY: Retrieve webinar participant QOS
+    DESC: Retrieve live or past webinar participant quality of service
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars/{webinarId}/participants/{participantId}/qos
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - participantId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(QOSParticipant)
+        RETURNVAR: zoom_metric_qos_get_2
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.qos.get.2
+  zoom.metric.qos.get.3:
+    SUMMARY: List webinar participant QOS
+    DESC: Retrieve list of live or past webinar participants quality of service
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars/{webinarId}/participants/qos
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_metric_qos_get_3
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.qos.get.3
+  zoom.metric.sharing.get.1:
+    SUMMARY: Retrieve sharing/recording details of webinar participant
+    DESC: Retrieve sharing/recording details of live or past webinar participant
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/webinars/{webinarId}/participants/sharing
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_sharing_get_1
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.sharing.get.1
+  zoom.metric.zoomrooms.list:
+    SUMMARY: List Zoom Rooms
+    DESC: List all zoom rooms on account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/zoomrooms
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_metric_zoomrooms_list
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.zoomrooms.list
+  zoom.metric.zoomrooms.get:
+    SUMMARY: Retrieve Zoom Room
+    DESC: Retrieve zoom room on account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/zoomrooms/{zoomroomId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - zoomroomId:
+          TYPE: STRING
+          LOCATION: path
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_zoomrooms_get
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.zoomrooms.get
+  zoom.metric.crc.list:
+    SUMMARY: Retrieve CRC Port Usage
+    DESC: Get CRC Port usage hour by hour for a specified time period <aside class='notice'>We will report a maximum of one month. For example, if "from" is set to "2017-08-05" and "to" is "2017-10-10" we will adjust "from" to "2017-09-10"</aside>.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/crc
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_crc_list
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.crc.list
+  zoom.metric.im.list:
+    SUMMARY: Retrieve IM
+    DESC: Retrieve metrics of Zoom IM
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /metrics/im
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_metric_im_list
+        STATUS: 200
+    CANONICAL_ID: zoom.metric.im.list
+  zoom.report.daily.list:
+    SUMMARY: Retrieve daily report
+    DESC: Retrieve daily report for one month, can only get daily report for recent 6 months
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/daily
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - year:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - month:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_daily_list
+        STATUS: 200
+    CANONICAL_ID: zoom.report.daily.list
+  zoom.report.users.list:
+    SUMMARY: Retrieve hosts report
+    DESC: Retrieve active or inactive hosts report for a specified period
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/users
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_users_list
+        STATUS: 200
+    CANONICAL_ID: zoom.report.users.list
+  zoom.report.meetings.get:
+    SUMMARY: Retrieve meetings report
+    DESC: Retrieve ended meetings report for a specified period
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/users/{userId}/meetings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_meetings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.report.meetings.get
+  zoom.report.meetings.get.1:
+    SUMMARY: Retrieve meeting details report
+    DESC: Retrieve ended meeting details report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/meetings/{meetingId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_meetings_get_1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.report.meetings.get.1
+  zoom.report.participants.get:
+    SUMMARY: Retrieve meeting participants report
+    DESC: Retrieve ended meeting participants report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/meetings/{meetingId}/participants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_participants_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.report.participants.get
+  zoom.report.polls.get:
+    SUMMARY: Retrieve meeting polls report
+    DESC: Retrieve ended meeting polls report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/meetings/{meetingId}/polls
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - meetingId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_polls_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Meeting not found (HTTP 404)
+    CANONICAL_ID: zoom.report.polls.get
+  zoom.report.webinars.get:
+    SUMMARY: Retrieve webinar details report
+    DESC: Retrieve ended webinar details report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/webinars/{webinarId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_webinars_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.report.webinars.get
+  zoom.report.participants.get.1:
+    SUMMARY: Retrieve webinar participants report
+    DESC: Retrieve ended webinar participants report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/webinars/{webinarId}/participants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - next_page_token:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_participants_get_1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.report.participants.get.1
+  zoom.report.polls.get.1:
+    SUMMARY: Retrieve webinar polls report
+    DESC: Retrieve ended webinar polls report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/webinars/{webinarId}/polls
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_polls_get_1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.report.polls.get.1
+  zoom.report.qa.get:
+    SUMMARY: Retrieve webinar Q&A report
+    DESC: Retrieve ended webinar Q&A report
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/webinars/{webinarId}/qa
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_qa_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.report.qa.get
+  zoom.report.telephone.list:
+    SUMMARY: Retrieve telephone report
+    DESC: Retrieve telephone report for a specified period <aside>Toll Report option would be removed.</aside>.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/telephone
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_telephone_list
+        STATUS: 200
+    CANONICAL_ID: zoom.report.telephone.list
+  zoom.report.cloudRecording.list:
+    SUMMARY: Retrieve cloud recording usage report
+    DESC: Retrieve cloud recording usage report for a specified period. You can only get cloud recording reports for the most recent period of 6 months. The date gap between from and to dates should be smaller or equal to 30 days.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /report/cloud_recording
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - from:
+          TYPE: DATE
+          LOCATION: query
+      - to:
+          TYPE: DATE
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_report_cloudRecording_list
+        STATUS: 200
+    CANONICAL_ID: zoom.report.cloudRecording.list
+  zoom.tsp.list:
+    SUMMARY: Retrieve account's TSP information
+    DESC: Retrieve TSP information on account level
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /tsp
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_tsp_list
+        STATUS: 200
+    CANONICAL_ID: zoom.tsp.list
+  zoom.tsp.update:
+    SUMMARY: Update account's TSP information
+    DESC: Update TSP information on account level
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /tsp
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.tsp.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.tsp.updateRequest)
+          LOCATION: body
+    CANONICAL_ID: zoom.tsp.update
+  zoom.user.list:
+    SUMMARY: List Users
+    DESC: List users on your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_user_list
+        STATUS: 200
+    CANONICAL_ID: zoom.user.list
+  zoom.user.create:
+    SUMMARY: Create a user
+    DESC: Create a user on your account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.user.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.user.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: User with that email already exists (HTTP 409)
+    CANONICAL_ID: zoom.user.create
+  zoom.user.get:
+    SUMMARY: Retrieve a user
+    DESC: Retrieve a user on your account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - login_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.get
+  zoom.user.update:
+    SUMMARY: Update a user
+    DESC: Update a user on your account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /users/{userId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UserUpdate)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UserUpdate)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.update
+  zoom.user.delete:
+    SUMMARY: Delete a user
+    DESC: Delete a user on your account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - action:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - transfer_email:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - transfer_meeting:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - transfer_webinar:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - transfer_recording:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.delete
+  zoom.user.assistants.get:
+    SUMMARY: List a user's assistants
+    DESC: List a user's assistants
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/assistants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(UserAssistantsList)
+        RETURNVAR: zoom_user_assistants_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.assistants.get
+  zoom.user.assistants.create:
+    SUMMARY: Add assistants
+    DESC: Add assistants to a user
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/{userId}/assistants
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UserAssistantsList)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UserAssistantsList)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_assistants_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.assistants.create
+  zoom.user.assistants.delete:
+    SUMMARY: Delete a user's assistants
+    DESC: Delete all of a user'sassitants
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/assistants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.assistants.delete
+  zoom.user.assistants.delete.1:
+    SUMMARY: Delete a user's assistant
+    DESC: Delete one of a user's assistants
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/assistants/{assistantId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - assistantId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User or Assistant not found (HTTP 404)
+    CANONICAL_ID: zoom.user.assistants.delete.1
+  zoom.user.schedulers.get:
+    SUMMARY: List a user's schedulers
+    DESC: List a user's schedulers
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/schedulers
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(UserSchedulersList)
+        RETURNVAR: zoom_user_schedulers_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.schedulers.get
+  zoom.user.schedulers.delete:
+    SUMMARY: Delete a user's schedulers
+    DESC: Delete all of a user'schedulers
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/schedulers
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.schedulers.delete
+  zoom.user.schedulers.delete.1:
+    SUMMARY: Delete a user's scheduler
+    DESC: Delete one of a user's schedulers
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/schedulers/{schedulerId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - schedulerId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User or Scheduler not found (HTTP 404)
+    CANONICAL_ID: zoom.user.schedulers.delete.1
+  zoom.user.picture.create:
+    SUMMARY: Upload a user's picture
+    DESC: Upload a user's profile picture
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/{userId}/picture
+      HEADERS:
+        Content-Type: multipart/form-data
+      CONTENT_TYPE: multipart/form-data
+      ACCEPT: application/json
+      BODYTYPE: form-data
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - pic_file:
+          TYPE: STRING
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.picture.create
+  zoom.user.settings.get:
+    SUMMARY: Retrieve a user's settings
+    DESC: Retrieve a user's settings
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - login_type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(UserSettings)
+        RETURNVAR: zoom_user_settings_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.settings.get
+  zoom.user.settings.update:
+    SUMMARY: Update a user's settings
+    DESC: Update a user's settings
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /users/{userId}/settings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(UserSettingsUpdate)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(UserSettingsUpdate)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.settings.update
+  zoom.user.status.update:
+    SUMMARY: Update a user's status
+    DESC: Update a user's status
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /users/{userId}/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.user.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.user.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.status.update
+  zoom.user.password.update:
+    SUMMARY: Update a user's password
+    DESC: Update a user's password
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /users/{userId}/password
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.user.password.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.user.password.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.password.update
+  zoom.user.permissions.get:
+    SUMMARY: Retrieve a user's permissions
+    DESC: Retrieve a user's permissions
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/permissions
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(UserPermissions)
+        RETURNVAR: zoom_user_permissions_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.permissions.get
+  zoom.user.pac.get:
+    SUMMARY: List user's PAC accounts
+    DESC: List user's PAC accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/pac
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_pac_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.pac.get
+  zoom.user.tsp.get:
+    SUMMARY: List user's TSP accounts
+    DESC: List user's TSP accounts
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/tsp
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_tsp_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.tsp.get
+  zoom.user.tsp.create:
+    SUMMARY: Add a user's TSP account
+    DESC: Add a user's TSP account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/{userId}/tsp
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TSP)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(TSP)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(TSP)
+        RETURNVAR: zoom_user_tsp_create_201
+        STATUS: 201
+    CANONICAL_ID: zoom.user.tsp.create
+  zoom.user.tsp.get.1:
+    SUMMARY: Retrieve a user's TSP account
+    DESC: Retrieve a user's TSP account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/tsp/{tspId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - tspId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(TSP)
+        RETURNVAR: zoom_user_tsp_get_1
+        STATUS: 200
+    CANONICAL_ID: zoom.user.tsp.get.1
+  zoom.user.tsp.update:
+    SUMMARY: Update a TSP account
+    DESC: Update a user's TSP account
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /users/{userId}/tsp/{tspId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TSP)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - tspId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(TSP)
+          LOCATION: body
+    CANONICAL_ID: zoom.user.tsp.update
+  zoom.user.tsp.delete:
+    SUMMARY: Delete a user's TSP account
+    DESC: Delete a user's TSP account
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/tsp/{tspId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - tspId:
+          TYPE: STRING
+          LOCATION: path
+    CANONICAL_ID: zoom.user.tsp.delete
+  zoom.user.token.get:
+    SUMMARY: Retrieve a user's token
+    DESC: Retrieve a user's token
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/token
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_token_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.token.get
+  zoom.user.token.delete:
+    SUMMARY: Revoke a user's SSO token
+    DESC: Revoke a user's SSO token
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/{userId}/token
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.token.delete
+  zoom.user.email.update:
+    SUMMARY: Update a user's email
+    DESC: Update a user's email
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /users/{userId}/email
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.user.email.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.user.email.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.email.update
+  zoom.user.zpk.list:
+    SUMMARY: Verify a user's zpk (Deprecated
+    DESC: Check if the zpk is expired. The zpk is used to authenticate a user.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/zpk
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - zpk:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_zpk_list
+        STATUS: 200
+    CANONICAL_ID: zoom.user.zpk.list
+  zoom.user.email.list:
+    SUMMARY: Check a user's email
+    DESC: Check if the user email exists
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/email
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - email:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_email_list
+        STATUS: 200
+    CANONICAL_ID: zoom.user.email.list
+  zoom.user.vanityName.list:
+    SUMMARY: Check a user's personal meeting room name
+    DESC: Check if the user's personal meeting room name exists
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/vanity_name
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - vanity_name:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_vanityName_list
+        STATUS: 200
+    CANONICAL_ID: zoom.user.vanityName.list
+  zoom.user.webinars.get:
+    SUMMARY: List webinars
+    DESC: List webinars for a user
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/{userId}/webinars
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_user_webinars_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.webinars.get
+  zoom.user.webinars.create:
+    SUMMARY: Create a webinar
+    DESC: Create a webinar for a user <aside>The expiration time of start_url is two hours. But for API users, the expiration time is 90 days.</aside>
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/{userId}/webinars
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: OBJECT
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: OBJECT
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_user_webinars_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: User not found (HTTP 404)
+    CANONICAL_ID: zoom.user.webinars.create
+  zoom.webinar.get:
+    SUMMARY: Retrieve a webinar
+    DESC: Retrieve a webinar
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webinars/{webinarId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_webinar_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.get
+  zoom.webinar.update:
+    SUMMARY: Update a webinar
+    DESC: Update a webinar
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /webinars/{webinarId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: OBJECT
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: OBJECT
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.update
+  zoom.webinar.delete:
+    SUMMARY: Delete a webinar
+    DESC: Delete a webinar
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webinars/{webinarId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.delete
+  zoom.webinar.status.update:
+    SUMMARY: Update a webinar's status
+    DESC: Update a webinar's status
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /webinars/{webinarId}/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.webinar.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.webinar.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.status.update
+  zoom.webinar.panelists.get:
+    SUMMARY: List a webinar's panelists
+    DESC: List panelists for a webinar
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webinars/{webinarId}/panelists
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_webinar_panelists_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.panelists.get
+  zoom.webinar.panelists.create:
+    SUMMARY: Add a webinar panelist
+    DESC: Add panelist to webinar
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webinars/{webinarId}/panelists
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(WebinarPanelist)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(WebinarPanelist)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.webinar.panelists.createResponse201)
+        RETURNVAR: zoom_webinar_panelists_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.panelists.create
+  zoom.webinar.panelists.delete:
+    SUMMARY: Remove a webinar's panelists
+    DESC: Remove all panelists from a webinar
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webinars/{webinarId}/panelists
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.panelists.delete
+  zoom.webinar.panelists.delete.1:
+    SUMMARY: Remove a webinar panelist
+    DESC: Remove a panelist from a webinar
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webinars/{webinarId}/panelists/{panelistId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - panelistId:
+          TYPE: INT
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar or Panelist not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.panelists.delete.1
+  zoom.webinar.registrants.get:
+    SUMMARY: List a webinar's registrants
+    DESC: List registrants for a webinar
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webinars/{webinarId}/registrants
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - page_size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - page_number:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_webinar_registrants_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.registrants.get
+  zoom.webinar.registrants.create:
+    SUMMARY: Add a webinar registrant
+    DESC: Add a registrant for a webinar
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webinars/{webinarId}/registrants
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: OBJECT
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_ids:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: OBJECT
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(api.webinar.registrants.createResponse201)
+        RETURNVAR: zoom_webinar_registrants_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.registrants.create
+  zoom.webinar.status.update.1:
+    SUMMARY: Update a webinar registrant's status
+    DESC: Update a webinar registrant's status
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /webinars/{webinarId}/registrants/status
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.webinar.status.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - occurrence_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(api.webinar.status.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar or Registrant not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.status.update.1
+  zoom.past_webinar.instances.get:
+    SUMMARY: List of ended webinar instances
+    DESC: List of ended webinar instances
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /past_webinars/{webinarId}/instances
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_past_webinar_instances_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.past_webinar.instances.get
+  zoom.webinar.polls.get:
+    SUMMARY: "List a webinar's polls "
+    DESC: List polls of a webinar
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webinars/{webinarId}/polls
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_webinar_polls_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.polls.get
+  zoom.webinar.polls.create:
+    SUMMARY: Create a webinar's poll
+    DESC: Create a poll for a webinar
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webinars/{webinarId}/polls
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.webinar.polls.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.webinar.polls.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_webinar_polls_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.polls.create
+  zoom.webinar.polls.get.1:
+    SUMMARY: Retrieve a webinar's poll
+    DESC: Retrieve a webinar's poll
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webinars/{webinarId}/polls/{pollId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_webinar_polls_get_1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.polls.get.1
+  zoom.webinar.polls.update:
+    SUMMARY: Update a webinar's poll
+    DESC: Update a webinar's poll
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /webinars/{webinarId}/polls/{pollId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.webinar.polls.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(api.webinar.polls.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.polls.update
+  zoom.webinar.polls.delete:
+    SUMMARY: Delete a webinar's Poll
+    DESC: Delete a webinar's Poll
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webinars/{webinarId}/polls/{pollId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webinarId:
+          TYPE: INT
+          LOCATION: path
+      - pollId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar Poll not found (HTTP 404)
+    CANONICAL_ID: zoom.webinar.polls.delete
+  zoom.webhook.options.update:
+    SUMMARY: Switch webhook version
+    DESC: Switch webhook version
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /webhooks/options
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(api.webhook.options.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(api.webhook.options.updateRequest)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webhook Subscribe not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.options.update
+  zoom.webhook.list:
+    SUMMARY: List webhooks
+    DESC: List webhooks for a account
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: OBJECT
+        RETURNVAR: zoom_webhook_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webhook not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.list
+  zoom.webhook.create:
+    SUMMARY: Create a webhook
+    DESC: Create a webhook for a account
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /webhooks
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Webhook)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(Webhook)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_webhook_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Account not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.create
+  zoom.webhook.get:
+    SUMMARY: Retrieve a webhook
+    DESC: Retrieve a webhook
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /webhooks/{webhookId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webhookId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: zoom_webhook_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webinar not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.get
+  zoom.webhook.update:
+    SUMMARY: Update a webhook
+    DESC: Update a webhook
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /webhooks/{webhookId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(WebhookUpdate)
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webhookId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(WebhookUpdate)
+          LOCATION: body
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webhook not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.update
+  zoom.webhook.delete:
+    SUMMARY: Delete a webhook
+    DESC: Delete a webhook
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /webhooks/{webhookId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - webhookId:
+          TYPE: STRING
+          LOCATION: path
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: Webhook not found (HTTP 404)
+    CANONICAL_ID: zoom.webhook.delete
+STRUCTS:
+  Account:
+    - name: first_name
+      type: STRING
+      REQUIRED: true
+      comment: User's first name
+    - name: last_name
+      type: STRING
+      REQUIRED: true
+      comment: User's last name
+    - name: email
+      type: STRING
+      REQUIRED: true
+      comment: User's email address
+    - name: password
+      type: STRING
+      REQUIRED: true
+      comment: User's password
+    - name: options
+      type: STRUCT(AccountOptions)
+      REQUIRED: false
+  AccountOptions:
+    - name: share_rc
+      type: BOOL
+      REQUIRED: false
+      comment: Enable Share Virtual Room Connector
+    - name: room_connectors
+      type: STRING
+      REQUIRED: false
+      comment: Virtual Room Connector, multiple value separated by comma
+    - name: share_mc
+      type: BOOL
+      REQUIRED: false
+      comment: Enable Share Meeting Connector
+    - name: meeting_connectors
+      type: STRING
+      REQUIRED: false
+      comment: Meeting Connector, multiple values separated by comma
+    - name: pay_mode
+      type: STRING
+      REQUIRED: false
+      comment: Payee
+  AccountPlan:
+    - name: type
+      type: STRING
+      REQUIRED: false
+      comment: Account <a href="#plans">plan type</a>
+    - name: hosts
+      type: INT
+      REQUIRED: false
+      comment: Account plan number of hosts
+  AccountPlanBaseRequired:
+    - name: type
+      type: STRING
+      REQUIRED: true
+      comment: Account base <a href="#plans">plan type</a>
+    - name: hosts
+      type: INT
+      REQUIRED: true
+      comment: Account base plan number of hosts. For a Pro Plan, please select a value between 1 and 9. For a Business Plan, please select a value between 10 and 49. For a Education Plan, please select a value between 20 and 149. For a Free Trial Plan, please select a value between 1 and 9999.
+  AccountPlanRequired:
+    - name: type
+      type: STRING
+      REQUIRED: true
+      comment: Account <a href="#plans">plan type</a>
+    - name: hosts
+      type: INT
+      REQUIRED: true
+      comment: Account plan number of hosts
+  AccountPlans:
+    - name: plan_base
+      type: STRUCT(AccountPlanBaseRequired)
+      REQUIRED: false
+    - name: plan_zoom_rooms
+      type: STRUCT(AccountPlan)
+      REQUIRED: false
+    - name: plan_room_connector
+      type: STRUCT(AccountPlan)
+      REQUIRED: false
+    - name: plan_large_meeting
+      type: "[]STRUCT(AccountPlan)"
+      REQUIRED: false
+      comment: Additional Large Meeting Plans
+    - name: plan_webinar
+      type: "[]STRUCT(AccountPlan)"
+      REQUIRED: false
+      comment: Additional Webinar Plans
+    - name: plan_recording
+      type: STRING
+      REQUIRED: false
+      comment: Additional Cloud Recording Plan
+    - name: plan_audio
+      type: OBJECT
+      REQUIRED: false
+      comment: Additional Audio Conferencing <a href="#plans">plan type</a>
+  AccountSettings:
+    - name: schedule_meting
+      type: STRUCT(AccountSettingsScheduleMeeting)
+      REQUIRED: false
+    - name: in_meeting
+      type: STRUCT(AccountSettingsInMeeting)
+      REQUIRED: false
+    - name: email_notification
+      type: STRUCT(AccountSettingsEmailNotification)
+      REQUIRED: false
+    - name: zoom_rooms
+      type: STRUCT(AccountSettingsZoomRooms)
+      REQUIRED: false
+    - name: security
+      type: STRUCT(AccountSettingsSecurity)
+      REQUIRED: false
+    - name: recording
+      type: STRUCT(AccountSettingsRecording)
+      REQUIRED: false
+    - name: telephony
+      type: STRUCT(AccountSettingsTelephony)
+      REQUIRED: false
+    - name: integration
+      type: STRUCT(AccountSettingsIntegration)
+      REQUIRED: false
+    - name: feature
+      type: STRUCT(AccountSettingsFeature)
+      REQUIRED: false
+  AccountSettingsScheduleMeeting:
+    - name: host_video
+      type: BOOL
+      REQUIRED: false
+      comment: Start meetings with host video on
+    - name: participant_video
+      type: BOOL
+      REQUIRED: false
+      comment: Start meetings with participant video on. Participants can change this during the meeting.
+    - name: audio_type
+      type: STRING
+      REQUIRED: false
+      comment: Determine how participants can join the audio portion of the meeting
+    - name: join_before_host
+      type: BOOL
+      REQUIRED: false
+      comment: Allow participants to join the meeting before the host arrives
+    - name: enforce_login
+      type: BOOL
+      REQUIRED: false
+      comment: Only signed-in (Zoom users) users can join meetings
+    - name: enforce_login_with_domains
+      type: BOOL
+      REQUIRED: false
+      comment: Only signed-in users with a specific domain can join meetings
+    - name: enforce_login_domains
+      type: STRING
+      REQUIRED: false
+      comment: Only signed-in users with a specified domains
+    - name: not_store_meeting_topic
+      type: BOOL
+      REQUIRED: false
+      comment: Always display "Zoom Meeting" as the meeting topic
+    - name: force_pmi_jbh_password
+      type: BOOL
+      REQUIRED: false
+      comment: Require a password for Personal Meetings if attendees can join before host
+  AccountSettingsInMeeting:
+    - name: e2e_encryption
+      type: BOOL
+      REQUIRED: false
+      comment: Require that all meetings are encrypted using AES
+    - name: chat
+      type: BOOL
+      REQUIRED: false
+      comment: Allow meeting participants to send a message visible to all participants
+    - name: private_chat
+      type: BOOL
+      REQUIRED: false
+      comment: Allow meeting participants to send a private 1:1 message to another participants
+    - name: auto_saving_chat
+      type: BOOL
+      REQUIRED: false
+      comment: Automatically save all in-meeting chats so that hosts do not need to manually save the text of the chat after the meeting starts
+    - name: file_transfer
+      type: BOOL
+      REQUIRED: false
+      comment: Hosts and participants can send files through the in-meeting chat
+    - name: feedback
+      type: BOOL
+      REQUIRED: false
+      comment: Add a Feedback tab to the Windows Settings or Mac Preferences dialog, and also enable users to provide feedback to Zoom at the end of the meeting
+    - name: post_meeting_feedback
+      type: BOOL
+      REQUIRED: false
+      comment: Display a thumbs up/down survey at the end of each meeting
+    - name: co_host
+      type: BOOL
+      REQUIRED: false
+      comment: Allow the host to add co-hosts
+    - name: polling
+      type: BOOL
+      REQUIRED: false
+      comment: Add 'Polls' to the meeting controls.
+    - name: attendee_on_hold
+      type: BOOL
+      REQUIRED: false
+      comment: Allow hosts to temporarily remove an attendee from the meeting
+    - name: show_meeting_control_toolbar
+      type: BOOL
+      REQUIRED: false
+      comment: Always show meeting control toolbar
+    - name: allow_show_zoom_windows
+      type: BOOL
+      REQUIRED: false
+      comment: Show Zoom Desktop application when sharing screen
+    - name: annotation
+      type: BOOL
+      REQUIRED: false
+      comment: Allow participants to use annotation tools to add information to shared screens
+    - name: whiteboard
+      type: BOOL
+      REQUIRED: false
+      comment: Allow participants to share a whiteboard that includes annotation tools
+    - name: webinar_question_answer
+      type: BOOL
+      REQUIRED: false
+      comment: Q&A in webinar
+    - name: anonymous_question_answer
+      type: BOOL
+      REQUIRED: false
+      comment: Allow Anonymous Q&A in Webinar
+    - name: breakout_room
+      type: BOOL
+      REQUIRED: false
+      comment: Allow host to split meeting participants into separate, smaller rooms
+    - name: closed_caption
+      type: BOOL
+      REQUIRED: false
+      comment: Allow host to type closed captions or assign a participant/third party device to add closed captions
+    - name: far_end_camera_control
+      type: BOOL
+      REQUIRED: false
+      comment: Allow another user to take control of your camera during a meeting
+    - name: group_hd
+      type: BOOL
+      REQUIRED: false
+      comment: Activate higher quality video for host and participants. (This will use more bandwidth.)
+    - name: virtual_background
+      type: BOOL
+      REQUIRED: false
+      comment: Allow users to replace their background with any selected image. Choose or upload an image in the Zoom Desktop application settings.
+    - name: watermark
+      type: BOOL
+      REQUIRED: false
+      comment: Add watermark when viewing shared screen
+    - name: alert_guest_join
+      type: BOOL
+      REQUIRED: false
+      comment: Identify guest participants in the meeting/webinar
+    - name: auto_answer
+      type: BOOL
+      REQUIRED: false
+      comment: Enable users to see and add contacts to 'auto-answer group' in the contact list on chat. Any call from members of this group will be automatically answered.
+    - name: p2p_connetion
+      type: BOOL
+      REQUIRED: false
+      comment: Peer to Peer connection while only 2 people are in a meeting
+    - name: p2p_ports
+      type: BOOL
+      REQUIRED: false
+      comment: P2P listening ports range
+    - name: ports_range
+      type: STRING
+      REQUIRED: false
+      comment: Listening ports range, separated by comma (ex 55,56). The ports range must be between 1 to 65535.
+    - name: sending_default_email_invites
+      type: BOOL
+      REQUIRED: false
+      comment: Only show default email when sending email invites
+    - name: use_html_format_email
+      type: BOOL
+      REQUIRED: false
+      comment: Use HTML format email for Outlook plugin
+    - name: dscp_marking
+      type: BOOL
+      REQUIRED: false
+      comment: DSCP marking
+    - name: dscp_audio
+      type: INT
+      REQUIRED: false
+      comment: DSCP Audio
+    - name: dscp_video
+      type: INT
+      REQUIRED: false
+      comment: DSCP Video
+    - name: stereo_audio
+      type: BOOL
+      REQUIRED: false
+      comment: Allow users to select stereo audio in their client settings
+    - name: original_audio
+      type: BOOL
+      REQUIRED: false
+      comment: Allow users to select original sound in their client settings
+    - name: screen_sharing
+      type: BOOL
+      REQUIRED: false
+      comment: Allow screen sharing
+    - name: remote_control
+      type: BOOL
+      REQUIRED: false
+      comment: Allow users to request remote control
+    - name: attention_tracking
+      type: BOOL
+      REQUIRED: false
+      comment: Lets the host see an indicator in the participant panel if a meeting/webinar attendee does not have Zoom in focus during screen sharing
+    - name: allow_live_streaming
+      type: BOOL
+      REQUIRED: false
+      comment: Allow live streaming
+    - name: workplace_by_facebook
+      type: BOOL
+      REQUIRED: false
+      comment: Workplace by facebook
+    - name: custom_live_streaming
+      type: BOOL
+      REQUIRED: false
+      comment: Custom live streaming
+    - name: custom_service_instructions
+      type: STRING
+      REQUIRED: false
+      comment: Custom service instructions
+  AccountSettingsEmailNotification:
+    - name: cloud_recording_avaliable_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: Notify host when cloud recording is available
+    - name: jbh_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: Notify host when participants join the meeting before them
+    - name: cancel_meeting_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: Notify host and participants when the meeting is cancelled
+    - name: low_host_count_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: Notify when host licenses are running low
+    - name: alternative_host_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: Notify when an alternative host is set or removed from a meeting
+  AccountSettingsZoomRooms:
+    - name: upcoming_meeting_alert
+      type: BOOL
+      REQUIRED: false
+      comment: Upcoming meeting alert
+    - name: start_airplay_manually
+      type: BOOL
+      REQUIRED: false
+      comment: Start AirPlay service manually
+    - name: weekly_system_restart
+      type: BOOL
+      REQUIRED: false
+      comment: Weekly system restart
+    - name: list_meetings_with_calendar
+      type: BOOL
+      REQUIRED: false
+      comment: Display meeting list with calendar integration
+    - name: zr_post_meeting_feedback
+      type: BOOL
+      REQUIRED: false
+      comment: Zoom Room post meeting feedback
+    - name: ultrasonic
+      type: BOOL
+      REQUIRED: false
+      comment: Automatic direct sharing using ultrasonic proximity signal
+    - name: force_private_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: Transform all meetings to private
+    - name: hide_host_information
+      type: BOOL
+      REQUIRED: false
+      comment: Hide host and meeting ID from private meetings
+    - name: cmr_for_instant_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: Cloud recording for instant meetings
+    - name: auto_start_stop_scheduled_meetings
+      type: BOOL
+      REQUIRED: false
+      comment: Automatic start/stop for scheduled meetings
+  AccountSettingsSecurity:
+    - name: admin_change_name_pic
+      type: BOOL
+      REQUIRED: false
+      comment: Only account administrators can change user's username and picture
+    - name: import_photos_from_devices
+      type: BOOL
+      REQUIRED: false
+      comment: Allow importing of photos from photo library on the user's device
+    - name: hide_billing_info
+      type: BOOL
+      REQUIRED: false
+      comment: Hide billing information
+  AccountSettingsRecording:
+    - name: local_recording
+      type: BOOL
+      REQUIRED: false
+      comment: Allow hosts and participants to record the meeting to a local file
+    - name: cloud_recording
+      type: BOOL
+      REQUIRED: false
+      comment: Allow hosts to record and save the meeting in the cloud
+    - name: record_speaker_view
+      type: BOOL
+      REQUIRED: false
+      comment: Record active speaker with shared screen
+    - name: record_gallery_view
+      type: BOOL
+      REQUIRED: false
+      comment: Record gallery view with shared screen
+    - name: record_audio_file
+      type: BOOL
+      REQUIRED: false
+      comment: Record an audio only file
+    - name: save_chat_text
+      type: BOOL
+      REQUIRED: false
+      comment: Save chat text from the meeting
+    - name: show_timestamp
+      type: BOOL
+      REQUIRED: false
+      comment: Add a timestamp to the recording
+    - name: recording_audio_transcript
+      type: BOOL
+      REQUIRED: false
+      comment: Automatically transcribe the audio of the meeting or webinar to the cloud
+    - name: auto_recording
+      type: STRING
+      REQUIRED: false
+      comment: Record meetings automatically as they start
+    - name: cloud_recording_download
+      type: BOOL
+      REQUIRED: false
+      comment: Cloud Recording Downloads
+    - name: cloud_recording_download_host
+      type: BOOL
+      REQUIRED: false
+      comment: Only the host can download cloud recordings
+    - name: account_user_access_recording
+      type: BOOL
+      REQUIRED: false
+      comment: Cloud recordings are only accessible to account members. People outside of your organization cannot open links that provide access to cloud recordings.
+    - name: auto_delete_cmr
+      type: BOOL
+      REQUIRED: false
+      comment: Allow Zoom to automatically delete recordings permanently after a specified number of days
+    - name: auto_delete_cmr_days
+      type: INT
+      REQUIRED: false
+      comment: When `auto_delete_cmr` is 'true' this value will set the number of days before auto deletion of cloud recordings
+  AccountSettingsTelephony:
+    - name: third_party_audio
+      type: BOOL
+      REQUIRED: false
+      comment: Users can join the meeting using the existing 3rd party audio configuration
+    - name: audio_conference_info
+      type: STRING
+      REQUIRED: false
+      comment: 3rd party audio conference info
+  AccountSettingsIntegration:
+    - name: google_calendar
+      type: BOOL
+      REQUIRED: false
+      comment: Enables meetings to be scheduled using Google Calendars
+    - name: google_drive
+      type: BOOL
+      REQUIRED: false
+      comment: Enables users who join a meeting from their mobile device to share content from their Google Drive
+    - name: dropbox
+      type: BOOL
+      REQUIRED: false
+      comment: Enables users who join a meeting from their mobile device to share content from their Dropbox account
+    - name: box
+      type: BOOL
+      REQUIRED: false
+      comment: Enables users who join a meeting from their mobile device to share content from their Box account
+    - name: microsoft_one_drive
+      type: BOOL
+      REQUIRED: false
+      comment: Enables users who join a meeting from their mobile device to share content from their Microsoft OneDrive account
+    - name: kubi
+      type: BOOL
+      REQUIRED: false
+      comment: Enables users to control a connected Kubi device from within a Zoom meeting
+  AccountSettingsFeature:
+    - name: meeting_capacity
+      type: INT
+      REQUIRED: false
+      comment: Set the maximum number of participants this user can have in a single meeting
+  DomainsList:
+    - name: total_records
+      type: INT
+      REQUIRED: false
+      comment: Total records
+    - name: domains
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of Managed Domains objects
+  BillingContact:
+    - name: first_name
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's first name
+    - name: last_name
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's last name
+    - name: email
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's email address
+    - name: phone_number
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's phone number
+    - name: address
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's address
+    - name: apt
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's apartment/suite
+    - name: city
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's city
+    - name: state
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's state
+    - name: zip
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's zip/postal code
+    - name: country
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's country
+  BillingContactRequired:
+    - name: first_name
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's first name
+    - name: last_name
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's last name
+    - name: email
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's email address
+    - name: phone_number
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's phone number
+    - name: address
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's address
+    - name: apt
+      type: STRING
+      REQUIRED: false
+      comment: Billing Contact's apartment/suite
+    - name: city
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's city
+    - name: state
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's state
+    - name: zip
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's zip/postal code
+    - name: country
+      type: STRING
+      REQUIRED: true
+      comment: Billing Contact's country
+  Device:
+    - name: name
+      type: STRING
+      REQUIRED: true
+      comment: Device name
+    - name: protocol
+      type: STRING
+      REQUIRED: true
+      comment: Device protocol
+    - name: ip
+      type: STRING
+      REQUIRED: true
+      comment: Device Ip
+    - name: encryption
+      type: STRING
+      REQUIRED: true
+      comment: Device encryption
+  GroupList:
+    - name: total_records
+      type: INT
+      REQUIRED: false
+      comment: Total records
+    - name: groups
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of Group objects
+  MeetingMetric:
+    - name: uuid
+      type: STRING
+      REQUIRED: false
+      comment: Meeting UUID
+    - name: id
+      type: INT
+      REQUIRED: false
+      comment: Meeting ID
+    - name: topic
+      type: STRING
+      REQUIRED: false
+      comment: Meeting topic
+    - name: host
+      type: STRING
+      REQUIRED: false
+      comment: User display name
+    - name: email
+      type: STRING
+      REQUIRED: false
+      comment: User email
+    - name: user_type
+      type: STRING
+      REQUIRED: false
+      comment: User type
+    - name: start_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Meeting start time
+    - name: end_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Meeting end time
+    - name: duration
+      type: STRING
+      REQUIRED: false
+      comment: Meeting duration
+    - name: participants
+      type: INT
+      REQUIRED: false
+      comment: Meeting participant count
+    - name: has_pstn
+      type: BOOL
+      REQUIRED: false
+    - name: has_voip
+      type: BOOL
+      REQUIRED: false
+    - name: has_3rd_party_audio
+      type: BOOL
+      REQUIRED: false
+    - name: has_video
+      type: BOOL
+      REQUIRED: false
+    - name: has_screen_share
+      type: BOOL
+      REQUIRED: false
+    - name: has_recording
+      type: BOOL
+      REQUIRED: false
+    - name: has_sip
+      type: BOOL
+      REQUIRED: false
+  MeetingInvitation:
+    - name: invitation
+      type: STRING
+      REQUIRED: false
+      comment: Meeting invitation
+  MeetingLiveStream:
+    - name: stream_url
+      type: STRING
+      REQUIRED: true
+      comment: Server URL.
+    - name: stream_key
+      type: STRING
+      REQUIRED: true
+      comment: Stream name/key.
+    - name: page_url
+      type: STRING
+      REQUIRED: false
+      comment: View URL.
+  MeetingLiveStreamStatus:
+    - name: action
+      type: STRING
+      REQUIRED: false
+      comment: Action
+    - name: settings
+      type: OBJECT
+      REQUIRED: false
+  QOSParticipant:
+    - name: user_id
+      type: STRING
+      REQUIRED: false
+      comment: Participant ID
+    - name: user_name
+      type: STRING
+      REQUIRED: false
+      comment: Participant display name
+    - name: device
+      type: STRING
+      REQUIRED: false
+      comment: Participant device
+    - name: ip_address
+      type: STRING
+      REQUIRED: false
+      comment: Participant IP Address
+    - name: location
+      type: STRING
+      REQUIRED: false
+      comment: Participant location
+    - name: join_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Participant join time
+    - name: leave_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Participant leave time
+    - name: pc_name
+      type: STRING
+      REQUIRED: false
+      comment: Participant PC name
+    - name: domain
+      type: STRING
+      REQUIRED: false
+      comment: Participant domain
+    - name: mac_addr
+      type: STRING
+      REQUIRED: false
+      comment: Participant MAC Address
+    - name: harddisk_id
+      type: STRING
+      REQUIRED: false
+      comment: Participant hard disk id
+    - name: version
+      type: STRING
+      REQUIRED: false
+      comment: Participant version
+    - name: user_qos
+      type: OBJECT
+      REQUIRED: false
+      comment: User quality of service
+  RecordingSettings:
+    - name: share_recording
+      type: STRING
+      REQUIRED: false
+      comment: Determine if the meeting recording is shared
+    - name: viewer_download
+      type: BOOL
+      REQUIRED: false
+      comment: Host video
+    - name: password
+      type: STRING
+      REQUIRED: false
+      comment: Password protect
+    - name: on_demand
+      type: BOOL
+      REQUIRED: false
+      comment: Registration required
+    - name: approval_type
+      type: INT
+      REQUIRED: false
+      comment: Approval type
+    - name: send_email_to_host
+      type: BOOL
+      REQUIRED: false
+      comment: Send an email to host when someone registers
+    - name: show_social_share_buttons
+      type: BOOL
+      REQUIRED: false
+      comment: Show social share buttons on registration page
+  RegistrantStatus:
+    - name: action
+      type: STRING
+      REQUIRED: true
+    - name: registrants
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of registrants
+  TSP:
+    - name: conference_code
+      type: STRING
+      REQUIRED: true
+      comment: Conference code, numeric value, length is less than 16.
+    - name: leader_pin
+      type: STRING
+      REQUIRED: true
+      comment: Leader PIN, numeric value, length is less than 16.
+    - name: dial_in_numbers
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of Dial In Numbers
+  UserUpdate:
+    - name: first_name
+      type: STRING
+      REQUIRED: false
+      comment: User's first name. Cannot contain more than 5 Chinese words.
+    - name: last_name
+      type: STRING
+      REQUIRED: false
+      comment: User's last name. Cannot contain more than 5 Chinese words.
+    - name: type
+      type: INT
+      REQUIRED: false
+      comment: User's type
+    - name: pmi
+      type: STRING
+      REQUIRED: false
+      comment: Personal Meeting ID,length must be 10
+    - name: use_pmi
+      type: BOOL
+      REQUIRED: false
+      comment: Use Personal Meeting ID for instant meetings.
+    - name: timezone
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: The time zone id for user profile. For this parameter value please refer to the id value in [timezone](#timezones) list.
+    - name: language
+      type: STRING
+      REQUIRED: false
+      comment: language
+    - name: dept
+      type: STRING
+      REQUIRED: false
+      comment: Department for user profile, use for report
+    - name: vanity_name
+      type: STRING
+      REQUIRED: false
+      comment: Personal meeting room name
+    - name: host_key
+      type: STRING
+      REQUIRED: false
+      comment: Host Key, should be 6-digit number
+    - name: cms_user_id
+      type: STRING
+      REQUIRED: false
+      comment: Kaltura User Id
+  UserAssistantsList:
+    - name: assistants
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of User's assistants
+  UserSchedulersList:
+    - name: assistants
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of User's schedulers.
+  UserSettings:
+    - name: schedule_meeting
+      type: STRUCT(UserSettingsScheduleMeeting)
+      REQUIRED: false
+    - name: in_meeting
+      type: STRUCT(UserSettingsInMeeting)
+      REQUIRED: false
+    - name: email_notification
+      type: STRUCT(UserSettingsEmailNotification)
+      REQUIRED: false
+    - name: recording
+      type: STRUCT(UserSettingsRecording)
+      REQUIRED: false
+    - name: telephony
+      type: STRUCT(UserSettingsTelephony)
+      REQUIRED: false
+    - name: feature
+      type: STRUCT(UserSettingsFeature)
+      REQUIRED: false
+  UserSettingsScheduleMeeting:
+    - name: host_video
+      type: BOOL
+      REQUIRED: false
+      comment: Host video
+    - name: participants_video
+      type: BOOL
+      REQUIRED: false
+      comment: Participants video
+    - name: audio_type
+      type: STRING
+      REQUIRED: false
+      comment: Determine how participants can join the audio portion of the meeting
+    - name: join_before_host
+      type: BOOL
+      REQUIRED: false
+      comment: Join before host
+    - name: force_pmi_jbh_password
+      type: BOOL
+      REQUIRED: false
+      comment: Require a password for Personal Meetings if attendees can join before host
+    - name: pstn_password_protected
+      type: BOOL
+      REQUIRED: false
+      comment: Generate and require password for participants joining by phone
+  UserSettingsInMeeting:
+    - name: e2e_encryption
+      type: BOOL
+      REQUIRED: false
+      comment: End-to-end encryption
+    - name: chat
+      type: BOOL
+      REQUIRED: false
+      comment: Chat
+    - name: private_chat
+      type: BOOL
+      REQUIRED: false
+      comment: Private chat
+    - name: auto_saving_chat
+      type: BOOL
+      REQUIRED: false
+      comment: Auto saving chats
+    - name: entry_exit_chime
+      type: STRING
+      REQUIRED: false
+      comment: Play sound on join/leave
+    - name: record_play_voice
+      type: BOOL
+      REQUIRED: false
+      comment: Record and play their own voice
+    - name: file_transfer
+      type: BOOL
+      REQUIRED: false
+      comment: File transfer
+    - name: feedback
+      type: BOOL
+      REQUIRED: false
+      comment: Feedback to Zoom
+    - name: co_host
+      type: BOOL
+      REQUIRED: false
+      comment: Co-host
+    - name: polling
+      type: BOOL
+      REQUIRED: false
+      comment: Polling
+    - name: attendee_on_hold
+      type: BOOL
+      REQUIRED: false
+      comment: Allow host to put attendee on hold
+    - name: annotation
+      type: BOOL
+      REQUIRED: false
+      comment: Annotation
+    - name: remote_control
+      type: BOOL
+      REQUIRED: false
+      comment: Remote control
+    - name: non_verbal_feedback
+      type: BOOL
+      REQUIRED: false
+      comment: Non-verbal feedback
+    - name: breakout_room
+      type: BOOL
+      REQUIRED: false
+      comment: Breakout room
+    - name: remote_support
+      type: BOOL
+      REQUIRED: false
+      comment: Remote support
+    - name: closed_caption
+      type: BOOL
+      REQUIRED: false
+      comment: Closed caption
+    - name: group_hd
+      type: BOOL
+      REQUIRED: false
+      comment: Group HD video
+    - name: virtual_background
+      type: BOOL
+      REQUIRED: false
+      comment: Virtual background
+    - name: far_end_camera_control
+      type: BOOL
+      REQUIRED: false
+      comment: Far end camera control
+    - name: share_dual_camera
+      type: BOOL
+      REQUIRED: false
+      comment: Share dual camera (Deprecated)
+    - name: attention_tracking
+      type: BOOL
+      REQUIRED: false
+      comment: Attention tracking
+    - name: waiting_room
+      type: BOOL
+      REQUIRED: false
+      comment: Waiting room
+    - name: allow_live_streaming
+      type: BOOL
+      REQUIRED: false
+      comment: Allow live streaming
+    - name: workplace_by_facebook
+      type: BOOL
+      REQUIRED: false
+      comment: Workplace by facebook
+    - name: custom_live_streaming
+      type: BOOL
+      REQUIRED: false
+      comment: Custom live streaming
+    - name: custom_service_instructions
+      type: STRING
+      REQUIRED: false
+      comment: Custom service instructions
+  UserSettingsEmailNotification:
+    - name: jbh_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: When attendees join meeting before host
+    - name: cancel_meeting_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: When a meeting is cancelled
+    - name: alternative_host_reminder
+      type: BOOL
+      REQUIRED: false
+      comment: When an alternative host is set or removed from a meeting
+  UserSettingsRecording:
+    - name: local_recording
+      type: BOOL
+      REQUIRED: false
+      comment: Local recording
+    - name: cloud_recording
+      type: BOOL
+      REQUIRED: false
+      comment: Cloud recording
+    - name: record_speaker_view
+      type: BOOL
+      REQUIRED: false
+      comment: Record the active speaker view
+    - name: record_gallery_view
+      type: BOOL
+      REQUIRED: false
+      comment: Record the gallery view
+    - name: record_audio_file
+      type: BOOL
+      REQUIRED: false
+      comment: Record an audio only file
+    - name: save_chat_text
+      type: BOOL
+      REQUIRED: false
+      comment: Save chat text from the meeting
+    - name: show_timestamp
+      type: BOOL
+      REQUIRED: false
+      comment: Show timestamp on video
+    - name: recording_audio_transcript
+      type: BOOL
+      REQUIRED: false
+      comment: Audio transcript
+    - name: auto_recording
+      type: STRING
+      REQUIRED: false
+      comment: Automatic recording
+    - name: auto_delete_cmr
+      type: BOOL
+      REQUIRED: false
+      comment: Auto delete cloud recordings
+    - name: auto_delete_cmr_days
+      type: INT
+      REQUIRED: false
+      comment: A specified number of days of auto delete cloud recordings
+  UserSettingsTelephony:
+    - name: third_party_audio
+      type: BOOL
+      REQUIRED: false
+      comment: 3rd party audio conference
+    - name: audio_conference_info
+      type: STRING
+      REQUIRED: false
+      comment: 3rd party audio conference info
+    - name: show_international_numbers_link
+      type: BOOL
+      REQUIRED: false
+      comment: Show international numbers link on the invitation email
+  UserSettingsFeature:
+    - name: meeting_capacity
+      type: INT
+      REQUIRED: false
+      comment: User’s meeting capacity
+    - name: large_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: Large meting feature
+    - name: large_meeting_capacity
+      type: INT
+      REQUIRED: false
+      comment: Large meeting capacity, can be 100, 200, 300 or 500, depends on if having related large meeting capacity plan subscription or not
+    - name: webinar
+      type: BOOL
+      REQUIRED: false
+      comment: Webinar feature
+    - name: webinar_capacity
+      type: INT
+      REQUIRED: false
+      comment: Webinar capacity, can be 100, 500, 1000, 3000, 5000 or 10000, depends on if having related webinar capacity plan subscription or not
+    - name: cn_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: CN meeting feature
+    - name: in_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: IN meeting feature
+  UserSettingsUpdate:
+    - name: schedule_meeting
+      type: STRUCT(UserSettingsScheduleMeeting)
+      REQUIRED: false
+    - name: in_meeting
+      type: STRUCT(UserSettingsInMeeting)
+      REQUIRED: false
+    - name: email_notification
+      type: STRUCT(UserSettingsEmailNotification)
+      REQUIRED: false
+    - name: recording
+      type: STRUCT(UserSettingsRecording)
+      REQUIRED: false
+    - name: telephony
+      type: STRUCT(UserSettingsTelephony)
+      REQUIRED: false
+    - name: feature
+      type: STRUCT(UserSettingsFeatureUpdate)
+      REQUIRED: false
+  UserSettingsFeatureUpdate:
+    - name: meeting_capacity
+      type: INT
+      REQUIRED: false
+      comment: User’s meeting capacity
+    - name: large_meeting
+      type: BOOL
+      REQUIRED: false
+      comment: Large meting feature
+    - name: large_meeting_capacity
+      type: INT
+      REQUIRED: false
+      comment: Large meeting capacity, can be 100, 200, 300 or 500, depends on if having related large meeting capacity plan subscription or not
+    - name: webinar
+      type: BOOL
+      REQUIRED: false
+      comment: Webinar feature
+    - name: webinar_capacity
+      type: INT
+      REQUIRED: false
+      comment: Webinar capacity, can be 100, 500, 1000, 3000, 5000 or 10000, depends on if having related webinar capacity plan subscription or not
+  UserPermissions:
+    - name: permissions
+      type: "[]STRING"
+      REQUIRED: false
+      comment: List of user permissions
+  WebinarMetric:
+    - name: uuid
+      type: STRING
+      REQUIRED: false
+      comment: Webinar UUID
+    - name: id
+      type: INT
+      REQUIRED: false
+      comment: Webinar ID
+    - name: topic
+      type: STRING
+      REQUIRED: false
+      comment: Webinar topic
+    - name: host
+      type: STRING
+      REQUIRED: false
+      comment: User display name
+    - name: email
+      type: STRING
+      REQUIRED: false
+      comment: User email
+    - name: user_type
+      type: STRING
+      REQUIRED: false
+      comment: User type
+    - name: start_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Webinar start time
+    - name: end_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Webinar end time
+    - name: duration
+      type: STRING
+      REQUIRED: false
+      comment: Webinar duration
+    - name: participants
+      type: INT
+      REQUIRED: false
+      comment: Webinar participant count
+    - name: has_pstn
+      type: BOOL
+      REQUIRED: false
+    - name: has_voip
+      type: BOOL
+      REQUIRED: false
+    - name: has_3rd_party_audio
+      type: BOOL
+      REQUIRED: false
+    - name: has_video
+      type: BOOL
+      REQUIRED: false
+    - name: has_screen_share
+      type: BOOL
+      REQUIRED: false
+    - name: has_recording
+      type: BOOL
+      REQUIRED: false
+    - name: has_sip
+      type: BOOL
+      REQUIRED: false
+  WebinarPanelist:
+    - name: panelists
+      type: "[]ANY"
+      REQUIRED: false
+      comment: List of Panelist objects
+  Webhook:
+    - name: url
+      type: STRING
+      REQUIRED: true
+      comment: Webhook endpoint
+    - name: auth_user
+      type: STRING
+      REQUIRED: true
+      comment: Webhook auth user name
+    - name: auth_password
+      type: STRING
+      REQUIRED: true
+      comment: Webhook auth password
+    - name: events
+      type: "[]STRING"
+      REQUIRED: true
+      comment: List of events objects.
+  WebhookUpdate:
+    - name: url
+      type: STRING
+      REQUIRED: false
+      comment: Webhook endpoint
+    - name: auth_user
+      type: STRING
+      REQUIRED: false
+      comment: Webhook auth user name
+    - name: auth_password
+      type: STRING
+      REQUIRED: false
+      comment: Webhook auth password
+    - name: events
+      type: "[]STRING"
+      REQUIRED: false
+      comment: List of events objects
+  TrackingField:
+    - name: field
+      type: STRING
+      REQUIRED: false
+      comment: Tracking Field Name
+    - name: required
+      type: BOOL
+      REQUIRED: false
+      comment: Tracking Field Required
+    - name: visible
+      type: BOOL
+      REQUIRED: false
+      comment: Tracking Field Visible
+    - name: recommended_values
+      type: "[]STRING"
+      REQUIRED: false
+      comment: Array of recommended values
+  api.account.plans.createRequest:
+    - name: contact
+      type: STRUCT(BillingContactRequired)
+      REQUIRED: false
+    - name: plan_base
+      type: STRUCT(AccountPlanBaseRequired)
+      REQUIRED: false
+    - name: plan_zoom_rooms
+      type: STRUCT(AccountPlan)
+      REQUIRED: false
+    - name: plan_room_connector
+      type: STRUCT(AccountPlan)
+      REQUIRED: false
+    - name: plan_large_meeting
+      type: "[]STRUCT(AccountPlan)"
+      REQUIRED: false
+      comment: Additional Large Meeting Plans
+    - name: plan_webinar
+      type: "[]STRUCT(AccountPlan)"
+      REQUIRED: false
+      comment: Additional Webinar Plans
+    - name: plan_recording
+      type: STRING
+      REQUIRED: false
+      comment: Additional Cloud Recording Plan
+    - name: plan_audio
+      type: OBJECT
+      REQUIRED: false
+      comment: Additional Audio Conferencing <a href="#plans">plan type</a>
+  api.user.meetings.createRequest:
+    - name: schedule_for
+      type: STRING
+      REQUIRED: false
+      comment: Email or userId if you want to schedule meeting for another user.
+  api.meeting.updateRequest:
+    - name: schedule_for
+      type: STRING
+      REQUIRED: false
+      comment: Email or userId if you want to schedule meeting for another user.
+  api.meeting.registrants.createResponse201:
+    - name: registrant_id
+      type: STRING
+      REQUIRED: false
+      comment: Registrant ID
+    - name: id
+      type: STRING
+      REQUIRED: false
+      comment: Registrant ID
+    - name: topic
+      type: STRING
+      REQUIRED: false
+      comment: Topic
+    - name: start_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Start time
+    - name: join_url
+      type: STRING
+      REQUIRED: false
+      comment: Join URL for this registrant
+  api.meeting.polls.createRequest:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Poll Title
+    - name: questions
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of Polls
+  api.meeting.polls.updateRequest:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Poll Title
+    - name: questions
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of Polls
+  api.user.createRequest:
+    - name: action
+      type: STRING
+      REQUIRED: true
+      comment: Specify how to create the new user
+    - name: user_info
+      type: ANY
+      REQUIRED: false
+  api.user.status.updateRequest:
+    - name: action
+      type: STRING
+      REQUIRED: true
+      comment: The action type
+  api.user.password.updateRequest:
+    - name: password
+      type: STRING
+      REQUIRED: true
+      comment: User’s password. Character length is less than 32,
+  api.user.email.updateRequest:
+    - name: email
+      type: STRING
+      REQUIRED: true
+      comment: User’s email. Character length is less than 128.
+  api.webinar.panelists.createResponse201:
+    - name: id
+      type: STRING
+      REQUIRED: false
+      comment: Panelist ID
+    - name: join_url
+      type: STRING
+      REQUIRED: false
+      comment: Join URL for this panelist
+  api.webinar.registrants.createResponse201:
+    - name: registrant_id
+      type: STRING
+      REQUIRED: false
+      comment: Registrant ID
+    - name: id
+      type: STRING
+      REQUIRED: false
+      comment: Registrant ID
+    - name: topic
+      type: STRING
+      REQUIRED: false
+      comment: Topic
+    - name: start_time
+      type: TIMESTAMP
+      REQUIRED: false
+      comment: Start time
+    - name: join_url
+      type: STRING
+      REQUIRED: false
+      comment: Join URL for this registrant
+  api.webinar.polls.createRequest:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Poll Title
+    - name: questions
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of Polls
+  api.webinar.polls.updateRequest:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Poll Title
+    - name: questions
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of Polls

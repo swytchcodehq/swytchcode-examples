@@ -1,0 +1,2991 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_hapikey: <HAPIKEY>
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  marketing.v3.attendance.create:
+    SUMMARY: Record Participants by ContactId with Marketing Event External Ids
+    DESC: |-
+      Records the participation of multiple HubSpot contacts in a Marketing Event using their HubSpot contact IDs.
+
+      Additional Functionality:
+      - Adds a timeline event to the contacts.
+
+      Allowed Properties:
+      For the state "attend":
+      - joinedAt
+      - leftAt
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/attendance/{externalEventId}/{subscriberState}/create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSubscriberVidResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSubscriberVidResponse)
+        RETURNVAR: marketing_v3_attendance_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_attendance_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.attendance.create
+  marketing.v3.breakdown.get:
+    SUMMARY: Read participations breakdown by Marketing Event internal identifier
+    DESC: Read Marketing event's participations breakdown with optional filters by internal identifier marketingEventId.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/participations/{marketingEventId}/breakdown
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+    INPUTS:
+      - marketingEventId:
+          TYPE: INT
+          LOCATION: path
+      - contactIdentifier:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - state:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+        RETURNVAR: marketing_v3_breakdown_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_breakdown_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.breakdown.get
+  marketing.v3.upsert.create:
+    SUMMARY: Record a subscriber state by contact ID
+    DESC: Record a subscriber state between multiple HubSpot contacts and a marketing event, using HubSpot contact IDs. Note that the contact must already exist in HubSpot; a contact will not be created.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}/{subscriberState}/upsert
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_upsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.upsert.create
+  marketing.v3.events.get:
+    SUMMARY: Get Marketing Event by External IDs
+    DESC: |-
+      Returns the details of a Marketing Event with the specified externalAccountId, externalEventId, if it exists.
+
+      Only Marketing Events created by the same app making the request can be retrieved.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventPublicReadResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventPublicReadResponse)
+        RETURNVAR: marketing_v3_events_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.get
+  marketing.v3.events.update:
+    SUMMARY: Create or update a marketing event
+    DESC: Upserts a marketing event If there is an existing marketing event with the specified ID, it will be updated; otherwise a new event will be created.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MarketingEventCreateRequestParams)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventPublicDefaultResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(MarketingEventCreateRequestParams)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventPublicDefaultResponse)
+        RETURNVAR: marketing_v3_events_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.update
+  marketing.v3.events.delete:
+    SUMMARY: Delete Marketing Event by External Ids
+    DESC: |-
+      Deletes the existing Marketing Event with the specified externalAccountId, externalEventId, if it exists.
+
+      Only Marketing Events created by the same app can be deleted.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.delete
+  marketing.v3.events.update_5a3b:
+    SUMMARY: Update Marketing Event by External IDs
+    DESC: |-
+      Updates the details of an existing Marketing Event identified by its externalAccountId, externalEventId if it exists.
+
+      Only Marketing Events created by the same app can be updated.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MarketingEventUpdateRequestParams)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventPublicDefaultResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(MarketingEventUpdateRequestParams)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventPublicDefaultResponse)
+        RETURNVAR: marketing_v3_events_update_5a3b
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_update_5a3b_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.update_5a3b
+  marketing.v3.upsert.create_c4ef:
+    SUMMARY: Create or Update Multiple Marketing Events
+    DESC: |-
+      Upserts multiple Marketing Events. If a Marketing Event with the specified ID already exists, it will be updated; otherwise, a new event will be created.
+
+      Only Marketing Events originally created by the same app can be updated.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/upsert
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventCreateRequestParams)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseMarketingEventPublicDefaultResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventCreateRequestParams)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseMarketingEventPublicDefaultResponse)
+        RETURNVAR: marketing_v3_upsert_create_c4ef
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_upsert_create_c4ef_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.upsert.create_c4ef
+  marketing.v3.attendance.create_f8cf:
+    SUMMARY: Record Participants by Email with Marketing Event External Ids
+    DESC: |-
+      Records the participation of multiple HubSpot contacts in a Marketing Event using their email addresses.
+
+      If a contact does not exist, it will be automatically created. The contactProperties field is used exclusively for creating new contacts and will not update properties of existing contacts.
+
+      Additional Functionality:
+      - Adds a timeline event to the contacts.
+
+       Allowed Properties:
+      For the state "attend":
+      - joinedAt
+      - leftAt
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/attendance/{externalEventId}/{subscriberState}/email-create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSubscriberEmailResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSubscriberEmailResponse)
+        RETURNVAR: marketing_v3_attendance_create_f8cf
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_attendance_create_f8cf_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.attendance.create_f8cf
+  marketing.v3.breakdown.get_1876:
+    SUMMARY: Read participations breakdown by Marketing Event external identifier
+    DESC: Read Marketing event's participations breakdown with optional filters by externalAccountId and externalEventId pair.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/participations/{externalAccountId}/{externalEventId}/breakdown
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+    INPUTS:
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: path
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - contactIdentifier:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - state:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+        RETURNVAR: marketing_v3_breakdown_get_1876
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_breakdown_get_1876_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.breakdown.get_1876
+  marketing.v3.marketingEvents.get:
+    SUMMARY: Get Marketing Event by objectId
+    DESC: Returns the details of a Marketing Event with the specified objectId, if it exists.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/{objectId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventPublicReadResponseV2)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventPublicReadResponseV2)
+        RETURNVAR: marketing_v3_marketingEvents_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_marketingEvents_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.marketingEvents.get
+  marketing.v3.marketingEvents.delete:
+    SUMMARY: Delete Marketing Event by objectId
+    DESC: Deletes the existing Marketing Event with the specified objectId, if it exists.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/marketing-events/{objectId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_marketingEvents_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.marketingEvents.delete
+  marketing.v3.marketingEvents.update:
+    SUMMARY: Update Marketing Event by objectId
+    DESC: Updates the details of an existing Marketing Event identified by its objectId, if it exists.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /marketing/v3/marketing-events/{objectId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MarketingEventPublicUpdateRequestV2)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventPublicDefaultResponseV2)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(MarketingEventPublicUpdateRequestV2)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventPublicDefaultResponseV2)
+        RETURNVAR: marketing_v3_marketingEvents_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_marketingEvents_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.marketingEvents.update
+  marketing.v3.lists.get:
+    SUMMARY: Get lists associated with a marketing event
+    DESC: Gets lists associated with a marketing event by external account id and external event id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/associations/{externalAccountId}/{externalEventId}/lists
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicListNoPaging)
+    INPUTS:
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: path
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicListNoPaging)
+        RETURNVAR: marketing_v3_lists_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.get
+  marketing.v3.lists.get_5225:
+    SUMMARY: Get lists associated with a marketing event
+    DESC: Gets lists associated with a marketing event by marketing event id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/associations/{marketingEventId}/lists
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicListNoPaging)
+    INPUTS:
+      - marketingEventId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicListNoPaging)
+        RETURNVAR: marketing_v3_lists_get_5225
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_get_5225_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.get_5225
+  marketing.v3.attendance.create_6afc:
+    SUMMARY: Record Participants by Email with Marketing Event Object Id
+    DESC: |-
+      Records the participation of multiple HubSpot contacts in a Marketing Event using their email addresses.
+
+      If a contact does not exist, it will be automatically created. The contactProperties field is used exclusively for creating new contacts and will not update properties of existing contacts.
+
+      Additional Functionality:
+      - Adds a timeline event to the contacts.
+
+       Allowed Properties:
+      For the state "attend":
+      - joinedAt
+      - leftAt
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/{objectId}/attendance/{subscriberState}/email-create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSubscriberEmailResponse)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSubscriberEmailResponse)
+        RETURNVAR: marketing_v3_attendance_create_6afc
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_attendance_create_6afc_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.attendance.create_6afc
+  marketing.v3.marketingEvents.list:
+    SUMMARY: Get all marketing event
+    DESC: |-
+      Returns all Marketing Events available on the portal, along with their properties, regardless of whether they were created manually or through the application.
+
+      The marketing events returned by this endpoint are sorted by objectId.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseMarketingEventPublicReadResponseV2ForwardPaging)
+    INPUTS:
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseMarketingEventPublicReadResponseV2ForwardPaging)
+        RETURNVAR: marketing_v3_marketingEvents_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_marketingEvents_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.marketingEvents.list
+  marketing.v3.batch.update:
+    SUMMARY: Update Multiple Marketing Events by ObjectId
+    DESC: Updates multiple Marketing Events on the portal based on their objectId, if they exist.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/batch/update
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventPublicUpdateRequestFullV2)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseMarketingEventPublicDefaultResponseV2)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventPublicUpdateRequestFullV2)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseMarketingEventPublicDefaultResponseV2)
+        RETURNVAR: marketing_v3_batch_update
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseMarketingEventPublicDefaultResponseV2WithErrors)
+        RETURNVAR: marketing_v3_batch_update_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_batch_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.batch.update
+  marketing.v3.attendance.create_45b9:
+    SUMMARY: Record Participants by ContactId with Marketing Event Object Id
+    DESC: |-
+      Records the participation of multiple HubSpot contacts in a Marketing Event using their HubSpot contact IDs.
+
+      Additional Functionality:
+      - Adds a timeline event to the contacts.
+
+      Allowed Properties:
+      For the state "attend":
+      - joinedAt
+      - leftAt
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/{objectId}/attendance/{subscriberState}/create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSubscriberVidResponse)
+    INPUTS:
+      - objectId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSubscriberVidResponse)
+        RETURNVAR: marketing_v3_attendance_create_45b9
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_attendance_create_45b9_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.attendance.create_45b9
+  marketing.v3.archive.create:
+    SUMMARY: Delete Multiple Marketing Events by ObjectId
+    DESC: |-
+      Deletes multiple Marketing Events from the portal based on their objectId, if they exist.
+
+      Responses:
+      204: Returned if all specified Marketing Events were successfully deleted.
+      207: Returned if some objectIds did not correspond to any existing Marketing Events.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/batch/archive
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventPublicObjectIdDeleteRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventPublicObjectIdDeleteRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_archive_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.archive.create
+  marketing.v3.participations.get:
+    SUMMARY: Read participations counters by Marketing Event external identifier
+    DESC: Read Marketing event's participations counters by externalAccountId and externalEventId pair.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/participations/{externalAccountId}/{externalEventId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AttendanceCounters)
+    INPUTS:
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: path
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AttendanceCounters)
+        RETURNVAR: marketing_v3_participations_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_participations_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.participations.get
+  marketing.v3.identifiers.get:
+    SUMMARY: Find Marketing Events by External Event Id
+    DESC: |-
+      This endpoint searches the portal for all Marketing Events whose externalEventId matches the value provided in the request.
+
+      It retrieves the objectId and additional event details for each matching Marketing Event.
+
+      Since multiple Marketing Events can have the same externalEventId, the endpoint returns all matching results.
+
+      Note: Marketing Events become searchable by externalEventId a few minutes after creation.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/{externalEventId}/identifiers
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalMarketingEventIdentifiersResponseNoPaging)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalMarketingEventIdentifiersResponseNoPaging)
+        RETURNVAR: marketing_v3_identifiers_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_identifiers_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.identifiers.get
+  marketing.v3.participations.get_e4c5:
+    SUMMARY: Read participations counters by Marketing Event internal identifier
+    DESC: Read Marketing event's participations counters by internal identifier marketingEventId.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/participations/{marketingEventId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AttendanceCounters)
+    INPUTS:
+      - marketingEventId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AttendanceCounters)
+        RETURNVAR: marketing_v3_participations_get_e4c5
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_participations_get_e4c5_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.participations.get_e4c5
+  marketing.v3.events.delete_2482:
+    SUMMARY: Delete Multiple Marketing Events by External Ids
+    DESC: |-
+      Deletes multiple Marketing Events based on externalAccountId, externalEventId, and appId.
+
+      Only Marketing Events created by the same apps will be deleted; events from other apps cannot be removed by this endpoint.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/delete
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventExternalUniqueIdentifier)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventExternalUniqueIdentifier)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_delete_2482_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.delete_2482
+  marketing.v3.cancel.create:
+    SUMMARY: Mark a marketing event as cancelled
+    DESC: Mark a marketing event as cancelled.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}/cancel
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventDefaultResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventDefaultResponse)
+        RETURNVAR: marketing_v3_cancel_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_cancel_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.cancel.create
+  marketing.v3.lists.update:
+    SUMMARY: Associate a list with a marketing event
+    DESC: Associates a list with a marketing event by marketing event id and ILS list id
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/marketing-events/associations/{marketingEventId}/lists/{listId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - marketingEventId:
+          TYPE: STRING
+          LOCATION: path
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.update
+  marketing.v3.lists.delete:
+    SUMMARY: Disassociate a list from a marketing event
+    DESC: Disassociates a list from a marketing event by marketing event id and ILS list id
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/marketing-events/associations/{marketingEventId}/lists/{listId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - marketingEventId:
+          TYPE: STRING
+          LOCATION: path
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.delete
+  marketing.v3.emailUpsert.create:
+    SUMMARY: Record a subscriber state by contact email
+    DESC: "Record a subscriber state between multiple HubSpot contacts and a marketing event, using contact email addresses. Note that the contact must already exist in HubSpot; a contact will not be created. The contactProperties field is used only when creating a new contact. These properties will not update existing contacts. "
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}/{subscriberState}/email-upsert
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - subscriberState:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputMarketingEventEmailSubscriber)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_emailUpsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.emailUpsert.create
+  marketing.v3.lists.update_139:
+    SUMMARY: Associate a list with a marketing event
+    DESC: Associates a list with a marketing event by external account id, external event id, and ILS list id
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/marketing-events/associations/{externalAccountId}/{externalEventId}/lists/{listId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: path
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_update_139_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.update_139
+  marketing.v3.lists.delete_a8c5:
+    SUMMARY: Disassociate a list from a marketing event
+    DESC: Disassociates a list from a marketing event by external account id, external event id, and ILS list id
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/marketing-events/associations/{externalAccountId}/{externalEventId}/lists/{listId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: path
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - listId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_lists_delete_a8c5_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.lists.delete_a8c5
+  marketing.v3.complete.create:
+    SUMMARY: Mark a marketing event as completed
+    DESC: Mark a marketing event as completed
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events/{externalEventId}/complete
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MarketingEventCompleteRequestParams)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventDefaultResponse)
+    INPUTS:
+      - externalEventId:
+          TYPE: STRING
+          LOCATION: path
+      - externalAccountId:
+          TYPE: STRING
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(MarketingEventCompleteRequestParams)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventDefaultResponse)
+        RETURNVAR: marketing_v3_complete_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_complete_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.complete.create
+  marketing.v3.events.create:
+    SUMMARY: Create a marketing event
+    DESC: Creates a new marketing event in HubSpot
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/events
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(MarketingEventCreateRequestParams)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MarketingEventDefaultResponse)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(MarketingEventCreateRequestParams)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(MarketingEventDefaultResponse)
+        RETURNVAR: marketing_v3_events_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_events_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.events.create
+  marketing.v3.breakdown.get_f3af:
+    SUMMARY: Read participations breakdown by Contact identifier
+    DESC: Read Contact's participations by identifier - email or internal id.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/participations/contacts/{contactIdentifier}/breakdown
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+    INPUTS:
+      - contactIdentifier:
+          TYPE: STRING
+          LOCATION: path
+      - state:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalParticipationBreakdownForwardPaging)
+        RETURNVAR: marketing_v3_breakdown_get_f3af
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_breakdown_get_f3af_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.breakdown.get_f3af
+  marketing.v3.settings.get:
+    SUMMARY: Retrieve the application settings
+    DESC: Retrieve the current settings for the application.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/{appId}/settings
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(EventDetailSettings)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(EventDetailSettings)
+        RETURNVAR: marketing_v3_settings_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_settings_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.settings.get
+  marketing.v3.settings.create:
+    SUMMARY: Update the application settings
+    DESC: Create or update the current settings for the application.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/marketing-events/{appId}/settings
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(EventDetailSettingsUrl)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(EventDetailSettings)
+    INPUTS:
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(EventDetailSettingsUrl)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(EventDetailSettings)
+        RETURNVAR: marketing_v3_settings_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_settings_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.settings.create
+  marketing.v3.search.list:
+    SUMMARY: Find App-Specific Marketing Events by External Event Id
+    DESC: |-
+      Retrieves Marketing Events where the externalEventId matches the value provided in the request, limited to events created by the app making the request.
+
+      Marketing Events created by other apps will not be included in the results.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/marketing-events/events/search
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseSearchPublicResponseWrapperNoPaging)
+    INPUTS:
+      - q:
+          TYPE: STRING
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseSearchPublicResponseWrapperNoPaging)
+        RETURNVAR: marketing_v3_search_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_search_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.search.list
+STRUCTS:
+  MarketingEventCompleteRequestParams:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  ParticipationProperties:
+    - name: occurredAt
+      NAME: occurredAt
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: attendancePercentage
+      NAME: attendancePercentage
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: attendanceState
+      NAME: attendanceState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: attendanceDurationSeconds
+      NAME: attendanceDurationSeconds
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  SubscriberEmailResponse:
+    - name: vid
+      NAME: vid
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  MarketingEventPublicReadResponse:
+    - name: registrants
+      NAME: registrants
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The number of HubSpot contacts that registered for this marketing event.
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the organizer of the marketing event.
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL in the external event application where the marketing event can be managed.
+    - name: attendees
+      NAME: attendees
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The number of HubSpot contacts that attended this marketing event.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of the marketing event.
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The end date and time of the marketing event.
+    - name: noShows
+      NAME: noShows
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The number of HubSpot contacts that registered for this marketing event, but did not attend. This field only had a value when the event is over.
+    - name: cancellations
+      NAME: cancellations
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The number of HubSpot contacts that registered for this marketing event, but later cancelled their registration.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The start date and time of the marketing event.
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: false
+      comment: |
+        A list of PropertyValues. These can be whatever kind of property names and values you want. However, they must already exist on the HubSpot account's definition of the MarketingEvent Object. If they don't they will be filtered out and not set.
+        In order to do this you'll need to create a new PropertyGroup on the HubSpot account's MarketingEvent object for your specific app and create the Custom Property you want to track on that HubSpot account. Do not create any new default properties on the MarketingEvent object as that will apply to all HubSpot accounts.
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the marketing event has been cancelled.
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The id of the marketing event in the external event application.
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The description of the marketing event.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the marketing event.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  PropertyValue:
+    - name: sourceId
+      NAME: sourceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: selectedByUser
+      NAME: selectedByUser
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: sourceLabel
+      NAME: sourceLabel
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: sourceUpstreamDeployable
+      NAME: sourceUpstreamDeployable
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: source
+      NAME: source
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: updatedByUserId
+      NAME: updatedByUserId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: persistenceTimestamp
+      NAME: persistenceTimestamp
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: sourceMetadata
+      NAME: sourceMetadata
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Source metadata encoded as a base64 string. For example: `ZXhhbXBsZSBzdHJpbmc=`"
+    - name: dataSensitivity
+      NAME: dataSensitivity
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: sourceVid
+      NAME: sourceVid
+      type: "[]INT"
+      TYPE: "[]INT"
+      REQUIRED: false
+    - name: unit
+      NAME: unit
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: requestId
+      NAME: requestId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: isEncrypted
+      NAME: isEncrypted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Name of custom property
+    - name: useTimestampAsPersistenceTimestamp
+      NAME: useTimestampAsPersistenceTimestamp
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Custom property value
+    - name: selectedByUserTimestamp
+      NAME: selectedByUserTimestamp
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: timestamp
+      NAME: timestamp
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: isLargeValue
+      NAME: isLargeValue
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  MarketingEventAssociation:
+    - name: externalAccountId
+      NAME: externalAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: marketingEventId
+      NAME: marketingEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  MarketingEventEmailSubscriber:
+    - name: contactProperties
+      NAME: contactProperties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The email address of the contact in HubSpot to associate with the event.
+    - name: interactionDateTime
+      NAME: interactionDateTime
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Timestamp in milliseconds at which the contact subscribed to the event.
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicList:
+    - name: processingType
+      NAME: processingType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: updatedById
+      NAME: updatedById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: filtersUpdatedAt
+      NAME: filtersUpdatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: listId
+      NAME: listId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: processingStatus
+      NAME: processingStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: deletedAt
+      NAME: deletedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: listVersion
+      NAME: listVersion
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: createdById
+      NAME: createdById
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+  MarketingEventExternalUniqueIdentifier:
+    - name: externalAccountId
+      NAME: externalAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The accountId that is associated with this marketing event in the external event application.
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The id of the marketing event in the external event application.
+    - name: appId
+      NAME: appId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The id of the application that created the marketing event in HubSpot.
+  CrmPropertyWrapper:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SearchPublicResponseWrapper:
+    - name: externalAccountId
+      NAME: externalAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: appId
+      NAME: appId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SubscriberVidResponse:
+    - name: vid
+      NAME: vid
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  MarketingEventPublicUpdateRequestV2:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: true
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+  MarketingEventIdentifiersResponse:
+    - name: externalAccountId
+      NAME: externalAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: appInfo
+      NAME: appInfo
+      type: STRUCT(AppInfo)
+      TYPE: STRUCT(AppInfo)
+      REQUIRED: false
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: marketingEventName
+      NAME: marketingEventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  AppInfo:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchInputMarketingEventExternalUniqueIdentifier:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventExternalUniqueIdentifier)"
+      TYPE: "[]STRUCT(MarketingEventExternalUniqueIdentifier)"
+      REQUIRED: true
+  MarketingEventUpdateRequestParams:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The start date and time of the marketing event.
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: false
+      comment: |
+        A list of PropertyValues. These can be whatever kind of property names and values you want. However, they must already exist on the HubSpot account's definition of the MarketingEvent Object. If they don't they will be filtered out and not set.
+        In order to do this you'll need to create a new PropertyGroup on the HubSpot account's MarketingEvent object for your specific app and create the Custom Property you want to track on that HubSpot account. Do not create any new default properties on the MarketingEvent object as that will apply to all HubSpot accounts.
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the marketing event has been cancelled. Defaults to `false`
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the organizer of the marketing event.
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL in the external event application where the marketing event can be managed.
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The description of the marketing event.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the marketing event.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Describes what type of event this is.  For example: `WEBINAR`, `CONFERENCE`, `WORKSHOP`"
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The end date and time of the marketing event.
+  CollectionResponseWithTotalPublicListNoPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicList)"
+      TYPE: "[]STRUCT(PublicList)"
+      REQUIRED: true
+  ContactAssociation:
+    - name: firstname
+      NAME: firstname
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: contactId
+      NAME: contactId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: lastname
+      NAME: lastname
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  ParticipationBreakdown:
+    - name: associations
+      NAME: associations
+      type: STRUCT(ParticipationAssociations)
+      TYPE: STRUCT(ParticipationAssociations)
+      REQUIRED: true
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: STRUCT(ParticipationProperties)
+      TYPE: STRUCT(ParticipationProperties)
+      REQUIRED: true
+  ParticipationAssociations:
+    - name: marketingEvent
+      NAME: marketingEvent
+      type: STRUCT(MarketingEventAssociation)
+      TYPE: STRUCT(MarketingEventAssociation)
+      REQUIRED: true
+    - name: contact
+      NAME: contact
+      type: STRUCT(ContactAssociation)
+      TYPE: STRUCT(ContactAssociation)
+      REQUIRED: true
+  MarketingEventPublicDefaultResponse:
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the organizer of the marketing event.
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL in the external event application where the marketing event can be managed.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of the marketing event.
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The end date and time of the marketing event.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The start date and time of the marketing event.
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: false
+      comment: |
+        A list of PropertyValues. These can be whatever kind of property names and values you want. However, they must already exist on the HubSpot account's definition of the MarketingEvent Object. If they don't they will be filtered out and not set.
+        In order to do this you'll need to create a new PropertyGroup on the HubSpot account's MarketingEvent object for your specific app and create the Custom Property you want to track on that HubSpot account. Do not create any new default properties on the MarketingEvent object as that will apply to all HubSpot accounts.
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the marketing event has been cancelled.
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The description of the marketing event.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the marketing event.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  BatchResponseSubscriberVidResponse:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SubscriberVidResponse)"
+      TYPE: "[]STRUCT(SubscriberVidResponse)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  MarketingEventDefaultResponse:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The start date and time of the marketing event.
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: false
+      comment: |
+        A list of PropertyValues. These can be whatever kind of property names and values you want. However, they must already exist on the HubSpot account's definition of the MarketingEvent Object. If they don't they will be filtered out and not set.
+        In order to do this you'll need to create a new PropertyGroup on the HubSpot account's MarketingEvent object for your specific app and create the Custom Property you want to track on that HubSpot account. Do not create any new default properties on the MarketingEvent object as that will apply to all HubSpot accounts.
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the marketing event has been cancelled.
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the organizer of the marketing event.
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URL in the external event application where the marketing event can be managed.
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The description of the marketing event.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the marketing event.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of the marketing event.
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The end date and time of the marketing event.
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  BatchInputMarketingEventSubscriber:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventSubscriber)"
+      TYPE: "[]STRUCT(MarketingEventSubscriber)"
+      REQUIRED: true
+      comment: List of HubSpot contacts to subscribe to the marketing event
+  MarketingEventSubscriber:
+    - name: vid
+      NAME: vid
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: interactionDateTime
+      NAME: interactionDateTime
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Timestamp in milliseconds at which the contact subscribed to the event.
+  MarketingEventCreateRequestParams:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The start date and time of the marketing event.
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: false
+      comment: |
+        A list of PropertyValues. These can be whatever kind of property names and values you want. However, they must already exist on the HubSpot account's definition of the MarketingEvent Object. If they don't they will be filtered out and not set.
+        In order to do this you'll need to create a new PropertyGroup on the HubSpot account's MarketingEvent object for your specific app and create the Custom Property you want to track on that HubSpot account. Do not create any new default properties on the MarketingEvent object as that will apply to all HubSpot accounts.
+    - name: externalAccountId
+      NAME: externalAccountId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The accountId that is associated with this marketing event in the external event application.
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the marketing event has been cancelled.  Defaults to `false`
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the organizer of the marketing event.
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A URL in the external event application where the marketing event can be managed.
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The id of the marketing event in the external event application.
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The description of the marketing event.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the marketing event.
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Describes what type of event this is.  For example: `WEBINAR`, `CONFERENCE`, `WORKSHOP`"
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The end date and time of the marketing event.
+  BatchInputMarketingEventPublicUpdateRequestFullV2:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventPublicUpdateRequestFullV2)"
+      TYPE: "[]STRUCT(MarketingEventPublicUpdateRequestFullV2)"
+      REQUIRED: true
+  MarketingEventPublicUpdateRequestFullV2:
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(PropertyValue)"
+      TYPE: "[]STRUCT(PropertyValue)"
+      REQUIRED: true
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  CollectionResponseWithTotalMarketingEventIdentifiersResponseNoPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: results
+      NAME: results
+      type: "[]STRUCT(MarketingEventIdentifiersResponse)"
+      TYPE: "[]STRUCT(MarketingEventIdentifiersResponse)"
+      REQUIRED: true
+  EventDetailSettings:
+    - name: appId
+      NAME: appId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The id of the application the settings are for
+    - name: eventDetailsUrl
+      NAME: eventDetailsUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The url that will be used to fetch marketing event details by id
+  EventDetailSettingsUrl:
+    - name: eventDetailsUrl
+      NAME: eventDetailsUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "The url that will be used to fetch marketing event details by id. Must contain a `%s` character sequence that will be substituted with the event id. For example: `https://my.event.app/events/%s`"
+  BatchInputMarketingEventEmailSubscriber:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventEmailSubscriber)"
+      TYPE: "[]STRUCT(MarketingEventEmailSubscriber)"
+      REQUIRED: true
+      comment: List of marketing event details to create or update
+  CollectionResponseMarketingEventPublicReadResponseV2ForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(MarketingEventPublicReadResponseV2)"
+      TYPE: "[]STRUCT(MarketingEventPublicReadResponseV2)"
+      REQUIRED: true
+  MarketingEventPublicReadResponseV2:
+    - name: registrants
+      NAME: registrants
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: attendees
+      NAME: attendees
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: appInfo
+      NAME: appInfo
+      type: STRUCT(AppInfo)
+      TYPE: STRUCT(AppInfo)
+      REQUIRED: false
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: noShows
+      NAME: noShows
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: cancellations
+      NAME: cancellations
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(CrmPropertyWrapper)"
+      TYPE: "[]STRUCT(CrmPropertyWrapper)"
+      REQUIRED: true
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: externalEventId
+      NAME: externalEventId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventStatus
+      NAME: eventStatus
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  MarketingEventPublicDefaultResponseV2:
+    - name: eventOrganizer
+      NAME: eventOrganizer
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventUrl
+      NAME: eventUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: appInfo
+      NAME: appInfo
+      type: STRUCT(AppInfo)
+      TYPE: STRUCT(AppInfo)
+      REQUIRED: false
+    - name: eventType
+      NAME: eventType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventCompleted
+      NAME: eventCompleted
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: endDateTime
+      NAME: endDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: startDateTime
+      NAME: startDateTime
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: customProperties
+      NAME: customProperties
+      type: "[]STRUCT(CrmPropertyWrapper)"
+      TYPE: "[]STRUCT(CrmPropertyWrapper)"
+      REQUIRED: true
+    - name: eventCancelled
+      NAME: eventCancelled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: eventDescription
+      NAME: eventDescription
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  BatchInputMarketingEventCreateRequestParams:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventCreateRequestParams)"
+      TYPE: "[]STRUCT(MarketingEventCreateRequestParams)"
+      REQUIRED: true
+  BatchResponseMarketingEventPublicDefaultResponseV2WithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(MarketingEventPublicDefaultResponseV2)"
+      TYPE: "[]STRUCT(MarketingEventPublicDefaultResponseV2)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchInputMarketingEventPublicObjectIdDeleteRequest:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(MarketingEventPublicObjectIdDeleteRequest)"
+      TYPE: "[]STRUCT(MarketingEventPublicObjectIdDeleteRequest)"
+      REQUIRED: true
+  MarketingEventPublicObjectIdDeleteRequest:
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  CollectionResponseSearchPublicResponseWrapperNoPaging:
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SearchPublicResponseWrapper)"
+      TYPE: "[]STRUCT(SearchPublicResponseWrapper)"
+      REQUIRED: true
+  AttendanceCounters:
+    - name: attended
+      NAME: attended
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: registered
+      NAME: registered
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: cancelled
+      NAME: cancelled
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: noShows
+      NAME: noShows
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  BatchResponseSubscriberEmailResponse:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SubscriberEmailResponse)"
+      TYPE: "[]STRUCT(SubscriberEmailResponse)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  CollectionResponseWithTotalParticipationBreakdownForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ParticipationBreakdown)"
+      TYPE: "[]STRUCT(ParticipationBreakdown)"
+      REQUIRED: true
+  BatchResponseMarketingEventPublicDefaultResponseV2:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(MarketingEventPublicDefaultResponseV2)"
+      TYPE: "[]STRUCT(MarketingEventPublicDefaultResponseV2)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponseMarketingEventPublicDefaultResponse:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(MarketingEventPublicDefaultResponse)"
+      TYPE: "[]STRUCT(MarketingEventPublicDefaultResponse)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true

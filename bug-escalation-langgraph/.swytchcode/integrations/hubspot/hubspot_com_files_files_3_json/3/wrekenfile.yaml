@@ -1,0 +1,1614 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  files.v3.files.delete:
+    SUMMARY: GDPR-delete file
+    DESC: Delete a file in accordance with GDPR regulations.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /files/v3/files/{fileId}/gdpr-delete
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.delete
+  files.v3.files.get:
+    SUMMARY: Retrieve file by ID
+    DESC: Retrieve a file by its ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/files/{fileId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(File)
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(File)
+        RETURNVAR: files_v3_files_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.get
+  files.v3.files.update:
+    SUMMARY: Replace file
+    DESC: Replace existing file data with new file data. Can be used to change image content without having to upload a new file and update all references.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /files/v3/files/{fileId}
+      HEADERS:
+        Content-Type: multipart/form-data
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: multipart/form-data
+      ACCEPT: application/json
+      BODYTYPE: form-data
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(File)
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+      - file:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - charsetHunch:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - options:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(File)
+        RETURNVAR: files_v3_files_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.update
+  files.v3.files.delete_b237:
+    SUMMARY: Delete file by ID
+    DESC: Delete a file by ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /files/v3/files/{fileId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_delete_b237_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.delete_b237
+  files.v3.files.update_f868:
+    SUMMARY: Update file properties
+    DESC: Update properties of file by ID.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /files/v3/files/{fileId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FileUpdateInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(File)
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(FileUpdateInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(File)
+        RETURNVAR: files_v3_files_update_f868
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_update_f868_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.update_f868
+  files.v3.folders.get:
+    SUMMARY: Retrieve folder by ID
+    DESC: Retrieve a folder by its ID.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/folders/{folderId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Folder)
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Folder)
+        RETURNVAR: files_v3_folders_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.get
+  files.v3.folders.delete:
+    SUMMARY: Delete folder by ID
+    DESC: Delete folder by ID.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /files/v3/folders/{folderId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.delete
+  files.v3.folders.update:
+    SUMMARY: Update folder properties by folder ID
+    DESC: Update a folder's properties, identified by folder ID.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /files/v3/folders/{folderId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FolderUpdateInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Folder)
+    INPUTS:
+      - folderId:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(FolderUpdateInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Folder)
+        RETURNVAR: files_v3_folders_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.update
+  files.v3.files.create:
+    SUMMARY: Upload file
+    DESC: Upload a single file with content specified in request body.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /files/v3/files
+      HEADERS:
+        Content-Type: multipart/form-data
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: multipart/form-data
+      ACCEPT: application/json
+      BODYTYPE: form-data
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(File)
+    INPUTS:
+      - file:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - folderId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - folderPath:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - fileName:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - charsetHunch:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+      - options:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(File)
+        RETURNVAR: files_v3_files_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_files_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.files.create
+  files.v3.folders.create:
+    SUMMARY: Create folder
+    DESC: Creates a folder.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /files/v3/folders
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FolderInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Folder)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(FolderInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Folder)
+        RETURNVAR: files_v3_folders_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.create
+  files.v3.signedUrl.get:
+    SUMMARY: Get signed URL to access private file
+    DESC: Generates signed URL that allows temporary access to a private file.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/files/{fileId}/signed-url
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SignedUrl)
+    INPUTS:
+      - fileId:
+          TYPE: STRING
+          LOCATION: path
+      - size:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - expirationSeconds:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - upscale:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(SignedUrl)
+        RETURNVAR: files_v3_signedUrl_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_signedUrl_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.signedUrl.get
+  files.v3.async.create:
+    SUMMARY: Import file from URL
+    DESC: Asynchronously imports the file at the given URL into the file manager.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /files/v3/files/import-from-url/async
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ImportFromUrlInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ImportFromUrlTaskLocator)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ImportFromUrlInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ImportFromUrlTaskLocator)
+        RETURNVAR: files_v3_async_create_202
+        STATUS: 202
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_async_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.async.create
+  files.v3.stat.get:
+    SUMMARY: Retrieve file by path
+    DESC: Retrieve a file by its path.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/files/stat/{path}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FileStat)
+    INPUTS:
+      - path:
+          TYPE: STRING
+          LOCATION: path
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(FileStat)
+        RETURNVAR: files_v3_stat_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_stat_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.stat.get
+  files.v3.search.list:
+    SUMMARY: Search folders
+    DESC: Search for folders. Does not contain hidden or archived folders.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/folders/search
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseFolder)
+    INPUTS:
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - ids:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - idLte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - idGte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - createdAt:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - createdAtLte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - createdAtGte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAt:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAtLte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAtGte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - path:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parentFolderIds:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseFolder)
+        RETURNVAR: files_v3_search_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_search_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.search.list
+  files.v3.folders.update_40e1:
+    SUMMARY: Check folder update status
+    DESC: Check status of folder update. Folder updates happen asynchronously.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/folders/update/async/tasks/{taskId}/status
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FolderActionResponse)
+    INPUTS:
+      - taskId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(FolderActionResponse)
+        RETURNVAR: files_v3_folders_update_40e1
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_update_40e1_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.update_40e1
+  files.v3.search.list_b6d3:
+    SUMMARY: Search files
+    DESC: Search through files in the file manager. Does not display hidden or archived files.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/files/search
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseFile)
+    INPUTS:
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sort:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - ids:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - idLte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - idGte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - createdAt:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - createdAtLte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - createdAtGte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAt:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAtLte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - updatedAtGte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - path:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - parentFolderIds:
+          TYPE: "[]INT"
+          REQUIRED: false
+          LOCATION: query
+      - size:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sizeLte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - sizeGte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - height:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - heightLte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - heightGte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - width:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - widthLte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - widthGte:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - encoding:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - type:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - extension:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - url:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - isUsableInContent:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - allowsAnonymousAccess:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - fileMd5:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - expiresAt:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - expiresAtLte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+      - expiresAtGte:
+          TYPE: TIMESTAMP
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseFile)
+        RETURNVAR: files_v3_search_list_b6d3
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_search_list_b6d3_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.search.list_b6d3
+  files.v3.folders.get_e584:
+    SUMMARY: Retrieve folder by path
+    DESC: Retrieve a folder, identified by its path.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/folders/{folderPath}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(Folder)
+    INPUTS:
+      - folderPath:
+          TYPE: STRING
+          LOCATION: path
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Folder)
+        RETURNVAR: files_v3_folders_get_e584
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_get_e584_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.get_e584
+  files.v3.folders.delete_4cb3:
+    SUMMARY: Delete folder by path
+    DESC: Delete a folder, identified by its path.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /files/v3/folders/{folderPath}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - folderPath:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_delete_4cb3_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.delete_4cb3
+  files.v3.folders.update_4623:
+    SUMMARY: Update folder properties
+    DESC: Update properties of folder by given ID. This action happens asynchronously and will update all of the folder's children as well.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /files/v3/folders/update/async
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FolderUpdateInputWithId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FolderUpdateTaskLocator)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(FolderUpdateInputWithId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(FolderUpdateTaskLocator)
+        RETURNVAR: files_v3_folders_update_4623_202
+        STATUS: 202
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_folders_update_4623_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.folders.update_4623
+  files.v3.status.get:
+    SUMMARY: Check import status
+    DESC: Check the status of requested import.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /files/v3/files/import-from-url/async/tasks/{taskId}/status
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FileActionResponse)
+    INPUTS:
+      - taskId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(FileActionResponse)
+        RETURNVAR: files_v3_status_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: files_v3_status_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: files.v3.status.get
+STRUCTS:
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  FolderUpdateInput:
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: New parent folderId. If changed, the folder and all it's children will be moved into the specified folder. parentFolderId and parentFolderPath cannot be specified at the same time.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: New name. If specified the folder's name and fullPath will change. All children of the folder will be updated accordingly.
+  FolderActionResponse:
+    - name: result
+      NAME: result
+      type: STRUCT(Folder)
+      TYPE: STRUCT(Folder)
+      REQUIRED: false
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: When the requested changes have been completed.
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Number of errors resulting from the requested changes.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp representing when the task was requested.
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp representing when the task was started at.
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Link to check the status of the task.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+      comment: Detailed errors resulting from the task.
+    - name: taskId
+      NAME: taskId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the task.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Current status of the task.
+  Folder:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp of folder creation.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp of folder deletion.
+    - name: path
+      NAME: path
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Path of the folder in the file manager.
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Marks whether the folder is deleted or not.
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: ID of the parent folder.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the folder.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the folder.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp of the latest update to the folder.
+  Paging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+    - name: prev
+      NAME: prev
+      type: STRUCT(PreviousPage)
+      TYPE: STRUCT(PreviousPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PreviousPage:
+    - name: before
+      NAME: before
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  CollectionResponseFile:
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(File)"
+      TYPE: "[]STRUCT(File)"
+      REQUIRED: true
+  File:
+    - name: extension
+      NAME: extension
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Extension of the file. ex: .jpg, .png, .gif, .pdf, etc."
+    - name: access
+      NAME: access
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: File access. Can be PUBLIC_INDEXABLE, PUBLIC_NOT_INDEXABLE, PRIVATE.
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: ID of the folder the file is in.
+    - name: sourceGroup
+      NAME: sourceGroup
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: fileMd5
+      NAME: fileMd5
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: encoding
+      NAME: encoding
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Encoding of the file.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Type of the file. Can be IMG, DOCUMENT, AUDIO, MOVIE, or OTHER.
+    - name: isUsableInContent
+      NAME: isUsableInContent
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Previously "archied". Indicates if the file should be used when creating new content like web pages.
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: URL of the given file. This URL can change depending on the domain settings of the account. Will use the select file hosting domain.
+    - name: expiresAt
+      NAME: expiresAt
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Creation time of the file object.
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Deletion time of the file object.
+    - name: path
+      NAME: path
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Path of the file in the file manager.
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: If the file is deleted.
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Size of the file in bytes.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name of the file.
+    - name: width
+      NAME: width
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: For image and video files, the width of the content.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: File ID.
+    - name: defaultHostingUrl
+      NAME: defaultHostingUrl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Default hosting URL of the file. This will use one of HubSpot's provided URLs to serve the file.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp of the latest update to the file.
+    - name: height
+      NAME: height
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: For image and video files, the height of the content.
+  FileActionResponse:
+    - name: result
+      NAME: result
+      type: STRUCT(File)
+      TYPE: STRUCT(File)
+      REQUIRED: false
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Time of completion of task.
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Number of errors resulting from the task.
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: Timestamp of when the task was requested.
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp of when the task was started.
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Link to check the status of the requested task.
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+      comment: Descriptive error messages.
+    - name: taskId
+      NAME: taskId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the requested task.
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Current status of the task.
+  CollectionResponseFolder:
+    - name: paging
+      NAME: paging
+      type: STRUCT(Paging)
+      TYPE: STRUCT(Paging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(Folder)"
+      TYPE: "[]STRUCT(Folder)"
+      REQUIRED: true
+  FileStat:
+    - name: file
+      NAME: file
+      type: STRUCT(File)
+      TYPE: STRUCT(File)
+      REQUIRED: false
+    - name: folder
+      NAME: folder
+      type: STRUCT(Folder)
+      TYPE: STRUCT(Folder)
+      REQUIRED: false
+  ImportFromUrlInput:
+    - name: folderPath
+      NAME: folderPath
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: One of folderPath or folderId is required. Destination folder path for the uploaded file. If the folder path does not exist, there will be an attempt to create the folder path.
+    - name: access
+      NAME: access
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        PUBLIC_INDEXABLE: File is publicly accessible by anyone who has the URL. Search engines can index the file. PUBLIC_NOT_INDEXABLE: File is publicly accessible by anyone who has the URL. Search engines *can't* index the file. PRIVATE: File is NOT publicly accessible. Requires a signed URL to see content. Search engines *can't* index the file.
+    - name: duplicateValidationScope
+      NAME: duplicateValidationScope
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        ENTIRE_PORTAL: Look for a duplicate file in the entire account. EXACT_FOLDER: Look for a duplicate file in the provided folder.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name to give the resulting file in the file manager.
+    - name: duplicateValidationStrategy
+      NAME: duplicateValidationStrategy
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        NONE: Do not run any duplicate validation. REJECT: Reject the upload if a duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload a new file and return the found duplicate instead.
+    - name: ttl
+      NAME: ttl
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Time to live. If specified the file will be deleted after the given time frame. If left unset, the file will exist indefinitely
+    - name: overwrite
+      NAME: overwrite
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: If true, will overwrite existing file if one with the same name and extension exists in the given folder. The overwritten file will be deleted and the uploaded file will take its place with a new ID. If unset or set as false, the new file's name will be updated to prevent colliding with existing file if one exists with the same path, name, and extension
+    - name: expiresAt
+      NAME: expiresAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: URL to download the new file from.
+    - name: folderId
+      NAME: folderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: One of folderId or folderPath is required. Destination folderId for the uploaded file.
+  FileUpdateInput:
+    - name: access
+      NAME: access
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        NONE: Do not run any duplicate validation. REJECT: Reject the upload if a duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload a new file and return the found duplicate instead.
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: FolderId where the file should be moved to. folderId and folderPath parameters cannot be set at the same time.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: New name for the file.
+    - name: parentFolderPath
+      NAME: parentFolderPath
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Folder path where the file should be moved to. folderId and folderPath parameters cannot be set at the same time.
+    - name: clearExpires
+      NAME: clearExpires
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: isUsableInContent
+      NAME: isUsableInContent
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Mark whether the file should be used in new content or not.
+    - name: expiresAt
+      NAME: expiresAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+  SignedUrl:
+    - name: extension
+      NAME: extension
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Extension of the requested file.
+    - name: size
+      NAME: size
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Size in bytes of the requested file.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Name of the requested file.
+    - name: width
+      NAME: width
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: For image and video files. The width of the file.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of the file. Can be IMG, DOCUMENT, AUDIO, MOVIE, or OTHER.
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Signed URL with access to the specified file. Anyone with this URL will be able to access the file until it expires.
+    - name: expiresAt
+      NAME: expiresAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      comment: Timestamp of when the URL will no longer grant access to the file.
+    - name: height
+      NAME: height
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: For image and video files. The height of the file.
+  FolderInput:
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: FolderId of the parent of the created folder. If not specified, the folder will be created at the root level. parentFolderId and parentFolderPath cannot be set at the same time.
+    - name: parentPath
+      NAME: parentPath
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Path of the parent of the created folder. If not specified the folder will be created at the root level. parentFolderPath and parentFolderId cannot be set at the same time.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Desired name for the folder.
+  FolderUpdateInputWithId:
+    - name: parentFolderId
+      NAME: parentFolderId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ImportFromUrlTaskLocator:
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Links for where to check information related to the task. The `status` link gives the URL for where to check the status of the task.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the task
+  FolderUpdateTaskLocator:
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: Links for where to check information related to the task. The `status` link gives the URL for where to check the status of the task.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the task

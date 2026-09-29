@@ -1,0 +1,359 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Batch read CRM objects by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple bucket test records by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create or update calls by ID or unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple calls by their IDs",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch multiple carts by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of carts by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple commerce payments by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert commerce payments in a batch using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple subscriptions by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of subscriptions using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read communications by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create and and update a batch of messages. + Create and update a batch of messages by a unique property. Messages that d",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple companies in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple companies by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple contacts by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple CRM objects by ID or unique properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple deals in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple deals using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple deal splits for a deal",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert deal splits for multiple deals",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple discounts using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple discounts using IDs or custom properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create or update emails using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a batch of emails by their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple feedback submissions using their IDs or unique properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert fees using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of fees by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of goal targets by internal ID, or unique property values. +",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple goal targets using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple invoices using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple invoices by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of leads by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert line items by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple line items by their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple CRM objects by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple meetings in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple meetings using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple notes using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple notes by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a batch of orders by unique property values. + Create or update records identified by a unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple orders by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of partner clients by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of payments by ID or property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple postal mail records by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert postal mail records in batches using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a batch of products by unique property values. + Create or update records identified by a unique proper",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple products by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of properties for a given object type",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple quotes using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple quotes using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple tasks using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple tasks using their IDs or property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert taxes by unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of taxes by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read tickets by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple tickets in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple users by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of users by unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    }
+  ]
+}

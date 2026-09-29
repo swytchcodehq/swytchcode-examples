@@ -1,0 +1,450 @@
+VERSION: 2.0.2
+DEFAULTS:
+  query_hapikey: <HAPIKEY>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  feature-flags.v3.upsert.create:
+    SUMMARY: Batch set account flag state
+    DESC: Set the portal flag state for multiple HubSpot accounts at once. Use this endpoint to manage flag exposure for groups of HubSpot accounts.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals/batch/upsert
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PortalFlagStateBatchPutRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateBatchResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PortalFlagStateBatchPutRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateBatchResponse)
+        RETURNVAR: feature-flags_v3_upsert_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_upsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.upsert.create
+  feature-flags.v3.portals.get:
+    SUMMARY: Retrieve accounts with a set flag state
+    DESC: Retrieve a list of HubSpot accounts with an account-level flag setting for the specified app. No request body is included.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateBatchResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - startPortalId:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateBatchResponse)
+        RETURNVAR: feature-flags_v3_portals_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_portals_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.portals.get
+  feature-flags.v3.portals.get_ace9:
+    SUMMARY: Retrieve account flag state
+    DESC: Retrieve the account-level flag state of a specific HubSpot account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals/{portalId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - portalId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateResponse)
+        RETURNVAR: feature-flags_v3_portals_get_ace9
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_portals_get_ace9_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.portals.get_ace9
+  feature-flags.v3.portals.update:
+    SUMMARY: Set an account flag state
+    DESC: Specify an account-level flag state for a specific HubSpot account.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals/{portalId}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PortalFlagStatePutRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - portalId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PortalFlagStatePutRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateResponse)
+        RETURNVAR: feature-flags_v3_portals_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_portals_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.portals.update
+  feature-flags.v3.portals.delete:
+    SUMMARY: Delete an account flag state
+    DESC: Delete an account-level flag state for a specific HubSpot account. No request body is included.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals/{portalId}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - portalId:
+          TYPE: INT
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateResponse)
+        RETURNVAR: feature-flags_v3_portals_delete
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_portals_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.portals.delete
+  feature-flags.v3.batch.delete:
+    SUMMARY: Batch delete account flag state
+    DESC: Delete an account-level flag state for multiple HubSpot accounts at once. Use this endpoint to manage flag exposure for groups of HubSpot accounts.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}/portals/batch/delete
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PortalFlagStateBatchDeleteRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PortalFlagStateBatchResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PortalFlagStateBatchDeleteRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PortalFlagStateBatchResponse)
+        RETURNVAR: feature-flags_v3_batch_delete
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_batch_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.batch.delete
+  feature-flags.v3.flags.get:
+    SUMMARY: Retrieve an app's feature flags
+    DESC: Retrieve the current status of the app's feature flags. No request body is included.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FlagResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(FlagResponse)
+        RETURNVAR: feature-flags_v3_flags_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_flags_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.flags.get
+  feature-flags.v3.flags.update:
+    SUMMARY: Set an app's feature flag
+    DESC: Set a feature flag for an app. For example, update the `hs-hide-crm-cards` flag's `defaultState` to `ON` to hide classic CRM cards from new installs.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FlagPutRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FlagResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(FlagPutRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(FlagResponse)
+        RETURNVAR: feature-flags_v3_flags_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_flags_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.flags.update
+  feature-flags.v3.flags.delete:
+    SUMMARY: Delete an app's feature flag
+    DESC: Delete a feature flag in an app.  For example, delete the `hs-release-app-cards` flag after all accounts have been migrated.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /feature-flags/v3/{appId}/flags/{flagName}
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(FlagResponse)
+    INPUTS:
+      - flagName:
+          TYPE: STRING
+          LOCATION: path
+      - appId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(FlagResponse)
+        RETURNVAR: feature-flags_v3_flags_delete
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: feature-flags_v3_flags_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: feature-flags.v3.flags.delete
+STRUCTS:
+  PortalFlagStateBatchResponse:
+    - name: portalFlagStates
+      NAME: portalFlagStates
+      type: "[]STRUCT(PortalFlagStateResponse)"
+      TYPE: "[]STRUCT(PortalFlagStateResponse)"
+      REQUIRED: true
+  PortalFlagStateResponse:
+    - name: appId
+      NAME: appId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: portalId
+      NAME: portalId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: flagName
+      NAME: flagName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: flagState
+      NAME: flagState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  FlagResponse:
+    - name: overrideState
+      NAME: overrideState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: defaultState
+      NAME: defaultState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: appId
+      NAME: appId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: flagName
+      NAME: flagName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchPortalEntry:
+    - name: portalId
+      NAME: portalId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: flagState
+      NAME: flagState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PortalFlagStatePutRequest:
+    - name: flagState
+      NAME: flagState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  FlagPutRequest:
+    - name: overrideState
+      NAME: overrideState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: defaultState
+      NAME: defaultState
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PortalFlagStateBatchPutRequest:
+    - name: portalStates
+      NAME: portalStates
+      type: "[]STRUCT(BatchPortalEntry)"
+      TYPE: "[]STRUCT(BatchPortalEntry)"
+      REQUIRED: true
+  PortalFlagStateBatchDeleteRequest:
+    - name: portalIds
+      NAME: portalIds
+      type: "[]INT"
+      TYPE: "[]INT"
+      REQUIRED: true

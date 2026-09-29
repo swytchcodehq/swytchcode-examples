@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get event and event completion data",
+      "canonical_id": "events.v3.events.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List visible event type names for querying event instances",
+      "canonical_id": "events.v3.eventTypes.list"
+    }
+  ]
+}

@@ -1,0 +1,1143 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app-legacy: <PRIVATE-APP-LEGACY>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm.v3.read.create:
+    SUMMARY: Retrieve a batch of companies
+    DESC: Retrieve a batch of companies by ID (`companyId`) or by a unique property (`idProperty`). You can specify what is returned using the `properties` query parameter.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchReadInputSimplePublicObjectId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - body:
+          TYPE: STRUCT(BatchReadInputSimplePublicObjectId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_read_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObjectWithErrors)
+        RETURNVAR: crm_v3_read_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.read.create
+  crm.v3.companies.get:
+    SUMMARY: Retrieve a company
+    DESC: Retrieve a company by its ID (`companyId`) or by a unique property (`idProperty`). You can specify what is returned using the `properties` query parameter.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/objects/companies/{companyId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObjectWithAssociations)
+    INPUTS:
+      - companyId:
+          TYPE: STRING
+          LOCATION: path
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - propertiesWithHistory:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - associations:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - idProperty:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObjectWithAssociations)
+        RETURNVAR: crm_v3_companies_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_companies_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.companies.get
+  crm.v3.companies.delete:
+    SUMMARY: Archive a company
+    DESC: Delete a company by ID. Deleted companies can be restored within 90 days of deletion. Learn more about [restoring records](https://knowledge.hubspot.com/records/restore-deleted-records).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm/v3/objects/companies/{companyId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - companyId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_companies_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.companies.delete
+  crm.v3.companies.update:
+    SUMMARY: Update a company
+    DESC: Update a company by ID (`companyId`) or unique property value (`idProperty`). Provided property values will be overwritten. Read-only and non-existent properties will result in an error. Properties values can be cleared by passing an empty string.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /crm/v3/objects/companies/{companyId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SimplePublicObjectInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - companyId:
+          TYPE: STRING
+          LOCATION: path
+      - idProperty:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(SimplePublicObjectInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_companies_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_companies_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.companies.update
+  crm.v3.merge.create:
+    SUMMARY: Merge two companies
+    DESC: Merge two company records. Learn more about [merging records](https://knowledge.hubspot.com/records/merge-records).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/merge
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicMergeInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicMergeInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_merge_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_merge_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.merge.create
+  crm.v3.archive.create:
+    SUMMARY: Archive a batch of companies
+    DESC: Delete a batch of companies by ID. Deleted companies can be restored within 90 days of deletion. Learn more about [restoring records](https://knowledge.hubspot.com/records/restore-deleted-records).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/batch/archive
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectId)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectId)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_archive_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.archive.create
+  crm.v3.batch.create:
+    SUMMARY: Create a batch of companies
+    DESC: Create a batch of companies. The `inputs` array can contain a `properties` object to define property values for each company, along with an `associations` array to define [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4) with other CRM records.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/batch/create
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputForCreate)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputForCreate)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_batch_create_201
+        STATUS: 201
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObjectWithErrors)
+        RETURNVAR: crm_v3_batch_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_batch_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.batch.create
+  crm.v3.batch.update:
+    SUMMARY: Update a batch of companies
+    DESC: Update a batch of companies by ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/batch/update
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicObject)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObject)
+        RETURNVAR: crm_v3_batch_update
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicObjectWithErrors)
+        RETURNVAR: crm_v3_batch_update_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_batch_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.batch.update
+  crm.v3.companies.list:
+    SUMMARY: Retrieve companies
+    DESC: Retrieve all companies, using query parameters to control the information that gets returned.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm/v3/objects/companies
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseSimplePublicObjectWithAssociationsForwardPaging)
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 10
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - propertiesWithHistory:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - associations:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseSimplePublicObjectWithAssociationsForwardPaging)
+        RETURNVAR: crm_v3_companies_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_companies_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.companies.list
+  crm.v3.companies.create:
+    SUMMARY: Create a company
+    DESC: Create a single company. Include a `properties` object to define [property values](https://developers.hubspot.com/docs/guides/api/crm/properties) for the company, along with an `associations` array to define [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4) with other CRM records.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SimplePublicObjectInputForCreate)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(SimplePublicObject)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(SimplePublicObjectInputForCreate)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SimplePublicObject)
+        RETURNVAR: crm_v3_companies_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_companies_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.companies.create
+  crm.v3.upsert.create:
+    SUMMARY: Create or update a batch of companies by unique property values
+    DESC: Create or update companies identified by a unique property value as specified by the `idProperty` query parameter. `idProperty` query param refers to a property whose values are unique for the object.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/batch/upsert
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputUpsert)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponseSimplePublicUpsertObject)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputSimplePublicObjectBatchInputUpsert)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicUpsertObject)
+        RETURNVAR: crm_v3_upsert_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponseSimplePublicUpsertObjectWithErrors)
+        RETURNVAR: crm_v3_upsert_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_upsert_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.upsert.create
+  crm.v3.search.create:
+    SUMMARY: Search for companies
+    DESC: Search for companies by filtering on properties, searching through associations, and sorting results. Learn more about [CRM search](https://developers.hubspot.com/docs/guides/api/crm/search#make-a-search-request).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm/v3/objects/companies/search
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicObjectSearchRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalSimplePublicObjectForwardPaging)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicObjectSearchRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalSimplePublicObjectForwardPaging)
+        RETURNVAR: crm_v3_search_create
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm_v3_search_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm.v3.search.create
+STRUCTS:
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicAssociationsForObject:
+    - name: types
+      NAME: types
+      type: "[]STRUCT(AssociationSpec)"
+      TYPE: "[]STRUCT(AssociationSpec)"
+      REQUIRED: true
+    - name: to
+      NAME: to
+      type: STRUCT(PublicObjectId)
+      TYPE: STRUCT(PublicObjectId)
+      REQUIRED: true
+  AssociationSpec:
+    - name: associationCategory
+      NAME: associationCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: For [labeled associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4#associate-records-with-a-label), the category of the association.
+    - name: associationTypeId
+      NAME: associationTypeId
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The [association type ID](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4#association-type-id-values) (e.g., `4` for contact-to-company associations).
+  PublicObjectId:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the target record to associate.
+  BatchResponseSimplePublicObject:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SimplePublicObject:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  FilterGroup:
+    - name: filters
+      NAME: filters
+      type: "[]STRUCT(Filter)"
+      TYPE: "[]STRUCT(Filter)"
+      REQUIRED: true
+  Filter:
+    - name: highValue
+      NAME: highValue
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: propertyName
+      NAME: propertyName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: values
+      NAME: values
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: operator
+      NAME: operator
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "null"
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  SimplePublicObjectId:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponseSimplePublicUpsertObjectWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicUpsertObject)"
+      TYPE: "[]STRUCT(SimplePublicUpsertObject)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SimplePublicUpsertObject:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: new
+      NAME: new
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  BatchReadInputSimplePublicObjectId:
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of a property whose values are unique for this object
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectId)"
+      TYPE: "[]STRUCT(SimplePublicObjectId)"
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+  BatchResponseSimplePublicUpsertObject:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicUpsertObject)"
+      TYPE: "[]STRUCT(SimplePublicUpsertObject)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchInputSimplePublicObjectId:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectId)"
+      TYPE: "[]STRUCT(SimplePublicObjectId)"
+      REQUIRED: true
+  BatchInputSimplePublicObjectBatchInputUpsert:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInputUpsert)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInputUpsert)"
+      REQUIRED: true
+  SimplePublicObjectBatchInputUpsert:
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of a property whose values are unique for this object
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: In each input object, set this field to a unique ID value to enable more granular debugging for error responses. Learn more about [multi-status errors](https://developers.hubspot.com/docs/reference/api/other-resources/error-handling#multi-status-errors).
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the company to update.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: The company property values to set.
+  CollectionResponseWithTotalSimplePublicObjectForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+  PublicObjectSearchRequest:
+    - name: query
+      NAME: query
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: limit
+      NAME: limit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: sorts
+      NAME: sorts
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: filterGroups
+      NAME: filterGroups
+      type: "[]STRUCT(FilterGroup)"
+      TYPE: "[]STRUCT(FilterGroup)"
+      REQUIRED: false
+  BatchResponseSimplePublicObjectWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObject)"
+      TYPE: "[]STRUCT(SimplePublicObject)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  SimplePublicObjectInput:
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: The company property values to set.
+  CollectionResponseSimplePublicObjectWithAssociationsForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(SimplePublicObjectWithAssociations)"
+      TYPE: "[]STRUCT(SimplePublicObjectWithAssociations)"
+      REQUIRED: true
+  SimplePublicObjectWithAssociations:
+    - name: associations
+      NAME: associations
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: propertiesWithHistory
+      NAME: propertiesWithHistory
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  PublicMergeInput:
+    - name: objectIdToMerge
+      NAME: objectIdToMerge
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the company to merge into the primary.
+    - name: primaryObjectId
+      NAME: primaryObjectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID of the primary company, which the other will merge into.
+  BatchInputSimplePublicObjectBatchInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInput)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInput)"
+      REQUIRED: true
+  SimplePublicObjectBatchInput:
+    - name: idProperty
+      NAME: idProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of a property whose values are unique for this object
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: In each input object, set this field to a unique ID value to enable more granular debugging for error responses. Learn more about [multi-status errors](https://developers.hubspot.com/docs/reference/api/other-resources/error-handling#multi-status-errors).
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The ID to be updated. This can be the object ID, or the unique property value of the `idProperty` property.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: The company property values to set.
+  SimplePublicObjectBatchInputForCreate:
+    - name: associations
+      NAME: associations
+      type: "[]STRUCT(PublicAssociationsForObject)"
+      TYPE: "[]STRUCT(PublicAssociationsForObject)"
+      REQUIRED: false
+    - name: objectWriteTraceId
+      NAME: objectWriteTraceId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+  SimplePublicObjectInputForCreate:
+    - name: associations
+      NAME: associations
+      type: "[]STRUCT(PublicAssociationsForObject)"
+      TYPE: "[]STRUCT(PublicAssociationsForObject)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+      comment: The company property values to set.
+  BatchInputSimplePublicObjectBatchInputForCreate:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(SimplePublicObjectBatchInputForCreate)"
+      TYPE: "[]STRUCT(SimplePublicObjectBatchInputForCreate)"
+      REQUIRED: true

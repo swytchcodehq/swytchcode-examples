@@ -1,0 +1,24 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get OAuth token details and associated user email and account ID",
+      "canonical_id": "oauth.v1.accessTokens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get refresh token metadata by token",
+      "canonical_id": "oauth.v1.refreshTokens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invalidate a refresh token",
+      "canonical_id": "oauth.v1.refreshTokens.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Refresh an access token using a refresh token",
+      "canonical_id": "oauth.v1.token.create"
+    }
+  ]
+}

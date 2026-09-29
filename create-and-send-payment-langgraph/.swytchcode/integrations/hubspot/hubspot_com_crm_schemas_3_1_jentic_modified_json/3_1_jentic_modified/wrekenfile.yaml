@@ -1,0 +1,942 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  crm-object-schemas.v3.schemas.list:
+    SUMMARY: Get all schemas
+    DESC: Returns all object schemas that have been defined for your account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm-object-schemas/v3/schemas
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseObjectSchemaNoPaging)
+    INPUTS:
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseObjectSchemaNoPaging)
+        RETURNVAR: crm-object-schemas_v3_schemas_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_schemas_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.schemas.list
+  crm-object-schemas.v3.schemas.create:
+    SUMMARY: Create a new schema
+    DESC: Define a new object schema, along with custom properties and associations. The entire object schema, including its object type ID, properties, and associations will be returned in the response.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm-object-schemas/v3/schemas
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ObjectSchemaEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ObjectSchema)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(ObjectSchemaEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ObjectSchema)
+        RETURNVAR: crm-object-schemas_v3_schemas_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_schemas_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.schemas.create
+  crm-object-schemas.v3.schemas.get:
+    SUMMARY: Get an existing schema
+    DESC: Returns an existing object schema.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /crm-object-schemas/v3/schemas/{objectType}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ObjectSchema)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ObjectSchema)
+        RETURNVAR: crm-object-schemas_v3_schemas_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_schemas_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.schemas.get
+  crm-object-schemas.v3.schemas.delete:
+    SUMMARY: Delete a schema
+    DESC: Deletes a schema. Any existing records of this schema must be deleted **first**. Otherwise this call will fail.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm-object-schemas/v3/schemas/{objectType}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - archived:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_schemas_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.schemas.delete
+  crm-object-schemas.v3.schemas.update:
+    SUMMARY: Update a schema
+    DESC: Update the details for an existing object schema.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /crm-object-schemas/v3/schemas/{objectType}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ObjectTypeDefinitionPatch)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(ObjectTypeDefinition)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ObjectTypeDefinitionPatch)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ObjectTypeDefinition)
+        RETURNVAR: crm-object-schemas_v3_schemas_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_schemas_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.schemas.update
+  crm-object-schemas.v3.associations.create:
+    SUMMARY: Create an association
+    DESC: Defines a new association between the primary schema's object type and other object types.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /crm-object-schemas/v3/schemas/{objectType}/associations
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AssociationDefinitionEgg)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(AssociationDefinition)
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(AssociationDefinitionEgg)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AssociationDefinition)
+        RETURNVAR: crm-object-schemas_v3_associations_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_associations_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.associations.create
+  crm-object-schemas.v3.associations.delete:
+    SUMMARY: Remove an association
+    DESC: Removes an existing association from a schema.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /crm-object-schemas/v3/schemas/{objectType}/associations/{associationIdentifier}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - objectType:
+          TYPE: STRING
+          LOCATION: path
+      - associationIdentifier:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: crm-object-schemas_v3_associations_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: crm-object-schemas.v3.associations.delete
+STRUCTS:
+  ObjectTypeDefinitionPatch:
+    - name: secondaryDisplayProperties
+      NAME: secondaryDisplayProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The names of secondary properties for this object. These will be displayed as secondary on the HubSpot record page for this object type.
+    - name: requiredProperties
+      NAME: requiredProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The names of properties that should be **required** when creating an object of this type.
+    - name: searchableProperties
+      NAME: searchableProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Names of properties that will be indexed for this object type in by HubSpot's product search.
+    - name: clearDescription
+      NAME: clearDescription
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: primaryDisplayProperty
+      NAME: primaryDisplayProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the primary property for this object. This will be displayed as primary on the HubSpot record page for this object type.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: restorable
+      NAME: restorable
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: labels
+      NAME: labels
+      type: STRUCT(ObjectTypeDefinitionLabels)
+      TYPE: STRUCT(ObjectTypeDefinitionLabels)
+      REQUIRED: false
+  ObjectTypeDefinitionLabels:
+    - name: plural
+      NAME: plural
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The word for multiple objects. (There’s no way to change this later.)
+    - name: singular
+      NAME: singular
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The word for one object. (There’s no way to change this later.)
+  CollectionResponseObjectSchemaNoPaging:
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ObjectSchema)"
+      TYPE: "[]STRUCT(ObjectSchema)"
+      REQUIRED: true
+  ObjectSchema:
+    - name: associations
+      NAME: associations
+      type: "[]STRUCT(AssociationDefinition)"
+      TYPE: "[]STRUCT(AssociationDefinition)"
+      REQUIRED: true
+      comment: Associations defined for a given object type.
+    - name: secondaryDisplayProperties
+      NAME: secondaryDisplayProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The names of secondary properties for this object. These will be displayed as secondary on the HubSpot record page for this object type.
+    - name: createdByUserId
+      NAME: createdByUserId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: updatedByUserId
+      NAME: updatedByUserId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: fullyQualifiedName
+      NAME: fullyQualifiedName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: An assigned unique ID for the object, including portal ID and object name.
+    - name: labels
+      NAME: labels
+      type: STRUCT(ObjectTypeDefinitionLabels)
+      TYPE: STRUCT(ObjectTypeDefinitionLabels)
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the object schema was created.
+    - name: requiredProperties
+      NAME: requiredProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: The names of properties that should be **required** when creating an object of this type.
+    - name: searchableProperties
+      NAME: searchableProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Names of properties that will be indexed for this object type in by HubSpot's product search.
+    - name: primaryDisplayProperty
+      NAME: primaryDisplayProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the primary property for this object. This will be displayed as primary on the HubSpot record page for this object type.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique name for the schema's object type.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique ID for this schema's object type. Will be defined as {meta-type}-{unique ID}.
+    - name: properties
+      NAME: properties
+      type: "[]STRUCT(Property)"
+      TYPE: "[]STRUCT(Property)"
+      REQUIRED: true
+      comment: Properties defined for this object type.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the object schema was last updated.
+  AssociationDefinition:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the association was defined.
+    - name: fromObjectTypeId
+      NAME: fromObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the primary object type to link from.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique name for this association.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique ID for this association.
+    - name: toObjectTypeId
+      NAME: toObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the target object type to link to.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the association was last updated.
+  Property:
+    - name: hidden
+      NAME: hidden
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: displayOrder
+      NAME: displayOrder
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The order that this property should be displayed in the HubSpot UI relative to other properties for this object type. Properties are displayed in order starting with the lowest positive integer value. A value of -1 will cause the property to be displayed **after** any positive values.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A description of the property that will be shown as help text in HubSpot.
+    - name: showCurrencySymbol
+      NAME: showCurrencySymbol
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the property will display the currency symbol set in the account settings.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The property data type.
+    - name: hubspotDefined
+      NAME: hubspotDefined
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: This will be true for default object properties built into HubSpot.
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the property was created
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether or not the property is archived.
+    - name: options
+      NAME: options
+      type: "[]STRUCT(Option)"
+      TYPE: "[]STRUCT(Option)"
+      REQUIRED: true
+      comment: A list of valid options for the property. This field is required for enumerated properties, but will be empty for other property types.
+    - name: hasUniqueValue
+      NAME: hasUniqueValue
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether or not the property's value must be unique. Once set, this can't be changed.
+    - name: calculated
+      NAME: calculated
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: For default properties, true indicates that the property is calculated by a HubSpot process. It has no effect for custom properties.
+    - name: externalOptions
+      NAME: externalOptions
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: For default properties, true indicates that the options are stored externally to the property settings.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: createdUserId
+      NAME: createdUserId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The internal ID of the user who created the property in HubSpot. This field may not exist if the property was created outside of HubSpot.
+    - name: modificationMetadata
+      NAME: modificationMetadata
+      type: STRUCT(PropertyModificationMetadata)
+      TYPE: STRUCT(PropertyModificationMetadata)
+      REQUIRED: false
+    - name: sensitiveDataCategories
+      NAME: sensitiveDataCategories
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: label
+      NAME: label
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human-readable property label that will be shown in HubSpot.
+    - name: formField
+      NAME: formField
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether or not the property can be used in a HubSpot form.
+    - name: dataSensitivity
+      NAME: dataSensitivity
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: archivedAt
+      NAME: archivedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the property was archived.
+    - name: groupName
+      NAME: groupName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The name of the property group the property belongs to.
+    - name: referencedObjectType
+      NAME: referencedObjectType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: If this property is related to other object(s), they'll be listed here.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The internal property name, which must be used when referencing the property via the API.
+    - name: calculationFormula
+      NAME: calculationFormula
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: fieldType
+      NAME: fieldType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Controls how the property appears in HubSpot.
+    - name: updatedUserId
+      NAME: updatedUserId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The internal user ID of the user who updated the property in HubSpot. This field may not exist if the property was updated outside of HubSpot.
+  Option:
+    - name: hidden
+      NAME: hidden
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Hidden options will not be displayed in HubSpot.
+    - name: displayOrder
+      NAME: displayOrder
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Options are displayed in order starting with the lowest positive integer value. Values of -1 will cause the option to be displayed after any positive values.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the option.
+    - name: label
+      NAME: label
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human-readable option label that will be shown in HubSpot.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The internal value of the option, which must be used when setting the property value through the API.
+  PropertyModificationMetadata:
+    - name: readOnlyOptions
+      NAME: readOnlyOptions
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: readOnlyValue
+      NAME: readOnlyValue
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: readOnlyDefinition
+      NAME: readOnlyDefinition
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+    - name: archivable
+      NAME: archivable
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+  ObjectTypeDefinition:
+    - name: secondaryDisplayProperties
+      NAME: secondaryDisplayProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The names of secondary properties for this object. These will be displayed as secondary on the HubSpot record page for this object type.
+    - name: objectTypeId
+      NAME: objectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: fullyQualifiedName
+      NAME: fullyQualifiedName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: labels
+      NAME: labels
+      type: STRUCT(ObjectTypeDefinitionLabels)
+      TYPE: STRUCT(ObjectTypeDefinitionLabels)
+      REQUIRED: true
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the object type was created.
+    - name: requiredProperties
+      NAME: requiredProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: The names of properties that should be **required** when creating an object of this type.
+    - name: searchableProperties
+      NAME: searchableProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Names of properties that will be indexed for this object type in by HubSpot's product search.
+    - name: portalId
+      NAME: portalId
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The ID of the account that this object type is specific to.
+    - name: primaryDisplayProperty
+      NAME: primaryDisplayProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the primary property for this object. This will be displayed as primary on the HubSpot record page for this object type.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique name for this object. For internal use only.
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique ID for this object type. Will be defined as {meta-type}-{unique ID}.
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: When the object type was last updated.
+  OptionInput:
+    - name: hidden
+      NAME: hidden
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+      comment: Hidden options won't be shown in HubSpot.
+    - name: displayOrder
+      NAME: displayOrder
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Options are shown in order starting with the lowest positive integer value. Values of -1 will cause the option to be displayed after any positive values.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the option.
+    - name: label
+      NAME: label
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human-readable option label that will be shown in HubSpot.
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The internal value of the option, which must be used when setting the property value through the API.
+  ObjectTypePropertyCreate:
+    - name: hidden
+      NAME: hidden
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: optionSortStrategy
+      NAME: optionSortStrategy
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Controls how the property options will be sorted in the HubSpot UI.
+    - name: displayOrder
+      NAME: displayOrder
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: The order that this property should be displayed in the HubSpot UI relative to other properties for this object type. Properties are displayed in order starting with the lowest positive integer value. A value of -1 will cause the property to be displayed **after** any positive values.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A description of the property that will be shown as help text in HubSpot.
+    - name: showCurrencySymbol
+      NAME: showCurrencySymbol
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the property will display the currency symbol in the HubSpot UI.
+    - name: label
+      NAME: label
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human-readable property label that will be shown in HubSpot.
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The data type of the property.
+    - name: formField
+      NAME: formField
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the property can be used in a HubSpot form.
+    - name: groupName
+      NAME: groupName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the group this property belongs to.
+    - name: referencedObjectType
+      NAME: referencedObjectType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Defines the options this property will return, e.g. OWNER would return name of users on the portal.
+    - name: textDisplayHint
+      NAME: textDisplayHint
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Controls how text properties are formatted in the HubSpot UI
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The internal property name, which must be used when referencing the property from the API.
+    - name: options
+      NAME: options
+      type: "[]STRUCT(OptionInput)"
+      TYPE: "[]STRUCT(OptionInput)"
+      REQUIRED: false
+      comment: A list of available options for the property. This field is only required for enumerated properties.
+    - name: searchableInGlobalSearch
+      NAME: searchableInGlobalSearch
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Allow users to search for information entered to this field (limited to 3 properties)
+    - name: numberDisplayHint
+      NAME: numberDisplayHint
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Controls how numeric properties are formatted in the HubSpot UI
+    - name: hasUniqueValue
+      NAME: hasUniqueValue
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether or not the property's value must be unique. Once set, this can't be changed.
+    - name: fieldType
+      NAME: fieldType
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Controls how the property appears in HubSpot.
+  AssociationDefinitionEgg:
+    - name: fromObjectTypeId
+      NAME: fromObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the primary object type to link from.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A unique name for this association.
+    - name: toObjectTypeId
+      NAME: toObjectTypeId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: ID of the target object type to link to.
+  ObjectSchemaEgg:
+    - name: secondaryDisplayProperties
+      NAME: secondaryDisplayProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The names of secondary properties for this object. These will be displayed as secondary on the HubSpot record page for this object type.
+    - name: requiredProperties
+      NAME: requiredProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: The names of properties that should be **required** when creating an object of this type.
+    - name: searchableProperties
+      NAME: searchableProperties
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Names of properties that will be indexed for this object type in by HubSpot's product search.
+    - name: primaryDisplayProperty
+      NAME: primaryDisplayProperty
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the primary property for this object. This will be displayed as primary on the HubSpot record page for this object type.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A unique name for this object. For internal use only.
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: associatedObjects
+      NAME: associatedObjects
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Associations defined for this object type.
+    - name: properties
+      NAME: properties
+      type: "[]STRUCT(ObjectTypePropertyCreate)"
+      TYPE: "[]STRUCT(ObjectTypePropertyCreate)"
+      REQUIRED: true
+      comment: Properties defined for this object type.
+    - name: labels
+      NAME: labels
+      type: STRUCT(ObjectTypeDefinitionLabels)
+      TYPE: STRUCT(ObjectTypeDefinitionLabels)
+      REQUIRED: true

@@ -1,0 +1,44 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a property to an event definition",
+      "canonical_id": "events.v3.property.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a custom event definition",
+      "canonical_id": "events.v3.eventDefinitions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a custom event definition by name",
+      "canonical_id": "events.v3.eventDefinitions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get event definitions and custom event definitions",
+      "canonical_id": "events.v3.eventDefinitions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a property from a custom event definition",
+      "canonical_id": "events.v3.property.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an event definition by name",
+      "canonical_id": "events.v3.eventDefinitions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom event definition by name",
+      "canonical_id": "events.v3.eventDefinitions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom event property's definition",
+      "canonical_id": "events.v3.property.update"
+    }
+  ]
+}

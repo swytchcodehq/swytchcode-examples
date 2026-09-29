@@ -1,0 +1,64 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple currency exchange rates at once",
+      "canonical_id": "settings.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new currency exchange rates",
+      "canonical_id": "settings.v3.exchangeRates.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of available currency codes",
+      "canonical_id": "settings.v3.codes.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific exchange rate by its ID",
+      "canonical_id": "settings.v3.exchangeRates.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get currency exchange rates",
+      "canonical_id": "settings.v3.exchangeRates.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get current currency exchange rates",
+      "canonical_id": "settings.v3.current.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple currency exchange rates in a batch",
+      "canonical_id": "settings.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the company's default currency",
+      "canonical_id": "settings.v3.companyCurrency.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific currency exchange rate multiplier",
+      "canonical_id": "settings.v3.exchangeRates.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple currency exchange rates in a batch",
+      "canonical_id": "settings.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the company's default currency",
+      "canonical_id": "settings.v3.companyCurrency.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the visibility of currency exchange rates",
+      "canonical_id": "settings.v3.updateVisibility.create"
+    }
+  ]
+}

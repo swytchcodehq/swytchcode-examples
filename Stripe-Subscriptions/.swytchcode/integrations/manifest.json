@@ -1,0 +1,324 @@
+{
+  "Neon.Neon API": {
+    "version": "v2",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 133,
+    "workflows": 2
+  },
+  "agentql.agentql": {
+    "version": "0.1.0",
+    "sandbox_endpoint": "https://api.agentql.com",
+    "production_endpoint": "https://api.agentql.com",
+    "methods": 8,
+    "workflows": 0
+  },
+  "alchemy.alchemy_accounts": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_admin": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_aptos": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_beta": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_eth_beacon": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_nft": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_notify": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_prices": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_transactions": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_tron_http": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "alchemy.alchemy_tron_solidity_http": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 244,
+    "workflows": 0
+  },
+  "binance.binance_algo_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "https://testnet.binance.vision",
+    "production_endpoint": "https://api.binance.com",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_alpha_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "https://testnet.binance.vision",
+    "production_endpoint": "https://api.binance.com",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_c2c_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "https://testnet.binance.vision",
+    "production_endpoint": "https://api.binance.com",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_convert_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "https://testnet.binance.vision",
+    "production_endpoint": "https://api.binance.com",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_copy_trading_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_crypto_loan_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_derivatives_trading_coin_futures_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_derivatives_trading_options_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_derivatives_trading_portfolio_margin_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_derivatives_trading_portfolio_margin_pro_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_derivatives_trading_usds_futures_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_dual_investment_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_fiat_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_gift_card_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_margin_trading_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_mining_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_nft_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_pay_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_rebate_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_simple_earn_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_spot_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_staking_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_sub_account_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_vip_loan_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "binance.binance_wallet_api": {
+    "version": "1.0.0",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 694,
+    "workflows": 0
+  },
+  "bridge.bridge": {
+    "version": "1",
+    "sandbox_endpoint": "https://api.sandbox.bridge.xyz",
+    "production_endpoint": "https://api.bridge.xyz",
+    "methods": 230,
+    "workflows": 0
+  },
+  "circle.circle": {
+    "version": "1",
+    "sandbox_endpoint": "https://api-sandbox.circle.com",
+    "production_endpoint": "https://api.circle.com",
+    "methods": 189,
+    "workflows": 0
+  },
+  "gusto.gusto": {
+    "version": "v2025-11-15",
+    "sandbox_endpoint": "https://api.gusto-demo.com",
+    "production_endpoint": "https://api.gusto.com",
+    "methods": 281,
+    "workflows": 0
+  },
+  "neon.Neon API": {
+    "version": "v2",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "http://localhost",
+    "methods": 133,
+    "workflows": 2
+  },
+  "paxos.paxos": {
+    "version": "2.0.0",
+    "sandbox_endpoint": "https://api.sandbox.paxos.com",
+    "production_endpoint": "https://api.paxos.com",
+    "methods": 94,
+    "workflows": 0
+  },
+  "persona.persona": {
+    "version": "080122025",
+    "sandbox_endpoint": "https://api.withpersona.com/api/v1",
+    "production_endpoint": "https://api.withpersona.com/api/v1",
+    "methods": 178,
+    "workflows": 0
+  },
+  "resend.resend": {
+    "version": "v1.5.0",
+    "sandbox_endpoint": "https://api.resend.com",
+    "production_endpoint": "https://api.resend.com",
+    "methods": 67,
+    "workflows": 0
+  },
+  "stripe.stripe": {
+    "version": "2026-02-25.clover",
+    "sandbox_endpoint": "https://api.stripe.com",
+    "production_endpoint": "https://api.stripe.com",
+    "methods": 587,
+    "workflows": 0
+  }
+}

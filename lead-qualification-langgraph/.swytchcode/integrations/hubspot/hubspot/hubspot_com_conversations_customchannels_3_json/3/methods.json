@@ -1,0 +1,84 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Fetch message history for a specific conversation thread",
+      "canonical_id": "conversations.v3.messages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific channel account by its ID",
+      "canonical_id": "conversations.v3.channelAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a message to a conversation thread",
+      "canonical_id": "conversations.v3.messages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a custom channel by its ID",
+      "canonical_id": "conversations.v3.customChannels.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a custom channel and register its capabilities and webhook",
+      "canonical_id": "conversations.v3.customChannels.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create channel accounts for a specific channel",
+      "canonical_id": "conversations.v3.channelAccounts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get channel accounts for a specific channel",
+      "canonical_id": "conversations.v3.channelAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a channel account and its metadata",
+      "canonical_id": "conversations.v3.channelAccounts.get_cd69"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific message from a custom channel",
+      "canonical_id": "conversations.v3.messages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all custom channels for an app",
+      "canonical_id": "conversations.v3.customChannels.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve custom channel details by ID",
+      "canonical_id": "conversations.v3.customChannels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a message to a custom channel",
+      "canonical_id": "conversations.v3.messages.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a channel account staging token with new details",
+      "canonical_id": "conversations.v3.channelAccountStagingTokens.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a channel account's name and authorization status",
+      "canonical_id": "conversations.v3.channelAccounts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom channel's details and capabilities",
+      "canonical_id": "conversations.v3.customChannels.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a message's status in a custom channel",
+      "canonical_id": "conversations.v3.messages.update"
+    }
+  ]
+}

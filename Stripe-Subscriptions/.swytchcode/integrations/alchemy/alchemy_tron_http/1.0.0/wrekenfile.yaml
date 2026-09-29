@@ -1,0 +1,3825 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://tron-mainnet.g.alchemy.com/v2/{apiKey}
+METHODS:
+  wallet.validateaddress.create:
+    SUMMARY: Validate an address
+    DESC: |
+      Validates whether the given address is a valid TRON address.   It can optionally check whether the address is in base58check format (`visible: true`) or hex format (`visible: false`).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/validateaddress
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.validateaddress.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.validateaddress.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.validateaddress.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.validateaddress.createResponse200)
+        RETURNVAR: wallet_validateaddress_create
+        STATUS: 200
+    CANONICAL_ID: wallet.validateaddress.create
+  wallet.broadcasttransaction.create:
+    SUMMARY: Broadcast a transaction
+    DESC: |
+      Broadcasts a signed transaction to the TRON network.   The transaction must be correctly formed and signed before being sent.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/broadcasttransaction
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.broadcasttransaction.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.broadcasttransaction.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.broadcasttransaction.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.broadcasttransaction.createResponse200)
+        RETURNVAR: wallet_broadcasttransaction_create
+        STATUS: 200
+    CANONICAL_ID: wallet.broadcasttransaction.create
+  wallet.broadcasthex.create:
+    SUMMARY: Broadcast a hex-encoded transaction
+    DESC: |
+      Broadcasts a signed transaction to the TRON network using a hex-encoded string.   This is useful when a transaction has already been constructed and signed externally.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/broadcasthex
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.broadcasthex.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.broadcasthex.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.broadcasthex.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.broadcasthex.createResponse200)
+        RETURNVAR: wallet_broadcasthex_create
+        STATUS: 200
+    CANONICAL_ID: wallet.broadcasthex.create
+  wallet.createtransaction.create:
+    SUMMARY: Create a transaction
+    DESC: |
+      Creates an unsigned TRON transfer transaction between two accounts. The transaction must be signed and broadcast separately after creation.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/createtransaction
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.createtransaction.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.createtransaction.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.createtransaction.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.createtransaction.createResponse200)
+        RETURNVAR: wallet_createtransaction_create
+        STATUS: 200
+    CANONICAL_ID: wallet.createtransaction.create
+  wallet.createaccount.create:
+    SUMMARY: Create an account
+    DESC: |
+      Creates a new account under the specified owner address. This is a permissioned action that must be signed and broadcasted to the TRON network.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/createaccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.createaccount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.createaccount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.createaccount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.createaccount.createResponse200)
+        RETURNVAR: wallet_createaccount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.createaccount.create
+  wallet.getaccount.create:
+    SUMMARY: Get account details
+    DESC: |
+      Retrieves details about a specific TRON account, including balances, permissions, and resource usage.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getaccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getaccount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getaccount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getaccount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getaccount.createResponse200)
+        RETURNVAR: wallet_getaccount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getaccount.create
+  wallet.updateaccount.create:
+    SUMMARY: Update account name
+    DESC: |
+      Updates the account name associated with the given owner address.   The name must be a hex-encoded string and is limited in length.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/updateaccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.updateaccount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.updateaccount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.updateaccount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.updateaccount.createResponse200)
+        RETURNVAR: wallet_updateaccount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.updateaccount.create
+  wallet.accountpermissionupdate.create:
+    SUMMARY: Update account permissions
+    DESC: |
+      Updates the owner and active permission structures of a TRON account.   This allows fine-grained control over account access and required thresholds.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/accountpermissionupdate
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.accountpermissionupdate.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.accountpermissionupdate.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.accountpermissionupdate.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.accountpermissionupdate.createResponse200)
+        RETURNVAR: wallet_accountpermissionupdate_create
+        STATUS: 200
+    CANONICAL_ID: wallet.accountpermissionupdate.create
+  wallet.getaccountbalance.create:
+    SUMMARY: Get account balance at a specific block
+    DESC: |
+      Retrieves the account balance for a specific TRON address at a given block.   This method is useful for historical balance lookups.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getaccountbalance
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getaccountbalance.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getaccountbalance.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getaccountbalance.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getaccountbalance.createResponse200)
+        RETURNVAR: wallet_getaccountbalance_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getaccountbalance.create
+  wallet.getaccountresource.create:
+    SUMMARY: Get account resource limits
+    DESC: |
+      Returns resource limit and usage information for a given TRON address, including Net and Energy values.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getaccountresource
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getaccountresource.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getaccountresource.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getaccountresource.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getaccountresource.createResponse200)
+        RETURNVAR: wallet_getaccountresource_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getaccountresource.create
+  wallet.getaccountnet.create:
+    SUMMARY: Get account Net resource info
+    DESC: |
+      Returns Net resource limits and usage for a given TRON address. This is a simplified version of the resource query focused only on Net metrics.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getaccountnet
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getaccountnet.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getaccountnet.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getaccountnet.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getaccountnet.createResponse200)
+        RETURNVAR: wallet_getaccountnet_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getaccountnet.create
+  wallet.freezebalance.create:
+    SUMMARY: Freeze balance for resource allocation
+    DESC: |
+      Freezes TRX tokens in an account to gain bandwidth or energy resources.   Frozen tokens will be locked for a specified duration.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/freezebalance
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.freezebalance.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.freezebalance.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.freezebalance.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.freezebalance.createResponse200)
+        RETURNVAR: wallet_freezebalance_create
+        STATUS: 200
+    CANONICAL_ID: wallet.freezebalance.create
+  wallet.unfreezebalance.create:
+    SUMMARY: Unfreeze account balance
+    DESC: |
+      Unfreezes a previously frozen TRON account balance to restore access to tokens. The unfreeze operation must specify the resource type originally frozen.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/unfreezebalance
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.unfreezebalance.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.unfreezebalance.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.unfreezebalance.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.unfreezebalance.createResponse200)
+        RETURNVAR: wallet_unfreezebalance_create
+        STATUS: 200
+    CANONICAL_ID: wallet.unfreezebalance.create
+  wallet.getdelegatedresource.create:
+    SUMMARY: Get delegated resource information
+    DESC: |
+      Returns the amount of resource delegated from one address to another. This includes bandwidth and energy delegated.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getdelegatedresource
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getdelegatedresource.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getdelegatedresource.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getdelegatedresource.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getdelegatedresource.createResponse200)
+        RETURNVAR: wallet_getdelegatedresource_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getdelegatedresource.create
+  wallet.getdelegatedresourceaccountindex.create:
+    SUMMARY: Get delegated resource account index
+    DESC: |
+      Returns the account address for which delegated resource index information is being queried.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getdelegatedresourceaccountindex
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getdelegatedresourceaccountindex.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getdelegatedresourceaccountindex.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getdelegatedresourceaccountindex.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getdelegatedresourceaccountindex.createResponse200)
+        RETURNVAR: wallet_getdelegatedresourceaccountindex_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getdelegatedresourceaccountindex.create
+  wallet.freezebalancev2.create:
+    SUMMARY: Freeze balance using FreezeBalanceV2
+    DESC: |
+      Freezes TRX tokens in an account to gain ENERGY resources using the newer FreezeBalanceV2 mechanism.   This version omits the `frozen_duration` parameter and is considered an improved alternative to `/freezebalance`.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/freezebalancev2
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.freezebalancev2.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.freezebalancev2.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.freezebalancev2.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.freezebalancev2.createResponse200)
+        RETURNVAR: wallet_freezebalancev2_create
+        STATUS: 200
+    CANONICAL_ID: wallet.freezebalancev2.create
+  wallet.delegateresource.create:
+    SUMMARY: Delegate resource to another account
+    DESC: |
+      Delegates bandwidth or energy resources from one account to another. The delegator must have previously frozen TRX to obtain the resources.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/delegateresource
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.delegateresource.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.delegateresource.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.delegateresource.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.delegateresource.createResponse200)
+        RETURNVAR: wallet_delegateresource_create
+        STATUS: 200
+    CANONICAL_ID: wallet.delegateresource.create
+  wallet.undelegateresource.create:
+    SUMMARY: Undelegate resource from another account
+    DESC: |
+      Removes previously delegated bandwidth or energy resources from a target account.   The operation reclaims the resource back to the owner's account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/undelegateresource
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.undelegateresource.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.undelegateresource.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.undelegateresource.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.undelegateresource.createResponse200)
+        RETURNVAR: wallet_undelegateresource_create
+        STATUS: 200
+    CANONICAL_ID: wallet.undelegateresource.create
+  wallet.withdrawexpireunfreeze.create:
+    SUMMARY: Withdraw expired unfreeze balance
+    DESC: |
+      Withdraws TRX from expired unfreeze operations.   This retrieves tokens that were frozen and then unfrozen, but not yet withdrawn.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/withdrawexpireunfreeze
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.withdrawexpireunfreeze.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.withdrawexpireunfreeze.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.withdrawexpireunfreeze.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.withdrawexpireunfreeze.createResponse200)
+        RETURNVAR: wallet_withdrawexpireunfreeze_create
+        STATUS: 200
+    CANONICAL_ID: wallet.withdrawexpireunfreeze.create
+  wallet.getavailableunfreezecount.create:
+    SUMMARY: Get available unfreeze count
+    DESC: |
+      Returns the number of available unfreeze operations for the specified account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getavailableunfreezecount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getavailableunfreezecount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getavailableunfreezecount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getavailableunfreezecount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getavailableunfreezecount.createResponse200)
+        RETURNVAR: wallet_getavailableunfreezecount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getavailableunfreezecount.create
+  wallet.getcanwithdrawunfreezeamount.create:
+    SUMMARY: Get withdrawable unfreeze amount
+    DESC: |
+      Returns the amount of TRX that can be withdrawn from expired unfreeze operations for the specified account at a given timestamp.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getcanwithdrawunfreezeamount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getcanwithdrawunfreezeamount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getcanwithdrawunfreezeamount.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getcanwithdrawunfreezeamount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getcanwithdrawunfreezeamount.createResponse200)
+        RETURNVAR: wallet_getcanwithdrawunfreezeamount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getcanwithdrawunfreezeamount.create
+  wallet.getcandelegatedmaxsize.create:
+    SUMMARY: Get maximum delegatable resource size
+    DESC: |
+      Returns the maximum amount of resources (in SUN) that can be delegated by a given account.   The type can be 0 for BANDWIDTH or 1 for ENERGY.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getcandelegatedmaxsize
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getcandelegatedmaxsize.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getcandelegatedmaxsize.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getcandelegatedmaxsize.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getcandelegatedmaxsize.createResponse200)
+        RETURNVAR: wallet_getcandelegatedmaxsize_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getcandelegatedmaxsize.create
+  wallet.getdelegatedresourcev2.create:
+    SUMMARY: Get delegated resource details (V2)
+    DESC: |
+      In Stake 2.0, queries detailed information of resource shares delegated from one account to another. Returns amounts staked for BANDWIDTH and ENERGY, and their expiration times if present.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getdelegatedresourcev2
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getdelegatedresourcev2.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getdelegatedresourcev2.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getdelegatedresourcev2.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getdelegatedresourcev2.createResponse200)
+        RETURNVAR: wallet_getdelegatedresourcev2_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getdelegatedresourcev2.create
+  wallet.getdelegatedresourceaccountindexv2.create:
+    SUMMARY: Get delegated resource account index (V2)
+    DESC: |
+      Returns the delegated resource account index under Stake 2.0 for the given address.   This is used to locate accounts participating in delegation relationships.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getdelegatedresourceaccountindexv2
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getdelegatedresourceaccountindexv2.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getdelegatedresourceaccountindexv2.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getdelegatedresourceaccountindexv2.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getdelegatedresourceaccountindexv2.createResponse200)
+        RETURNVAR: wallet_getdelegatedresourceaccountindexv2_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getdelegatedresourceaccountindexv2.create
+  wallet.getblock.create:
+    SUMMARY: Get block by number or ID
+    DESC: |
+      Retrieves a block from the TRON blockchain by its number or block ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getblock
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getblock.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: map[STRING]ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getblock.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: map[STRING]ANY
+        RETURNVAR: wallet_getblock_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getblock.create
+  wallet.getblockbynum.create:
+    SUMMARY: Get block by number
+    DESC: Retrieves a block by its block number.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getblockbynum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getblockbynum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getblockbynum.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getblockbynum.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getblockbynum.createResponse200)
+        RETURNVAR: wallet_getblockbynum_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getblockbynum.create
+  wallet.getblockbyid.create:
+    SUMMARY: Get block by ID
+    DESC: Retrieves a block by its unique block ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getblockbyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getblockbyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.getblockbyid.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getblockbyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.getblockbyid.createResponse200)
+        RETURNVAR: wallet_getblockbyid_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getblockbyid.create
+  wallet.getblockbylatestnum.create:
+    SUMMARY: Get latest blocks by number
+    DESC: Retrieves the latest N blocks starting from the most recent one.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getblockbylatestnum
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getblockbylatestnum.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getblockbylatestnum.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.getblockbylatestnum.create
+  wallet.getblockbylimitnext.create:
+    SUMMARY: Get blocks by range
+    DESC: Retrieves blocks between the specified range of block numbers.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getblockbylimitnext
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getblockbylimitnext.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getblockbylimitnext.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getblockbylimitnext_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getblockbylimitnext.create
+  wallet.getnowblock.create:
+    SUMMARY: Get the latest block
+    DESC: |
+      Retrieves the latest block from the TRON blockchain.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getnowblock
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getnowblock.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getnowblock.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getnowblock_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getnowblock.create
+  wallet.gettransactionbyid.create:
+    SUMMARY: Get transaction by ID
+    DESC: Retrieves the full transaction information given its ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/gettransactionbyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.gettransactionbyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.gettransactionbyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_gettransactionbyid_create
+        STATUS: 200
+    CANONICAL_ID: wallet.gettransactionbyid.create
+  wallet.gettransactionlistfrompending.create:
+    SUMMARY: Retrieve a list of pending transactions by ID
+    DESC: Returns the transaction details for a list of pending transaction IDs currently in the pending pool.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/gettransactionlistfrompending
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_gettransactionlistfrompending_create
+        STATUS: 200
+    CANONICAL_ID: wallet.gettransactionlistfrompending.create
+  wallet.getpendingsize.create:
+    SUMMARY: Get size of pending transaction pool
+    DESC: Returns the number of transactions currently in the pending pool.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getpendingsize
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getpendingsize_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getpendingsize.create
+  wallet.gettransactionfrompending.create:
+    SUMMARY: Get a single transaction from pending pool
+    DESC: Retrieves detailed information for a specific transaction currently in the pending pool using its transaction ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/gettransactionfrompending
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_gettransactionfrompending_create
+        STATUS: 200
+    CANONICAL_ID: wallet.gettransactionfrompending.create
+  wallet.getassetissuebyname.create:
+    SUMMARY: Get asset issue by name
+    DESC: Retrieves a TRC10 token (asset issue) by its name. Returns token details including owner, supply, and freeze info.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getassetissuebyname
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getassetissuebyname.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getassetissuebyname.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getassetissuebyname_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getassetissuebyname.create
+  wallet.getassetissuelistbyname.create:
+    SUMMARY: Get Asset Issue List by Name
+    DESC: Retrieves a list of TRC10 tokens (asset issues) that share the same name.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getassetissuelistbyname
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getassetissuelistbyname.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getassetissuelistbyname.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.getassetissuelistbyname.create
+  wallet.getpaginatedassetissuelist.create:
+    SUMMARY: Get Paginated Asset Issue List
+    DESC: Retrieves a paginated list of all TRC10 tokens on the TRON network.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getpaginatedassetissuelist
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getpaginatedassetissuelist.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getpaginatedassetissuelist.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getpaginatedassetissuelist_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getpaginatedassetissuelist.create
+  wallet.transferasset.create:
+    SUMMARY: Transfer Asset
+    DESC: Creates an unsigned transaction to transfer a TRC10 token from one address to another.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/transferasset
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.transferasset.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.transferasset.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.transferasset.create
+  wallet.createassetissue.create:
+    SUMMARY: Create Asset Issue
+    DESC: Creates an unsigned transaction to issue a new TRC10 token on the TRON network.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/createassetissue
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.createassetissue.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.createassetissue.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.createassetissue.create
+  wallet.participateassetissue.create:
+    SUMMARY: Participate in Asset Issue
+    DESC: Creates an unsigned transaction for participating in a TRC10 token issuance.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/participateassetissue
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.participateassetissue.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.participateassetissue.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_participateassetissue_create
+        STATUS: 200
+    CANONICAL_ID: wallet.participateassetissue.create
+  wallet.unfreezeasset.create:
+    SUMMARY: Unfreeze Asset
+    DESC: Creates an unsigned transaction to unfreeze a TRC10 token that was previously frozen during issuance.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/unfreezeasset
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.unfreezeasset.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.unfreezeasset.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_unfreezeasset_create
+        STATUS: 200
+    CANONICAL_ID: wallet.unfreezeasset.create
+  wallet.getcontract.create:
+    SUMMARY: Get contract
+    DESC: Retrieves the ABI and bytecode of a smart contract deployed on TRON by its address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getcontract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getcontract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getcontract.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.getcontract.create
+  wallet.getcontractinfo.create:
+    SUMMARY: Get contract info
+    DESC: Retrieves detailed information about a smart contract including its ABI, bytecode, energy usage, and origin address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getcontractinfo
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getcontractinfo.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getcontractinfo.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.getcontractinfo.create
+  wallet.triggersmartcontract.create:
+    SUMMARY: Trigger smart contract
+    DESC: Creates an unsigned transaction that calls a smart contract function on TRON. Use this for state-changing contract interactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/triggersmartcontract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.triggersmartcontract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.triggersmartcontract.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.triggersmartcontract.create
+  wallet.triggerconstantcontract.create:
+    SUMMARY: Trigger constant smart contract
+    DESC: Calls a smart contract function without broadcasting a transaction. Use this for read-only queries like checking balances.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/triggerconstantcontract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.triggerconstantcontract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.triggerconstantcontract.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.triggerconstantcontract.create
+  wallet.deploycontract.create:
+    SUMMARY: Deploy a smart contract
+    DESC: |
+      Deploys a new smart contract to the TRON blockchain. The owner address must have sufficient funds to pay for the deployment.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/deploycontract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.deploycontract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.deploycontract.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.deploycontract.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.deploycontract.createResponse200)
+        RETURNVAR: wallet_deploycontract_create
+        STATUS: 200
+    CANONICAL_ID: wallet.deploycontract.create
+  wallet.updatesetting.create:
+    SUMMARY: Update contract setting
+    DESC: |
+      Updates settings for an existing smart contract, such as energy limit or user resource percent.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/updatesetting
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.updatesetting.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.updatesetting.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.updatesetting.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.updatesetting.createResponse200)
+        RETURNVAR: wallet_updatesetting_create
+        STATUS: 200
+    CANONICAL_ID: wallet.updatesetting.create
+  wallet.updateenergylimit.create:
+    SUMMARY: Update contract energy limit
+    DESC: |
+      Updates the maximum energy limit for an existing smart contract.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/updateenergylimit
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.updateenergylimit.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.updateenergylimit.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.updateenergylimit.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.updateenergylimit.createResponse200)
+        RETURNVAR: wallet_updateenergylimit_create
+        STATUS: 200
+    CANONICAL_ID: wallet.updateenergylimit.create
+  wallet.clearabi.create:
+    SUMMARY: Clear contract ABI
+    DESC: |
+      Clears the ABI of a smart contract, removing all method and event definitions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/clearabi
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.clearabi.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.clearabi.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.clearabi.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.clearabi.createResponse200)
+        RETURNVAR: wallet_clearabi_create
+        STATUS: 200
+    CANONICAL_ID: wallet.clearabi.create
+  wallet.estimateenergy.create:
+    SUMMARY: Estimate energy usage for contract call
+    DESC: |
+      Estimates the amount of energy that will be consumed by a smart contract call with given parameters.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/estimateenergy
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.estimateenergy.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(wallet.estimateenergy.createResponse200)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.estimateenergy.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(wallet.estimateenergy.createResponse200)
+        RETURNVAR: wallet_estimateenergy_create
+        STATUS: 200
+    CANONICAL_ID: wallet.estimateenergy.create
+  wallet.getspendingkey.create:
+    SUMMARY: Generate a spending key
+    DESC: Generates a new random spending key for use with TRON's shielded (privacy) transactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getspendingkey
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getspendingkey.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getspendingkey.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getspendingkey_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getspendingkey.create
+  wallet.getexpandedspendingkey.create:
+    SUMMARY: Get expanded spending key from spending key
+    DESC: Derives the expanded spending key (ask, nsk, ovk) from a spending key for TRON shielded transactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getexpandedspendingkey
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getexpandedspendingkey.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getexpandedspendingkey.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getexpandedspendingkey_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getexpandedspendingkey.create
+  wallet.getakfromask.create:
+    SUMMARY: Get ak from ask
+    DESC: Derives the authorization key (ak) from the spend authorization key (ask) for TRON shielded transactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getakfromask
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getakfromask.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getakfromask.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getakfromask_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getakfromask.create
+  wallet.getnkfromnsk.create:
+    SUMMARY: Get nk from nsk
+    DESC: Derives the nullifier key (nk) from the nullifier secret key (nsk) for TRON shielded transactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getnkfromnsk
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getnkfromnsk.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getnkfromnsk.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getnkfromnsk_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getnkfromnsk.create
+  wallet.getincomingviewingkey.create:
+    SUMMARY: Get incoming viewing key
+    DESC: Derives an incoming viewing key (ivk) from the authorization key (ak) and nullifier key (nk) for TRON shielded transactions.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getincomingviewingkey
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getincomingviewingkey.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getincomingviewingkey.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getincomingviewingkey_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getincomingviewingkey.create
+  wallet.getdiversifier.create:
+    SUMMARY: Generate a diversifier
+    DESC: Generates a random diversifier for creating multiple shielded payment addresses from a single viewing key.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getdiversifier
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getdiversifier.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getdiversifier.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getdiversifier_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getdiversifier.create
+  wallet.getzenpaymentaddress.create:
+    SUMMARY: Get ZEN payment address
+    DESC: Generates a shielded (z-address) payment address from an incoming viewing key (ivk) and diversifier (dk).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getzenpaymentaddress
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getzenpaymentaddress.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getzenpaymentaddress.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getzenpaymentaddress_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getzenpaymentaddress.create
+  wallet.getnewshieldedaddress.create:
+    SUMMARY: Generate a new shielded address
+    DESC: Generates a complete new shielded address including spending key, viewing keys, and the z-address.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getnewshieldedaddress
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getnewshieldedaddress.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getnewshieldedaddress.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getnewshieldedaddress_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getnewshieldedaddress.create
+  wallet.createshieldedcontractparameter.create:
+    SUMMARY: Create shielded contract parameters
+    DESC: Creates the parameters needed to execute a shielded TRC20 smart contract transaction.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/createshieldedcontractparameters
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.createshieldedcontractparameter.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.createshieldedcontractparameter.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_createshieldedcontractparameter_create
+        STATUS: 200
+    CANONICAL_ID: wallet.createshieldedcontractparameter.create
+  wallet.createspendsauthsig.create:
+    SUMMARY: Create spend authorization signature
+    DESC: Creates a spend authorization signature for a shielded transaction using a secret key and message data.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/createspendsauthsig
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.createspendsauthsig.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.createspendsauthsig.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_createspendsauthsig_create
+        STATUS: 200
+    CANONICAL_ID: wallet.createspendsauthsig.create
+  wallet.gettriggerinputforshieldedtrc20contract.create:
+    SUMMARY: Get trigger input for shielded TRC20 contract
+    DESC: Generates the trigger input data needed to call a shielded TRC20 smart contract.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/gettriggerinputforshieldedtrc20contract
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.gettriggerinputforshieldedtrc20contract.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.gettriggerinputforshieldedtrc20contract.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_gettriggerinputforshieldedtrc20contract_create
+        STATUS: 200
+    CANONICAL_ID: wallet.gettriggerinputforshieldedtrc20contract.create
+  wallet.scanshieldedtrc20notesbyivk.create:
+    SUMMARY: Scan shielded TRC20 notes by IVK
+    DESC: Scans for incoming shielded TRC20 notes using an incoming viewing key (IVK) to find notes addressed to you.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/scanshieldedtrc20notesbyivk
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.scanshieldedtrc20notesbyivk.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.scanshieldedtrc20notesbyivk.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_scanshieldedtrc20notesbyivk_create
+        STATUS: 200
+    CANONICAL_ID: wallet.scanshieldedtrc20notesbyivk.create
+  wallet.scanshieldedtrc20notesbyovk.create:
+    SUMMARY: Scan shielded TRC20 notes by OVK
+    DESC: Scans for outgoing shielded TRC20 notes using an outgoing viewing key (OVK) to find notes you have sent.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/scanshieldedtrc20notesbyovk
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.scanshieldedtrc20notesbyovk.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.scanshieldedtrc20notesbyovk.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_scanshieldedtrc20notesbyovk_create
+        STATUS: 200
+    CANONICAL_ID: wallet.scanshieldedtrc20notesbyovk.create
+  wallet.isshieldedtrc20contractnotespent.create:
+    SUMMARY: Check if shielded TRC20 note is spent
+    DESC: Checks whether a specific shielded TRC20 note has already been spent by looking up its nullifier.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/isshieldedtrc20contractnotespent
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.isshieldedtrc20contractnotespent.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.isshieldedtrc20contractnotespent.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_isshieldedtrc20contractnotespent_create
+        STATUS: 200
+    CANONICAL_ID: wallet.isshieldedtrc20contractnotespent.create
+  wallet.votewitnessaccount.create:
+    SUMMARY: Vote Witness Account
+    DESC: Casts votes for Super Representatives (witnesses) using TRX tokens from the voter's account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/votewitnessaccount
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.votewitnessaccount.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.votewitnessaccount.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_votewitnessaccount_create
+        STATUS: 200
+    CANONICAL_ID: wallet.votewitnessaccount.create
+  wallet.listproposal.create:
+    SUMMARY: List Proposals
+    DESC: Retrieves the list of all current proposals on the TRON network, including proposer, parameters, approvals, and state.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/listproposals
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.listproposal.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.listproposal.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_listproposal_create
+        STATUS: 200
+    CANONICAL_ID: wallet.listproposal.create
+  wallet.getproposalbyid.create:
+    SUMMARY: Get proposal by its ID
+    DESC: Retrieve detailed information about a proposal based on its unique ID, including parameters, approvals, timestamps, and state.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getproposalbyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getproposalbyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getproposalbyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getproposalbyid_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getproposalbyid.create
+  wallet.proposalapprove.create:
+    SUMMARY: Approve proposal
+    DESC: This method allows the caller to add or remove their approval on an existing governance proposal.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/proposalapprove
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.proposalapprove.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.proposalapprove.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.proposalapprove.create
+  wallet.proposaldelete.create:
+    SUMMARY: Delete an existing proposal
+    DESC: This method deletes a governance proposal by ID, only if conditions for deletion are met (e.g., owner is the proposer).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/proposaldelete
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.proposaldelete.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: VOID
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.proposaldelete.createRequest)
+          LOCATION: body
+    CANONICAL_ID: wallet.proposaldelete.create
+  wallet.listexchange.create:
+    SUMMARY: Retrieve all existing token exchanges
+    DESC: Returns a list of all token exchange records created via the TRON network's exchange contract. Each exchange includes token IDs, balances, creator address, and creation time.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/listexchanges
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_listexchange_create
+        STATUS: 200
+    CANONICAL_ID: wallet.listexchange.create
+  wallet.getexchangebyid.create:
+    SUMMARY: Retrieve a specific exchange by ID
+    DESC: Returns the detailed configuration of a specific exchange on the TRON blockchain, identified by its unique exchange ID.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/getexchangebyid
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.getexchangebyid.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.getexchangebyid.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_getexchangebyid_create
+        STATUS: 200
+    CANONICAL_ID: wallet.getexchangebyid.create
+  wallet.exchangecreate.create:
+    SUMMARY: Create a new token exchange
+    DESC: Initializes a new token exchange (liquidity pool) between two tokens on the TRON blockchain. Requires token IDs and initial balances for both tokens.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/exchangecreate
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.exchangecreate.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.exchangecreate.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_exchangecreate_create
+        STATUS: 200
+    CANONICAL_ID: wallet.exchangecreate.create
+  wallet.exchangeinject.create:
+    SUMMARY: Inject tokens into an exchange
+    DESC: Adds liquidity to an existing exchange by injecting a specific quantity of a token.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/exchangeinject
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.exchangeinject.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.exchangeinject.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_exchangeinject_create
+        STATUS: 200
+    CANONICAL_ID: wallet.exchangeinject.create
+  wallet.exchangewithdraw.create:
+    SUMMARY: Withdraw tokens from an exchange
+    DESC: Withdraws a specific quantity of a token from an exchange.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/exchangewithdraw
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.exchangewithdraw.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.exchangewithdraw.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_exchangewithdraw_create
+        STATUS: 200
+    CANONICAL_ID: wallet.exchangewithdraw.create
+  wallet.exchangetransaction.create:
+    SUMMARY: Perform a token exchange transaction
+    DESC: Executes a transaction on an exchange by trading one token for another.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /wallet/exchangetransaction
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(wallet.exchangetransaction.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(wallet.exchangetransaction.createRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: wallet_exchangetransaction_create
+        STATUS: 200
+    CANONICAL_ID: wallet.exchangetransaction.create
+STRUCTS:
+  wallet.validateaddress.createRequest:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The TRON address to validate.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Set to `true` if the address is in base58check format (default for user-facing), or `false` if it is in hex format (starting with 0x).
+  wallet.validateaddress.createResponse200:
+    - name: result
+      NAME: result
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the address is valid.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description of the validation result.
+  wallet.broadcasttransaction.createRequest:
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: Raw transaction object.
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Hex-encoded raw transaction data.
+  wallet.broadcasttransaction.createResponse200:
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Broadcast result code.
+    - name: txid
+      NAME: txid
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction ID.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Encoded message string.
+  wallet.broadcasthex.createRequest:
+    - name: transaction
+      NAME: transaction
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The hex-encoded signed transaction to be broadcast.
+  wallet.broadcasthex.createResponse200:
+    - name: result
+      NAME: result
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the transaction was accepted by the network.
+    - name: txid
+      NAME: txid
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction ID.
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Response code in case of error.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional message, often encoded.
+  wallet.createtransaction.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the sender.
+    - name: to_address
+      NAME: to_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the receiver.
+    - name: amount
+      NAME: amount
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Amount to transfer in SUN (1 TRX = 1,000,000 SUN).
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are in base58 format.
+  wallet.createtransaction.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction ID.
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.createaccount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account creator.
+    - name: account_address
+      NAME: account_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the new account to create.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are in base58 format.
+  wallet.createaccount.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction ID.
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.getaccount.createRequest:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to retrieve.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getaccount.createResponse200:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: balance
+      NAME: balance
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: create_time
+      NAME: create_time
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: latest_consume_time
+      NAME: latest_consume_time
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: net_window_size
+      NAME: net_window_size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: net_window_optimized
+      NAME: net_window_optimized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: account_resource
+      NAME: account_resource
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: owner_permission
+      NAME: owner_permission
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: active_permission
+      NAME: active_permission
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+    - name: frozenV2
+      NAME: frozenV2
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+    - name: acquired_delegated_frozenV2_balance_for_bandwidth
+      NAME: acquired_delegated_frozenV2_balance_for_bandwidth
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: asset_optimized
+      NAME: asset_optimized
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.updateaccount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to be updated.
+    - name: account_name
+      NAME: account_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Hex-encoded string representing the new account name.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.updateaccount.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Transaction ID.
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.accountpermissionupdate.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to update.
+    - name: owner
+      NAME: owner
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+      comment: New owner permission structure.
+    - name: actives
+      NAME: actives
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: List of active permission structures.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.accountpermissionupdate.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getaccountbalance.createRequest:
+    - name: account_identifier
+      NAME: account_identifier
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: block_identifier
+      NAME: block_identifier
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: true
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getaccountbalance.createResponse200:
+    - name: balances
+      NAME: balances
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  wallet.getaccountresource.createRequest:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to query.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getaccountresource.createResponse200:
+    - name: freeNetLimit
+      NAME: freeNetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Free Net limit available to the account.
+    - name: NetLimit
+      NAME: NetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Net limit for the account.
+    - name: TotalNetLimit
+      NAME: TotalNetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total Net limit in the network.
+    - name: TotalNetWeight
+      NAME: TotalNetWeight
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total weight used to allocate Net across the network.
+    - name: EnergyLimit
+      NAME: EnergyLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Energy limit for the account.
+    - name: TotalEnergyLimit
+      NAME: TotalEnergyLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total Energy limit in the network.
+    - name: TotalEnergyWeight
+      NAME: TotalEnergyWeight
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total weight used to allocate Energy across the network.
+  wallet.getaccountnet.createRequest:
+    - name: address
+      NAME: address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to query.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getaccountnet.createResponse200:
+    - name: freeNetLimit
+      NAME: freeNetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Free Net limit available to the account.
+    - name: NetLimit
+      NAME: NetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Net limit for the account.
+    - name: TotalNetLimit
+      NAME: TotalNetLimit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total Net limit in the network.
+    - name: TotalNetWeight
+      NAME: TotalNetWeight
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Total weight used to allocate Net across the network.
+  wallet.freezebalance.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to freeze TRX from.
+    - name: frozen_balance
+      NAME: frozen_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Amount to freeze, in SUN (1 TRX = 1,000,000 SUN).
+    - name: frozen_duration
+      NAME: frozen_duration
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Duration to freeze the tokens, in days.
+    - name: resource
+      NAME: resource
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of resource to gain from freezing.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.freezebalance.createResponse200:
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.unfreezebalance.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account performing the unfreeze.
+    - name: resource
+      NAME: resource
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Resource type to unfreeze. Can be `BANDWIDTH` or `ENERGY`.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.unfreezebalance.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.getdelegatedresource.createRequest:
+    - name: fromAddress
+      NAME: fromAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account delegating resources.
+    - name: toAddress
+      NAME: toAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account receiving resources.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the addresses are in base58 (true) or hex (false).
+  wallet.getdelegatedresource.createResponse200:
+    - name: delegatedResource
+      NAME: delegatedResource
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+  wallet.getdelegatedresourceaccountindex.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address to check the delegated resource account index for.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getdelegatedresourceaccountindex.createResponse200:
+    - name: account
+      NAME: account
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The account associated with the delegated resource index.
+  wallet.freezebalancev2.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to freeze TRX from.
+    - name: frozen_balance
+      NAME: frozen_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Amount to freeze, in SUN (1 TRX = 1,000,000 SUN).
+    - name: resource
+      NAME: resource
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of resource to gain from freezing.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.freezebalancev2.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.delegateresource.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account delegating the resource.
+    - name: receiver_address
+      NAME: receiver_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account receiving the delegated resource.
+    - name: balance
+      NAME: balance
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Amount of resource to delegate, in SUN (1 TRX = 1,000,000 SUN).
+    - name: resource
+      NAME: resource
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of resource to delegate.
+    - name: lock
+      NAME: lock
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the delegated resource is locked.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are in base58 format.
+  wallet.delegateresource.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.undelegateresource.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account undelegating the resource.
+    - name: receiver_address
+      NAME: receiver_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account losing the delegated resource.
+    - name: balance
+      NAME: balance
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Amount of resource to undelegate, in SUN (1 TRX = 1,000,000 SUN).
+    - name: resource
+      NAME: resource
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Type of resource to undelegate.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are in base58 format.
+  wallet.undelegateresource.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.withdrawexpireunfreeze.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to withdraw from.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.withdrawexpireunfreeze.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Hex-encoded raw transaction.
+  wallet.getavailableunfreezecount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to query.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getavailableunfreezecount.createResponse200:
+    - name: count
+      NAME: count
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Number of available unfreeze operations.
+  wallet.getcanwithdrawunfreezeamount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account to query.
+    - name: timestamp
+      NAME: timestamp
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: The current timestamp in milliseconds.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getcanwithdrawunfreezeamount.createResponse200:
+    - name: amount
+      NAME: amount
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Amount of TRX that can be withdrawn.
+  wallet.getcandelegatedmaxsize.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the delegating account.
+    - name: type
+      NAME: type
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: 0 for BANDWIDTH, 1 for ENERGY.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getcandelegatedmaxsize.createResponse200:
+    - name: max_size
+      NAME: max_size
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Maximum size in SUN that can be delegated.
+  wallet.getdelegatedresourcev2.createRequest:
+    - name: fromAddress
+      NAME: fromAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account delegating resources.
+    - name: toAddress
+      NAME: toAddress
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the account receiving the delegated resources.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the addresses are in base58 format (true) or hex (false).
+  wallet.getdelegatedresourcev2.createResponse200:
+    - name: delegatedResource
+      NAME: delegatedResource
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+  wallet.getdelegatedresourceaccountindexv2.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address to query.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.getdelegatedresourceaccountindexv2.createResponse200:
+    - name: account
+      NAME: account
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The account participating in delegation.
+  wallet.getblock.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Block number or ID to retrieve.
+  wallet.getblockbynum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Block number to retrieve.
+  wallet.getblockbynum.createResponse200:
+    - name: blockID
+      NAME: blockID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_header
+      NAME: block_header
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  wallet.getblockbyid.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The block ID to retrieve.
+  wallet.getblockbyid.createResponse200:
+    - name: blockID
+      NAME: blockID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: block_header
+      NAME: block_header
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+  wallet.getblockbylatestnum.createRequest:
+    - name: num
+      NAME: num
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Number of blocks to retrieve.
+  wallet.getblockbylimitnext.createRequest:
+    - name: startNum
+      NAME: startNum
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Starting block number (inclusive).
+    - name: endNum
+      NAME: endNum
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Ending block number (exclusive).
+  wallet.gettransactionbyid.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: The transaction ID.
+  wallet.getassetissuebyname.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Asset name in base64 or string format.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Flag to indicate if addresses should be visible.
+  wallet.getassetissuelistbyname.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getpaginatedassetissuelist.createRequest:
+    - name: offset
+      NAME: offset
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: limit
+      NAME: limit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+  wallet.transferasset.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: to_address
+      NAME: to_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: asset_name
+      NAME: asset_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: amount
+      NAME: amount
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.createassetissue.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: abbr
+      NAME: abbr
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: frozen_supply
+      NAME: frozen_supply
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.participateassetissue.createRequest:
+    - name: to_address
+      NAME: to_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: asset_name
+      NAME: asset_name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: amount
+      NAME: amount
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  wallet.unfreezeasset.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  wallet.getcontract.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Format visibility flag.
+  wallet.getcontractinfo.createRequest:
+    - name: value
+      NAME: value
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Format visibility flag.
+  wallet.triggersmartcontract.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: function_selector
+      NAME: function_selector
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: fee_limit
+      NAME: fee_limit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: call_value
+      NAME: call_value
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.triggerconstantcontract.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: function_selector
+      NAME: function_selector
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.deploycontract.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract deployer.
+    - name: abi
+      NAME: abi
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: JSON-encoded ABI string for the smart contract.
+    - name: bytecode
+      NAME: bytecode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Hex-encoded bytecode of the smart contract.
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Name for the contract.
+    - name: consume_user_resource_percent
+      NAME: consume_user_resource_percent
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Percent of user resource consumption for contract execution (0-100).
+    - name: origin_energy_limit
+      NAME: origin_energy_limit
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Maximum energy limit for contract execution.
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Constructor parameters, hex-encoded.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if the address is base58 (true) or hex (false).
+  wallet.deploycontract.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.updatesetting.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract owner.
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract to update.
+    - name: setting_type
+      NAME: setting_type
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: Type of setting to update (e.g. 0 for energy limit, 1 for user resource percent).
+    - name: value
+      NAME: value
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: New value for the setting.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are base58 (true) or hex (false).
+  wallet.updatesetting.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.updateenergylimit.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract owner.
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract to update.
+    - name: origin_energy_limit
+      NAME: origin_energy_limit
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+      comment: New maximum energy limit.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are base58 (true) or hex (false).
+  wallet.updateenergylimit.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.clearabi.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract owner.
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are base58 (true) or hex (false).
+  wallet.clearabi.createResponse200:
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: txID
+      NAME: txID
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: raw_data
+      NAME: raw_data
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: raw_data_hex
+      NAME: raw_data_hex
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.estimateenergy.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address calling the contract.
+    - name: contract_address
+      NAME: contract_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Base58 address of the contract to call.
+    - name: data
+      NAME: data
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: Hex-encoded call data (function selector and arguments).
+    - name: call_value
+      NAME: call_value
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Amount of TRX to transfer with the call (in SUN).
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates if addresses are base58 (true) or hex (false).
+  wallet.estimateenergy.createResponse200:
+    - name: energy_required
+      NAME: energy_required
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Estimated energy required for the call.
+    - name: result
+      NAME: result
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the estimation was successful.
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Additional message or error.
+  wallet.getexpandedspendingkey.createRequest:
+    - name: spending_key
+      NAME: spending_key
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getakfromask.createRequest:
+    - name: ask
+      NAME: ask
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getnkfromnsk.createRequest:
+    - name: nsk
+      NAME: nsk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getincomingviewingkey.createRequest:
+    - name: ak
+      NAME: ak
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: nk
+      NAME: nk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.getzenpaymentaddress.createRequest:
+    - name: ivk
+      NAME: ivk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: dk
+      NAME: dk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.createshieldedcontractparameter.createRequest:
+    - name: input
+      NAME: input
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: output
+      NAME: output
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: sk
+      NAME: sk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.createspendsauthsig.createRequest:
+    - name: sk
+      NAME: sk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: data
+      NAME: data
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.gettriggerinputforshieldedtrc20contract.createRequest:
+    - name: parameter
+      NAME: parameter
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.scanshieldedtrc20notesbyivk.createRequest:
+    - name: ivk
+      NAME: ivk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: note_commitments
+      NAME: note_commitments
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+  wallet.scanshieldedtrc20notesbyovk.createRequest:
+    - name: ovk
+      NAME: ovk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: ciphertexts
+      NAME: ciphertexts
+      type: "[]STRING"
+      TYPE: "[]STRING"
+      REQUIRED: false
+  wallet.isshieldedtrc20contractnotespent.createRequest:
+    - name: nullifier
+      NAME: nullifier
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.votewitnessaccount.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The address of the account voting for witnesses (Base58 or hex, depending on `visible` flag).
+    - name: votes
+      NAME: votes
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: false
+      comment: A list of votes containing witness addresses and the number of votes.
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the input addresses are in base58 format.
+  wallet.getproposalbyid.createRequest:
+    - name: id
+      NAME: id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.proposalapprove.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: proposal_id
+      NAME: proposal_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: is_add_approval
+      NAME: is_add_approval
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.proposaldelete.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: proposal_id
+      NAME: proposal_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.getexchangebyid.createRequest:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  wallet.exchangecreate.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: first_token_id
+      NAME: first_token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: first_token_balance
+      NAME: first_token_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: second_token_id
+      NAME: second_token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: second_token_balance
+      NAME: second_token_balance
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.exchangeinject.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: exchange_id
+      NAME: exchange_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: token_id
+      NAME: token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: quant
+      NAME: quant
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.exchangewithdraw.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: exchange_id
+      NAME: exchange_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: token_id
+      NAME: token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: quant
+      NAME: quant
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.exchangetransaction.createRequest:
+    - name: owner_address
+      NAME: owner_address
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: exchange_id
+      NAME: exchange_id
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: token_id
+      NAME: token_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: quant
+      NAME: quant
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: expected
+      NAME: expected
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: visible
+      NAME: visible
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  wallet.getnowblock.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  wallet.getspendingkey.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  wallet.getdiversifier.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  wallet.getnewshieldedaddress.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false
+  wallet.listproposal.createRequest:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

@@ -1,0 +1,23 @@
+{
+  "googleapis.sheets": {
+    "version": "4",
+    "sandbox_endpoint": "https://sheets.googleapis.com",
+    "production_endpoint": "https://sheets.googleapis.com",
+    "methods": 0,
+    "workflows": 0
+  },
+  "notion.notion_api": {
+    "version": "latest",
+    "sandbox_endpoint": "https://api.notion.com",
+    "production_endpoint": "https://api.notion.com",
+    "methods": 0,
+    "workflows": 0
+  },
+  "resend.resend_api": {
+    "version": "v1.5.0",
+    "sandbox_endpoint": "https://api.resend.com",
+    "production_endpoint": "https://api.resend.com",
+    "methods": 0,
+    "workflows": 0
+  }
+}

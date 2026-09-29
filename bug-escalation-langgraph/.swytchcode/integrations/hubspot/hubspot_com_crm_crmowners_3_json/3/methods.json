@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a page of CRM owners",
+      "canonical_id": "crm.v3.owners.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve CRM owner details by ID",
+      "canonical_id": "crm.v3.owners.get"
+    }
+  ]
+}

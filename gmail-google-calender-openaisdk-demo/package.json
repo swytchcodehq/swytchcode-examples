@@ -1,0 +1,26 @@
+{
+  "name": "swytchcode-gmail-calendar-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A chat agent for Gmail + Google Calendar. The OpenAI Agents SDK picks the moves; Swytchcode executes and policy-guards every API call.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@openai/agents": "^0.12.1",
+    "@swytchcode/runtime": "^1.1.6",
+    "next": "^15.5.24",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.3"
+  }
+}

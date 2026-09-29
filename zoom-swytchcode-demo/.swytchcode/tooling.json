@@ -1,0 +1,316 @@
+{
+  "editor": "claude",
+  "integrations": {
+    "Zoom.zoom": {
+      "version": "v2"
+    }
+  },
+  "mode": "production",
+  "tools": {
+    "zoom.meeting.delete": {
+      "desc": "Delete a meeting",
+      "inputs": [
+        {
+          "meetingId": {
+            "LOCATION": "path",
+            "TYPE": "INT"
+          }
+        },
+        {
+          "occurrence_id": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "9576dbb466f6d2827d0d26780ad533f293c5390d01d6abc91c346357b0e6a60c",
+      "summary": "Delete a meeting",
+      "type": "method"
+    },
+    "zoom.meeting.recordings.delete": {
+      "desc": "Delete a meeting's recordings",
+      "inputs": [
+        {
+          "meetingId": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "action": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "dd0149776d68b57ceddbc5b47322dd11d5ff782fc1e3e8954a31cacd2d949237",
+      "summary": "Delete a meeting's recordings",
+      "type": "method"
+    },
+    "zoom.meeting.registrants.create": {
+      "desc": "Register a participant for a meeting",
+      "inputs": [
+        {
+          "meetingId": {
+            "LOCATION": "path",
+            "TYPE": "INT"
+          }
+        },
+        {
+          "occurrence_ids": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "cc5d8f510fd7f662bc6f516a0b9160de6fd6da992b0ffca085987ecd691093b5",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            },
+            "join_url": {
+              "required": false,
+              "type": "string"
+            },
+            "registrant_id": {
+              "required": false,
+              "type": "string"
+            },
+            "start_time": {
+              "required": false,
+              "type": "TIMESTAMP"
+            },
+            "topic": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Add a meeting registrant",
+      "type": "method"
+    },
+    "zoom.meeting.update": {
+      "desc": "Update a meeting's details",
+      "inputs": [
+        {
+          "meetingId": {
+            "LOCATION": "path",
+            "TYPE": "INT"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "schedule_for": {
+                  "required": false,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "7f3c952bd734861a3ae044dbfbca5f3b125537716dc132489235a446791f6a3f",
+      "summary": "Update a meeting",
+      "type": "method"
+    },
+    "zoom.user.get": {
+      "desc": "Retrieve a user on your account",
+      "inputs": [
+        {
+          "userId": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "login_type": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "acf7f3575e1603c87e304d3cf832e013be6c374ff27169b4d5010ced60f4bd20",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 200
+      },
+      "summary": "Retrieve a user",
+      "type": "method"
+    },
+    "zoom.user.meetings.create": {
+      "desc": "Create a meeting for a user \u003caside\u003eThe expiration time of start_url is two hours. But for API users, the expiration time is 90 days.\u003c/aside\u003e",
+      "inputs": [
+        {
+          "userId": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "schedule_for": {
+                  "required": false,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "1db4722767afa12a69759495d3a4b48162f4b47215d0c7918f6bdb494e512bb9",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 201
+      },
+      "summary": "Create a meeting",
+      "type": "method"
+    },
+    "zoom.user.meetings.get": {
+      "desc": "List meetings for a user",
+      "inputs": [
+        {
+          "userId": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "type": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "page_size": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "page_number": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "534d1544040b3072e85e2e1aa9e529f9422bc3d35db5a5b7be93600b5d7304ce",
+      "output": {
+        "schema": {
+          "type": "object"
+        },
+        "status": 200
+      },
+      "summary": "List meetings",
+      "type": "method"
+    },
+    "zoom.user.webinars.create": {
+      "desc": "Create a webinar for a user \u003caside\u003eThe expiration time of start_url is two hours. But for API users, the expiration time is 90 days.\u003c/aside\u003e",
+      "inputs": [
+        {
+          "userId": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT"
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "c2308cd45781f4a20ed880e069c865080784dcb1f811772df14f769c95b9b2b3",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 201
+      },
+      "summary": "Create a webinar",
+      "type": "method"
+    },
+    "zoom.webinar.panelists.create": {
+      "desc": "Add panelist to webinar",
+      "inputs": [
+        {
+          "webinarId": {
+            "LOCATION": "path",
+            "TYPE": "INT"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "panelists": {
+                  "required": false,
+                  "type": "[]ANY"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Zoom.zoom@v2",
+      "method_hash": "2630be915bc99e5cd375fdd0a823108b4e74adb9770a86d3a61f91a8382ad20d",
+      "output": {
+        "schema": {
+          "properties": {
+            "id": {
+              "required": false,
+              "type": "string"
+            },
+            "join_url": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Add a webinar panelist",
+      "type": "method"
+    }
+  },
+  "version": "2.19.12"
+}

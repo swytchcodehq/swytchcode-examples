@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get the status and download URL for an export task",
+      "canonical_id": "crm.v3.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start an asynchronous export of CRM data",
+      "canonical_id": "crm.v3.async.create"
+    }
+  ]
+}

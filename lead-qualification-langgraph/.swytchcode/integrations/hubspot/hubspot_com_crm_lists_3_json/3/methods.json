@@ -1,0 +1,314 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for bucket test objects",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for calls with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for carts with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for commerce payments using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for subscriptions using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM communications with filters and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for companies by filtering, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for contacts using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specified type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specific type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search CRM objects by type, filters, and properties",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform operation post-/crm/v3/objects/deals/search_doSearch. +",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for discounts using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform operation post-/crm/v3/objects/emails/search_doSearch. +",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for feedback submissions",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for fee records using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for goal targets",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for invoices using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for leads using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for line items with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specific type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add contacts from one list to another",
+      "canonical_id": "crm.v3.addFrom.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add contacts to a CRM list by ID",
+      "canonical_id": "crm.v3.add.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add or remove contacts from a list",
+      "canonical_id": "crm.v3.memberships.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new CRM list",
+      "canonical_id": "crm.v3.lists.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new folder for your CRM lists",
+      "canonical_id": "crm.v3.folders.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a CRM list by its ID",
+      "canonical_id": "crm.v3.lists.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a folder by its ID",
+      "canonical_id": "crm.v3.folders.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch multiple CRM lists by their IDs",
+      "canonical_id": "crm.v3.lists.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find a CRM list by its name and object type",
+      "canonical_id": "crm.v3.name.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a CRM list by its ID",
+      "canonical_id": "crm.v3.lists.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a folder and its subfolders",
+      "canonical_id": "crm.v3.folders.list_d1ef"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get list members ordered by when they were added",
+      "canonical_id": "crm.v3.joinOrder.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get list memberships by ID, with optional pagination",
+      "canonical_id": "crm.v3.memberships.get_dad5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get lists a record is a member of",
+      "canonical_id": "crm.v3.memberships.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a CRM folder to a new parent folder",
+      "canonical_id": "crm.v3.move.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a CRM list to a specified folder",
+      "canonical_id": "crm.v3.folders.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove all contacts from a list",
+      "canonical_id": "crm.v3.memberships.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove contacts from a CRM list",
+      "canonical_id": "crm.v3.memberships.remove_740f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rename a CRM folder by its ID",
+      "canonical_id": "crm.v3.rename.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted CRM list by its ID",
+      "canonical_id": "crm.v3.restore.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search CRM lists by name or retrieve all lists",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Translate legacy list IDs to modern IDs in batches",
+      "canonical_id": "crm.v3.idmapping.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Translate legacy list IDs to modern list IDs",
+      "canonical_id": "crm.v3.idmapping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update filters for a dynamic CRM list",
+      "canonical_id": "crm.v3.updateListFilters.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the name of a CRM list",
+      "canonical_id": "crm.v3.updateListName.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for meetings using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM notes using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for orders using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for partner clients with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for payment records using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for postal mail records",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for products using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM quotes using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM tasks using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for tax records",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for tickets with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    }
+  ]
+}

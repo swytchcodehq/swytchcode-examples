@@ -1,0 +1,15 @@
+# Environment and secrets
+.env
+.env.*
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Swytchcode local state (fetched via `swytchcode bootstrap`)
+.swytchcode/integrations/
+.swytchcode/workspace.json

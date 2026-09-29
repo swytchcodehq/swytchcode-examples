@@ -1,0 +1,29 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Cancel an active import by its ID",
+      "canonical_id": "crm.v3.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get import errors by import ID",
+      "canonical_id": "crm.v3.errors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List active CRM imports",
+      "canonical_id": "crm.v3.imports.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific import",
+      "canonical_id": "crm.v3.imports.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a new data import from files",
+      "canonical_id": "crm.v3.imports.create"
+    }
+  ]
+}

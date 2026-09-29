@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get all objects in the object library and their enablement status",
+      "canonical_id": "crm.v3.enablement.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get enablement status for a specific object type",
+      "canonical_id": "crm.v3.enablement.get"
+    }
+  ]
+}

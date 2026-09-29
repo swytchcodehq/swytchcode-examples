@@ -1,0 +1,179 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Cancel or unpublish a marketing email",
+      "canonical_id": "marketing.v3.unpublish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clone a marketing email.. + This will create a duplicate email with the same properties as the original, with the except",
+      "canonical_id": "marketing.v3.clone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a draft variation for an email A/B test",
+      "canonical_id": "marketing.v3.createVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new marketing email campaign",
+      "canonical_id": "marketing.v3.emails.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a marketing email by its ID",
+      "canonical_id": "marketing.v3.emails.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get A/B marketing email variation by ID",
+      "canonical_id": "marketing.v3.getVariation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get aggregated email statistics and sent email list",
+      "canonical_id": "marketing.v3.statistics.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all revisions for a marketing email",
+      "canonical_id": "marketing.v3.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get email statistics aggregated into intervals",
+      "canonical_id": "marketing.v3.histogram.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get marketing email details by ID",
+      "canonical_id": "marketing.v3.emails.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish or send a marketing email",
+      "canonical_id": "marketing.v3.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset an email draft to its live version",
+      "canonical_id": "marketing.v3.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a marketing email revision",
+      "canonical_id": "marketing.v3.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a marketing email revision to draft",
+      "canonical_id": "marketing.v3.restoreToDraft.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a marketing email draft or its published version",
+      "canonical_id": "marketing.v3.draft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific revision of a marketing email",
+      "canonical_id": "marketing.v3.revisions.get_963f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve marketing emails with filtering options",
+      "canonical_id": "marketing.v3.emails.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a marketing email's content or archive status",
+      "canonical_id": "marketing.v3.emails.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update draft version of a marketing email",
+      "canonical_id": "marketing.v3.draft.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clone an existing email to create a new one",
+      "canonical_id": "marketing.v3.clone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new marketing email",
+      "canonical_id": "marketing.v3.emails.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new variation for an A/B test email campaign",
+      "canonical_id": "marketing.v3.createVariation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all revisions for a marketing email",
+      "canonical_id": "marketing.v3.revisions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get A/B test variation for a marketing email",
+      "canonical_id": "marketing.v3.getVariation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get aggregated email statistics and sent email list",
+      "canonical_id": "marketing.v3.statistics.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get email statistics aggregated by time intervals",
+      "canonical_id": "marketing.v3.histogram.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a marketing email by its ID",
+      "canonical_id": "marketing.v3.emails.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset an email draft to its live version",
+      "canonical_id": "marketing.v3.reset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a marketing email revision",
+      "canonical_id": "marketing.v3.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a marketing email revision to draft",
+      "canonical_id": "marketing.v3.restoreToDraft.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a marketing email draft or its published version",
+      "canonical_id": "marketing.v3.draft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific marketing email",
+      "canonical_id": "marketing.v3.emails.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve marketing emails with filtering options",
+      "canonical_id": "marketing.v3.emails.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a marketing email's properties",
+      "canonical_id": "marketing.v3.emails.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update draft version of a marketing email",
+      "canonical_id": "marketing.v3.draft.update"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive a form definition and stop accepting new submissions",
+      "canonical_id": "marketing.v3.forms.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new marketing form",
+      "canonical_id": "marketing.v3.forms.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of marketing forms with filtering",
+      "canonical_id": "marketing.v3.forms.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a marketing form by its ID",
+      "canonical_id": "marketing.v3.forms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a HubSpot form definition and all its fields",
+      "canonical_id": "marketing.v3.forms.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update parts of a form definition",
+      "canonical_id": "marketing.v3.forms.update_1417"
+    }
+  ]
+}

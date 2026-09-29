@@ -1,0 +1,14 @@
+{
+  "Gmail.gmail": {
+    "version": "v1",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "https://gmail.googleapis.com/",
+    "methods": 95
+  },
+  "Gmail.gmailpostmastertools": {
+    "version": "v1",
+    "sandbox_endpoint": "http://localhost",
+    "production_endpoint": "https://gmailpostmastertools.googleapis.com/",
+    "methods": 95
+  }
+}

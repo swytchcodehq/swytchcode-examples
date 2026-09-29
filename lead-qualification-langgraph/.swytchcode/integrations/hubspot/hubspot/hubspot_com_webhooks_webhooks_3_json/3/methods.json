@@ -1,0 +1,49 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Batch update event subscriptions for an app",
+      "canonical_id": "webhooks.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel an event subscription by ID",
+      "canonical_id": "webhooks.v3.subscriptions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an event subscription. + Create new event subscription for the specified app.",
+      "canonical_id": "webhooks.v3.subscriptions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete webhook settings for an app",
+      "canonical_id": "webhooks.v3.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific event subscription by ID",
+      "canonical_id": "webhooks.v3.subscriptions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get event subscriptions for an app",
+      "canonical_id": "webhooks.v3.subscriptions.get_4637"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get webhook settings for an app",
+      "canonical_id": "webhooks.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an event subscription by ID",
+      "canonical_id": "webhooks.v3.subscriptions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook settings for a given app",
+      "canonical_id": "webhooks.v3.settings.update"
+    }
+  ]
+}

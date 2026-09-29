@@ -1,0 +1,79 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Configure call recording settings for your calling app",
+      "canonical_id": "crm.v3.recording.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure calling extension settings like menu label and target URL",
+      "canonical_id": "crm.v3.settings.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure channel connection settings for your app",
+      "canonical_id": "crm.v3.channelConnection.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete channel connection settings for an app",
+      "canonical_id": "crm.v3.channelConnection.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get call recording settings for an app",
+      "canonical_id": "crm.v3.recording.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get calling app settings by app ID",
+      "canonical_id": "crm.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get channel connection settings for an app",
+      "canonical_id": "crm.v3.channelConnection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a call recording as ready for transcription",
+      "canonical_id": "crm.v3.ready.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove calling extension settings for an app",
+      "canonical_id": "crm.v3.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update call recording settings and retrieval URL",
+      "canonical_id": "crm.v3.recording.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update calling extension settings",
+      "canonical_id": "crm.v3.settings.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update channel connection settings for your app",
+      "canonical_id": "crm.v3.channelConnection.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete video conferencing settings for an app",
+      "canonical_id": "crm.v3.settings.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get video conferencing app settings by ID",
+      "canonical_id": "crm.v3.settings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update video conferencing settings for an app",
+      "canonical_id": "crm.v3.settings.update"
+    }
+  ]
+}

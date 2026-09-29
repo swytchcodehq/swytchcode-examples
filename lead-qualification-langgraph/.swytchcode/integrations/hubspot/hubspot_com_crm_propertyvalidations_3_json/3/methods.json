@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get property validation rules for an object type",
+      "canonical_id": "crm.v3.propertyValidations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get validation rules for a specific property",
+      "canonical_id": "crm.v3.propertyValidations.get_fe07"
+    }
+  ]
+}

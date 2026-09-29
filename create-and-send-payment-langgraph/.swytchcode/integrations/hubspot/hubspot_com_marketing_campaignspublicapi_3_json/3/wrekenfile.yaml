@@ -1,0 +1,1616 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  marketing.v3.spend.get:
+    SUMMARY: Read campaign spend item
+    DESC: Read a campaign spend item by its spendId
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/spend/{spendId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicSpendItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - spendId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicSpendItem)
+        RETURNVAR: marketing_v3_spend_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_spend_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.spend.get
+  marketing.v3.spend.update:
+    SUMMARY: Update campaign spend item
+    DESC: Update a specific campaign spend item by ID
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/spend/{spendId}
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicSpendItemInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicSpendItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - spendId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicSpendItemInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicSpendItem)
+        RETURNVAR: marketing_v3_spend_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_spend_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.spend.update
+  marketing.v3.spend.delete:
+    SUMMARY: Delete campaign spend item
+    DESC: Delete a specific campaign spend item by ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/spend/{spendId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - spendId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_spend_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.spend.delete
+  marketing.v3.batch.update:
+    SUMMARY: Update a batch of campaigns
+    DESC: |-
+      This endpoint updates a batch of campaigns based on the provided input data.
+      The maximum number of items in a batch request is 50.
+      If an empty string ("") is passed for any property in the Batch Update, it will reset that property's value.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/batch/update
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputPublicCampaignBatchUpdateItem)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponsePublicCampaign)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputPublicCampaignBatchUpdateItem)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaign)
+        RETURNVAR: marketing_v3_batch_update
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaignWithErrors)
+        RETURNVAR: marketing_v3_batch_update_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_batch_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.batch.update
+  marketing.v3.budget.get:
+    SUMMARY: Get budget item
+    DESC: Get a specific budget item by ID
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/budget/{budgetId}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicBudgetItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - budgetId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicBudgetItem)
+        RETURNVAR: marketing_v3_budget_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_budget_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.budget.get
+  marketing.v3.budget.update:
+    SUMMARY: Update budget item
+    DESC: Update a specific budget item by ID
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/budget/{budgetId}
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicBudgetItemInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicBudgetItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - budgetId:
+          TYPE: INT
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicBudgetItemInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicBudgetItem)
+        RETURNVAR: marketing_v3_budget_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_budget_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.budget.update
+  marketing.v3.budget.delete:
+    SUMMARY: Delete budget item
+    DESC: Delete a specific budget item by ID
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/budget/{budgetId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - budgetId:
+          TYPE: INT
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_budget_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.budget.delete
+  marketing.v3.assets.update:
+    SUMMARY: Add asset association
+    DESC: |-
+      Associate a specified asset with a campaign.
+      Important: Currently, only the following asset types can be associated and disassociated via the API: Forms, Static lists, External website pages
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/assets/{assetType}/{assetId}
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - assetType:
+          TYPE: STRING
+          LOCATION: path
+      - assetId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_assets_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.assets.update
+  marketing.v3.assets.delete:
+    SUMMARY: Remove asset association
+    DESC: |-
+      Disassociate a specified asset from a campaign.
+      Important: Currently, only the following asset types can be associated and disassociated via the API: Forms, Static lists, External website pages
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/assets/{assetType}/{assetId}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - assetType:
+          TYPE: STRING
+          LOCATION: path
+      - assetId:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_assets_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.assets.delete
+  marketing.v3.totals.get:
+    SUMMARY: Read budget
+    DESC: |-
+      Retrieve detailed information about the budget and spend items for a specified campaign, including the total budget, total spend, and remaining budget.
+      Budget and Spend items may be returned in any order, but the order field specifies their sequence based on the creation date. The item with order 0 is the oldest, and items with higher order values are newer
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/budget/totals
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicBudgetTotals)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicBudgetTotals)
+        RETURNVAR: marketing_v3_totals_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_totals_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.totals.get
+  marketing.v3.campaigns.list:
+    SUMMARY: Campaign search
+    DESC: This endpoint allows users to search for and return a page of campaigns based on various query parameters. Users can filter by name, sort, and paginate through the campaigns, as well as control which properties are returned in the response.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseWithTotalPublicCampaignForwardPaging)
+    INPUTS:
+      - sort:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - name:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseWithTotalPublicCampaignForwardPaging)
+        RETURNVAR: marketing_v3_campaigns_list
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_campaigns_list_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.campaigns.list
+  marketing.v3.campaigns.create:
+    SUMMARY: Create a campaign
+    DESC: "Create a campaign with the given properties and return the campaign object, including the campaignGuid and created properties. "
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicCampaignInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicCampaign)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(PublicCampaignInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicCampaign)
+        RETURNVAR: marketing_v3_campaigns_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_campaigns_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.campaigns.create
+  marketing.v3.read.create:
+    SUMMARY: Read a batch of campaigns
+    DESC: |
+      This endpoint reads a batch of campaigns based on the provided input data and returns the campaigns along with their associated assets.
+       The maximum number of items in a batch request is 50.
+      The campaigns in the response are not guaranteed to be in the same order as they were provided in the request.
+      If duplicate campaign IDs are provided in the request, duplicates will be ignored. The response will include only unique IDs and will be returned without duplicates.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/batch/read
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputPublicCampaignReadInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponsePublicCampaignWithAssets)
+    INPUTS:
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(BatchInputPublicCampaignReadInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaignWithAssets)
+        RETURNVAR: marketing_v3_read_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaignWithAssetsWithErrors)
+        RETURNVAR: marketing_v3_read_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_read_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.read.create
+  marketing.v3.metrics.get:
+    SUMMARY: |
+      Get Campaign Metrics
+    DESC: This endpoint retrieves key attribution metrics for a specified campaign, such as sessions, new contacts, and influenced contacts.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/reports/metrics
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(MetricsCounters)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(MetricsCounters)
+        RETURNVAR: marketing_v3_metrics_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_metrics_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.metrics.get
+  marketing.v3.assets.get:
+    SUMMARY: List assets
+    DESC: |-
+      This endpoint lists all assets of the campaign by asset type. The assetType parameter is required, and each request can only fetch assets of a single type.
+      Asset metrics can also be fetched along with the assets; they are available only if start and end dates are provided.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/assets/{assetType}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponsePublicCampaignAssetForwardPaging)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - assetType:
+          TYPE: STRING
+          LOCATION: path
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponsePublicCampaignAssetForwardPaging)
+        RETURNVAR: marketing_v3_assets_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_assets_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.assets.get
+  marketing.v3.archive.create:
+    SUMMARY: Delete a batch of campaigns
+    DESC: |-
+      This endpoint deletes a batch of campaigns.
+      The maximum number of items in a batch request is 50.
+      The response will always be 204 No Content, regardless of whether the campaigns exist or not, whether they were successfully deleted or not, or if only some of the campaigns in the batch were deleted.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/batch/archive
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputPublicCampaignDeleteInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputPublicCampaignDeleteInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_archive_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.archive.create
+  marketing.v3.revenue.get:
+    SUMMARY: Fetch revenue
+    DESC: |
+      Fetch revenue attribution report data for a specified campaign
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/reports/revenue
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RevenueAttributionAggregate)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - attributionModel:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(RevenueAttributionAggregate)
+        RETURNVAR: marketing_v3_revenue_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_revenue_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.revenue.get
+  marketing.v3.batch.create:
+    SUMMARY: Create a batch of campaigns
+    DESC: |-
+      This endpoint creates a batch of campaigns. The maximum number of items in a batch request is 50.
+      The campaigns in the response are not guaranteed to be in the same order as they were provided in the request.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/batch/create
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchInputPublicCampaignInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BatchResponsePublicCampaign)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchInputPublicCampaignInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaign)
+        RETURNVAR: marketing_v3_batch_create_201
+        STATUS: 201
+      - RETURNTYPE: STRUCT(BatchResponsePublicCampaignWithErrors)
+        RETURNVAR: marketing_v3_batch_create_207
+        STATUS: 207
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_batch_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.batch.create
+  marketing.v3.campaigns.get:
+    SUMMARY: Read a campaign
+    DESC: Get a campaign identified by a specific campaignGuid with the given properties. Along with the campaign information, it also returns information about assets. Depending on the query parameters used, this can also be used to return information about the corresponding assets' metrics. Metrics are available only if startDate and endDate are provided.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicCampaignWithAssets)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - properties:
+          TYPE: "[]STRING"
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicCampaignWithAssets)
+        RETURNVAR: marketing_v3_campaigns_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_campaigns_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.campaigns.get
+  marketing.v3.campaigns.delete:
+    SUMMARY: "Delete campaign "
+    DESC: |-
+      Delete a specified campaign from the system.
+      This call will return a 204 No Content response regardless of whether the campaignGuid provided corresponds to an existing campaign or not.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}
+      HEADERS:
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_campaigns_delete_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.campaigns.delete
+  marketing.v3.campaigns.update:
+    SUMMARY: Update campaign
+    DESC: |
+      Perform a partial update of a campaign identified by the specified campaignGuid. Provided property values will be overwritten. Read-only and non-existent properties will cause 400 error.
+      If an empty string is passed for any property in the Batch Update, it will reset that property's value.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicCampaignInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicCampaign)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicCampaignInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicCampaign)
+        RETURNVAR: marketing_v3_campaigns_update
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_campaigns_update_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.campaigns.update
+  marketing.v3.budget.create:
+    SUMMARY: Add budget item
+    DESC: Add a new budget item to the campaign
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/budget
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicBudgetItemInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicBudgetItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicBudgetItemInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicBudgetItem)
+        RETURNVAR: marketing_v3_budget_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_budget_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.budget.create
+  marketing.v3.contacts.get:
+    SUMMARY: Fetch contact IDs
+    DESC: Fetch the list of contact IDs for the specified campaign and contact type
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/reports/contacts/{contactType}
+      HEADERS:
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(CollectionResponseContactReferenceForwardPaging)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - contactType:
+          TYPE: STRING
+          LOCATION: path
+      - startDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - endDate:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CollectionResponseContactReferenceForwardPaging)
+        RETURNVAR: marketing_v3_contacts_get
+        STATUS: 200
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_contacts_get_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.contacts.get
+  marketing.v3.spend.create:
+    SUMMARY: Create campaign spend item
+    DESC: Create a new campaign spend item
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /marketing/v3/campaigns/{campaignGuid}/spend
+      HEADERS:
+        Content-Type: application/json
+        private-app: private-app
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PublicSpendItemInput)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(PublicSpendItem)
+    INPUTS:
+      - campaignGuid:
+          TYPE: STRING
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PublicSpendItemInput)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PublicSpendItem)
+        RETURNVAR: marketing_v3_spend_create_201
+        STATUS: 201
+      - RETURNTYPE: ANY
+        RETURNVAR: marketing_v3_spend_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: marketing.v3.spend.create
+STRUCTS:
+  StandardError:
+    - name: subCategory
+      NAME: subCategory
+      type: OBJECT
+      TYPE: OBJECT
+      REQUIRED: false
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: category
+      NAME: category
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(ErrorDetail)"
+      TYPE: "[]STRUCT(ErrorDetail)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ErrorDetail:
+    - name: subCategory
+      NAME: subCategory
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: A specific category that contains more specific detail about the error
+    - name: code
+      NAME: code
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status code associated with the error detail
+    - name: in
+      NAME: in
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the field or parameter in which the error was found.
+    - name: context
+      NAME: context
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Context about the error condition
+    - name: message
+      NAME: message
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: A human readable message describing the error along with remediation steps where appropriate
+  PublicCampaignBatchUpdateItem:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+  CollectionResponsePublicCampaignAssetForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaignAsset)"
+      TYPE: "[]STRUCT(PublicCampaignAsset)"
+      REQUIRED: true
+  ForwardPaging:
+    - name: next
+      NAME: next
+      type: STRUCT(NextPage)
+      TYPE: STRUCT(NextPage)
+      REQUIRED: false
+  NextPage:
+    - name: link
+      NAME: link
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: after
+      NAME: after
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicCampaignAsset:
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: metrics
+      NAME: metrics
+      type: map[STRING]FLOAT
+      TYPE: map[STRING]FLOAT
+      REQUIRED: true
+  PublicCampaignReadInput:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponsePublicCampaignWithAssetsWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaignWithAssets)"
+      TYPE: "[]STRUCT(PublicCampaignWithAssets)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicCampaignWithAssets:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: businessUnits
+      NAME: businessUnits
+      type: "[]STRUCT(PublicBusinessUnit)"
+      TYPE: "[]STRUCT(PublicBusinessUnit)"
+      REQUIRED: true
+    - name: assets
+      NAME: assets
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  PublicBusinessUnit:
+    - name: id
+      NAME: id
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  BatchInputPublicCampaignReadInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicCampaignReadInput)"
+      TYPE: "[]STRUCT(PublicCampaignReadInput)"
+      REQUIRED: true
+  BatchResponsePublicCampaignWithAssets:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaignWithAssets)"
+      TYPE: "[]STRUCT(PublicCampaignWithAssets)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  BatchResponsePublicCampaignWithErrors:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: numErrors
+      NAME: numErrors
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaign)"
+      TYPE: "[]STRUCT(PublicCampaign)"
+      REQUIRED: true
+    - name: errors
+      NAME: errors
+      type: "[]STRUCT(StandardError)"
+      TYPE: "[]STRUCT(StandardError)"
+      REQUIRED: false
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicCampaign:
+    - name: createdAt
+      NAME: createdAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: businessUnits
+      NAME: businessUnits
+      type: "[]STRUCT(PublicBusinessUnit)"
+      TYPE: "[]STRUCT(PublicBusinessUnit)"
+      REQUIRED: true
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  PublicSpendItem:
+    - name: createdAt
+      NAME: createdAt
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: amount
+      NAME: amount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: order
+      NAME: order
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  BatchResponsePublicCampaign:
+    - name: completedAt
+      NAME: completedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: requestedAt
+      NAME: requestedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+    - name: startedAt
+      NAME: startedAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: links
+      NAME: links
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaign)"
+      TYPE: "[]STRUCT(PublicCampaign)"
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicBudgetTotals:
+    - name: spendItems
+      NAME: spendItems
+      type: "[]STRUCT(PublicSpendItem)"
+      TYPE: "[]STRUCT(PublicSpendItem)"
+      REQUIRED: true
+    - name: budgetTotal
+      NAME: budgetTotal
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+    - name: remainingBudget
+      NAME: remainingBudget
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+    - name: spendTotal
+      NAME: spendTotal
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+    - name: currencyCode
+      NAME: currencyCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: budgetItems
+      NAME: budgetItems
+      type: "[]STRUCT(PublicBudgetItem)"
+      TYPE: "[]STRUCT(PublicBudgetItem)"
+      REQUIRED: true
+  PublicBudgetItem:
+    - name: createdAt
+      NAME: createdAt
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: amount
+      NAME: amount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: order
+      NAME: order
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: updatedAt
+      NAME: updatedAt
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  BatchInputPublicCampaignDeleteInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicCampaignDeleteInput)"
+      TYPE: "[]STRUCT(PublicCampaignDeleteInput)"
+      REQUIRED: true
+  PublicCampaignDeleteInput:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  PublicSpendItemInput:
+    - name: amount
+      NAME: amount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: order
+      NAME: order
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  PublicCampaignInput:
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: true
+  MetricsCounters:
+    - name: sessions
+      NAME: sessions
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: newContactsFirstTouch
+      NAME: newContactsFirstTouch
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: influencedContacts
+      NAME: influencedContacts
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: newContactsLastTouch
+      NAME: newContactsLastTouch
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  BatchInputPublicCampaignInput:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicCampaignInput)"
+      TYPE: "[]STRUCT(PublicCampaignInput)"
+      REQUIRED: true
+  CollectionResponseWithTotalPublicCampaignForwardPaging:
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(PublicCampaign)"
+      TYPE: "[]STRUCT(PublicCampaign)"
+      REQUIRED: true
+  PublicBudgetItemInput:
+    - name: amount
+      NAME: amount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: true
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: description
+      NAME: description
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: order
+      NAME: order
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  CollectionResponseContactReferenceForwardPaging:
+    - name: paging
+      NAME: paging
+      type: STRUCT(ForwardPaging)
+      TYPE: STRUCT(ForwardPaging)
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(ContactReference)"
+      TYPE: "[]STRUCT(ContactReference)"
+      REQUIRED: true
+  ContactReference:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  RevenueAttributionAggregate:
+    - name: contactsNumber
+      NAME: contactsNumber
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: dealAmount
+      NAME: dealAmount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+    - name: dealsNumber
+      NAME: dealsNumber
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+    - name: revenueAmount
+      NAME: revenueAmount
+      type: FLOAT
+      TYPE: FLOAT
+      REQUIRED: false
+    - name: currencyCode
+      NAME: currencyCode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  BatchInputPublicCampaignBatchUpdateItem:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(PublicCampaignBatchUpdateItem)"
+      TYPE: "[]STRUCT(PublicCampaignBatchUpdateItem)"
+      REQUIRED: true

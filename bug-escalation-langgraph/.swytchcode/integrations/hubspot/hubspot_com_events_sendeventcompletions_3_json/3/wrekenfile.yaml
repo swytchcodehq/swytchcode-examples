@@ -1,0 +1,124 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  private-app: <PRIVATE-APP>
+  w_base_url: https://api.hubapi.com
+METHODS:
+  events.v3.batch.create:
+    SUMMARY: Send a batch of event completions
+    DESC: Send multiple event completions at once.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /events/v3/send/batch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchedBehavioralEventHttpCompletionRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BatchedBehavioralEventHttpCompletionRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: events_v3_batch_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: events.v3.batch.create
+  events.v3.send.create:
+    SUMMARY: Send a custom event completion
+    DESC: Send data for a single event completion.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /events/v3/send
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+        private-app: private-app
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BehavioralEventHttpCompletionRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: ANY
+    INPUTS:
+      - body:
+          TYPE: STRUCT(BehavioralEventHttpCompletionRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: events_v3_send_create_NaN
+        STATUS: .nan
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 500
+        WHEN: HTTP default
+    CANONICAL_ID: events.v3.send.create
+STRUCTS:
+  BehavioralEventHttpCompletionRequest:
+    - name: occurredAt
+      NAME: occurredAt
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      comment: The time when this event occurred. If this isn't set, the current time will be used.
+    - name: eventName
+      NAME: eventName
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+      comment: "The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). "
+    - name: utk
+      NAME: utk
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The visitor's usertoken. Used for associating the event data with a CRM record.
+    - name: uuid
+      NAME: uuid
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems.
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The visitor's email address. Used for associating the event data with a CRM record.
+    - name: properties
+      NAME: properties
+      type: map[STRING]STRING
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties).
+    - name: objectId
+      NAME: objectId
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the object that completed the event (e.g., contact ID or visitor ID).
+  BatchedBehavioralEventHttpCompletionRequest:
+    - name: inputs
+      NAME: inputs
+      type: "[]STRUCT(BehavioralEventHttpCompletionRequest)"
+      TYPE: "[]STRUCT(BehavioralEventHttpCompletionRequest)"
+      REQUIRED: true

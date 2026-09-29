@@ -1,0 +1,949 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Accelerate a stuck transaction associated with a payment ID to expedite blockchain confirmation.",
+      "canonical_id": "cpn.payment.accelerate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Accelerate a transaction from a developer-controlled wallet.",
+      "canonical_id": "w3s.developer.accelerate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a transaction from a developer-controlled wallet, with possible gas fees, but may not be effective post blockchain processing.",
+      "canonical_id": "w3s.developer.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the service is running.",
+      "canonical_id": "ping.ping.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge for executing a smart contract transaction with ABI parameters.",
+      "canonical_id": "w3s.user.contractExecution.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge for initiating an on-chain digital asset transfer from a specified user-controlled wallet.",
+      "canonical_id": "w3s.user.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge for setting up a PIN without configuring wallets.",
+      "canonical_id": "w3s.user.pin.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge for upgrading a wallet.",
+      "canonical_id": "w3s.user.walletUpgrade.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge for user initialization and create one or more wallets.",
+      "canonical_id": "w3s.user.initialize"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge to accelerate a transaction from a user-controlled wallet.",
+      "canonical_id": "w3s.user.accelerate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge to cancel a transaction from a user-controlled wallet.",
+      "canonical_id": "w3s.user.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge to restore a user's PIN using security questions.",
+      "canonical_id": "w3s.user.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge to sign a transaction from a user-controlled wallet on supported blockchains.",
+      "canonical_id": "w3s.user.transaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a challenge to update user's PIN using current PIN.",
+      "canonical_id": "w3s.user.pin.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a cross-currency FX trade.",
+      "canonical_id": "exchange.trade.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a crypto payout with specified currency pairs for address book payouts.",
+      "canonical_id": "payouts.payout.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a CUBIX bank account for a business account.",
+      "canonical_id": "businessaccount.bank.cubix.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a currency trading account with FX configurations.",
+      "canonical_id": "exchange.fxconfig.accounts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new developer-controlled wallet set with up to 10 million wallets, limited to 1,000 sets.",
+      "canonical_id": "w3s.developer.walletSets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new event monitor based on blockchain, contract address, and event signature.",
+      "canonical_id": "w3s.contract.monitors.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new external entity for the institutional account.",
+      "canonical_id": "externalentities.externalentity.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new recipient in the address book.",
+      "canonical_id": "addressbook.recipient.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user profile.",
+      "canonical_id": "w3s.user.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new wire bank account for a business account.",
+      "canonical_id": "businessaccount.bank.wires.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a payment intent for transient or continuous payments.",
+      "canonical_id": "paymentintents.paymentintent.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a payment using a previously generated quote and recipient information, ensuring validity before settlement expiration.",
+      "canonical_id": "cpn.payment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a PIX bank account for a business account.",
+      "canonical_id": "businessaccount.bank.pix.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a quote for currency exchange with specified amount for either 'from' or 'to' parameter, not both.",
+      "canonical_id": "exchange.stablefx.quotes.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a recipient address for a business account wallet, storing an external blockchain address for verification.",
+      "canonical_id": "businessaccount.wallet.recipient.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a redemption payout to convert digital assets to fiat currency for a business account.",
+      "canonical_id": "businessaccount.payout.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a support ticket for transaction-related issues on the CPN platform.",
+      "canonical_id": "cpn.supportticket.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a trade by accepting a quote and initiating a new trade.",
+      "canonical_id": "exchange.stablefx.trades.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a transaction to upgrade a wallet.",
+      "canonical_id": "w3s.developer.walletUpgrade.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a transfer from a business account to a blockchain location.",
+      "canonical_id": "businessaccount.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a user token, generate user session, and SDK secret key.",
+      "canonical_id": "w3s.user.token.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a V2 transaction for signing associated with a specific payment ID.",
+      "canonical_id": "cpn.payment.transactions.create_b8e1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a webhook subscription by configuring an endpoint to receive notifications.",
+      "canonical_id": "stablefx.notification.subscriptions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an unsigned on-chain transaction for a specific payment.",
+      "canonical_id": "cpn.payment.transactions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create challenge for signing a message from user-controlled wallet on Ethereum, Solana, or Aptos blockchains.",
+      "canonical_id": "w3s.user.message.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create daily custody balance report for USDC and EURC and send it to Circle, allowing only one report per currency per day.",
+      "canonical_id": "reservemanagement.dailycustodybalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple quotes based on given parameters, sorted by source or destination amount.",
+      "canonical_id": "cpn.quote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new developer-controlled wallets or a batch of wallets within a wallet set on a specified blockchain with a given name.",
+      "canonical_id": "w3s.developer.wallets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create user-controlled wallets with specified blockchain and wallet name, generating a challenge for new wallets.",
+      "canonical_id": "w3s.user.wallets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a recipient address from the wallet, including an external blockchain address, if the address is in 'active' or 'pending' state.",
+      "canonical_id": "businessaccount.wallet.recipient.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a recipient from the address book by ID.",
+      "canonical_id": "addressbook.recipient.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing event monitor by its ID.",
+      "canonical_id": "w3s.contract.monitors.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing notification subscription.",
+      "canonical_id": "stablefx.notification.subscriptions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deploy a smart contract on a specified blockchain using the contract's ABI and bytecode.",
+      "canonical_id": "w3s.contract.deploy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deploy a smart contract using a template.",
+      "canonical_id": "w3s.template.deploy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive an EOA or SCA wallet on a specified blockchain using the wallet address. Update wallet metadata if the wallet already exists.",
+      "canonical_id": "w3s.developer.blockchains.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive wallet by address and create/update on target blockchain using the same address from the source wallet.",
+      "canonical_id": "w3s.developer.derive.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate fees and expiration block heights for a transfer without executing the transaction.",
+      "canonical_id": "estimate.estimate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate gas fees for a contract execution transaction.",
+      "canonical_id": "w3s.transaction.estimateFee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate gas fees for a transfer transaction based on amount, blockchain, and token.",
+      "canonical_id": "w3s.transaction.estimateFee.create_3a80"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate network fee for deploying a smart contract bytecode on a blockchain.",
+      "canonical_id": "w3s.contract.estimateFee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate the fee required to deploy a contract by template.",
+      "canonical_id": "w3s.template.estimateFee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute a smart contract transaction with ABI parameters, either individually or as a batch call, by providing wallet details.",
+      "canonical_id": "w3s.developer.contractExecution.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Expire a payment intent by providing the ID.",
+      "canonical_id": "paymentintents.expire.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fund trades and execute funding for trades using Permit2 signatures to complete the funding operation.",
+      "canonical_id": "exchange.stablefx.fund.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a challenge for signing EIP-712 typed structured data from a user-controlled wallet on Ethereum and EVM-compatible blockchains.",
+      "canonical_id": "w3s.user.typedData.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a new blockchain deposit address for a specific currency/chain pair associated with a business wallet.",
+      "canonical_id": "businessaccount.wallet.deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate EIP-712 payload for CPS trade signature by trader type and trade ID.",
+      "canonical_id": "exchange.stablefx.presign.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate funding presign data for trader to sign for funding operations.",
+      "canonical_id": "exchange.stablefx.presign.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate transfer attestation and operator signature for transferring tokens between domains.",
+      "canonical_id": "transfer.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get deviceToken for social login in SDK.",
+      "canonical_id": "w3s.user.token.create_1250"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get indicative exchange rate between two currencies with either from or to currency as USD. Apply current market rate upon deposit.",
+      "canonical_id": "exchange.quote.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get payment requirements for a quote by retrieving the necessary PII fields for making the payment, including travel rule and beneficiary account data.",
+      "canonical_id": "cpn.payment.requirements.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get token balance for a wallet. + Fetches the digital asset balance for a single developer-controlled wallet using its u",
+      "canonical_id": "w3s.wallet.balances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Import a contract to your library of contracts.",
+      "canonical_id": "w3s.contract.import.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a mock PIX payment in the sandbox environment mimicking funds sent through the linked bank account.",
+      "canonical_id": "mocks.payment.pix.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a mock wire payment mimicking funds sent through a bank account in the sandbox environment.",
+      "canonical_id": "mocks.payment.wire.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a transfer transaction from a developer-controlled wallet for on-chain digital asset transfer.",
+      "canonical_id": "w3s.developer.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all available balances for a business account by retrieving the funds that can be used.",
+      "canonical_id": "businessaccount.balance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all CUBIX bank accounts.",
+      "canonical_id": "businessaccount.bank.cubix.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all deposit addresses for a specific wallet.",
+      "canonical_id": "businessaccount.wallet.deposit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all deposits sent to your business account, with options to search by type, wallet ID, date range, and pagination.",
+      "canonical_id": "businessaccount.deposit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all existing notification subscriptions.",
+      "canonical_id": "notifications.subscription.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all payments with optional filters such as source, settlement ID, type, status, and date range.",
+      "canonical_id": "payments.payment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all payouts based on source, destination, type, status, currencies, chain, and date range.",
+      "canonical_id": "payouts.payout.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all payouts for your account with the option to filter by destination, type, status, source wallet ID, date range, and pagination.",
+      "canonical_id": "businessaccount.payout.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all PIX bank accounts available for the business account.",
+      "canonical_id": "businessaccount.bank.pix.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all stablecoins and their total circulating supply across all chains.",
+      "canonical_id": "stablecoins.stablecoin.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all transactions with details like status, source/destination, and transaction hash.",
+      "canonical_id": "w3s.transaction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all transfers from a business account, with options to search by wallet IDs and date range, returning up to 50 transfers in descending order.",
+      "canonical_id": "businessaccount.transfer.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all wire bank accounts for a business account.",
+      "canonical_id": "businessaccount.bank.wires.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List attestations for crosschain transfers filtered by remote domain, with pagination support.",
+      "canonical_id": "remote-domains.attestation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List challenges by status for a user.",
+      "canonical_id": "w3s.user.challenges.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List contracts imported and/or deployed. Fetch a list based on blockchain, contract type, deployer, name, status, and date range.",
+      "canonical_id": "w3s.contract.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List daily burn fee calculations based on specified parameters.",
+      "canonical_id": "fees.redemption.dailyReports.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List payment intents with filters by status, context, date, pagination, and size.",
+      "canonical_id": "paymentintents.paymentintent.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List recipients based on specified criteria.",
+      "canonical_id": "addressbook.recipient.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List transfers based on specified parameters.",
+      "canonical_id": "w3s.buidl.transfers.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List user operations by specified parameters.",
+      "canonical_id": "w3s.buidl.userOps.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users with optional filters by pin status, security question status, date range, pagination, and sorting.",
+      "canonical_id": "w3s.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List verified recipient addresses eligible for transfers within a specified timeframe, with pagination support.",
+      "canonical_id": "businessaccount.wallet.recipient.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Modify a recipient in the address book.",
+      "canonical_id": "addressbook.recipient.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Prepare a withdrawal request by encoding burn intents for optimal forwarding strategy, transfer amounts, and fees.",
+      "canonical_id": "prepare-withdrawal.prepare-withdrawal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Query the state of a contract by providing the address and blockchain.",
+      "canonical_id": "w3s.contract.query.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Re-attest a pre-finality message to achieve a higher level of finality on the destination chain.",
+      "canonical_id": "reattest.reattest.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Refresh the userToken using the refreshToken provided by the SDK's performLogin function.",
+      "canonical_id": "w3s.user.token.refresh"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Refund a payment intent with the specified ID.",
+      "canonical_id": "paymentintents.refund.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register a trade signature to confirm trade intent with a signed EIP-712 payload.",
+      "canonical_id": "exchange.stablefx.signatures.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resend OTP email to the user when they don't receive it.",
+      "canonical_id": "w3s.user.resendOTP.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a deposit by ID for a business account.",
+      "canonical_id": "businessaccount.deposit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a deviceToken for logging in with email OTP in the SDK.",
+      "canonical_id": "w3s.user.token.create_7a12"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of active public keys for verifying attestation signatures.",
+      "canonical_id": "publickeys.publickey.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of wallets based on specified parameters.",
+      "canonical_id": "w3s.wallet.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of wallets with balances, updating automatically after each transfer.",
+      "canonical_id": "w3s.developer.balances.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a paginated list of all trades from StableFX exchange.",
+      "canonical_id": "exchange.stablefx.trades.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a payment intent by ID.",
+      "canonical_id": "paymentintents.paymentintent.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific contract by ID.",
+      "canonical_id": "w3s.contract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific payment by ID.",
+      "canonical_id": "payments.payment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific payout by ID from the business account.",
+      "canonical_id": "businessaccount.payout.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific payout by ID.",
+      "canonical_id": "payouts.payout.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific trade by its ID.",
+      "canonical_id": "exchange.stablefx.trades.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transaction by its ID from a payment (V2).",
+      "canonical_id": "cpn.payment.transactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transfer by ID from the business account.",
+      "canonical_id": "businessaccount.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a user challenge by ID.",
+      "canonical_id": "w3s.user.challenges.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all cross-currency FX trades with an optional filter by settlement ID.",
+      "canonical_id": "exchange.trade.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all external entities associated with the institutional account, ensuring to provide both business unique identifier and issuing country code parameters.",
+      "canonical_id": "externalentities.externalentity.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs associated with a specific wallet using the wallet's unique identifier.",
+      "canonical_id": "w3s.wallet.nfts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all trade settlements within a specified timeframe, with options to filter by type, status, and currency.",
+      "canonical_id": "exchange.trade.settlements.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all webhook subscriptions.",
+      "canonical_id": "stablefx.notification.subscriptions.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an array of existing wallet sets with options to filter by date, pagination, and ordering.",
+      "canonical_id": "w3s.walletset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an attestation for a crosschain transfer using the deposit message hash.",
+      "canonical_id": "attestations.attestation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an existing notification subscription by ID.",
+      "canonical_id": "stablefx.notification.subscriptions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an existing transfer by ID.",
+      "canonical_id": "w3s.buidl.transfers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an existing user operation by ID.",
+      "canonical_id": "w3s.buidl.userOps.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an existing wallet by ID.",
+      "canonical_id": "w3s.wallet.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an existing wallet set by ID.",
+      "canonical_id": "w3s.walletset.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an external entity using the wallet ID.",
+      "canonical_id": "externalentities.externalentity.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an overview of payment configurations including supported countries, currencies, payment methods, and blockchains.",
+      "canonical_id": "cpn.configuration.overview.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve CUBIX transfer instructions for a Circle bank account linked to a specific fiat account ID.",
+      "canonical_id": "businessaccount.bank.instructions.get_584b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve current available token balances for specified addresses across different domains.",
+      "canonical_id": "balances.balance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve daily currency exchange limits and usages.",
+      "canonical_id": "exchange.fxconfig.dailyLimits.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed information about a transfer by its ID.",
+      "canonical_id": "transfer.transfer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a CUBIX bank account by ID.",
+      "canonical_id": "businessaccount.bank.cubix.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a PIX bank account by ID.",
+      "canonical_id": "businessaccount.bank.pix.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific token by its unique identifier.",
+      "canonical_id": "w3s.token.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve event logs from contracts by blockchain and contract address, with optional filters.",
+      "canonical_id": "w3s.contract.events.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve event monitors based on blockchain, contract address, and event signature filters.",
+      "canonical_id": "w3s.contract.monitors.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve fee parameters for a blockchain, with an optional account type (defaults to 'EOA').",
+      "canonical_id": "w3s.developer.feeParameters.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve full refund details for a specific payment transaction.",
+      "canonical_id": "cpn.payment.refunds.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve FX trade details by ID.",
+      "canonical_id": "exchange.trade.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve general configuration information.",
+      "canonical_id": "configuration.configuration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about supported domains and tokens from the Gateway API.",
+      "canonical_id": "info.info.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve message and attestation details for CCTP V1 messages by providing the source domain ID and transaction hash.",
+      "canonical_id": "messages.message.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve messages and attestations for a specific transaction hash or nonce, ordered by log index.",
+      "canonical_id": "messages.message.get_1017"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve NFTs of a wallet by ID, with options for filtering and pagination.",
+      "canonical_id": "w3s.buidl.nfts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve pending deposits for specified addresses across different domains.",
+      "canonical_id": "deposits.deposit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve PIX transfer instructions for a specific bank account ID.",
+      "canonical_id": "businessaccount.bank.instructions.get_758b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve public keys for validating attestations across all supported versions of CCTP.",
+      "canonical_id": "publickeys.publickey.list_9dae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve recipient details by ID.",
+      "canonical_id": "addressbook.recipient.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve settlement details by ID.",
+      "canonical_id": "exchange.trade.settlements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve settlement instructions for a specific currency.",
+      "canonical_id": "exchange.trade.instructions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve specific RFI details for a payment, notify OFI via webhook, submit encrypted data to BFI for decision.",
+      "canonical_id": "cpn.payment.rfis.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve supported payment routes based on source currency and destination country, with optional transaction details.",
+      "canonical_id": "cpn.configuration.routes.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the balances of a specific wallet using its ID.",
+      "canonical_id": "w3s.buidl.balances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the fee for a specific trade ID.",
+      "canonical_id": "exchange.stablefx.fees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the full TransferSpec by transferSpecHash.",
+      "canonical_id": "transferspec.transferspec.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the lowest nonce pending transaction for a specific wallet on a nonce-supported blockchain.",
+      "canonical_id": "w3s.transaction.lowestNonceTransaction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the NFTs of a wallet by blockchain and address, with optional filters for standard, name, and more.",
+      "canonical_id": "w3s.buidl.nfts.get_2a7b"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the public key for verifying Circle webhook notifications.",
+      "canonical_id": "stablefx.notification.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the remaining USDC Fast Transfer allowance.",
+      "canonical_id": "fastburn.usdc.allowance.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the status and transfer details of a specific withdrawal group by providing the withdrawal ID.",
+      "canonical_id": "withdrawal.withdrawal.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve token balances for a specific remote domain based on deposit amounts into xReserve.",
+      "canonical_id": "balances.balance.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transaction details by ID and transaction type.",
+      "canonical_id": "w3s.transaction.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve USDC transfer fees between specified domains in basis points.",
+      "canonical_id": "burn.usdc.fees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve user details based on user ID.",
+      "canonical_id": "w3s.user.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve user information using a token.",
+      "canonical_id": "w3s.user.list_c5c9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve wallet balances by blockchain and address.",
+      "canonical_id": "w3s.buidl.balances.get_bcbb"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve wire bank account details by ID.",
+      "canonical_id": "businessaccount.bank.wires.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve wire transfer instructions for a specific bank account ID, including currency and wallet ID options.",
+      "canonical_id": "businessaccount.bank.instructions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Screen a blockchain address for compliance.",
+      "canonical_id": "w3s.compliance.addresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign a delegate action from a specific developer-controlled wallet on NEAR and NEAR-TESTNET.",
+      "canonical_id": "w3s.developer.delegateAction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign a message from a developer-controlled wallet on Ethereum, Solana, or Aptos blockchains.",
+      "canonical_id": "w3s.developer.message.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign a transaction from a specific developer-controlled wallet on supported blockchains.",
+      "canonical_id": "w3s.developer.transaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign EIP-712 typed structured data from a developer-controlled wallet on Ethereum and EVM-compatible blockchains.",
+      "canonical_id": "w3s.developer.typedData.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a signed transaction for broadcast for a specific payment.",
+      "canonical_id": "cpn.payment.submit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a signed V2 transaction for broadcast",
+      "canonical_id": "cpn.payment.submit.create_66a8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit encrypted RFI data to complete an RFI request from the BFI.",
+      "canonical_id": "cpn.payment.submit.create_e194"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit signed burn intents for withdrawal in batches of up to five per request call, each batch containing one burn intent or a set of up to 10.",
+      "canonical_id": "withdraw.withdraw.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a notification subscription configuration.",
+      "canonical_id": "stablefx.notification.subscriptions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing event monitor by providing its ID.",
+      "canonical_id": "w3s.contract.monitors.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update off-chain properties of a contract by specifying its ID, not the on-chain address.",
+      "canonical_id": "w3s.contract.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the name of a wallet set by providing the wallet set ID.",
+      "canonical_id": "w3s.developer.walletSets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update wallet information and metadata.",
+      "canonical_id": "w3s.wallet.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload encrypted RFI file for a payment.",
+      "canonical_id": "cpn.payment.files.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate if an address is valid for a specific token on a blockchain.",
+      "canonical_id": "w3s.transaction.validateAddress.create"
+    }
+  ]
+}

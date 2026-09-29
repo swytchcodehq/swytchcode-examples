@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false
+  },
+  "include": ["src/**/*", "../../services/activation-service/activationService.ts"],
+  "exclude": ["node_modules", "dist"]
+}

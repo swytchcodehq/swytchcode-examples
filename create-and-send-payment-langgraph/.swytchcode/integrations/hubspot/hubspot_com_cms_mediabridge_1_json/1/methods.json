@@ -1,0 +1,164 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add an oEmbed domain to your application settings",
+      "canonical_id": "media-bridge.v1.oembedDomains.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple media properties in bulk",
+      "canonical_id": "media-bridge.v1.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read properties for a specific object type and app",
+      "canonical_id": "media-bridge.v1.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new object definition for an application",
+      "canonical_id": "media-bridge.v1.objectDefinitions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create media object associations for a given app and object type",
+      "canonical_id": "media-bridge.v1.associations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple media properties for an application",
+      "canonical_id": "media-bridge.v1.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update object properties for an application",
+      "canonical_id": "media-bridge.v1.properties.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create property groups for an application",
+      "canonical_id": "media-bridge.v1.groups.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a media bridge property group by name",
+      "canonical_id": "media-bridge.v1.groups.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a property for a specific object type in an app",
+      "canonical_id": "media-bridge.v1.properties.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get media bridge properties for a specific app, object type, and property name",
+      "canonical_id": "media-bridge.v1.properties.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get media bridge properties for an app and object type",
+      "canonical_id": "media-bridge.v1.properties.get_b8ef"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get media bridge properties for an object group",
+      "canonical_id": "media-bridge.v1.groups.get_2029"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get media bridge property groups for an app and object type",
+      "canonical_id": "media-bridge.v1.groups.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get object definitions for a specific media type",
+      "canonical_id": "media-bridge.v1.objectDefinitions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get oEmbed domain settings for a specific app",
+      "canonical_id": "media-bridge.v1.oembedDomains.get_e8e9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform operation get-/media-bridge/v1/{appId}/settings/event-visibility. +",
+      "canonical_id": "media-bridge.v1.eventVisibility.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record media playback progress",
+      "canonical_id": "media-bridge.v1.mediaPlayedPercent.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record user attention span for media events",
+      "canonical_id": "media-bridge.v1.attentionSpan.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record when media has been played",
+      "canonical_id": "media-bridge.v1.mediaPlayed.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register media bridge provider settings",
+      "canonical_id": "media-bridge.v1.register.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an association between media bridge objects",
+      "canonical_id": "media-bridge.v1.associations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove oEmbed domains for an application",
+      "canonical_id": "media-bridge.v1.oembedDomains.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve data schemas for a specific object type and application",
+      "canonical_id": "media-bridge.v1.schemas.get_c3a9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve media schemas for a given application",
+      "canonical_id": "media-bridge.v1.schemas.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve oEmbed domains for a specific app",
+      "canonical_id": "media-bridge.v1.oembedDomains.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a media bridge property for a specific app and object",
+      "canonical_id": "media-bridge.v1.properties.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a media bridge property group for an application",
+      "canonical_id": "media-bridge.v1.groups.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a schema definition for an object type",
+      "canonical_id": "media-bridge.v1.schemas.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific oEmbed domain's settings for an application",
+      "canonical_id": "media-bridge.v1.oembedDomains.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update event visibility settings for an application",
+      "canonical_id": "media-bridge.v1.eventVisibility.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update media bridge provider settings for an application",
+      "canonical_id": "media-bridge.v1.settings.update"
+    }
+  ]
+}

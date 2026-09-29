@@ -1,0 +1,14 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve indexed data for a specific content item",
+      "canonical_id": "cms.v3.indexedData.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search website content by query and filters",
+      "canonical_id": "cms.v3.search.list"
+    }
+  ]
+}

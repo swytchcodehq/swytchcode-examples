@@ -1,0 +1,125 @@
+{
+  "editor": "none",
+  "integrations": {
+    "hubspot.hubspot_com_crm_contacts_3_json": {
+      "version": "3"
+    },
+    "hubspot.hubspot_com_crm_deals_3_json": {
+      "version": "3"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "hubspot.crm.contacts.create": {
+      "desc": "Create a contact with the given properties and return a copy of the object, including the ID.",
+      "inputs": [
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "associations": {
+                  "required": false,
+                  "type": "array"
+                },
+                "properties": {
+                  "required": true,
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "hubspot.hubspot_com_crm_contacts_3_json@3",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "archived": {
+              "required": false,
+              "type": "boolean"
+            },
+            "createdAt": {
+              "required": true,
+              "type": "string"
+            },
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "properties": {
+              "required": true,
+              "type": "object"
+            },
+            "updatedAt": {
+              "required": true,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Create a HubSpot contact",
+      "type": "method"
+    },
+    "hubspot.crm.deals.create": {
+      "desc": "Create a deal with the given properties and return a copy of the object, including the ID.",
+      "inputs": [
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "associations": {
+                  "required": false,
+                  "type": "array"
+                },
+                "properties": {
+                  "required": true,
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "hubspot.hubspot_com_crm_deals_3_json@3",
+      "method_hash": "",
+      "output": {
+        "schema": {
+          "properties": {
+            "archived": {
+              "required": false,
+              "type": "boolean"
+            },
+            "createdAt": {
+              "required": true,
+              "type": "string"
+            },
+            "id": {
+              "required": true,
+              "type": "string"
+            },
+            "properties": {
+              "required": true,
+              "type": "object"
+            },
+            "updatedAt": {
+              "required": true,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Create a HubSpot deal",
+      "type": "method"
+    }
+  },
+  "version": "1"
+}

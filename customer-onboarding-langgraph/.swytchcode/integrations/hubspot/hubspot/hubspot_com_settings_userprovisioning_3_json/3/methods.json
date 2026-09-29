@@ -1,0 +1,39 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a new user with basic permissions and send a welcome email",
+      "canonical_id": "settings.v3.users.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user by ID or email",
+      "canonical_id": "settings.v3.users.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of users from an account",
+      "canonical_id": "settings.v3.users.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get account teams",
+      "canonical_id": "settings.v3.teams.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user by ID or email",
+      "canonical_id": "settings.v3.users.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user roles for an account",
+      "canonical_id": "settings.v3.roles.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Modifies a user. + Modifies a user identified by `userId`. `userId` refers to the user's ID by default, or optionally em",
+      "canonical_id": "settings.v3.users.update"
+    }
+  ]
+}

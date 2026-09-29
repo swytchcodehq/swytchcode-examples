@@ -1,0 +1,44 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Create a new automation workflow",
+      "canonical_id": "automation.v4.flows.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a workflow by its ID",
+      "canonical_id": "automation.v4.flows.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all automation workflows",
+      "canonical_id": "automation.v4.flows.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all details for a specific workflow by ID",
+      "canonical_id": "automation.v4.flows.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get migrated workflow IDs from v3 to v4",
+      "canonical_id": "automation.v4.read.create_ce2d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple automation workflows by ID",
+      "canonical_id": "automation.v4.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow emails by flow ID",
+      "canonical_id": "automation.v4.emailCampaigns.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a workflow by its ID",
+      "canonical_id": "automation.v4.flows.update"
+    }
+  ]
+}

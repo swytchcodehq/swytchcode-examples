@@ -1,0 +1,1409 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Accept and finalize a salary estimate for an employee job, marking it as accepted and read-only for record-keeping.",
+      "canonical_id": "v1.salary_estimate.accept.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Accept the Gusto Embedded Payroll's Terms of Service for a partner-managed company by UUID.",
+      "canonical_id": "v1.partner_managed_company.acceptTermsOfService.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add compensations for a specific job, including payout details and active status based on effective date.",
+      "canonical_id": "v1.job.compensations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add employees and contractors to a department scope.",
+      "canonical_id": "v1.department.add.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add employees to a company's holiday pay policy scope.",
+      "canonical_id": "v1.company.add.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add employees to a time off policy, requiring at least one job. Allows setting starting balances for non-unlimited policies.",
+      "canonical_id": "v1.time_off_policy.addEmployees.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add year-to-date benefit amounts from a different company for an employee's 401(k) plan.",
+      "canonical_id": "v1.employee.ytdBenefitAmountsFromDifferentCompany.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign employees to pay schedules based on schedule type, with options for partial or full assignment scope.",
+      "canonical_id": "v1.company.assign.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate accruing time off hours for an employee based on time off policies, accrual methods, work hours, and PTO/sick hours.",
+      "canonical_id": "v1.payroll.calculateAccruingTimeOffHours.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate gross up earnings for an employee's off-cycle unprocessed payroll based on net earnings.",
+      "canonical_id": "v1.payroll.grossUp.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate tax suggestions for an external payroll based on saved earnings and benefits data.",
+      "canonical_id": "v1.company.calculateTaxes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate taxes, benefits, and deductions for an unprocessed payroll to preview actual values before running it.",
+      "canonical_id": "v1.company.calculate.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a contractor payment group and associated payments.",
+      "canonical_id": "v1.contractor_payment_group.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a processed payroll if the current time is before 3:30pm PT on the payroll deadline.",
+      "canonical_id": "v1.company.cancel.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel and delete a contractor payment for a specific company.",
+      "canonical_id": "v1.company.contractorPayments.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check readiness for migrating an existing Gusto customer to embedded payroll, returning blockers and warnings.",
+      "canonical_id": "v1.partner_managed_company.migrationReadiness.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check the health status of the webhooks system based on recent activity.",
+      "canonical_id": "v1.webhook.healthCheck.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a bank account for a contractor. Only one bank account per contractor is supported.",
+      "canonical_id": "v1.contractor.bankAccounts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a batch for bulk employee creation, processed asynchronously. Use the batch UUID to check status and results.",
+      "canonical_id": "v1.company.peopleBatches.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a custom earning type for a specific company, which can reactivate an inactive type with the same name.",
+      "canonical_id": "v1.company.earningTypes.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a custom report for a company with custom columns, groupings, and filters.",
+      "canonical_id": "v1.company.reports.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a historical employee who was previously dismissed from the company in the current year.",
+      "canonical_id": "v1.company.historicalEmployees.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a holiday pay policy for a company by specifying the policy details.",
+      "canonical_id": "v1.company.holidayPayPolicy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new admin for a company, either by assigning admin privileges to an existing user or creating a new user account.",
+      "canonical_id": "v1.company.admins.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new bank account for an employee, updating their payment method in the process. An employee can have multiple bank accounts.",
+      "canonical_id": "v1.employee.bankAccounts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new company bank account with automatic verification deposit initiation and status updates.",
+      "canonical_id": "v1.company.bankAccounts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new company location for various address purposes associated with a company.",
+      "canonical_id": "v1.company.locations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new company signatory with complete information, ensuring the company doesn't already have one. The signatory can legally sign forms after successful identity verification.",
+      "canonical_id": "v1.company.signatories.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new department for a specific company with the ability to write to department scopes.",
+      "canonical_id": "v1.company.departments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new employee for a specific company.",
+      "canonical_id": "v1.company.employees.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new external payroll for the company.",
+      "canonical_id": "v1.company.externalPayrolls.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new individual or business contractor for a specific company.",
+      "canonical_id": "v1.company.contractors.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new job for a specific employee.",
+      "canonical_id": "v1.employee.jobs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new off-cycle payroll for a specific company, with options to include or exclude benefits and deductions based on the off-cycle reason.",
+      "canonical_id": "v1.company.payrolls.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new time off policy for a specific company.",
+      "canonical_id": "v1.company.timeOffPolicies.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new verified bank account using a Plaid processor token to retrieve account information.",
+      "canonical_id": "v1.plaid.processorToken.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new work address for an employee to track when they started working at a company location.",
+      "canonical_id": "v1.employee.workAddresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a partner managed company in Gusto, including a new company and user with primary payroll administrator role.",
+      "canonical_id": "v1.partner_managed_company.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a pay schedule for a company, assigning it to all employees or keeping it unassigned for multiple schedules.",
+      "canonical_id": "v1.company.paySchedules.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a recurring reimbursement for a specific employee.",
+      "canonical_id": "v1.employee.recurringReimbursements.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a salary estimate for an employee based on occupation, experience, location, and business revenue.",
+      "canonical_id": "v1.employee.salaryEstimates.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Section 603 high earner status for an employee for a specific year.",
+      "canonical_id": "v1.employee.section603HighEarnerStatuses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a signatory with minimal information for identity verification and document signing.",
+      "canonical_id": "v1.company.signatories.invite"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a termination record for an employee leaving the company, specifying the effective date and payroll preferences.",
+      "canonical_id": "v1.employee.terminations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a webhook subscription to receive events for specified subscription types on state changes.",
+      "canonical_id": "v1.webhook_subscription.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create company benefits for a specific company, tying supported benefits with company-specific details.",
+      "canonical_id": "v1.company.companyBenefits.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create new garnishments for an employee, deducting fixed amounts or percentages from their pay, with options for recurring deductions and maximum limits.",
+      "canonical_id": "v1.employee.garnishments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update an employee's enrollment in a specific company benefit with employee-specific information.",
+      "canonical_id": "v1.company_benefit.employeeBenefits.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update the home address of an employee to determine tax information, geocoding for validity, and supporting effective dating.",
+      "canonical_id": "v1.employee.homeAddresses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deactivate a time off policy by its unique identifier.",
+      "canonical_id": "v1.time_off_policy.deactivate.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deactivate an earning type for a specific company.",
+      "canonical_id": "v1.company.earningTypes.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a company benefit if no associated employee benefits or payroll items exist, and the benefit type is 'External'.",
+      "canonical_id": "v1.company_benefit.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a company signatory.",
+      "canonical_id": "v1.company.signatories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a company's holiday pay policy.",
+      "canonical_id": "v1.company.holidayPayPolicy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a compensation entry for a job that hasn't been processed on payroll.",
+      "canonical_id": "v1.compensation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a contractor only if there are no associated payments.",
+      "canonical_id": "v1.contractor.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a department, ensuring all employees and contractors are removed before deletion.",
+      "canonical_id": "v1.department.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a recurring reimbursement for an employee.",
+      "canonical_id": "v1.recurring_reimbursement.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific I-9 verification document for an employee.",
+      "canonical_id": "v1.employee.documents.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific job held by an employee.",
+      "canonical_id": "v1.job.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific Webhook Subscription by its UUID.",
+      "canonical_id": "v1.webhook_subscription.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee benefit by ID.",
+      "canonical_id": "v1.employee_benefit.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee rehire record, preventing deletion if it's active.",
+      "canonical_id": "v1.employee.rehire.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee termination record.",
+      "canonical_id": "v1.employee.terminations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee who is in onboarding.",
+      "canonical_id": "v1.employee.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee's bank account to update their payment methods.",
+      "canonical_id": "v1.employee.bankAccounts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee's home address, excluding the active one.",
+      "canonical_id": "v1.home_address.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an employee's work address, excluding the active one.",
+      "canonical_id": "v1.work_address.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an external payroll for a specific company.",
+      "canonical_id": "v1.company.externalPayrolls.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an unprocessed payroll for a specific company, with the option for asynchronous deletion using a query parameter.",
+      "canonical_id": "v1.company.payrolls.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable a company bank account, preventing further use for payments if not already processing any transactions.",
+      "canonical_id": "v1.company.bankAccounts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enroll an employee in a specific company benefit by creating their employee benefits with limited benefit type access.",
+      "canonical_id": "v1.employee.employeeBenefits.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all information requests for a specific company.",
+      "canonical_id": "v1.company.informationRequests.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch all Wire In Requests for a specific company.",
+      "canonical_id": "v1.company.wireInRequests.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch details of a Wire In Request.",
+      "canonical_id": "v1.wire_in_request.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch notification details by UUID to access suggested content for building notifications in your platform.",
+      "canonical_id": "v1.notification.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Finalize a company's onboarding process and approve in demo environment.",
+      "canonical_id": "v1.company.finishOnboarding.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Finalize tax liabilities for a company and disable external payroll editing.",
+      "canonical_id": "v1.company.finish.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a 1099 document for testing purposes in the Demo environment.",
+      "canonical_id": "v1.sandbox.generate1099.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a general ledger report for a payroll, aggregating by dimensions like job or department. Use the request UUID to check status and report URL.",
+      "canonical_id": "v1.payroll.generalLedger.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a link to access a pre-built workflow in Gusto white-label UI, with flow expiration for security.",
+      "canonical_id": "v1.company.flows.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a W2 document for testing purposes in the Demo environment.",
+      "canonical_id": "v1.sandbox.generateW2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate annual FICA wage report for all employees in a company for a specified year range.",
+      "canonical_id": "v1.company.employeesAnnualFicaWage.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate system access token or refresh OAuth access token.",
+      "canonical_id": "oauth.token.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a temporary download URL for an attachment file uploaded by the company.",
+      "canonical_id": "v1.company.downloadUrl.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the link to download the PDF of a specific form using the provided form ID.",
+      "canonical_id": "v1.form.pdf.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate a redebit for an open recovery case after resolving the bank error.",
+      "canonical_id": "v1.recovery_cas.redebit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Initiate generation of employee checks for a specific payroll by payroll_uuid. Check generation status and request_uuid are returned for tracking progress.",
+      "canonical_id": "v1.payroll.printablePayrollChecks.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Migrate an existing Gusto customer to your embedded payroll product by connecting their account and accepting terms of service.",
+      "canonical_id": "v1.partner_managed_company.migrate"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Pay a contractor based on their wage type (hourly vs fixed) for the specified company.",
+      "canonical_id": "v1.company.contractorPayments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Pay a group of contractors based on their wage type (hourly vs fixed) with the specified information.",
+      "canonical_id": "v1.company.contractorPaymentGroups.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Prepare a payroll by adding/removing employees, updating dates, and statuses, ready for updates.",
+      "canonical_id": "v1.company.prepare.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Preview a company's paid holidays scope for reading holiday pay policies.",
+      "canonical_id": "v1.company.paidHolidays.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Preview a group of contractor payments with validated inputs and expected debit date, returning a creation token for group creation.",
+      "canonical_id": "v1.company.preview.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Preview employee changes when changing pay schedule for a company.",
+      "canonical_id": "v1.company.assignmentPreview.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rehire an employee scheduled to return to the company.",
+      "canonical_id": "v1.employee.rehire.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove employees and contractors from a department.",
+      "canonical_id": "v1.department.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove employees from a company's holiday pay policy scope.",
+      "canonical_id": "v1.company.holidayPayPolicy.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove employees from a time off policy scope.",
+      "canonical_id": "v1.time_off_policy.removeEmployees.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request the webhook subscription verification token to be sent to the Subscription URL.",
+      "canonical_id": "v1.webhook_subscription.requestVerificationToken.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a company's holiday pay policy scope for reading.",
+      "canonical_id": "v1.company.holidayPayPolicy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a company's onboarding status and required steps completion state.",
+      "canonical_id": "v1.company.onboardingStatus.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a company's payroll journal report template.",
+      "canonical_id": "v1.company.reportTemplates.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a company's report using the provided `request_uuid`, including status and report URL.",
+      "canonical_id": "v1.report.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor document by document UUID.",
+      "canonical_id": "v1.document.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor form by ID for reading purposes.",
+      "canonical_id": "v1.contractor.forms.get_6eba"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor payment group along with its associated contractor payments.",
+      "canonical_id": "v1.contractor_payment_group.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor payment receipt for direct deposit payments once funded, including hour and dollar amounts.",
+      "canonical_id": "v1.contractor_payment.receipt.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor's onboarding status, including required steps and completion status for admin-facilitated or self-onboarding.",
+      "canonical_id": "v1.contractor.onboardingStatus.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a contractor's payment method for splitting payments across their bank accounts.",
+      "canonical_id": "v1.contractor.paymentMethod.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a document by request UUID, including status and document URLs. Multiple URLs may be returned for certain document types.",
+      "canonical_id": "v1.generated_document.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of admins for a specific company by company ID.",
+      "canonical_id": "v1.company.admins.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of contractor payment groups with totals for a specified time period, excluding individual payments.",
+      "canonical_id": "v1.company.contractorPaymentGroups.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of custom fields for a specific employee.",
+      "canonical_id": "v1.employee.customFields.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of documents for a specific contractor.",
+      "canonical_id": "v1.contractor.documents.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of payrolls for a company with options to filter by processing status, payroll type, start and end dates.",
+      "canonical_id": "v1.company.payrolls.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of work addresses for a specific employee, including effective dates and active status.",
+      "canonical_id": "v1.employee.workAddresses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a particular recurring reimbursement.",
+      "canonical_id": "v1.recurring_reimbursement.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a payroll for a specific company and payroll ID, including employee compensations and totals if processed, with pagination support.",
+      "canonical_id": "v1.company.payrolls.get_e12d"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a payroll receipt for a specific payroll UUID, including hour and dollar amounts as string representations of numeric decimals.",
+      "canonical_id": "v1.payroll.receipt.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a preview of pay period dates and holidays based on specified parameters for the upcoming 18 months.",
+      "canonical_id": "v1.company.preview.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a salary estimate by its UUID, including occupation details, revenue, and location information.",
+      "canonical_id": "v1.salary_estimate.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific contractor payment for a company by ID.",
+      "canonical_id": "v1.company.contractorPayments.get_dd18"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve agency data and requirements for creating child support garnishments.",
+      "canonical_id": "v1.garnishment.childSupport.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all ACH transactions for a specific company based on various filters like transaction type and payment direction.",
+      "canonical_id": "v1.company.achTransactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all active recurring reimbursements for a specific employee.",
+      "canonical_id": "v1.employee.recurringReimbursements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all addresses associated with a company, including mailing, filing, and work locations, which may serve multiple purposes.",
+      "canonical_id": "v1.company.locations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all approved Payroll Reversals for a specific Company.",
+      "canonical_id": "v1.company.payrollReversals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all attachments uploaded by a specific company.",
+      "canonical_id": "v1.company.attachments.get_824e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all bank accounts associated with a specific contractor.",
+      "canonical_id": "v1.contractor.bankAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all bank accounts associated with a specific employee.",
+      "canonical_id": "v1.employee.bankAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all benefits enrolled by a specific employee in a company, including their enrollment details.",
+      "canonical_id": "v1.employee.employeeBenefits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all contractors, both active and inactive, individual and business, associated with a specific company.",
+      "canonical_id": "v1.company.contractors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all departments of a company with their assigned employees and contractors.",
+      "canonical_id": "v1.company.departments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all employee benefits enrolled in a specific company benefit, including details specific to each employee's enrollment.",
+      "canonical_id": "v1.company_benefit.employeeBenefits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all employees, including onboarding, active, and terminated, for a specified company while safeguarding sensitive pay information.",
+      "canonical_id": "v1.company.employees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all forms belonging to a specific company.",
+      "canonical_id": "v1.company.forms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all forms for a specific contractor identified by UUID.",
+      "canonical_id": "v1.contractor.forms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all forms for a specific employee.",
+      "canonical_id": "v1.employee.forms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all jobs held by a specific employee, including sensitive compensation data with proper scope authorization.",
+      "canonical_id": "v1.employee.jobs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all notifications related to a specific company based on the provided company UUID.",
+      "canonical_id": "v1.company.notifications.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all pay schedules for a specific company, capturing employee work details and payment timing, with the ability to have multiple schedules.",
+      "canonical_id": "v1.company.paySchedules.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all recovery cases associated with a specific company.",
+      "canonical_id": "v1.company.recoveryCases.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all Section 603 high earner statuses for a specific employee, covering all years.",
+      "canonical_id": "v1.employee.section603HighEarnerStatuses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all supported benefits by Gusto.",
+      "canonical_id": "v1.benefit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all tax requirements for a specific state by company UUID.",
+      "canonical_id": "v1.company.taxRequirements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all time off policies for a specific company.",
+      "canonical_id": "v1.company.timeOffPolicies.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all webhook subscriptions linked to the Partner API token.",
+      "canonical_id": "v1.webhook_subscription.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's home address for tax purposes, with geocoding for validity, effective dating, and courtesy withholding.",
+      "canonical_id": "v1.home_address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's I-9 authorization documents for identity and work authorization verification.",
+      "canonical_id": "v1.employee.documents.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's I-9 authorization information, including authorization status, signatures, and Form I-9 details.",
+      "canonical_id": "v1.employee.i9Authorization.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's onboarding status, including required steps and completion status for admin-facilitated or self-onboarding.",
+      "canonical_id": "v1.employee.onboardingStatus.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's pay stub for a specific payroll.",
+      "canonical_id": "v1.payroll.payStub.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's pay stubs with the ability to read pay stubs scope.",
+      "canonical_id": "v1.employee.payStubs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an employee's rehire information, including the date they return to work.",
+      "canonical_id": "v1.employee.rehire.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attributes for a company's federal tax details.",
+      "canonical_id": "v1.company.federalTaxDetails.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attributes needed for an employee's state taxes, including questions grouped by state for tax calculation.",
+      "canonical_id": "v1.employee.stateTaxes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve bank accounts for a company, with support for a single default bank account per company.",
+      "canonical_id": "v1.company.bankAccounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve company benefit details by ID, including employee benefits if specified, and related company-specific information.",
+      "canonical_id": "v1.company_benefit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve company benefits by company ID, including active status, enrollment count, and benefit type.",
+      "canonical_id": "v1.company.companyBenefits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve company details including home address, non-work locations, primary payroll admin, and primary signatory.",
+      "canonical_id": "v1.company.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve company form details by form ID.",
+      "canonical_id": "v1.form.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve compensation details by ID.",
+      "canonical_id": "v1.compensation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve compensations for a specific job, including details on how much is paid out and the active compensation.",
+      "canonical_id": "v1.job.compensations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve contractor details by UUID.",
+      "canonical_id": "v1.contractor.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve contribution exclusions for a specific company benefit, indicating if they are excluded, for 401-k and Roth 401-k types.",
+      "canonical_id": "v1.company_benefit.contributionExclusions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve current pay schedule assignment for a company with mappings based on pay schedule type.",
+      "canonical_id": "v1.company.assignments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve custom fields for a specific company.",
+      "canonical_id": "v1.company.customFields.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve data for active companies used to calculate invoices for Gusto Embedded Payroll, with pagination support.",
+      "canonical_id": "v1.invoice.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve department details by UUID.",
+      "canonical_id": "v1.department.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a company's uploaded attachment.",
+      "canonical_id": "v1.company.attachments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific benefit supported by Gusto, including high-level information and tax considerations.",
+      "canonical_id": "v1.benefit.get_3e9f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific garnishment by ID.",
+      "canonical_id": "v1.garnishment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific pay schedule for a company, including employee work times and payment schedule.",
+      "canonical_id": "v1.company.paySchedules.get_27f7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve earning types associated with a company in Gusto for payroll items, including default and custom earning types.",
+      "canonical_id": "v1.company.earningTypes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve employee benefits information by employee benefit ID.",
+      "canonical_id": "v1.employee_benefit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve employee form data by employee ID and form ID.",
+      "canonical_id": "v1.employee.forms.get_8d99"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve employee garnishments, which are fixed deductions from pay, including court-ordered payments or loan repayments.",
+      "canonical_id": "v1.employee.garnishments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve employee information with the option to include sensitive compensation data by specifying the appropriate scope.",
+      "canonical_id": "v1.employee.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve events within the last 30 days that your partner application is authorized to access.",
+      "canonical_id": "v1.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve existing suspension records for a specific company.",
+      "canonical_id": "v1.company.suspensions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve external payroll information for a specific company.",
+      "canonical_id": "v1.company.externalPayrolls.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve external payroll information for a specific company.",
+      "canonical_id": "v1.company.externalPayrolls.get_67f4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve federal tax information for a specific employee based on their W-4 form type.",
+      "canonical_id": "v1.employee.federalTaxes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve field requirements for a specific benefit type.",
+      "canonical_id": "v1.benefit.requirements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve individual contractor payments within a specified time frame, including totals, for a specific company.",
+      "canonical_id": "v1.company.contractorPayments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve industry classification details for a company by company ID.",
+      "canonical_id": "v1.company.industrySelection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve job details including compensation data by providing the job ID and including the necessary scope.",
+      "canonical_id": "v1.job.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve location details by ID.",
+      "canonical_id": "v1.location.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve minimum wages for a specific location based on the provided effective date.",
+      "canonical_id": "v1.location.minimumWages.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve partner disbursements for a particular contractor payment group.",
+      "canonical_id": "v1.contractor_payment_group.partnerDisbursements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve partner disbursements for a specific payroll within a company.",
+      "canonical_id": "v1.company.partnerDisbursements.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve pay periods for a specific company to manage payroll information based on time periods.",
+      "canonical_id": "v1.company.payPeriods.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve payment details for contractors in a specific company, including payment methods and bank account information for direct deposit.",
+      "canonical_id": "v1.company.paymentDetails.get_9296"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve payment details for employees within a specific company, with optional filtering by employee or payroll. Results are paginated.",
+      "canonical_id": "v1.company.paymentDetails.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve payment speed configurations for a company, including 1-day, 2-day, or 4-day ACH options, fast payment limit, and partner-owned disbursement settings.",
+      "canonical_id": "v1.company.paymentConfigs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve possible I-9 verification document options for an employee based on their authorization status.",
+      "canonical_id": "v1.employee.documentOptions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve reasons preventing company from running payrolls. View the Payroll Blockers guide for a full list.",
+      "canonical_id": "v1.company.blockers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve scope and resource details for the current access token.",
+      "canonical_id": "v1.token_info.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve signatories associated with a specific company.",
+      "canonical_id": "v1.company.signatories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve summary benefit data for a specific company benefit ID, with restricted access to PHI data.",
+      "canonical_id": "v1.company_benefit.summary.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve tax liabilities from combined external payrolls for a specific company.",
+      "canonical_id": "v1.company.taxLiabilities.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve tax requirements for a specific company.",
+      "canonical_id": "v1.company.taxRequirements.get_8431"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve termination details for a specific employee by their ID.",
+      "canonical_id": "v1.employee.terminations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the complete employment history, including termination and rehire details, for a specific employee.",
+      "canonical_id": "v1.employee.employmentHistory.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the contractor's address for tax purposes, with geocoding for validity.",
+      "canonical_id": "v1.contractor.address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the debit date based on the ACH payment speed of the company, considering different payment methods.",
+      "canonical_id": "v1.company.preview.get_f895"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the home addresses of an employee to determine tax information, supporting effective dating and courtesy withholding.",
+      "canonical_id": "v1.employee.homeAddresses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the link to download the PDF form for a specific contractor and form ID.",
+      "canonical_id": "v1.contractor.pdf.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the link to view the PDF of a specific employee form.",
+      "canonical_id": "v1.employee.pdf.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the payment method for a specific employee, including details like Check or Direct Deposit with split configuration.",
+      "canonical_id": "v1.employee.paymentMethod.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the PDF version of the contractor document by providing the document UUID.",
+      "canonical_id": "v1.document.pdf.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Section 603 high earner status for a specific year of an employee, as per the SECURE 2.0 Act.",
+      "canonical_id": "v1.employee.section603HighEarnerStatuses.get_abae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the status and results of a people batch for batch processing status and result retrieval.",
+      "canonical_id": "v1.people_batche.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the user acceptance status of the Gusto Embedded Payroll's Terms of Service for a specific company.",
+      "canonical_id": "v1.partner_managed_company.retrieveTermsOfService.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Webhook Subscription by UUID.",
+      "canonical_id": "v1.webhook_subscription.get_30e2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the work address of an employee for payroll tax purposes.",
+      "canonical_id": "v1.work_address.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve time off activities for a specific employee based on their unique identifier.",
+      "canonical_id": "v1.employee.timeOffActivities.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve time off policy details by UUID.",
+      "canonical_id": "v1.time_off_policy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve unprocessed termination pay periods for past and future terminated employees in a company.",
+      "canonical_id": "v1.company.unprocessedTerminationPayPeriods.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve year-to-date benefit amounts from a different company for a specific employee, focusing on 401(k) outside contributions.",
+      "canonical_id": "v1.employee.ytdBenefitAmountsFromDifferentCompany.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for Bureau of Labor Statistics (BLS) occupations by name or keyword to find matching codes, titles, and descriptions.",
+      "canonical_id": "v1.salary_estimate.occupations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign a company form with the company signatory.",
+      "canonical_id": "v1.form.sign.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign a contractor document.",
+      "canonical_id": "v1.document.sign.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign an employee form, with optional preparer attributes for I-9 form.",
+      "canonical_id": "v1.employee.sign.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign an employee's Form I-9 as an employer, completing the I-9 authorization process without further modifications.",
+      "canonical_id": "v1.employee.employerSign.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Simulate funding a contractor payment group to transition its status from 'Unfunded' to 'Funded'.",
+      "canonical_id": "v1.contractor_payment_group.fund.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Simulate funding a contractor payment to transition its status from 'Unfunded' to 'Funded'.",
+      "canonical_id": "v1.contractor_payment.fund.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a $0 payroll to skip for employees on a specified pay schedule, transitioning it to the `processed` state.",
+      "canonical_id": "v1.company.skip.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a wire in request for a payment scope of `payrolls:run`.",
+      "canonical_id": "v1.wire_in_request.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit an unprocessed payroll for calculation and running, transitioning it to the 'processed' state asynchronously.",
+      "canonical_id": "v1.company.submit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Suspend a company to prevent payroll processing while retaining access to information like employee details and past payrolls.",
+      "canonical_id": "v1.company.suspensions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a company benefit's details tied to a specific benefit type for employees, with restrictions based on data scope.",
+      "canonical_id": "v1.company_benefit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a company's holiday pay policy scope.",
+      "canonical_id": "v1.company.holidayPayPolicy.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a company's industry classification using a NAICS code, with optional industry title and SIC codes.",
+      "canonical_id": "v1.company.industrySelection.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a company's information.",
+      "canonical_id": "v1.company.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a contractor's information, including type, with caution to avoid issues with 1099 filing.",
+      "canonical_id": "v1.contractor.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a contractor's onboarding status based on different actions like self-onboarding, inviting, canceling, reviewing, or completing.",
+      "canonical_id": "v1.contractor.onboardingStatus.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a contractor's payment method, including creating a contractor bank account.",
+      "canonical_id": "v1.contractor.paymentMethod.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a department's scope with write permissions.",
+      "canonical_id": "v1.department.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a historical employee who was previously dismissed from the company in the current year.",
+      "canonical_id": "v1.company.historicalEmployees.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a job by specifying the job ID.",
+      "canonical_id": "v1.job.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a location with the specified location ID.",
+      "canonical_id": "v1.location.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a pay schedule for a specific company with the provided details, considering version for optimistic concurrency.",
+      "canonical_id": "v1.company.paySchedules.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a recurring reimbursement.",
+      "canonical_id": "v1.recurring_reimbursement.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Section 603 high earner status for an employee for a specific year, as per SECURE 2.0 Act.",
+      "canonical_id": "v1.employee.section603HighEarnerStatuses.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a signatory for a company, whether invited or created, including starting the identity verification process.",
+      "canonical_id": "v1.company.signatories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a time off policy by its unique identifier.",
+      "canonical_id": "v1.time_off_policy.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an earning type for a specific company.",
+      "canonical_id": "v1.company.earningTypes.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's bank account details.",
+      "canonical_id": "v1.employee.bankAccounts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's enrolled benefits for a specific company benefit type.",
+      "canonical_id": "v1.employee_benefit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's home address to calculate tax information, supporting effective dating and courtesy withholding.",
+      "canonical_id": "v1.home_address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's I-9 verification documents with a complete list of new documents, removing any previous records.",
+      "canonical_id": "v1.employee.documents.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's information.",
+      "canonical_id": "v1.employee.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's onboarding status based on specific actions, such as inviting, canceling, or completing onboarding.",
+      "canonical_id": "v1.employee.onboardingStatus.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's payment method to Check or Direct Deposit with split configuration.",
+      "canonical_id": "v1.employee.paymentMethod.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's rehire status.",
+      "canonical_id": "v1.employee.rehire.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's state taxes attributes with effective-dated format, specifying `valid_from` and `valid_up_to` dates.",
+      "canonical_id": "v1.employee.stateTaxes.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an employee's work address for payroll tax purposes.",
+      "canonical_id": "v1.work_address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing salary estimate by modifying annual net revenue, ZIP code, and occupations.",
+      "canonical_id": "v1.salary_estimate.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an external payroll with a list of external payroll items.",
+      "canonical_id": "v1.company.externalPayrolls.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update attributes for a company's federal taxes, essential for onboarding with Gusto Embedded Payroll.",
+      "canonical_id": "v1.company.federalTaxDetails.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update compensation details for a specific job based on the effective date.",
+      "canonical_id": "v1.compensation.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update contractor's address to determine tax information, with geocoding for validity. Only one address allowed per contractor.",
+      "canonical_id": "v1.contractor.address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update contribution exclusions for a specific company benefit, limited to 401-k and Roth 401-k types.",
+      "canonical_id": "v1.company_benefit.contributionExclusions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update employee information for a specific unprocessed payroll by providing values for fields included in the payroll object.",
+      "canonical_id": "v1.company.payrolls.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update employee onboarding documents configuration to include/exclude Form I-9 for onboarding process.",
+      "canonical_id": "v1.employee.onboardingDocumentsConfig.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update federal tax (W4) information for an employee using the rev_2020_w4 format.",
+      "canonical_id": "v1.employee.federalTaxes.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update garnishment details, such as fixed amounts or percentages deducted from an employee's pay, including recurring deductions and maximum limits.",
+      "canonical_id": "v1.garnishment.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update or create an employee's I-9 authorization with details like authorization status, signatures, and required Form I-9 information.",
+      "canonical_id": "v1.employee.i9Authorization.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update partner disbursements for a specific contractor payment group.",
+      "canonical_id": "v1.contractor_payment_group.partnerDisbursements.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update partner disbursements for a specific payroll.",
+      "canonical_id": "v1.company.partnerDisbursements.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update payment speed, fast payment limit, and partner-owned disbursement for a company, with required parameters.",
+      "canonical_id": "v1.company.paymentConfigs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update State Tax Requirements for a company by specifying tax requirements for a specific state.",
+      "canonical_id": "v1.company.taxRequirements.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update tax liabilities for a company.",
+      "canonical_id": "v1.company.taxLiabilities.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update termination details for an employee, including effective date and payroll preference.",
+      "canonical_id": "v1.termination.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the Webhook Subscription by UUID.",
+      "canonical_id": "v1.webhook_subscription.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update time off hours balances for employees for a specific time off policy.",
+      "canonical_id": "v1.time_off_policy.balance.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a file to create a company attachment for a specific company ID.",
+      "canonical_id": "v1.company.attachments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify a company bank account by confirming two micro-deposits, with a maximum of 5 verification attempts.",
+      "canonical_id": "v1.company.verify.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify a webhook subscription by calling the `verify` endpoint with the `verification_token` before receiving webhook events.",
+      "canonical_id": "v1.webhook_subscription.verify.update"
+    }
+  ]
+}

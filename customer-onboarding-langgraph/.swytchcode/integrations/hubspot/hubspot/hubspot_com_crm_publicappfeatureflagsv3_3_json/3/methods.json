@@ -1,0 +1,49 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Batch delete account flag states for multiple portals",
+      "canonical_id": "feature-flags.v3.batch.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch update portal flag states for multiple accounts",
+      "canonical_id": "feature-flags.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific feature flag for an application",
+      "canonical_id": "feature-flags.v3.flags.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get portals with a specific feature flag",
+      "canonical_id": "feature-flags.v3.portals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the state of a specific app flag for a portal",
+      "canonical_id": "feature-flags.v3.portals.get_ace9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific app flag for a portal",
+      "canonical_id": "feature-flags.v3.portals.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an app's feature flags. + Retrieve the current status of the app's feature flags. No request body is included.",
+      "canonical_id": "feature-flags.v3.flags.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update account flag state for a specific portal",
+      "canonical_id": "feature-flags.v3.portals.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an app's feature flag settings",
+      "canonical_id": "feature-flags.v3.flags.update"
+    }
+  ]
+}

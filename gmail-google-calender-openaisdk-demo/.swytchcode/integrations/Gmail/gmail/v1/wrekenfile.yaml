@@ -1,0 +1,5273 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://gmail.googleapis.com
+METHODS:
+  gmail.user.drafts.get:
+    SUMMARY: Lists the drafts in the user's mailbox
+    DESC: Lists the drafts in the user's mailbox. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/drafts
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - includeSpamTrash:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - q:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListDraftsResponse)
+        RETURNVAR: gmail_user_drafts_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.drafts.get
+  gmail.user.drafts.create:
+    SUMMARY: Creates a draft with the `DRAFT` label
+    DESC: Creates a draft with the `DRAFT` label. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/drafts
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Draft)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Draft)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Draft)
+        RETURNVAR: gmail_user_drafts_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.drafts.create
+  gmail.user.send.create:
+    SUMMARY: Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers
+    DESC: Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/drafts/send
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Draft)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Draft)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_send_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.send.create
+  gmail.user.drafts.delete:
+    SUMMARY: Immediately and permanently deletes the specified draft
+    DESC: Immediately and permanently deletes the specified draft. Does not simply trash it. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/drafts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.drafts.delete
+  gmail.user.drafts.get1:
+    SUMMARY: Gets the specified draft
+    DESC: Gets the specified draft. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/drafts/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - format:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - minimal
+            - full
+            - raw
+            - metadata
+          DEFAULT: full
+    RETURNS:
+      - RETURNTYPE: STRUCT(Draft)
+        RETURNVAR: gmail_user_drafts_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.drafts.get1
+  gmail.user.drafts.update:
+    SUMMARY: Replaces a draft's content
+    DESC: Replaces a draft's content. For more information, see [Create and send draft emails](https://developers.google.com/workspace/gmail/api/guides/drafts).
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/drafts/{id}
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Draft)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Draft)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Draft)
+        RETURNVAR: gmail_user_drafts_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.drafts.update
+  gmail.user.history.get:
+    SUMMARY: Lists the history of all changes to the given mailbox
+    DESC: Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`). For more information, see [Synchronize clients with Gmail](https://developers.google.com/workspace/gmail/api/guides/sync).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/history
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - historyTypes:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - labelId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - startHistoryId:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListHistoryResponse)
+        RETURNVAR: gmail_user_history_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.history.get
+  gmail.user.labels.get:
+    SUMMARY: Lists all labels in the user's mailbox
+    DESC: Lists all labels in the user's mailbox. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/labels
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListLabelsResponse)
+        RETURNVAR: gmail_user_labels_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.labels.get
+  gmail.user.labels.create:
+    SUMMARY: Creates a label
+    DESC: Creates a label. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/labels
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Label)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Label)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Label)
+        RETURNVAR: gmail_user_labels_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.labels.create
+  gmail.user.labels.delete:
+    SUMMARY: Immediately and permanently deletes the specified label and removes it from any messages and threads that it's applied to
+    DESC: Immediately and permanently deletes the specified label and removes it from any messages and threads that it's applied to. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/labels/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.labels.delete
+  gmail.user.labels.get1:
+    SUMMARY: Gets the specified label
+    DESC: Gets the specified label. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/labels/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Label)
+        RETURNVAR: gmail_user_labels_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.labels.get1
+  gmail.user.labels.update:
+    SUMMARY: Patch the specified label
+    DESC: Patch the specified label. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /gmail/v1/users/{userId}/labels/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Label)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Label)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Label)
+        RETURNVAR: gmail_user_labels_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.labels.update
+  gmail.user.labels.update1:
+    SUMMARY: Updates the specified label
+    DESC: Updates the specified label. For more information, see [Manage labels](https://developers.google.com/workspace/gmail/api/guides/labels).
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/labels/{id}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Label)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.labels
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Label)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Label)
+        RETURNVAR: gmail_user_labels_update1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.labels.update1
+  gmail.user.messages.get:
+    SUMMARY: Lists the messages in the user's mailbox
+    DESC: Lists the messages in the user's mailbox. For more information, see [List Gmail messages](https://developers.google.com/workspace/gmail/api/guides/list-messages).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/messages
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - includeSpamTrash:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - labelIds:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - q:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListMessagesResponse)
+        RETURNVAR: gmail_user_messages_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.messages.get
+  gmail.user.messages.create:
+    SUMMARY: Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification
+    DESC: Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message. For more information, see [Create and send email messages](https://developers.google.com/workspace/gmail/api/guides/sending).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Message)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.insert
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.insert
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - deleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - internalDateSource:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - receivedTime
+            - dateHeader
+          DEFAULT: receivedTime
+      - body:
+          TYPE: STRUCT(Message)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_messages_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.messages.create
+  gmail.user.batchDelete.create:
+    SUMMARY: Deletes many messages by message ID
+    DESC: Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/batchDelete
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchDeleteMessagesRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(BatchDeleteMessagesRequest)
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: gmail.user.batchDelete.create
+  gmail.user.batchModify.create:
+    SUMMARY: Modifies the labels and the Classification Label values on the specified messages
+    DESC: Modifies the labels and the Classification Label values on the specified messages. For administrators modifying messages for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.modify.restricted` scope.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/batchModify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(BatchModifyMessagesRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(BatchModifyMessagesRequest)
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: gmail.user.batchModify.create
+  gmail.user.import.create:
+    SUMMARY: Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP
+    DESC: Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. This method doesn't perform SPF checks, so it might not work for some spam messages, such as those attempting to perform domain spoofing. This method does not send a message. Note that the maximum size of the message is 150 MB.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/import
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Message)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.insert
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.insert
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - deleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - internalDateSource:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - receivedTime
+            - dateHeader
+          DEFAULT: dateHeader
+      - neverMarkSpam:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - processForCalendar:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - body:
+          TYPE: STRUCT(Message)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_import_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.import.create
+  gmail.user.send.create1:
+    SUMMARY: Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers
+    DESC: Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers. For more information, see [Create and send email messages](https://developers.google.com/workspace/gmail/api/guides/sending).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/send
+      HEADERS:
+        Content-Type: message/cpim
+        Authorization: bearer_token
+      CONTENT_TYPE: message/cpim
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Message)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.action.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.send
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.send
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Message)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_send_create1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.send.create1
+  gmail.user.messages.delete:
+    SUMMARY: Immediately and permanently deletes the specified message
+    DESC: Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer `messages.trash` instead.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.messages.delete
+  gmail.user.messages.get1:
+    SUMMARY: Gets the specified message.
+    DESC: Gets the specified message.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - format:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - minimal
+            - full
+            - raw
+            - metadata
+          DEFAULT: full
+      - metadataHeaders:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_messages_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.messages.get1
+  gmail.user.modify.create:
+    SUMMARY: Modifies the labels and the Classification Label values on the specified message
+    DESC: Modifies the labels and the Classification Label values on the specified message. For administrators modifying message for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.modify.restricted` scope.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{id}/modify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ModifyMessageRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ModifyMessageRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_modify_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.modify.create
+  gmail.user.trash.create:
+    SUMMARY: Moves the specified message to the trash.
+    DESC: Moves the specified message to the trash.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{id}/trash
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_trash_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.trash.create
+  gmail.user.untrash.create:
+    SUMMARY: Removes the specified message from the trash.
+    DESC: Removes the specified message from the trash.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{id}/untrash
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Message)
+        RETURNVAR: gmail_user_untrash_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.untrash.create
+  gmail.user.attachments.get:
+    SUMMARY: Gets the specified message attachment.
+    DESC: Gets the specified message attachment.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - messageId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(MessagePartBody)
+        RETURNVAR: gmail_user_attachments_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.attachments.get
+  gmail.user.profile.get:
+    SUMMARY: Gets the current user's Gmail profile.
+    DESC: Gets the current user's Gmail profile.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/profile
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.compose
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(Profile)
+        RETURNVAR: gmail_user_profile_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.profile.get
+  gmail.user.autoForwarding.get:
+    SUMMARY: Gets the auto-forwarding setting for the specified account
+    DESC: Gets the auto-forwarding setting for the specified account. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/autoForwarding
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(AutoForwarding)
+        RETURNVAR: gmail_user_autoForwarding_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.autoForwarding.get
+  gmail.user.autoForwarding.update:
+    SUMMARY: Updates the auto-forwarding setting for the specified account
+    DESC: Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/autoForwarding
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AutoForwarding)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(AutoForwarding)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AutoForwarding)
+        RETURNVAR: gmail_user_autoForwarding_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.autoForwarding.update
+  gmail.user.identities.get:
+    SUMMARY: Lists the client-side encrypted identities for an authenticated user
+    DESC: Lists the client-side encrypted identities for an authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/identities
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 20
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListCseIdentitiesResponse)
+        RETURNVAR: gmail_user_identities_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.identities.get
+  gmail.user.identities.create:
+    SUMMARY: Creates and configures a client-side encryption identity that's authorized to send mail from the user account
+    DESC: Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/identities
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CseIdentity)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(CseIdentity)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseIdentity)
+        RETURNVAR: gmail_user_identities_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.identities.create
+  gmail.user.identities.delete:
+    SUMMARY: Deletes a client-side encryption identity
+    DESC: Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - cseEmailAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.identities.delete
+  gmail.user.identities.get1:
+    SUMMARY: Retrieves a client-side encryption identity configuration
+    DESC: Retrieves a client-side encryption identity configuration. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - cseEmailAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseIdentity)
+        RETURNVAR: gmail_user_identities_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.identities.get1
+  gmail.user.identities.update:
+    SUMMARY: Associates a different key pair with an existing client-side encryption identity
+    DESC: Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CseIdentity)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - emailAddress:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(CseIdentity)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseIdentity)
+        RETURNVAR: gmail_user_identities_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.identities.update
+  gmail.user.keypairs.get:
+    SUMMARY: Lists client-side encryption key pairs for an authenticated user
+    DESC: Lists client-side encryption key pairs for an authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - pageSize:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 20
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListCseKeyPairsResponse)
+        RETURNVAR: gmail_user_keypairs_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.keypairs.get
+  gmail.user.keypairs.create:
+    SUMMARY: Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user
+    DESC: Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CseKeyPair)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(CseKeyPair)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseKeyPair)
+        RETURNVAR: gmail_user_keypairs_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.keypairs.create
+  gmail.user.keypairs.get1:
+    SUMMARY: Retrieves an existing client-side encryption key pair
+    DESC: Retrieves an existing client-side encryption key pair. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - keyPairId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseKeyPair)
+        RETURNVAR: gmail_user_keypairs_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.keypairs.get1
+  gmail.user.keyPairIddisable.create:
+    SUMMARY: Turns off a client-side encryption key pair
+    DESC: Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(DisableCseKeyPairRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - keyPairId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(DisableCseKeyPairRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseKeyPair)
+        RETURNVAR: gmail_user_keyPairIddisable_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.keyPairIddisable.create
+  gmail.user.keyPairIdenable.create:
+    SUMMARY: Turns on a client-side encryption key pair that was turned off
+    DESC: Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(EnableCseKeyPairRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - keyPairId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(EnableCseKeyPairRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CseKeyPair)
+        RETURNVAR: gmail_user_keyPairIdenable_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.keyPairIdenable.create
+  gmail.user.keyPairIdobliterate.create:
+    SUMMARY: Deletes a client-side encryption key pair permanently and immediately
+    DESC: Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ObliterateCseKeyPairRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - keyPairId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ObliterateCseKeyPairRequest)
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: gmail.user.keyPairIdobliterate.create
+  gmail.user.delegates.get:
+    SUMMARY: Lists the delegates for the specified account
+    DESC: Lists the delegates for the specified account. For more information, see [Manage delegates](https://developers.google.com/workspace/gmail/api/guides/delegate_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/delegates
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListDelegatesResponse)
+        RETURNVAR: gmail_user_delegates_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.delegates.get
+  gmail.user.delegates.create:
+    SUMMARY: Adds a delegate with its verification status set directly to `accepted`, without sending any verification email
+    DESC: Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same Google Workspace organization as the delegator user. For more information, see [Manage delegates](https://developers.google.com/workspace/gmail/api/guides/delegate_settings). Gmail imposes limitations on the number of delegates and delegators each user in a Google Workspace organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. A delegate user must be referred to by their primary email address, and not an email alias. When a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/delegates
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Delegate)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Delegate)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Delegate)
+        RETURNVAR: gmail_user_delegates_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.delegates.create
+  gmail.user.delegates.delete:
+    SUMMARY: Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it
+    DESC: Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it. For more information, see [Manage delegates](https://developers.google.com/workspace/gmail/api/guides/delegate_settings). A delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/delegates/{delegateEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - delegateEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.delegates.delete
+  gmail.user.delegates.get1:
+    SUMMARY: Gets the specified delegate
+    DESC: Gets the specified delegate. For more information, see [Manage delegates](https://developers.google.com/workspace/gmail/api/guides/delegate_settings). A delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/delegates/{delegateEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - delegateEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Delegate)
+        RETURNVAR: gmail_user_delegates_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.delegates.get1
+  gmail.user.filters.get:
+    SUMMARY: Lists the message filters of a Gmail user
+    DESC: Lists the message filters of a Gmail user. For more information, see [Manage Gmail filters](https://developers.google.com/workspace/gmail/api/guides/filter_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/filters
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListFiltersResponse)
+        RETURNVAR: gmail_user_filters_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.filters.get
+  gmail.user.filters.create:
+    SUMMARY: Creates a filter
+    DESC: "Creates a filter. Note: you can only create a maximum of 1,000 filters. For more information, see [Manage Gmail filters](https://developers.google.com/workspace/gmail/api/guides/filter_settings)."
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/filters
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Filter)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(Filter)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Filter)
+        RETURNVAR: gmail_user_filters_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.filters.create
+  gmail.user.filters.delete:
+    SUMMARY: Immediately and permanently deletes the specified filter
+    DESC: Immediately and permanently deletes the specified filter. For more information, see [Manage Gmail filters](https://developers.google.com/workspace/gmail/api/guides/filter_settings).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/filters/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.filters.delete
+  gmail.user.filters.get1:
+    SUMMARY: Gets a filter
+    DESC: Gets a filter. For more information, see [Manage Gmail filters](https://developers.google.com/workspace/gmail/api/guides/filter_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/filters/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Filter)
+        RETURNVAR: gmail_user_filters_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.filters.get1
+  gmail.user.forwardingAddresses.get:
+    SUMMARY: Lists the forwarding addresses for the specified account
+    DESC: Lists the forwarding addresses for the specified account. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/forwardingAddresses
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListForwardingAddressesResponse)
+        RETURNVAR: gmail_user_forwardingAddresses_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.forwardingAddresses.get
+  gmail.user.forwardingAddresses.create:
+    SUMMARY: Creates a forwarding address
+    DESC: Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/forwardingAddresses
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ForwardingAddress)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(ForwardingAddress)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ForwardingAddress)
+        RETURNVAR: gmail_user_forwardingAddresses_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.forwardingAddresses.create
+  gmail.user.forwardingAddresses.delete:
+    SUMMARY: Deletes the specified forwarding address and revokes any verification that may have been required
+    DESC: Deletes the specified forwarding address and revokes any verification that may have been required. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - forwardingEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.forwardingAddresses.delete
+  gmail.user.forwardingAddresses.get1:
+    SUMMARY: Gets the specified forwarding address
+    DESC: Gets the specified forwarding address. For more information, see [Manage email forwarding](https://developers.google.com/workspace/gmail/api/guides/forwarding_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - forwardingEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ForwardingAddress)
+        RETURNVAR: gmail_user_forwardingAddresses_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.forwardingAddresses.get1
+  gmail.user.imap.get:
+    SUMMARY: Gets IMAP settings
+    DESC: Gets IMAP settings. For more information, see [Configure POP and IMAP settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/pop_imap_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/imap
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ImapSettings)
+        RETURNVAR: gmail_user_imap_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.imap.get
+  gmail.user.imap.update:
+    SUMMARY: Updates IMAP settings
+    DESC: Updates IMAP settings. For more information, see [Configure POP and IMAP settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/pop_imap_settings).
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/imap
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ImapSettings)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(ImapSettings)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(ImapSettings)
+        RETURNVAR: gmail_user_imap_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.imap.update
+  gmail.user.language.get:
+    SUMMARY: Gets language settings
+    DESC: Gets language settings. For more information, see [Manage language settings](https://developers.google.com/workspace/gmail/api/guides/language-settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/language
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(LanguageSettings)
+        RETURNVAR: gmail_user_language_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.language.get
+  gmail.user.language.update:
+    SUMMARY: Updates language settings
+    DESC: Updates language settings. For more information, see [Manage language settings](https://developers.google.com/workspace/gmail/api/guides/language-settings). If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/language
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(LanguageSettings)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(LanguageSettings)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(LanguageSettings)
+        RETURNVAR: gmail_user_language_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.language.update
+  gmail.user.pop.get:
+    SUMMARY: Gets POP settings
+    DESC: Gets POP settings. For more information, see [Configure POP and IMAP settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/pop_imap_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/pop
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(PopSettings)
+        RETURNVAR: gmail_user_pop_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.pop.get
+  gmail.user.pop.update:
+    SUMMARY: Updates POP settings
+    DESC: Updates POP settings. For more information, see [Configure POP and IMAP settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/pop_imap_settings).
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/pop
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PopSettings)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(PopSettings)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(PopSettings)
+        RETURNVAR: gmail_user_pop_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.pop.update
+  gmail.user.sendAs.get:
+    SUMMARY: Lists the send-as aliases for the specified account
+    DESC: Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListSendAsResponse)
+        RETURNVAR: gmail_user_sendAs_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.sendAs.get
+  gmail.user.sendAs.create:
+    SUMMARY: Creates a custom "from" send-as alias
+    DESC: Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendAs)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(SendAs)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendAs)
+        RETURNVAR: gmail_user_sendAs_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.sendAs.create
+  gmail.user.sendAs.delete:
+    SUMMARY: Deletes the specified send-as alias
+    DESC: Deletes the specified send-as alias. Revokes any verification that may have been required for using it. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.sendAs.delete
+  gmail.user.sendAs.get1:
+    SUMMARY: Gets the specified send-as alias
+    DESC: Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendAs)
+        RETURNVAR: gmail_user_sendAs_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.sendAs.get1
+  gmail.user.sendAs.update:
+    SUMMARY: Patch the specified send-as alias
+    DESC: Patch the specified send-as alias. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings).
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendAs)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SendAs)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendAs)
+        RETURNVAR: gmail_user_sendAs_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.sendAs.update
+  gmail.user.sendAs.update1:
+    SUMMARY: Updates a send-as alias
+    DESC: Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings). Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SendAs)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SendAs)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SendAs)
+        RETURNVAR: gmail_user_sendAs_update1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.sendAs.update1
+  gmail.user.smimeInfo.get:
+    SUMMARY: Lists S/MIME configs for the specified send-as alias
+    DESC: Lists S/MIME configs for the specified send-as alias. For more information, see [Manage S/MIME certificates with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListSmimeInfoResponse)
+        RETURNVAR: gmail_user_smimeInfo_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.smimeInfo.get
+  gmail.user.smimeInfo.create:
+    SUMMARY: Insert (upload) the given S/MIME config for the specified send-as alias
+    DESC: Insert (upload) the given S/MIME config for the specified send-as alias. Note that `pkcs12` format is required for the key. For more information, see [Manage S/MIME certificates with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SmimeInfo)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SmimeInfo)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(SmimeInfo)
+        RETURNVAR: gmail_user_smimeInfo_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.smimeInfo.create
+  gmail.user.smimeInfo.delete:
+    SUMMARY: Deletes the specified S/MIME config for the specified send-as alias
+    DESC: Deletes the specified S/MIME config for the specified send-as alias. For more information, see [Manage S/MIME certificates with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.smimeInfo.delete
+  gmail.user.smimeInfo.get1:
+    SUMMARY: Gets the specified S/MIME config for the specified send-as alias
+    DESC: Gets the specified S/MIME config for the specified send-as alias. For more information, see [Manage S/MIME certificates with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SmimeInfo)
+        RETURNVAR: gmail_user_smimeInfo_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.smimeInfo.get1
+  gmail.user.setDefault.create:
+    SUMMARY: Sets the default S/MIME config for the specified send-as alias
+    DESC: Sets the default S/MIME config for the specified send-as alias. For more information, see [Manage S/MIME certificates with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.setDefault.create
+  gmail.user.verify.create:
+    SUMMARY: Sends a verification email to the specified send-as alias address
+    DESC: Sends a verification email to the specified send-as alias address. The verification status must be `pending`. For more information, see [Manage aliases and signatures with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias_and_signature_settings). This method is only available to service account clients that have been delegated domain-wide authority.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.sharing
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - sendAsEmail:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.verify.create
+  gmail.user.vacation.get:
+    SUMMARY: Gets vacation responder settings
+    DESC: Gets vacation responder settings. For more information, see [Manage vacation settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/vacation_settings).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/settings/vacation
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    RETURNS:
+      - RETURNTYPE: STRUCT(VacationSettings)
+        RETURNVAR: gmail_user_vacation_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.vacation.get
+  gmail.user.vacation.update:
+    SUMMARY: Updates vacation responder settings
+    DESC: Updates vacation responder settings. For more information, see [Manage vacation settings with the Gmail API](https://developers.google.com/workspace/gmail/api/guides/vacation_settings).
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /gmail/v1/users/{userId}/settings/vacation
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(VacationSettings)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.settings.basic
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(VacationSettings)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(VacationSettings)
+        RETURNVAR: gmail_user_vacation_update
+        STATUS: 200
+    CANONICAL_ID: gmail.user.vacation.update
+  gmail.user.stop:
+    SUMMARY: Turn off push notification delivery for the given user mailbox
+    DESC: Turn off push notification delivery for the given user mailbox. For more information, see [Configure push notifications in Gmail API](https://developers.google.com/workspace/gmail/api/guides/push).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/stop
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+    CANONICAL_ID: gmail.user.stop
+  gmail.user.threads.get:
+    SUMMARY: Lists the threads in the user's mailbox
+    DESC: Lists the threads in the user's mailbox. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/threads
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - includeSpamTrash:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - labelIds:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - q:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(ListThreadsResponse)
+        RETURNVAR: gmail_user_threads_get
+        STATUS: 200
+    CANONICAL_ID: gmail.user.threads.get
+  gmail.user.threads.delete:
+    SUMMARY: Immediately and permanently deletes the specified thread
+    DESC: Immediately and permanently deletes the specified thread. Any messages that belong to the thread are also deleted. This operation cannot be undone. Prefer `threads.trash` instead. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /gmail/v1/users/{userId}/threads/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: gmail.user.threads.delete
+  gmail.user.threads.get1:
+    SUMMARY: Gets the specified thread
+    DESC: Gets the specified thread. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /gmail/v1/users/{userId}/threads/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.action
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.addons.current.message.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - format:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - full
+            - metadata
+            - minimal
+          DEFAULT: full
+      - metadataHeaders:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+    RETURNS:
+      - RETURNTYPE: STRUCT(Thread)
+        RETURNVAR: gmail_user_threads_get1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.threads.get1
+  gmail.user.modify.create1:
+    SUMMARY: Modifies the labels applied to the thread
+    DESC: Modifies the labels applied to the thread. This applies to all messages in the thread. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/threads/{id}/modify
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ModifyThreadRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ModifyThreadRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Thread)
+        RETURNVAR: gmail_user_modify_create1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.modify.create1
+  gmail.user.trash.create1:
+    SUMMARY: Moves the specified thread to the trash
+    DESC: Moves the specified thread to the trash. Any messages that belong to the thread are also moved to the trash. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/threads/{id}/trash
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Thread)
+        RETURNVAR: gmail_user_trash_create1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.trash.create1
+  gmail.user.untrash.create1:
+    SUMMARY: Removes the specified thread from the trash
+    DESC: Removes the specified thread from the trash. Any messages that belong to the thread are also removed from the trash. For more information, see [Manage threads](https://developers.google.com/workspace/gmail/api/guides/threads).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/threads/{id}/untrash
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Thread)
+        RETURNVAR: gmail_user_untrash_create1
+        STATUS: 200
+    CANONICAL_ID: gmail.user.untrash.create1
+  gmail.user.watch.create:
+    SUMMARY: Set up or update a push notification watch on the given user mailbox
+    DESC: Set up or update a push notification watch on the given user mailbox. For more information, see [Configure push notifications in Gmail API](https://developers.google.com/workspace/gmail/api/guides/push).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /gmail/v1/users/{userId}/watch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(WatchRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://mail.google.com/
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.metadata
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.modify
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/gmail.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - userId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          DEFAULT: me
+      - body:
+          TYPE: STRUCT(WatchRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(WatchResponse)
+        RETURNVAR: gmail_user_watch_create
+        STATUS: 200
+    CANONICAL_ID: gmail.user.watch.create
+STRUCTS:
+  AutoForwarding:
+    - name: disposition
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - dispositionUnspecified
+        - leaveInInbox
+        - archive
+        - trash
+        - markRead
+      comment: The state that a message should be left in after it has been forwarded.
+    - name: emailAddress
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address to which all incoming messages are forwarded. This email address must be a verified member of the forwarding addresses.
+    - name: enabled
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether all incoming mail is automatically forwarded to another address.
+  BatchDeleteMessagesRequest:
+    - name: ids
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The IDs of the messages to delete.
+  BatchModifyMessagesRequest:
+    - name: addClassificationLabels
+      TYPE: "[]STRUCT(ClassificationLabelValue)"
+      REQUIRED: false
+      comment: A list of Classification Label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails.
+    - name: addLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of label IDs to add to messages.
+    - name: ids
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: The IDs of the messages to modify. There is a limit of 1000 ids per request.
+    - name: removeClassificationLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of Classification Label values to remove from messages.
+    - name: removeLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of label IDs to remove from messages.
+  ClassificationLabelFieldValue:
+    - name: fieldId
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The field ID for the Classification Label Value. Maps to the ID field of the Google Drive `Label.Field` object.
+    - name: selection
+      TYPE: STRING
+      REQUIRED: false
+      comment: Selection choice ID for the selection option. Should only be set if the field type is `SELECTION` in the Google Drive `Label.Field` object. Maps to the id field of the Google Drive `Label.Field.SelectionOptions` resource.
+  ClassificationLabelValue:
+    - name: fields
+      TYPE: "[]STRUCT(ClassificationLabelFieldValue)"
+      REQUIRED: false
+      comment: Field values for the given classification label ID.
+    - name: labelId
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required. The canonical or raw alphanumeric classification label ID. Maps to the ID field of the Google Drive Label resource.
+  CseIdentity:
+    - name: emailAddress
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address for the sending identity. The email address must be the primary email address of the authenticated user.
+    - name: primaryKeyPairId
+      TYPE: STRING
+      REQUIRED: false
+      comment: If a key pair is associated, the ID of the key pair, CseKeyPair.
+    - name: signAndEncryptKeyPairs
+      TYPE: STRUCT(SignAndEncryptKeyPairs)
+      REQUIRED: false
+      comment: The configuration of a CSE identity that uses different key pairs for signing and encryption.
+  CseKeyPair:
+    - name: disableTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: google-datetime
+      READ_ONLY: true
+      comment: Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`.
+    - name: enablementState
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - stateUnspecified
+        - enabled
+        - disabled
+      READ_ONLY: true
+      comment: Output only. The current state of the key pair.
+    - name: keyPairId
+      TYPE: STRING
+      REQUIRED: false
+      READ_ONLY: true
+      comment: Output only. The immutable ID for the client-side encryption S/MIME key pair.
+    - name: pem
+      TYPE: STRING
+      REQUIRED: false
+      READ_ONLY: true
+      comment: Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format.
+    - name: pkcs7
+      TYPE: STRING
+      REQUIRED: false
+      comment: Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor.
+    - name: privateKeyMetadata
+      TYPE: "[]STRUCT(CsePrivateKeyMetadata)"
+      REQUIRED: false
+      comment: Metadata for instances of this key pair's private key.
+    - name: subjectEmailAddresses
+      TYPE: "[]STRING"
+      REQUIRED: false
+      READ_ONLY: true
+      comment: Output only. The email address identities that are specified on the leaf certificate.
+  CsePrivateKeyMetadata:
+    - name: hardwareKeyMetadata
+      TYPE: STRUCT(HardwareKeyMetadata)
+      REQUIRED: false
+      comment: Metadata for hardware keys.
+    - name: kaclsKeyMetadata
+      TYPE: STRUCT(KaclsKeyMetadata)
+      REQUIRED: false
+      comment: Metadata for a private key instance managed by an external key access control list service.
+    - name: privateKeyMetadataId
+      TYPE: STRING
+      REQUIRED: false
+      READ_ONLY: true
+      comment: Output only. The immutable ID for the private key metadata instance.
+  Delegate:
+    - name: delegateEmail
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of the delegate.
+    - name: verificationStatus
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - verificationStatusUnspecified
+        - accepted
+        - pending
+        - rejected
+        - expired
+      comment: Indicates whether this address has been verified and can act as a delegate for the account. Read-only.
+  DisableCseKeyPairRequest:
+    - name: value
+      TYPE: ANY
+      REQUIRED: false
+  Draft:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The immutable ID of the draft.
+    - name: message
+      TYPE: STRUCT(Message)
+      REQUIRED: false
+      comment: The message content of the draft.
+  EnableCseKeyPairRequest:
+    - name: value
+      TYPE: ANY
+      REQUIRED: false
+  Filter:
+    - name: action
+      TYPE: STRUCT(FilterAction)
+      REQUIRED: false
+      comment: Action that the filter performs.
+    - name: criteria
+      TYPE: STRUCT(FilterCriteria)
+      REQUIRED: false
+      comment: Matching criteria for the filter.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The server assigned ID of the filter.
+  FilterAction:
+    - name: addLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of labels to add to the message.
+    - name: forward
+      TYPE: STRING
+      REQUIRED: false
+      comment: Email address that the message should be forwarded to. This effectively redirects the message to the address specified in this field, maintaining the original sender in the "From" field.
+    - name: removeLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of labels to remove from the message.
+  FilterCriteria:
+    - name: excludeChats
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the response should exclude chats.
+    - name: from
+      TYPE: STRING
+      REQUIRED: false
+      comment: The sender's display name or email address.
+    - name: hasAttachment
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the message has any attachment.
+    - name: negatedQuery
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`."
+    - name: query
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`."
+    - name: size
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The size of the entire RFC822 message in bytes, including all headers and attachments.
+    - name: sizeComparison
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - unspecified
+        - smaller
+        - larger
+      comment: How the message size in bytes should be in relation to the size field.
+    - name: subject
+      TYPE: STRING
+      REQUIRED: false
+      comment: Case-insensitive phrase found in the message's subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed.
+    - name: to
+      TYPE: STRING
+      REQUIRED: false
+      comment: The recipient's display name or email address. Includes recipients in the "to", "cc", and "bcc" header fields. You can use simply the local part of the email address. For example, "example" and "example@" both match "example@gmail.com". This field is case-insensitive.
+  ForwardingAddress:
+    - name: forwardingEmail
+      TYPE: STRING
+      REQUIRED: false
+      comment: An email address to which messages can be forwarded.
+    - name: verificationStatus
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - verificationStatusUnspecified
+        - accepted
+        - pending
+      comment: Indicates whether this address has been verified and is usable for forwarding. Read-only.
+  HardwareKeyMetadata:
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description about the hardware key.
+  History:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The mailbox sequence ID.
+    - name: labelsAdded
+      TYPE: "[]STRUCT(HistoryLabelAdded)"
+      REQUIRED: false
+      comment: Labels added to messages in this history record.
+    - name: labelsRemoved
+      TYPE: "[]STRUCT(HistoryLabelRemoved)"
+      REQUIRED: false
+      comment: Labels removed from messages in this history record.
+    - name: messages
+      TYPE: "[]STRUCT(Message)"
+      REQUIRED: false
+      comment: List of messages changed in this history record. The fields for specific change types, such as `messagesAdded` may duplicate messages in this field. We recommend using the specific change-type fields instead of this.
+    - name: messagesAdded
+      TYPE: "[]STRUCT(HistoryMessageAdded)"
+      REQUIRED: false
+      comment: Messages added to the mailbox in this history record.
+    - name: messagesDeleted
+      TYPE: "[]STRUCT(HistoryMessageDeleted)"
+      REQUIRED: false
+      comment: Messages deleted (not Trashed) from the mailbox in this history record.
+  HistoryLabelAdded:
+    - name: labelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Label IDs added to the message.
+    - name: message
+      TYPE: STRUCT(Message)
+      REQUIRED: false
+  HistoryLabelRemoved:
+    - name: labelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Label IDs removed from the message.
+    - name: message
+      TYPE: STRUCT(Message)
+      REQUIRED: false
+  HistoryMessageAdded:
+    - name: message
+      TYPE: STRUCT(Message)
+      REQUIRED: false
+  HistoryMessageDeleted:
+    - name: message
+      TYPE: STRUCT(Message)
+      REQUIRED: false
+  ImapSettings:
+    - name: autoExpunge
+      TYPE: BOOL
+      REQUIRED: false
+      comment: If this value is true, Gmail will immediately expunge a message when it is marked as deleted in IMAP. Otherwise, Gmail will wait for an update from the client before expunging messages marked as deleted.
+    - name: enabled
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether IMAP is enabled for the account.
+    - name: expungeBehavior
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - expungeBehaviorUnspecified
+        - archive
+        - trash
+        - deleteForever
+      comment: The action that will be executed on a message when it is marked as deleted and expunged from the last visible IMAP folder.
+    - name: maxFolderSize
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit.
+  KaclsKeyMetadata:
+    - name: kaclsData
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Opaque data generated and used by the key access control list service. Maximum size: 8 KiB."
+    - name: kaclsUri
+      TYPE: STRING
+      REQUIRED: false
+      comment: The URI of the key access control list service that manages the private key.
+  Label:
+    - name: color
+      TYPE: STRUCT(LabelColor)
+      REQUIRED: false
+      comment: The color to assign to the label. Color is only available for labels that have their `type` set to `user`.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The immutable ID of the label.
+    - name: labelListVisibility
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - labelShow
+        - labelShowIfUnread
+        - labelHide
+      comment: The visibility of the label in the label list in the Gmail web interface.
+    - name: messageListVisibility
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - show
+        - hide
+      comment: The visibility of messages with this label in the message list in the Gmail web interface.
+    - name: messagesTotal
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The total number of messages with the label.
+    - name: messagesUnread
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The number of unread messages with the label.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: The display name of the label.
+    - name: threadsTotal
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The total number of threads with the label.
+    - name: threadsUnread
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The number of unread threads with the label.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - system
+        - user
+      comment: The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the `INBOX` and `UNREAD` labels from messages and threads, but cannot apply or remove the `DRAFTS` or `SENT` labels from messages or threads.
+  LabelColor:
+    - name: backgroundColor
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The background color represented as hex string #RRGGBB (ex #000000). This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \\#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \\#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \\#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \\#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \\#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \\#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \\#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \\#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \\#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \\#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \\#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \\#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \\#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \\#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \\#083018"
+    - name: textColor
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The text color of the label, represented as hex string. This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \\#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \\#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \\#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \\#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \\#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \\#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \\#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \\#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \\#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \\#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \\#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \\#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \\#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \\#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \\#083018"
+  LanguageSettings:
+    - name: displayLanguage
+      TYPE: STRING
+      REQUIRED: false
+      comment: The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively). The set of languages supported by Gmail evolves over time, so please refer to the "Language" dropdown in the Gmail settings for all available options, as described in the language settings help article. For a table of sample values, see [Manage language settings](https://developers.google.com/workspace/gmail/api/guides/language-settings). Not all Gmail clients can display the same set of languages. In the case that a user's display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
+  ListCseIdentitiesResponse:
+    - name: cseIdentities
+      TYPE: "[]STRUCT(CseIdentity)"
+      REQUIRED: false
+      comment: One page of the list of CSE identities configured for the user.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Pagination token to be passed to a subsequent ListCseIdentities call in order to retrieve the next page of identities. If this value is not returned or is the empty string, then no further pages remain.
+  ListCseKeyPairsResponse:
+    - name: cseKeyPairs
+      TYPE: "[]STRUCT(CseKeyPair)"
+      REQUIRED: false
+      comment: One page of the list of CSE key pairs installed for the user.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Pagination token to be passed to a subsequent ListCseKeyPairs call in order to retrieve the next page of key pairs. If this value is not returned, then no further pages remain.
+  ListDelegatesResponse:
+    - name: delegates
+      TYPE: "[]STRUCT(Delegate)"
+      REQUIRED: false
+      comment: List of the user's delegates (with any verification status). If an account doesn't have delegates, this field doesn't appear.
+  ListDraftsResponse:
+    - name: drafts
+      TYPE: "[]STRUCT(Draft)"
+      REQUIRED: false
+      comment: List of drafts. Note that the `Message` property in each `Draft` resource only contains an `id` and a `threadId`. The [`messages.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/messages/get) method can fetch additional message details.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results in the list.
+    - name: resultSizeEstimate
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: uint32
+      comment: Estimated total number of results.
+  ListFiltersResponse:
+    - name: filter
+      TYPE: "[]STRUCT(Filter)"
+      REQUIRED: false
+      comment: List of a user's filters.
+  ListForwardingAddressesResponse:
+    - name: forwardingAddresses
+      TYPE: "[]STRUCT(ForwardingAddress)"
+      REQUIRED: false
+      comment: List of addresses that may be used for forwarding.
+  ListHistoryResponse:
+    - name: history
+      TYPE: "[]STRUCT(History)"
+      REQUIRED: false
+      comment: List of history records. Any `messages` contained in the response will typically only have `id` and `threadId` fields populated.
+    - name: historyId
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The ID of the mailbox's current history record.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Page token to retrieve the next page of results in the list.
+  ListLabelsResponse:
+    - name: labels
+      TYPE: "[]STRUCT(Label)"
+      REQUIRED: false
+      comment: List of labels. Note that each label resource only contains an `id`, `name`, `messageListVisibility`, `labelListVisibility`, and `type`. The [`labels.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/labels/get) method can fetch additional label details.
+  ListMessagesResponse:
+    - name: messages
+      TYPE: "[]STRUCT(Message)"
+      REQUIRED: false
+      comment: List of messages. Note that each message resource contains only an `id` and a `threadId`. Additional message details can be fetched using the messages.get method.
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token to retrieve the next page of results in the list.
+    - name: resultSizeEstimate
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: uint32
+      comment: Estimated total number of results.
+  ListSendAsResponse:
+    - name: sendAs
+      TYPE: "[]STRUCT(SendAs)"
+      REQUIRED: false
+      comment: List of send-as aliases.
+  ListSmimeInfoResponse:
+    - name: smimeInfo
+      TYPE: "[]STRUCT(SmimeInfo)"
+      REQUIRED: false
+      comment: List of SmimeInfo.
+  ListThreadsResponse:
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Page token to retrieve the next page of results in the list.
+    - name: resultSizeEstimate
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: uint32
+      comment: Estimated total number of results.
+    - name: threads
+      TYPE: "[]STRUCT(Thread)"
+      REQUIRED: false
+      comment: List of threads. Note that each thread resource does not contain a list of `messages`. The list of `messages` for a given thread can be fetched using the [`threads.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/threads/get) method.
+  Message:
+    - name: classificationLabelValues
+      TYPE: "[]STRUCT(ClassificationLabelValue)"
+      REQUIRED: false
+      comment: Classification Label values on the message. Available Classification Label schemas can be queried using the Google Drive Labels API. Each classification label ID must be unique. If duplicate IDs are provided, only one will be retained, and the selection is arbitrary. Only used for Google Workspace accounts. There's a limit of 20 Classification Label values per request. If the Classification Label values exceeds the maximum allowed number, the request fails.
+    - name: historyId
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The ID of the last history record that modified this message.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The immutable ID of the message.
+    - name: internalDate
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header.
+    - name: labelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of IDs of labels applied to this message.
+    - name: payload
+      TYPE: STRUCT(MessagePart)
+      REQUIRED: false
+      comment: The parsed email structure in the message parts.
+    - name: raw
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: byte
+      comment: The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update
+    - name: sizeEstimate
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Estimated size in bytes of the message.
+    - name: snippet
+      TYPE: STRING
+      REQUIRED: false
+      comment: A short part of the message text.
+    - name: threadId
+      TYPE: STRING
+      REQUIRED: false
+      comment: "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must match. "
+  MessagePart:
+    - name: body
+      TYPE: STRUCT(MessagePartBody)
+      REQUIRED: false
+      comment: The message part body for this part, which may be empty for container MIME message parts.
+    - name: filename
+      TYPE: STRING
+      REQUIRED: false
+      comment: The filename of the attachment. Only present if this message part represents an attachment.
+    - name: headers
+      TYPE: "[]STRUCT(MessagePartHeader)"
+      REQUIRED: false
+      comment: List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as `To`, `From`, and `Subject`.
+    - name: mimeType
+      TYPE: STRING
+      REQUIRED: false
+      comment: The MIME type of the message part.
+    - name: partId
+      TYPE: STRING
+      REQUIRED: false
+      comment: The immutable ID of the message part.
+    - name: parts
+      TYPE: "[]STRUCT(MessagePart)"
+      REQUIRED: false
+      comment: The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/*`. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521.
+  MessagePartBody:
+    - name: attachmentId
+      TYPE: STRING
+      REQUIRED: false
+      comment: When present, contains the ID of an external attachment that can be retrieved in a separate `messages.attachments.get` request. When not present, the entire content of the message part body is contained in the data field.
+    - name: data
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: byte
+      comment: The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
+    - name: size
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Number of bytes for the message part data (encoding notwithstanding).
+  MessagePartHeader:
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: The name of the header before the `:` separator. For example, `To`.
+    - name: value
+      TYPE: STRING
+      REQUIRED: false
+      comment: The value of the header after the `:` separator. For example, `someuser@example.com`.
+  ModifyMessageRequest:
+    - name: addClassificationLabels
+      TYPE: "[]STRUCT(ClassificationLabelValue)"
+      REQUIRED: false
+      comment: A list of classification label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails.
+    - name: addLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of IDs of labels to add to this message. You can add up to 100 labels with each update.
+    - name: removeClassificationLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of Classification Label values to remove from this message.
+    - name: removeLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list IDs of labels to remove from this message. You can remove up to 100 labels with each update.
+  ModifyThreadRequest:
+    - name: addLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of IDs of labels to add to this thread. You can add up to 100 labels with each update.
+    - name: removeLabelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: A list of IDs of labels to remove from this thread. You can remove up to 100 labels with each update.
+  ObliterateCseKeyPairRequest:
+    - name: value
+      TYPE: ANY
+      REQUIRED: false
+  PopSettings:
+    - name: accessWindow
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - accessWindowUnspecified
+        - disabled
+        - fromNowOn
+        - allMail
+      comment: The range of messages which are accessible via POP.
+    - name: disposition
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - dispositionUnspecified
+        - leaveInInbox
+        - archive
+        - trash
+        - markRead
+      comment: The action that will be executed on a message after it has been fetched via POP.
+  Profile:
+    - name: emailAddress
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user's email address.
+    - name: historyId
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The ID of the mailbox's current history record.
+    - name: messagesTotal
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The total number of messages in the mailbox.
+    - name: threadsTotal
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The total number of threads in the mailbox.
+  SendAs:
+    - name: displayName
+      TYPE: STRING
+      REQUIRED: false
+      comment: A name that appears in the "From:" header for mail sent using this alias. For custom "from" addresses, when this is empty, Gmail will populate the "From:" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail.
+    - name: isDefault
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this address is selected as the default "From:" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address.
+    - name: isPrimary
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only.
+    - name: replyToAddress
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional email address that is included in a "Reply-To:" header for mail sent using this alias. If this is empty, Gmail will not generate a "Reply-To:" header.
+    - name: sendAsEmail
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address that appears in the "From:" header for mail sent using this alias. This is read-only for all operations except create.
+    - name: signature
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only.
+    - name: smtpMsa
+      TYPE: STRUCT(SmtpMsa)
+      REQUIRED: false
+      comment: An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom "from" aliases.
+    - name: treatAsAlias
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom "from" aliases.
+    - name: verificationStatus
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - verificationStatusUnspecified
+        - accepted
+        - pending
+      comment: Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom "from" aliases.
+  SignAndEncryptKeyPairs:
+    - name: encryptionKeyPairId
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the CseKeyPair that encrypts signed outgoing mail.
+    - name: signingKeyPairId
+      TYPE: STRING
+      REQUIRED: false
+      comment: The ID of the CseKeyPair that signs outgoing mail.
+  SmimeInfo:
+    - name: encryptedKeyPassword
+      TYPE: STRING
+      REQUIRED: false
+      comment: Encrypted key password, when key is encrypted.
+    - name: expiration
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: When the certificate expires (in milliseconds since epoch).
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The immutable ID for the SmimeInfo.
+    - name: isDefault
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this SmimeInfo is the default one for this user's send-as address.
+    - name: issuerCn
+      TYPE: STRING
+      REQUIRED: false
+      comment: The S/MIME certificate issuer's common name.
+    - name: pem
+      TYPE: STRING
+      REQUIRED: false
+      comment: PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key).
+    - name: pkcs12
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: byte
+      comment: PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately.
+  SmtpMsa:
+    - name: host
+      TYPE: STRING
+      REQUIRED: false
+      comment: The hostname of the SMTP service. Required.
+    - name: password
+      TYPE: STRING
+      REQUIRED: false
+      comment: The password that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses.
+    - name: port
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The port of the SMTP service. Required.
+    - name: securityMode
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - securityModeUnspecified
+        - none
+        - ssl
+        - starttls
+      comment: The protocol that will be used to secure communication with the SMTP service. Required.
+    - name: username
+      TYPE: STRING
+      REQUIRED: false
+      comment: The username that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses.
+  Thread:
+    - name: historyId
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The ID of the last history record that modified this thread.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The unique ID of the thread.
+    - name: messages
+      TYPE: "[]STRUCT(Message)"
+      REQUIRED: false
+      comment: The list of messages in the thread.
+    - name: snippet
+      TYPE: STRING
+      REQUIRED: false
+      comment: A short part of the message text.
+  VacationSettings:
+    - name: enableAutoReply
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Flag that controls whether Gmail automatically replies to messages.
+    - name: endTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`.
+    - name: responseBodyHtml
+      TYPE: STRING
+      REQUIRED: false
+      comment: Response body in HTML format. Gmail will sanitize the HTML before storing it. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used.
+    - name: responseBodyPlainText
+      TYPE: STRING
+      REQUIRED: false
+      comment: Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used.
+    - name: responseSubject
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty.
+    - name: restrictToContacts
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Flag that determines whether responses are sent to recipients who are not in the user's list of contacts.
+    - name: restrictToDomain
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users.
+    - name: startTime
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`.
+  WatchRequest:
+    - name: labelFilterAction
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - include
+        - exclude
+      DEPRECATED: true
+      comment: Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead.
+    - name: labelFilterBehavior
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - include
+        - exclude
+      comment: Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set, `label_filter_action` is ignored.
+    - name: labelIds
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated.
+    - name: topicName
+      TYPE: STRING
+      REQUIRED: false
+      comment: A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail "publish" permission on it. For example, "projects/my-project-identifier/topics/my-topic-name" (using the Cloud Pub/Sub "v1" topic naming format). Note that the "my-project-identifier" portion must exactly match your Google developer project id (the one executing this watch request).
+  WatchResponse:
+    - name: expiration
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: When Gmail will stop sending notifications for mailbox updates (epoch millis). Call `watch` again before this time to renew the watch.
+    - name: historyId
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uint64
+      comment: The ID of the mailbox's current history record.

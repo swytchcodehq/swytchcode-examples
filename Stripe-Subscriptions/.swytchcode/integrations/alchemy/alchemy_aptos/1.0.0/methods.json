@@ -1,0 +1,1224 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Authenticate user and retrieve identity and wallet details for Smart Wallet access, enabling user actions and transactions.",
+      "canonical_id": "whoami.whoami.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Authenticate user using a JSON Web Token (JWT) for secure access to Smart Wallet features.",
+      "canonical_id": "auth-jwt.auth-jwt.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user wallet exists by querying with an email address.",
+      "canonical_id": "lookup.lookup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create Smart Wallet using Alchemy Signer for user authentication and signature operations on Solana blockchain.",
+      "canonical_id": "signup.signup.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send authentication email to user for login verification with customizable content and appearance.",
+      "canonical_id": "auth.auth.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Sign arbitrary payloads using the authenticated user's signer for blockchain transactions, ensuring integrity and authenticity.",
+      "canonical_id": "sign-payload.sign-payload.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify OTP code for user authentication.",
+      "canonical_id": "otp.otp.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new gas manager policy with specified rules in the `inactive` status.",
+      "canonical_id": "api.gasmanager.policy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a policy by ID.",
+      "canonical_id": "api.gasmanager.policy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace all rules in an existing policy by ID.",
+      "canonical_id": "api.gasmanager.policy.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a policy by ID.",
+      "canonical_id": "api.gasmanager.policy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all policies with pagination support.",
+      "canonical_id": "api.gasmanager.policies.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed statistics for a specific policy by providing its ID.",
+      "canonical_id": "api.gasmanager.details.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve sponsorships for a policy by ID, with pagination support.",
+      "canonical_id": "api.gasmanager.sponsorships.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the status of a policy to \"active\" or \"inactive\" by modifying its status.",
+      "canonical_id": "api.gasmanager.status.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the node is healthy by verifying the latest ledger info retrieval within a specified duration.",
+      "canonical_id": "-.healthy.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new item in a specific table identified by `{table_handle}` using the provided key.",
+      "canonical_id": "tables.item.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Encode submission request to BCS format as a hex string.",
+      "canonical_id": "transactions.encode_submission.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate suitable gas price based on recent network activity.",
+      "canonical_id": "estimate_gas_price.estimate_gas_price.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute Move view function with provided arguments and return result, ensuring function is marked as view function in Move module.",
+      "canonical_id": "view.view.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Explore the Aptos REST API using a web-based UI.",
+      "canonical_id": "spec.spec.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a raw table item at a specific ledger version from a table using the provided key.",
+      "canonical_id": "tables.raw_item.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific module from an account at a chosen ledger version, with the option to use the latest version if not specified.",
+      "canonical_id": "accounts.module.get_de79"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific resource from an account at a particular ledger version.",
+      "canonical_id": "accounts.resource.get_58d9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transaction from the Aptos blockchain by ledger version, with the possibility of a 410 response if the version is pruned.",
+      "canonical_id": "transactions.by_version.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transaction from the Aptos blockchain using the transaction hash provided.",
+      "canonical_id": "transactions.by_hash.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all account modules' bytecode for a specified account at a given or latest ledger version.",
+      "canonical_id": "accounts.module.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all resources for a specific account on a given ledger version or the latest one if not specified.",
+      "canonical_id": "accounts.resource.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block metadata and optionally transactions by block height.",
+      "canonical_id": "blocks.by_height.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block metadata and transactions by a specific ledger version, with an option to include transactions.",
+      "canonical_id": "blocks.by_version.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve events emitted to a specific account using the provided address, event handle, and field name, with support for pagination.",
+      "canonical_id": "accounts.event.get_443"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve events for a specific account address and creation number, with optional pagination support.",
+      "canonical_id": "accounts.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve high-level information about an account based on its address, including sequence number and authentication key.",
+      "canonical_id": "accounts.account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve on-chain committed transactions from the ledger with optional pagination support.",
+      "canonical_id": "transactions.transaction.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the latest information from the Aptos blockchain ledger.",
+      "canonical_id": "v1.v1.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transactions sent from a specific account, starting from a specified sequence number or defaulting to 0.",
+      "canonical_id": "accounts.transaction.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Simulate a transaction without committing to the chain, providing transaction events and execution results for gas usage estimation.",
+      "canonical_id": "transactions.simulate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a batch of transactions to the Aptos network with full transaction details, such as sender, sequence number, and payload.",
+      "canonical_id": "transactions.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a transaction to the Aptos network.",
+      "canonical_id": "transactions.transaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create transaction history by address using the provided API key.",
+      "canonical_id": "transactions.history.byAddress.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Aggregate attestations by attestation data root, slot, and committee index to return a single aggregated attestation.",
+      "canonical_id": "eth.v2.aggregateAttestation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate the `HashTreeRoot` for a given state by its `state_id`, returning the value if it's already a root.",
+      "canonical_id": "eth.v1.root.get_8b75"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the beacon node is currently syncing and get the latest block it has synced to.",
+      "canonical_id": "eth.v1.syncing.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetches the RANDAO mix for a specific epoch from the state identified by `state_id`.",
+      "canonical_id": "eth.v1.randao.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish multiple signed sync committee contribution and proofs to the beacon node.",
+      "canonical_id": "eth.v1.contributionAndProofs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a sync committee contribution for a specific beacon block root by providing the slot, subcommittee index, and block root.",
+      "canonical_id": "eth.v1.syncCommitteeContribution.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request attestation duties for a specific epoch from the beacon node.",
+      "canonical_id": "eth.v1.attester.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a blinded beacon block using the provided block identifier.",
+      "canonical_id": "eth.v1.blindedBlocks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of validators with balance, status, and index for a specific state ID, allowing filtering by ID and status.",
+      "canonical_id": "eth.v1.validators.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all known forks, including past, present, and future, with protocol versions and fork epochs.",
+      "canonical_id": "eth.v1.forkSchedule.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attestation reward info for validators in a specific epoch using public keys or validator indices, with an option to get info for all validators.",
+      "canonical_id": "eth.v1.attestations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attestations included in a specific block by providing the block ID.",
+      "canonical_id": "eth.v2.attestations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve attestations known by the beacon node that are not yet included in any block.",
+      "canonical_id": "eth.v2.attestations.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve blob sidecars for a specific block, with an option to filter by indices.",
+      "canonical_id": "eth.v1.blobSidecars.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block headers based on specified criteria, defaulting to current head slot blocks.",
+      "canonical_id": "eth.v1.headers.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block reward information for a specific block, including proposer rewards from attestations, sync committees, and slashings.",
+      "canonical_id": "eth.v1.blocks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve committees for a specific state based on the state ID.",
+      "canonical_id": "eth.v1.committees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve data about the network peers connected to the node, with options to filter by state and direction.",
+      "canonical_id": "eth.v1.peers.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of the chain's genesis for identification purposes.",
+      "canonical_id": "eth.v1.genesis.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve finality checkpoints for a specific state in the beacon chain.",
+      "canonical_id": "eth.v1.finalityCheckpoints.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve full details of a block using the provided block identifier.",
+      "canonical_id": "eth.v2.blocks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve pending consolidations for a specific state based on the state ID.",
+      "canonical_id": "eth.v1.pendingConsolidations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve rewards information for sync committee members based on the specified block ID, public keys, or validator indices. If no array is provided, rewards for all sync committee members are returned.",
+      "canonical_id": "eth.v1.syncCommittee.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the beacon node's implementation information in a format similar to an HTTP `User-Agent` field.",
+      "canonical_id": "eth.v1.version.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the block header for a specific block identifier.",
+      "canonical_id": "eth.v1.headers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the complete BeaconState object for a specific state identifier for advanced inspection and troubleshooting.",
+      "canonical_id": "eth.v2.states.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the count of peers known by the beacon node, categorized by connection status.",
+      "canonical_id": "eth.v1.peerCount.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current fork choice context of the beacon node for advanced inspection and troubleshooting.",
+      "canonical_id": "eth.v1.forkChoice.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the current sync committee and subcommittee assignments for a specific state by ID.",
+      "canonical_id": "eth.v1.syncCommittees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Ethereum 1.0 deposit contract address and chain ID used for staking deposits into the Beacon Chain.",
+      "canonical_id": "eth.v1.depositContract.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Fork object for a specific state, providing details on protocol versioning and epoch information.",
+      "canonical_id": "eth.v1.fork.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the hashTreeRoot of a BeaconBlock or BeaconBlockHeader by block ID.",
+      "canonical_id": "eth.v1.root.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the specification configuration, including hard fork constants, presets, and network-specific values.",
+      "canonical_id": "eth.v1.spec.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve validator balances for a specific state, with the option to filter by validator indices or public keys.",
+      "canonical_id": "eth.v1.validatorBalances.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve validator details by state and ID or public key, including status and balance.",
+      "canonical_id": "eth.v1.validators.get_107f"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve validators assigned to propose a block in a specific epoch, with potential changes after a chain reorganization.",
+      "canonical_id": "eth.v1.proposer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve voluntary exits known by the node.",
+      "canonical_id": "eth.v1.voluntaryExits.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stream real-time beacon chain events from the beacon node by subscribing to specific event topics.",
+      "canonical_id": "eth.v1.events.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Syncs the sync committee duties for a specific epoch and validator indices.",
+      "canonical_id": "eth.v1.sync.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Calculate attribute rarity of an NFT by providing contract address and token ID. Available on Ethereum and Polygon networks.",
+      "canonical_id": "computerarity.computerarity.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a contract is marked as spam by Alchemy using the provided API key and contract address.",
+      "canonical_id": "isspamcontract.isspamcontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a contract is marked as spam by Alchemy.",
+      "canonical_id": "isspamcontract.isspamcontract.get_4cd8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a token is marked as an airdrop.",
+      "canonical_id": "isairdrop.isairdrop.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a wallet holds a specific NFT in a collection using the provided API key.",
+      "canonical_id": "isholderofcollection.isholderofcollection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if NFT is Airdrop - Determine if a given token is categorized as an airdrop NFT minted to a user address in a transaction from a different address.",
+      "canonical_id": "isairdropnft.isairdropnft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if Wallet Holds NFTs from Contract. Determine if a wallet owns any NFTs from a specified contract on supported networks.",
+      "canonical_id": "isholderofcontract.isholderofcontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Compute rarity of NFT attributes based on contract address and token ID.",
+      "canonical_id": "computerarity.computerarity.get_10ee"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate summary of attribute prevalence for a specific NFT collection by contract address.",
+      "canonical_id": "summarizenftattributes.summarizenftattribute.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all owners associated with a specific NFT contract, including optional token balances.",
+      "canonical_id": "getownersforcollection.getownersforcollection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the floor prices of an NFT collection by marketplace using the provided API key.",
+      "canonical_id": "getfloorprice.getfloorprice.get_8cae"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invalidate cached tokens for a specific contract, ensuring live data is fetched instead of cached data.",
+      "canonical_id": "invalidatecontract.invalidatecontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invalidate contract caching by marking tokens as stale for live data retrieval.",
+      "canonical_id": "invalidatecontract.invalidatecontract.get_b9c8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Report a specific address as spam to the API if suspected, using the provided API key.",
+      "canonical_id": "reportspam.reportspam.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Report an address as spam to our APIs.",
+      "canonical_id": "reportspam.reportspam.get_dd28"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of spam contracts identified by Alchemy for paid tier customers.",
+      "canonical_id": "getspamcontracts.getspamcontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of spam contracts identified by Alchemy using the provided API key.",
+      "canonical_id": "getspamcontracts.getspamcontract.get_7cd2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFT collections owned by a specific address.",
+      "canonical_id": "getcollectionsforowner.getcollectionsforowner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFT contracts owned by a specific address.",
+      "canonical_id": "getcontractsforowner.getcontractsforowner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFT contracts owned by a specific address.",
+      "canonical_id": "getcontractsforowner.getcontractsforowner.get_9fd8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs associated with a specific NFT contract.",
+      "canonical_id": "getnftsforcontract.getnftsforcontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs for a specific NFT contract by collection.",
+      "canonical_id": "getnftsforcollection.getnftsforcollection.get_a5a2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs linked to a specific collection using the provided API key, contract address, and optional parameters.",
+      "canonical_id": "getnftsforcollection.getnftsforcollection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs owned by a specific address, with optional filters like metadata and sorting.",
+      "canonical_id": "getnfts.getnft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all NFTs owned by a specified address on Ethereum and various L2 networks like Polygon, Arbitrum, and Optimism.",
+      "canonical_id": "getnftsforowner.getnftsforowner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all owners linked to a particular NFT contract, supporting Ethereum and various L2 networks.",
+      "canonical_id": "getownersforcontract.getownersforcontract.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve contract metadata by address for an NFT on Ethereum and L2 networks like Polygon, Arbitrum, and Optimism.",
+      "canonical_id": "getcontractmetadata.getcontractmetadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve floor prices of an NFT collection from various marketplaces based on the collection's slug.",
+      "canonical_id": "getfloorprice.getfloorprice.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve high-level information about an NFT collection/contract.",
+      "canonical_id": "getcontractmetadata.getcontractmetadata.get_2f2e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve high-level information for an NFT collection by slug.",
+      "canonical_id": "getcollectionmetadata.getcollectionmetadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve metadata for a list of contract addresses in a single request.",
+      "canonical_id": "getcontractmetadatabatch.getcontractmetadatabatch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve metadata for a list of contract addresses using the provided API key.",
+      "canonical_id": "getcontractmetadatabatch.getcontractmetadatabatch.create_d9f4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve metadata for a specific NFT using the provided apiKey, contract address, and token ID.",
+      "canonical_id": "getnftmetadata.getnftmetadata.get_b538"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve metadata for multiple NFT contracts with a single request using the getNFTMetadataBatch API.",
+      "canonical_id": "getnftmetadatabatch.getnftmetadatabatch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve metadata for up to 100 NFT contracts using the provided API key.",
+      "canonical_id": "getnftmetadatabatch.getnftmetadatabatch.create_f8ce"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve NFT metadata by token ID using the provided API key and contract address.",
+      "canonical_id": "getnftmetadata.getnftmetadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve NFT sales data from on-chain marketplaces using the provided API key.",
+      "canonical_id": "getnftsales.getnftsale.get_1d0e"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve NFT sales from on-chain marketplaces like Seaport, Wyvern, X2Y2, Blur, LooksRare, Cryptopunks on Ethereum, Polygon, and Optimism mainnets.",
+      "canonical_id": "getnftsales.getnftsale.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the owner(s) associated with a token using the provided API key, contract address, and token ID.",
+      "canonical_id": "getownersfortoken.getownersfortoken.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the owner(s) of a specific token by providing the contract address and token ID.",
+      "canonical_id": "getownersfornft.getownersfornft.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.",
+      "canonical_id": "searchcontractmetadata.searchcontractmetadata.get_ada0"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for a keyword in metadata of ERC-721 and ERC-1155 smart contracts.",
+      "canonical_id": "searchcontractmetadata.searchcontractmetadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a request to Alchemy to refresh the cached metadata of a specific NFT token on supported Ethereum, Polygon, Arbitrum One, Optimism, and Base chains.",
+      "canonical_id": "refreshnftmetadata.refreshnftmetadata.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Summarize NFT attributes for a collection based on attribute prevalence.",
+      "canonical_id": "summarizenftattributes.summarizenftattribute.get_e1b2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new variable for a Custom Webhook GraphQL statement, adding new items and ignoring duplicates if the variable already exists.",
+      "canonical_id": "graphql.variable.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new webhook.",
+      "canonical_id": "create-webhook.create-webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Custom Webhook variable.",
+      "canonical_id": "graphql.variable.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a webhook by providing the webhook ID.",
+      "canonical_id": "delete-webhook.delete-webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all addresses subscribed to a specific Address Activity webhook, with pagination support.",
+      "canonical_id": "webhook-addresses.webhook-address.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all NFT filters subscribed to a webhook with pagination support.",
+      "canonical_id": "webhook-nft-filters.webhook-nft-filter.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all webhooks for your team.",
+      "canonical_id": "team-webhooks.team-webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve values within a Custom Webhook variable, supporting pagination with limit and after parameters.",
+      "canonical_id": "graphql.variable.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Variable in a Custom Webhook by adding or removing elements within the variable.",
+      "canonical_id": "graphql.variable.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook addresses by adding or removing them from a specific webhook.",
+      "canonical_id": "update-webhook-addresses.update-webhook-address.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook addresses with a new list of addresses for a specific webhook.",
+      "canonical_id": "update-webhook-addresses.update-webhook-address.update_c5dc"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook NFT filters, add or remove specific filters for the webhook.",
+      "canonical_id": "update-webhook-nft-filters.update-webhook-nft-filter.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook properties like name or status.",
+      "canonical_id": "update-webhook.update-webhook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current token prices by symbol for multiple tokens using their symbols.",
+      "canonical_id": "tokens.by-symbol.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch token prices for multiple tokens based on network and address pairs using the provided API key and request body.",
+      "canonical_id": "tokens.by-address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve historical price data for a specific token within a specified time frame.",
+      "canonical_id": "tokens.historical.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch current token prices by symbol.",
+      "canonical_id": "tokens.by-symbol.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch token prices for multiple tokens based on network and address pairs.",
+      "canonical_id": "tokens.by-address.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve historical price data for a specific token by symbol or network and contract address using the provided API key.",
+      "canonical_id": "tokens.historical.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve or remove approval on a governance proposal.",
+      "canonical_id": "wallet.proposalapprove.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Broadcast a hex-encoded transaction to the TRON network.",
+      "canonical_id": "wallet.broadcasthex.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Broadcast a signed transaction to the TRON network.",
+      "canonical_id": "wallet.broadcasttransaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a shielded TRC20 note is spent by verifying its nullifier.",
+      "canonical_id": "wallet.isshieldedtrc20contractnotespent.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clear contract ABI by removing all method and event definitions.",
+      "canonical_id": "wallet.clearabi.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new account under a specified owner address on the TRON network.",
+      "canonical_id": "wallet.createaccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new token exchange between two tokens on the TRON blockchain with specified token IDs and initial balances.",
+      "canonical_id": "wallet.exchangecreate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new TRC10 token on the TRON network.",
+      "canonical_id": "wallet.createassetissue.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an unsigned TRON transfer transaction between two accounts.",
+      "canonical_id": "wallet.createtransaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create shielded contract parameters for executing shielded TRC20 smart contract transactions.",
+      "canonical_id": "wallet.createshieldedcontractparameter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create spend authorization signature for shielded transactions using secret key and message data.",
+      "canonical_id": "wallet.createspendsauthsig.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delegate bandwidth or energy resources from one account to another by transferring frozen TRX.",
+      "canonical_id": "wallet.delegateresource.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an existing governance proposal by ID if deletion conditions are met, e.g., owner is the proposer.",
+      "canonical_id": "wallet.proposaldelete.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Deploy a new smart contract to the TRON blockchain.",
+      "canonical_id": "wallet.deploycontract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive expanded spending key for TRON shielded transactions from a given spending key.",
+      "canonical_id": "wallet.getexpandedspendingkey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive incoming viewing key for TRON shielded transactions.",
+      "canonical_id": "wallet.getincomingviewingkey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive the authorization key (ak) from the spend authorization key (ask) for TRON shielded transactions.",
+      "canonical_id": "wallet.getakfromask.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Derive the nullifier key (nk) from the nullifier secret key (nsk) for TRON shielded transactions.",
+      "canonical_id": "wallet.getnkfromnsk.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate energy usage for a smart contract call.",
+      "canonical_id": "wallet.estimateenergy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Freeze TRX tokens in an account to allocate resources like bandwidth or energy for a specified duration.",
+      "canonical_id": "wallet.freezebalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Freeze TRX tokens to gain ENERGY resources using FreezeBalanceV2.",
+      "canonical_id": "wallet.freezebalancev2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a new random spending key for TRON's shielded transactions.",
+      "canonical_id": "wallet.getspendingkey.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a new shielded address with spending key, viewing keys, and z-address.",
+      "canonical_id": "wallet.getnewshieldedaddress.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a random diversifier for creating multiple shielded payment addresses from a single viewing key.",
+      "canonical_id": "wallet.getdiversifier.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate shielded ZEN payment address from viewing key and diversifier.",
+      "canonical_id": "wallet.getzenpaymentaddress.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate trigger input data for calling a shielded TRC20 smart contract.",
+      "canonical_id": "wallet.gettriggerinputforshieldedtrc20contract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get blocks within a specified range of block numbers.",
+      "canonical_id": "wallet.getblockbylimitnext.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the account address for delegated resource index information.",
+      "canonical_id": "wallet.getdelegatedresourceaccountindex.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the most recent blocks by number, retrieving the latest N blocks from the blockchain.",
+      "canonical_id": "wallet.getblockbylatestnum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Inject tokens into an exchange to add liquidity by specifying and injecting a specific quantity of a token.",
+      "canonical_id": "wallet.exchangeinject.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all current proposals on the TRON network, including proposer, parameters, approvals, and state.",
+      "canonical_id": "wallet.listproposal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Participate in an Asset Issue by creating an unsigned transaction for a TRC10 token issuance.",
+      "canonical_id": "wallet.participateassetissue.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform a token exchange transaction by trading one token for another on an exchange.",
+      "canonical_id": "wallet.exchangetransaction.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a block by its block number from the wallet.",
+      "canonical_id": "wallet.getblockbynum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a block by its unique block ID.",
+      "canonical_id": "wallet.getblockbyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a block from the TRON blockchain using its number or ID.",
+      "canonical_id": "wallet.getblock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all existing token exchanges created via the TRON network's exchange contract, including token IDs, balances, creator address, and creation time.",
+      "canonical_id": "wallet.listexchange.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of TRC10 tokens with the same name.",
+      "canonical_id": "wallet.getassetissuelistbyname.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a paginated list of all TRC10 tokens on the TRON network.",
+      "canonical_id": "wallet.getpaginatedassetissuelist.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account balance for a specific TRON address at a given block for historical balance lookups.",
+      "canonical_id": "wallet.getaccountbalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed configuration of a specific exchange on TRON blockchain by its unique ID.",
+      "canonical_id": "wallet.getexchangebyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed information about a proposal based on its unique ID, including parameters, approvals, timestamps, and state.",
+      "canonical_id": "wallet.getproposalbyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed information about a smart contract including its ABI, bytecode, energy usage, and origin address.",
+      "canonical_id": "wallet.getcontractinfo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed information for a specific transaction in the pending pool by its transaction ID.",
+      "canonical_id": "wallet.gettransactionfrompending.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve detailed information on delegated resource shares in Stake 2.0, including staked amounts for BANDWIDTH and ENERGY, and expiration times if available.",
+      "canonical_id": "wallet.getdelegatedresourcev2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific TRON account including balances, permissions, and resource usage.",
+      "canonical_id": "wallet.getaccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve full transaction details by ID.",
+      "canonical_id": "wallet.gettransactionbyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about delegated resources, including delegated bandwidth and energy between addresses.",
+      "canonical_id": "wallet.getdelegatedresource.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Net resource limits and usage for a specific TRON address.",
+      "canonical_id": "wallet.getaccountnet.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve resource limits for a TRON address, including Net and Energy values.",
+      "canonical_id": "wallet.getaccountresource.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the ABI and bytecode of a TRON smart contract by its address.",
+      "canonical_id": "wallet.getcontract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the count of available unfreeze operations for a specific account.",
+      "canonical_id": "wallet.getavailableunfreezecount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the delegated resource account index for a specific address in Stake 2.0 to identify accounts in delegation relationships.",
+      "canonical_id": "wallet.getdelegatedresourceaccountindexv2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the latest block from the TRON blockchain.",
+      "canonical_id": "wallet.getnowblock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the maximum amount of resources that can be delegated by an account, specifying the type as bandwidth or energy.",
+      "canonical_id": "wallet.getcandelegatedmaxsize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the number of pending transactions in the pool.",
+      "canonical_id": "wallet.getpendingsize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the withdrawable amount from expired unfreeze operations for a specific account at a given time.",
+      "canonical_id": "wallet.getcanwithdrawunfreezeamount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transaction details for a list of pending transaction IDs.",
+      "canonical_id": "wallet.gettransactionlistfrompending.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve TRC10 token details by name, including owner, supply, and freeze information.",
+      "canonical_id": "wallet.getassetissuebyname.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Scan for incoming shielded TRC20 notes with an IVK to find notes addressed to you.",
+      "canonical_id": "wallet.scanshieldedtrc20notesbyivk.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Scan for outgoing shielded TRC20 notes using an outgoing viewing key (OVK) to find notes you have sent.",
+      "canonical_id": "wallet.scanshieldedtrc20notesbyovk.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer TRC10 token from one address to another.",
+      "canonical_id": "wallet.transferasset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a smart contract function call on TRON by creating an unsigned transaction for state-changing interactions.",
+      "canonical_id": "wallet.triggersmartcontract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger constant smart contract function without broadcasting a transaction for read-only queries like checking balances.",
+      "canonical_id": "wallet.triggerconstantcontract.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Undelegate a resource from another account and reclaim it back to the owner's account.",
+      "canonical_id": "wallet.undelegateresource.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unfreeze a previously frozen TRC10 token by creating an unsigned transaction.",
+      "canonical_id": "wallet.unfreezeasset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unfreeze account balance to restore access to tokens.",
+      "canonical_id": "wallet.unfreezebalance.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update contract setting for an existing smart contract, like energy limit or user resource percent.",
+      "canonical_id": "wallet.updatesetting.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the account name associated with the owner address by providing a hex-encoded string within the specified length.",
+      "canonical_id": "wallet.updateaccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the maximum energy limit for a smart contract.",
+      "canonical_id": "wallet.updateenergylimit.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update TRON account permissions to manage access and required thresholds with fine-grained control.",
+      "canonical_id": "wallet.accountpermissionupdate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate a TRON address to ensure it is in the correct format, either base58check or hex.",
+      "canonical_id": "wallet.validateaddress.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Vote for witness account using TRX tokens from the voter's account.",
+      "canonical_id": "wallet.votewitnessaccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Withdraw tokens from an exchange.",
+      "canonical_id": "wallet.exchangewithdraw.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Withdraw TRX from expired unfreeze operations to retrieve previously frozen but unwithdrawn tokens.",
+      "canonical_id": "wallet.withdrawexpireunfreeze.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Estimate energy usage for executing a smart contract method locally.",
+      "canonical_id": "walletsolidity.estimateenergy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get transaction count by block number to retrieve the number of transactions in a specific block using the provided block number.",
+      "canonical_id": "walletsolidity.gettransactioncountbyblocknum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all active token exchanges.",
+      "canonical_id": "walletsolidity.listexchange.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a block's details by its block number.",
+      "canonical_id": "walletsolidity.getblock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of all assets issued on the blockchain.",
+      "canonical_id": "walletsolidity.getassetissuelist.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of assets by name in hex format.",
+      "canonical_id": "walletsolidity.getassetissuelistbyname.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a paginated list of all asset issues.",
+      "canonical_id": "walletsolidity.getpaginatedassetissuelist.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a transaction's full raw data and metadata by its transaction ID.",
+      "canonical_id": "walletsolidity.gettransactionbyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve account details for a specific address.",
+      "canonical_id": "walletsolidity.getaccount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all transaction information for a specific block number.",
+      "canonical_id": "walletsolidity.gettransactioninfobyblocknum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve asset issuance details by asset name in hex format.",
+      "canonical_id": "walletsolidity.getassetissuebyname.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve asset issuance details by ID based on the asset ID.",
+      "canonical_id": "walletsolidity.getassetissuebyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block details by block number using the `getblockbynum` endpoint.",
+      "canonical_id": "walletsolidity.getblockbynum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve block details by ID.",
+      "canonical_id": "walletsolidity.getblockbyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve blocks within a specified range by providing start and end numbers.",
+      "canonical_id": "walletsolidity.getblockbylimitnext.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve exchange details by ID.",
+      "canonical_id": "walletsolidity.getexchangebyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve information about delegated resources between addresses.",
+      "canonical_id": "walletsolidity.getdelegatedresource.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the delegated resource account index (v2) for a specified address.",
+      "canonical_id": "walletsolidity.getdelegatedresourceaccountindexv2.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the delegated resource account index for a specific address.",
+      "canonical_id": "walletsolidity.getdelegatedresourceaccountindex.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the latest block on Tron.",
+      "canonical_id": "walletsolidity.getnowblock.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the latest N blocks from the blockchain, starting from the current block and going backward.",
+      "canonical_id": "walletsolidity.getblockbylatestnum.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the maximum resource size available for delegation for a specific address and type.",
+      "canonical_id": "walletsolidity.getcandelegatedmaxsize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the number of available unfreezes for a specific account.",
+      "canonical_id": "walletsolidity.getavailableunfreezecount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the total amount of burned TRX.",
+      "canonical_id": "walletsolidity.getburntrx.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the withdrawable unfreeze amount available for withdrawal at a specific timestamp.",
+      "canonical_id": "walletsolidity.getcanwithdrawunfreezeamount.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve transaction information by ID using the provided txID.",
+      "canonical_id": "walletsolidity.gettransactioninfobyid.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a constant contract to execute a read-only smart contract function locally without broadcasting a transaction.",
+      "canonical_id": "walletsolidity.triggerconstantcontract.create"
+    }
+  ]
+}

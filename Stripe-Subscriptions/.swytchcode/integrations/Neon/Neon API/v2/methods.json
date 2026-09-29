@@ -1,0 +1,669 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Accept a project transfer request to transfer the project to a specified organization or user.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a domain to the redirect_uri whitelist for a specific project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a domain to the redirect_uri whitelist for a specific project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a JWKS URL to a project for verifying JWTs used in authentication, specifying provider, branches, roles, and JWT audience.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a new OAuth provider to the specified project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an OAuth provider to a project. Note: Deprecated, use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers` instead.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign or update VPC endpoint for a Neon organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Compare database schema with another branch's schema.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a branch in a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a compute endpoint for a specific branch in Neon, allowing for one read-write compute endpoint per branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a database in a specific branch within a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Neon project within an organization, specifying region and PostgreSQL version.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new API key for accessing the Neon API.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new API key for an organization in Neon, allowing access to the Neon API with a randomly generated token.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new authentication user in Neon Auth.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new branch with anonymized data using PostgreSQL Anonymizer for static masking, enabling developers to work with masked production data.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new instance of Neon Data API in a specified branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new user in Neon Auth.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Postgres role in a specified branch for a project in your Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a project transfer request to transfer the project to another account or organization with an expiration time.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a snapshot from a specified branch with provided parameters.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create Neon Auth integration for a project on a third-party authentication provider's platform.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create organization invitations for users to join as members, sending email notifications.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a branch from a project, putting compute endpoints into idle state, breaking client connections.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a database from a specific branch in your Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a domain from the redirect_uri whitelist for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a domain from the redirect_uri whitelist for a specified project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a project and all associated data permanently.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a role from a branch in a project by specifying the Postgres role name, project ID, and branch ID.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a snapshot.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific Neon compute endpoint, dropping existing network connections, upon successful completion of the last operation in the chain.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a VPC endpoint restriction from a Neon project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an OAuth provider from a specified project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete authentication user for a project branch. Use `/projects/{project_id}/branches/{branch_id}/auth/users/{auth_user_id}`.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete authentication user for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete integration with an authentication provider.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete JWKS URL from a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete Neon Data API for a specific branch in your Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete OAuth provider from a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete VPC endpoint from a Neon organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable Neon Auth for the branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable Neon Auth integration for the branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Finalize branch restore from snapshot. Reassign computes, rename branches to original names.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate Auth Provider SDK keys for setting up frontend and backend SDKs.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get total number of branches in a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Grant project access to the account associated with the specified email address.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List active integrations with auth providers. Note: Deprecated, use `/projects/{project_id}/branches/{branch_id}/auth` instead.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all compute endpoints for a specific branch in Neon, with one read-write and multiple read-only endpoints allowed.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List API keys for a Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available JWKS URLs for verifying JWTs used in the project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List compute endpoints for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List databases for a specific branch within a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List domains in redirect_uri whitelist for a specific project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List domains in the redirect_uri whitelist for a specified project. (DEPRECATED, use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead)",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List OAuth providers available for Neon Auth for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List OAuth providers for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization API keys for the specified organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List project access details including permission ID, granted email, and access date.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List project branch roles for a specified branch by retrieving a list of Postgres roles.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List project branches for a specified project, including the root branch named 'main' and any child branches.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects for an organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects shared with your Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List snapshots for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List supported Neon regions.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List VPC endpoint restrictions for a Neon project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List VPC endpoints across all regions for a specified Neon organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List VPC endpoints for a Neon organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Recover a deleted project during the deletion grace period.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a member from the organization, with restrictions for removing the last admin.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset project branch role password.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restart a specific compute endpoint by suspending and starting operations, using the provided `project_id` and `endpoint_id`.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a branch to an earlier state in its own or another branch's history.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted project within the grace period using the project ID obtained from your Neon account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a snapshot to a new branch and finalize the restore operation.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a list of operations for a specific Neon project, allowing you to track project activities and history.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve anonymized branch status for monitoring the anonymization process from initialization to completion.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve authentication details for the request.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve branch details for a specified branch in a Neon project, including parent branch information.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve connection URI for a specified database by obtaining project ID, database name, and role name.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve consumption metrics for Scale, Business, and Enterprise plan accounts, including legacy plans.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve database details for a specified project branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve database schema from a specified database, excluding both `lsn` and `timestamp` values.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific operation performed on a Neon project resource.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific compute endpoint, such as project and endpoint IDs, for a Neon compute instance.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of a specific VPC endpoint, including its current state and configuration.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of extended invitations for a specific organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of organization members.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details of the current user account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve email provider configuration for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve email server configuration for a project branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve historical consumption metrics for projects on legacy plans, starting from the time of upgrade.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve masking rules for a specific anonymized branch using PostgreSQL Anonymizer.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Neon Auth details for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve Neon Auth email and password configuration.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve organization details for the specified organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve organization member details.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve password for a specific Postgres role associated with a project branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve project consumption metrics including Launch, Scale, Agent, and Enterprise plans from the time of upgrade in ascending order.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve project details for a specified project ID.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve role details for a specified role in a project branch in Neon, where roles are synonymous with users.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the configuration for allowing localhost for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of available shared preload libraries.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the list of organizations associated with the current user.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve the Neon Data API for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke API key for a specified key to disable access.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke organization API key.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke project access for a user by permission ID.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a test email to the specified email address.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set a branch as default for a project, automatically removing the previous default branch designation.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set or update VPC endpoint restriction for a Neon project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a compute endpoint. The compute endpoint is ready to use after the last operation in the chain finishes successfully.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start anonymization process for a branch in initialized, error, or anonymized state, applying defined masking rules to sensitive data.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Suspend a specific compute endpoint.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer ownership of a Neon-managed auth project to your own auth provider account.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer projects between organizations.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer selected projects from personal account to organization.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a branch in a project by specifying the branch ID and project ID.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a compute endpoint for a specified project by providing the endpoint ID and branch ID.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a database in a specific branch by providing the project ID, branch ID, and database name.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a project by providing the necessary details.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a snapshot.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update email and password authentication configuration for Neon Auth.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update email provider configuration for a specified branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update email server configuration for a project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update masking rules for the specified anonymized branch using PostgreSQL Anonymizer.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Neon Data API configuration for a specific branch with optional settings, refreshing the schema cache.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update OAuth provider for a project branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update OAuth provider for a specific project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the allow localhost configuration for a specified branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the backup schedule for a specific branch.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the role for an organization member, restricted to admin users.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the role of an authentication user for a specific project.",
+      "canonical_id": ""
+    },
+    {
+      "method_uuid": "",
+      "method_name": "View the backup schedule for a specified branch.",
+      "canonical_id": ""
+    }
+  ]
+}

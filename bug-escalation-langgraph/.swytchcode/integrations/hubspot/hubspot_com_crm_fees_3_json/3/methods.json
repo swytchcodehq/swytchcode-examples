@@ -1,0 +1,1099 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read CRM objects by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple bucket test records by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple bucket_test111 records at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple bucket test records by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for bucket test objects",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple bucket test records in a single request",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple calls at once",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create or update calls by ID or unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple call records in a batch",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple calls by their IDs",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for calls with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple calls in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple carts by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple carts with properties and associations",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch multiple carts by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for carts with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple carts with new property values",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of carts by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple commerce payments by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple commerce payments in a batch",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple commerce payments by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for commerce payments using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple commerce payments in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert commerce payments in a batch using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple subscriptions by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple subscriptions at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple subscriptions by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for subscriptions using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple subscriptions using their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of subscriptions using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive or delete multiple messages by ID",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read communications by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create and and update a batch of messages. + Create and update a batch of messages by a unique property. Messages that d",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM messages in a batch",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM communications with filters and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple messages in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of companies. + Delete a batch of companies by ID. Deleted companies can be restored within 90 days of d",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple companies in a batch",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple companies in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple companies by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for companies by filtering, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple companies in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple contacts by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple contacts at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple contacts by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for contacts using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple contacts in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specified type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple CRM objects by ID or unique properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specific type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects in one request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search CRM objects by type, filters, and properties",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects by ID or unique property",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple deals by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple deals in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple deals in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform operation post-/crm/v3/objects/deals/search_doSearch. +",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple deals using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple deals in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple deal splits for a deal",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert deal splits for multiple deals",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple discounts by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple discounts in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple discounts using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple discounts using IDs or custom properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for discounts using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple discounts using their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple emails by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create or update emails using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple email records at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a batch of emails by their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Perform operation post-/crm/v3/objects/emails/search_doSearch. +",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple emails in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple feedback submissions using their IDs or unique properties",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for feedback submissions",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a fee by its ID",
+      "canonical_id": "crm.v3.fees.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple fees using their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert fees using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new fee with specified properties",
+      "canonical_id": "crm.v3.fees.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple fees in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a page of fees with customizable properties",
+      "canonical_id": "crm.v3.fees.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific fee by its ID",
+      "canonical_id": "crm.v3.fees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of fees by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for fee records using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a fee by ID or unique property",
+      "canonical_id": "crm.v3.fees.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple fees using their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple goal targets by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple goal targets at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of goal targets by internal ID, or unique property values. +",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for goal targets",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple goal targets using their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple goal targets using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple invoices by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple invoices at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple invoices using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple invoices by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for invoices using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a batch of invoices by internal ID, or unique property values. +",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple leads by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple leads in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of leads by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for leads using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple leads with their IDs or unique property values",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple line items at once",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert line items by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple line items at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple line items by their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for line items with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple line items in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of objects by ID. +",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert CRM objects by unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple CRM objects by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects of a specific type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search CRM lists by name or retrieve all lists",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple meetings by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple meetings at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple meetings in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple meetings using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for meetings using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple meetings in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple notes by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple notes in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple notes using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple notes by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM notes using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple notes in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM objects by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple orders by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple orders in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a batch of orders by unique property values. + Create or update records identified by a unique property",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple orders by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for orders using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple orders in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of partner clients by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for partner clients with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple partner clients in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of payments by ID or property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for payment records using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of postal mail by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple postal mail records at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple postal mail records by ID or property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for postal mail records",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple postal mail records in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert postal mail records in batches using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple products by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple products in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a batch of products by unique property values. + Create or update records identified by a unique proper",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple products by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for products using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple products in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple CRM properties at once",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple properties at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read a batch of properties for a given object type",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple quotes by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple quotes in a batch",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple quotes using their IDs or unique property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM quotes using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple quotes in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple quotes using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of CRM objects by ID",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple CRM objects at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple CRM records by ID or custom property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM objects by type",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple CRM objects in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert multiple CRM objects using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple tasks by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple tasks in a single request",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple tasks using unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve multiple tasks using their IDs or property values",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for CRM tasks using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple tasks with their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive a batch of taxes by ID. +",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch upsert taxes by unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple tax records at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a batch of taxes by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for tax records",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple taxes using their IDs or unique properties",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive or delete multiple tickets by ID",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch read tickets by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple tickets with properties and associations",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update multiple tickets in a batch",
+      "canonical_id": "crm.v3.upsert.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for tickets with filters, associations, and sorting",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple tickets in a batch",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Archive multiple users by their IDs",
+      "canonical_id": "crm.v3.archive.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create multiple users at once",
+      "canonical_id": "crm.v3.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Read multiple users by ID or unique property",
+      "canonical_id": "crm.v3.read.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users using specified criteria",
+      "canonical_id": "crm.v3.search.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple user records in a single request",
+      "canonical_id": "crm.v3.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upsert a batch of users by unique property values",
+      "canonical_id": "crm.v3.upsert.create"
+    }
+  ]
+}

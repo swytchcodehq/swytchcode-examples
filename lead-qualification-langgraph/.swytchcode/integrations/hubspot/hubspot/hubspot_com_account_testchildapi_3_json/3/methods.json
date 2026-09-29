@@ -1,0 +1,39 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Get account details like type, timezone, and currency",
+      "canonical_id": "account-info.v3.details.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's security activity history",
+      "canonical_id": "account-info.v3.security.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user login activity and logs",
+      "canonical_id": "account-info.v3.login.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get account details for a HubSpot account.. + Get account details",
+      "canonical_id": "account-info.v3.details.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily API usage and limits for your account",
+      "canonical_id": "account-info.v3.daily.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve login activity for a HubSpot account",
+      "canonical_id": "account-info.v3.login.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve security activity for a HubSpot account",
+      "canonical_id": "account-info.v3.security.list"
+    }
+  ]
+}

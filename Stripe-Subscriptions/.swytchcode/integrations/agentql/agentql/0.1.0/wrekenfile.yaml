@@ -1,0 +1,572 @@
+VERSION: 2.0.2
+DEFAULTS:
+  x-api-key: <X-API-KEY>
+  w_base_url: https://api.default.com
+METHODS:
+  query-data.query-data.create:
+    SUMMARY: Query Data Service
+    DESC: |-
+      Get the AgentQL response for the data query.
+
+      If the AQL query is not provided, generate it using the prompt from request.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/query-data
+      HEADERS:
+        Content-Type: application/json
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(RestWebPageQueryRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RestQueryResponse)
+    INPUTS:
+      - X-TF-Request-Origin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: header
+          DEFAULT: rest-api-data
+      - content-type:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(RestWebPageQueryRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(RestQueryResponse)
+        RETURNVAR: query-data_query-data_create
+        STATUS: 200
+    CANONICAL_ID: query-data.query-data.create
+  usage.usage.list:
+    SUMMARY: Get Usage
+    DESC: Get API key usage and subscription information for your account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/usage
+      HEADERS:
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UsageResponse)
+    RETURNS:
+      - RETURNTYPE: STRUCT(UsageResponse)
+        RETURNVAR: usage_usage_list
+        STATUS: 200
+    CANONICAL_ID: usage.usage.list
+  tetra.session.create:
+    SUMMARY: Create Session
+    DESC: Create a new Tetra browser session.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/tetra/sessions
+      HEADERS:
+        Content-Type: application/json
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(tetra.session.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BrowserSession)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(tetra.session.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BrowserSession)
+        RETURNVAR: tetra_session_create_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: STRUCT(HTTPValidationError)
+        STATUS: 422
+        WHEN: Validation Error (HTTP 422)
+    CANONICAL_ID: tetra.session.create
+  tetra.usage.list:
+    SUMMARY: List Session Usage
+    DESC: List Tetra browser session usage for the authenticated user.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/tetra/usage
+      HEADERS:
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TelemetryListResponse)
+    INPUTS:
+      - sub_user_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - session_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - start_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - end_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - page:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 1
+    RETURNS:
+      - RETURNTYPE: STRUCT(TelemetryListResponse)
+        RETURNVAR: tetra_usage_list
+        STATUS: 200
+        PAGINATION:
+          TYPE: page
+          PAGE_SIZE_FIELD: limit
+    CANONICAL_ID: tetra.usage.list
+  query-data.query-data.create_8046:
+    SUMMARY: Query Data Service
+    DESC: |-
+      Get the AgentQL response for the data query.
+
+      If the AQL query is not provided, generate it using the prompt from request.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /query-data
+      HEADERS:
+        Content-Type: application/json
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(RestWebPageQueryRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(RestQueryResponse)
+    INPUTS:
+      - X-TF-Request-Origin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: header
+          DEFAULT: rest-api-data
+      - content-type:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(RestWebPageQueryRequest)
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(RestQueryResponse)
+        RETURNVAR: query-data_query-data_create_8046
+        STATUS: 200
+    CANONICAL_ID: query-data.query-data.create_8046
+  usage.usage.list_cf75:
+    SUMMARY: Get Usage
+    DESC: Get API key usage and subscription information for your account.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /usage
+      HEADERS:
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(UsageResponse)
+    RETURNS:
+      - RETURNTYPE: STRUCT(UsageResponse)
+        RETURNVAR: usage_usage_list_cf75
+        STATUS: 200
+    CANONICAL_ID: usage.usage.list_cf75
+  tetra.session.create_6ff6:
+    SUMMARY: Create Session
+    DESC: Create a new Tetra browser session.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /tetra/sessions
+      HEADERS:
+        Content-Type: application/json
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(tetra.session.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(BrowserSession)
+    INPUTS:
+      - body:
+          TYPE: STRUCT(tetra.session.createRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(BrowserSession)
+        RETURNVAR: tetra_session_create_6ff6_201
+        STATUS: 201
+    ERRORS:
+      - TYPE: STRUCT(HTTPValidationError)
+        STATUS: 422
+        WHEN: Validation Error (HTTP 422)
+    CANONICAL_ID: tetra.session.create_6ff6
+  tetra.usage.list_bfb2:
+    SUMMARY: List Session Usage
+    DESC: List Tetra browser session usage for the authenticated user.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /tetra/usage
+      HEADERS:
+        X-API-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(TelemetryListResponse)
+    INPUTS:
+      - sub_user_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - session_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - start_after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - end_before:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 100
+      - page:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 1
+    RETURNS:
+      - RETURNTYPE: STRUCT(TelemetryListResponse)
+        RETURNVAR: tetra_usage_list_bfb2
+        STATUS: 200
+        PAGINATION:
+          TYPE: page
+          PAGE_SIZE_FIELD: limit
+    CANONICAL_ID: tetra.usage.list_bfb2
+STRUCTS:
+  BrowserSession:
+    - name: session_id
+      NAME: session_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: cdp_url
+      NAME: cdp_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: base_url
+      NAME: base_url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  ResponseMetadataBase:
+    - name: request_id
+      NAME: request_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  HTTPValidationError:
+    - name: detail
+      NAME: detail
+      type: "[]STRUCT(ValidationError)"
+      TYPE: "[]STRUCT(ValidationError)"
+      REQUIRED: false
+  ValidationError:
+    - name: loc
+      NAME: loc
+      type: "[]ANY"
+      TYPE: "[]ANY"
+      REQUIRED: true
+    - name: msg
+      NAME: msg
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+  RestQueryResponse:
+    - name: data
+      NAME: data
+      type: map[STRING]ANY
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+    - name: metadata
+      NAME: metadata
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  RestUrlQueryParams:
+    - name: mode
+      NAME: mode
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: The query response mode. Can be either `'standard'` or `'fast'`. Defaults to `'fast'`.
+    - name: wait_for
+      NAME: wait_for
+      type: INT
+      TYPE: INT
+      REQUIRED: false
+      comment: Wait for the page to load content for a specified duration (in seconds). Maximum wait time is 10 seconds
+    - name: is_scroll_to_bottom_enabled
+      NAME: is_scroll_to_bottom_enabled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether scroll to the bottom of the page before capturing the snapshot is enabled
+    - name: is_screenshot_enabled
+      NAME: is_screenshot_enabled
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Indicates whether screenshot capture is enabled
+    - name: browser_profile
+      NAME: browser_profile
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Browser profile: 'light' for fast headless browsing, 'stealth' for anti-detection"
+    - name: proxy
+      NAME: proxy
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: Proxy configuration for the browser session
+  RestWebPageQueryRequest:
+    - name: query
+      NAME: query
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: AgentQL query
+    - name: prompt
+      NAME: prompt
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: A description of expected data to be extracted
+    - name: url
+      NAME: url
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The URL of the webpage to query
+    - name: html
+      NAME: html
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+      comment: The HTML of the webpage to query
+    - name: params
+      NAME: params
+      type: STRUCT(RestUrlQueryParams)
+      TYPE: STRUCT(RestUrlQueryParams)
+      REQUIRED: false
+  TelemetryEntry:
+    - name: session_id
+      NAME: session_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: true
+    - name: user_id
+      NAME: user_id
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: sub_user_id
+      NAME: sub_user_id
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: mode
+      NAME: mode
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: start_time
+      NAME: start_time
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: end_time
+      NAME: end_time
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: duration_ms
+      NAME: duration_ms
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: proxy_trg_rx_bytes
+      NAME: proxy_trg_rx_bytes
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: proxy_trg_tx_bytes
+      NAME: proxy_trg_tx_bytes
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: status
+      NAME: status
+      type: ANY
+      TYPE: ANY
+      REQUIRED: true
+    - name: created_at
+      NAME: created_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+    - name: updated_at
+      NAME: updated_at
+      type: TIMESTAMP
+      TYPE: TIMESTAMP
+      REQUIRED: true
+  TelemetryListResponse:
+    - name: items
+      NAME: items
+      type: "[]STRUCT(TelemetryEntry)"
+      TYPE: "[]STRUCT(TelemetryEntry)"
+      REQUIRED: true
+    - name: total
+      NAME: total
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: limit
+      NAME: limit
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: page
+      NAME: page
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: total_pages
+      NAME: total_pages
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: true
+  UsageInfo:
+    - name: current_cycle
+      NAME: current_cycle
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: lifetime
+      NAME: lifetime
+      type: INT
+      TYPE: INT
+      REQUIRED: true
+  UsageResponse:
+    - name: data
+      NAME: data
+      type: STRUCT(UsageStats)
+      TYPE: STRUCT(UsageStats)
+      REQUIRED: true
+    - name: metadata
+      NAME: metadata
+      type: STRUCT(ResponseMetadataBase)
+      TYPE: STRUCT(ResponseMetadataBase)
+      REQUIRED: false
+  UsageStats:
+    - name: current_subscription
+      NAME: current_subscription
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: api_key_usage
+      NAME: api_key_usage
+      type: STRUCT(UsageInfo)
+      TYPE: STRUCT(UsageInfo)
+      REQUIRED: true
+    - name: total_account_usage
+      NAME: total_account_usage
+      type: STRUCT(UsageInfo)
+      TYPE: STRUCT(UsageInfo)
+      REQUIRED: true
+  tetra.session.createRequest:
+    - name: variant
+      NAME: variant
+      type: STRUCT(tetra.session.createRequest_Union)
+      TYPE: STRUCT(tetra.session.createRequest_Union)
+      REQUIRED: false
+  tetra.session.createRequest_Union:
+    - NAME: value
+      TYPE: ANY
+      REQUIRED: false

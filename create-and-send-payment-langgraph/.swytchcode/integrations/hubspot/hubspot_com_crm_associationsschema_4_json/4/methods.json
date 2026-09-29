@@ -1,0 +1,54 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Batch create associations between CRM objects",
+      "canonical_id": "crm.v4.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch create association configurations between two object types",
+      "canonical_id": "crm.v4.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch delete association configurations between object types",
+      "canonical_id": "crm.v4.purge.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Batch update association configurations between object types",
+      "canonical_id": "crm.v4.batch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Define custom associations between object types",
+      "canonical_id": "crm.v4.labels.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all association types between two CRM object types",
+      "canonical_id": "crm.v4.labels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all available user configurations for a portal",
+      "canonical_id": "crm.v4.all.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get association configurations between two object types",
+      "canonical_id": "crm.v4.configurations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an association definition between object types",
+      "canonical_id": "crm.v4.labels.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a custom association between two object types",
+      "canonical_id": "crm.v4.labels.update"
+    }
+  ]
+}

@@ -1,0 +1,2658 @@
+VERSION: 2.0.2
+DEFAULTS:
+  w_base_url: https://api.notion.com
+  NOTION_VERSION: "2022-02-22"
+METHODS:
+  users.user.get:
+    SUMMARY: Retrieve a user object using the ID specified in the request path.
+    DESC: Retrieve a user object using the ID specified in the request path.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/users/:id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(users.user.getResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(users.user.getResponse200)
+        RETURNVAR: users_user_get
+        STATUS: 200
+    CANONICAL_ID: users.user.get
+  users.user.list:
+    SUMMARY: Returns a paginated list of user objects for a workspace
+    DESC: Returns a paginated list of user objects for a workspace
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/users
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(users.user.listResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(users.user.listResponse200)
+        RETURNVAR: users_user_list
+        STATUS: 200
+    CANONICAL_ID: users.user.list
+  users.me.list:
+    SUMMARY: Fetch me
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/users/me
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(users.me.listResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(users.me.listResponse200)
+        RETURNVAR: users_me_list
+        STATUS: 200
+    CANONICAL_ID: users.me.list
+  databases.databas.get:
+    SUMMARY: Retrieves a database object using the ID specified in the request path.
+    DESC: Retrieves a database object using the ID specified in the request path.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/databases/:id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.databas.getResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.databas.getResponse200)
+        RETURNVAR: databases_databas_get
+        STATUS: 200
+    CANONICAL_ID: databases.databas.get
+  databases.query.create:
+    SUMMARY: Create query
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/databases/:id/query
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.query.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.query.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.query.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.query.createResponse200)
+        RETURNVAR: databases_query_create
+        STATUS: 200
+    CANONICAL_ID: databases.query.create
+  databases.query.create_df44:
+    SUMMARY: Create query
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/databases/:id/query
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.query.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.query.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.query.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.query.createResponse200)
+        RETURNVAR: databases_query_create_df44
+        STATUS: 200
+    CANONICAL_ID: databases.query.create_df44
+  databases.query.create_61aa:
+    SUMMARY: Create query
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/databases/:id/query
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.query.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.query.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.query.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.query.createResponse200)
+        RETURNVAR: databases_query_create_61aa
+        STATUS: 200
+    CANONICAL_ID: databases.query.create_61aa
+  databases.databas.create:
+    SUMMARY: Create databases
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/databases
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.databas.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.databas.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.databas.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.databas.createResponse200)
+        RETURNVAR: databases_databas_create
+        STATUS: 200
+    CANONICAL_ID: databases.databas.create
+  databases.databas.update:
+    SUMMARY: Modify :id
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/databases/:id
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.databas.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.databas.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.databas.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.databas.updateResponse200)
+        RETURNVAR: databases_databas_update
+        STATUS: 200
+    CANONICAL_ID: databases.databas.update
+  databases.databas.update_f8ba:
+    SUMMARY: Modify :id
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/databases/:id
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(databases.databas.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(databases.databas.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(databases.databas.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(databases.databas.updateResponse200)
+        RETURNVAR: databases_databas_update_f8ba
+        STATUS: 200
+    CANONICAL_ID: databases.databas.update_f8ba
+  pages.page.create:
+    SUMMARY: Create pages
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/pages
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(pages.page.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.page.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(pages.page.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.page.createResponse200)
+        RETURNVAR: pages_page_create
+        STATUS: 200
+    CANONICAL_ID: pages.page.create
+  pages.page.create_5bd2:
+    SUMMARY: Create pages
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/pages
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(pages.page.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.page.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(pages.page.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.page.createResponse200)
+        RETURNVAR: pages_page_create_5bd2
+        STATUS: 200
+    CANONICAL_ID: pages.page.create_5bd2
+  pages.page.get:
+    SUMMARY: Retrieves a Page object using the ID in the request path
+    DESC: Retrieves a Page object using the ID in the request path. This endpoint exposes page properties, not page content.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/pages/:id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.page.getResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.page.getResponse200)
+        RETURNVAR: pages_page_get
+        STATUS: 200
+    CANONICAL_ID: pages.page.get
+  pages.page.update:
+    SUMMARY: Updates a page by setting the values of any properties specified in the JSON body of the request
+    DESC: Updates a page by setting the values of any properties specified in the JSON body of the request. Properties not updated via parameters will remain unchanged.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/pages/:id
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(pages.page.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.page.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(pages.page.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.page.updateResponse200)
+        RETURNVAR: pages_page_update
+        STATUS: 200
+    CANONICAL_ID: pages.page.update
+  pages.page.update_d84b:
+    SUMMARY: Modify :id
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/pages/:id
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(pages.page.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.page.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(pages.page.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.page.updateResponse200)
+        RETURNVAR: pages_page_update_d84b
+        STATUS: 200
+    CANONICAL_ID: pages.page.update_d84b
+  pages.property.get:
+    SUMMARY: Fetch :property_id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/pages/:page_id/properties/:property_id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(pages.property.getResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(pages.property.getResponse200)
+        RETURNVAR: pages_property_get
+        STATUS: 200
+    CANONICAL_ID: pages.property.get
+  blocks.children.get:
+    SUMMARY: Fetch children
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/blocks/:id/children
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.children.getResponse200)
+    INPUTS:
+      - page_size:
+          TYPE: STRING
+          LOCATION: query
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.children.getResponse200)
+        RETURNVAR: blocks_children_get
+        STATUS: 200
+    CANONICAL_ID: blocks.children.get
+  blocks.children.update:
+    SUMMARY: Modify children
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/blocks/:id/children
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(blocks.children.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.children.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(blocks.children.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.children.updateResponse200)
+        RETURNVAR: blocks_children_update
+        STATUS: 200
+    CANONICAL_ID: blocks.children.update
+  blocks.block.update:
+    SUMMARY: This endpoint allows you to update block content
+    DESC: This endpoint allows you to update block content. [See Full Documentation](https://developers.notion.com/reference/update-a-block)
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/blocks/:id
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(blocks.block.updateRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.block.updateResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(blocks.block.updateRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.block.updateResponse200)
+        RETURNVAR: blocks_block_update
+        STATUS: 200
+    CANONICAL_ID: blocks.block.update
+  blocks.block.get:
+    SUMMARY: Fetch :id
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/blocks/:id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.block.getResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.block.getResponse200)
+        RETURNVAR: blocks_block_get
+        STATUS: 200
+    CANONICAL_ID: blocks.block.get
+  blocks.block.delete:
+    SUMMARY: Delete :id
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/blocks/:id
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(blocks.block.deleteResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(blocks.block.deleteResponse200)
+        RETURNVAR: blocks_block_delete
+        STATUS: 200
+    CANONICAL_ID: blocks.block.delete
+  search.search.create:
+    SUMMARY: Create search
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/search
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(search.search.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(search.search.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(search.search.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.search.createResponse200)
+        RETURNVAR: search_search_create
+        STATUS: 200
+    CANONICAL_ID: search.search.create
+  comments.comment.list:
+    SUMMARY: Retrieve a user object using the ID specified in the request path.
+    DESC: Retrieve a user object using the ID specified in the request path.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/comments
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(comments.comment.listResponse200)
+    INPUTS:
+      - BLOCK_ID:
+          TYPE: STRING
+          LOCATION: path
+      - block_id:
+          TYPE: STRING
+          LOCATION: query
+      - page_size:
+          TYPE: STRING
+          LOCATION: query
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+    RETURNS:
+      - RETURNTYPE: STRUCT(comments.comment.listResponse200)
+        RETURNVAR: comments_comment_list
+        STATUS: 200
+    CANONICAL_ID: comments.comment.list
+  comments.comment.create:
+    SUMMARY: Create comments
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/comments
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(comments.comment.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(comments.comment.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(comments.comment.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(comments.comment.createResponse200)
+        RETURNVAR: comments_comment_create
+        STATUS: 200
+    CANONICAL_ID: comments.comment.create
+  comments.comment.create_c247:
+    SUMMARY: Create comments
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/comments
+      HEADERS:
+        Content-Type: application/json
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json; charset=utf-8
+      BODY:
+        TYPE: STRUCT(comments.comment.createRequest)
+    EXECUTION:
+      KIND: http
+      MODE: async
+    ASYNC:
+      RETURNS: result
+      RESULT:
+        TYPE: STRUCT(comments.comment.createResponse200)
+    INPUTS:
+      - Notion-Version:
+          TYPE: STRING
+          LOCATION: header
+      - body:
+          TYPE: STRUCT(comments.comment.createRequest)
+          REQUIRED: true
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(comments.comment.createResponse200)
+        RETURNVAR: comments_comment_create_c247
+        STATUS: 200
+    CANONICAL_ID: comments.comment.create_c247
+STRUCTS:
+  users.user.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: avatar_url
+      NAME: avatar_url
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: person
+      NAME: person
+      type: STRUCT(users.user.getResponse200person)
+      TYPE: STRUCT(users.user.getResponse200person)
+      REQUIRED: false
+  users.user.getResponse200person:
+    - name: email
+      NAME: email
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  users.user.listResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(users.user.listResponse200resultsItem)"
+      TYPE: "[]STRUCT(users.user.listResponse200resultsItem)"
+      REQUIRED: false
+    - name: next_cursor
+      NAME: next_cursor
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  users.user.listResponse200resultsItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: avatar_url
+      NAME: avatar_url
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: person
+      NAME: person
+      type: STRUCT(users.user.listResponse200resultsItemperson)
+      TYPE: STRUCT(users.user.listResponse200resultsItemperson)
+      REQUIRED: false
+  users.me.listResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: avatar_url
+      NAME: avatar_url
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: bot
+      NAME: bot
+      type: STRUCT(users.me.listResponse200bot)
+      TYPE: STRUCT(users.me.listResponse200bot)
+      REQUIRED: false
+  users.me.listResponse200bot:
+    - name: owner
+      NAME: owner
+      type: STRUCT(users.me.listResponse200botowner)
+      TYPE: STRUCT(users.me.listResponse200botowner)
+      REQUIRED: false
+  databases.databas.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(databases.databas.getResponse200created_by)
+      TYPE: STRUCT(databases.databas.getResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(databases.databas.getResponse200last_edited_by)
+      TYPE: STRUCT(databases.databas.getResponse200last_edited_by)
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: title
+      NAME: title
+      type: "[]STRUCT(databases.databas.getResponse200titleItem)"
+      TYPE: "[]STRUCT(databases.databas.getResponse200titleItem)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.databas.getResponse200properties)
+      TYPE: STRUCT(databases.databas.getResponse200properties)
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(databases.databas.getResponse200parent)
+      TYPE: STRUCT(databases.databas.getResponse200parent)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  databases.databas.getResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.getResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.getResponse200titleItem:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRUCT(databases.databas.getResponse200titleItemtext)
+      TYPE: STRUCT(databases.databas.getResponse200titleItemtext)
+      REQUIRED: false
+    - name: annotations
+      NAME: annotations
+      type: STRUCT(databases.databas.getResponse200titleItemannotations)
+      TYPE: STRUCT(databases.databas.getResponse200titleItemannotations)
+      REQUIRED: false
+    - name: plain_text
+      NAME: plain_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: href
+      NAME: href
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  databases.databas.getResponse200properties:
+    - name: Score /5
+      NAME: Score /5
+      type: STRUCT(databases.databas.getResponse200propertiesScore /5)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesScore /5)
+      REQUIRED: false
+    - name: Type
+      NAME: Type
+      type: STRUCT(databases.databas.getResponse200propertiesType)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesType)
+      REQUIRED: false
+    - name: Publisher
+      NAME: Publisher
+      type: STRUCT(databases.databas.getResponse200propertiesPublisher)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesPublisher)
+      REQUIRED: false
+    - name: Summary
+      NAME: Summary
+      type: STRUCT(databases.databas.getResponse200propertiesSummary)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesSummary)
+      REQUIRED: false
+    - name: Publishing/Release Date
+      NAME: Publishing/Release Date
+      type: STRUCT(databases.databas.getResponse200propertiesPublishing/Release Date)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesPublishing/Release Date)
+      REQUIRED: false
+    - name: Link
+      NAME: Link
+      type: STRUCT(databases.databas.getResponse200propertiesLink)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesLink)
+      REQUIRED: false
+    - name: Read
+      NAME: Read
+      type: STRUCT(databases.databas.getResponse200propertiesRead)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesRead)
+      REQUIRED: false
+    - name: Status
+      NAME: Status
+      type: STRUCT(databases.databas.getResponse200propertiesStatus)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesStatus)
+      REQUIRED: false
+    - name: Author
+      NAME: Author
+      type: STRUCT(databases.databas.getResponse200propertiesAuthor)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesAuthor)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(databases.databas.getResponse200propertiesName)
+      TYPE: STRUCT(databases.databas.getResponse200propertiesName)
+      REQUIRED: false
+  databases.databas.getResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.query.createRequest:
+    - name: filter
+      NAME: filter
+      type: STRUCT(databases.query.createRequestfilter)
+      TYPE: STRUCT(databases.query.createRequestfilter)
+      REQUIRED: false
+    - name: sorts
+      NAME: sorts
+      type: "[]STRUCT(databases.query.createRequestsortsItem)"
+      TYPE: "[]STRUCT(databases.query.createRequestsortsItem)"
+      REQUIRED: false
+  databases.query.createRequestfilter:
+    - name: property
+      NAME: property
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: select
+      NAME: select
+      type: STRUCT(databases.query.createRequestfilterselect)
+      TYPE: STRUCT(databases.query.createRequestfilterselect)
+      REQUIRED: false
+  databases.query.createRequestsortsItem:
+    - name: property
+      NAME: property
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: direction
+      NAME: direction
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.query.createResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(databases.query.createResponse200resultsItem)"
+      TYPE: "[]STRUCT(databases.query.createResponse200resultsItem)"
+      REQUIRED: false
+    - name: next_cursor
+      NAME: next_cursor
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  databases.query.createResponse200resultsItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(databases.query.createResponse200resultsItemcreated_by)
+      TYPE: STRUCT(databases.query.createResponse200resultsItemcreated_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(databases.query.createResponse200resultsItemlast_edited_by)
+      TYPE: STRUCT(databases.query.createResponse200resultsItemlast_edited_by)
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(databases.query.createResponse200resultsItemparent)
+      TYPE: STRUCT(databases.query.createResponse200resultsItemparent)
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.query.createResponse200resultsItemproperties)
+      TYPE: STRUCT(databases.query.createResponse200resultsItemproperties)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.createRequest:
+    - name: parent
+      NAME: parent
+      type: STRUCT(databases.databas.createRequestparent)
+      TYPE: STRUCT(databases.databas.createRequestparent)
+      REQUIRED: false
+    - name: title
+      NAME: title
+      type: "[]STRUCT(databases.databas.createRequesttitleItem)"
+      TYPE: "[]STRUCT(databases.databas.createRequesttitleItem)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.databas.createRequestproperties)
+      TYPE: STRUCT(databases.databas.createRequestproperties)
+      REQUIRED: false
+  databases.databas.createRequestparent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.createRequesttitleItem:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRUCT(databases.databas.createRequesttitleItemtext)
+      TYPE: STRUCT(databases.databas.createRequesttitleItemtext)
+      REQUIRED: false
+  databases.databas.createRequestproperties:
+    - name: Name
+      NAME: Name
+      type: STRUCT(databases.databas.createRequestpropertiesName)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesName)
+      REQUIRED: false
+    - name: Description
+      NAME: Description
+      type: STRUCT(databases.databas.createRequestpropertiesDescription)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesDescription)
+      REQUIRED: false
+    - name: In stock
+      NAME: In stock
+      type: STRUCT(databases.databas.createRequestpropertiesIn stock)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesIn stock)
+      REQUIRED: false
+    - name: Food group
+      NAME: Food group
+      type: STRUCT(databases.databas.createRequestpropertiesFood group)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesFood group)
+      REQUIRED: false
+    - name: Price
+      NAME: Price
+      type: STRUCT(databases.databas.createRequestpropertiesPrice)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesPrice)
+      REQUIRED: false
+    - name: Last ordered
+      NAME: Last ordered
+      type: STRUCT(databases.databas.createRequestpropertiesLast ordered)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesLast ordered)
+      REQUIRED: false
+    - name: Store availability
+      NAME: Store availability
+      type: STRUCT(databases.databas.createRequestpropertiesStore availability)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesStore availability)
+      REQUIRED: false
+    - name: "+1"
+      NAME: "+1"
+      type: STRUCT(databases.databas.createRequestproperties+1)
+      TYPE: STRUCT(databases.databas.createRequestproperties+1)
+      REQUIRED: false
+    - name: Photo
+      NAME: Photo
+      type: STRUCT(databases.databas.createRequestpropertiesPhoto)
+      TYPE: STRUCT(databases.databas.createRequestpropertiesPhoto)
+      REQUIRED: false
+  databases.databas.createResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(databases.databas.createResponse200created_by)
+      TYPE: STRUCT(databases.databas.createResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(databases.databas.createResponse200last_edited_by)
+      TYPE: STRUCT(databases.databas.createResponse200last_edited_by)
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: title
+      NAME: title
+      type: "[]STRUCT(databases.databas.createResponse200titleItem)"
+      TYPE: "[]STRUCT(databases.databas.createResponse200titleItem)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.databas.createResponse200properties)
+      TYPE: STRUCT(databases.databas.createResponse200properties)
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(databases.databas.createResponse200parent)
+      TYPE: STRUCT(databases.databas.createResponse200parent)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  databases.databas.createResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.createResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.createResponse200titleItem:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRUCT(databases.databas.createResponse200titleItemtext)
+      TYPE: STRUCT(databases.databas.createResponse200titleItemtext)
+      REQUIRED: false
+    - name: annotations
+      NAME: annotations
+      type: STRUCT(databases.databas.createResponse200titleItemannotations)
+      TYPE: STRUCT(databases.databas.createResponse200titleItemannotations)
+      REQUIRED: false
+    - name: plain_text
+      NAME: plain_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: href
+      NAME: href
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  databases.databas.createResponse200properties:
+    - name: Description
+      NAME: Description
+      type: STRUCT(databases.databas.createResponse200propertiesDescription)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesDescription)
+      REQUIRED: false
+    - name: Last ordered
+      NAME: Last ordered
+      type: STRUCT(databases.databas.createResponse200propertiesLast ordered)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesLast ordered)
+      REQUIRED: false
+    - name: In stock
+      NAME: In stock
+      type: STRUCT(databases.databas.createResponse200propertiesIn stock)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesIn stock)
+      REQUIRED: false
+    - name: "+1"
+      NAME: "+1"
+      type: STRUCT(databases.databas.createResponse200properties+1)
+      TYPE: STRUCT(databases.databas.createResponse200properties+1)
+      REQUIRED: false
+    - name: Photo
+      NAME: Photo
+      type: STRUCT(databases.databas.createResponse200propertiesPhoto)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesPhoto)
+      REQUIRED: false
+    - name: Store availability
+      NAME: Store availability
+      type: STRUCT(databases.databas.createResponse200propertiesStore availability)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesStore availability)
+      REQUIRED: false
+    - name: Food group
+      NAME: Food group
+      type: STRUCT(databases.databas.createResponse200propertiesFood group)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesFood group)
+      REQUIRED: false
+    - name: Price
+      NAME: Price
+      type: STRUCT(databases.databas.createResponse200propertiesPrice)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesPrice)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(databases.databas.createResponse200propertiesName)
+      TYPE: STRUCT(databases.databas.createResponse200propertiesName)
+      REQUIRED: false
+  databases.databas.createResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.updateRequest:
+    - name: title
+      NAME: title
+      type: "[]STRUCT(databases.databas.updateRequesttitleItem)"
+      TYPE: "[]STRUCT(databases.databas.updateRequesttitleItem)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.databas.updateRequestproperties)
+      TYPE: STRUCT(databases.databas.updateRequestproperties)
+      REQUIRED: false
+  databases.databas.updateRequesttitleItem:
+    - name: text
+      NAME: text
+      type: STRUCT(databases.databas.updateRequesttitleItemtext)
+      TYPE: STRUCT(databases.databas.updateRequesttitleItemtext)
+      REQUIRED: false
+  databases.databas.updateRequestproperties:
+    - name: Wine Pairing
+      NAME: Wine Pairing
+      type: STRUCT(databases.databas.updateRequestpropertiesWine Pairing)
+      TYPE: STRUCT(databases.databas.updateRequestpropertiesWine Pairing)
+      REQUIRED: false
+  databases.databas.updateResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(databases.databas.updateResponse200created_by)
+      TYPE: STRUCT(databases.databas.updateResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(databases.databas.updateResponse200last_edited_by)
+      TYPE: STRUCT(databases.databas.updateResponse200last_edited_by)
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: title
+      NAME: title
+      type: "[]STRUCT(databases.databas.updateResponse200titleItem)"
+      TYPE: "[]STRUCT(databases.databas.updateResponse200titleItem)"
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(databases.databas.updateResponse200properties)
+      TYPE: STRUCT(databases.databas.updateResponse200properties)
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(databases.databas.updateResponse200parent)
+      TYPE: STRUCT(databases.databas.updateResponse200parent)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  databases.databas.updateResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.updateResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  databases.databas.updateResponse200titleItem:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRUCT(databases.databas.updateResponse200titleItemtext)
+      TYPE: STRUCT(databases.databas.updateResponse200titleItemtext)
+      REQUIRED: false
+    - name: annotations
+      NAME: annotations
+      type: STRUCT(databases.databas.updateResponse200titleItemannotations)
+      TYPE: STRUCT(databases.databas.updateResponse200titleItemannotations)
+      REQUIRED: false
+    - name: plain_text
+      NAME: plain_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: href
+      NAME: href
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+  databases.databas.updateResponse200properties:
+    - name: Score /5
+      NAME: Score /5
+      type: STRUCT(databases.databas.updateResponse200propertiesScore /5)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesScore /5)
+      REQUIRED: false
+    - name: Type
+      NAME: Type
+      type: STRUCT(databases.databas.updateResponse200propertiesType)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesType)
+      REQUIRED: false
+    - name: Publisher
+      NAME: Publisher
+      type: STRUCT(databases.databas.updateResponse200propertiesPublisher)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesPublisher)
+      REQUIRED: false
+    - name: Summary
+      NAME: Summary
+      type: STRUCT(databases.databas.updateResponse200propertiesSummary)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesSummary)
+      REQUIRED: false
+    - name: Publishing/Release Date
+      NAME: Publishing/Release Date
+      type: STRUCT(databases.databas.updateResponse200propertiesPublishing/Release Date)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesPublishing/Release Date)
+      REQUIRED: false
+    - name: Link
+      NAME: Link
+      type: STRUCT(databases.databas.updateResponse200propertiesLink)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesLink)
+      REQUIRED: false
+    - name: Wine Pairing
+      NAME: Wine Pairing
+      type: STRUCT(databases.databas.updateResponse200propertiesWine Pairing)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesWine Pairing)
+      REQUIRED: false
+    - name: Read
+      NAME: Read
+      type: STRUCT(databases.databas.updateResponse200propertiesRead)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesRead)
+      REQUIRED: false
+    - name: Status
+      NAME: Status
+      type: STRUCT(databases.databas.updateResponse200propertiesStatus)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesStatus)
+      REQUIRED: false
+    - name: Author
+      NAME: Author
+      type: STRUCT(databases.databas.updateResponse200propertiesAuthor)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesAuthor)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(databases.databas.updateResponse200propertiesName)
+      TYPE: STRUCT(databases.databas.updateResponse200propertiesName)
+      REQUIRED: false
+  databases.databas.updateResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createRequest:
+    - name: parent
+      NAME: parent
+      type: STRUCT(pages.page.createRequestparent)
+      TYPE: STRUCT(pages.page.createRequestparent)
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(pages.page.createRequestproperties)
+      TYPE: STRUCT(pages.page.createRequestproperties)
+      REQUIRED: false
+  pages.page.createRequestparent:
+    - name: database_id
+      NAME: database_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createRequestproperties:
+    - name: Type
+      NAME: Type
+      type: STRUCT(pages.page.createRequestpropertiesType)
+      TYPE: STRUCT(pages.page.createRequestpropertiesType)
+      REQUIRED: false
+    - name: Score /5
+      NAME: Score /5
+      type: STRUCT(pages.page.createRequestpropertiesScore /5)
+      TYPE: STRUCT(pages.page.createRequestpropertiesScore /5)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(pages.page.createRequestpropertiesName)
+      TYPE: STRUCT(pages.page.createRequestpropertiesName)
+      REQUIRED: false
+    - name: Status
+      NAME: Status
+      type: STRUCT(pages.page.createRequestpropertiesStatus)
+      TYPE: STRUCT(pages.page.createRequestpropertiesStatus)
+      REQUIRED: false
+    - name: Publisher
+      NAME: Publisher
+      type: STRUCT(pages.page.createRequestpropertiesPublisher)
+      TYPE: STRUCT(pages.page.createRequestpropertiesPublisher)
+      REQUIRED: false
+    - name: Publishing/Release Date
+      NAME: Publishing/Release Date
+      type: STRUCT(pages.page.createRequestpropertiesPublishing/Release Date)
+      TYPE: STRUCT(pages.page.createRequestpropertiesPublishing/Release Date)
+      REQUIRED: false
+    - name: Link
+      NAME: Link
+      type: STRUCT(pages.page.createRequestpropertiesLink)
+      TYPE: STRUCT(pages.page.createRequestpropertiesLink)
+      REQUIRED: false
+    - name: Summary
+      NAME: Summary
+      type: STRUCT(pages.page.createRequestpropertiesSummary)
+      TYPE: STRUCT(pages.page.createRequestpropertiesSummary)
+      REQUIRED: false
+    - name: Read
+      NAME: Read
+      type: STRUCT(pages.page.createRequestpropertiesRead)
+      TYPE: STRUCT(pages.page.createRequestpropertiesRead)
+      REQUIRED: false
+  pages.page.createResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(pages.page.createResponse200created_by)
+      TYPE: STRUCT(pages.page.createResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(pages.page.createResponse200last_edited_by)
+      TYPE: STRUCT(pages.page.createResponse200last_edited_by)
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(pages.page.createResponse200parent)
+      TYPE: STRUCT(pages.page.createResponse200parent)
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(pages.page.createResponse200properties)
+      TYPE: STRUCT(pages.page.createResponse200properties)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: database_id
+      NAME: database_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.createResponse200properties:
+    - name: Score /5
+      NAME: Score /5
+      type: STRUCT(pages.page.createResponse200propertiesScore /5)
+      TYPE: STRUCT(pages.page.createResponse200propertiesScore /5)
+      REQUIRED: false
+    - name: Type
+      NAME: Type
+      type: STRUCT(pages.page.createResponse200propertiesType)
+      TYPE: STRUCT(pages.page.createResponse200propertiesType)
+      REQUIRED: false
+    - name: Publisher
+      NAME: Publisher
+      type: STRUCT(pages.page.createResponse200propertiesPublisher)
+      TYPE: STRUCT(pages.page.createResponse200propertiesPublisher)
+      REQUIRED: false
+    - name: Summary
+      NAME: Summary
+      type: STRUCT(pages.page.createResponse200propertiesSummary)
+      TYPE: STRUCT(pages.page.createResponse200propertiesSummary)
+      REQUIRED: false
+    - name: Publishing/Release Date
+      NAME: Publishing/Release Date
+      type: STRUCT(pages.page.createResponse200propertiesPublishing/Release Date)
+      TYPE: STRUCT(pages.page.createResponse200propertiesPublishing/Release Date)
+      REQUIRED: false
+    - name: Link
+      NAME: Link
+      type: STRUCT(pages.page.createResponse200propertiesLink)
+      TYPE: STRUCT(pages.page.createResponse200propertiesLink)
+      REQUIRED: false
+    - name: Read
+      NAME: Read
+      type: STRUCT(pages.page.createResponse200propertiesRead)
+      TYPE: STRUCT(pages.page.createResponse200propertiesRead)
+      REQUIRED: false
+    - name: Status
+      NAME: Status
+      type: STRUCT(pages.page.createResponse200propertiesStatus)
+      TYPE: STRUCT(pages.page.createResponse200propertiesStatus)
+      REQUIRED: false
+    - name: Author
+      NAME: Author
+      type: STRUCT(pages.page.createResponse200propertiesAuthor)
+      TYPE: STRUCT(pages.page.createResponse200propertiesAuthor)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(pages.page.createResponse200propertiesName)
+      TYPE: STRUCT(pages.page.createResponse200propertiesName)
+      REQUIRED: false
+  pages.page.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(pages.page.getResponse200created_by)
+      TYPE: STRUCT(pages.page.getResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(pages.page.getResponse200last_edited_by)
+      TYPE: STRUCT(pages.page.getResponse200last_edited_by)
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: STRUCT(pages.page.getResponse200icon)
+      TYPE: STRUCT(pages.page.getResponse200icon)
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(pages.page.getResponse200parent)
+      TYPE: STRUCT(pages.page.getResponse200parent)
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(pages.page.getResponse200properties)
+      TYPE: STRUCT(pages.page.getResponse200properties)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.getResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.getResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.getResponse200icon:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: emoji
+      NAME: emoji
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.getResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.getResponse200properties:
+    - name: title
+      NAME: title
+      type: STRUCT(pages.page.getResponse200propertiestitle)
+      TYPE: STRUCT(pages.page.getResponse200propertiestitle)
+      REQUIRED: false
+  pages.page.updateRequest:
+    - name: properties
+      NAME: properties
+      type: STRUCT(pages.page.updateRequestproperties)
+      TYPE: STRUCT(pages.page.updateRequestproperties)
+      REQUIRED: false
+  pages.page.updateRequestproperties:
+    - name: Status
+      NAME: Status
+      type: STRUCT(pages.page.updateRequestpropertiesStatus)
+      TYPE: STRUCT(pages.page.updateRequestpropertiesStatus)
+      REQUIRED: false
+  pages.page.updateResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(pages.page.updateResponse200parent)
+      TYPE: STRUCT(pages.page.updateResponse200parent)
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(pages.page.updateResponse200properties)
+      TYPE: STRUCT(pages.page.updateResponse200properties)
+      REQUIRED: false
+  pages.page.updateResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: database_id
+      NAME: database_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  pages.page.updateResponse200properties:
+    - name: Score /5
+      NAME: Score /5
+      type: STRUCT(pages.page.updateResponse200propertiesScore /5)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesScore /5)
+      REQUIRED: false
+    - name: Type
+      NAME: Type
+      type: STRUCT(pages.page.updateResponse200propertiesType)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesType)
+      REQUIRED: false
+    - name: Publisher
+      NAME: Publisher
+      type: STRUCT(pages.page.updateResponse200propertiesPublisher)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesPublisher)
+      REQUIRED: false
+    - name: Summary
+      NAME: Summary
+      type: STRUCT(pages.page.updateResponse200propertiesSummary)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesSummary)
+      REQUIRED: false
+    - name: Publishing/Release Date
+      NAME: Publishing/Release Date
+      type: STRUCT(pages.page.updateResponse200propertiesPublishing/Release Date)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesPublishing/Release Date)
+      REQUIRED: false
+    - name: Link
+      NAME: Link
+      type: STRUCT(pages.page.updateResponse200propertiesLink)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesLink)
+      REQUIRED: false
+    - name: Read
+      NAME: Read
+      type: STRUCT(pages.page.updateResponse200propertiesRead)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesRead)
+      REQUIRED: false
+    - name: Status
+      NAME: Status
+      type: STRUCT(pages.page.updateResponse200propertiesStatus)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesStatus)
+      REQUIRED: false
+    - name: Author
+      NAME: Author
+      type: STRUCT(pages.page.updateResponse200propertiesAuthor)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesAuthor)
+      REQUIRED: false
+    - name: Name
+      NAME: Name
+      type: STRUCT(pages.page.updateResponse200propertiesName)
+      TYPE: STRUCT(pages.page.updateResponse200propertiesName)
+      REQUIRED: false
+  pages.property.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: select
+      NAME: select
+      type: STRUCT(pages.property.getResponse200select)
+      TYPE: STRUCT(pages.property.getResponse200select)
+      REQUIRED: false
+  pages.property.getResponse200select:
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      NAME: name
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: color
+      NAME: color
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  blocks.children.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(blocks.children.getResponse200resultsItem)"
+      TYPE: "[]STRUCT(blocks.children.getResponse200resultsItem)"
+      REQUIRED: false
+    - name: next_cursor
+      NAME: next_cursor
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  blocks.children.getResponse200resultsItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: has_children
+      NAME: has_children
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: unsupported
+      NAME: unsupported
+      type: STRUCT(blocks.children.getResponse200resultsItemunsupported)
+      TYPE: STRUCT(blocks.children.getResponse200resultsItemunsupported)
+      REQUIRED: false
+  blocks.children.updateRequest:
+    - name: children
+      NAME: children
+      type: "[]STRUCT(blocks.children.updateRequestchildrenItem)"
+      TYPE: "[]STRUCT(blocks.children.updateRequestchildrenItem)"
+      REQUIRED: false
+  blocks.children.updateRequestchildrenItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: heading_2
+      NAME: heading_2
+      type: STRUCT(blocks.children.updateRequestchildrenItemheading_2)
+      TYPE: STRUCT(blocks.children.updateRequestchildrenItemheading_2)
+      REQUIRED: false
+  blocks.children.updateResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: has_children
+      NAME: has_children
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: child_page
+      NAME: child_page
+      type: STRUCT(blocks.children.updateResponse200child_page)
+      TYPE: STRUCT(blocks.children.updateResponse200child_page)
+      REQUIRED: false
+  blocks.children.updateResponse200child_page:
+    - name: title
+      NAME: title
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  blocks.block.updateRequest:
+    - name: paragraph
+      NAME: paragraph
+      type: STRUCT(blocks.block.updateRequestparagraph)
+      TYPE: STRUCT(blocks.block.updateRequestparagraph)
+      REQUIRED: false
+  blocks.block.updateRequestparagraph:
+    - name: rich_text
+      NAME: rich_text
+      type: "[]STRUCT(blocks.block.updateRequestparagraphrich_textItem)"
+      TYPE: "[]STRUCT(blocks.block.updateRequestparagraphrich_textItem)"
+      REQUIRED: false
+  blocks.block.updateResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: has_children
+      NAME: has_children
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: paragraph
+      NAME: paragraph
+      type: STRUCT(blocks.block.updateResponse200paragraph)
+      TYPE: STRUCT(blocks.block.updateResponse200paragraph)
+      REQUIRED: false
+  blocks.block.updateResponse200paragraph:
+    - name: text
+      NAME: text
+      type: "[]STRUCT(blocks.block.updateResponse200paragraphtextItem)"
+      TYPE: "[]STRUCT(blocks.block.updateResponse200paragraphtextItem)"
+      REQUIRED: false
+  blocks.block.getResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: has_children
+      NAME: has_children
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: paragraph
+      NAME: paragraph
+      type: STRUCT(blocks.block.getResponse200paragraph)
+      TYPE: STRUCT(blocks.block.getResponse200paragraph)
+      REQUIRED: false
+  blocks.block.getResponse200paragraph:
+    - name: text
+      NAME: text
+      type: "[]STRUCT(blocks.block.getResponse200paragraphtextItem)"
+      TYPE: "[]STRUCT(blocks.block.getResponse200paragraphtextItem)"
+      REQUIRED: false
+  blocks.block.deleteResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(blocks.block.deleteResponse200created_by)
+      TYPE: STRUCT(blocks.block.deleteResponse200created_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(blocks.block.deleteResponse200last_edited_by)
+      TYPE: STRUCT(blocks.block.deleteResponse200last_edited_by)
+      REQUIRED: false
+    - name: has_children
+      NAME: has_children
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: paragraph
+      NAME: paragraph
+      type: STRUCT(blocks.block.deleteResponse200paragraph)
+      TYPE: STRUCT(blocks.block.deleteResponse200paragraph)
+      REQUIRED: false
+  blocks.block.deleteResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  blocks.block.deleteResponse200last_edited_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  blocks.block.deleteResponse200paragraph:
+    - name: text
+      NAME: text
+      type: "[]STRUCT(blocks.block.deleteResponse200paragraphtextItem)"
+      TYPE: "[]STRUCT(blocks.block.deleteResponse200paragraphtextItem)"
+      REQUIRED: false
+  search.search.createRequest:
+    - name: query
+      NAME: query
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: sort
+      NAME: sort
+      type: STRUCT(search.search.createRequestsort)
+      TYPE: STRUCT(search.search.createRequestsort)
+      REQUIRED: false
+  search.search.createRequestsort:
+    - name: direction
+      NAME: direction
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: timestamp
+      NAME: timestamp
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  search.search.createResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(search.search.createResponse200resultsItem)"
+      TYPE: "[]STRUCT(search.search.createResponse200resultsItem)"
+      REQUIRED: false
+    - name: next_cursor
+      NAME: next_cursor
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+  search.search.createResponse200resultsItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(search.search.createResponse200resultsItemcreated_by)
+      TYPE: STRUCT(search.search.createResponse200resultsItemcreated_by)
+      REQUIRED: false
+    - name: last_edited_by
+      NAME: last_edited_by
+      type: STRUCT(search.search.createResponse200resultsItemlast_edited_by)
+      TYPE: STRUCT(search.search.createResponse200resultsItemlast_edited_by)
+      REQUIRED: false
+    - name: cover
+      NAME: cover
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: icon
+      NAME: icon
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(search.search.createResponse200resultsItemparent)
+      TYPE: STRUCT(search.search.createResponse200resultsItemparent)
+      REQUIRED: false
+    - name: archived
+      NAME: archived
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: properties
+      NAME: properties
+      type: STRUCT(search.search.createResponse200resultsItemproperties)
+      TYPE: STRUCT(search.search.createResponse200resultsItemproperties)
+      REQUIRED: false
+    - name: url
+      NAME: url
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  comments.comment.listResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: results
+      NAME: results
+      type: "[]STRUCT(comments.comment.listResponse200resultsItem)"
+      TYPE: "[]STRUCT(comments.comment.listResponse200resultsItem)"
+      REQUIRED: false
+    - name: next_cursor
+      NAME: next_cursor
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false
+    - name: has_more
+      NAME: has_more
+      type: BOOL
+      TYPE: BOOL
+      REQUIRED: false
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: comment
+      NAME: comment
+      type: STRUCT(comments.comment.listResponse200comment)
+      TYPE: STRUCT(comments.comment.listResponse200comment)
+      REQUIRED: false
+  comments.comment.listResponse200resultsItem:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(comments.comment.listResponse200resultsItemparent)
+      TYPE: STRUCT(comments.comment.listResponse200resultsItemparent)
+      REQUIRED: false
+    - name: discussion_id
+      NAME: discussion_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(comments.comment.listResponse200resultsItemcreated_by)
+      TYPE: STRUCT(comments.comment.listResponse200resultsItemcreated_by)
+      REQUIRED: false
+    - name: rich_text
+      NAME: rich_text
+      type: "[]STRUCT(comments.comment.listResponse200resultsItemrich_textItem)"
+      TYPE: "[]STRUCT(comments.comment.listResponse200resultsItemrich_textItem)"
+      REQUIRED: false
+  comments.comment.createRequest:
+    - name: parent
+      NAME: parent
+      type: STRUCT(comments.comment.createRequestparent)
+      TYPE: STRUCT(comments.comment.createRequestparent)
+      REQUIRED: false
+    - name: rich_text
+      NAME: rich_text
+      type: "[]STRUCT(comments.comment.createRequestrich_textItem)"
+      TYPE: "[]STRUCT(comments.comment.createRequestrich_textItem)"
+      REQUIRED: false
+  comments.comment.createRequestparent:
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  comments.comment.createRequestrich_textItem:
+    - name: text
+      NAME: text
+      type: STRUCT(comments.comment.createRequestrich_textItemtext)
+      TYPE: STRUCT(comments.comment.createRequestrich_textItemtext)
+      REQUIRED: false
+  comments.comment.createResponse200:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: parent
+      NAME: parent
+      type: STRUCT(comments.comment.createResponse200parent)
+      TYPE: STRUCT(comments.comment.createResponse200parent)
+      REQUIRED: false
+    - name: discussion_id
+      NAME: discussion_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: created_time
+      NAME: created_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: last_edited_time
+      NAME: last_edited_time
+      type: DATE
+      TYPE: DATE
+      REQUIRED: false
+    - name: created_by
+      NAME: created_by
+      type: STRUCT(comments.comment.createResponse200created_by)
+      TYPE: STRUCT(comments.comment.createResponse200created_by)
+      REQUIRED: false
+    - name: rich_text
+      NAME: rich_text
+      type: "[]STRUCT(comments.comment.createResponse200rich_textItem)"
+      TYPE: "[]STRUCT(comments.comment.createResponse200rich_textItem)"
+      REQUIRED: false
+  comments.comment.createResponse200parent:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: page_id
+      NAME: page_id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  comments.comment.createResponse200created_by:
+    - name: object
+      NAME: object
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: id
+      NAME: id
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+  comments.comment.createResponse200rich_textItem:
+    - name: type
+      NAME: type
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: text
+      NAME: text
+      type: STRUCT(comments.comment.createResponse200rich_textItemtext)
+      TYPE: STRUCT(comments.comment.createResponse200rich_textItemtext)
+      REQUIRED: false
+    - name: annotations
+      NAME: annotations
+      type: STRUCT(comments.comment.createResponse200rich_textItemannotations)
+      TYPE: STRUCT(comments.comment.createResponse200rich_textItemannotations)
+      REQUIRED: false
+    - name: plain_text
+      NAME: plain_text
+      type: STRING
+      TYPE: STRING
+      REQUIRED: false
+    - name: href
+      NAME: href
+      type: ANY
+      TYPE: ANY
+      REQUIRED: false

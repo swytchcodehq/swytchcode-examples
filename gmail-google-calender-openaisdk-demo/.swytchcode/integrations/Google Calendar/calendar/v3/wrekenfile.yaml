@@ -1,0 +1,4108 @@
+VERSION: 2.0.2
+DEFAULTS:
+  bearer_token: BEARER <ACCESS_TOKEN>
+  w_base_url: https://www.googleapis.com/calendar/v3
+METHODS:
+  calendar.calendar.create:
+    SUMMARY: Creates a secondary calendar
+    DESC: |-
+      Creates a secondary calendar.
+      The authenticated user for the request is made the data owner of the new calendar.
+
+      Note: We recommend to authenticate as the intended data owner of the calendar. You can use domain-wide delegation of authority to allow applications to act on behalf of a specific user. Don't use a service account for authentication. If you use a service account for authentication, the service account is the data owner, which can lead to unexpected behavior. For example, if a service account is the data owner, data ownership cannot be transferred.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Calendar)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(Calendar)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Calendar)
+        RETURNVAR: calendar_calendar_create
+        STATUS: 200
+    CANONICAL_ID: calendar.calendar.create
+  calendar.calendar.delete:
+    SUMMARY: Deletes a secondary calendar
+    DESC: Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /calendars/{calendarId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: calendar.calendar.delete
+  calendar.calendar.get:
+    SUMMARY: Returns metadata for a calendar.
+    DESC: Returns metadata for a calendar.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Calendar)
+        RETURNVAR: calendar_calendar_get
+        STATUS: 200
+    CANONICAL_ID: calendar.calendar.get
+  calendar.calendar.update:
+    SUMMARY: Updates metadata for a calendar
+    DESC: Updates metadata for a calendar. This method supports patch semantics.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /calendars/{calendarId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Calendar)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Calendar)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Calendar)
+        RETURNVAR: calendar_calendar_update
+        STATUS: 200
+    CANONICAL_ID: calendar.calendar.update
+  calendar.calendar.update1:
+    SUMMARY: Updates metadata for a calendar.
+    DESC: Updates metadata for a calendar.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /calendars/{calendarId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Calendar)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(Calendar)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Calendar)
+        RETURNVAR: calendar_calendar_update1
+        STATUS: 200
+    CANONICAL_ID: calendar.calendar.update1
+  calendar.acl.get:
+    SUMMARY: Returns the rules in the access control list for the calendar.
+    DESC: Returns the rules in the access control list for the calendar.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}/acl
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Acl)
+        RETURNVAR: calendar_acl_get
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.get
+  calendar.acl.create:
+    SUMMARY: Creates an access control rule.
+    DESC: Creates an access control rule.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/acl
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AclRule)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(AclRule)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AclRule)
+        RETURNVAR: calendar_acl_create
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.create
+  calendar.acl.watch.create:
+    SUMMARY: Watch for changes to ACL resources.
+    DESC: Watch for changes to ACL resources.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/acl/watch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Channel)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Channel)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Channel)
+        RETURNVAR: calendar_acl_watch_create
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.watch.create
+  calendar.acl.delete:
+    SUMMARY: Deletes an access control rule.
+    DESC: Deletes an access control rule.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /calendars/{calendarId}/acl/{ruleId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - ruleId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: calendar.acl.delete
+  calendar.acl.get1:
+    SUMMARY: Returns an access control rule.
+    DESC: Returns an access control rule.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}/acl/{ruleId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - ruleId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(AclRule)
+        RETURNVAR: calendar_acl_get1
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.get1
+  calendar.acl.update:
+    SUMMARY: Updates an access control rule
+    DESC: Updates an access control rule. This method supports patch semantics.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /calendars/{calendarId}/acl/{ruleId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AclRule)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - ruleId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(AclRule)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AclRule)
+        RETURNVAR: calendar_acl_update
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.update
+  calendar.acl.update1:
+    SUMMARY: Updates an access control rule.
+    DESC: Updates an access control rule.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /calendars/{calendarId}/acl/{ruleId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(AclRule)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - ruleId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(AclRule)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(AclRule)
+        RETURNVAR: calendar_acl_update1
+        STATUS: 200
+    CANONICAL_ID: calendar.acl.update1
+  calendar.clear.create:
+    SUMMARY: Clears a primary calendar
+    DESC: Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/clear
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: calendar.clear.create
+  calendar.event.get:
+    SUMMARY: Returns events on the specified calendar.
+    DESC: Returns events on the specified calendar.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}/events
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - eventTypes:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - iCalUID:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+          DEFAULT: 250
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - startTime
+            - updated
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - privateExtendedProperty:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - q:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - sharedExtendedProperty:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showHiddenInvitations:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - singleEvents:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeMax:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeMin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeZone:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updatedMin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Events)
+        RETURNVAR: calendar_event_get
+        STATUS: 200
+    CANONICAL_ID: calendar.event.get
+  calendar.event.create:
+    SUMMARY: Creates an event.
+    DESC: Creates an event.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/events
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Event)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - conferenceDataVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - eventLabelVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+      - supportsAttachments:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Event)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_create
+        STATUS: 200
+    CANONICAL_ID: calendar.event.create
+  calendar.event.import.create:
+    SUMMARY: Imports an event
+    DESC: |-
+      Imports an event. This operation is used to add a private copy of an existing event to a calendar. Only events with an eventType of default may be imported.
+      Deprecated behavior: If a non-default event is imported, its type will be changed to default and any event-type-specific properties it may have will be dropped.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/events/import
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Event)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - conferenceDataVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - eventLabelVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - supportsAttachments:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Event)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_import_create
+        STATUS: 200
+    CANONICAL_ID: calendar.event.import.create
+  calendar.event.quickAdd.create:
+    SUMMARY: Creates an event based on a simple text string.
+    DESC: Creates an event based on a simple text string.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/events/quickAdd
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - text:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_quickAdd_create
+        STATUS: 200
+    CANONICAL_ID: calendar.event.quickAdd.create
+  calendar.event.watch.create:
+    SUMMARY: Watch for changes to Events resources.
+    DESC: Watch for changes to Events resources.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/events/watch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Channel)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - eventTypes:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - iCalUID:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+          DEFAULT: 250
+      - orderBy:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - startTime
+            - updated
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - privateExtendedProperty:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - q:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - sharedExtendedProperty:
+          TYPE: "[]ANY"
+          REQUIRED: false
+          LOCATION: query
+          STYLE: multi
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showHiddenInvitations:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - singleEvents:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeMax:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeMin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeZone:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - updatedMin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Channel)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Channel)
+        RETURNVAR: calendar_event_watch_create
+        STATUS: 200
+    CANONICAL_ID: calendar.event.watch.create
+  calendar.event.delete:
+    SUMMARY: Deletes an event.
+    DESC: Deletes an event.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+    CANONICAL_ID: calendar.event.delete
+  calendar.event.get1:
+    SUMMARY: Returns an event based on its Google Calendar ID
+    DESC: Returns an event based on its Google Calendar ID. To retrieve an event using its iCalendar ID, call the events.list method using the iCalUID parameter.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - timeZone:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_get1
+        STATUS: 200
+    CANONICAL_ID: calendar.event.get1
+  calendar.event.update:
+    SUMMARY: Updates an event
+    DESC: Updates an event. This method supports patch semantics.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Event)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - conferenceDataVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - eventLabelVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+      - supportsAttachments:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Event)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_update
+        STATUS: 200
+    CANONICAL_ID: calendar.event.update
+  calendar.event.update1:
+    SUMMARY: Updates an event.
+    DESC: Updates an event.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Event)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - conferenceDataVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - eventLabelVersion:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+          MAXIMUM: 1
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+      - supportsAttachments:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Event)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_update1
+        STATUS: 200
+    CANONICAL_ID: calendar.event.update1
+  calendar.event.instances.get:
+    SUMMARY: Returns instances of the specified recurring event.
+    DESC: Returns instances of the specified recurring event.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}/instances
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - alwaysIncludeEmail:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - maxAttendees:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - originalStart:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - timeMax:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeMin:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - timeZone:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Events)
+        RETURNVAR: calendar_event_instances_get
+        STATUS: 200
+    CANONICAL_ID: calendar.event.instances.get
+  calendar.event.move.create:
+    SUMMARY: Moves an event to another calendar, i.e
+    DESC: Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; birthday, focusTime, fromGmail, outOfOffice and workingLocation events cannot be moved.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/events/{eventId}/move
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - eventId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - destination:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+      - sendNotifications:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - sendUpdates:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - all
+            - externalOnly
+            - none
+    RETURNS:
+      - RETURNTYPE: STRUCT(Event)
+        RETURNVAR: calendar_event_move_create
+        STATUS: 200
+    CANONICAL_ID: calendar.event.move.create
+  calendar.transferownership.create:
+    SUMMARY: Transfers a secondary calendar between users within a Google Workspace organization
+    DESC: |-
+      Transfers a secondary calendar between users within a Google Workspace organization. Requires user authentication with Manage Calendars administrator privilege, and one of the following authorization scopes:
+      - https://www.googleapis.com/auth/calendar
+      - https://www.googleapis.com/auth/calendar.calendars In the request, set useAdminAccess to true. The secondary calendar must be active to be transferred. Transferring disabled or deleted calendars isn't supported.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /calendars/{calendarId}/transferOwnership
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendars
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - newDataOwner:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+      - useAdminAccess:
+          TYPE: BOOL
+          REQUIRED: true
+          LOCATION: query
+    CANONICAL_ID: calendar.transferownership.create
+  calendar.stop.create:
+    SUMMARY: Stop watching resources through this channel
+    DESC: Stop watching resources through this channel
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /channels/stop
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Channel)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.acls.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(Channel)
+          REQUIRED: false
+          LOCATION: body
+    CANONICAL_ID: calendar.stop.create
+  calendar.color.list:
+    SUMMARY: Returns the color definitions for calendars and events.
+    DESC: Returns the color definitions for calendars and events.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /colors
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.owned.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.public.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(Colors)
+        RETURNVAR: calendar_color_list
+        STATUS: 200
+    CANONICAL_ID: calendar.color.list
+  calendar.freebusy.create:
+    SUMMARY: Returns free/busy information for a set of calendars.
+    DESC: Returns free/busy information for a set of calendars.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /freeBusy
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(FreeBusyRequest)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.events.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.freebusy
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.freebusy
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(FreeBusyRequest)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(FreeBusyResponse)
+        RETURNVAR: calendar_freebusy_create
+        STATUS: 200
+    CANONICAL_ID: calendar.freebusy.create
+  calendar.me.calendarList.list:
+    SUMMARY: Returns the calendars on the user's calendar list.
+    DESC: Returns the calendars on the user's calendar list.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/me/calendarList
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - minAccessRole:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - freeBusyReader
+            - owner
+            - reader
+            - writer
+            - writerWithoutPrivateAccess
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showHidden:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showOwnOrganizationOnly:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(CalendarList)
+        RETURNVAR: calendar_me_calendarList_list
+        STATUS: 200
+    CANONICAL_ID: calendar.me.calendarList.list
+  calendar.me.calendarList.create:
+    SUMMARY: Inserts an existing calendar into the user's calendar list.
+    DESC: Inserts an existing calendar into the user's calendar list.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/me/calendarList
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CalendarListEntry)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - colorRgbFormat:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(CalendarListEntry)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CalendarListEntry)
+        RETURNVAR: calendar_me_calendarList_create
+        STATUS: 200
+    CANONICAL_ID: calendar.me.calendarList.create
+  calendar.me.watch.create:
+    SUMMARY: Watch for changes to CalendarList resources.
+    DESC: Watch for changes to CalendarList resources.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/me/calendarList/watch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Channel)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - minAccessRole:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - freeBusyReader
+            - owner
+            - reader
+            - writer
+            - writerWithoutPrivateAccess
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - showDeleted:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showHidden:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - showOwnOrganizationOnly:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Channel)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Channel)
+        RETURNVAR: calendar_me_watch_create
+        STATUS: 200
+    CANONICAL_ID: calendar.me.watch.create
+  calendar.me.calendarList.delete:
+    SUMMARY: Removes a calendar from the user's calendar list.
+    DESC: Removes a calendar from the user's calendar list.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /users/me/calendarList/{calendarId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    CANONICAL_ID: calendar.me.calendarList.delete
+  calendar.me.calendarList.get:
+    SUMMARY: Returns a calendar from the user's calendar list.
+    DESC: Returns a calendar from the user's calendar list.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/me/calendarList/{calendarId}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(CalendarListEntry)
+        RETURNVAR: calendar_me_calendarList_get
+        STATUS: 200
+    CANONICAL_ID: calendar.me.calendarList.get
+  calendar.me.calendarList.update:
+    SUMMARY: Updates an existing calendar on the user's calendar list
+    DESC: Updates an existing calendar on the user's calendar list. This method supports patch semantics.
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /users/me/calendarList/{calendarId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CalendarListEntry)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - colorRgbFormat:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(CalendarListEntry)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CalendarListEntry)
+        RETURNVAR: calendar_me_calendarList_update
+        STATUS: 200
+    CANONICAL_ID: calendar.me.calendarList.update
+  calendar.me.calendarList.update1:
+    SUMMARY: Updates an existing calendar on the user's calendar list.
+    DESC: Updates an existing calendar on the user's calendar list.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /users/me/calendarList/{calendarId}
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CalendarListEntry)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.app.created
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.calendarlist
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - calendarId:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - colorRgbFormat:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(CalendarListEntry)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(CalendarListEntry)
+        RETURNVAR: calendar_me_calendarList_update1
+        STATUS: 200
+    CANONICAL_ID: calendar.me.calendarList.update1
+  calendar.me.settings.list:
+    SUMMARY: Returns all user settings for the authenticated user.
+    DESC: Returns all user settings for the authenticated user.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/me/settings
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(Settings)
+        RETURNVAR: calendar_me_settings_list
+        STATUS: 200
+    CANONICAL_ID: calendar.me.settings.list
+  calendar.me.watch.create1:
+    SUMMARY: Watch for changes to Settings resources.
+    DESC: Watch for changes to Settings resources.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /users/me/settings/watch
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(Channel)
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - maxResults:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - pageToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - syncToken:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - body:
+          TYPE: STRUCT(Channel)
+          REQUIRED: false
+          LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(Channel)
+        RETURNVAR: calendar_me_watch_create1
+        STATUS: 200
+    CANONICAL_ID: calendar.me.watch.create1
+  calendar.me.settings.get:
+    SUMMARY: Returns a single user setting.
+    DESC: Returns a single user setting.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /users/me/settings/{setting}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.readonly
+      - Oauth2:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+        Oauth2c:
+          type: oauth2
+          scopes:
+            - https://www.googleapis.com/auth/calendar.settings.readonly
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - setting:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(Setting)
+        RETURNVAR: calendar_me_settings_get
+        STATUS: 200
+    CANONICAL_ID: calendar.me.settings.get
+STRUCTS:
+  Acl:
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the collection.
+    - name: items
+      TYPE: "[]STRUCT(AclRule)"
+      REQUIRED: false
+      comment: List of rules on the access control list.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#acl
+      comment: Type of the collection ("calendar#acl").
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+    - name: nextSyncToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
+  AclRule_scope:
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The type of the scope. Possible values are:
+        - "default" - The public scope. This is the default value.
+        - "user" - Limits the scope to a single user.
+        - "group" - Limits the scope to a group.
+        - "domain" - Limits the scope to a domain.  Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.
+    - name: value
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type "default".
+  AclRule:
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the resource.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: Identifier of the Access Control List (ACL) rule. See Sharing calendars.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#aclRule
+      comment: Type of the resource ("calendar#aclRule").
+    - name: role
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The role assigned to the scope. Possible values are:
+        - "none" - Provides no access.
+        - "freeBusyReader" - Provides read access to free/busy information.
+        - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+        - "writerWithoutPrivateAccess" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
+        - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs.
+        - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.
+        Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
+    - name: scope
+      TYPE: STRUCT(AclRule_scope)
+      REQUIRED: false
+      comment: The extent to which calendar access is granted by this ACL rule.
+  Calendar:
+    - name: autoAcceptInvitations
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this calendar automatically accepts invitations. Only valid for resource calendars.
+    - name: conferenceProperties
+      TYPE: STRUCT(ConferenceProperties)
+      REQUIRED: false
+      comment: Conferencing properties for this calendar, for example what types of conferences are allowed.
+    - name: dataOwner
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email of the owner of the calendar. Set only for secondary calendars. Read-only.
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description of the calendar. Optional.
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the resource.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: Identifier of the calendar. To retrieve IDs call the calendarList.list() method.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#calendar
+      comment: Type of the resource ("calendar#calendar").
+    - name: labelProperties
+      TYPE: STRUCT(LabelProperties)
+      REQUIRED: false
+      comment: Label properties defined on this calendar. If specified, overwrites the existing label properties. If not specified, the label properties remain unchanged.
+    - name: location
+      TYPE: STRING
+      REQUIRED: false
+      comment: Geographic location of the calendar as free-form text. Optional.
+    - name: summary
+      TYPE: STRING
+      REQUIRED: false
+      comment: Title of the calendar.
+    - name: timeZone
+      TYPE: STRING
+      REQUIRED: false
+      comment: The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) Optional.
+  CalendarList:
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the collection.
+    - name: items
+      TYPE: "[]STRUCT(CalendarListEntry)"
+      REQUIRED: false
+      comment: Calendars that are present on the user's calendar list.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#calendarList
+      comment: Type of the collection ("calendar#calendarList").
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+    - name: nextSyncToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
+  CalendarListEntry_notificationSettings:
+    - name: notifications
+      TYPE: "[]STRUCT(CalendarNotification)"
+      REQUIRED: false
+      comment: The list of notifications set for this calendar.
+  CalendarListEntry:
+    - name: accessRole
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:
+        - "freeBusyReader" - Provides read access to free/busy information.
+        - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+        - "writerWithoutPrivateAccess" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
+        - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
+        - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
+        Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
+    - name: autoAcceptInvitations
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether this calendar automatically accepts invitations. Only valid for resource calendars. Read-only.
+    - name: backgroundColor
+      TYPE: STRING
+      REQUIRED: false
+      comment: The main color of the calendar in the hexadecimal format "#0088aa". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
+    - name: colorId
+      TYPE: STRING
+      REQUIRED: false
+      comment: The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). This property is superseded by the backgroundColor and foregroundColor properties and can be ignored when using these properties. Optional.
+    - name: conferenceProperties
+      TYPE: STRUCT(ConferenceProperties)
+      REQUIRED: false
+      comment: Conferencing properties for this calendar, for example what types of conferences are allowed.
+    - name: dataOwner
+      TYPE: STRING
+      REQUIRED: false
+      comment: The email of the owner of the calendar. Set only for secondary calendars. Read-only.
+    - name: defaultReminders
+      TYPE: "[]STRUCT(EventReminder)"
+      REQUIRED: false
+      comment: The default reminders that the authenticated user has for this calendar.
+    - name: deleted
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description of the calendar. Optional. Read-only.
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the resource.
+    - name: foregroundColor
+      TYPE: STRING
+      REQUIRED: false
+      comment: The foreground color of the calendar in the hexadecimal format "#ffffff". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
+    - name: hidden
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether the calendar has been hidden from the list. Optional. The attribute is only returned when the calendar is hidden, in which case the value is true.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: Identifier of the calendar.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#calendarListEntry
+      comment: Type of the resource ("calendar#calendarListEntry").
+    - name: location
+      TYPE: STRING
+      REQUIRED: false
+      comment: Geographic location of the calendar as free-form text. Optional. Read-only.
+    - name: notificationSettings
+      TYPE: STRUCT(CalendarListEntry_notificationSettings)
+      REQUIRED: false
+      comment: The notifications that the authenticated user is receiving for this calendar.
+    - name: primary
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether the calendar is the primary calendar of the authenticated user. Read-only. Optional. The default is False.
+    - name: selected
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether the calendar content shows up in the calendar UI. Optional. The default is False.
+    - name: summary
+      TYPE: STRING
+      REQUIRED: false
+      comment: Title of the calendar. Read-only.
+    - name: summaryOverride
+      TYPE: STRING
+      REQUIRED: false
+      comment: The summary that the authenticated user has set for this calendar. Optional.
+    - name: timeZone
+      TYPE: STRING
+      REQUIRED: false
+      comment: The time zone of the calendar. Optional. Read-only.
+  CalendarNotification:
+    - name: method
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The method used to deliver the notification. The possible value is:
+        - "email" - Notifications are sent via email.
+        Required when adding a notification.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The type of notification. Possible values are:
+        - "eventCreation" - Notification sent when a new event is put on the calendar.
+        - "eventChange" - Notification sent when an event is changed.
+        - "eventCancellation" - Notification sent when an event is cancelled.
+        - "eventResponse" - Notification sent when an attendee responds to the event invitation.
+        - "agenda" - An agenda with the events of the day (sent out in the morning).
+        Required when adding a notification.
+  Channel:
+    - name: address
+      TYPE: STRING
+      REQUIRED: false
+      comment: The address where notifications are delivered for this channel.
+    - name: expiration
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: int64
+      comment: Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: A UUID or similar unique string that identifies this channel.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: api#channel
+      comment: Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
+    - name: params
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Additional parameters controlling delivery channel behavior. Optional.
+    - name: payload
+      TYPE: BOOL
+      REQUIRED: false
+      comment: A Boolean value to indicate whether payload is wanted. Optional.
+    - name: resourceId
+      TYPE: STRING
+      REQUIRED: false
+      comment: An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
+    - name: resourceUri
+      TYPE: STRING
+      REQUIRED: false
+      comment: A version-specific identifier for the watched resource.
+    - name: token
+      TYPE: STRING
+      REQUIRED: false
+      comment: An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: The type of delivery mechanism used for this channel. Valid values are "web_hook" (or "webhook"). Both values refer to a channel where Http requests are used to deliver messages.
+  Colors:
+    - name: calendar
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its colorId field. Read-only.
+    - name: event
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its colorId field. Read-only.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#colors
+      comment: Type of the resource ("calendar#colors").
+    - name: updated
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: Last modification time of the color palette (as a RFC3339 timestamp). Read-only.
+  ConferenceData:
+    - name: parameters
+      TYPE: STRUCT(ConferenceParameters)
+      REQUIRED: false
+      comment: Additional properties related to a conference. An example would be a solution-specific setting for enabling video streaming.
+    - name: conferenceId
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The ID of the conference.
+        Can be used by developers to keep track of conferences, should not be displayed to users.
+        The ID value is formed differently for each conference solution type:
+        - eventHangout: ID is not set. (This conference type is deprecated.)
+        - eventNamedHangout: ID is the name of the Hangout. (This conference type is deprecated.)
+        - hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.
+        - addOn: ID is defined by the third-party provider.  Optional.
+    - name: conferenceSolution
+      TYPE: STRUCT(ConferenceSolution)
+      REQUIRED: false
+      comment: |-
+        The conference solution, such as Google Meet.
+        Unset for a conference with a failed create request.
+        Either conferenceSolution and at least one entryPoint, or createRequest is required.
+    - name: createRequest
+      TYPE: STRUCT(CreateConferenceRequest)
+      REQUIRED: false
+      comment: |-
+        A request to generate a new conference and attach it to the event. The data is generated asynchronously. To see whether the data is present check the status field.
+        Either conferenceSolution and at least one entryPoint, or createRequest is required.
+    - name: entryPoints
+      TYPE: "[]STRUCT(EntryPoint)"
+      REQUIRED: false
+      comment: |-
+        Information about individual conference entry points, such as URLs or phone numbers.
+        All of them must belong to the same conference.
+        Either conferenceSolution and at least one entryPoint, or createRequest is required.
+    - name: notes
+      TYPE: STRING
+      REQUIRED: false
+      comment: Additional notes (such as instructions from the domain administrator, legal notices) to display to the user. Can contain HTML. The maximum length is 2048 characters. Optional.
+    - name: signature
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The signature of the conference data.
+        Generated on server side.
+        Unset for a conference with a failed create request.
+        Optional for a conference with a pending create request.
+  ConferenceParameters:
+    - name: addOnParameters
+      TYPE: STRUCT(ConferenceParametersAddOnParameters)
+      REQUIRED: false
+      comment: Additional add-on specific data.
+  ConferenceParametersAddOnParameters:
+    - name: parameters
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+  ConferenceProperties:
+    - name: allowedConferenceSolutionTypes
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |-
+        The types of conference solutions that are supported for this calendar.
+        The possible values are:
+        - "eventHangout"
+        - "eventNamedHangout"
+        - "hangoutsMeet"  Optional.
+  ConferenceRequestStatus:
+    - name: statusCode
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The current status of the conference create request. Read-only.
+        The possible values are:
+        - "pending": the conference create request is still being processed.
+        - "success": the conference create request succeeded, the entry points are populated.
+        - "failure": the conference create request failed, there are no entry points.
+  ConferenceSolution:
+    - name: iconUri
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user-visible icon for this solution.
+    - name: key
+      TYPE: STRUCT(ConferenceSolutionKey)
+      REQUIRED: false
+      comment: The key which can uniquely identify the conference solution for this event.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: The user-visible name of this solution. Not localized.
+  ConferenceSolutionKey:
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The conference solution type.
+        If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications.
+        The possible values are:
+        - "eventHangout" for Hangouts for consumers (deprecated; existing events may show this conference solution type but new conferences cannot be created)
+        - "eventNamedHangout" for classic Hangouts for Google Workspace users (deprecated; existing events may show this conference solution type but new conferences cannot be created)
+        - "hangoutsMeet" for Google Meet (http://meet.google.com)
+        - "addOn" for 3P conference providers
+  CreateConferenceRequest:
+    - name: conferenceSolutionKey
+      TYPE: STRUCT(ConferenceSolutionKey)
+      REQUIRED: false
+      comment: The conference solution, such as Hangouts or Google Meet.
+    - name: requestId
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The client-generated unique ID for this request.
+        Clients should regenerate this ID for every new request. If an ID provided is the same as for the previous request, the request is ignored.
+    - name: status
+      TYPE: STRUCT(ConferenceRequestStatus)
+      REQUIRED: false
+      comment: The status of the conference create request.
+  EntryPoint:
+    - name: accessCode
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The access code to access the conference. The maximum length is 128 characters.
+        When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+        Optional.
+    - name: entryPointFeatures
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Features of the entry point, such as being toll or toll-free. One entry point can have multiple features. However, toll and toll-free cannot be both set on the same entry point.
+    - name: entryPointType
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The type of the conference entry point.
+        Possible values are:
+        - "video" - joining a conference over HTTP. A conference can have zero or one video entry point.
+        - "phone" - joining a conference by dialing a phone number. A conference can have zero or more phone entry points.
+        - "sip" - joining a conference over SIP. A conference can have zero or one sip entry point.
+        - "more" - further conference joining instructions, for example additional phone numbers. A conference can have zero or one more entry point. A conference with only a more entry point is not a valid conference.
+    - name: label
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters.
+        Examples:
+        - for video: meet.google.com/aaa-bbbb-ccc
+        - for phone: +1 123 268 2601
+        - for sip: 12345678@altostrat.com
+        - for more: should not be filled
+        Optional.
+    - name: meetingCode
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The meeting code to access the conference. The maximum length is 128 characters.
+        When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+        Optional.
+    - name: passcode
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The passcode to access the conference. The maximum length is 128 characters.
+        When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+    - name: password
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The password to access the conference. The maximum length is 128 characters.
+        When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+        Optional.
+    - name: pin
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The PIN to access the conference. The maximum length is 128 characters.
+        When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+        Optional.
+    - name: regionCode
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The CLDR/ISO 3166 region code for the country associated with this phone access. Example: "SE" for Sweden.
+        Calendar backend will populate this field only for EntryPointType.PHONE.
+    - name: uri
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The URI of the entry point. The maximum length is 1300 characters.
+        Format:
+        - for video, http: or https: schema is required.
+        - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234).
+        - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com.
+        - for more, http: or https: schema is required.
+  Event_creator:
+    - name: displayName
+      TYPE: STRING
+      REQUIRED: false
+      comment: The creator's name, if available.
+    - name: email
+      TYPE: STRING
+      REQUIRED: false
+      comment: The creator's email address, if available.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The creator's Profile ID, if available.
+    - name: self
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: "false"
+      comment: Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+  Event_extendedProperties:
+    - name: private
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Properties that are private to the copy of the event that appears on this calendar.
+    - name: shared
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Properties that are shared between copies of the event on other attendees' calendars.
+  Event_gadget:
+    - name: display
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The gadget's display mode. Deprecated. Possible values are:
+        - "icon" - The gadget displays next to the event's title in the calendar view.
+        - "chip" - The gadget displays when the event is clicked.
+    - name: height
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The gadget's height in pixels. The height must be an integer greater than 0. Optional. Deprecated.
+    - name: iconLink
+      TYPE: STRING
+      REQUIRED: false
+      comment: The gadget's icon URL. The URL scheme must be HTTPS. Deprecated.
+    - name: link
+      TYPE: STRING
+      REQUIRED: false
+      comment: The gadget's URL. The URL scheme must be HTTPS. Deprecated.
+    - name: preferences
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      comment: Preferences.
+    - name: title
+      TYPE: STRING
+      REQUIRED: false
+      comment: The gadget's title. Deprecated.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: The gadget's type. Deprecated.
+    - name: width
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: The gadget's width in pixels. The width must be an integer greater than 0. Optional. Deprecated.
+  Event_organizer:
+    - name: displayName
+      TYPE: STRING
+      REQUIRED: false
+      comment: The organizer's name, if available.
+    - name: email
+      TYPE: STRING
+      REQUIRED: false
+      comment: The organizer's email address, if available. It must be a valid email address as per RFC5322.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The organizer's Profile ID, if available.
+    - name: self
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: "false"
+      comment: Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+  Event_reminders:
+    - name: overrides
+      TYPE: "[]STRUCT(EventReminder)"
+      REQUIRED: false
+      comment: If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event. The maximum number of override reminders is 5.
+    - name: useDefault
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the default reminders of the calendar apply to the event.
+  Event_source:
+    - name: title
+      TYPE: STRING
+      REQUIRED: false
+      comment: Title of the source; for example a title of a web page or an email subject.
+    - name: url
+      TYPE: STRING
+      REQUIRED: false
+      comment: URL of the source pointing to a resource. The URL scheme must be HTTP or HTTPS.
+  Event:
+    - name: anyoneCanAddSelf
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether anyone can invite themselves to the event (deprecated). Optional. The default is False.
+    - name: attachments
+      TYPE: "[]STRUCT(EventAttachment)"
+      REQUIRED: false
+      comment: |-
+        File attachments for the event.
+        In order to modify attachments the supportsAttachments request parameter should be set to true.
+        There can be at most 25 attachments per event,
+    - name: attendees
+      TYPE: "[]STRUCT(EventAttendee)"
+      REQUIRED: false
+      comment: The attendees of the event. See the Events with attendees guide for more information on scheduling events with other calendar users. Service accounts need to use domain-wide delegation of authority to populate the attendee list.
+    - name: attendeesOmitted
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.
+    - name: birthdayProperties
+      TYPE: STRUCT(EventBirthdayProperties)
+      REQUIRED: false
+      comment: Birthday or special event data. Used if eventType is "birthday". Immutable.
+    - name: colorId
+      TYPE: STRING
+      REQUIRED: false
+      comment: The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional.
+    - name: conferenceData
+      TYPE: STRUCT(ConferenceData)
+      REQUIRED: false
+      comment: "The conference-related information, such as details of a Google Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests. Warning: Reusing Google Meet conference data across different events can cause access issues and expose meeting details to unintended users. To help ensure meeting privacy, always generate a unique conference for each event by using the createRequest field."
+    - name: created
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: Creation time of the event (as a RFC3339 timestamp). Read-only.
+    - name: creator
+      TYPE: STRUCT(Event_creator)
+      REQUIRED: false
+      comment: The creator of the event. Read-only.
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description of the event. Can contain HTML. Optional.
+    - name: end
+      TYPE: STRUCT(EventDateTime)
+      REQUIRED: false
+      comment: The (exclusive) end time of the event. For a recurring event, this is the end time of the first instance.
+    - name: endTimeUnspecified
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the resource.
+    - name: eventLabelId
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The ID of the event label assigned to the event. Optional. This refers to the ID of an entry in the labelProperties.eventLabels property of the calendar (see the Calendars.get endpoint.)
+        This property supersedes the index-based colorId property. To set or change this property, you need to specify eventLabelVersion=1 in the parameters of the insert, import, update, and patch methods.
+        Setting an empty string, or not setting this field at all, will remove the existing label from the event.
+    - name: eventType
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: default
+      comment: |-
+        Specific type of the event. This cannot be modified after the event is created. Possible values are:
+        - "birthday" - A special all-day event with an annual recurrence.
+        - "default" - A regular event or not further specified.
+        - "focusTime" - A focus-time event.
+        - "fromGmail" - An event from Gmail. This type of event cannot be created.
+        - "outOfOffice" - An out-of-office event.
+        - "workingLocation" - A working location event.
+    - name: extendedProperties
+      TYPE: STRUCT(Event_extendedProperties)
+      REQUIRED: false
+      comment: Extended properties of the event.
+    - name: focusTimeProperties
+      TYPE: STRUCT(EventFocusTimeProperties)
+      REQUIRED: false
+      comment: Focus Time event data. Used if eventType is focusTime.
+    - name: gadget
+      TYPE: STRUCT(Event_gadget)
+      REQUIRED: false
+      comment: A gadget that extends this event. Gadgets are deprecated; this structure is instead only used for returning birthday calendar metadata.
+    - name: guestsCanInviteOthers
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: true
+      comment: Whether attendees other than the organizer can invite others to the event. Optional. The default is True.
+    - name: guestsCanModify
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether attendees other than the organizer can modify the event. Optional. The default is False.
+    - name: guestsCanSeeOtherGuests
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: true
+      comment: Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.
+    - name: hangoutLink
+      TYPE: STRING
+      REQUIRED: false
+      comment: An absolute link to the Google Hangout associated with this event. Read-only.
+    - name: htmlLink
+      TYPE: STRING
+      REQUIRED: false
+      comment: An absolute link to this event in the Google Calendar Web UI. Read-only.
+    - name: iCalUID
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method.
+        Note that the iCalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same iCalUIDs. To retrieve an event using its iCalUID, call the events.list method using the iCalUID parameter. To retrieve an event using its id, call the events.get method.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:
+        - characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938
+        - the length of the ID must be between 5 and 1024 characters
+        - the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122.
+        If you do not specify an ID, it will be automatically generated by the server.
+        Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#event
+      comment: Type of the resource ("calendar#event").
+    - name: location
+      TYPE: STRING
+      REQUIRED: false
+      comment: Geographic location of the event as free-form text. Optional.
+    - name: locked
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether this is a locked event copy where no changes can be made to the main event fields "summary", "description", "location", "start", "end" or "recurrence". The default is False. Read-Only.
+    - name: organizer
+      TYPE: STRUCT(Event_organizer)
+      REQUIRED: false
+      comment: The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.
+    - name: originalStartTime
+      TYPE: STRUCT(EventDateTime)
+      REQUIRED: false
+      comment: For an instance of a recurring event, this is the time at which this event would start according to the recurrence data in the recurring event identified by recurringEventId. It uniquely identifies the instance within the recurring event series even if the instance was moved to a different time. Immutable.
+    - name: outOfOfficeProperties
+      TYPE: STRUCT(EventOutOfOfficeProperties)
+      REQUIRED: false
+      comment: Out of office event data. Used if eventType is outOfOffice.
+    - name: privateCopy
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: If set to True, Event propagation is disabled. Note that it is not the same thing as Private event properties. Optional. Immutable. The default is False.
+    - name: recurrence
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event, as specified in RFC5545. Note that DTSTART and DTEND lines are not allowed in this field; event start and end times are specified in the start and end fields. This field is omitted for single events or instances of recurring events.
+    - name: recurringEventId
+      TYPE: STRING
+      REQUIRED: false
+      comment: For an instance of a recurring event, this is the id of the recurring event to which this instance belongs. Immutable.
+    - name: reminders
+      TYPE: STRUCT(Event_reminders)
+      REQUIRED: false
+      comment: Information about the event's reminders for the authenticated user. Note that changing reminders does not also change the updated property of the enclosing event.
+    - name: sequence
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Sequence number as per iCalendar.
+    - name: source
+      TYPE: STRUCT(Event_source)
+      REQUIRED: false
+      comment: Source from which the event was created. For example, a web page, an email message or any document identifiable by an URL with HTTP or HTTPS scheme. Can only be seen or modified by the creator of the event.
+    - name: start
+      TYPE: STRUCT(EventDateTime)
+      REQUIRED: false
+      comment: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        Status of the event. Optional. Possible values are:
+        - "confirmed" - The event is confirmed. This is the default status.
+        - "tentative" - The event is tentatively confirmed.
+        - "cancelled" - The event is cancelled (deleted). The list method returns cancelled events only on incremental sync (when syncToken or updatedMin are specified) or if the showDeleted flag is set to true. The get method always returns them.
+        A cancelled status represents two different states depending on the event type:
+        - Cancelled exceptions of an uncancelled recurring event indicate that this instance should no longer be presented to the user. Clients should store these events for the lifetime of the parent recurring event.
+        Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.
+        - All other cancelled events represent deleted events. Clients should remove their locally synced copies. Such cancelled events will eventually disappear, so do not rely on them being available indefinitely.
+        Deleted events are only guaranteed to have the id field populated.   On the organizer's calendar, cancelled events continue to expose event details (summary, location, etc.) so that they can be restored (undeleted). Similarly, the events to which the user was invited and that they manually removed continue to provide details. However, incremental sync requests with showDeleted set to false will not return these details.
+        If an event changes its organizer (for example via the move operation) and the original organizer is not on the attendee list, it will leave behind a cancelled event where only the id field is guaranteed to be populated.
+    - name: summary
+      TYPE: STRING
+      REQUIRED: false
+      comment: Title of the event.
+    - name: transparency
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: opaque
+      comment: |-
+        Whether the event blocks time on the calendar. Optional. Possible values are:
+        - "opaque" - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI.
+        - "transparent" - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
+    - name: updated
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: Last modification time of the main event data (as a RFC3339 timestamp). Updating event reminders will not cause this to change. Read-only.
+    - name: visibility
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: default
+      comment: |-
+        Visibility of the event. Optional. Possible values are:
+        - "default" - Uses the default visibility for events on the calendar. This is the default value.
+        - "public" - The event is public and event details are visible to all readers of the calendar.
+        - "private" - The event is private and only event attendees may view event details.
+        - "confidential" - The event is private. This value is provided for compatibility reasons.
+        Note on recurring events: Changing the visibility of a single instance of a recurring event can affect all instances of the series. If the new setting is more restrictive (e.g. from public to private), it is applied to all instances. If the new setting is less restrictive (e.g. from private to public), the change is ignored. To make a recurring event less restrictive, you must update the parent recurring event.
+    - name: workingLocationProperties
+      TYPE: STRUCT(EventWorkingLocationProperties)
+      REQUIRED: false
+      comment: Working location event data.
+  EventAttachment:
+    - name: fileId
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        ID of the attached file. Read-only.
+        For Google Drive files, this is the ID of the corresponding Files resource entry in the Drive API.
+    - name: fileUrl
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        URL link to the attachment.
+        For adding Google Drive file attachments use the same format as in alternateLink property of the Files resource in the Drive API.
+        Required when adding an attachment.
+    - name: iconLink
+      TYPE: STRING
+      REQUIRED: false
+      comment: URL link to the attachment's icon. This field can only be modified for custom third-party attachments.
+    - name: mimeType
+      TYPE: STRING
+      REQUIRED: false
+      comment: Internet media type (MIME type) of the attachment.
+    - name: title
+      TYPE: STRING
+      REQUIRED: false
+      comment: Attachment title.
+  EventAttendee:
+    - name: additionalGuests
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      DEFAULT: 0
+      comment: Number of additional guests. Optional. The default is 0.
+    - name: asyncOperation
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: ""
+      comment: |-
+        If present, indicates the status of an asynchronous operation ongoing for this attendee (e.g. listing of members of large attendee groups). Read-only. The default is to not be present.
+        Possible values are:
+        - "inProgress" - The asynchronous operation is in progress.
+        - (not present) - Otherwise.
+    - name: comment
+      TYPE: STRING
+      REQUIRED: false
+      comment: The attendee's response comment. Optional.
+    - name: displayName
+      TYPE: STRING
+      REQUIRED: false
+      comment: The attendee's name, if available. Optional.
+    - name: email
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The attendee's email address, if available. This field must be present when adding an attendee. It must be a valid email address as per RFC5322.
+        Required when adding an attendee.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The attendee's Profile ID, if available.
+    - name: optional
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether this is an optional attendee. Optional. The default is False.
+    - name: organizer
+      TYPE: BOOL
+      REQUIRED: false
+      comment: Whether the attendee is the organizer of the event. Read-only. The default is False.
+    - name: resource
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether the attendee is a resource. Can only be set when the attendee is added to the event for the first time. Subsequent modifications are ignored. Optional. The default is False.
+    - name: responseStatus
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The attendee's response status. Possible values are:
+        - "needsAction" - The attendee has not responded to the invitation (recommended for new events).
+        - "declined" - The attendee has declined the invitation.
+        - "tentative" - The attendee has tentatively accepted the invitation.
+        - "accepted" - The attendee has accepted the invitation.  Warning: If you add an event using the values declined, tentative, or accepted, attendees with the "Add invitations to my calendar" setting set to "When I respond to invitation in email" or "Only if the sender is known" might have their response reset to needsAction and won't see an event in their calendar unless they change their response in the event invitation email. Furthermore, if more than 200 guests are invited to the event, response status is not propagated to the guests.
+    - name: self
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+      comment: Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
+  EventBirthdayProperties:
+    - name: contact
+      TYPE: STRING
+      REQUIRED: false
+      comment: "Resource name of the contact this birthday event is linked to. This can be used to fetch contact details from People API. Format: \"people/c12345\". Read-only."
+    - name: customTypeName
+      TYPE: STRING
+      REQUIRED: false
+      comment: Custom type label specified for this event. This is populated if birthdayProperties.type is set to "custom". Read-only.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: birthday
+      comment: |-
+        Type of birthday or special event. Possible values are:
+        - "anniversary" - An anniversary other than birthday. Always has a contact.
+        - "birthday" - A birthday event. This is the default value.
+        - "custom" - A special date whose label is further specified in the customTypeName field. Always has a contact.
+        - "other" - A special date which does not fall into the other categories, and does not have a custom label. Always has a contact.
+        - "self" - Calendar owner's own birthday. Cannot have a contact.  The Calendar API only supports creating events with the type "birthday". The type cannot be changed after the event is created.
+  EventDateTime:
+    - name: date
+      TYPE: DATE
+      REQUIRED: false
+      FORMAT: date
+      comment: The date, in the format "yyyy-mm-dd", if this is an all-day event.
+    - name: dateTime
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: The time, as a combined date-time value (formatted according to RFC3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.
+    - name: timeZone
+      TYPE: STRING
+      REQUIRED: false
+      comment: The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
+  EventFocusTimeProperties:
+    - name: autoDeclineMode
+      TYPE: STRING
+      REQUIRED: false
+      comment: Whether to decline meeting invitations which overlap Focus Time events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Focus Time event is present are to be declined.
+    - name: chatStatus
+      TYPE: STRING
+      REQUIRED: false
+      comment: The status to mark the user in Chat and related products. This can be available or doNotDisturb.
+    - name: declineMessage
+      TYPE: STRING
+      REQUIRED: false
+      comment: Response message to set if an existing event or new invitation is automatically declined by Calendar.
+  EventLabel:
+    - name: backgroundColor
+      TYPE: STRING
+      REQUIRED: false
+      comment: Background color of the label in hexadecimal format, such as "#039be5". Events with this label are displayed in this color. Required.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The ID of the label. Optional when inserting a new label. If not provided, a unique ID will be generated. Required when updating a label.
+        If provided, the ID must be unique within the calendar and follow UUID format.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        Name of the label. Optional.
+        If provided this must have at most 50 characters.
+  EventOutOfOfficeProperties:
+    - name: autoDeclineMode
+      TYPE: STRING
+      REQUIRED: false
+      comment: Whether to decline meeting invitations which overlap Out of office events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Out of office event is present are to be declined.
+    - name: declineMessage
+      TYPE: STRING
+      REQUIRED: false
+      comment: Response message to set if an existing event or new invitation is automatically declined by Calendar.
+  EventReminder:
+    - name: method
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The method used by this reminder. Possible values are:
+        - "email" - Reminders are sent via email.
+        - "popup" - Reminders are sent via a UI popup.
+        Required when adding a reminder.
+    - name: minutes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: |-
+        Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
+        Required when adding a reminder.
+  EventWorkingLocationProperties_customLocation:
+    - name: label
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional extra label for additional information.
+  EventWorkingLocationProperties_officeLocation:
+    - name: buildingId
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional building identifier. This should reference a building ID in the organization's Resources database.
+    - name: deskId
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional desk identifier.
+    - name: floorId
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional floor identifier.
+    - name: floorSectionId
+      TYPE: STRING
+      REQUIRED: false
+      comment: An optional floor section identifier.
+    - name: label
+      TYPE: STRING
+      REQUIRED: false
+      comment: The office name that's displayed in Calendar Web and Mobile clients. We recommend you reference a building name in the organization's Resources database.
+  EventWorkingLocationProperties:
+    - name: customLocation
+      TYPE: STRUCT(EventWorkingLocationProperties_customLocation)
+      REQUIRED: false
+      comment: If present, specifies that the user is working from a custom location.
+    - name: homeOffice
+      TYPE: ANY
+      REQUIRED: false
+      comment: If present, specifies that the user is working at home.
+    - name: officeLocation
+      TYPE: STRUCT(EventWorkingLocationProperties_officeLocation)
+      REQUIRED: false
+      comment: If present, specifies that the user is working from an office.
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        Type of the working location. Possible values are:
+        - "homeOffice" - The user is working at home.
+        - "officeLocation" - The user is working from an office.
+        - "customLocation" - The user is working from a custom location.  Any details are specified in a sub-field of the specified name, but this field may be missing if empty. Any other fields are ignored.
+        Required when adding working location properties.
+  Events:
+    - name: accessRole
+      TYPE: STRING
+      REQUIRED: false
+      comment: |-
+        The user's access role for this calendar. Read-only. Possible values are:
+        - "none" - The user has no access.
+        - "freeBusyReader" - The user has read access to free/busy information.
+        - "reader" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+        - "writerWithoutPrivateAccess" - The user has read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
+        - "writer" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
+        - "owner" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
+        Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
+    - name: defaultReminders
+      TYPE: "[]STRUCT(EventReminder)"
+      REQUIRED: false
+      comment: The default reminders on the calendar for the authenticated user. These reminders apply to all events on this calendar that do not explicitly override them (i.e. do not have reminders.useDefault set to True).
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      comment: Description of the calendar. Read-only.
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the collection.
+    - name: items
+      TYPE: "[]STRUCT(Event)"
+      REQUIRED: false
+      comment: List of events on the calendar.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#events
+      comment: Type of the collection ("calendar#events").
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+    - name: nextSyncToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
+    - name: summary
+      TYPE: STRING
+      REQUIRED: false
+      comment: Title of the calendar. Read-only.
+    - name: timeZone
+      TYPE: STRING
+      REQUIRED: false
+      comment: The time zone of the calendar. Read-only.
+    - name: updated
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: Last modification time of the calendar (as a RFC3339 timestamp). Read-only.
+  FreeBusyRequest:
+    - name: calendarExpansionMax
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Maximal number of calendars for which FreeBusy information is to be provided. Optional. Maximum value is 50.
+    - name: groupExpansionMax
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int32
+      comment: Maximal number of calendar identifiers to be provided for a single group. Optional. An error is returned for a group with more members than this value. Maximum value is 100.
+    - name: items
+      TYPE: "[]STRUCT(FreeBusyRequestItem)"
+      REQUIRED: false
+      comment: List of calendars and/or groups to query.
+    - name: timeMax
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: The end of the interval for the query formatted as per RFC3339.
+    - name: timeMin
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: The start of the interval for the query formatted as per RFC3339.
+    - name: timeZone
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: UTC
+      comment: Time zone used in the response. Optional. The default is UTC.
+  FreeBusyRequestItem:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The identifier of a calendar or a group.
+  FreeBusyResponse:
+    - name: calendars
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: List of free/busy information for calendars.
+    - name: groups
+      TYPE: map[STRING]ANY
+      REQUIRED: false
+      comment: Expansion of groups.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#freeBusy
+      comment: Type of the resource ("calendar#freeBusy").
+    - name: timeMax
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: The end of the interval.
+    - name: timeMin
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: The start of the interval.
+  LabelProperties:
+    - name: eventLabels
+      TYPE: "[]STRUCT(EventLabel)"
+      REQUIRED: false
+      comment: |-
+        Event labels defined on this calendar. If this is present when updating the calendar, it will replace the existing event labels.
+        Extend the list to add a new event label, and remove entities from the list to delete a label from calendar.
+        Each calendar can have a maximum of 200 labels.
+  Setting:
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: ETag of the resource.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: The id of the user setting.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#setting
+      comment: Type of the resource ("calendar#setting").
+    - name: value
+      TYPE: STRING
+      REQUIRED: false
+      comment: Value of the user setting. The format of the value depends on the ID of the setting. It must always be a UTF-8 string of length up to 1024 characters.
+  Settings:
+    - name: etag
+      TYPE: STRING
+      REQUIRED: false
+      comment: Etag of the collection.
+    - name: items
+      TYPE: "[]STRUCT(Setting)"
+      REQUIRED: false
+      comment: List of user settings.
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      DEFAULT: calendar#settings
+      comment: Type of the collection ("calendar#settings").
+    - name: nextPageToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+    - name: nextSyncToken
+      TYPE: STRING
+      REQUIRED: false
+      comment: Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
