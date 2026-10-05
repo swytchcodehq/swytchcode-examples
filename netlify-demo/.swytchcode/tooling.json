@@ -1,0 +1,1301 @@
+{
+  "editor": "claude",
+  "integrations": {
+    "Netlify.netlify": {
+      "version": "v1"
+    }
+  },
+  "mode": "production",
+  "tools": {
+    "netlify.account.env.update": {
+      "desc": "Updates an existing environment variable and all of its values. Existing values will be replaced by values provided.",
+      "inputs": [
+        {
+          "account_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "key": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "site_id": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "REQUIRED": false,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "is_secret": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "key": {
+                  "required": false,
+                  "type": "string"
+                },
+                "scopes": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "values": {
+                  "items": {
+                    "properties": {
+                      "context": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "context_parameter": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "value": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "6c2a17a34a008d0475758b24b102bd54dcbe1c54a450a50ac5010d3c1bc99ab1",
+      "output": {
+        "schema": {
+          "properties": {
+            "is_secret": {
+              "required": false,
+              "type": "boolean"
+            },
+            "key": {
+              "required": false,
+              "type": "string"
+            },
+            "scopes": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "updated_at": {
+              "required": false,
+              "type": "TIMESTAMP"
+            },
+            "updated_by": {
+              "properties": {
+                "avatar_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "email": {
+                  "required": false,
+                  "type": "string"
+                },
+                "full_name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "values": {
+              "items": {
+                "properties": {
+                  "context": {
+                    "required": false,
+                    "type": "string"
+                  },
+                  "context_parameter": {
+                    "required": false,
+                    "type": "string"
+                  },
+                  "id": {
+                    "required": false,
+                    "type": "string"
+                  },
+                  "value": {
+                    "required": false,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "required": false,
+              "type": "array"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Updates an existing environment variable and all of its values",
+      "type": "method"
+    },
+    "netlify.build.status.get": {
+      "desc": "",
+      "inputs": [
+        {
+          "account_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "53d975ea4b5528d97c4d3917acc5472f06f92c1c29328aa0c96a79abb38df7c6",
+      "output": {
+        "schema": {
+          "items": {
+            "properties": {
+              "active": {
+                "required": false,
+                "type": "integer"
+              },
+              "build_count": {
+                "required": false,
+                "type": "integer"
+              },
+              "enqueued": {
+                "required": false,
+                "type": "integer"
+              },
+              "minutes": {
+                "required": false,
+                "type": "object"
+              },
+              "pending_concurrency": {
+                "required": false,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "status": 200
+      },
+      "summary": "Perform operation getAccountBuildStatus",
+      "type": "method"
+    },
+    "netlify.site.create": {
+      "desc": "**Note:** Environment variable keys and values have moved from `build_settings.env` and `repo.env` to a new endpoint. Please use [createEnvVars](#tag/environmentVariables/operation/createEnvVars) to create environment variables for a site.",
+      "inputs": [
+        {
+          "configure_dns": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "account_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "account_name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "account_slug": {
+                  "required": false,
+                  "type": "string"
+                },
+                "admin_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "branch_deploy_custom_domain": {
+                  "required": false,
+                  "type": "string"
+                },
+                "build_image": {
+                  "required": false,
+                  "type": "string"
+                },
+                "build_settings": {
+                  "properties": {
+                    "allowed_branches": {
+                      "required": false,
+                      "type": "[]STRING"
+                    },
+                    "cmd": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "deploy_key_id": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "dir": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "env": {
+                      "required": false,
+                      "type": "map[STRING]STRING"
+                    },
+                    "functions_dir": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "id": {
+                      "required": false,
+                      "type": "integer"
+                    },
+                    "installation_id": {
+                      "required": false,
+                      "type": "integer"
+                    },
+                    "private_logs": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "provider": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "public_repo": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "repo_branch": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "repo_path": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "repo_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "stop_builds": {
+                      "required": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "capabilities": {
+                  "required": false,
+                  "type": "map[STRING]ANY"
+                },
+                "created_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "custom_domain": {
+                  "required": false,
+                  "type": "string"
+                },
+                "default_hooks_data": {
+                  "required": false,
+                  "type": "object"
+                },
+                "deploy_hook": {
+                  "required": false,
+                  "type": "string"
+                },
+                "deploy_preview_custom_domain": {
+                  "required": false,
+                  "type": "string"
+                },
+                "deploy_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "domain_aliases": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "force_ssl": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "functions_region": {
+                  "required": false,
+                  "type": "string"
+                },
+                "git_provider": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id_domain": {
+                  "required": false,
+                  "type": "string"
+                },
+                "managed_dns": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "notification_email": {
+                  "required": false,
+                  "type": "string"
+                },
+                "password": {
+                  "required": false,
+                  "type": "string"
+                },
+                "plan": {
+                  "required": false,
+                  "type": "string"
+                },
+                "prerender": {
+                  "required": false,
+                  "type": "string"
+                },
+                "prevent_non_git_prod_deploys": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "processing_settings": {
+                  "required": false,
+                  "type": "object"
+                },
+                "published_deploy": {
+                  "properties": {
+                    "admin_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "branch": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "build_id": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "commit_ref": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "commit_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "context": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "deploy_ssl_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "deploy_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "draft": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "error_message": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "framework": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "function_schedules": {
+                      "items": {
+                        "properties": {
+                          "cron": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "name": {
+                            "required": false,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "required": false,
+                      "type": "array"
+                    },
+                    "functions_region": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "functions_region_overrides": {
+                      "required": false,
+                      "type": "[]ANY"
+                    },
+                    "id": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "locked": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "published_at": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "required": {
+                      "required": false,
+                      "type": "[]STRING"
+                    },
+                    "required_edge_functions": {
+                      "required": false,
+                      "type": "[]STRING"
+                    },
+                    "required_functions": {
+                      "required": false,
+                      "type": "[]STRING"
+                    },
+                    "review_id": {
+                      "required": false,
+                      "type": "FLOAT"
+                    },
+                    "review_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "screenshot_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "site_id": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "skew_protection_token": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "skipped": {
+                      "required": false,
+                      "type": "boolean"
+                    },
+                    "ssl_url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "state": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "title": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "url": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "required": false,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "screenshot_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "session_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "ssl": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "ssl_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "state": {
+                  "required": false,
+                  "type": "string"
+                },
+                "updated_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "user_id": {
+                  "required": false,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "8d7ddcfff16840e25cd539c91c6f22213790352055492a8a83b99eb0caa5e959",
+      "output": {
+        "schema": {
+          "properties": {
+            "account_id": {
+              "required": false,
+              "type": "string"
+            },
+            "account_name": {
+              "required": false,
+              "type": "string"
+            },
+            "account_slug": {
+              "required": false,
+              "type": "string"
+            },
+            "admin_url": {
+              "required": false,
+              "type": "string"
+            },
+            "branch_deploy_custom_domain": {
+              "required": false,
+              "type": "string"
+            },
+            "build_image": {
+              "required": false,
+              "type": "string"
+            },
+            "build_settings": {
+              "properties": {
+                "allowed_branches": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "cmd": {
+                  "required": false,
+                  "type": "string"
+                },
+                "deploy_key_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "dir": {
+                  "required": false,
+                  "type": "string"
+                },
+                "env": {
+                  "required": false,
+                  "type": "map[STRING]STRING"
+                },
+                "functions_dir": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "installation_id": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "private_logs": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "provider": {
+                  "required": false,
+                  "type": "string"
+                },
+                "public_repo": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "repo_branch": {
+                  "required": false,
+                  "type": "string"
+                },
+                "repo_path": {
+                  "required": false,
+                  "type": "string"
+                },
+                "repo_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "stop_builds": {
+                  "required": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "capabilities": {
+              "required": false,
+              "type": "map[STRING]ANY"
+            },
+            "created_at": {
+              "required": false,
+              "type": "string"
+            },
+            "custom_domain": {
+              "required": false,
+              "type": "string"
+            },
+            "default_hooks_data": {
+              "required": false,
+              "type": "object"
+            },
+            "deploy_hook": {
+              "required": false,
+              "type": "string"
+            },
+            "deploy_preview_custom_domain": {
+              "required": false,
+              "type": "string"
+            },
+            "deploy_url": {
+              "required": false,
+              "type": "string"
+            },
+            "domain_aliases": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "force_ssl": {
+              "required": false,
+              "type": "boolean"
+            },
+            "functions_region": {
+              "required": false,
+              "type": "string"
+            },
+            "git_provider": {
+              "required": false,
+              "type": "string"
+            },
+            "id": {
+              "required": false,
+              "type": "string"
+            },
+            "id_domain": {
+              "required": false,
+              "type": "string"
+            },
+            "managed_dns": {
+              "required": false,
+              "type": "boolean"
+            },
+            "name": {
+              "required": false,
+              "type": "string"
+            },
+            "notification_email": {
+              "required": false,
+              "type": "string"
+            },
+            "password": {
+              "required": false,
+              "type": "string"
+            },
+            "plan": {
+              "required": false,
+              "type": "string"
+            },
+            "prerender": {
+              "required": false,
+              "type": "string"
+            },
+            "prevent_non_git_prod_deploys": {
+              "required": false,
+              "type": "boolean"
+            },
+            "processing_settings": {
+              "required": false,
+              "type": "object"
+            },
+            "published_deploy": {
+              "properties": {
+                "admin_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "branch": {
+                  "required": false,
+                  "type": "string"
+                },
+                "build_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "commit_ref": {
+                  "required": false,
+                  "type": "string"
+                },
+                "commit_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "context": {
+                  "required": false,
+                  "type": "string"
+                },
+                "created_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "deploy_ssl_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "deploy_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "draft": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "error_message": {
+                  "required": false,
+                  "type": "string"
+                },
+                "framework": {
+                  "required": false,
+                  "type": "string"
+                },
+                "function_schedules": {
+                  "items": {
+                    "properties": {
+                      "cron": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "name": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "functions_region": {
+                  "required": false,
+                  "type": "string"
+                },
+                "functions_region_overrides": {
+                  "required": false,
+                  "type": "[]ANY"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "locked": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "published_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "required": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "required_edge_functions": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "required_functions": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "review_id": {
+                  "required": false,
+                  "type": "FLOAT"
+                },
+                "review_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "screenshot_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "site_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "skew_protection_token": {
+                  "required": false,
+                  "type": "string"
+                },
+                "skipped": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "ssl_url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "state": {
+                  "required": false,
+                  "type": "string"
+                },
+                "title": {
+                  "required": false,
+                  "type": "string"
+                },
+                "updated_at": {
+                  "required": false,
+                  "type": "string"
+                },
+                "url": {
+                  "required": false,
+                  "type": "string"
+                },
+                "user_id": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "screenshot_url": {
+              "required": false,
+              "type": "string"
+            },
+            "session_id": {
+              "required": false,
+              "type": "string"
+            },
+            "ssl": {
+              "required": false,
+              "type": "boolean"
+            },
+            "ssl_url": {
+              "required": false,
+              "type": "string"
+            },
+            "state": {
+              "required": false,
+              "type": "string"
+            },
+            "updated_at": {
+              "required": false,
+              "type": "string"
+            },
+            "url": {
+              "required": false,
+              "type": "string"
+            },
+            "user_id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "**Note:** Environment variable keys and values have moved from `build_settings.env` and `repo.env` to a new endpoint",
+      "type": "method"
+    },
+    "netlify.site.deploys.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "site_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "deploy-previews": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "production": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "state": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "branch": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "latest-published": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "title": {
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "LOCATION": "body",
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "async": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "branch": {
+                  "required": false,
+                  "type": "string"
+                },
+                "draft": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "edge_functions": {
+                  "required": false,
+                  "type": "object"
+                },
+                "environment": {
+                  "items": {
+                    "properties": {
+                      "is_secret": {
+                        "required": true,
+                        "type": "boolean"
+                      },
+                      "key": {
+                        "required": true,
+                        "type": "string"
+                      },
+                      "scopes": {
+                        "required": true,
+                        "type": "[]STRING"
+                      },
+                      "value": {
+                        "required": true,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value",
+                      "is_secret",
+                      "scopes"
+                    ],
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "files": {
+                  "required": false,
+                  "type": "object"
+                },
+                "framework": {
+                  "required": false,
+                  "type": "string"
+                },
+                "framework_version": {
+                  "required": false,
+                  "type": "string"
+                },
+                "function_schedules": {
+                  "items": {
+                    "properties": {
+                      "cron": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "name": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "functions": {
+                  "required": false,
+                  "type": "object"
+                },
+                "functions_config": {
+                  "required": false,
+                  "type": "map[STRING]ANY"
+                },
+                "zip": {
+                  "required": false,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "65161f048240abdf2163e424b7d61ee7ce71b8aef03b3b966fd105095774dede",
+      "output": {
+        "schema": {
+          "properties": {
+            "admin_url": {
+              "required": false,
+              "type": "string"
+            },
+            "branch": {
+              "required": false,
+              "type": "string"
+            },
+            "build_id": {
+              "required": false,
+              "type": "string"
+            },
+            "commit_ref": {
+              "required": false,
+              "type": "string"
+            },
+            "commit_url": {
+              "required": false,
+              "type": "string"
+            },
+            "context": {
+              "required": false,
+              "type": "string"
+            },
+            "created_at": {
+              "required": false,
+              "type": "string"
+            },
+            "deploy_ssl_url": {
+              "required": false,
+              "type": "string"
+            },
+            "deploy_url": {
+              "required": false,
+              "type": "string"
+            },
+            "draft": {
+              "required": false,
+              "type": "boolean"
+            },
+            "error_message": {
+              "required": false,
+              "type": "string"
+            },
+            "framework": {
+              "required": false,
+              "type": "string"
+            },
+            "function_schedules": {
+              "items": {
+                "properties": {
+                  "cron": {
+                    "required": false,
+                    "type": "string"
+                  },
+                  "name": {
+                    "required": false,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "required": false,
+              "type": "array"
+            },
+            "functions_region": {
+              "required": false,
+              "type": "string"
+            },
+            "functions_region_overrides": {
+              "required": false,
+              "type": "[]ANY"
+            },
+            "id": {
+              "required": false,
+              "type": "string"
+            },
+            "locked": {
+              "required": false,
+              "type": "boolean"
+            },
+            "name": {
+              "required": false,
+              "type": "string"
+            },
+            "published_at": {
+              "required": false,
+              "type": "string"
+            },
+            "required": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "required_edge_functions": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "required_functions": {
+              "required": false,
+              "type": "[]STRING"
+            },
+            "review_id": {
+              "required": false,
+              "type": "FLOAT"
+            },
+            "review_url": {
+              "required": false,
+              "type": "string"
+            },
+            "screenshot_url": {
+              "required": false,
+              "type": "string"
+            },
+            "site_id": {
+              "required": false,
+              "type": "string"
+            },
+            "skew_protection_token": {
+              "required": false,
+              "type": "string"
+            },
+            "skipped": {
+              "required": false,
+              "type": "boolean"
+            },
+            "ssl_url": {
+              "required": false,
+              "type": "string"
+            },
+            "state": {
+              "required": false,
+              "type": "string"
+            },
+            "title": {
+              "required": false,
+              "type": "string"
+            },
+            "updated_at": {
+              "required": false,
+              "type": "string"
+            },
+            "url": {
+              "required": false,
+              "type": "string"
+            },
+            "user_id": {
+              "required": false,
+              "type": "string"
+            }
+          }
+        },
+        "status": 200
+      },
+      "summary": "Perform operation createSiteDeploy",
+      "type": "method"
+    },
+    "netlify.site.publish.create": {
+      "desc": "",
+      "inputs": [
+        {
+          "site_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "split_test_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "9f3dbb6bcf3fefbe446a15acf37d8250ce08604fd417e9807f63e8580b49118a",
+      "summary": "Perform operation enableSplitTest",
+      "type": "method"
+    },
+    "netlify.site.rollback.update": {
+      "desc": "",
+      "inputs": [
+        {
+          "site_id": {
+            "LOCATION": "path",
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "Netlify.netlify@v1",
+      "method_hash": "28c7a7a51b439e091a493bef1543ea574460d2e53189de8f75d3806320712ca7",
+      "summary": "Perform operation rollbackSiteDeploy",
+      "type": "method"
+    }
+  },
+  "version": "2.19.12"
+}
