@@ -1,0 +1,5134 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Accept a repository invitation",
+      "canonical_id": "github.repository_invitation.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Accept an organization invitation to become an active member",
+      "canonical_id": "github.membership.orgs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a comment to a specific commit",
+      "canonical_id": "github.commit.comments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a custom OIDC property for repository actions in an enterprise",
+      "canonical_id": "github.action.repo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a dependency an issue is blocked by",
+      "canonical_id": "github.issue.blockedBy.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a deploy key to a repository",
+      "canonical_id": "github.key.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a field to a user's project",
+      "canonical_id": "github.projectsv2.fields.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a field to an organization-owned project",
+      "canonical_id": "github.projectsv2.fields.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a GitHub-hosted runner to an organization",
+      "canonical_id": "github.action.hostedRunners.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a GPG key to your GitHub account",
+      "canonical_id": "github.gpg_key.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a member to a team",
+      "canonical_id": "github.member.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a member to an enterprise team",
+      "canonical_id": "github.team.memberships.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a public SSH key for the authenticated user",
+      "canonical_id": "github.key.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to a commit comment",
+      "canonical_id": "github.comment.reactions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to a pull request review comment",
+      "canonical_id": "github.pull.reactions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to a release",
+      "canonical_id": "github.releas.reactions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to an issue",
+      "canonical_id": "github.issue.reactions.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a reaction to an issue comment",
+      "canonical_id": "github.issue.reactions.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to a user secret",
+      "canonical_id": "github.codespace.repositories.update3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an app installation",
+      "canonical_id": "github.installation.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization secret",
+      "canonical_id": "github.dependabot.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization secret",
+      "canonical_id": "github.action.repositories.update7"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization secret",
+      "canonical_id": "github.codespace.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization secret",
+      "canonical_id": "github.agent.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization variable",
+      "canonical_id": "github.action.repositories.update9"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to an organization variable",
+      "canonical_id": "github.agent.repositories.update3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a repository to OIDC token customization for organization",
+      "canonical_id": "github.action.repo.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a review comment to a pull request diff",
+      "canonical_id": "github.pull.comments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a runner to an organization's runner group",
+      "canonical_id": "github.action.runners.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a sub-issue to an existing issue",
+      "canonical_id": "github.issue.subIssues.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a user to a repository with specific permissions",
+      "canonical_id": "github.collaborator.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an email address for the authenticated user",
+      "canonical_id": "github.email.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an issue or pull request to a user's project",
+      "canonical_id": "github.projectsv2.items.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add an issue or pull request to an organization's project",
+      "canonical_id": "github.projectsv2.items.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add app access restrictions to a protected branch",
+      "canonical_id": "github.branche.apps.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add assignees to a repository issue",
+      "canonical_id": "github.issue.assignees.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add custom labels to a self-hosted runner",
+      "canonical_id": "github.action.labels.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add custom labels to a self-hosted runner for a repository",
+      "canonical_id": "github.action.labels.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add labels to a repository issue",
+      "canonical_id": "github.issue.labels.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add or update a user's team membership",
+      "canonical_id": "github.team.memberships.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add or update a user's team membership",
+      "canonical_id": "github.membership.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add organizations to enterprise coding agent policy",
+      "canonical_id": "github.copilot.organizations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add repository to a self-hosted runner group",
+      "canonical_id": "github.action.repositories.update5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add required status check contexts to a protected branch",
+      "canonical_id": "github.branche.contexts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add social accounts to the authenticated user's profile",
+      "canonical_id": "github.social_account.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add teams to an organization's Copilot subscription",
+      "canonical_id": "github.copilot.selectedTeams.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add teams to branch protection restrictions",
+      "canonical_id": "github.branche.teams.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add users to an organization's Copilot subscription",
+      "canonical_id": "github.copilot.selectedUsers.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Allow a repository to use self-hosted runners in an organization",
+      "canonical_id": "github.action.repositories.update3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve a workflow run for a public fork",
+      "canonical_id": "github.action.runs.approve"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve or reject custom deployment protection rules for a workflow run",
+      "canonical_id": "github.action.deploymentProtectionRule.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Approve or reject pending deployments for a workflow run",
+      "canonical_id": "github.action.pendingDeployments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an enterprise team to an organization",
+      "canonical_id": "github.team.organizations.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign an enterprise team to multiple organizations",
+      "canonical_id": "github.team.add.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Assign self-hosted runners to an organization runner group",
+      "canonical_id": "github.action.runners.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Block a user by username",
+      "canonical_id": "github.block.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Block a user from an organization",
+      "canonical_id": "github.block.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk add members to an enterprise team",
+      "canonical_id": "github.team.add.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Bulk delete attestations by subject digest or unique ID",
+      "canonical_id": "github.attestation.deleteRequest.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a GitHub Pages deployment",
+      "canonical_id": "github.page.deployments.cancel"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a pending pull request review",
+      "canonical_id": "github.pull.reviews.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a pending repository invitation",
+      "canonical_id": "github.invitation.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a repository import",
+      "canonical_id": "github.import.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a specific workflow run",
+      "canonical_id": "github.action.runs.cancel"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel an organization invitation",
+      "canonical_id": "github.invitation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a gist is starred",
+      "canonical_id": "github.star.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a pull request is merged",
+      "canonical_id": "github.pull.merge.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a repository is starred by the authenticated user",
+      "canonical_id": "github.starred.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user can be assigned to a repository",
+      "canonical_id": "github.assignee.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user can be assigned to an issue",
+      "canonical_id": "github.issue.assignees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user follows another user",
+      "canonical_id": "github.following.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user is a member of an enterprise team",
+      "canonical_id": "github.team.memberships.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user is a member of an organization",
+      "canonical_id": "github.member.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user is a public member of an organization",
+      "canonical_id": "github.public_member.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user is a repository collaborator",
+      "canonical_id": "github.collaborator.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if a user is blocked by you",
+      "canonical_id": "github.block.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if an organization has blocked a user",
+      "canonical_id": "github.block.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the current user is subscribed to a thread",
+      "canonical_id": "github.thread.subscription.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check team permissions for a repository",
+      "canonical_id": "github.repo.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check the DNS health for GitHub Pages",
+      "canonical_id": "github.page.health.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check user acceptance of devcontainer permissions for a repository",
+      "canonical_id": "github.codespace.permissionsCheck.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Compare commits between two branches or tags",
+      "canonical_id": "github.compare.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure a GitHub Pages site for a repository",
+      "canonical_id": "github.page.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure allowed actions and reusable workflows for a repository",
+      "canonical_id": "github.action.selectedActions.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure artifact and log retention for a repository",
+      "canonical_id": "github.action.artifactAndLogRetention.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure artifact and log retention for an organization",
+      "canonical_id": "github.action.artifactAndLogRetention.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure Copilot cloud agent policy for an enterprise",
+      "canonical_id": "github.copilot.codingAgent.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure Copilot cloud agent repository permissions for an organization",
+      "canonical_id": "github.copilot.permissions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure Copilot content exclusion rules for an organization",
+      "canonical_id": "github.copilot.contentExclusion.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure immutable release settings for an organization",
+      "canonical_id": "github.setting.immutableReleases.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure OIDC subject claim customization for a repository",
+      "canonical_id": "github.action.sub.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure OIDC subject claim customization for an organization",
+      "canonical_id": "github.action.sub.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure private repository fork PR workflow permissions",
+      "canonical_id": "github.action.forkPrWorkflowsPrivateRepos.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure private repository fork PR workflow settings for an organization",
+      "canonical_id": "github.action.forkPrWorkflowsPrivateRepos.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Configure self-hosted runner settings for an organization",
+      "canonical_id": "github.action.selfHostedRunners.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Control external workflow access to repository actions",
+      "canonical_id": "github.action.access.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Convert an organization member to an outside collaborator",
+      "canonical_id": "github.outside_collaborator.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a billing budget for an organization",
+      "canonical_id": "github.setting.budgets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a codespace for a pull request",
+      "canonical_id": "github.pull.codespaces.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a codespace for the authenticated user",
+      "canonical_id": "github.codespace.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a codespace in a repository",
+      "canonical_id": "github.codespace.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a comment on a gist",
+      "canonical_id": "github.comment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a comment on an issue",
+      "canonical_id": "github.issue.comments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a commit status for a given SHA",
+      "canonical_id": "github.status.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a deployment branch policy for an environment",
+      "canonical_id": "github.environment.deploymentBranchPolicies.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a deployment status for a repository",
+      "canonical_id": "github.deployment.statuses.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a draft item for a user's project",
+      "canonical_id": "github.projectsv2.drafts.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a draft item for an organization-owned project",
+      "canonical_id": "github.projectsv2.drafts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Git commit object",
+      "canonical_id": "github.git.commits.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Git reference in a repository",
+      "canonical_id": "github.git.refs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Git tag object for a repository",
+      "canonical_id": "github.git.tags.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a Git tree with nested entries",
+      "canonical_id": "github.git.trees.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub Actions environment variable",
+      "canonical_id": "github.environment.variables.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub Actions organization variable",
+      "canonical_id": "github.action.variables.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub Actions variable for a repository",
+      "canonical_id": "github.agent.variables.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub Actions variable for a repository",
+      "canonical_id": "github.action.variables.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub App installation access token",
+      "canonical_id": "github.installation.accessTokens.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a GitHub Pages deployment for a repository",
+      "canonical_id": "github.page.deployments.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a hosted compute network configuration for an organization",
+      "canonical_id": "github.setting.networkConfigurations.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a milestone for a repository",
+      "canonical_id": "github.milestone.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new blob in a repository",
+      "canonical_id": "github.git.blobs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new campaign for an organization",
+      "canonical_id": "github.campaign.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new code deployment for a repository",
+      "canonical_id": "github.deployment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new gist with files",
+      "canonical_id": "github.gist.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new issue for a repository",
+      "canonical_id": "github.issue.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new release for a repository",
+      "canonical_id": "github.releas.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new repository for the authenticated user",
+      "canonical_id": "github.repo.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new repository in an organization",
+      "canonical_id": "github.repo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new repository label with a name and color",
+      "canonical_id": "github.label.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new ruleset for an organization",
+      "canonical_id": "github.ruleset.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new team within an enterprise",
+      "canonical_id": "github.team.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new team within an organization",
+      "canonical_id": "github.team.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new view for a user's project",
+      "canonical_id": "github.projectsv2.views.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new view for an organization-owned project",
+      "canonical_id": "github.projectsv2.views.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new webhook for an organization",
+      "canonical_id": "github.hook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a pull request for a repository",
+      "canonical_id": "github.pull.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repository autolink reference",
+      "canonical_id": "github.autolink.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repository fork",
+      "canonical_id": "github.fork.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a repository from a template",
+      "canonical_id": "github.generate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a review for a pull request",
+      "canonical_id": "github.pull.reviews.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a ruleset for a repository",
+      "canonical_id": "github.ruleset.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a scoped access token for a client",
+      "canonical_id": "github.token.scoped.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a self-hosted runner group for an organization",
+      "canonical_id": "github.action.runnerGroups.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a webhook for a repository",
+      "canonical_id": "github.hook.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an artifact attestation for a repository",
+      "canonical_id": "github.attestation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an organization agent variable for GitHub Actions",
+      "canonical_id": "github.agent.variables.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create an SSH signing key for the authenticated user",
+      "canonical_id": "github.ssh_signing_key.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create artifact metadata storage records for an organization",
+      "canonical_id": "github.artifact.storageRecord.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or enable a custom deployment protection rule for an environment",
+      "canonical_id": "github.environment.deploymentProtectionRules.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a repository environment",
+      "canonical_id": "github.environment.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a repository environment secret",
+      "canonical_id": "github.environment.secrets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a repository secret",
+      "canonical_id": "github.action.secrets.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a repository secret",
+      "canonical_id": "github.agent.secrets.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update a repository secret",
+      "canonical_id": "github.codespace.secrets.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update an organization secret",
+      "canonical_id": "github.action.secrets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update an organization secret",
+      "canonical_id": "github.dependabot.secrets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update an organization secret",
+      "canonical_id": "github.agent.secrets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create or update file contents in a repository",
+      "canonical_id": "github.content.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Decline a repository invitation",
+      "canonical_id": "github.repository_invitation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a custom property for an organization",
+      "canonical_id": "github.property.schema.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a custom protection rule for a repository environment",
+      "canonical_id": "github.environment.deploymentProtectionRules.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a Dependabot secret from a repository",
+      "canonical_id": "github.dependabot.secrets.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a deployment branch policy for an environment",
+      "canonical_id": "github.environment.deploymentBranchPolicies.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a file in a repository",
+      "canonical_id": "github.content.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a GitHub Actions cache by ID",
+      "canonical_id": "github.action.caches.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a GitHub Pages site for a repository",
+      "canonical_id": "github.page.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a package from an organization",
+      "canonical_id": "github.package.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a release asset by its ID",
+      "canonical_id": "github.releas.assets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository and its contents",
+      "canonical_id": "github.repo.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository environment",
+      "canonical_id": "github.environment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository environment variable by name",
+      "canonical_id": "github.environment.variables.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository label by name",
+      "canonical_id": "github.label.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository milestone by number",
+      "canonical_id": "github.milestone.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository or organization webhook",
+      "canonical_id": "github.hook.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository reference",
+      "canonical_id": "github.git.refs.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository secret by name",
+      "canonical_id": "github.agent.secrets.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository secret by name",
+      "canonical_id": "github.action.secrets.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository secret by name",
+      "canonical_id": "github.codespace.secrets.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository variable by name",
+      "canonical_id": "github.action.variables.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a repository variable by name",
+      "canonical_id": "github.agent.variables.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a secret from a repository environment",
+      "canonical_id": "github.environment.secrets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific comment from a gist",
+      "canonical_id": "github.comment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific comment on an issue or pull request",
+      "canonical_id": "github.issue.comments.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific commit comment",
+      "canonical_id": "github.comment.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific deployment from a repository",
+      "canonical_id": "github.deployment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific gist",
+      "canonical_id": "github.gist.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific item from an organization's project",
+      "canonical_id": "github.projectsv2.items.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific package version for a user",
+      "canonical_id": "github.package.versions.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific package version for a user",
+      "canonical_id": "github.package.versions.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific package version for an organization",
+      "canonical_id": "github.package.versions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific repository release",
+      "canonical_id": "github.releas.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific review comment on a pull request",
+      "canonical_id": "github.pull.comments.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific ruleset for a repository",
+      "canonical_id": "github.ruleset.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a specific workflow run by ID",
+      "canonical_id": "github.action.runs.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a team and its members",
+      "canonical_id": "github.team.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a team from an organization",
+      "canonical_id": "github.team.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user migration archive",
+      "canonical_id": "github.migration.archive.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's artifact attestation by ID",
+      "canonical_id": "github.attestation.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's codespace by name",
+      "canonical_id": "github.codespace.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's codespace from an organization",
+      "canonical_id": "github.member.codespaces.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's codespace secret by name",
+      "canonical_id": "github.codespace.secrets.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's package",
+      "canonical_id": "github.package.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a user's package by type and name",
+      "canonical_id": "github.package.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a workflow run artifact by ID",
+      "canonical_id": "github.action.artifacts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete all logs for a workflow run",
+      "canonical_id": "github.action.logs.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an attestation by its unique ID",
+      "canonical_id": "github.attestation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an enterprise team and its IdP mappings",
+      "canonical_id": "github.team.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization agent variable by name",
+      "canonical_id": "github.agent.variables.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization and all its repositories",
+      "canonical_id": "github.org.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization migration archive",
+      "canonical_id": "github.migration.archive.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization secret by name",
+      "canonical_id": "github.agent.secrets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization secret by name",
+      "canonical_id": "github.codespace.secrets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization secret by name",
+      "canonical_id": "github.dependabot.secrets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization secret by name",
+      "canonical_id": "github.action.secrets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization variable by name",
+      "canonical_id": "github.action.variables.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization webhook",
+      "canonical_id": "github.hook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization's billing budget by ID",
+      "canonical_id": "github.setting.budgets.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an organization's repository ruleset",
+      "canonical_id": "github.ruleset.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete GitHub Actions caches for a repository",
+      "canonical_id": "github.action.caches.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete user attestations in bulk",
+      "canonical_id": "github.attestation.deleteRequest.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Disable a GitHub Actions workflow",
+      "canonical_id": "github.action.disable.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Dismiss a pull request review",
+      "canonical_id": "github.pull.dismissals.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a repository archive as a tarball",
+      "canonical_id": "github.tarball.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a repository artifact as a zip archive",
+      "canonical_id": "github.action.artifacts.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a specific release asset file",
+      "canonical_id": "github.releas.assets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a specific workflow artifact from a repository",
+      "canonical_id": "github.action.artifacts.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a user migration archive",
+      "canonical_id": "github.migration.archive.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a zip archive of a repository",
+      "canonical_id": "github.zipball.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download an organization migration archive",
+      "canonical_id": "github.migration.archive.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download logs for a specific workflow run",
+      "canonical_id": "github.action.logs.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download logs for a specific workflow run attempt",
+      "canonical_id": "github.action.logs.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download workflow job logs",
+      "canonical_id": "github.action.logs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Edit a pull request review comment",
+      "canonical_id": "github.pull.comments.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a GitHub Actions workflow",
+      "canonical_id": "github.action.enable.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable a repository for Copilot cloud agent",
+      "canonical_id": "github.copilot.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable admin enforcement for branch protection",
+      "canonical_id": "github.branche.enforceAdmins.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable GitHub Actions for a specific repository within an organization",
+      "canonical_id": "github.action.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable GitHub Actions for specific repositories in an organization",
+      "canonical_id": "github.action.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable immutable releases for a specific repository in an organization",
+      "canonical_id": "github.setting.repositories.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Enable or disable a security feature for an organization",
+      "canonical_id": "github.org.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Export a codespace",
+      "canonical_id": "github.codespace.exports.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific code of conduct by its key",
+      "canonical_id": "github.codes_of_conduct.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific delivery for an app webhook",
+      "canonical_id": "github.hook.deliveries.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a specific repository ruleset",
+      "canonical_id": "github.ruleset.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a user's public SSH key by its ID",
+      "canonical_id": "github.key.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a user's team membership and role",
+      "canonical_id": "github.team.memberships.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch public gists, optionally sorted and paginated",
+      "canonical_id": "github.public.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch repository tree by SHA",
+      "canonical_id": "github.git.trees.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch the authenticated user's profile",
+      "canonical_id": "github.user.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find a user's installation for the authenticated app",
+      "canonical_id": "github.installation.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find an organization's GitHub App installation",
+      "canonical_id": "github.installation.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find branches that have the specified commit as their latest commit",
+      "canonical_id": "github.commit.branchesWhereHead.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find conflicting Docker migration packages for a user",
+      "canonical_id": "github.docker.conflicts.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find Git references matching a pattern",
+      "canonical_id": "github.git.matchingRefs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find pull requests for a specific commit",
+      "canonical_id": "github.commit.pulls.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Find repository installation for an authenticated app",
+      "canonical_id": "github.installation.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Follow a specified user",
+      "canonical_id": "github.following.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Force cancel a workflow run",
+      "canonical_id": "github.action.runs.cancel1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fork a gist",
+      "canonical_id": "github.fork.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a runner registration token for a repository",
+      "canonical_id": "github.action.registrationToken.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a runner registration token for an organization",
+      "canonical_id": "github.action.registrationToken.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a token to remove a repository's self-hosted runner",
+      "canonical_id": "github.action.removeToken.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate a token to remove a self-hosted runner from an organization",
+      "canonical_id": "github.action.removeToken.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate JIT runner configuration for a repository",
+      "canonical_id": "github.action.generateJitconfig.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate JIT runner configuration for an organization",
+      "canonical_id": "github.action.generateJitconfig.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Generate release notes for a repository",
+      "canonical_id": "github.releas.generateNotes.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a custom deployment protection rule for an environment",
+      "canonical_id": "github.environment.deploymentProtectionRules.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a custom GitHub Actions hosted runner image definition",
+      "canonical_id": "github.action.custom.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a GitHub Classroom assignment",
+      "canonical_id": "github.assignment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a GitHub Classroom by its ID",
+      "canonical_id": "github.classroom.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a gitignore template by name",
+      "canonical_id": "github.template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a hosted compute network configuration by ID for an organization",
+      "canonical_id": "github.setting.networkConfigurations.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of app installations and their permissions",
+      "canonical_id": "github.installation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of failed organization invitations",
+      "canonical_id": "github.failed_invitation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of organization members",
+      "canonical_id": "github.member.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of organization migrations",
+      "canonical_id": "github.migration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of organizations",
+      "canonical_id": "github.organization.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of public events",
+      "canonical_id": "github.event.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of release assets for a specific repository and release",
+      "canonical_id": "github.releas.assets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of repositories the user is watching",
+      "canonical_id": "github.subscription.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of repository deployments",
+      "canonical_id": "github.deployment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of repository events",
+      "canonical_id": "github.event.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of the user's active marketplace subscriptions",
+      "canonical_id": "github.marketplace_purchas.stubbed.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of users following the authenticated user",
+      "canonical_id": "github.follower.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of users the authenticated user follows",
+      "canonical_id": "github.following.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of users who have starred a repository",
+      "canonical_id": "github.stargazer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of your connected social accounts",
+      "canonical_id": "github.social_account.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of your notifications",
+      "canonical_id": "github.notification.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a random Zen of GitHub quote",
+      "canonical_id": "github.zen.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a release by its tag name",
+      "canonical_id": "github.releas.tags.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository README for a directory",
+      "canonical_id": "github.readme.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository secret without revealing its value",
+      "canonical_id": "github.codespace.secrets.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository webhook configuration by ID",
+      "canonical_id": "github.hook.config.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's collaborators and their permissions",
+      "canonical_id": "github.collaborator.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's concurrency group and queue",
+      "canonical_id": "github.action.concurrencyGroups.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's deploy keys",
+      "canonical_id": "github.key.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's detailed activity history",
+      "canonical_id": "github.activity.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's GitHub Actions variables",
+      "canonical_id": "github.action.variables.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's license",
+      "canonical_id": "github.license.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a repository's README file",
+      "canonical_id": "github.readme.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific branch from a repository",
+      "canonical_id": "github.branche.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific comment for a gist",
+      "canonical_id": "github.comment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific commit by owner, repo, and ref",
+      "canonical_id": "github.commit.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific commit comment",
+      "canonical_id": "github.comment.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific deployment for a repository",
+      "canonical_id": "github.deployment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific environment variable for a repository",
+      "canonical_id": "github.environment.variables.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific Git reference by its path",
+      "canonical_id": "github.git.ref.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific GitHub-hosted runner for an organization",
+      "canonical_id": "github.action.hostedRunners.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific issue comment",
+      "canonical_id": "github.issue.comments.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific issue from a repository",
+      "canonical_id": "github.issue.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific item from an organization-owned project",
+      "canonical_id": "github.projectsv2.items.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific organization-owned project",
+      "canonical_id": "github.projectsv2.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific package for an organization",
+      "canonical_id": "github.package.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific package version for a user",
+      "canonical_id": "github.package.versions.get5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific package version for a user",
+      "canonical_id": "github.package.versions.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific package version for an organization",
+      "canonical_id": "github.package.versions.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific project field for a user",
+      "canonical_id": "github.projectsv2.fields.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific project field for an organization",
+      "canonical_id": "github.projectsv2.fields.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific pull request review by ID",
+      "canonical_id": "github.pull.reviews.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific pull request review comment",
+      "canonical_id": "github.pull.comments.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific release by its ID",
+      "canonical_id": "github.releas.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific repository autolink reference by ID",
+      "canonical_id": "github.autolink.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific repository label by name",
+      "canonical_id": "github.label.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific repository milestone by its number",
+      "canonical_id": "github.milestone.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific repository variable by name",
+      "canonical_id": "github.action.variables.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific self-hosted runner for a repository",
+      "canonical_id": "github.action.runners.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific self-hosted runner for an organization",
+      "canonical_id": "github.action.runners.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific self-hosted runner group for an organization",
+      "canonical_id": "github.action.runnerGroups.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific tag and its signature verification details",
+      "canonical_id": "github.git.tags.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific task for a repository",
+      "canonical_id": "github.repo.tasks.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific team member by username and team ID",
+      "canonical_id": "github.member.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific team within an organization by its slug",
+      "canonical_id": "github.team.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific version of a custom GitHub Actions runner image",
+      "canonical_id": "github.action.versions.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific version of a repository ruleset",
+      "canonical_id": "github.ruleset.history.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific version of an organization ruleset",
+      "canonical_id": "github.ruleset.history.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific webhook delivery for an organization",
+      "canonical_id": "github.hook.deliveries.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific workflow by its ID or filename",
+      "canonical_id": "github.action.workflows.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a team by its ID",
+      "canonical_id": "github.team.get5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a team's repositories",
+      "canonical_id": "github.team.repos.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's AI credit usage report",
+      "canonical_id": "github.setting.usage.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's billing usage report",
+      "canonical_id": "github.setting.usage.get5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's codespace by name",
+      "canonical_id": "github.codespace.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's codespace secrets",
+      "canonical_id": "github.codespace.secrets.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's followers",
+      "canonical_id": "github.follower.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's gists or all public gists",
+      "canonical_id": "github.gist.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's hovercard with contextual information",
+      "canonical_id": "github.hovercard.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's organization events",
+      "canonical_id": "github.event.orgs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's organization membership",
+      "canonical_id": "github.membership.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's organization memberships",
+      "canonical_id": "github.membership.orgs.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's repositories",
+      "canonical_id": "github.repo.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's repository permissions and role",
+      "canonical_id": "github.collaborator.permission.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's social media accounts",
+      "canonical_id": "github.social_account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's starred repositories",
+      "canonical_id": "github.starred.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's team membership",
+      "canonical_id": "github.membership.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's verified public SSH keys",
+      "canonical_id": "github.key.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a user's watched repositories",
+      "canonical_id": "github.subscription.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get admin enforcement for a protected branch",
+      "canonical_id": "github.branche.enforceAdmins.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get AI credit usage report for an organization",
+      "canonical_id": "github.setting.usage.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all custom property values for a repository",
+      "canonical_id": "github.property.values.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all events for a specific issue",
+      "canonical_id": "github.issue.events.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all items for a specific organization-owned project",
+      "canonical_id": "github.projectsv2.items.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all labels for a specific issue",
+      "canonical_id": "github.issue.labels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get all labels for a specific repository",
+      "canonical_id": "github.label.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get allowed actions and reusable workflows for an organization",
+      "canonical_id": "github.action.selectedActions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get allowed GitHub Actions and reusable workflows for a repository",
+      "canonical_id": "github.action.selectedActions.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an enterprise team by its slug",
+      "canonical_id": "github.team.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization secret without revealing its encrypted value",
+      "canonical_id": "github.action.secrets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization variable by name",
+      "canonical_id": "github.action.variables.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization's agent variable by name",
+      "canonical_id": "github.agent.variables.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization's GitHub Actions cache retention limit",
+      "canonical_id": "github.action.retentionLimit.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization's rule suite by ID",
+      "canonical_id": "github.ruleset.ruleSuites.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get an organization's ruleset by ID",
+      "canonical_id": "github.ruleset.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API request statistics for an organization's subjects",
+      "canonical_id": "github.insight.subjectStats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API request summary stats for a specific actor",
+      "canonical_id": "github.insight.summaryStats.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API route statistics for an actor",
+      "canonical_id": "github.insight.routeStats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API time stats for a specific user in an organization",
+      "canonical_id": "github.insight.users.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API time stats for an actor",
+      "canonical_id": "github.insight.timeStats.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API usage statistics for a user within an organization",
+      "canonical_id": "github.insight.userStats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get API usage statistics for an organization",
+      "canonical_id": "github.insight.summaryStats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get artifact and log retention settings for a repository",
+      "canonical_id": "github.action.artifactAndLogRetention.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get artifact and log retention settings for an organization",
+      "canonical_id": "github.action.artifactAndLogRetention.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get attestations for a user's artifact subject digest",
+      "canonical_id": "github.attestation.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get authenticated user's email addresses and public visibility",
+      "canonical_id": "github.email.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get autolinks configured for a repository",
+      "canonical_id": "github.autolink.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get billing usage report for an organization",
+      "canonical_id": "github.setting.usage.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get billing usage summary for a user",
+      "canonical_id": "github.setting.summary.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get billing usage summary for an organization",
+      "canonical_id": "github.setting.summary.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get blocked by dependencies for an issue",
+      "canonical_id": "github.issue.blockedBy.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get branch protection restrictions",
+      "canonical_id": "github.branche.restrictions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get branch protection rules",
+      "canonical_id": "github.rule.branches.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get branch protection rules for a repository",
+      "canonical_id": "github.branche.protection.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get check runs for a Git reference",
+      "canonical_id": "github.commit.checkRuns.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get check suites for a Git reference",
+      "canonical_id": "github.commit.checkSuites.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get CODEOWNERS file errors for a repository",
+      "canonical_id": "github.codeowner.errors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get combined commit status for a branch, tag, or SHA",
+      "canonical_id": "github.commit.status.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get comments for a specific commit",
+      "canonical_id": "github.commit.comments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get comments for a specific gist",
+      "canonical_id": "github.comment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get commit comments for a repository",
+      "canonical_id": "github.comment.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get commit statuses for a specific reference",
+      "canonical_id": "github.commit.statuses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get community profile metrics for a repository",
+      "canonical_id": "github.community.profile.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get concurrency groups for a workflow run",
+      "canonical_id": "github.action.concurrencyGroups.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get conflicting packages during Docker migration",
+      "canonical_id": "github.docker.conflicts.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get contributor commit activity and weekly stats",
+      "canonical_id": "github.stat.contributors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get contributors for a repository",
+      "canonical_id": "github.contributor.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot billing and seat information for an organization",
+      "canonical_id": "github.copilot.billing.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot cloud agent configuration for a repository",
+      "canonical_id": "github.copilot.configuration.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot cloud agent enabled repositories for an organization",
+      "canonical_id": "github.copilot.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot cloud agent permissions for an organization",
+      "canonical_id": "github.copilot.permissions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot content exclusion rules for an organization",
+      "canonical_id": "github.copilot.contentExclusion.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot organization user-teams report for a specific day",
+      "canonical_id": "github.copilot.userTeams1Day.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Copilot seat assignments for an organization",
+      "canonical_id": "github.copilot.seats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get current API rate limit status",
+      "canonical_id": "github.rate_limit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom properties for an organization",
+      "canonical_id": "github.property.schema.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get custom runner image versions for an organization",
+      "canonical_id": "github.action.versions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily Copilot enterprise usage metrics reports",
+      "canonical_id": "github.copilot.enterprise1Day.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily Copilot organization usage metrics reports",
+      "canonical_id": "github.copilot.organization1Day.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily Copilot user usage metrics report",
+      "canonical_id": "github.copilot.users1Day.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily Copilot user usage metrics reports",
+      "canonical_id": "github.copilot.users1Day.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get daily Copilot user-teams report for an enterprise",
+      "canonical_id": "github.copilot.userTeams1Day.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default codespace attributes for a repository",
+      "canonical_id": "github.codespace.new.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default workflow permissions for a repository",
+      "canonical_id": "github.action.workflow.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get default workflow permissions for an organization",
+      "canonical_id": "github.action.workflow.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Dependabot alerts for a repository",
+      "canonical_id": "github.dependabot.alerts.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Dependabot security alerts for an organization",
+      "canonical_id": "github.dependabot.alerts.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get deployment protection rules for an environment",
+      "canonical_id": "github.environment.deploymentProtectionRules.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get deployment statuses for a repository",
+      "canonical_id": "github.deployment.statuses.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details about a specific codespace export",
+      "canonical_id": "github.codespace.exports.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific Git commit",
+      "canonical_id": "github.git.commits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific license",
+      "canonical_id": "github.licens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific pull request",
+      "canonical_id": "github.pull.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific repository environment",
+      "canonical_id": "github.environment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific workflow run",
+      "canonical_id": "github.action.runs.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details of a GitHub Pages build",
+      "canonical_id": "github.page.builds.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get enterprise GitHub Actions cache retention limit",
+      "canonical_id": "github.action.retentionLimit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get enterprise team organization assignment",
+      "canonical_id": "github.team.organizations.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get environment public key for encrypting secrets",
+      "canonical_id": "github.environment.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get events for a user, including private ones if authorized",
+      "canonical_id": "github.event.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get events received by a user",
+      "canonical_id": "github.received_event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get fields for an organization-owned project",
+      "canonical_id": "github.projectsv2.fields.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get files for a specific pull request",
+      "canonical_id": "github.pull.files.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get fork PR contributor approval permissions for a repository",
+      "canonical_id": "github.action.forkPrContributorApproval.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get fork PR contributor approval permissions for an organization",
+      "canonical_id": "github.action.forkPrContributorApproval.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions cache retention limit for a repository",
+      "canonical_id": "github.action.retentionLimit.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions cache storage limit for a repository",
+      "canonical_id": "github.action.storageLimit.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions cache storage limit for an enterprise",
+      "canonical_id": "github.action.storageLimit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions cache usage by repository for an organization",
+      "canonical_id": "github.action.usageByRepository.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions cache usage for a repository",
+      "canonical_id": "github.action.usage.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Actions enabled repositories for an organization",
+      "canonical_id": "github.action.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Copilot seat details for an organization member",
+      "canonical_id": "github.member.copilot.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub meta information including IP addresses and domains",
+      "canonical_id": "github.meta.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Pages deployment status by ID",
+      "canonical_id": "github.page.deployments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub Pages site information",
+      "canonical_id": "github.page.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub user details by account ID",
+      "canonical_id": "github.user.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub-hosted runner limits for an organization",
+      "canonical_id": "github.action.limits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub-hosted runner machine sizes for an organization",
+      "canonical_id": "github.action.machineSizes.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub-hosted runners in an organization group",
+      "canonical_id": "github.action.hostedRunners.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get GitHub-owned runner images for an organization",
+      "canonical_id": "github.action.githubOwned.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get grades for a GitHub Classroom assignment",
+      "canonical_id": "github.grade.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get hosted compute network configurations for an organization",
+      "canonical_id": "github.setting.networkConfigurations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get hourly commit counts by day",
+      "canonical_id": "github.stat.punchCard.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get hypermedia links to GitHub API resources",
+      "canonical_id": "github.resource.execute"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get immutable releases settings for an organization",
+      "canonical_id": "github.setting.immutableReleases.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue events for a repository",
+      "canonical_id": "github.issue.events.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get issue field values for a specific issue",
+      "canonical_id": "github.issue.issueFieldValues.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get items for a user's project",
+      "canonical_id": "github.projectsv2.items.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get items for a user's project view",
+      "canonical_id": "github.projectsv2.items.get5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get labels for a repository's self-hosted runner",
+      "canonical_id": "github.action.labels.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get labels for an organization's self-hosted runner",
+      "canonical_id": "github.action.labels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get languages and their code size for a repository",
+      "canonical_id": "github.language.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get latest 28-day Copilot user usage metrics report",
+      "canonical_id": "github.copilot.latest.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get latest 28-day organization Copilot usage metrics report",
+      "canonical_id": "github.copilot.latest.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get members of a specific team, including inherited members",
+      "canonical_id": "github.team.members.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my pending repository invitations",
+      "canonical_id": "github.repository_invitation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my public email address",
+      "canonical_id": "github.public_email.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get notifications for a specific repository",
+      "canonical_id": "github.notification.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get Octocat ASCII art",
+      "canonical_id": "github.octocat.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get OIDC subject claim customization for an organization",
+      "canonical_id": "github.action.sub.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get OIDC subject claim customization template for a repository",
+      "canonical_id": "github.action.sub.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization API time statistics",
+      "canonical_id": "github.insight.timeStats.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization details",
+      "canonical_id": "github.org.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization GitHub Actions permissions",
+      "canonical_id": "github.action.permissions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization issues assigned to you",
+      "canonical_id": "github.issue.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization public key for encrypting secrets",
+      "canonical_id": "github.dependabot.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization public key for encrypting secrets",
+      "canonical_id": "github.action.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization public key to encrypt secrets",
+      "canonical_id": "github.codespace.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization ruleset history",
+      "canonical_id": "github.ruleset.history.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization variables shared with a repository",
+      "canonical_id": "github.action.organizationVariables.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization variables shared with a repository",
+      "canonical_id": "github.agent.organizationVariables.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization's GitHub Actions cache storage limit",
+      "canonical_id": "github.action.storageLimit.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization's GitHub Actions cache usage",
+      "canonical_id": "github.action.usage.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organization's self-hosted runner settings",
+      "canonical_id": "github.action.selfHostedRunners.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get organizations assigned to an enterprise team",
+      "canonical_id": "github.team.organizations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get partner images for GitHub-hosted runners in an organization",
+      "canonical_id": "github.action.partner.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get pending deployments for a workflow run",
+      "canonical_id": "github.action.pendingDeployments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get pending invitations for an organization",
+      "canonical_id": "github.invitation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get popular content paths for a repository",
+      "canonical_id": "github.traffic.paths.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get popular referrers for a repository",
+      "canonical_id": "github.traffic.referrers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get premium request usage report for an organization",
+      "canonical_id": "github.setting.usage.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get private repo fork PR workflow settings",
+      "canonical_id": "github.action.forkPrWorkflowsPrivateRepos.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get private repo fork PR workflow settings for an organization",
+      "canonical_id": "github.action.forkPrWorkflowsPrivateRepos.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get project view items for an organization",
+      "canonical_id": "github.projectsv2.items.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public events for a user",
+      "canonical_id": "github.event.public.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public events for an organization",
+      "canonical_id": "github.event.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public events received by a user",
+      "canonical_id": "github.received_event.public.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public GitHub user profile information",
+      "canonical_id": "github.user.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public members of an organization",
+      "canonical_id": "github.public_member.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get public repository network events",
+      "canonical_id": "github.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get pull request requested reviewers",
+      "canonical_id": "github.pull.requestedReviewers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get reactions for a pull request review comment",
+      "canonical_id": "github.pull.reactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get reactions for a specific commit comment",
+      "canonical_id": "github.comment.reactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get reactions for a specific issue",
+      "canonical_id": "github.issue.reactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get reactions for a specific issue comment",
+      "canonical_id": "github.issue.reactions.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get reactions for a specific release",
+      "canonical_id": "github.releas.reactions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repositories for a specific team",
+      "canonical_id": "github.repo.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repositories that can use self-hosted runners in an organization",
+      "canonical_id": "github.action.repositories.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repositories the user owns or has access to",
+      "canonical_id": "github.repo.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repositories with immutable releases enabled for an organization",
+      "canonical_id": "github.setting.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository clone traffic",
+      "canonical_id": "github.traffic.clones.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository commits with signature verification details",
+      "canonical_id": "github.commit.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository details, including fork information",
+      "canonical_id": "github.repo.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository file or directory contents",
+      "canonical_id": "github.content.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository GitHub Actions permissions",
+      "canonical_id": "github.action.permissions.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository public key for encrypting secrets",
+      "canonical_id": "github.dependabot.publicKey.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository public key for encrypting secrets",
+      "canonical_id": "github.codespace.publicKey.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository public key for encrypting secrets",
+      "canonical_id": "github.agent.publicKey.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository public key to encrypt secrets",
+      "canonical_id": "github.action.publicKey.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository rule suite information",
+      "canonical_id": "github.ruleset.ruleSuites.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository subscription status",
+      "canonical_id": "github.subscription.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository view counts and traffic data",
+      "canonical_id": "github.traffic.views.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get repository workflow access permissions",
+      "canonical_id": "github.action.access.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get required commit signature protection for a branch",
+      "canonical_id": "github.branche.requiredSignatures.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get required pull request review rules for a protected branch",
+      "canonical_id": "github.branche.requiredPullRequestReviews.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get required status check contexts for a protected branch",
+      "canonical_id": "github.branche.contexts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get required status checks for a protected branch",
+      "canonical_id": "github.branche.requiredStatusChecks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get review comments for a pull request",
+      "canonical_id": "github.pull.comments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get runner application download links for a repository",
+      "canonical_id": "github.action.downloads.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get runner application download links for an organization",
+      "canonical_id": "github.action.downloads.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get runner groups for an organization",
+      "canonical_id": "github.action.runnerGroups.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get self-hosted runners for a repository",
+      "canonical_id": "github.action.runners.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get self-hosted runners for an organization",
+      "canonical_id": "github.action.runners.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get subscription plan for an account",
+      "canonical_id": "github.stubbed.accounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get summary statistics for a user's API requests",
+      "canonical_id": "github.insight.users.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get team permissions for a repository",
+      "canonical_id": "github.team.repos.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get teams with access to a repository",
+      "canonical_id": "github.team.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get teams with push access to a protected branch",
+      "canonical_id": "github.branche.teams.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the authenticated GitHub App and its installation count",
+      "canonical_id": "github.app.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the authenticated user's organization membership",
+      "canonical_id": "github.membership.orgs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the authenticated user's starred gists",
+      "canonical_id": "github.starred.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the history of a repository ruleset",
+      "canonical_id": "github.ruleset.history.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest 28-day Copilot enterprise usage metrics report",
+      "canonical_id": "github.copilot.latest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest 28-day enterprise Copilot user usage metrics report",
+      "canonical_id": "github.copilot.latest.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest GitHub Pages build information",
+      "canonical_id": "github.page.latest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest release for a repository",
+      "canonical_id": "github.releas.latest.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the parent issue for a given issue",
+      "canonical_id": "github.issue.parent.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of a repository import",
+      "canonical_id": "github.import.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of a user migration",
+      "canonical_id": "github.migration.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the status of an organization migration",
+      "canonical_id": "github.migration.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the subscription plan for a specific account",
+      "canonical_id": "github.account.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get timeline events for a specific issue",
+      "canonical_id": "github.issue.timeline.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get topics for a repository",
+      "canonical_id": "github.topic.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get usage details for a specific workflow run",
+      "canonical_id": "github.action.timing.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get user's premium request billing usage",
+      "canonical_id": "github.setting.usage.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get users blocked by an organization",
+      "canonical_id": "github.block.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get webhook configuration for an app",
+      "canonical_id": "github.hook.config.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get webhook deliveries for a GitHub App",
+      "canonical_id": "github.hook.deliveries.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get weekly commit activity and code frequency for a repository",
+      "canonical_id": "github.stat.codeFrequency.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get weekly commit activity for a repository",
+      "canonical_id": "github.stat.commitActivity.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get weekly commit counts for a repository",
+      "canonical_id": "github.stat.participation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow run approval history",
+      "canonical_id": "github.action.approvals.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow run artifacts for a repository",
+      "canonical_id": "github.action.artifacts.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow run attempt jobs",
+      "canonical_id": "github.action.jobs.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get workflow usage timing for a specific workflow",
+      "canonical_id": "github.action.timing.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get your organization's public key for encrypting secrets",
+      "canonical_id": "github.agent.publicKey.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get your public key for encrypting secrets",
+      "canonical_id": "github.codespace.publicKey.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Grant push access to specified users for a branch",
+      "canonical_id": "github.branche.users.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Grant selected users access to organization Codespaces",
+      "canonical_id": "github.codespace.selectedUsers.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Invite users to an organization",
+      "canonical_id": "github.invitation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List a user's codespaces within an organization",
+      "canonical_id": "github.member.codespaces.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List a user's public GPG keys",
+      "canonical_id": "github.gpg_key.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List accepted assignments for a specific assignment",
+      "canonical_id": "github.accepted_assignment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List accounts for a given plan",
+      "canonical_id": "github.stubbed.accounts.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List accounts for a marketplace plan",
+      "canonical_id": "github.plan.accounts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List active concurrency groups for a repository",
+      "canonical_id": "github.action.concurrencyGroups.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List active marketplace subscriptions for the user",
+      "canonical_id": "github.marketplace_purchas.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all available emojis",
+      "canonical_id": "github.emoji.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all organization secrets",
+      "canonical_id": "github.agent.secrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all repository rulesets for an organization",
+      "canonical_id": "github.ruleset.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all rulesets for a repository",
+      "canonical_id": "github.ruleset.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all secrets available in a repository",
+      "canonical_id": "github.dependabot.secrets.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all secrets available in a repository",
+      "canonical_id": "github.agent.secrets.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all secrets available in an organization",
+      "canonical_id": "github.action.secrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all supported GitHub API versions",
+      "canonical_id": "github.version.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all teams for the authenticated user across their organizations",
+      "canonical_id": "github.team.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all teams in an organization",
+      "canonical_id": "github.team.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all teams within an enterprise",
+      "canonical_id": "github.team.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List all users, ordered by signup date",
+      "canonical_id": "github.user.list2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List artifact attestations for a given subject digest",
+      "canonical_id": "github.attestation.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List artifact attestations for a given subject digest in an organization",
+      "canonical_id": "github.attestation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List artifact storage records for an organization",
+      "canonical_id": "github.artifact.storageRecords.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List artifacts for a repository",
+      "canonical_id": "github.action.artifacts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List attestations for multiple subject digests",
+      "canonical_id": "github.attestation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List attestations for multiple subjects",
+      "canonical_id": "github.attestation.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available assignees for repository issues",
+      "canonical_id": "github.assignee.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available feeds for the authenticated user",
+      "canonical_id": "github.feed.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available gitignore templates",
+      "canonical_id": "github.template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available machine types for a codespace",
+      "canonical_id": "github.codespace.machines.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List available machine types for a repository",
+      "canonical_id": "github.codespace.machines.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List branches for a repository",
+      "canonical_id": "github.branche.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List campaigns for an organization",
+      "canonical_id": "github.campaign.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List child teams for a given team",
+      "canonical_id": "github.team.get6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List child teams for a given team",
+      "canonical_id": "github.team.teams.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List codespaces for a repository",
+      "canonical_id": "github.codespace.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List codespaces for an organization",
+      "canonical_id": "github.codespace.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List comments for a repository's issues and pull requests",
+      "canonical_id": "github.issue.comments.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List comments for a specific issue or pull request",
+      "canonical_id": "github.issue.comments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List comments for a specific pull request review",
+      "canonical_id": "github.pull.comments.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List commit authors for a repository",
+      "canonical_id": "github.import.authors.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List commits for a specific gist",
+      "canonical_id": "github.commit.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List commits for a specific pull request",
+      "canonical_id": "github.pull.commits.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List commonly used software licenses",
+      "canonical_id": "github.licens.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List conflicting Docker migration packages for an organization",
+      "canonical_id": "github.docker.conflicts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List custom deployment rule integrations for an environment",
+      "canonical_id": "github.environment.apps.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List custom property values for organization repositories",
+      "canonical_id": "github.property.values.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List custom runner images for an organization",
+      "canonical_id": "github.action.custom.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deliveries for a repository webhook",
+      "canonical_id": "github.hook.deliveries.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deliveries for an organization webhook",
+      "canonical_id": "github.hook.deliveries.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List Dependabot alerts for an enterprise",
+      "canonical_id": "github.dependabot.alerts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List dependencies an issue is blocking",
+      "canonical_id": "github.issue.blocking.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deployment branch policies for an environment",
+      "canonical_id": "github.environment.deploymentBranchPolicies.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List deployment records for an artifact",
+      "canonical_id": "github.artifact.deploymentRecords.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List devcontainer configurations for a repository",
+      "canonical_id": "github.codespace.devcontainers.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List forks for a specific gist",
+      "canonical_id": "github.fork.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Actions caches for a repository",
+      "canonical_id": "github.action.caches.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub app installations the user can access",
+      "canonical_id": "github.installation.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Apps installed for an organization",
+      "canonical_id": "github.installation.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Apps with push access to a protected branch",
+      "canonical_id": "github.branche.apps.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Classroom assignments for a classroom",
+      "canonical_id": "github.assignment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Classrooms for the current user",
+      "canonical_id": "github.classroom.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Marketplace plans",
+      "canonical_id": "github.stubbed.plans.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Marketplace plans",
+      "canonical_id": "github.plan.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub Pages site builds",
+      "canonical_id": "github.page.builds.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub-hosted runner platforms for an organization",
+      "canonical_id": "github.action.platforms.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GitHub-hosted runners for an organization",
+      "canonical_id": "github.action.hostedRunners.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List global security advisories",
+      "canonical_id": "github.advisory.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List GPG keys for the authenticated user",
+      "canonical_id": "github.gpg_key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List issues assigned to you or filter by various criteria",
+      "canonical_id": "github.issue.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List labels for issues in a milestone",
+      "canonical_id": "github.milestone.labels.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List large files from a repository import",
+      "canonical_id": "github.import.largeFiles.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List members of an enterprise team",
+      "canonical_id": "github.team.memberships.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List milestones for a repository",
+      "canonical_id": "github.milestone.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List OIDC custom property inclusions for an enterprise",
+      "canonical_id": "github.action.repo.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List open invitations for a repository",
+      "canonical_id": "github.invitation.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List open issues and pull requests for a repository",
+      "canonical_id": "github.issue.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization agent variables and their values",
+      "canonical_id": "github.agent.variables.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization rule suites",
+      "canonical_id": "github.ruleset.ruleSuites.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization secrets",
+      "canonical_id": "github.dependabot.secrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization secrets shared with a repository",
+      "canonical_id": "github.agent.organizationSecrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization secrets shared with a repository",
+      "canonical_id": "github.action.organizationSecrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization variables",
+      "canonical_id": "github.action.variables.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organization-level Codespaces secrets",
+      "canonical_id": "github.codespace.secrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List organizations the user belongs to",
+      "canonical_id": "github.org.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List outside collaborators for an organization",
+      "canonical_id": "github.outside_collaborator.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List package versions for a user's package",
+      "canonical_id": "github.package.versions.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List packages for a user",
+      "canonical_id": "github.package.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List packages for an organization",
+      "canonical_id": "github.package.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List packages for the authenticated user",
+      "canonical_id": "github.package.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List pending team invitations",
+      "canonical_id": "github.invitation.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List pending team invitations for an organization",
+      "canonical_id": "github.team.invitations.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects for an organization",
+      "canonical_id": "github.projectsv2.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List projects owned by a specific user",
+      "canonical_id": "github.projectsv2.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List public gists for a user",
+      "canonical_id": "github.gist.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List public organizations a user belongs to",
+      "canonical_id": "github.org.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List public repositories by creation date",
+      "canonical_id": "github.repository.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List public SSH keys for the authenticated user",
+      "canonical_id": "github.key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List pull requests for a repository",
+      "canonical_id": "github.pull.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories accessible to the app installation",
+      "canonical_id": "github.repository.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories Dependabot can access in an enterprise",
+      "canonical_id": "github.dependabot.repositoryAccess.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories Dependabot can access in an organization",
+      "canonical_id": "github.dependabot.repositoryAccess.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories for a specific organization",
+      "canonical_id": "github.repo.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories for a user migration",
+      "canonical_id": "github.migration.repositories.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories for an organization agent variable",
+      "canonical_id": "github.agent.repositories.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories for an organization secret",
+      "canonical_id": "github.codespace.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories in an organization with attested artifacts",
+      "canonical_id": "github.attestation.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories included in an organization migration",
+      "canonical_id": "github.migration.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories selected for an organization secret",
+      "canonical_id": "github.dependabot.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories that can access an organization variable",
+      "canonical_id": "github.action.repositories.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories that have access to an organization secret",
+      "canonical_id": "github.action.repositories.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories the user can access for a specific installation",
+      "canonical_id": "github.installation.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories the user has starred",
+      "canonical_id": "github.starred.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories with access to a runner group",
+      "canonical_id": "github.action.repositories.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories with access to a user secret",
+      "canonical_id": "github.codespace.repositories.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repositories with access to an organization secret",
+      "canonical_id": "github.agent.repositories.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository environment variables",
+      "canonical_id": "github.environment.variables.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository environments",
+      "canonical_id": "github.environment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository forks",
+      "canonical_id": "github.fork.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository OIDC custom properties for an organization",
+      "canonical_id": "github.action.repo.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository releases",
+      "canonical_id": "github.releas.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository rule suites and their evaluations",
+      "canonical_id": "github.ruleset.ruleSuites.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository secrets for a codespace",
+      "canonical_id": "github.codespace.secrets.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository tags by owner and name",
+      "canonical_id": "github.tag.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List repository variables",
+      "canonical_id": "github.agent.variables.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List review comments for all pull requests in a repository",
+      "canonical_id": "github.pull.comments.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List reviews for a pull request",
+      "canonical_id": "github.pull.reviews.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List secrets available in a repository",
+      "canonical_id": "github.action.secrets.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List secrets for a repository environment",
+      "canonical_id": "github.environment.secrets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List self-hosted runners in an organization's runner group",
+      "canonical_id": "github.action.runners.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List SSH signing keys for a user",
+      "canonical_id": "github.ssh_signing_key.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List SSH signing keys for the authenticated user",
+      "canonical_id": "github.ssh_signing_key.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List sub-issues for a given issue",
+      "canonical_id": "github.issue.subIssues.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List tasks for a repository",
+      "canonical_id": "github.repo.tasks.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List tasks for the authenticated user",
+      "canonical_id": "github.task.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List team members, including inherited ones",
+      "canonical_id": "github.member.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List teams for an organization invitation",
+      "canonical_id": "github.invitation.teams.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List the authenticated user's codespaces",
+      "canonical_id": "github.codespace.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List user migrations",
+      "canonical_id": "github.migration.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List user's assigned issues and pull requests",
+      "canonical_id": "github.issue.list2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users blocked by the authenticated user",
+      "canonical_id": "github.block.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users followed by a specific user",
+      "canonical_id": "github.following.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users watching a repository",
+      "canonical_id": "github.subscriber.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List users with push access to a protected branch",
+      "canonical_id": "github.branche.users.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List versions for a user's package",
+      "canonical_id": "github.package.versions.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List versions for an organization's package",
+      "canonical_id": "github.package.versions.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List webhooks for a repository",
+      "canonical_id": "github.hook.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List webhooks for an organization",
+      "canonical_id": "github.hook.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List workflow run jobs, with optional filtering",
+      "canonical_id": "github.action.jobs.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List workflow runs for a repository",
+      "canonical_id": "github.action.runs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List workflow runs for a specific workflow",
+      "canonical_id": "github.action.runs.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List workflows for a repository",
+      "canonical_id": "github.action.workflows.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Lock an issue conversation",
+      "canonical_id": "github.issue.lock.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Make my organization membership public",
+      "canonical_id": "github.public_member.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage Dependabot secrets for a repository",
+      "canonical_id": "github.dependabot.secrets.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage Dependabot's repository access for an enterprise",
+      "canonical_id": "github.dependabot.repositoryAccess.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage Dependabot's repository access for an organization",
+      "canonical_id": "github.dependabot.repositoryAccess.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage organization codespaces access permissions",
+      "canonical_id": "github.codespace.access.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage organization secrets for codespaces",
+      "canonical_id": "github.codespace.secrets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage repository notification settings",
+      "canonical_id": "github.subscription.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage team repository permissions",
+      "canonical_id": "github.team.repos.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage thread notification subscriptions",
+      "canonical_id": "github.thread.subscription.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manage user codespace secrets",
+      "canonical_id": "github.codespace.secrets.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Manually trigger a GitHub Actions workflow run",
+      "canonical_id": "github.action.dispatches.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Map a commit author for repository import",
+      "canonical_id": "github.import.authors.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a notification thread as done",
+      "canonical_id": "github.thread.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark a notification thread as read",
+      "canonical_id": "github.thread.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark all notifications as read",
+      "canonical_id": "github.notification.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Mark all notifications in a repository as read",
+      "canonical_id": "github.notification.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Merge a branch into a repository",
+      "canonical_id": "github.merge.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Merge a pull request into its base branch",
+      "canonical_id": "github.pull.merge.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Pin an issue comment",
+      "canonical_id": "github.issue.pin.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a codespace to create a new repository",
+      "canonical_id": "github.codespace.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Re-run a workflow job and its dependencies",
+      "canonical_id": "github.action.rerun.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Re-run a workflow run using its ID",
+      "canonical_id": "github.action.rerun.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Re-run failed jobs for a workflow run",
+      "canonical_id": "github.action.rerunFailedJobs.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Record artifact deployments for an organization",
+      "canonical_id": "github.artifact.deploymentRecord.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeliver a webhook delivery attempt",
+      "canonical_id": "github.hook.attempts.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeliver a webhook delivery for a repository",
+      "canonical_id": "github.hook.attempts.create2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Redeliver a webhook delivery for an organization",
+      "canonical_id": "github.hook.attempts.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register a GitHub App using its manifest code",
+      "canonical_id": "github.conversion.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a campaign from an organization",
+      "canonical_id": "github.campaign.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a custom field value from an issue",
+      "canonical_id": "github.issue.issueFieldValues.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a custom label from a repository runner",
+      "canonical_id": "github.action.labels.delete3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a custom runner image from your organization",
+      "canonical_id": "github.action.custom.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a deploy key from a repository",
+      "canonical_id": "github.key.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a gist from your starred list",
+      "canonical_id": "github.star.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a GitHub-hosted runner from an organization",
+      "canonical_id": "github.action.hostedRunners.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a GPG key from your account",
+      "canonical_id": "github.gpg_key.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a label from an issue",
+      "canonical_id": "github.issue.labels.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a network configuration from an organization",
+      "canonical_id": "github.setting.networkConfigurations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a public SSH key for the authenticated user",
+      "canonical_id": "github.key.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from a commit comment",
+      "canonical_id": "github.comment.reactions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from a pull request comment",
+      "canonical_id": "github.pull.reactions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from a release",
+      "canonical_id": "github.releas.reactions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from an issue",
+      "canonical_id": "github.issue.reactions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a reaction from an issue comment",
+      "canonical_id": "github.issue.reactions.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository collaborator",
+      "canonical_id": "github.collaborator.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository custom property from OIDC token inclusion for an organization",
+      "canonical_id": "github.action.repo.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from a runner group",
+      "canonical_id": "github.action.repositories.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from a team",
+      "canonical_id": "github.team.repos.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from a team",
+      "canonical_id": "github.repo.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from a user secret",
+      "canonical_id": "github.codespace.repositories.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from allowed self-hosted runners",
+      "canonical_id": "github.action.repositories.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an app installation",
+      "canonical_id": "github.installation.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization secret",
+      "canonical_id": "github.agent.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization secret",
+      "canonical_id": "github.action.repositories.delete3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization secret",
+      "canonical_id": "github.codespace.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization secret",
+      "canonical_id": "github.dependabot.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization variable",
+      "canonical_id": "github.action.repositories.delete4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from an organization variable",
+      "canonical_id": "github.agent.repositories.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from Copilot cloud agent access",
+      "canonical_id": "github.copilot.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from immutable release enforcement",
+      "canonical_id": "github.setting.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a repository from organization GitHub Actions",
+      "canonical_id": "github.action.repositories.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a runner from an organization's runner group",
+      "canonical_id": "github.action.runners.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a runner label from an organization",
+      "canonical_id": "github.action.labels.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a self-hosted runner from a repository",
+      "canonical_id": "github.action.runners.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a self-hosted runner from an organization",
+      "canonical_id": "github.action.runners.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a self-hosted runner group from an organization",
+      "canonical_id": "github.action.runnerGroups.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific item from a user's project",
+      "canonical_id": "github.projectsv2.items.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific version of a custom runner image from an organization",
+      "canonical_id": "github.action.versions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a sub-issue from an issue",
+      "canonical_id": "github.issue.subIssue.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a team member by ID and username",
+      "canonical_id": "github.member.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user from a team",
+      "canonical_id": "github.team.memberships.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user's membership from a team",
+      "canonical_id": "github.membership.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user's membership from an enterprise team",
+      "canonical_id": "github.team.memberships.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a user's organization membership or cancel their invitation",
+      "canonical_id": "github.membership.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove admin enforcement from branch protection",
+      "canonical_id": "github.branche.enforceAdmins.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove all custom labels from a repository runner",
+      "canonical_id": "github.action.labels.delete2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove all custom labels from an organization runner",
+      "canonical_id": "github.action.labels.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove all labels from an issue",
+      "canonical_id": "github.issue.labels.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an autolink reference from a repository",
+      "canonical_id": "github.autolink.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an email address for the authenticated user",
+      "canonical_id": "github.email.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an enterprise team's organization assignment",
+      "canonical_id": "github.team.organizations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an issue's blocking dependency",
+      "canonical_id": "github.issue.blockedBy.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an OIDC custom property from an enterprise",
+      "canonical_id": "github.action.repo.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an organization member and all their access",
+      "canonical_id": "github.member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an outside collaborator from an organization",
+      "canonical_id": "github.outside_collaborator.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an SSH signing key for the user",
+      "canonical_id": "github.ssh_signing_key.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove app access restrictions for a protected branch",
+      "canonical_id": "github.branche.apps.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove assignees from an issue",
+      "canonical_id": "github.issue.assignees.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove attestations for a user by subject digest",
+      "canonical_id": "github.attestation.digest.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove attestations using the subject digest",
+      "canonical_id": "github.attestation.digest.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove branch protection rules",
+      "canonical_id": "github.branche.protection.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove enterprise team from multiple organizations",
+      "canonical_id": "github.team.organizations.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove multiple members from an enterprise team",
+      "canonical_id": "github.team.memberships.remove"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove organizations from enterprise coding agent policy",
+      "canonical_id": "github.copilot.organizations.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove public organization membership for a user",
+      "canonical_id": "github.public_member.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove pull request review protection for a branch",
+      "canonical_id": "github.branche.requiredPullRequestReviews.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove requested reviewers from a pull request",
+      "canonical_id": "github.pull.requestedReviewers.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove required commit signature protection from a branch",
+      "canonical_id": "github.branche.requiredSignatures.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove required status check contexts from a protected branch",
+      "canonical_id": "github.branche.contexts.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove required status checks from branch protection",
+      "canonical_id": "github.branche.requiredStatusChecks.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove restrictions on who can push to a branch",
+      "canonical_id": "github.branche.restrictions.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove selected users from an organization's Codespaces access",
+      "canonical_id": "github.codespace.selectedUsers.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove social accounts from user profile",
+      "canonical_id": "github.social_account.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove team restrictions for pushing to a branch",
+      "canonical_id": "github.branche.teams.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove teams from Copilot subscription",
+      "canonical_id": "github.copilot.selectedTeams.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove users from branch protection restrictions",
+      "canonical_id": "github.branche.users.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove users from Copilot subscription",
+      "canonical_id": "github.copilot.selectedUsers.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Rename a branch in a repository",
+      "canonical_id": "github.branche.rename.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Render a Markdown document",
+      "canonical_id": "github.markdown.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Render Markdown content as plain text",
+      "canonical_id": "github.raw.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replace all repository topics",
+      "canonical_id": "github.topic.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reply to a pull request review comment",
+      "canonical_id": "github.pull.replies.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reprioritize a sub-issue within a repository",
+      "canonical_id": "github.issue.priority.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a GitHub Pages site build",
+      "canonical_id": "github.page.builds.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request reviewers for a pull request",
+      "canonical_id": "github.pull.requestedReviewers.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Require signed commits on a branch",
+      "canonical_id": "github.branche.requiredSignatures.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Reset an OAuth token for an application",
+      "canonical_id": "github.token.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted package for an organization",
+      "canonical_id": "github.package.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted package for the authenticated user",
+      "canonical_id": "github.package.restore.create2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted package version",
+      "canonical_id": "github.package.restore.create3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted package version for a user",
+      "canonical_id": "github.package.restore.create5"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a deleted package version for an organization",
+      "canonical_id": "github.package.restore.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a user's deleted package",
+      "canonical_id": "github.package.restore.create4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a custom organization property by name",
+      "canonical_id": "github.property.schema.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a global security advisory by its GHSA identifier",
+      "canonical_id": "github.advisory.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a repository's blob content by SHA",
+      "canonical_id": "github.git.blobs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific billing budget for an organization",
+      "canonical_id": "github.setting.budgets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific campaign for an organization",
+      "canonical_id": "github.campaign.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific delivery for a repository webhook",
+      "canonical_id": "github.hook.deliveries.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Dependabot alert for a repository",
+      "canonical_id": "github.dependabot.alerts.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific Dependabot secret for a repository",
+      "canonical_id": "github.dependabot.secrets.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific deploy key for a repository",
+      "canonical_id": "github.key.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific deployment branch policy for a repository environment",
+      "canonical_id": "github.environment.deploymentBranchPolicies.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific deployment status for a repository",
+      "canonical_id": "github.deployment.statuses.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific environment secret for a repository",
+      "canonical_id": "github.environment.secrets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific gist by its ID",
+      "canonical_id": "github.gist.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific gist revision by its ID and SHA",
+      "canonical_id": "github.gist.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific GPG key for the authenticated user",
+      "canonical_id": "github.gpg_key.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific issue event by its ID",
+      "canonical_id": "github.issue.events.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific item from a user's project",
+      "canonical_id": "github.projectsv2.items.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific organization secret",
+      "canonical_id": "github.dependabot.secrets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific organization secret",
+      "canonical_id": "github.agent.secrets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific organization webhook",
+      "canonical_id": "github.hook.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific package for a user",
+      "canonical_id": "github.package.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific package owned by the authenticated user",
+      "canonical_id": "github.package.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific repository secret",
+      "canonical_id": "github.agent.secrets.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific repository secret without its value",
+      "canonical_id": "github.action.secrets.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific repository variable by name",
+      "canonical_id": "github.agent.variables.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific repository webhook",
+      "canonical_id": "github.hook.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific SSH signing key by its ID",
+      "canonical_id": "github.ssh_signing_key.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific task and its sessions by ID",
+      "canonical_id": "github.task.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific user's project by its number",
+      "canonical_id": "github.projectsv2.get3"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific workflow run attempt",
+      "canonical_id": "github.action.attempts.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a user's codespace secret by name",
+      "canonical_id": "github.codespace.secrets.get4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all billing budgets for an organization",
+      "canonical_id": "github.setting.budgets.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve all GitHub codes of conduct",
+      "canonical_id": "github.codes_of_conduct.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve an organization secret's details",
+      "canonical_id": "github.codespace.secrets.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific app installation",
+      "canonical_id": "github.installation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific GitHub App",
+      "canonical_id": "github.app.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific notification thread",
+      "canonical_id": "github.thread.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve details for a specific workflow job",
+      "canonical_id": "github.action.jobs.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve hosted compute network settings for an organization",
+      "canonical_id": "github.setting.networkSettings.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve project fields for a user's specific project",
+      "canonical_id": "github.projectsv2.fields.get2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve webhook configuration for an organization",
+      "canonical_id": "github.hook.config.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke a list of credentials",
+      "canonical_id": "github.revoke.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke an app authorization for a user",
+      "canonical_id": "github.grant.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke an installation access token",
+      "canonical_id": "github.token.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Revoke an OAuth or GitHub app token",
+      "canonical_id": "github.token.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search commits by query and other criteria",
+      "canonical_id": "github.commit.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for code within files",
+      "canonical_id": "github.code.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for labels in a repository by name or description",
+      "canonical_id": "github.label.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for repositories using various criteria",
+      "canonical_id": "github.repository.list2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for topics using various criteria",
+      "canonical_id": "github.topic.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for users by various criteria",
+      "canonical_id": "github.user.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search issues and pull requests by keyword and state",
+      "canonical_id": "github.issue.list1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "See if the authenticated user follows a specific person",
+      "canonical_id": "github.following.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Select repositories for an organization secret",
+      "canonical_id": "github.dependabot.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set allowed actions and reusable workflows for an organization",
+      "canonical_id": "github.action.selectedActions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set app restrictions for branch push access",
+      "canonical_id": "github.branche.apps.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set cluster deployment records for an organization",
+      "canonical_id": "github.artifact.cluster.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set custom field values for a repository issue",
+      "canonical_id": "github.issue.issueFieldValues.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default GitHub Actions workflow permissions for a repository",
+      "canonical_id": "github.action.workflow.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set default workflow permissions for an organization",
+      "canonical_id": "github.action.workflow.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set Dependabot's default repository access level",
+      "canonical_id": "github.dependabot.defaultLevel.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set Dependabot's default repository access level for an enterprise",
+      "canonical_id": "github.dependabot.defaultLevel.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set fork PR contributor approval permissions for a repository",
+      "canonical_id": "github.action.forkPrContributorApproval.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set fork PR contributor approval permissions for an organization",
+      "canonical_id": "github.action.forkPrContributorApproval.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set GitHub Actions cache retention limit for an enterprise",
+      "canonical_id": "github.action.retentionLimit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set GitHub Actions cache storage limit for a repository",
+      "canonical_id": "github.action.storageLimit.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set GitHub Actions cache storage limit for an enterprise",
+      "canonical_id": "github.action.storageLimit.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set GitHub Actions permissions for a repository",
+      "canonical_id": "github.action.permissions.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set GitHub Actions permissions for an organization",
+      "canonical_id": "github.action.permissions.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set labels for an issue",
+      "canonical_id": "github.issue.labels.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set organization self-hosted runner repository access",
+      "canonical_id": "github.action.repositories.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set organization-wide GitHub Actions cache retention limit",
+      "canonical_id": "github.action.retentionLimit.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set primary email visibility for the authenticated user",
+      "canonical_id": "github.email.visibility.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for a user's codespace secret",
+      "canonical_id": "github.codespace.repositories.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for an organization secret",
+      "canonical_id": "github.codespace.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for an organization secret",
+      "canonical_id": "github.action.repositories.update6"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for an organization secret",
+      "canonical_id": "github.agent.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for an organization variable",
+      "canonical_id": "github.agent.repositories.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for an organization variable",
+      "canonical_id": "github.action.repositories.update8"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repositories for immutable releases enforcement",
+      "canonical_id": "github.setting.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set repository access for a self-hosted runner group",
+      "canonical_id": "github.action.repositories.update4"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set specific repositories for the Copilot cloud agent in an organization",
+      "canonical_id": "github.copilot.repositories.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set team push access for a protected branch",
+      "canonical_id": "github.branche.teams.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the cache retention limit for a repository",
+      "canonical_id": "github.action.retentionLimit.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set the GitHub Actions cache storage limit for an organization",
+      "canonical_id": "github.action.storageLimit.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Set users who can push to a protected branch",
+      "canonical_id": "github.branche.users.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Star a repository for the authenticated user",
+      "canonical_id": "github.starred.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Star a specific gist",
+      "canonical_id": "github.star.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a Copilot cloud agent task for a repository",
+      "canonical_id": "github.repo.tasks.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a source import to a GitHub repository",
+      "canonical_id": "github.import.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a user migration and generate migration archive",
+      "canonical_id": "github.migration.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start a user's codespace",
+      "canonical_id": "github.codespace.start"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Start an organization migration and generate a migration archive",
+      "canonical_id": "github.migration.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop a user's codespace",
+      "canonical_id": "github.codespace.stop"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop a user's codespace within an organization",
+      "canonical_id": "github.member.codespaces.stop"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop following a user",
+      "canonical_id": "github.following.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop watching a repository",
+      "canonical_id": "github.subscription.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Submit a review for a pull request",
+      "canonical_id": "github.pull.events.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Suspend a GitHub App installation",
+      "canonical_id": "github.installation.suspended.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Transfer a repository to a new owner",
+      "canonical_id": "github.transfer.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a ping event for a repository webhook",
+      "canonical_id": "github.hook.pings.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a ping event for an organization webhook",
+      "canonical_id": "github.hook.pings.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a push webhook test for a repository",
+      "canonical_id": "github.hook.tests.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Trigger a repository dispatch event with custom payload",
+      "canonical_id": "github.dispatche.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unblock a user by username",
+      "canonical_id": "github.block.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unblock a user from an organization",
+      "canonical_id": "github.block.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Uninstall a GitHub App installation",
+      "canonical_id": "github.installation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unlock a repository for migration",
+      "canonical_id": "github.migration.lock.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unlock a user repository",
+      "canonical_id": "github.migration.lock.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unlock an issue's conversation",
+      "canonical_id": "github.issue.lock.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unpin a comment on an issue",
+      "canonical_id": "github.issue.pin.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unstar a repository for the authenticated user",
+      "canonical_id": "github.starred.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unsubscribe from notifications for a specific thread",
+      "canonical_id": "github.thread.subscription.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Unsuspend a GitHub App installation",
+      "canonical_id": "github.installation.suspended.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a commit comment",
+      "canonical_id": "github.comment.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Dependabot security alert",
+      "canonical_id": "github.dependabot.alerts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a deployment branch policy for an environment",
+      "canonical_id": "github.environment.deploymentBranchPolicies.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a gist's description and files",
+      "canonical_id": "github.gist.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a Git reference to a new SHA",
+      "canonical_id": "github.git.refs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a GitHub Actions repository variable",
+      "canonical_id": "github.action.variables.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a GitHub-hosted runner for an organization",
+      "canonical_id": "github.action.hostedRunners.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a hosted compute network configuration for an organization",
+      "canonical_id": "github.setting.networkConfigurations.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a pull request",
+      "canonical_id": "github.pull.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a pull request branch with latest upstream changes",
+      "canonical_id": "github.pull.updateBranch.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a pull request review comment",
+      "canonical_id": "github.pull.reviews.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a release asset",
+      "canonical_id": "github.releas.assets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository environment variable",
+      "canonical_id": "github.environment.variables.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository invitation",
+      "canonical_id": "github.invitation.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository label by name",
+      "canonical_id": "github.label.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository milestone",
+      "canonical_id": "github.milestone.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository release",
+      "canonical_id": "github.releas.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository ruleset by ID",
+      "canonical_id": "github.ruleset.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository variable for GitHub Actions",
+      "canonical_id": "github.agent.variables.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository webhook",
+      "canonical_id": "github.hook.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a repository's details",
+      "canonical_id": "github.repo.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a self-hosted runner group for an organization",
+      "canonical_id": "github.action.runnerGroups.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific campaign within an organization",
+      "canonical_id": "github.campaign.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific gist comment",
+      "canonical_id": "github.comment.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific item in an organization's project",
+      "canonical_id": "github.projectsv2.items.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific project item for a user",
+      "canonical_id": "github.projectsv2.items.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a team's details",
+      "canonical_id": "github.team.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's codespace machine type or recent folders",
+      "canonical_id": "github.codespace.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a user's organization membership and role",
+      "canonical_id": "github.membership.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an enterprise team with provided details",
+      "canonical_id": "github.team.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue comment",
+      "canonical_id": "github.issue.comments.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an issue's details",
+      "canonical_id": "github.issue.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization agent variable",
+      "canonical_id": "github.agent.variables.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization team",
+      "canonical_id": "github.team.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization variable for GitHub Actions",
+      "canonical_id": "github.action.variables.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization webhook",
+      "canonical_id": "github.hook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization's billing budget",
+      "canonical_id": "github.setting.budgets.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization's custom property schema",
+      "canonical_id": "github.property.schema.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization's repository ruleset",
+      "canonical_id": "github.ruleset.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization's settings and member privileges",
+      "canonical_id": "github.org.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an organization's webhook configuration",
+      "canonical_id": "github.hook.config.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update branch protection rules for a repository",
+      "canonical_id": "github.branche.protection.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom property values for a repository",
+      "canonical_id": "github.property.values.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update custom property values for organization repositories",
+      "canonical_id": "github.property.values.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update Git LFS preference for repository imports",
+      "canonical_id": "github.import.lfs.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update GitHub Pages site information",
+      "canonical_id": "github.page.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update issue field values for a specific issue",
+      "canonical_id": "github.issue.issueFieldValues.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update organization custom property schemas",
+      "canonical_id": "github.property.schema.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update repository import with credentials or project choice",
+      "canonical_id": "github.import.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update repository runner labels",
+      "canonical_id": "github.action.labels.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update repository webhook configuration",
+      "canonical_id": "github.hook.config.update2"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update required pull request reviews for branch protection",
+      "canonical_id": "github.branche.requiredPullRequestReviews.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update required status checks for a branch",
+      "canonical_id": "github.branche.contexts.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update required status checks for a protected branch",
+      "canonical_id": "github.branche.requiredStatusChecks.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update runner labels for an organization",
+      "canonical_id": "github.action.labels.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update team repository permissions",
+      "canonical_id": "github.repo.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update the authenticated user's profile",
+      "canonical_id": "github.user.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update webhook configuration for a GitHub App",
+      "canonical_id": "github.hook.config.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a release asset",
+      "canonical_id": "github.releas.assets.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Validate an OAuth token for an application",
+      "canonical_id": "github.token.create"
+    }
+  ]
+}

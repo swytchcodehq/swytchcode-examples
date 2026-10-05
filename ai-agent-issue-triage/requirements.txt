@@ -1,0 +1,5 @@
+openai
+langgraph
+numpy
+requests
+python-dotenv
