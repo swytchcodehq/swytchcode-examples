@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.swytchcode/workspace.json
+.swytchcode/*.lock

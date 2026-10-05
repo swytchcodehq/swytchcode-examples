@@ -1,0 +1,434 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a new desktop screen to a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.screens.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a disk to a running sandbox",
+      "canonical_id": "fc_spawn_control_plane.disk.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Attach a sandbox to a network",
+      "canonical_id": "fc_spawn_control_plane.network.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Build a custom sandbox image from a Dockerfile",
+      "canonical_id": "fc_spawn_control_plane.template.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Capture a screenshot of a sandbox by screen or window ID, or by coordinates",
+      "canonical_id": "fc_spawn_control_plane.computer.screenshot.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the database is ready to receive requests",
+      "canonical_id": "fc_spawn_control_plane.readyz.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Check if the service is running and healthy",
+      "canonical_id": "fc_spawn_control_plane.healthz.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clone a bundle into a new sandbox identity",
+      "canonical_id": "fc_spawn_control_plane.fork.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Close a pipe process stdin",
+      "canonical_id": "fc_spawn_control_plane.process.close.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Close a specific desktop window on a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.windows.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a managed pipe or PTY process in a sandbox",
+      "canonical_id": "fc_spawn_control_plane.process.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new network",
+      "canonical_id": "fc_spawn_control_plane.network.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new sandbox environment",
+      "canonical_id": "fc_spawn_control_plane.sandbox.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a disk by its ID or name",
+      "canonical_id": "fc_spawn_control_plane.disk.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a network if it has no members",
+      "canonical_id": "fc_spawn_control_plane.network.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a sandbox by its ID",
+      "canonical_id": "fc_spawn_control_plane.sandbox.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a virtual computer screen",
+      "canonical_id": "fc_spawn_control_plane.computer.screens.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a disk from a sandbox mount",
+      "canonical_id": "fc_spawn_control_plane.disk.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Detach a sandbox from a network",
+      "canonical_id": "fc_spawn_control_plane.network.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Download a file from a sandbox by its ID and path",
+      "canonical_id": "fc_spawn_control_plane.file.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Drag mouse from one coordinate to another",
+      "canonical_id": "fc_spawn_control_plane.computer.drag.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Execute a command within a sandbox",
+      "canonical_id": "fc_spawn_control_plane.exec.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Focus a specific desktop window",
+      "canonical_id": "fc_spawn_control_plane.computer.focus.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a desktop window title by its ID",
+      "canonical_id": "fc_spawn_control_plane.computer.windows.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a disk by its ID or name",
+      "canonical_id": "fc_spawn_control_plane.disk.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of available shape configurations",
+      "canonical_id": "fc_spawn_control_plane.shape.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of my templates",
+      "canonical_id": "fc_spawn_control_plane.template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of registered hosts",
+      "canonical_id": "fc_spawn_control_plane.host.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a noVNC connection URL for a sandbox screen",
+      "canonical_id": "fc_spawn_control_plane.computer.screens.connect"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get build logs for a template, optionally streaming new entries",
+      "canonical_id": "fc_spawn_control_plane.log.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get cursor coordinates for a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.cursor.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get details for a specific sandbox",
+      "canonical_id": "fc_spawn_control_plane.sandbox.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get my user ID and sandbox counts",
+      "canonical_id": "fc_spawn_control_plane.whoami.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get network details including members by ID",
+      "canonical_id": "fc_spawn_control_plane.network.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get sandbox bandwidth quota and usage",
+      "canonical_id": "fc_spawn_control_plane.bandwidth.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get sandbox computer screen dimensions",
+      "canonical_id": "fc_spawn_control_plane.computer.screen.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get sandbox CPU and memory usage metrics",
+      "canonical_id": "fc_spawn_control_plane.metric.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the current egress allowlist for a sandbox",
+      "canonical_id": "fc_spawn_control_plane.egress.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the current focused Windows desktop window",
+      "canonical_id": "fc_spawn_control_plane.computer.current.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the desktop clipboard content",
+      "canonical_id": "fc_spawn_control_plane.computer.clipboard.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the list of configured desktop screens for a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.screens.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get window position and dimensions",
+      "canonical_id": "fc_spawn_control_plane.computer.geometry.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Hold down a mouse button on a specific sandbox computer",
+      "canonical_id": "fc_spawn_control_plane.computer.down.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Hold down computer keyboard keys in a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.down.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Inspect a managed process or PTY",
+      "canonical_id": "fc_spawn_control_plane.process.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Launch a desktop application in a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.launch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List a sandbox's attached disks and their mount status",
+      "canonical_id": "fc_spawn_control_plane.disk.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List managed processes and PTYs for a specific sandbox",
+      "canonical_id": "fc_spawn_control_plane.process.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List named egress-rule presets",
+      "canonical_id": "fc_spawn_control_plane.preset.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List S3 disks and their metadata",
+      "canonical_id": "fc_spawn_control_plane.disk.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List sandboxes owned by the caller",
+      "canonical_id": "fc_spawn_control_plane.sandbox.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List the caller's networks",
+      "canonical_id": "fc_spawn_control_plane.network.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List the rootfs catalog of the default host",
+      "canonical_id": "fc_spawn_control_plane.rootf.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List visible Windows desktop windows on a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.windows.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Maximize a desktop window on a specific screen",
+      "canonical_id": "fc_spawn_control_plane.computer.maximize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Minimize a specific desktop window",
+      "canonical_id": "fc_spawn_control_plane.computer.minimize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move a desktop window to a new position",
+      "canonical_id": "fc_spawn_control_plane.computer.move.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Move the computer mouse cursor on a specific screen",
+      "canonical_id": "fc_spawn_control_plane.computer.move.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Open a URL or desktop target on a sandbox computer",
+      "canonical_id": "fc_spawn_control_plane.computer.open.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Pause a running sandbox and preserve its state",
+      "canonical_id": "fc_spawn_control_plane.pause.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Recharge sandbox bandwidth quota",
+      "canonical_id": "fc_spawn_control_plane.bandwidth.recharge.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register an S3 bucket as a disk",
+      "canonical_id": "fc_spawn_control_plane.disk.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Release a mouse button in a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.up.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Release held keyboard keys on a sandbox computer",
+      "canonical_id": "fc_spawn_control_plane.computer.up.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a specific template by its ID",
+      "canonical_id": "fc_spawn_control_plane.template.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Replay and follow ordered process output",
+      "canonical_id": "fc_spawn_control_plane.process.connect"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resize a desktop screen and restart its display",
+      "canonical_id": "fc_spawn_control_plane.computer.resize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resize a desktop window",
+      "canonical_id": "fc_spawn_control_plane.computer.resize.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resize a managed PTY process",
+      "canonical_id": "fc_spawn_control_plane.process.resize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resize a sandbox's disk",
+      "canonical_id": "fc_spawn_control_plane.resize.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Restore a maximized desktop window",
+      "canonical_id": "fc_spawn_control_plane.computer.restore.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Resume a paused sandbox",
+      "canonical_id": "fc_spawn_control_plane.resume.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a configured desktop screen for a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.screens.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve template details by ID, resolving the friendly name to the latest ready version",
+      "canonical_id": "fc_spawn_control_plane.template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Scroll the mouse on a sandbox computer",
+      "canonical_id": "fc_spawn_control_plane.computer.scroll.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send a signal to a process group or PTY foreground group",
+      "canonical_id": "fc_spawn_control_plane.process.signal.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send input data to a running sandbox process",
+      "canonical_id": "fc_spawn_control_plane.process.input.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Simulate a mouse click within a sandbox environment",
+      "canonical_id": "fc_spawn_control_plane.computer.click.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Simulate pressing keys on a virtual keyboard",
+      "canonical_id": "fc_spawn_control_plane.computer.press.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Terminate a managed process and its children",
+      "canonical_id": "fc_spawn_control_plane.process.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Type text into the focused computer window",
+      "canonical_id": "fc_spawn_control_plane.computer.type.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update desktop clipboard text for a sandbox",
+      "canonical_id": "fc_spawn_control_plane.computer.clipboard.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update sandbox egress allowlist rules",
+      "canonical_id": "fc_spawn_control_plane.egress.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update sandbox settings like ingress and auto-pause",
+      "canonical_id": "fc_spawn_control_plane.sandbox.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Upload a file to a sandbox",
+      "canonical_id": "fc_spawn_control_plane.file.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Wait for a process or its children to exit",
+      "canonical_id": "fc_spawn_control_plane.process.wait.get"
+    }
+  ]
+}

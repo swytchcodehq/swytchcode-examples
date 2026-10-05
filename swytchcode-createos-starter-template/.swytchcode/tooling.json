@@ -1,0 +1,1032 @@
+{
+  "editor": "none",
+  "integrations": {
+    "CreateOS.sandbox": {
+      "version": "0.1.0"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "fc_spawn_control_plane.exec.create": {
+      "desc": "Two response modes selected by the `stream` query parameter\n(or the `stream` field in the request body):\n\n**Buffered (default).** Agent runs the cmd to completion and returns\na JSend envelope with `stdout`, `stderr`, and `exit_code`. Suitable\nfor short, well-behaved commands.\n\n**Streaming (`?stream=true`).** Agent emits one JSON object per\nline over `Content-Type: application/x-ndjson` (HTTP/1.1 chunked).\nEach line is an `ExecStreamEvent` with the same field names as\nthe buffered shape — so a single struct parses both worlds. The\nterminal frame carries `exit_code`. Heartbeat lines (`{\"hb\":true}`)\nare emitted every 5 seconds so a dead client is detected and the\nin-VM command killed within ~5s of disconnect.\n\nBackground processes must detach (redirect stdio + `\u0026`) or\nthe exec blocks until they exit.\n",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "stream": {
+            "DEFAULT": false,
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "body": {
+            "CONTENT_TYPE": "application/json",
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "args": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "cmd": {
+                  "required": true,
+                  "type": "string"
+                },
+                "env": {
+                  "required": false,
+                  "type": "map[STRING]STRING"
+                },
+                "stdin": {
+                  "required": false,
+                  "type": "string"
+                },
+                "stream": {
+                  "required": false,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "cmd"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "bb7b6c67dcf45597a4eb26513cd4a8c1bea4c82890e243973cbf43435186829c",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "exec_ms": {
+                  "required": false,
+                  "type": "FLOAT"
+                },
+                "result": {
+                  "properties": {
+                    "exit_code": {
+                      "required": false,
+                      "type": "integer"
+                    },
+                    "stderr": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "stdout": {
+                      "required": false,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Run a command inside the sandbox (buffered or streaming)",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.file.get": {
+      "desc": "",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "path": {
+            "LOCATION": "query",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "c7a0eff09a32f0fe4a631eeccd792b11df8918a66d59d49470ee7ac89e6558b6",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 200
+      },
+      "summary": "Download a file from the sandbox",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.file.update": {
+      "desc": "Body is streamed directly into the sandbox without being buffered by\nthe control plane. Maximum 10 GiB. Parent directories are auto-created.\n",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "path": {
+            "LOCATION": "query",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "CONTENT_TYPE": "application/octet-stream",
+            "FORMAT": "binary",
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "032c1177f5899fb4e8a6efbd528b7c4f8e79f9dc1266e853913d555e9400f390",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "required": true,
+              "type": "any"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Upload a file into the sandbox",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.log.get": {
+      "desc": "Default (`follow=false`, or omitted) returns the full log so far\nas `text/plain`, one raw line per row. Set `?follow=true` to\nstream `application/x-ndjson`; each newline-delimited line is a\n`TemplateLogLine` JSON object. The stream stays open, tailing new\nrows every 500 ms, until the template reaches a terminal status\nor the client disconnects. Empty for pending templates, partial\nwhile building.\n",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "follow": {
+            "DEFAULT": false,
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "attempt": {
+            "LOCATION": "query",
+            "MINIMUM": 1,
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "limit": {
+            "LOCATION": "query",
+            "MINIMUM": 1,
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "25235072e4da3c16e497a8c3cb0c7856a5d0d858f54642401f14879c228158f4",
+      "output": {
+        "schema": {
+          "type": "any"
+        },
+        "status": 200
+      },
+      "summary": "Fetch or stream build logs for a template",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.pause.create": {
+      "desc": "Snapshots the sandbox to storage and frees its host. Disk +\nmemory + processes are all preserved exactly. Returns 202 with\nthe row in `pausing`; poll `GET /v1/sandboxes/{id}` until status\nflips to `paused`. Typical pause completes in ~3s for a 1 GiB\nsandbox.\n",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "bdac64d3b3cf9b6e019b1133abb5f1eb23ef8b4ed0b72d42cf9c38fdaf722166",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 202
+      },
+      "summary": "Pause a running sandbox, preserving disk + memory state",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.resume.create": {
+      "desc": "Brings a paused sandbox back to `running`. Disk + memory are\nrestored exactly; the sandbox gets a fresh IP. Returns 202 with\nthe row in `resuming`; poll until status flips to `running`.\nTypical resume completes in \u003c1s if the original host is still\navailable, ~10–13s when fetched from storage.\n\nRetries on a different host if the first attempt fails. If all\nattempts are exhausted the row goes to `error` — POST `/resume`\nagainst that row to try again with a fresh budget.\n",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "e05e3c9186247b6cd9430a227ec6818a2717b3cbbf13f547911485c6346fcef4",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 202
+      },
+      "summary": "Restore a paused sandbox",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.sandbox.create": {
+      "desc": "Creates a new sandbox. Typical startup is ~30–100 ms.\n`ssh_pubkeys` is required if you plan to use `createos-cli tunnel`\nor `createos-cli shell`.\n",
+      "inputs": [
+        {
+          "body": {
+            "CONTENT_TYPE": "application/json",
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "auto_pause_after_seconds": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "bandwidth_quota_bytes": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "disk_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "disks": {
+                  "items": {
+                    "properties": {
+                      "disk_id": {
+                        "required": true,
+                        "type": "string"
+                      },
+                      "mount_path": {
+                        "required": true,
+                        "type": "string"
+                      },
+                      "sub_path": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "disk_id",
+                      "mount_path"
+                    ],
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "egress": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "envs": {
+                  "required": false,
+                  "type": "map[STRING]STRING"
+                },
+                "host_id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "ingress_enabled": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "networks": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "required": true,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "region": {
+                  "required": false,
+                  "type": "string"
+                },
+                "rootfs": {
+                  "required": false,
+                  "type": "string"
+                },
+                "shape": {
+                  "required": true,
+                  "type": "string"
+                },
+                "ssh_pubkeys": {
+                  "required": false,
+                  "type": "[]STRING"
+                }
+              },
+              "required": [
+                "shape"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "7d0cf55431d5b0a6351c83e7be3526739f1986b9311c1dedec744357c0181d9e",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "bandwidth_quota_bytes": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "disk_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "egress": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "ip": {
+                  "required": false,
+                  "type": "string"
+                },
+                "mem_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "rootfs": {
+                  "required": false,
+                  "type": "string"
+                },
+                "shape": {
+                  "required": false,
+                  "type": "string"
+                },
+                "spawn_ms": {
+                  "required": false,
+                  "type": "FLOAT"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                },
+                "vcpu": {
+                  "required": false,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Create a sandbox",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.sandbox.delete": {
+      "desc": "",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "55ea6308b1dd4ca8746becde56deb3b9767c8b5c758c66b28493c89a707bbf7b",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Destroy a sandbox",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.sandbox.get": {
+      "desc": "",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "c032028f04bf951c62f91987cef881868621e04381af54dcb0b26f77d13a394c",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "auto_pause_after_seconds": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "bandwidth_ingress_bytes": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "created_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "created_by": {
+                  "required": false,
+                  "type": "string"
+                },
+                "destroyed_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "disk_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "egress": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "envs": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "forked_from": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "ingress_enabled": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "ip": {
+                  "required": false,
+                  "type": "string"
+                },
+                "last_resumed_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "mem_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "paused_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "region": {
+                  "required": false,
+                  "type": "string"
+                },
+                "rootfs": {
+                  "required": false,
+                  "type": "string"
+                },
+                "running_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "shape": {
+                  "required": false,
+                  "type": "string"
+                },
+                "spawn_ms": {
+                  "required": false,
+                  "type": "FLOAT"
+                },
+                "ssh_pubkeys": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                },
+                "vcpu": {
+                  "required": false,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Get one sandbox's details",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.sandbox.list": {
+      "desc": "",
+      "inputs": [
+        {
+          "limit": {
+            "DEFAULT": 50,
+            "LOCATION": "query",
+            "MAXIMUM": 500,
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "offset": {
+            "DEFAULT": 0,
+            "LOCATION": "query",
+            "MINIMUM": 0,
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "status": {
+            "ENUM": [
+              "running",
+              "creating",
+              "destroyed",
+              "failed"
+            ],
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "STRING"
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "ea6f411d1992a1a6eb6727658cc955a93615cdfcd16f6acf5e65e9c9a1e97189",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "data": {
+                  "items": {
+                    "properties": {
+                      "auto_pause_after_seconds": {
+                        "required": false,
+                        "type": "integer"
+                      },
+                      "bandwidth_ingress_bytes": {
+                        "required": false,
+                        "type": "integer"
+                      },
+                      "created_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "created_by": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "destroyed_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "disk_mib": {
+                        "required": false,
+                        "type": "integer"
+                      },
+                      "egress": {
+                        "required": false,
+                        "type": "[]STRING"
+                      },
+                      "envs": {
+                        "required": false,
+                        "type": "[]STRING"
+                      },
+                      "forked_from": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "ingress_enabled": {
+                        "required": false,
+                        "type": "boolean"
+                      },
+                      "ip": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "last_resumed_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "mem_mib": {
+                        "required": false,
+                        "type": "integer"
+                      },
+                      "name": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "paused_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "region": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "rootfs": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "running_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "shape": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "spawn_ms": {
+                        "required": false,
+                        "type": "FLOAT"
+                      },
+                      "ssh_pubkeys": {
+                        "required": false,
+                        "type": "[]STRING"
+                      },
+                      "status": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "vcpu": {
+                        "required": false,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "pagination": {
+                  "properties": {
+                    "count": {
+                      "required": true,
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "required": true,
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "required": true,
+                      "type": "integer"
+                    },
+                    "total": {
+                      "required": true,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "count",
+                    "limit",
+                    "offset",
+                    "total"
+                  ],
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "List sandboxes owned by the caller",
+      "type": "method"
+    },
+    "fc_spawn_control_plane.sandbox.update": {
+      "desc": "",
+      "inputs": [
+        {
+          "id": {
+            "LOCATION": "path",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "body": {
+            "CONTENT_TYPE": "application/json",
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "auto_pause_after_seconds": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "disable_auto_pause": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "ingress_enabled": {
+                  "required": false,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "integration": "CreateOS.sandbox@0.1.0",
+      "method_hash": "7cec84e5c3417ccb4e3efaef89744ae15068d798df9e0a6b20472767e6f83ba7",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "auto_pause_after_seconds": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "bandwidth_ingress_bytes": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "created_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "created_by": {
+                  "required": false,
+                  "type": "string"
+                },
+                "destroyed_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "disk_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "egress": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "envs": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "forked_from": {
+                  "required": false,
+                  "type": "string"
+                },
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "ingress_enabled": {
+                  "required": false,
+                  "type": "boolean"
+                },
+                "ip": {
+                  "required": false,
+                  "type": "string"
+                },
+                "last_resumed_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "mem_mib": {
+                  "required": false,
+                  "type": "integer"
+                },
+                "name": {
+                  "required": false,
+                  "type": "string"
+                },
+                "paused_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "region": {
+                  "required": false,
+                  "type": "string"
+                },
+                "rootfs": {
+                  "required": false,
+                  "type": "string"
+                },
+                "running_at": {
+                  "required": false,
+                  "type": "TIMESTAMP"
+                },
+                "shape": {
+                  "required": false,
+                  "type": "string"
+                },
+                "spawn_ms": {
+                  "required": false,
+                  "type": "FLOAT"
+                },
+                "ssh_pubkeys": {
+                  "required": false,
+                  "type": "[]STRING"
+                },
+                "status": {
+                  "required": false,
+                  "type": "string"
+                },
+                "vcpu": {
+                  "required": false,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "status": {
+              "required": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "data",
+            "status"
+          ]
+        },
+        "status": 200
+      },
+      "summary": "Partial update (ingress, auto-pause)",
+      "type": "method"
+    }
+  },
+  "version": "2.23.13",
+  "workspace": "swytchcode-createos-starter-template"
+}
