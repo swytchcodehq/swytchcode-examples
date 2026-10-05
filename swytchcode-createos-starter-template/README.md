@@ -207,7 +207,9 @@ The three rules:
 |---|---|
 | `do-not-destroy-createos-resources` | Any CreateOS call whose HTTP method is `DELETE`, including `sandbox.delete`. |
 | `builder-uses-devbox` | `sandbox.create` unless `rootfs` is `devbox:1`. |
-| `no-wipe-the-guest` | An exec whose arguments match `rm -rf`, `shutdown`, `reboot`, or `mkfs`. |
+| `no-wipe-the-guest` | An example denylist for exec arguments that match `rm -rf`, `shutdown`, `reboot`, or `mkfs`. |
+
+`no-wipe-the-guest` is only an example. The regex does not catch other forms, such as `rm -fr`, `rm --recursive --force`, `poweroff`, or `dd`. Treat it as a starting point, not full protection.
 
 Prove a block without spending a sandbox. CreateOS is never called. The reply category is `policy_denied`.
 
