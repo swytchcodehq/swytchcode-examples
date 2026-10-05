@@ -1,0 +1,6793 @@
+VERSION: 2.0.2
+DEFAULTS:
+  x-access-token: <X-ACCESS-TOKEN>
+  x-api-key: <X-API-KEY>
+  x-auth-token: <X-AUTH-TOKEN>
+  w_base_url: https://api.sb.createos.sh
+METHODS:
+  fc_spawn_control_plane.healthz.list:
+    SUMMARY: Liveness probe
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /healthz
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY: []
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(getHealthz_get_healthz_14239264Response200)
+        RETURNVAR: fc_spawn_control_plane_healthz_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.healthz.list
+  fc_spawn_control_plane.readyz.list:
+    SUMMARY: Readiness probe (DB reachable)
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /readyz
+      HEADERS: {}
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY: []
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(getReadyz_get_readyz_36f771a3Response200)
+        RETURNVAR: fc_spawn_control_plane_readyz_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(ErrorEnvelope)
+        STATUS: 503
+        WHEN: Server-side error (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.readyz.list
+  fc_spawn_control_plane.disk.list:
+    SUMMARY: List the caller's S3 disks
+    DESC: |
+      Credentials are never returned — only the disk metadata + config.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/disks
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 50
+          MAXIMUM: 500
+      - offset:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 0
+          MINIMUM: 0
+    RETURNS:
+      - RETURNTYPE: STRUCT(listDisks_get_v1_disks_6c229da8Response200)
+        RETURNVAR: fc_spawn_control_plane_disk_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: |-
+          Disks API not configured — control was started without a
+          `--disk-credential-key`.
+           (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.disk.list
+  fc_spawn_control_plane.disk.create:
+    SUMMARY: Register an S3 bucket as a disk
+    DESC: |
+      Server validates the request, runs a 3-second HEAD probe against
+      `<endpoint>/<bucket>` to catch typos, then AES-256-GCM encrypts
+      the credentials and inserts a `disks` row. Credentials are
+      NEVER returned in any response.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/disks
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(DiskCreateReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(DiskCreateReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(createDisk_post_v1_disks_6c229da8Response200)
+        RETURNVAR: fc_spawn_control_plane_disk_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: |-
+          Validation rejection. Common causes: malformed name,
+          unsupported `kind`, missing bucket / endpoint / credentials,
+          unreachable endpoint (HEAD probe failed), or bucket missing
+          (404 from the probe).
+           (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: A disk with this name already exists. (HTTP 409)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: Disks API not configured. (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.disk.create
+  fc_spawn_control_plane.disk.delete:
+    SUMMARY: Soft-delete a disk
+    DESC: |
+      Refuses with 409 if the disk is attached to a non-destroyed
+      sandbox. Soft-delete only; the bucket contents are never touched.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/disks/{idOrName}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - idOrName:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(deleteDisk_delete_v1_disks_idOrName_195a43eResponse200)
+        RETURNVAR: fc_spawn_control_plane_disk_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: |-
+          Disk is attached to a running, paused, creating, resuming,
+          or other non-terminal sandbox. Destroy the sandboxes (or
+          detach the disk live) before deleting.
+           (HTTP 409)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: Disks API not configured. (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.disk.delete
+  fc_spawn_control_plane.disk.get:
+    SUMMARY: Get a disk by id or name
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/disks/{idOrName}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - idOrName:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getDisk_get_v1_disks_idOrName_195a43eResponse200)
+        RETURNVAR: fc_spawn_control_plane_disk_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: |-
+          Disk not found, or owned by another user (identical body —
+          no existence leak across tenants).
+           (HTTP 404)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: Disks API not configured. (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.disk.get
+  fc_spawn_control_plane.preset.list:
+    SUMMARY: List named egress-rule presets
+    DESC: |
+      Returns the preset tokens accepted in sandbox create and live egress
+      update requests. Presets are expanded by control before persistence
+      and enforcement; sandbox responses therefore contain concrete rules.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/egress/presets
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(listEgressPresets_get_v1_egress_presets_127d00c8Response200)
+        RETURNVAR: fc_spawn_control_plane_preset_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.preset.list
+  fc_spawn_control_plane.host.list:
+    SUMMARY: List registered hosts (public view — no tokens, no DB row fields)
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/hosts
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(listHosts_get_v1_hosts_6c6e4b1bResponse200)
+        RETURNVAR: fc_spawn_control_plane_host_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.host.list
+  fc_spawn_control_plane.network.list:
+    SUMMARY: List the caller's networks
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/networks
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 50
+          MAXIMUM: 500
+      - offset:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 0
+          MINIMUM: 0
+    RETURNS:
+      - RETURNTYPE: STRUCT(listNetworks_get_v1_networks_f12d0ac7Response200)
+        RETURNVAR: fc_spawn_control_plane_network_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+    CANONICAL_ID: fc_spawn_control_plane.network.list
+  fc_spawn_control_plane.network.create:
+    SUMMARY: Create a network
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/networks
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(NetworkCreateReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(NetworkCreateReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(createNetwork_post_v1_networks_f12d0ac7Response200)
+        RETURNVAR: fc_spawn_control_plane_network_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+    CANONICAL_ID: fc_spawn_control_plane.network.create
+  fc_spawn_control_plane.network.delete:
+    SUMMARY: Delete a network (must have no members)
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/networks/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(deleteNetwork_delete_v1_networks_id_dcad9d7bResponse200)
+        RETURNVAR: fc_spawn_control_plane_network_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Network still has active members; detach all sandboxes first (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.network.delete
+  fc_spawn_control_plane.network.get:
+    SUMMARY: Get one network's details (includes members)
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/networks/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getNetwork_get_v1_networks_id_dcad9d7bResponse200)
+        RETURNVAR: fc_spawn_control_plane_network_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.network.get
+  fc_spawn_control_plane.rootf.list:
+    SUMMARY: List the rootfs catalog of the default host
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/rootfs
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(listRootfs_get_v1_rootfs_11891207Response200)
+        RETURNVAR: fc_spawn_control_plane_rootf_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.rootf.list
+  fc_spawn_control_plane.sandbox.list:
+    SUMMARY: List sandboxes owned by the caller
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 50
+          MAXIMUM: 500
+      - offset:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 0
+          MINIMUM: 0
+      - status:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - running
+            - creating
+            - destroyed
+            - failed
+    RETURNS:
+      - RETURNTYPE: STRUCT(listSandboxes_get_v1_sandboxes_b11926f1Response200)
+        RETURNVAR: fc_spawn_control_plane_sandbox_list
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+    CANONICAL_ID: fc_spawn_control_plane.sandbox.list
+  fc_spawn_control_plane.sandbox.create:
+    SUMMARY: Create a sandbox
+    DESC: |
+      Creates a new sandbox. Typical startup is ~30–100 ms.
+      `ssh_pubkeys` is required if you plan to use `createos-cli tunnel`
+      or `createos-cli shell`.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(CreateReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(createSandbox_post_v1_sandboxes_b11926f1Response200)
+        RETURNVAR: fc_spawn_control_plane_sandbox_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(ErrorEnvelope)
+        STATUS: 503
+        WHEN: |-
+          No host with capacity (scheduler exhausted, or the hinted
+          `host_id` can't fit the VM)
+           (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.sandbox.create
+  fc_spawn_control_plane.by_ip.get:
+    SUMMARY: Look up a sandbox by its VM IP
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/by-ip/{ip}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - ip:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxByIP_get_v1_sandboxes_by_ip_ip_9e616a61Response200)
+        RETURNVAR: fc_spawn_control_plane_by-ip_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.by-ip.get
+  fc_spawn_control_plane.sandbox.delete:
+    SUMMARY: Destroy a sandbox
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(destroySandbox_delete_v1_sandboxes_id_2283e3e5Response200)
+        RETURNVAR: fc_spawn_control_plane_sandbox_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.sandbox.delete
+  fc_spawn_control_plane.sandbox.get:
+    SUMMARY: Get one sandbox's details
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandbox_get_v1_sandboxes_id_2283e3e5Response200)
+        RETURNVAR: fc_spawn_control_plane_sandbox_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.sandbox.get
+  fc_spawn_control_plane.sandbox.update:
+    SUMMARY: Partial update (ingress, auto-pause)
+    HTTP:
+      METHOD: PATCH
+      ENDPOINT: /v1/sandboxes/{id}
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(PatchSandboxReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(PatchSandboxReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(patchSandbox_patch_v1_sandboxes_id_2283e3e5Response200)
+        RETURNVAR: fc_spawn_control_plane_sandbox_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.sandbox.update
+  fc_spawn_control_plane.access_token.delete:
+    SUMMARY: Disable the sandbox's delegated token
+    DESC: |
+      Requires the sandbox owner's normal user credential. Revocation takes
+      effect immediately in the home region and propagates asynchronously to
+      peer regions. The token is also removed when the sandbox is destroyed.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/access-token
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(disableSandboxAccessToken_delete_v1_sandboxes_id_access_token_31081af4Response200)
+        RETURNVAR: fc_spawn_control_plane_access-token_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: A sandbox-scoped token attempted token management (HTTP 403)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.access-token.delete
+  fc_spawn_control_plane.access_token.get:
+    SUMMARY: Inspect delegated-token metadata
+    DESC: |
+      Requires the sandbox owner's normal user credential. Never returns the
+      plaintext token. A sandbox token cannot inspect itself.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/access-token
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxAccessToken_get_v1_sandboxes_id_access_token_31081af4Response200)
+        RETURNVAR: fc_spawn_control_plane_access-token_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: A sandbox-scoped token attempted token management (HTTP 403)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.access-token.get
+  fc_spawn_control_plane.access_token.create:
+    SUMMARY: Create a delegated token bound to one sandbox
+    DESC: |
+      Requires the sandbox owner's normal user credential. The plaintext
+      token is returned exactly once and must be sent as `X-Api-Key`.
+      Creating another token while one is enabled returns HTTP 409; use the
+      rotate endpoint when replacement is intended. A sandbox token cannot
+      call this endpoint, including for its own sandbox.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/access-token
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(createSandboxAccessToken_post_v1_sandboxes_id_access_token_31081af4Response200)
+        RETURNVAR: fc_spawn_control_plane_access-token_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: A sandbox-scoped token attempted token management (HTTP 403)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Token already exists or sandbox lifecycle blocks creation (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.access-token.create
+  fc_spawn_control_plane.access_token.rotate.create:
+    SUMMARY: Replace the sandbox's delegated token
+    DESC: |
+      Requires the sandbox owner's normal user credential. The old token is
+      invalidated and new plaintext is returned exactly once. Returns HTTP
+      404 when no token exists; create one first in that case.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/access-token/rotate
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(rotateSandboxAccessToken_post_v1_sandboxes_id_access_token_rotate_ca5ce772Response200)
+        RETURNVAR: fc_spawn_control_plane_access-token_rotate_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 403
+        WHEN: A sandbox-scoped token attempted token management (HTTP 403)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Sandbox lifecycle blocks rotation (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.access-token.rotate.create
+  fc_spawn_control_plane.bandwidth.get:
+    SUMMARY: Read the sandbox's bandwidth quota / usage
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/bandwidth
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getBandwidth_get_v1_sandboxes_id_bandwidth_c2de0129Response200)
+        RETURNVAR: fc_spawn_control_plane_bandwidth_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.bandwidth.get
+  fc_spawn_control_plane.bandwidth.recharge.create:
+    SUMMARY: Top up the sandbox's bandwidth quota
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/bandwidth/recharge
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(RechargeReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(RechargeReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(rechargeBandwidth_post_v1_sandboxes_id_bandwidth_recharge_7243b0d9Response200)
+        RETURNVAR: fc_spawn_control_plane_bandwidth_recharge_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.bandwidth.recharge.create
+  fc_spawn_control_plane.computer.clipboard.get:
+    SUMMARY: Read the desktop clipboard
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/clipboard
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxClipboard_get_v1_sandboxes_id_computer_clipboard_a76f9382Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_clipboard_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Desktop clipboard is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.clipboard.get
+  fc_spawn_control_plane.computer.clipboard.update:
+    SUMMARY: Replace the desktop clipboard text
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /v1/sandboxes/{id}/computer/clipboard
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerClipboard)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerClipboard)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_clipboard_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.clipboard.update
+  fc_spawn_control_plane.computer.cursor.get:
+    SUMMARY: Get cursor coordinates
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/cursor
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxCursor_get_v1_sandboxes_id_computer_cursor_a5f2de10Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_cursor_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Desktop session is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.cursor.get
+  fc_spawn_control_plane.computer.down.create:
+    SUMMARY: Hold one or more keyboard keys down
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/keyboard/down
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerPressRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerPressRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_down_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.down.create
+  fc_spawn_control_plane.computer.press.create:
+    SUMMARY: Press a key or key combination
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/keyboard/press
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerPressRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerPressRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_press_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.press.create
+  fc_spawn_control_plane.computer.type.create:
+    SUMMARY: Type text into the focused window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/keyboard/type
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerTypeRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerTypeRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_type_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.type.create
+  fc_spawn_control_plane.computer.up.create:
+    SUMMARY: Release one or more held keyboard keys
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/keyboard/up
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerPressRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerPressRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_up_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.up.create
+  fc_spawn_control_plane.computer.launch.create:
+    SUMMARY: Launch an installed desktop application
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/launch
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerLaunchRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerLaunchRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_launch_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.launch.create
+  fc_spawn_control_plane.computer.click.create:
+    SUMMARY: Click a mouse button, optionally at coordinates
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/click
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerClickRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerClickRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_click_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.click.create
+  fc_spawn_control_plane.computer.down.create1:
+    SUMMARY: Hold a mouse button down
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/down
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerButtonRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerButtonRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_down_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.down.create1
+  fc_spawn_control_plane.computer.drag.create:
+    SUMMARY: Drag from one coordinate to another
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/drag
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerDragRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerDragRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_drag_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.drag.create
+  fc_spawn_control_plane.computer.move.create:
+    SUMMARY: Move the cursor
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/move
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerPoint)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerPoint)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_move_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.move.create
+  fc_spawn_control_plane.computer.scroll.create:
+    SUMMARY: Scroll vertically
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/scroll
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerScrollRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerScrollRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_scroll_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.scroll.create
+  fc_spawn_control_plane.computer.up.create1:
+    SUMMARY: Release a mouse button
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/mouse/up
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerButtonRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerButtonRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_up_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.up.create1
+  fc_spawn_control_plane.computer.open.create:
+    SUMMARY: Open a URL or desktop target
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/open
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerOpenRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerOpenRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_open_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.open.create
+  fc_spawn_control_plane.computer.screen.get:
+    SUMMARY: Get screen dimensions
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/screen
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxScreenGeometry_get_v1_sandboxes_id_computer_screen_c9ff7232Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_screen_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Desktop session is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screen.get
+  fc_spawn_control_plane.computer.screens.get:
+    SUMMARY: List configured desktop screens
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(listSandboxComputerScreens_get_v1_sandboxes_id_computer_screens_9edb8e5Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_screens_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screens.get
+  fc_spawn_control_plane.computer.screens.create:
+    SUMMARY: Create an additional desktop screen
+    DESC: Creates the lowest available screen id. A sandbox supports at most eight screens including screen-0.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerCreateScreenRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ComputerCreateScreenRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(createSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_9edb8e5Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_screens_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Screen limit reached or desktop session unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screens.create
+  fc_spawn_control_plane.computer.screens.delete:
+    SUMMARY: Delete an additional desktop screen
+    DESC: "`screen-0` is the primary screen and cannot be deleted."
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens/{screen_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_screens_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Primary screen cannot be deleted or desktop session is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screens.delete
+  fc_spawn_control_plane.computer.screens.get1:
+    SUMMARY: Get one configured desktop screen
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens/{screen_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxComputerScreen_get_v1_sandboxes_id_computer_screens_screen_id_18fd8ff8Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_screens_get1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screens.get1
+  fc_spawn_control_plane.computer.screens.connect:
+    SUMMARY: Create a live noVNC connection URL
+    DESC: Rotates the screen bearer token. Previously issued URLs cannot establish new websocket sessions, and the new token expires after one hour.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens/{screen_id}/connect
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(connectSandboxComputerScreen_get_v1_sandboxes_id_computer_screens_screen_id_connect_5176cdb1Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_screens_connect
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Sandbox ingress is disabled or desktop session is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screens.connect
+  fc_spawn_control_plane.computer.resize.create:
+    SUMMARY: Resize an existing desktop screen
+    DESC: Restarts the selected display at the new resolution, disconnecting existing noVNC sessions and invalidating previously issued connection tokens.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/screens/{screen_id}/resize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(resizeSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_screen_id_resize_534eb159Request)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(resizeSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_screen_id_resize_534eb159Request)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(resizeSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_screen_id_resize_534eb159Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_resize_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.resize.create
+  fc_spawn_control_plane.computer.screenshot.get:
+    SUMMARY: Capture a screen, window, or rectangular region as PNG
+    DESC: window_id is mutually exclusive with x/y/width/height. Region coordinates must be supplied together.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/screenshot
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: image/png
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - window_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          PATTERN: ^[0-9]+$
+      - x:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+      - "true":
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 0
+      - width:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+          MAXIMUM: 3840
+      - height:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+          MAXIMUM: 2160
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: fc_spawn_control_plane_computer_screenshot_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Desktop session is unavailable (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.computer.screenshot.get
+  fc_spawn_control_plane.computer.windows.get:
+    SUMMARY: List visible desktop windows
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - application:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          MAX_LENGTH: 256
+    RETURNS:
+      - RETURNTYPE: STRUCT(listSandboxDesktopWindows_get_v1_sandboxes_id_computer_windows_4b8cdcfdResponse200)
+        RETURNVAR: fc_spawn_control_plane_computer_windows_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.windows.get
+  fc_spawn_control_plane.computer.current.get:
+    SUMMARY: Get the focused desktop window
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/current
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getCurrentSandboxDesktopWindow_get_v1_sandboxes_id_computer_windows_current_65bad86fResponse200)
+        RETURNVAR: fc_spawn_control_plane_computer_current_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.current.get
+  fc_spawn_control_plane.computer.windows.delete:
+    SUMMARY: Request that a desktop window close
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_windows_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.windows.delete
+  fc_spawn_control_plane.computer.windows.get1:
+    SUMMARY: Get a desktop window title
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxDesktopWindow_get_v1_sandboxes_id_computer_windows_window_id_74656528Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_windows_get1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.windows.get1
+  fc_spawn_control_plane.computer.focus.create:
+    SUMMARY: Focus a desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/focus
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_focus_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.focus.create
+  fc_spawn_control_plane.computer.geometry.get:
+    SUMMARY: Get window position and dimensions
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/geometry
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxDesktopWindowGeometry_get_v1_sandboxes_id_computer_windows_window_id_geometry_ddd77ba3Response200)
+        RETURNVAR: fc_spawn_control_plane_computer_geometry_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.geometry.get
+  fc_spawn_control_plane.computer.maximize.create:
+    SUMMARY: Maximize a desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/maximize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_maximize_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.maximize.create
+  fc_spawn_control_plane.computer.minimize.create:
+    SUMMARY: Minimize a desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/minimize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_minimize_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.minimize.create
+  fc_spawn_control_plane.computer.move.create1:
+    SUMMARY: Move a desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/move
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerWindowMoveRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerWindowMoveRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_move_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.move.create1
+  fc_spawn_control_plane.computer.resize.create1:
+    SUMMARY: Resize a desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/resize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ComputerWindowResizeRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+      - body:
+          TYPE: STRUCT(ComputerWindowResizeRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_resize_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.resize.create1
+  fc_spawn_control_plane.computer.restore.create:
+    SUMMARY: Restore a maximized desktop window
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/computer/windows/{window_id}/restore
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - window_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+          PATTERN: ^[0-9]+$
+      - screen_id:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: screen-0
+          PATTERN: ^screen-[0-7]$
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_computer_restore_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.computer.restore.create
+  fc_spawn_control_plane.disk.get1:
+    SUMMARY: List a sandbox's attached disks
+    DESC: |
+      Per-attachment view including the live `mount_status` reported
+      by the guest agent.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/disks
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(listSandboxDisks_get_v1_sandboxes_id_disks_ed6a0ed2Response200)
+        RETURNVAR: fc_spawn_control_plane_disk_get1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.disk.get1
+  fc_spawn_control_plane.disk.create1:
+    SUMMARY: Live-attach a disk to a running sandbox
+    DESC: |
+      Adds the disk to the sandbox's MMDS-fed desired set; the agent's
+      reconciler mounts it on its next tick (~2 ms detection,
+      ~1 second to spin up `s3fs`). Live attach only works on
+      sandboxes whose `status` is `running` — other states return 409
+      with a hint.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/disks
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(DiskAttachment)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(DiskAttachment)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(attachDiskLive_post_v1_sandboxes_id_disks_ed6a0ed2Response200)
+        RETURNVAR: fc_spawn_control_plane_disk_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 400
+        WHEN: |-
+          Validation rejection — empty disk_id, mount_path missing /
+          not absolute / contains `..`, or targets a reserved
+          filesystem path.
+           (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: |-
+          Either the sandbox or the disk isn't owned by the caller
+          (identical body — no existence leak).
+           (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: |-
+          Either (a) the sandbox is not in `running` state — live
+          attach requires a running VM; paused/creating/destroying
+          sandboxes pick up disk changes via the resume / cold-boot
+          flow — or (b) another attachment on the same sandbox
+          already claims the requested `mount_path` (unique
+          constraint on `(sandbox_id, mount_path)`).
+           (HTTP 409)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: Disks API not configured. (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.disk.create1
+  fc_spawn_control_plane.disk.delete1:
+    SUMMARY: Live-detach a disk at a specific mount path (unmount only; bucket untouched)
+    DESC: |
+      Removes one attachment (keyed by `(disk_id, mount_path)`) from the
+      sandbox's desired set. The agent reconciler unmounts the FUSE
+      backing on the next tick. **The bucket contents are never touched**
+      — this only drops the in-VM mount. A disk mounted at multiple
+      paths in one sandbox can be detached one path at a time.
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/disks/{disk_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - disk_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - mount_path:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(detachDiskLive_delete_v1_sandboxes_id_disks_disk_id_57fca330Response200)
+        RETURNVAR: fc_spawn_control_plane_disk_delete1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: ANY
+        STATUS: 404
+        WHEN: |-
+          The disk isn't attached to this sandbox (or the sandbox /
+          disk isn't owned by the caller). Idempotency boundary —
+          the first DELETE wins; the second sees nothing to remove.
+           (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.disk.delete1
+  fc_spawn_control_plane.egress.get:
+    SUMMARY: Read the current egress allowlist
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/egress
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getEgress_get_v1_sandboxes_id_egress_9cdc3b3dResponse200)
+        RETURNVAR: fc_spawn_control_plane_egress_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.egress.get
+  fc_spawn_control_plane.egress.update:
+    SUMMARY: Replace the egress allowlist (live, no restart)
+    DESC: |
+      Replaces the sandbox's allowlist atomically. Domain-based rule
+      changes take effect within ~30 s; IP/port rules apply instantly.
+      Named tokens such as `@pypi` and `@npm` are expanded by control;
+      the response contains the concrete rules that were stored.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /v1/sandboxes/{id}/egress
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(SetEgressReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(SetEgressReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(setEgress_put_v1_sandboxes_id_egress_9cdc3b3dResponse200)
+        RETURNVAR: fc_spawn_control_plane_egress_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.egress.update
+  fc_spawn_control_plane.exec.create:
+    SUMMARY: Run a command inside the sandbox (buffered or streaming)
+    DESC: |
+      Two response modes selected by the `stream` query parameter
+      (or the `stream` field in the request body):
+
+      **Buffered (default).** Agent runs the cmd to completion and returns
+      a JSend envelope with `stdout`, `stderr`, and `exit_code`. Suitable
+      for short, well-behaved commands.
+
+      **Streaming (`?stream=true`).** Agent emits one JSON object per
+      line over `Content-Type: application/x-ndjson` (HTTP/1.1 chunked).
+      Each line is an `ExecStreamEvent` with the same field names as
+      the buffered shape — so a single struct parses both worlds. The
+      terminal frame carries `exit_code`. Heartbeat lines (`{"hb":true}`)
+      are emitted every 5 seconds so a dead client is detected and the
+      in-VM command killed within ~5s of disconnect.
+
+      Background processes must detach (redirect stdio + `&`) or
+      the exec blocks until they exit.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/exec
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ExecReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - stream:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - body:
+          TYPE: STRUCT(ExecReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(execSandbox_post_v1_sandboxes_id_exec_c92308d9Response200)
+        RETURNVAR: fc_spawn_control_plane_exec_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.exec.create
+  fc_spawn_control_plane.file.get:
+    SUMMARY: Download a file from the sandbox
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/files
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/octet-stream
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - path:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: fc_spawn_control_plane_file_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.file.get
+  fc_spawn_control_plane.file.update:
+    SUMMARY: Upload a file into the sandbox
+    DESC: |
+      Body is streamed directly into the sandbox without being buffered by
+      the control plane. Maximum 10 GiB. Parent directories are auto-created.
+    HTTP:
+      METHOD: PUT
+      ENDPOINT: /v1/sandboxes/{id}/files
+      HEADERS:
+        Content-Type: application/octet-stream
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/octet-stream
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRING
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - path:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: query
+      - body:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/octet-stream
+          FORMAT: binary
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_file_update
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.file.update
+  fc_spawn_control_plane.fork.create:
+    SUMMARY: Clone a paused bundle into a new sandbox identity
+    DESC: |
+      Server-side `CopyObject` clones the four bundle artifacts
+      from `snapshots/<src>/` to `snapshots/<new>/` byte-identically.
+      The new id is independent — separate placement, separate IP,
+      separate bandwidth ledger. By default the new sandbox
+      auto-resumes to `running`; pass `start_paused: true` to keep
+      it in `paused`.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/fork
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ForkReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: async
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ForkReq)
+          REQUIRED: false
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(forkSandbox_post_v1_sandboxes_id_fork_c92370a6Response200)
+        RETURNVAR: fc_spawn_control_plane_fork_create
+        STATUS: 200
+      - RETURNTYPE: STRUCT(forkSandbox_post_v1_sandboxes_id_fork_c92370a6Response202)
+        RETURNVAR: fc_spawn_control_plane_fork_create_202
+        STATUS: 202
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Source sandbox is not paused (HTTP 409)
+      - TYPE: ANY
+        STATUS: 501
+        WHEN: Fork not configured (no storage bucket) (HTTP 501)
+    CANONICAL_ID: fc_spawn_control_plane.fork.create
+  fc_spawn_control_plane.metric.get:
+    SUMMARY: Per-sandbox CPU + memory usage snapshot
+    DESC: |
+      Reads the owning host's cgroup files on demand and returns
+      live memory + CPU figures for one sandbox. Owner-gated.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/metrics
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxMetrics_get_v1_sandboxes_id_metrics_9bb65d6bResponse200)
+        RETURNVAR: fc_spawn_control_plane_metric_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.metric.get
+  fc_spawn_control_plane.network.create1:
+    SUMMARY: Attach a sandbox to a network
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/networks
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(NetworkEntry)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(NetworkEntry)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(attachNetwork_post_v1_sandboxes_id_networks_ff21e3b1Response200)
+        RETURNVAR: fc_spawn_control_plane_network_create1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.network.create1
+  fc_spawn_control_plane.network.delete1:
+    SUMMARY: Detach a sandbox from a network
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/networks/{net}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - net:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(detachNetwork_delete_v1_sandboxes_id_networks_net_a7566ebfResponse200)
+        RETURNVAR: fc_spawn_control_plane_network_delete1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 401
+        WHEN: Authentication missing or invalid (HTTP 401)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.network.delete1
+  fc_spawn_control_plane.pause.create:
+    SUMMARY: Pause a running sandbox, preserving disk + memory state
+    DESC: |
+      Snapshots the sandbox to storage and frees its host. Disk +
+      memory + processes are all preserved exactly. Returns 202 with
+      the row in `pausing`; poll `GET /v1/sandboxes/{id}` until status
+      flips to `paused`. Typical pause completes in ~3s for a 1 GiB
+      sandbox.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/pause
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: async
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(pauseSandbox_post_v1_sandboxes_id_pause_ee3edb52Response202)
+        RETURNVAR: fc_spawn_control_plane_pause_create_202
+        STATUS: 202
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Sandbox is not in a pausable status (HTTP 409)
+      - TYPE: ANY
+        STATUS: 501
+        WHEN: Pause not enabled on this cluster (HTTP 501)
+    CANONICAL_ID: fc_spawn_control_plane.pause.create
+  fc_spawn_control_plane.process.get:
+    SUMMARY: List managed processes and PTYs
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/processes
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(listSandboxProcesses_get_v1_sandboxes_id_processes_1b7066ebResponse200)
+        RETURNVAR: fc_spawn_control_plane_process_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.process.get
+  fc_spawn_control_plane.process.create:
+    SUMMARY: Create a managed pipe or PTY process
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/processes
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ProcessCreateRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ProcessCreateRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(createSandboxProcess_post_v1_sandboxes_id_processes_1b7066ebResponse200)
+        RETURNVAR: fc_spawn_control_plane_process_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Sandbox is not running (HTTP 409)
+      - TYPE: ANY
+        STATUS: 429
+        WHEN: Managed-process limit reached (HTTP 429)
+    CANONICAL_ID: fc_spawn_control_plane.process.create
+  fc_spawn_control_plane.process.delete:
+    SUMMARY: Terminate the complete managed process tree
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - grace_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 1000
+          MINIMUM: 0
+          MAXIMUM: 60000
+    RETURNS:
+      - RETURNTYPE: STRUCT(terminateSandboxProcess_delete_v1_sandboxes_id_processes_process_id_bbbc071dResponse200)
+        RETURNVAR: fc_spawn_control_plane_process_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.process.delete
+  fc_spawn_control_plane.process.get1:
+    SUMMARY: Inspect a managed process or PTY
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(getSandboxProcess_get_v1_sandboxes_id_processes_process_id_bbbc071dResponse200)
+        RETURNVAR: fc_spawn_control_plane_process_get1
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.process.get1
+  fc_spawn_control_plane.process.connect:
+    SUMMARY: Replay and follow ordered process output
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/connect
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/x-ndjson
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - after:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 0
+          FORMAT: int64
+          MINIMUM: 0
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: fc_spawn_control_plane_process_connect
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 410
+        WHEN: Requested output offset has expired from the bounded replay journal (HTTP 410)
+    CANONICAL_ID: fc_spawn_control_plane.process.connect
+  fc_spawn_control_plane.process.input.create:
+    SUMMARY: Write ordered bytes to process stdin or the PTY
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/input
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ProcessInputRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ProcessInputRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(writeSandboxProcessInput_post_v1_sandboxes_id_processes_process_id_input_9e0ae8fcResponse200)
+        RETURNVAR: fc_spawn_control_plane_process_input_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Process exited or stdin is closed (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.process.input.create
+  fc_spawn_control_plane.process.resize.create:
+    SUMMARY: Resize a managed PTY
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/resize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ProcessResizeRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ProcessResizeRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_process_resize_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Process is not PTY-backed or has exited (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.process.resize.create
+  fc_spawn_control_plane.process.signal.create:
+    SUMMARY: Signal the process group or PTY foreground group
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/signal
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ProcessSignalRequest)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ProcessSignalRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_process_signal_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Process has exited (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.process.signal.create
+  fc_spawn_control_plane.process.close.create:
+    SUMMARY: Close a pipe process stdin
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/stdin/close
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(SuccessEnvelope)
+        RETURNVAR: fc_spawn_control_plane_process_close_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Wrong process kind (HTTP 409)
+    CANONICAL_ID: fc_spawn_control_plane.process.close.create
+  fc_spawn_control_plane.process.wait.get:
+    SUMMARY: Wait for the leader or complete process tree to exit
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/sandboxes/{id}/processes/{process_id}/wait
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - process_id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - scope:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: leader
+          ENUM:
+            - leader
+            - tree
+      - timeout_ms:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 30000
+          FORMAT: int64
+          MINIMUM: 0
+          MAXIMUM: 30000
+    RETURNS:
+      - RETURNTYPE: STRUCT(waitForSandboxProcess_get_v1_sandboxes_id_processes_process_id_wait_c936ca1Response200)
+        RETURNVAR: fc_spawn_control_plane_process_wait_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+      - TYPE: ANY
+        STATUS: 408
+        WHEN: Wait timeout expired (HTTP 408)
+    CANONICAL_ID: fc_spawn_control_plane.process.wait.get
+  fc_spawn_control_plane.resize.create:
+    SUMMARY: Grow the sandbox's disk
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/resize
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(ResizeReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - body:
+          TYPE: STRUCT(ResizeReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(resizeSandbox_post_v1_sandboxes_id_resize_bb0bb8a6Response200)
+        RETURNVAR: fc_spawn_control_plane_resize_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.resize.create
+  fc_spawn_control_plane.resume.create:
+    SUMMARY: Restore a paused sandbox
+    DESC: |
+      Brings a paused sandbox back to `running`. Disk + memory are
+      restored exactly; the sandbox gets a fresh IP. Returns 202 with
+      the row in `resuming`; poll until status flips to `running`.
+      Typical resume completes in <1s if the original host is still
+      available, ~10–13s when fetched from storage.
+
+      Retries on a different host if the first attempt fails. If all
+      attempts are exhausted the row goes to `error` — POST `/resume`
+      against that row to try again with a fresh budget.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/sandboxes/{id}/resume
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: async
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(resumeSandbox_post_v1_sandboxes_id_resume_bb0bea05Response202)
+        RETURNVAR: fc_spawn_control_plane_resume_create_202
+        STATUS: 202
+    ERRORS:
+      - TYPE: ANY
+        STATUS: 409
+        WHEN: Sandbox is not paused or in error (HTTP 409)
+      - TYPE: ANY
+        STATUS: 503
+        WHEN: No host with capacity (or bundle not yet uploaded and no cached host) (HTTP 503)
+    CANONICAL_ID: fc_spawn_control_plane.resume.create
+  fc_spawn_control_plane.shape.list:
+    SUMMARY: List the shape catalog
+    DESC: Lists the static shape catalog (`s-1vcpu-256mb`, `s-1vcpu-1gb`, etc.).
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/shapes
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(listShapes_get_v1_shapes_1357d0aeResponse200)
+        RETURNVAR: fc_spawn_control_plane_shape_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.shape.list
+  fc_spawn_control_plane.template.list:
+    SUMMARY: List the caller's templates (most-recent first)
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/templates
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 50
+          MAXIMUM: 500
+      - offset:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 0
+          MINIMUM: 0
+    RETURNS:
+      - RETURNTYPE: STRUCT(listTemplates_get_v1_templates_a64dccf9Response200)
+        RETURNVAR: fc_spawn_control_plane_template_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.template.list
+  fc_spawn_control_plane.template.create:
+    SUMMARY: Submit a Dockerfile to build a custom sandbox image
+    DESC: |
+      Returns immediately with a `pending` template; build runs
+      asynchronously and the row flips to `ready` (or `failed`) when
+      done. Poll `GET /v1/templates/{id}` or tail `…/logs` to follow.
+      Per-user concurrent build cap defaults to 2 (429 if exceeded).
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /v1/templates
+      HEADERS:
+        Content-Type: application/json
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(TemplateCreateReq)
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - body:
+          TYPE: STRUCT(TemplateCreateReq)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(submitTemplate_post_v1_templates_a64dccf9Response200)
+        RETURNVAR: fc_spawn_control_plane_template_create
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 400
+        WHEN: Validation failure (HTTP 400)
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 429
+        WHEN: Validation failure (HTTP 429)
+    CANONICAL_ID: fc_spawn_control_plane.template.create
+  fc_spawn_control_plane.template.delete:
+    SUMMARY: Delete a template
+    HTTP:
+      METHOD: DELETE
+      ENDPOINT: /v1/templates/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(deleteTemplate_delete_v1_templates_id_c3398eedResponse200)
+        RETURNVAR: fc_spawn_control_plane_template_delete
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.template.delete
+  fc_spawn_control_plane.template.get:
+    SUMMARY: Get template details (resolves friendly name to latest ready)
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/templates/{id}
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - include:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+          ENUM:
+            - dockerfile
+    RETURNS:
+      - RETURNTYPE: STRUCT(getTemplate_get_v1_templates_id_c3398eedResponse200)
+        RETURNVAR: fc_spawn_control_plane_template_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.template.get
+  fc_spawn_control_plane.log.get:
+    SUMMARY: Fetch or stream build logs for a template
+    DESC: |
+      Default (`follow=false`, or omitted) returns the full log so far
+      as `text/plain`, one raw line per row. Set `?follow=true` to
+      stream `application/x-ndjson`; each newline-delimited line is a
+      `TemplateLogLine` JSON object. The stream stays open, tailing new
+      rows every 500 ms, until the template reaches a terminal status
+      or the client disconnects. Empty for pending templates, partial
+      while building.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/templates/{id}/logs
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/x-ndjson
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - follow:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+      - attempt:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          MINIMUM: 1
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: fc_spawn_control_plane_log_get
+        STATUS: 200
+    ERRORS:
+      - TYPE: STRUCT(FailEnvelope)
+        STATUS: 404
+        WHEN: Resource not found (HTTP 404)
+    CANONICAL_ID: fc_spawn_control_plane.log.get
+  fc_spawn_control_plane.whoami.list:
+    SUMMARY: Identity introspection + per-user sandbox counts
+    DESC: |
+      Returns the user_id resolved from the bearer token plus a
+      snapshot of how many sandboxes the user has (running / paused /
+      other / total). Equivalent in spirit to `aws sts get-caller-identity`
+      — useful for SDK callers to confirm credentials before doing real
+      work. Counts are observational; no consistency guarantees vs
+      creates/destroys mid-call.
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /v1/whoami
+      HEADERS:
+        X-Api-Key: x-api-key
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - apiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-Api-Key
+      - authTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Auth-Token
+      - accessTokenAuth:
+          type: apiKey
+          in: header
+          name: X-Access-Token
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(whoami_get_v1_whoami_1cb3e1afResponse200)
+        RETURNVAR: fc_spawn_control_plane_whoami_list
+        STATUS: 200
+    CANONICAL_ID: fc_spawn_control_plane.whoami.list
+STRUCTS:
+  BandwidthView:
+    - name: capped
+      TYPE: BOOL
+      REQUIRED: false
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+    - name: quota_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: remaining_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: used_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+  ComputerButtonRequest:
+    - name: button
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - left
+        - middle
+        - right
+      DEFAULT: left
+  ComputerClickRequest:
+    - name: button
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - left
+        - middle
+        - right
+      DEFAULT: left
+    - name: count
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 1
+      MAXIMUM: 10
+      DEFAULT: 1
+    - name: "true"
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 0
+      MAXIMUM: 65535
+    - name: x
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 0
+      MAXIMUM: 65535
+  ComputerClipboard:
+    - name: text
+      TYPE: STRING
+      REQUIRED: true
+      MAX_LENGTH: 1048576
+  ComputerCreateScreenRequest:
+    - name: height
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 240
+      MAXIMUM: 2160
+      DEFAULT: 800
+    - name: width
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 320
+      MAXIMUM: 3840
+      DEFAULT: 1280
+  ComputerDragRequest:
+    - name: from
+      TYPE: STRUCT(ComputerPoint)
+      REQUIRED: true
+    - name: to
+      TYPE: STRUCT(ComputerPoint)
+      REQUIRED: true
+  ComputerLaunchRequest:
+    - name: application
+      TYPE: STRING
+      REQUIRED: true
+      MAX_LENGTH: 256
+      EXAMPLE: firefox-esr
+    - name: uri
+      TYPE: STRING
+      REQUIRED: false
+      MAX_LENGTH: 4096
+      EXAMPLE: https://example.com
+  ComputerOpenRequest:
+    - name: target
+      TYPE: STRING
+      REQUIRED: true
+      MAX_LENGTH: 4096
+      EXAMPLE: https://example.com
+  ComputerPoint:
+    - name: "true"
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 0
+      MAXIMUM: 65535
+    - name: x
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 0
+      MAXIMUM: 65535
+  ComputerPressRequest:
+    - name: keys
+      TYPE: "[]STRING"
+      REQUIRED: true
+      MIN_ITEMS: 1
+      MAX_ITEMS: 16
+      EXAMPLE:
+        - Control_L
+        - C
+  ComputerScreen:
+    - name: display
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^:[0-7]$
+      EXAMPLE: ":0"
+    - name: height
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 240
+      MAXIMUM: 2160
+    - name: novnc_port
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 6080
+      MAXIMUM: 6087
+    - name: screen_id
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^screen-[0-7]$
+      EXAMPLE: screen-0
+    - name: vnc_port
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 5900
+      MAXIMUM: 5907
+    - name: width
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 320
+      MAXIMUM: 3840
+  ComputerScreenConnection:
+    - name: expires_at
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      FORMAT: date-time
+      comment: Time after which this token cannot establish a new websocket session.
+    - name: path
+      TYPE: STRING
+      REQUIRED: true
+    - name: port
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 6080
+      MAXIMUM: 6087
+    - name: screen_id
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^screen-[0-7]$
+    - name: token
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^[0-9a-f]{64}$
+      comment: Single-screen noVNC bearer token. It expires after one hour, and a new connect call invalidates it immediately.
+    - name: url
+      TYPE: STRING
+      REQUIRED: false
+      FORMAT: uri
+      comment: Public noVNC URL; present when sandbox ingress is enabled.
+  ComputerScreenGeometry:
+    - name: height
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+    - name: width
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+  ComputerScrollRequest:
+    - name: amount
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 1
+      MAXIMUM: 100
+      DEFAULT: 1
+    - name: direction
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - up
+        - down
+      DEFAULT: down
+  ComputerTypeRequest:
+    - name: delay_in_ms
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 0
+      MAXIMUM: 1000
+      DEFAULT: 25
+    - name: text
+      TYPE: STRING
+      REQUIRED: true
+      MAX_LENGTH: 65536
+  ComputerWindow:
+    - name: id
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^[0-9]+$
+    - name: title
+      TYPE: STRING
+      REQUIRED: false
+  ComputerWindowGeometry:
+    - name: height
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+    - name: id
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^[0-9]+$
+    - name: screen
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 0
+    - name: "true"
+      TYPE: INT
+      REQUIRED: false
+    - name: width
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+    - name: x
+      TYPE: INT
+      REQUIRED: true
+  ComputerWindowMoveRequest:
+    - name: "true"
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 0
+      MAXIMUM: 65535
+    - name: x
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 0
+      MAXIMUM: 65535
+  ComputerWindowResizeRequest:
+    - name: height
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+      MAXIMUM: 2160
+    - name: width
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+      MAXIMUM: 3840
+  CreateReq:
+    - name: auto_pause_after_seconds
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 60
+      MAXIMUM: 86400
+      NULLABLE: true
+      EXAMPLE: 600
+      comment: |
+        Automatically pause the sandbox after this many seconds with
+        no activity (no exec, file transfer, or tunnel). Null / omitted
+        means the sandbox runs until you stop it manually.
+        Valid range: 60–86400 (1 minute to 24 hours).
+    - name: bandwidth_quota_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+      comment: |
+        **Not settable at create.** Every sandbox starts with the
+        cluster default (50 GiB by default; configurable per cluster
+        via the control plane). Any non-zero value sent here is
+        rejected with 400. To grow the budget after create, call
+        `POST /v1/sandboxes/{id}/bandwidth/recharge`.
+    - name: disk_mib
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+      EXAMPLE: 10240
+      comment: Disk size in MiB. 0 = shape default (10 GiB).
+    - name: disks
+      TYPE: "[]STRUCT(DiskAttachment)"
+      REQUIRED: false
+      EXAMPLE:
+        - disk_id: my-data
+          mount_path: /mnt/data
+      comment: |
+        S3 disks to mount at create time. Each entry references a
+        disk the caller has previously registered via `POST /v1/disks`
+        and assigns it an absolute mount path inside the guest. The
+        disk's credentials are decrypted server-side and pushed into
+        MMDS so the guest agent's reconciler runs `s3fs` for each
+        entry. Live attach + detach is available post-create via
+        `POST /v1/sandboxes/{id}/disks` and the matching DELETE.
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+      EXAMPLE:
+        - "@pypi"
+        - github.com
+        - 1.1.1.1:53
+      comment: |
+        Allowlist entries. Each is `host[:port]`, `ip[:port]`,
+        `cidr[:port]`, a named preset such as `@pypi`, or `*`.
+        Missing / empty / `["*"]` = allow all. Presets expand to
+        concrete rules before the sandbox is created.
+        Domain entries (`pypi.org`) require the proxy to be running
+        on the host; IP/CIDR entries are kernel-enforced.
+    - name: envs
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      EXAMPLE:
+        ANTHROPIC_API_KEY: sk-ant-...
+      comment: |
+        Environment variables exported into every `exec` invocation
+        inside the sandbox. Keys must match POSIX env-name regex
+        ^[A-Za-z_][A-Za-z0-9_]*$. Up to 64 entries; each value up to
+        4 KiB; total payload up to 64 KiB.
+    - name: host_id
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        Optional — pin to a specific host by id. Empty = scheduler
+        picks. 503 if the named host can't fit the VM; never silent
+        fallback.
+    - name: ingress_enabled
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        When true, the sandbox is reachable at
+        `<ulid>-<port>.<domain>`. Off by default — opt-in.
+        Flippable via PATCH later. Requires no SSH key.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: brave-otter
+      comment: |
+        User-facing VM name, unique per user among non-terminal
+        sandboxes. Empty/omitted → control auto-generates a
+        Docker-style `<adjective>-<animal>` name. The sandbox id stays
+        the only addressing handle; name is purely a label / hostname /
+        in-network DNS name.
+    - name: networks
+      TYPE: "[]STRUCT(NetworkEntry)"
+      REQUIRED: false
+      comment: |
+        Private networks to join at create time. Each entry is
+        `{id: "<name|net-ulid>"}`. Inside the network, peers reach
+        this sandbox by its name.
+    - name: region
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: eu
+      comment: |
+        Optional — placement region. When omitted, the server defaults
+        to its own configured region. When set, must equal this control
+        plane's region; mismatched values get rejected with HTTP 400
+        (no cross-region routing).
+    - name: rootfs
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: devbox:1
+      comment: |
+        Rootfs catalog name. Empty = host default (see `GET /v1/rootfs`).
+        Names marked `disabled=true` in `rootfs_catalog` are rejected
+        with HTTP 400 and a `rootfs` field error pointing at the
+        recommended successor when one is set.
+    - name: shape
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: s-1vcpu-256mb
+      comment: Required; see `GET /v1/shapes`.
+    - name: ssh_pubkeys
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: |
+        OpenSSH-formatted public keys authorized to connect via the
+        SSH gateway for port-forwarding. Without at least one key
+        here, `createos-cli tunnel` / `createos-cli shell` will be rejected.
+  CreateResp:
+    - name: bandwidth_quota_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: disk_mib
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: sb_01K…
+    - name: ip
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: 192.168.0.12
+    - name: mem_mib
+      TYPE: INT
+      REQUIRED: false
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: brave-otter
+    - name: rootfs
+      TYPE: STRING
+      REQUIRED: false
+    - name: shape
+      TYPE: STRING
+      REQUIRED: false
+    - name: spawn_ms
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - running
+    - name: vcpu
+      TYPE: INT
+      REQUIRED: false
+  DestroyedResp:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: the sandbox id
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - destroying
+        - destroyed
+  DiskAttachment:
+    - name: disk_id
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: my-data
+      comment: Either a `disk_<ulid>` id or a user-scoped name.
+    - name: mount_path
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: /mnt/data
+      comment: |
+        Absolute path inside the guest. Must start with `/`, must
+        not contain `..`, must not target a reserved system path
+        (`/`, `/etc`, `/proc`, `/sys`, `/dev`, ...). At most one
+        attachment per sandbox may claim a given `mount_path` —
+        collisions with a *different* disk return 409 on live
+        attach, 400 on create-time. Re-attaching the *same* disk
+        at the same path is idempotent.
+    - name: sub_path
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: team-a/
+      comment: |
+        Optional prefix inside the bucket. When non-empty, the guest
+        mounts `<bucket>:/<sub_path>` (s3fs `compat_dir` is enabled
+        so the synthetic directory works without a placeholder
+        object). Leading / trailing slashes are normalised; `..` is
+        rejected. Default empty = mount the bucket root.
+  DiskConfig:
+    - name: bucket
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: my-data-bucket
+    - name: endpoint
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: https://s3.amazonaws.com
+      comment: Full HTTP(S) base URL of the S3 endpoint.
+    - name: region
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: us-east-1
+      comment: Optional. S3 region. Defaults to "auto" for R2/MinIO.
+    - name: use_path_style
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Use path-style URLs (`<endpoint>/<bucket>/`). Required for
+        MinIO and most self-hosted S3-compatibles; AWS S3 supports
+        either.
+  DiskCreateReq:
+    - name: config
+      TYPE: STRUCT(DiskConfig)
+      REQUIRED: true
+    - name: credentials
+      TYPE: STRUCT(DiskCredentials)
+      REQUIRED: true
+    - name: kind
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - s3
+    - name: name
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^[a-z0-9][a-z0-9-]{0,62}$
+      EXAMPLE: my-data
+      comment: |
+        User-scoped disk name. Lowercase alphanumeric + dash, 1–63
+        chars, must start with a letter or digit.
+  DiskCredentials:
+    - name: access_key
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: AKIA...
+    - name: secret_key
+      TYPE: STRING
+      REQUIRED: true
+      FORMAT: password
+  DiskDeletedResp:
+    - name: deleted
+      TYPE: BOOL
+      REQUIRED: false
+  DiskDetachedResp:
+    - name: detached
+      TYPE: BOOL
+      REQUIRED: false
+  DiskView:
+    - name: config
+      TYPE: STRUCT(DiskConfig)
+      REQUIRED: false
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: disk_01KSHT...
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: s3
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: my-data
+  EgressPresetsView:
+    - name: presets
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+      comment: Preset token to concrete egress-rule mapping.
+    - name: version
+      TYPE: STRING
+      REQUIRED: true
+      comment: Catalog version; changes whenever preset contents change.
+  EgressView:
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Concrete expanded rules currently enforced by the host.
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+  ErrorEnvelope:
+    - name: code
+      TYPE: INT
+      REQUIRED: true
+    - name: message
+      TYPE: STRING
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - error
+  ExecReq:
+    - name: args
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: cmd
+      TYPE: STRING
+      REQUIRED: true
+      comment: Program to execute inside the VM (absolute or PATH-resolved).
+    - name: env
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      EXAMPLE:
+        ANTHROPIC_API_KEY: sk-ant-...
+      comment: |
+        Per-exec environment variable overrides. Every key MUST have
+        been declared in the sandbox's `envs` at create time — this
+        call may override the *value* of a declared key, but cannot
+        introduce a new one. Supplying an undeclared key returns
+        `400`. The create-time `envs` map is the allowlist, so a
+        caller can never inject env (`PATH`, `LD_PRELOAD`, ...) the
+        sandbox owner did not sanction. Omitted keys keep their
+        create-time values.
+    - name: stdin
+      TYPE: STRING
+      REQUIRED: false
+      comment: Optional stdin passed to the process.
+    - name: stream
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        When `true`, response is an NDJSON stream of `ExecStreamEvent`
+        objects (one per line). Equivalent to passing `?stream=true`
+        on the URL.
+  ExecResp_result:
+    - name: exit_code
+      TYPE: INT
+      REQUIRED: false
+    - name: stderr
+      TYPE: STRING
+      REQUIRED: false
+    - name: stdout
+      TYPE: STRING
+      REQUIRED: false
+  ExecResp:
+    - name: exec_ms
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+    - name: result
+      TYPE: STRUCT(ExecResp_result)
+      REQUIRED: false
+  FailEnvelope:
+    - name: data
+      TYPE: map[STRING]ANY
+      REQUIRED: true
+      comment: |
+        A key→value map describing which field(s) failed validation.
+        Examples: `{"body": "invalid JSON"}`, `{"id": "sandbox not found"}`,
+        `{"shape": "required", "choices": ["s-1vcpu-256mb", …]}`.
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - fail
+  ForkReq:
+    - name: bandwidth_quota_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: envs
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: ingress_enabled
+      TYPE: BOOL
+      REQUIRED: false
+    - name: ssh_pubkeys
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: start_paused
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        If true, the new sandbox stays in `paused` after the bundle
+        copy completes. Default false (auto-resumes to running).
+  HealthzResp:
+    - name: up
+      TYPE: BOOL
+      REQUIRED: false
+  HostPublic:
+    - name: free_mib
+      TYPE: INT
+      REQUIRED: false
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: 136.243.150.252
+    - name: rootfses
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - active
+        - draining
+        - dead
+    - name: vm_count
+      TYPE: INT
+      REQUIRED: false
+  Network:
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: net-01k2x…
+    - name: member_count
+      TYPE: INT
+      REQUIRED: false
+    - name: members
+      TYPE: "[]STRUCT(NetworkMember)"
+      REQUIRED: false
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: backend
+  NetworkCreateReq:
+    - name: name
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: backend
+      comment: User-facing network name, owned per-user.
+  NetworkEntry:
+    - name: id
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: net-01k2x…
+      comment: Network name or `net-<ulid>` id.
+  NetworkMember:
+    - name: ip
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      comment: The member sandbox's user-facing name.
+    - name: sandbox_id
+      TYPE: STRING
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+  OKResp:
+    - name: ok
+      TYPE: BOOL
+      REQUIRED: false
+  Pagination:
+    - name: count
+      TYPE: INT
+      REQUIRED: true
+      comment: items in this response (≤ limit)
+    - name: limit
+      TYPE: INT
+      REQUIRED: true
+      comment: limit applied by the server
+    - name: offset
+      TYPE: INT
+      REQUIRED: true
+      comment: offset applied by the server
+    - name: total
+      TYPE: INT
+      REQUIRED: true
+      comment: total rows ignoring limit/offset
+  PatchSandboxReq:
+    - name: auto_pause_after_seconds
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 60
+      MAXIMUM: 86400
+      NULLABLE: true
+      comment: |
+        Set a new idle-pause timeout (60–86400 seconds). Omit to leave
+        unchanged.
+    - name: disable_auto_pause
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        Set to true to turn off auto-pause entirely (clears the
+        timeout). Takes precedence over auto_pause_after_seconds when
+        both are sent.
+    - name: ingress_enabled
+      TYPE: BOOL
+      REQUIRED: false
+  PauseAck:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - pausing
+        - paused
+  ProcessCreateRequest:
+    - name: args
+      TYPE: "[]STRING"
+      REQUIRED: false
+      comment: Arguments passed directly to the executable without shell parsing.
+    - name: cmd
+      TYPE: STRING
+      REQUIRED: false
+      comment: Required executable name or path for pipe processes; omit to use the default interactive shell for PTYs.
+    - name: cwd
+      TYPE: STRING
+      REQUIRED: false
+    - name: env
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+    - name: pty
+      TYPE: STRUCT(ProcessPTYOptions)
+      REQUIRED: false
+      NULLABLE: true
+      comment: Omit for separate stdin/stdout/stderr pipes; include for a persistent PTY.
+  ProcessDetails_output:
+    - name: bytes
+      TYPE: INT
+      REQUIRED: true
+    - name: newest_seq
+      TYPE: INT
+      REQUIRED: true
+      FORMAT: int64
+    - name: oldest_seq
+      TYPE: INT
+      REQUIRED: true
+      FORMAT: int64
+  ProcessDetails:
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      FORMAT: date-time
+    - name: exit_code
+      TYPE: INT
+      REQUIRED: false
+      NULLABLE: true
+    - name: finished_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: kind
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - process
+        - pty
+    - name: leader_exited
+      TYPE: BOOL
+      REQUIRED: true
+    - name: output
+      TYPE: STRUCT(ProcessDetails_output)
+      REQUIRED: true
+    - name: pid
+      TYPE: INT
+      REQUIRED: true
+    - name: process_id
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: proc_dGVzdF9wcm9jZXNzX2lkMQ
+    - name: signal
+      TYPE: STRING
+      REQUIRED: false
+    - name: state
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - starting
+        - running
+        - terminating
+        - exited
+        - failed
+    - name: tree_exited
+      TYPE: BOOL
+      REQUIRED: true
+  ProcessInputRequest:
+    - name: data_base64
+      TYPE: STRING
+      REQUIRED: true
+      FORMAT: byte
+  ProcessInputResponse:
+    - name: input_seq
+      TYPE: INT
+      REQUIRED: true
+      FORMAT: int64
+  ProcessListResponse:
+    - name: processes
+      TYPE: "[]STRUCT(ProcessDetails)"
+      REQUIRED: true
+  ProcessPTYOptions:
+    - name: cols
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 1
+      MAXIMUM: 65535
+      DEFAULT: 80
+    - name: rows
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 1
+      MAXIMUM: 65535
+      DEFAULT: 24
+  ProcessResizeRequest:
+    - name: cols
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+      MAXIMUM: 65535
+    - name: rows
+      TYPE: INT
+      REQUIRED: true
+      MINIMUM: 1
+      MAXIMUM: 65535
+  ProcessSignalRequest:
+    - name: signal
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - SIGHUP
+        - SIGINT
+        - SIGQUIT
+        - SIGKILL
+        - SIGTERM
+        - SIGUSR1
+        - SIGUSR2
+        - SIGWINCH
+  ReadyzResp:
+    - name: ready
+      TYPE: BOOL
+      REQUIRED: false
+  RechargeReq:
+    - name: add_bytes
+      TYPE: INT
+      REQUIRED: true
+      FORMAT: int64
+      comment: |
+        Bytes to add to the quota (additive — top-up, not reset).
+        If the VM was capped and the new quota exceeds usage, the
+        in-kernel DROP rule is removed on the next meter tick (≤5 s).
+  ResizeReq:
+    - name: disk_mib
+      TYPE: INT
+      REQUIRED: true
+      FORMAT: int64
+      comment: |
+        New disk size in MiB. Must be one of the fixed menu sizes:
+        10240, 20480, 30720, 40960, 51200, 61440. Resize is online
+        (no restart) but can take a few seconds on large changes.
+  ResizeResp:
+    - name: disk_mib
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+  ResumeAck:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - resuming
+        - running
+  RootfsData:
+    - name: default
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: devbox:1
+      comment: |
+        Recommended default rootfs for new sandboxes. Falls back to the
+        first non-disabled name if the host's configured default has
+        been disabled.
+    - name: entries
+      TYPE: "[]STRUCT(RootfsEntry)"
+      REQUIRED: false
+      comment: |
+        Rich per-rootfs metadata joined from `rootfs_catalog`. Empty
+        for rootfses with no catalog row (treated as enabled, no
+        warning). Use `entries[].deprecated` to surface upgrade hints.
+    - name: rootfs
+      TYPE: "[]STRING"
+      REQUIRED: false
+      EXAMPLE:
+        - devbox:1
+        - node
+      comment: |
+        Rootfs catalog names available cluster-wide. Disabled rootfses
+        (per `rootfs_catalog.disabled`) are filtered out.
+  RootfsEntry:
+    - name: deprecated
+      TYPE: BOOL
+      REQUIRED: false
+      DEFAULT: false
+    - name: description
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: Multi-runtime workspace + sshd
+    - name: name
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: devbox:1
+    - name: successor
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: devbox:2
+      comment: Recommended replacement rootfs catalog name.
+  SandboxAccessTokenCreateResp:
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: true
+      FORMAT: date-time
+    - name: enabled
+      TYPE: BOOL
+      REQUIRED: true
+      ENUM:
+        - true
+    - name: rotated_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: token
+      TYPE: STRING
+      REQUIRED: true
+      PATTERN: ^skp_sb_
+      WRITE_ONLY: true
+      EXAMPLE: skp_sb_example-plaintext-returned-once
+  SandboxAccessTokenMetadataResp:
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: enabled
+      TYPE: BOOL
+      REQUIRED: true
+    - name: rotated_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: token_hint
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: skp_sb_Ab12...Xy9Z
+      comment: Redacted non-secret identifier suitable for audit correlation.
+  SandboxDiskView:
+    - name: config
+      TYPE: STRUCT(DiskConfig)
+      REQUIRED: false
+    - name: disk_id
+      TYPE: STRING
+      REQUIRED: false
+    - name: kind
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: s3
+    - name: mount_error
+      TYPE: STRING
+      REQUIRED: false
+      comment: |
+        Truncated to ~1 KiB by the agent. Present only when
+        `mount_status == "failed"`.
+    - name: mount_path
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: /mnt/data
+    - name: mount_status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - pending
+        - mounted
+        - failed
+      comment: |
+        `pending` immediately after attach (and after pause). Flips
+        to `mounted` once the agent's `applyDisks` loop has run
+        `s3fs` successfully; `failed` if the mount errored — see
+        `mount_error`.
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+    - name: sub_path
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: team-a/
+      comment: Optional bucket prefix; empty = bucket root.
+  SandboxMetricsView:
+    - name: as_of
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      comment: UTC timestamp the snapshot was taken.
+    - name: cpu_cores_allocated
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: |
+        Allocated CPU budget in fractional cores, derived from cgroup
+        cpu.max (quota / period). 0 means unlimited (cpu.max reads
+        "max").
+    - name: cpu_cores_used
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: |
+        Instantaneous CPU consumption in fractional cores, averaged
+        over the most recent scraper window (~15-30 s). 1.0 means
+        one full core.
+    - name: cpu_pct
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: |
+        cpu_cores_used / cpu_cores_allocated * 100. 0 when there is
+        no quota (cpu_cores_allocated == 0).
+    - name: memory_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+      comment: Resident RAM in bytes (cgroup memory.current).
+    - name: memory_limit_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+      comment: |
+        Memory cap in bytes (cgroup memory.max). 0 means unlimited
+        (the cgroup file reads "max").
+    - name: memory_pct
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+      comment: |
+        memory_bytes / memory_limit_bytes * 100. 0 when there is no
+        limit (memory_limit_bytes == 0).
+    - name: sandbox_id
+      TYPE: STRING
+      REQUIRED: false
+  SandboxView:
+    - name: auto_pause_after_seconds
+      TYPE: INT
+      REQUIRED: false
+      NULLABLE: true
+      EXAMPLE: 600
+      comment: |
+        Seconds of inactivity before the sandbox is automatically
+        paused. Null means auto-pause is off.
+    - name: bandwidth_ingress_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: created_by
+      TYPE: STRING
+      REQUIRED: false
+      comment: user_id of the API key that created this sandbox
+    - name: destroyed_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: disk_mib
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: envs
+      TYPE: "[]STRING"
+      REQUIRED: false
+      EXAMPLE:
+        - ANTHROPIC_API_KEY
+        - PI_TOKEN
+      comment: |
+        Names of environment variables stored on this sandbox. Values
+        are never returned — only the keys, for visibility.
+    - name: forked_from
+      TYPE: STRING
+      REQUIRED: false
+      comment: Source sandbox id when this row was created via /fork
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+    - name: ingress_enabled
+      TYPE: BOOL
+      REQUIRED: false
+      comment: |
+        When true, the sandbox is reachable on
+        `<ulid>-<port>.<domain>`. Toggle via PATCH.
+    - name: ip
+      TYPE: STRING
+      REQUIRED: false
+    - name: last_resumed_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: mem_mib
+      TYPE: INT
+      REQUIRED: false
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: brave-otter
+    - name: paused_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: region
+      TYPE: STRING
+      REQUIRED: false
+      comment: Always present — the region the sandbox was placed in.
+    - name: rootfs
+      TYPE: STRING
+      REQUIRED: false
+    - name: running_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: shape
+      TYPE: STRING
+      REQUIRED: false
+    - name: spawn_ms
+      TYPE: FLOAT
+      REQUIRED: false
+      FORMAT: double
+    - name: ssh_pubkeys
+      TYPE: "[]STRING"
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - creating
+        - running
+        - pausing
+        - paused
+        - resuming
+        - forking
+        - error
+        - destroying
+        - destroyed
+        - failed
+    - name: vcpu
+      TYPE: INT
+      REQUIRED: false
+  SetEgressReq:
+    - name: egress
+      TYPE: "[]STRING"
+      REQUIRED: false
+      NULLABLE: true
+      comment: |
+        Full replacement allowlist. `null` / missing / empty / `["*"]`
+        all mean allow-all. Applied atomically — the new rules
+        replace the old ones in a single update. Named presets such as
+        `@pypi` are accepted and stored as their expanded concrete rules.
+  Shape:
+    - name: default_disk_mib
+      TYPE: INT
+      REQUIRED: false
+      EXAMPLE: 10240
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: s-1vcpu-256mb
+    - name: mem_mib
+      TYPE: INT
+      REQUIRED: false
+      EXAMPLE: 256
+    - name: vcpu
+      TYPE: INT
+      REQUIRED: false
+      EXAMPLE: 1
+  SuccessEnvelope:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+  TemplateCreateReq:
+    - name: dockerfile
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        Raw Dockerfile contents. Validated at submit time: must be
+        single-stage, FROM in the operator allowlist (e.g.
+        `nodeops/sandbox:debian`), no COPY/ADD, no
+        ARG-substituted FROM. Max 64 KiB.
+    - name: name
+      TYPE: STRING
+      REQUIRED: true
+      comment: |
+        Friendly alias used to spawn (`rootfs=<name>` resolves to the
+        latest ready template with this name). 1–63 chars, lowercase
+        alphanumeric + dash.
+  TemplateView:
+    - name: base
+      TYPE: STRING
+      REQUIRED: false
+      comment: resolved FROM image
+    - name: built_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: dockerfile
+      TYPE: STRING
+      REQUIRED: false
+      comment: only present on detail GET with ?include=dockerfile
+    - name: ext4_size_bytes
+      TYPE: INT
+      REQUIRED: false
+      FORMAT: int64
+      comment: uncompressed ext4 size; 0 until status=ready
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      comment: tpl_<ulid>
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+    - name: status
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - pending
+        - building
+        - ready
+        - failed
+  WhoAmIStatsView:
+    - name: other
+      TYPE: INT
+      REQUIRED: false
+      comment: any other non-terminal status (creating, pausing, resuming, etc.)
+    - name: paused
+      TYPE: INT
+      REQUIRED: false
+      comment: currently-paused sandboxes
+    - name: running
+      TYPE: INT
+      REQUIRED: false
+      comment: currently-running sandboxes (counts toward the per-user concurrent cap)
+    - name: total
+      TYPE: INT
+      REQUIRED: false
+      comment: every sandbox the user has ever owned, including destroyed/failed
+  WhoAmIView:
+    - name: stats
+      TYPE: STRUCT(WhoAmIStatsView)
+      REQUIRED: false
+    - name: user_id
+      TYPE: STRING
+      REQUIRED: false
+  getHealthz_get_healthz_14239264Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(HealthzResp)
+      REQUIRED: false
+  getReadyz_get_readyz_36f771a3Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ReadyzResp)
+      REQUIRED: false
+  listDisks_get_v1_disks_6c229da8Response200_data:
+    - name: data
+      TYPE: "[]STRUCT(DiskView)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listDisks_get_v1_disks_6c229da8Response200:
+    - name: data
+      TYPE: STRUCT(listDisks_get_v1_disks_6c229da8Response200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listDisks_get_v1_disks_6c229da8Response200_data)
+      REQUIRED: false
+  createDisk_post_v1_disks_6c229da8Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DiskView)
+      REQUIRED: false
+  deleteDisk_delete_v1_disks_idOrName_195a43eResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DiskDeletedResp)
+      REQUIRED: false
+  getDisk_get_v1_disks_idOrName_195a43eResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DiskView)
+      REQUIRED: false
+  listEgressPresets_get_v1_egress_presets_127d00c8Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(EgressPresetsView)
+      REQUIRED: false
+  listHosts_get_v1_hosts_6c6e4b1bResponse200_data:
+    - name: data
+      TYPE: "[]STRUCT(HostPublic)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listHosts_get_v1_hosts_6c6e4b1bResponse200:
+    - name: data
+      TYPE: STRUCT(listHosts_get_v1_hosts_6c6e4b1bResponse200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listHosts_get_v1_hosts_6c6e4b1bResponse200_data)
+      REQUIRED: false
+  listNetworks_get_v1_networks_f12d0ac7Response200_data:
+    - name: data
+      TYPE: "[]STRUCT(Network)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listNetworks_get_v1_networks_f12d0ac7Response200:
+    - name: data
+      TYPE: STRUCT(listNetworks_get_v1_networks_f12d0ac7Response200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listNetworks_get_v1_networks_f12d0ac7Response200_data)
+      REQUIRED: false
+  createNetwork_post_v1_networks_f12d0ac7Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(Network)
+      REQUIRED: false
+  deleteNetwork_delete_v1_networks_id_dcad9d7bResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(OKResp)
+      REQUIRED: false
+  getNetwork_get_v1_networks_id_dcad9d7bResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(Network)
+      REQUIRED: false
+  listRootfs_get_v1_rootfs_11891207Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(RootfsData)
+      REQUIRED: false
+  listSandboxes_get_v1_sandboxes_b11926f1Response200_data:
+    - name: data
+      TYPE: "[]STRUCT(SandboxView)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listSandboxes_get_v1_sandboxes_b11926f1Response200:
+    - name: data
+      TYPE: STRUCT(listSandboxes_get_v1_sandboxes_b11926f1Response200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listSandboxes_get_v1_sandboxes_b11926f1Response200_data)
+      REQUIRED: false
+  createSandbox_post_v1_sandboxes_b11926f1Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(CreateResp)
+      REQUIRED: false
+  getSandboxByIP_get_v1_sandboxes_by_ip_ip_9e616a61Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxView)
+      REQUIRED: false
+  destroySandbox_delete_v1_sandboxes_id_2283e3e5Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DestroyedResp)
+      REQUIRED: false
+  getSandbox_get_v1_sandboxes_id_2283e3e5Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxView)
+      REQUIRED: false
+  patchSandbox_patch_v1_sandboxes_id_2283e3e5Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxView)
+      REQUIRED: false
+  disableSandboxAccessToken_delete_v1_sandboxes_id_access_token_31081af4Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxAccessTokenMetadataResp)
+      REQUIRED: false
+  getSandboxAccessToken_get_v1_sandboxes_id_access_token_31081af4Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxAccessTokenMetadataResp)
+      REQUIRED: false
+  createSandboxAccessToken_post_v1_sandboxes_id_access_token_31081af4Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxAccessTokenCreateResp)
+      REQUIRED: false
+  rotateSandboxAccessToken_post_v1_sandboxes_id_access_token_rotate_ca5ce772Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxAccessTokenCreateResp)
+      REQUIRED: false
+  getBandwidth_get_v1_sandboxes_id_bandwidth_c2de0129Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(BandwidthView)
+      REQUIRED: false
+  rechargeBandwidth_post_v1_sandboxes_id_bandwidth_recharge_7243b0d9Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(BandwidthView)
+      REQUIRED: false
+  getSandboxClipboard_get_v1_sandboxes_id_computer_clipboard_a76f9382Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerClipboard)
+      REQUIRED: false
+  getSandboxCursor_get_v1_sandboxes_id_computer_cursor_a5f2de10Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerPoint)
+      REQUIRED: false
+  getSandboxScreenGeometry_get_v1_sandboxes_id_computer_screen_c9ff7232Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerScreenGeometry)
+      REQUIRED: false
+  listSandboxComputerScreens_get_v1_sandboxes_id_computer_screens_9edb8e5Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: "[]STRUCT(ComputerScreen)"
+      REQUIRED: false
+  createSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_9edb8e5Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerScreen)
+      REQUIRED: false
+  getSandboxComputerScreen_get_v1_sandboxes_id_computer_screens_screen_id_18fd8ff8Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerScreen)
+      REQUIRED: false
+  connectSandboxComputerScreen_get_v1_sandboxes_id_computer_screens_screen_id_connect_5176cdb1Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerScreenConnection)
+      REQUIRED: false
+  resizeSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_screen_id_resize_534eb159Request:
+    - name: height
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 240
+      MAXIMUM: 2160
+      DEFAULT: 800
+    - name: width
+      TYPE: INT
+      REQUIRED: false
+      MINIMUM: 320
+      MAXIMUM: 3840
+      DEFAULT: 1280
+    - name: value
+      TYPE: ANY
+      REQUIRED: false
+  resizeSandboxComputerScreen_post_v1_sandboxes_id_computer_screens_screen_id_resize_534eb159Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerScreen)
+      REQUIRED: false
+  listSandboxDesktopWindows_get_v1_sandboxes_id_computer_windows_4b8cdcfdResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: "[]STRUCT(ComputerWindow)"
+      REQUIRED: false
+  getCurrentSandboxDesktopWindow_get_v1_sandboxes_id_computer_windows_current_65bad86fResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerWindow)
+      REQUIRED: false
+  getSandboxDesktopWindow_get_v1_sandboxes_id_computer_windows_window_id_74656528Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerWindow)
+      REQUIRED: false
+  getSandboxDesktopWindowGeometry_get_v1_sandboxes_id_computer_windows_window_id_geometry_ddd77ba3Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ComputerWindowGeometry)
+      REQUIRED: false
+  listSandboxDisks_get_v1_sandboxes_id_disks_ed6a0ed2Response200_data:
+    - name: data
+      TYPE: "[]STRUCT(SandboxDiskView)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listSandboxDisks_get_v1_sandboxes_id_disks_ed6a0ed2Response200:
+    - name: data
+      TYPE: STRUCT(listSandboxDisks_get_v1_sandboxes_id_disks_ed6a0ed2Response200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listSandboxDisks_get_v1_sandboxes_id_disks_ed6a0ed2Response200_data)
+      REQUIRED: false
+  attachDiskLive_post_v1_sandboxes_id_disks_ed6a0ed2Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(OKResp)
+      REQUIRED: false
+  detachDiskLive_delete_v1_sandboxes_id_disks_disk_id_57fca330Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DiskDetachedResp)
+      REQUIRED: false
+  getEgress_get_v1_sandboxes_id_egress_9cdc3b3dResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(EgressView)
+      REQUIRED: false
+  setEgress_put_v1_sandboxes_id_egress_9cdc3b3dResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(EgressView)
+      REQUIRED: false
+  execSandbox_post_v1_sandboxes_id_exec_c92308d9Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ExecResp)
+      REQUIRED: false
+  forkSandbox_post_v1_sandboxes_id_fork_c92370a6Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxView)
+      REQUIRED: false
+  forkSandbox_post_v1_sandboxes_id_fork_c92370a6Response202:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxView)
+      REQUIRED: false
+  getSandboxMetrics_get_v1_sandboxes_id_metrics_9bb65d6bResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(SandboxMetricsView)
+      REQUIRED: false
+  attachNetwork_post_v1_sandboxes_id_networks_ff21e3b1Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(OKResp)
+      REQUIRED: false
+  detachNetwork_delete_v1_sandboxes_id_networks_net_a7566ebfResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(OKResp)
+      REQUIRED: false
+  pauseSandbox_post_v1_sandboxes_id_pause_ee3edb52Response202:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(PauseAck)
+      REQUIRED: false
+  listSandboxProcesses_get_v1_sandboxes_id_processes_1b7066ebResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessListResponse)
+      REQUIRED: false
+  createSandboxProcess_post_v1_sandboxes_id_processes_1b7066ebResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessDetails)
+      REQUIRED: false
+  terminateSandboxProcess_delete_v1_sandboxes_id_processes_process_id_bbbc071dResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessDetails)
+      REQUIRED: false
+  getSandboxProcess_get_v1_sandboxes_id_processes_process_id_bbbc071dResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessDetails)
+      REQUIRED: false
+  writeSandboxProcessInput_post_v1_sandboxes_id_processes_process_id_input_9e0ae8fcResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessInputResponse)
+      REQUIRED: false
+  waitForSandboxProcess_get_v1_sandboxes_id_processes_process_id_wait_c936ca1Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ProcessDetails)
+      REQUIRED: false
+  resizeSandbox_post_v1_sandboxes_id_resize_bb0bb8a6Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ResizeResp)
+      REQUIRED: false
+  resumeSandbox_post_v1_sandboxes_id_resume_bb0bea05Response202:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(ResumeAck)
+      REQUIRED: false
+  listShapes_get_v1_shapes_1357d0aeResponse200_data:
+    - name: data
+      TYPE: "[]STRUCT(Shape)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listShapes_get_v1_shapes_1357d0aeResponse200:
+    - name: data
+      TYPE: STRUCT(listShapes_get_v1_shapes_1357d0aeResponse200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listShapes_get_v1_shapes_1357d0aeResponse200_data)
+      REQUIRED: false
+  listTemplates_get_v1_templates_a64dccf9Response200_data:
+    - name: data
+      TYPE: "[]STRUCT(TemplateView)"
+      REQUIRED: false
+    - name: pagination
+      TYPE: STRUCT(Pagination)
+      REQUIRED: false
+  listTemplates_get_v1_templates_a64dccf9Response200:
+    - name: data
+      TYPE: STRUCT(listTemplates_get_v1_templates_a64dccf9Response200_data)
+      REQUIRED: true
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(listTemplates_get_v1_templates_a64dccf9Response200_data)
+      REQUIRED: false
+  submitTemplate_post_v1_templates_a64dccf9Response200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(TemplateView)
+      REQUIRED: false
+  deleteTemplate_delete_v1_templates_id_c3398eedResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(DestroyedResp)
+      REQUIRED: false
+  getTemplate_get_v1_templates_id_c3398eedResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(TemplateView)
+      REQUIRED: false
+  whoami_get_v1_whoami_1cb3e1afResponse200:
+    - name: data
+      TYPE: ANY
+      REQUIRED: true
+      comment: Operation-specific payload (see each response)
+    - name: status
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - success
+    - name: data
+      TYPE: STRUCT(WhoAmIView)
+      REQUIRED: false

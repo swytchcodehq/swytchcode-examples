@@ -1,0 +1,104 @@
+{
+  "version": 2,
+  "defaults": {
+    "on_no_match": "allow",
+    "timezone": "UTC"
+  },
+  "policies": [
+    {
+      "id": "do-not-destroy-createos-resources",
+      "description": "The builder may create and run a sandbox. It may not delete one.",
+      "target": ["fc_spawn_control_plane.*"],
+      "when": {
+        "field": "$http_method",
+        "operator": "==",
+        "value": "DELETE"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Deleting CreateOS resources is blocked in this starter.",
+        "hint": "Leave the sandbox running. A person removes this policy before swy exec fc_spawn_control_plane.sandbox.delete."
+      },
+      "tests": [
+        {
+          "tool": "fc_spawn_control_plane.sandbox.delete",
+          "args": { "id": "sb_example" },
+          "expect": "block"
+        },
+        {
+          "tool": "fc_spawn_control_plane.sandbox.list",
+          "args": {},
+          "expect": "allow"
+        }
+      ]
+    },
+    {
+      "id": "builder-uses-devbox",
+      "description": "Code runs on the devbox image, which has Node, Python, Go, Rust, and Docker.",
+      "target": ["fc_spawn_control_plane.sandbox.create"],
+      "when": {
+        "operator": "not",
+        "conditions": [
+          { "field": "body.rootfs", "operator": "==", "value": "devbox:1" }
+        ]
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "This builder only creates sandboxes with rootfs devbox:1.",
+        "hint": "Set body.rootfs to devbox:1. Use the desktop demo in ../createos when the task needs a browser."
+      },
+      "tests": [
+        {
+          "tool": "fc_spawn_control_plane.sandbox.create",
+          "args": { "body": { "shape": "s-1vcpu-1gb", "rootfs": "desktop:1" } },
+          "expect": "block"
+        },
+        {
+          "tool": "fc_spawn_control_plane.sandbox.create",
+          "args": {
+            "body": {
+              "shape": "s-1vcpu-1gb",
+              "rootfs": "devbox:1",
+              "ingress_enabled": true,
+              "auto_pause_after_seconds": 600
+            }
+          },
+          "expect": "allow"
+        }
+      ]
+    },
+    {
+      "id": "no-wipe-the-guest",
+      "description": "Block shell commands that shut the guest down or wipe its disk.",
+      "target": ["fc_spawn_control_plane.exec.create"],
+      "when": {
+        "field": "$strings",
+        "operator": "matches",
+        "value": "(?i)rm\\s+-rf|\\bshutdown\\b|\\breboot\\b|\\bmkfs\\b"
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "That command would wipe or stop the sandbox.",
+        "hint": "Delete only the files this task created, under /tmp/build."
+      },
+      "tests": [
+        {
+          "tool": "fc_spawn_control_plane.exec.create",
+          "args": {
+            "id": "sb_example",
+            "body": { "cmd": "bash", "args": ["-lc", "rm -rf /"] }
+          },
+          "expect": "block"
+        },
+        {
+          "tool": "fc_spawn_control_plane.exec.create",
+          "args": {
+            "id": "sb_example",
+            "body": { "cmd": "bash", "args": ["-lc", "python3 /tmp/build/hello.py"] }
+          },
+          "expect": "allow"
+        }
+      ]
+    }
+  ]
+}
