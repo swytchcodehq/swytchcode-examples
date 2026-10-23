@@ -54,6 +54,7 @@ The first six examples can be scaffolded fresh via the `swytchcode examples` int
 | [**`swytchcode-refund-agent-openclaw`**](./swytchcode-refund-agent-openclaw) | Automated refund processing agent | OpenClaw | Support • Refunds |
 | [**`star-repo-openai-agents-python`**](./star-repo-openai-agents-python) | Star a GitHub repository via Swytchcode CLI | OpenAI Agents SDK | GitHub • OpenAI • Python |
 | [**`github-agent-crewai-python`**](./github-agent-crewai-python) | GitHub operations agent with CrewAI | CrewAI | GitHub • CrewAI • Python |
+| [**`instinct-book-my-trip`**](./instinct-book-my-trip) | Book flights from WhatsApp, with spending limits and approvals | Instinct (Google Sheet bridge) | Travel • Duffel • Google Sheets • Resend • Approvals |
 
 ## License
 

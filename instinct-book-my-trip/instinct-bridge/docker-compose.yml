@@ -1,0 +1,26 @@
+services:
+  bridge:
+    build:
+      context: ..
+      dockerfile: instinct-bridge/Dockerfile
+    restart: unless-stopped
+    # Reaps the approval watchers Swytchcode starts in the background.
+    init: true
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SWYTCHCODE_PROJECT: /app
+      # Times in the sheet use this zone; setup.sh copies it from this machine.
+      TZ: ${TZ:-UTC}
+      SHEET_FILE: /data/trips-sheet.json
+      TRAVELLER_FILE: /data/traveller.json
+    volumes:
+      # Swytchcode sign-in, the Duffel key, the Google sign-in and pending approvals.
+      - swytchcode-home:/root/.swytchcode
+      # Which Trips sheet this bridge made, and the passenger to book.
+      - bridge-data:/data
+
+volumes:
+  swytchcode-home:
+  bridge-data:

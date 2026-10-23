@@ -1,0 +1,379 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Add a contact to a specific segment",
+      "canonical_id": "resend.segment.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a new contact to your address book",
+      "canonical_id": "resend.contact.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Add a new domain to your account",
+      "canonical_id": "resend.domain.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Cancel a scheduled email",
+      "canonical_id": "resend.cancel.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a list of contacts, but use Segments instead",
+      "canonical_id": "resend.audience.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new automation",
+      "canonical_id": "resend.automation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new broadcast message",
+      "canonical_id": "resend.broadcast.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new customer segment",
+      "canonical_id": "resend.segment.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new event",
+      "canonical_id": "resend.event.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new template",
+      "canonical_id": "resend.template.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new topic",
+      "canonical_id": "resend.topic.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a contact by their ID",
+      "canonical_id": "resend.contact.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a domain by its ID",
+      "canonical_id": "resend.domain.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a draft broadcast by its ID",
+      "canonical_id": "resend.broadcast.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a segment by its ID",
+      "canonical_id": "resend.segment.delete1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a template by its ID",
+      "canonical_id": "resend.template.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a topic by its ID",
+      "canonical_id": "resend.topic.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete a webhook by its ID",
+      "canonical_id": "resend.webhook.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Delete an audience by its ID",
+      "canonical_id": "resend.audience.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Duplicate a template by its ID",
+      "canonical_id": "resend.duplicate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a list of received emails",
+      "canonical_id": "resend.receiving.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Fetch a single log entry by its ID",
+      "canonical_id": "resend.log.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a contact by their ID or email",
+      "canonical_id": "resend.contact.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of audiences, though Segments are recommended",
+      "canonical_id": "resend.audience.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of automations with optional filtering",
+      "canonical_id": "resend.automation.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of broadcasts",
+      "canonical_id": "resend.broadcast.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of contacts with optional filtering and pagination",
+      "canonical_id": "resend.contact.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of domains, with options to limit and paginate results",
+      "canonical_id": "resend.domain.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of emails with optional filtering",
+      "canonical_id": "resend.email.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of events",
+      "canonical_id": "resend.event.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of logs, with optional filtering by date and limit",
+      "canonical_id": "resend.log.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of segments",
+      "canonical_id": "resend.segment.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of templates",
+      "canonical_id": "resend.template.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of topics",
+      "canonical_id": "resend.topic.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a list of webhooks",
+      "canonical_id": "resend.webhook.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a single topic by its ID",
+      "canonical_id": "resend.topic.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific attachment for a sent email",
+      "canonical_id": "resend.attachment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific attachment from a received email",
+      "canonical_id": "resend.receiving.attachments.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific audience by its ID",
+      "canonical_id": "resend.audience.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific automation by its ID",
+      "canonical_id": "resend.automation.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific automation run by ID",
+      "canonical_id": "resend.run.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific broadcast by its ID",
+      "canonical_id": "resend.broadcast.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific domain by its ID",
+      "canonical_id": "resend.domain.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific email by its ID",
+      "canonical_id": "resend.email.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific event by its identifier",
+      "canonical_id": "resend.event.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific received email by its ID",
+      "canonical_id": "resend.receiving.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific segment by its ID",
+      "canonical_id": "resend.segment.get1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific template by its ID",
+      "canonical_id": "resend.template.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get a specific webhook by its ID",
+      "canonical_id": "resend.webhook.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get attachments for a received email",
+      "canonical_id": "resend.receiving.attachments.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get attachments for a specific email",
+      "canonical_id": "resend.attachment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get automation runs for a specific automation",
+      "canonical_id": "resend.run.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get segments associated with a specific contact",
+      "canonical_id": "resend.segment.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get topics associated with a specific contact",
+      "canonical_id": "resend.topic.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Publish a template by its ID",
+      "canonical_id": "resend.publish.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Register a new webhook to receive event notifications",
+      "canonical_id": "resend.webhook.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove a contact from a segment",
+      "canonical_id": "resend.segment.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an automation by its ID",
+      "canonical_id": "resend.automation.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Remove an event using its identifier",
+      "canonical_id": "resend.event.delete"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an email",
+      "canonical_id": "resend.email.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send an event notification",
+      "canonical_id": "resend.send.create1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send or schedule a broadcast",
+      "canonical_id": "resend.send.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Send up to 100 emails in a single batch request",
+      "canonical_id": "resend.batch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Stop a specific automation",
+      "canonical_id": "resend.stop.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a contact by ID or email",
+      "canonical_id": "resend.contact.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update a specific email's details",
+      "canonical_id": "resend.email.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing automation",
+      "canonical_id": "resend.automation.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing broadcast",
+      "canonical_id": "resend.broadcast.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing domain",
+      "canonical_id": "resend.domain.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing event by its identifier",
+      "canonical_id": "resend.event.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing template by ID",
+      "canonical_id": "resend.template.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing topic's details",
+      "canonical_id": "resend.topic.update1"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update an existing webhook",
+      "canonical_id": "resend.webhook.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update topics associated with a specific contact",
+      "canonical_id": "resend.topic.update"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Verify a domain's DNS records and tracking CNAME",
+      "canonical_id": "resend.verify.create"
+    }
+  ]
+}

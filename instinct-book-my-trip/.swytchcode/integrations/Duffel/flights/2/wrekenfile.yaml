@@ -1,0 +1,650 @@
+VERSION: 2.1.0
+DEFAULTS:
+  bearer_token: Bearer <TOKEN>
+  w_base_url: https://api.duffel.com
+METHODS:
+  duffel_flights.offer_request.create:
+    SUMMARY: Search for flights
+    DESC: Searches airlines for flights matching the slices and passengers and returns offers. Nothing is booked. Each offer has a price, an expiry and the passenger ids needed to book it.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /air/offer_requests
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateOfferRequestBody)
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - return_offers:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: true
+      - supplier_timeout:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 20000
+      - body:
+          TYPE: STRUCT(CreateOfferRequestBody)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(OfferRequestResponse)
+        RETURNVAR: duffel_flights_offer_request_create_201
+        STATUS: 201
+    CANONICAL_ID: duffel_flights.offer_request.create
+  duffel_flights.offer.get:
+    SUMMARY: Get an offer with its latest price
+    DESC: "Returns one offer. Call it right before booking: offers expire and prices change, and an order must pay the current total_amount."
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /air/offers/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+      - return_available_services:
+          TYPE: BOOL
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: false
+    RETURNS:
+      - RETURNTYPE: STRUCT(getOffer_get_air_offers_id_e23486d8Response200)
+        RETURNVAR: duffel_flights_offer_get
+        STATUS: 200
+    CANONICAL_ID: duffel_flights.offer.get
+  duffel_flights.order.create:
+    SUMMARY: Book a flight
+    DESC: Books the selected offer for the given passengers. With type instant the payment is taken from the Duffel balance and must equal the offer's current total_amount and total_currency. Passenger ids come from the offer.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /air/orders
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(CreateOrderBody)
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - body:
+          TYPE: STRUCT(CreateOrderBody)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(OrderResponse)
+        RETURNVAR: duffel_flights_order_create_201
+        STATUS: 201
+    CANONICAL_ID: duffel_flights.order.create
+  duffel_flights.order.list:
+    SUMMARY: List bookings
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /air/orders
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - limit:
+          TYPE: INT
+          REQUIRED: false
+          LOCATION: query
+          DEFAULT: 50
+          MAXIMUM: 200
+      - after:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+      - booking_reference:
+          TYPE: STRING
+          REQUIRED: false
+          LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(listOrders_get_air_orders_18f0734eResponse200)
+        RETURNVAR: duffel_flights_order_list
+        STATUS: 200
+    CANONICAL_ID: duffel_flights.order.list
+  duffel_flights.order.get:
+    SUMMARY: Get a booking
+    HTTP:
+      METHOD: GET
+      ENDPOINT: /air/orders/{id}
+      HEADERS:
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(OrderResponse)
+        RETURNVAR: duffel_flights_order_get
+        STATUS: 200
+    CANONICAL_ID: duffel_flights.order.get
+  duffel_flights.order_cancellation.create:
+    SUMMARY: Get a cancellation quote
+    DESC: Creates a pending cancellation that shows the refund amount. The booking is not cancelled until the cancellation is confirmed.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /air/order_cancellations
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+      BODY:
+        TYPE: STRUCT(createOrderCancellation_post_air_order_cancellations_8666719aRequest)
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - body:
+          TYPE: STRUCT(createOrderCancellation_post_air_order_cancellations_8666719aRequest)
+          REQUIRED: true
+          LOCATION: body
+          CONTENT_TYPE: application/json
+    RETURNS:
+      - RETURNTYPE: STRUCT(OrderCancellationResponse)
+        RETURNVAR: duffel_flights_order_cancellation_create_201
+        STATUS: 201
+    CANONICAL_ID: duffel_flights.order_cancellation.create
+  duffel_flights.order_cancellation.confirm.create:
+    SUMMARY: Cancel a booking
+    DESC: Confirms a pending cancellation, which cancels the booking and issues the refund. Only the most recent cancellation for an order can be confirmed, and only before its expires_at.
+    HTTP:
+      METHOD: POST
+      ENDPOINT: /air/order_cancellations/{id}/actions/confirm
+      HEADERS:
+        Content-Type: application/json
+        Authorization: bearer_token
+      CONTENT_TYPE: application/json
+      ACCEPT: application/json
+    SECURITY:
+      - bearerAuth:
+          type: http
+          scheme: bearer
+    EXECUTION:
+      KIND: http
+      MODE: sync
+    INPUTS:
+      - Duffel-Version:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: header
+          DEFAULT: v2
+          ENUM:
+            - v2
+      - id:
+          TYPE: STRING
+          REQUIRED: true
+          LOCATION: path
+    RETURNS:
+      - RETURNTYPE: STRUCT(OrderCancellationResponse)
+        RETURNVAR: duffel_flights_order_cancellation_confirm_create
+        STATUS: 200
+    CANONICAL_ID: duffel_flights.order_cancellation.confirm.create
+STRUCTS:
+  CreateOfferRequestBody_data:
+    - name: slices
+      TYPE: "[]STRUCT(SearchSlice)"
+      REQUIRED: true
+      comment: One slice for one-way, two for a return trip.
+    - name: passengers
+      TYPE: "[]STRUCT(SearchPassenger)"
+      REQUIRED: true
+    - name: cabin_class
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - first
+        - business
+        - premium_economy
+        - economy
+      NULLABLE: true
+    - name: max_connections
+      TYPE: INT
+      REQUIRED: false
+      DEFAULT: 1
+      comment: 0 means direct flights only.
+  CreateOfferRequestBody:
+    - name: data
+      TYPE: STRUCT(CreateOfferRequestBody_data)
+      REQUIRED: true
+  SearchSlice:
+    - name: origin
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: BLR
+      comment: IATA airport or city code.
+    - name: destination
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: SIN
+      comment: IATA airport or city code.
+    - name: departure_date
+      TYPE: DATE
+      REQUIRED: true
+      FORMAT: date
+      EXAMPLE: "2026-11-06"
+    - name: departure_time
+      TYPE: STRUCT(TimeWindow)
+      REQUIRED: false
+    - name: arrival_time
+      TYPE: STRUCT(TimeWindow)
+      REQUIRED: false
+  TimeWindow:
+    - name: from
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: "06:00"
+    - name: to
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: "12:00"
+  SearchPassenger:
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - adult
+        - child
+        - infant_without_seat
+    - name: age
+      TYPE: INT
+      REQUIRED: false
+    - name: given_name
+      TYPE: STRING
+      REQUIRED: false
+    - name: family_name
+      TYPE: STRING
+      REQUIRED: false
+  OfferRequestResponse_data_passengers_Item:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: pas_00009hj8USM7Ncg31cBCLL
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+  OfferRequestResponse_data:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: orq_0000A3tQSmKyqOrcySrGbo
+    - name: passengers
+      TYPE: "[]STRUCT(OfferRequestResponse_data_passengers_Item)"
+      REQUIRED: false
+    - name: offers
+      TYPE: "[]STRUCT(Offer)"
+      REQUIRED: false
+  OfferRequestResponse:
+    - name: data
+      TYPE: STRUCT(OfferRequestResponse_data)
+      REQUIRED: false
+  Offer_passengers_Item:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+    - name: type
+      TYPE: STRING
+      REQUIRED: false
+  Offer:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: off_00009htYpSCXrwaB9DnUm0
+    - name: total_amount
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: "245.10"
+    - name: total_currency
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: USD
+    - name: expires_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: owner
+      TYPE: STRUCT(Airline)
+      REQUIRED: false
+    - name: passengers
+      TYPE: "[]STRUCT(Offer_passengers_Item)"
+      REQUIRED: false
+    - name: slices
+      TYPE: "[]STRUCT(Slice)"
+      REQUIRED: false
+  Slice_segments_Item:
+    - name: departing_at
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: "2026-11-06T09:00:00"
+    - name: arriving_at
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: "2026-11-06T16:10:00"
+    - name: marketing_carrier_flight_number
+      TYPE: STRING
+      REQUIRED: false
+    - name: marketing_carrier
+      TYPE: STRUCT(Airline)
+      REQUIRED: false
+    - name: operating_carrier
+      TYPE: STRUCT(Airline)
+      REQUIRED: false
+    - name: origin
+      TYPE: STRUCT(Place)
+      REQUIRED: false
+    - name: destination
+      TYPE: STRUCT(Place)
+      REQUIRED: false
+  Slice:
+    - name: duration
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: PT5H10M
+    - name: segments
+      TYPE: "[]STRUCT(Slice_segments_Item)"
+      REQUIRED: false
+  Airline:
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: Duffel Airways
+    - name: iata_code
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: ZZ
+  Place:
+    - name: iata_code
+      TYPE: STRING
+      REQUIRED: false
+    - name: name
+      TYPE: STRING
+      REQUIRED: false
+  CreateOrderBody_data:
+    - name: type
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - instant
+        - pay_later
+    - name: selected_offers
+      TYPE: "[]STRING"
+      REQUIRED: true
+      comment: Exactly one offer id.
+    - name: passengers
+      TYPE: "[]STRUCT(OrderPassenger)"
+      REQUIRED: true
+    - name: payments
+      TYPE: "[]STRUCT(Payment)"
+      REQUIRED: false
+      comment: Required for instant orders.
+    - name: metadata
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+  CreateOrderBody:
+    - name: data
+      TYPE: STRUCT(CreateOrderBody_data)
+      REQUIRED: true
+  OrderPassenger:
+    - name: id
+      TYPE: STRING
+      REQUIRED: true
+      comment: Passenger id from the offer.
+    - name: title
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - mr
+        - ms
+        - mrs
+        - miss
+        - dr
+    - name: gender
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - m
+        - f
+    - name: given_name
+      TYPE: STRING
+      REQUIRED: true
+    - name: family_name
+      TYPE: STRING
+      REQUIRED: true
+    - name: born_on
+      TYPE: DATE
+      REQUIRED: true
+      FORMAT: date
+      EXAMPLE: "1990-04-12"
+    - name: email
+      TYPE: STRING
+      REQUIRED: true
+    - name: phone_number
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: "+919876543210"
+      comment: E.164 format.
+  Payment:
+    - name: type
+      TYPE: STRING
+      REQUIRED: true
+      ENUM:
+        - balance
+        - arc_bsp_cash
+    - name: amount
+      TYPE: STRING
+      REQUIRED: true
+      comment: The offer's current total_amount.
+    - name: currency
+      TYPE: STRING
+      REQUIRED: true
+  OrderResponse:
+    - name: data
+      TYPE: STRUCT(Order)
+      REQUIRED: false
+  Order:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: ord_00009hthhsUZ8W4LxQgkjo
+    - name: booking_reference
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: RZPYGZ
+    - name: total_amount
+      TYPE: STRING
+      REQUIRED: false
+    - name: total_currency
+      TYPE: STRING
+      REQUIRED: false
+    - name: live_mode
+      TYPE: BOOL
+      REQUIRED: false
+    - name: created_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+    - name: cancelled_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: metadata
+      TYPE: map[STRING]STRING
+      REQUIRED: false
+      NULLABLE: true
+    - name: owner
+      TYPE: STRUCT(Airline)
+      REQUIRED: false
+    - name: slices
+      TYPE: "[]STRUCT(Slice)"
+      REQUIRED: false
+  OrderCancellationResponse_data:
+    - name: id
+      TYPE: STRING
+      REQUIRED: false
+      EXAMPLE: ore_00009qzZWzjDipIkqpaUAj
+    - name: order_id
+      TYPE: STRING
+      REQUIRED: false
+    - name: refund_amount
+      TYPE: STRING
+      REQUIRED: false
+      NULLABLE: true
+    - name: refund_currency
+      TYPE: STRING
+      REQUIRED: false
+      NULLABLE: true
+    - name: refund_to
+      TYPE: STRING
+      REQUIRED: false
+      ENUM:
+        - arc_bsp_cash
+        - balance
+        - card
+        - voucher
+        - awaiting_payment
+        - airline_credits
+        - original_form_of_payment
+    - name: expires_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+    - name: confirmed_at
+      TYPE: TIMESTAMP
+      REQUIRED: false
+      FORMAT: date-time
+      NULLABLE: true
+  OrderCancellationResponse:
+    - name: data
+      TYPE: STRUCT(OrderCancellationResponse_data)
+      REQUIRED: false
+  PageMeta:
+    - name: after
+      TYPE: STRING
+      REQUIRED: false
+      NULLABLE: true
+    - name: before
+      TYPE: STRING
+      REQUIRED: false
+      NULLABLE: true
+    - name: limit
+      TYPE: INT
+      REQUIRED: false
+  getOffer_get_air_offers_id_e23486d8Response200:
+    - name: data
+      TYPE: STRUCT(Offer)
+      REQUIRED: false
+  listOrders_get_air_orders_18f0734eResponse200:
+    - name: data
+      TYPE: "[]STRUCT(Order)"
+      REQUIRED: false
+    - name: meta
+      TYPE: STRUCT(PageMeta)
+      REQUIRED: false
+  createOrderCancellation_post_air_order_cancellations_8666719aRequest_data:
+    - name: order_id
+      TYPE: STRING
+      REQUIRED: true
+      EXAMPLE: ord_00009hthhsUZ8W4LxQgkjo
+  createOrderCancellation_post_air_order_cancellations_8666719aRequest:
+    - name: data
+      TYPE: STRUCT(createOrderCancellation_post_air_order_cancellations_8666719aRequest_data)
+      REQUIRED: true

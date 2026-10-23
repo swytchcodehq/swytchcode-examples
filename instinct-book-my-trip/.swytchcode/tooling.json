@@ -1,0 +1,296 @@
+{
+  "editor": "none",
+  "integrations": {
+    "Duffel.flights": {
+      "version": "2"
+    }
+  },
+  "mode": "sandbox",
+  "tools": {
+    "duffel_flights.offer_request.create": {
+      "desc": "Searches airlines for flights matching the slices and passengers and returns offers. Nothing is booked. Each offer has a price, an expiry and the passenger ids needed to book it.",
+      "inputs": [
+        {
+          "Duffel-Version": {
+            "DEFAULT": "v2",
+            "ENUM": [
+              "v2"
+            ],
+            "LOCATION": "header",
+            "REQUIRED": true,
+            "TYPE": "STRING"
+          }
+        },
+        {
+          "return_offers": {
+            "DEFAULT": true,
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "BOOL"
+          }
+        },
+        {
+          "supplier_timeout": {
+            "DEFAULT": 20000,
+            "LOCATION": "query",
+            "REQUIRED": false,
+            "TYPE": "INT"
+          }
+        },
+        {
+          "body": {
+            "CONTENT_TYPE": "application/json",
+            "LOCATION": "body",
+            "REQUIRED": true,
+            "TYPE": "OBJECT",
+            "schema": {
+              "properties": {
+                "data": {
+                  "properties": {
+                    "cabin_class": {
+                      "required": false,
+                      "type": "string"
+                    },
+                    "max_connections": {
+                      "required": false,
+                      "type": "integer"
+                    },
+                    "passengers": {
+                      "items": {
+                        "properties": {
+                          "age": {
+                            "required": false,
+                            "type": "integer"
+                          },
+                          "family_name": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "given_name": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "type": {
+                            "required": false,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "required": true,
+                      "type": "array"
+                    },
+                    "slices": {
+                      "items": {
+                        "properties": {
+                          "arrival_time": {
+                            "properties": {
+                              "from": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "to": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "departure_date": {
+                            "required": true,
+                            "type": "DATE"
+                          },
+                          "departure_time": {
+                            "properties": {
+                              "from": {
+                                "required": false,
+                                "type": "string"
+                              },
+                              "to": {
+                                "required": false,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "destination": {
+                            "required": true,
+                            "type": "string"
+                          },
+                          "origin": {
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "origin",
+                          "destination",
+                          "departure_date"
+                        ],
+                        "type": "object"
+                      },
+                      "required": true,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "slices",
+                    "passengers"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          }
+        }
+      ],
+      "integration": "Duffel.flights@2",
+      "method_hash": "03d0b0909ecb78824759c426680c24b444a4183e7264f7853164784faceee9f6",
+      "output": {
+        "schema": {
+          "properties": {
+            "data": {
+              "properties": {
+                "id": {
+                  "required": false,
+                  "type": "string"
+                },
+                "offers": {
+                  "items": {
+                    "properties": {
+                      "expires_at": {
+                        "required": false,
+                        "type": "TIMESTAMP"
+                      },
+                      "id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "owner": {
+                        "properties": {
+                          "iata_code": {
+                            "required": false,
+                            "type": "string"
+                          },
+                          "name": {
+                            "required": false,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "passengers": {
+                        "items": {
+                          "properties": {
+                            "id": {
+                              "required": false,
+                              "type": "string"
+                            },
+                            "type": {
+                              "required": false,
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "required": false,
+                        "type": "array"
+                      },
+                      "slices": {
+                        "items": {
+                          "properties": {
+                            "duration": {
+                              "required": false,
+                              "type": "string"
+                            },
+                            "segments": {
+                              "items": {
+                                "properties": {
+                                  "arriving_at": {
+                                    "required": false,
+                                    "type": "string"
+                                  },
+                                  "departing_at": {
+                                    "required": false,
+                                    "type": "string"
+                                  },
+                                  "destination": {
+                                    "properties": {},
+                                    "type": "object"
+                                  },
+                                  "marketing_carrier": {
+                                    "properties": {},
+                                    "type": "object"
+                                  },
+                                  "marketing_carrier_flight_number": {
+                                    "required": false,
+                                    "type": "string"
+                                  },
+                                  "operating_carrier": {
+                                    "properties": {},
+                                    "type": "object"
+                                  },
+                                  "origin": {
+                                    "properties": {},
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "required": false,
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "required": false,
+                        "type": "array"
+                      },
+                      "total_amount": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "total_currency": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                },
+                "passengers": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "required": false,
+                        "type": "string"
+                      },
+                      "type": {
+                        "required": false,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "required": false,
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "status": 201
+      },
+      "summary": "Search for flights",
+      "type": "method"
+    }
+  },
+  "version": "2.24.5",
+  "workspace": "book-my-trip"
+}

@@ -1,0 +1,6 @@
+.env
+service-account.json
+*.json
+!traveller.json.example
+__pycache__/
+.venv/

@@ -1,0 +1,89 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Append values to a spreadsheet",
+      "canonical_id": "google_sheets.value.rangeappend.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Apply multiple updates to a spreadsheet atomically",
+      "canonical_id": "google_sheets.spreadsheetidbatchupdate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clear multiple ranges of values in a spreadsheet",
+      "canonical_id": "google_sheets.valuesbatchclear.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clear spreadsheet values by data filter",
+      "canonical_id": "google_sheets.valuesbatchclearbydatafilter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Clear values within a specified spreadsheet range",
+      "canonical_id": "google_sheets.value.rangeclear.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Copy a sheet to another spreadsheet",
+      "canonical_id": "google_sheets.sheet.sheetIdcopyTo.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Create a new spreadsheet and return its details",
+      "canonical_id": "google_sheets.spreadsheet.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get developer metadata for a spreadsheet by ID",
+      "canonical_id": "google_sheets.developermetadata.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple spreadsheet ranges based on data filters",
+      "canonical_id": "google_sheets.valuesbatchgetbydatafilter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get multiple spreadsheet value ranges by ID",
+      "canonical_id": "google_sheets.valuesbatchget.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get spreadsheet data by ID",
+      "canonical_id": "google_sheets.spreadsheet.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get spreadsheet values for a specified range",
+      "canonical_id": "google_sheets.value.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve specific spreadsheet data using filters",
+      "canonical_id": "google_sheets.spreadsheetidgetbydatafilter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for developer metadata within a spreadsheet",
+      "canonical_id": "google_sheets.developermetadatasearch.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple spreadsheet ranges with new values",
+      "canonical_id": "google_sheets.valuesbatchupdatebydatafilter.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update multiple spreadsheet ranges with new values",
+      "canonical_id": "google_sheets.valuesbatchupdate.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Update spreadsheet values in a specified range",
+      "canonical_id": "google_sheets.value.update"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "methods": [
+    {
+      "method_uuid": "",
+      "method_name": "Book a flight for passengers",
+      "canonical_id": "duffel_flights.order.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Confirm a pending booking cancellation and issue a refund",
+      "canonical_id": "duffel_flights.order_cancellation.confirm.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Get the latest price and details for a specific air offer",
+      "canonical_id": "duffel_flights.offer.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "List flight bookings with optional filters",
+      "canonical_id": "duffel_flights.order.list"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Request a cancellation quote and create a pending cancellation",
+      "canonical_id": "duffel_flights.order_cancellation.create"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Retrieve a specific air travel booking by its ID",
+      "canonical_id": "duffel_flights.order.get"
+    },
+    {
+      "method_uuid": "",
+      "method_name": "Search for flight offers based on travel details",
+      "canonical_id": "duffel_flights.offer_request.create"
+    }
+  ]
+}
