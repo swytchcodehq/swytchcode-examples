@@ -3,8 +3,9 @@ Swytchcode, with an in-memory sheet in place of the Google Sheet.
 
     python check.py LHR JFK 2026-11-06
 
-It runs the same code as bridge.py, against Duffel test mode. The booking
-waits for your approval in Slack or Telegram; approve it to see it go through.
+It runs the same code as bridge.py, against Duffel test mode. A booking over
+$100 waits for your approval in Slack or Telegram; approve it to see it go
+through.
 """
 
 import json
