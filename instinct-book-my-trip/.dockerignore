@@ -1,0 +1,7 @@
+**/.env
+**/service-account.json
+**/traveller.json
+**/__pycache__
+**/.venv
+.swytchcode/**/*.lock
+.swytchcode/workspace.json

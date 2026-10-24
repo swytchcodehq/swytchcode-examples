@@ -1,0 +1,517 @@
+{
+  "version": 2,
+  "defaults": {
+    "on_no_match": "deny"
+  },
+  "policies": [
+    {
+      "id": "trip-allow-bridge-tools",
+      "description": "The only calls the bridge may make; everything else is blocked (on_no_match: deny)",
+      "target": [
+        "duffel_flights.offer_request.create",
+        "duffel_flights.offer.get",
+        "duffel_flights.order.create",
+        "duffel_flights.order.list",
+        "duffel_flights.order.get",
+        "duffel_flights.order_cancellation.create",
+        "duffel_flights.order_cancellation.confirm.create",
+        "google_sheets.spreadsheet.create",
+        "google_sheets.spreadsheetidbatchupdate.create",
+        "google_sheets.value.get",
+        "google_sheets.value.rangeappend.create",
+        "google_sheets.valuesbatchupdate.create",
+        "resend.email.create"
+      ],
+      "when": {
+        "field": "$tool",
+        "operator": "exists"
+      },
+      "action": {
+        "type": "ALLOW",
+        "message": "A tool the bridge needs"
+      },
+      "tests": [
+        {
+          "name": "sending an email",
+          "tool": "resend.email.create",
+          "args": {
+            "body": {
+              "from": "a@resend.dev",
+              "to": [
+                "b@example.com"
+              ],
+              "subject": "s",
+              "html": "h"
+            }
+          },
+          "expect": "allow"
+        },
+        {
+          "name": "deleting a Resend domain",
+          "tool": "resend.domain.delete",
+          "args": {
+            "domain_id": "d_1"
+          },
+          "expect": "block"
+        },
+        {
+          "name": "clearing sheet cells",
+          "tool": "google_sheets.valuesbatchclear.create",
+          "args": {
+            "spreadsheetId": "x",
+            "body": {}
+          },
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-cap-ticket",
+      "description": "No ticket over $300",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "field": "body.data.payments[0].amount",
+        "operator": ">",
+        "value": 300
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Over your $300 per ticket limit",
+        "hint": "Pick a cheaper option, or raise the limit in policies.json"
+      },
+      "tests": [
+        {
+          "name": "a $450 ticket",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_c"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "450.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-usd-only",
+      "description": "The limits are in dollars, so bookings must be too",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "field": "body.data.payments[0].currency",
+        "operator": "not_in",
+        "value": [
+          "USD"
+        ]
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "Only bookings in USD are allowed, so the dollar limits mean dollars"
+      },
+      "tests": [
+        {
+          "name": "a GBP ticket",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_a"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "200.00",
+                    "currency": "GBP"
+                  }
+                ]
+              }
+            }
+          },
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-cap-day",
+      "description": "No more than $500 of bookings a day",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "operator": "sum",
+        "field": "body.data.payments[0].amount",
+        "window": "24h",
+        "max": 500
+      },
+      "action": {
+        "type": "QUOTA_EXCEEDED",
+        "message": "Over your $500 a day limit: today's bookings would come to {{$sum}}"
+      },
+      "tests": [
+        {
+          "name": "$280 booked today, then $245",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_a"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "245.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "before": [
+            {
+              "tool": "duffel_flights.offer_request.create",
+              "response": {
+                "data": {
+                  "offers": [
+                    {
+                      "id": "off_a"
+                    },
+                    {
+                      "id": "off_b"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "tool": "duffel_flights.order.create",
+              "args": {
+                "body": {
+                  "data": {
+                    "selected_offers": [
+                      "off_b"
+                    ],
+                    "payments": [
+                      {
+                        "type": "balance",
+                        "amount": "280.00",
+                        "currency": "USD"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-max-bookings",
+      "description": "No more than 2 bookings a day",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "operator": "rate",
+        "window": "24h",
+        "max": 2
+      },
+      "action": {
+        "type": "RATE_LIMITED",
+        "message": "You've already booked 2 flights today, your daily limit"
+      },
+      "tests": [
+        {
+          "name": "a third booking today",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_a"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "100.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "before": [
+            {
+              "tool": "duffel_flights.offer_request.create",
+              "response": {
+                "data": {
+                  "offers": [
+                    {
+                      "id": "off_a"
+                    },
+                    {
+                      "id": "off_b"
+                    },
+                    {
+                      "id": "off_c"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "tool": "duffel_flights.order.create",
+              "args": {
+                "body": {
+                  "data": {
+                    "selected_offers": [
+                      "off_b"
+                    ],
+                    "payments": [
+                      {
+                        "type": "balance",
+                        "amount": "100.00",
+                        "currency": "USD"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "tool": "duffel_flights.order.create",
+              "args": {
+                "body": {
+                  "data": {
+                    "selected_offers": [
+                      "off_c"
+                    ],
+                    "payments": [
+                      {
+                        "type": "balance",
+                        "amount": "100.00",
+                        "currency": "USD"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-only-found",
+      "description": "Only book flights a search returned",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "operator": "not",
+        "conditions": [
+          {
+            "field": "body.data.selected_offers[0]",
+            "operator": "returned_by",
+            "value": {
+              "tools": [
+                "duffel_flights.offer_request.create"
+              ],
+              "field": "data.offers[*].id"
+            },
+            "window": "1d"
+          }
+        ]
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "That flight didn't come from a search, so it can't be booked"
+      },
+      "tests": [
+        {
+          "name": "an offer id nobody searched for",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_made_up"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "100.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "expect": "block"
+        }
+      ]
+    },
+    {
+      "id": "trip-approve-booking",
+      "description": "Bookings over $100 wait for the owner's approval",
+      "target": [
+        "duffel_flights.order.create"
+      ],
+      "when": {
+        "field": "body.data.payments[0].amount",
+        "operator": ">",
+        "value": 100
+      },
+      "action": {
+        "type": "REQUIRES_APPROVAL",
+        "message": "Book {{body.data.metadata.flight}} for {{body.data.passengers[0].given_name}} {{body.data.passengers[0].family_name}}, {{body.data.payments[0].amount}} {{body.data.payments[0].currency}}?"
+      },
+      "approval_timeout": "10m",
+      "tests": [
+        {
+          "name": "a found $245 ticket",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_a"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "245.10",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "before": [
+            {
+              "tool": "duffel_flights.offer_request.create",
+              "response": {
+                "data": {
+                  "offers": [
+                    {
+                      "id": "off_a"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "expect": "approval"
+        },
+        {
+          "name": "a found $80 ticket",
+          "args": {
+            "body": {
+              "data": {
+                "selected_offers": [
+                  "off_a"
+                ],
+                "payments": [
+                  {
+                    "type": "balance",
+                    "amount": "80.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          },
+          "before": [
+            {
+              "tool": "duffel_flights.offer_request.create",
+              "response": {
+                "data": {
+                  "offers": [
+                    {
+                      "id": "off_a"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "expect": "allow"
+        }
+      ]
+    },
+    {
+      "id": "trip-approve-cancel",
+      "description": "Every cancellation waits for the owner's approval",
+      "target": [
+        "duffel_flights.order_cancellation.confirm.create"
+      ],
+      "when": {
+        "field": "id",
+        "operator": "exists"
+      },
+      "action": {
+        "type": "REQUIRES_APPROVAL",
+        "message": "Cancel this booking ({{id}})?"
+      },
+      "approval_timeout": "10m",
+      "tests": [
+        {
+          "name": "a cancellation",
+          "args": {
+            "id": "ore_1"
+          },
+          "expect": "approval"
+        }
+      ]
+    },
+    {
+      "id": "trip-sheets-one-sheet",
+      "description": "No other sheet in your Google account",
+      "target": [
+        "google_sheets.value.get",
+        "google_sheets.value.rangeappend.create",
+        "google_sheets.valuesbatchupdate.create",
+        "google_sheets.spreadsheetidbatchupdate.create"
+      ],
+      "when": {
+        "field": "spreadsheetId",
+        "operator": "!=",
+        "value": {
+          "$env_var": "TRIP_SHEET_ID"
+        }
+      },
+      "action": {
+        "type": "POLICY_BLOCKED",
+        "message": "The bridge can only read and write its own Trips sheet"
+      }
+    },
+    {
+      "id": "trip-email-limit",
+      "description": "No more than 10 emails a day",
+      "target": [
+        "resend.email.create"
+      ],
+      "when": {
+        "operator": "rate",
+        "window": "24h",
+        "max": 10
+      },
+      "action": {
+        "type": "RATE_LIMITED",
+        "message": "The bridge has already sent 10 emails today"
+      }
+    }
+  ]
+}

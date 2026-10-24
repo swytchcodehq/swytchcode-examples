@@ -1,0 +1,135 @@
+{
+  "Duffel.flights@2": {
+    "version": "2",
+    "sandbox_endpoint": "https://api.duffel.com",
+    "production_endpoint": "https://api.duffel.com",
+    "methods": 7,
+    "auth": {
+      "provider_slug": "Duffel",
+      "type": "api_key"
+    },
+    "init_details": {
+      "VERSION": "2.1.0",
+      "auth_type": "api_key"
+    },
+    "execution_policy": {
+      "max_retries": 3,
+      "base_delay_ms": 500,
+      "max_delay_ms": 30000,
+      "http_timeout_ms": 30000,
+      "connect_timeout_ms": 5000,
+      "total_timeout_ms": 90000,
+      "retry_on": [
+        429,
+        503,
+        504
+      ],
+      "non_retryable": [
+        400,
+        401,
+        403,
+        404,
+        422
+      ],
+      "on_401": "fail",
+      "max_concurrent": 5,
+      "max_response_bytes": 2000000,
+      "idempotency": {
+        "mode": "none",
+        "header_name": "Idempotency-Key",
+        "scope": "call"
+      }
+    },
+    "library_uuid": "dd9579f6-df49-4ee0-b1aa-685ea2de4eb6",
+    "private": false
+  },
+  "Google Sheets.sheets@4.0.0": {
+    "version": "4.0.0",
+    "sandbox_endpoint": "https://sheets.googleapis.com",
+    "production_endpoint": "https://sheets.googleapis.com",
+    "methods": 17,
+    "auth": {
+      "provider_slug": "Google Sheets",
+      "scopes": [],
+      "type": "oauth2"
+    },
+    "init_details": {
+      "VERSION": "2.0.2",
+      "auth_type": "oauth2"
+    },
+    "execution_policy": {
+      "max_retries": 3,
+      "base_delay_ms": 500,
+      "max_delay_ms": 30000,
+      "http_timeout_ms": 30000,
+      "connect_timeout_ms": 5000,
+      "total_timeout_ms": 90000,
+      "retry_on": [
+        429,
+        503,
+        504
+      ],
+      "non_retryable": [
+        400,
+        401,
+        403,
+        404,
+        422
+      ],
+      "on_401": "fail",
+      "max_concurrent": 5,
+      "max_response_bytes": 102400,
+      "idempotency": {
+        "mode": "none",
+        "header_name": "Idempotency-Key",
+        "scope": "call"
+      }
+    },
+    "library_uuid": "ec838e94-61a5-49e8-8fe3-648e4ad17153",
+    "private": false
+  },
+  "Resend.resend@1.5.0": {
+    "version": "1.5.0",
+    "sandbox_endpoint": "https://api.resend.com",
+    "production_endpoint": "https://api.resend.com",
+    "methods": 83,
+    "auth": {
+      "provider_slug": "Resend",
+      "type": "api_key"
+    },
+    "init_details": {
+      "VERSION": "2.0.2",
+      "auth_type": "api_key"
+    },
+    "execution_policy": {
+      "max_retries": 3,
+      "base_delay_ms": 500,
+      "max_delay_ms": 30000,
+      "http_timeout_ms": 30000,
+      "connect_timeout_ms": 5000,
+      "total_timeout_ms": 90000,
+      "retry_on": [
+        429,
+        503,
+        504
+      ],
+      "non_retryable": [
+        400,
+        401,
+        403,
+        404,
+        422
+      ],
+      "on_401": "fail",
+      "max_concurrent": 5,
+      "max_response_bytes": 102400,
+      "idempotency": {
+        "mode": "none",
+        "header_name": "Idempotency-Key",
+        "scope": "call"
+      }
+    },
+    "library_uuid": "89f96e5f-f17b-4951-850d-bfcc6899df5a",
+    "private": false
+  }
+}
