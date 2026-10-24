@@ -65,7 +65,7 @@ All of them are in [`policies.json`](../.swytchcode/integrations/policies.json),
 | `confirmation.py` | The booking email, through Resend |
 | `sheets.py` | Reads and writes the Trips sheet, and its How to use text |
 | `describe.py` | Puts flights into words for the sheet and the email |
-| `swy.py` | Runs every call through Swytchcode: worked, blocked, waiting for approval or failed |
+| `swy.py` | Runs every call through Swytchcode: worked, blocked, waiting for approval, failed, or unsure whether it went through |
 
 Every call to Duffel, Google and Resend goes through `swy.run()`, so there are no API keys or HTTP clients anywhere else.
 

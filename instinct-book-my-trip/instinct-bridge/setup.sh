@@ -53,7 +53,7 @@ else
 fi
 
 bold "6/6  Where should approvals go?"
-echo "Bookings over $100 wait for your OK. In https://app.swytchcode.com go to"
+echo "Bookings over \$100 wait for your OK. In https://app.swytchcode.com go to"
 echo "Settings > Workspaces > book-my-trip > HITL Notifications, and pick Telegram or Slack."
 read -r -p "Which did you pick? [telegram/slack] " app
 case "$(printf %s "$app" | tr "[:upper:]" "[:lower:]")" in

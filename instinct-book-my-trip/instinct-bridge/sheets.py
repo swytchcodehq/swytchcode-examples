@@ -45,6 +45,7 @@ HOW_TO_USE = [
     "  working: wait a few seconds more.",
     "  done, booked, cancelled: finished.",
     "  waiting for approval: the owner approves it on their phone. Read the row again after the time in the result.",
+    "  checking: not sure yet whether the booking went through. Don't book it again; read the row in 3 minutes.",
     "  blocked: one of the owner's spending rules refused it.",
     "  failed: the result says what to fix. Fix it, then add a new row.",
     "  no answer: it wasn't approved in time. Add a new row to try again.",

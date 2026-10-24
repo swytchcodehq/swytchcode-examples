@@ -3,13 +3,15 @@
 Swytchcode holds the keys and checks each call against policies.json. A call
 ends one of four ways: it worked (run() returns the API's response), a policy
 refused it (Blocked), it's waiting for a person to approve it (NeedsApproval),
-or something else went wrong (Failed).
+or something else went wrong (Failed). Uncertain is a Failed where the call
+may still have gone through, so it mustn't simply be tried again.
 """
 
 import datetime as dt
 import json
 import os
 import re
+import subprocess
 
 from swytchcode_runtime import exec as swytchcode_exec
 from swytchcode_runtime.errors import SwytchcodeError
@@ -18,6 +20,8 @@ PROJECT_DIR = os.path.expanduser(os.environ.get("SWYTCHCODE_PROJECT", ".."))
 
 EXIT_BLOCKED = 6  # a policy refused the call
 EXIT_APPROVAL_PENDING = 7  # waiting for a person; Swytchcode replays the call once approved
+# The request may have reached the API: the CLI's SDK failure and internal error.
+EXIT_UNSURE = (4, 5)
 
 
 class Blocked(Exception):
@@ -37,6 +41,11 @@ class Failed(Exception):
     """Anything else: a bad response, a network error, a refused approval request."""
 
 
+class Uncertain(Failed):
+    """The call may have gone through: it timed out, or the reply was lost or
+    unreadable. Look the result up in the API before trying again."""
+
+
 def log(msg):
     print(f"{dt.datetime.now():%H:%M:%S}  {msg}", flush=True)
 
@@ -50,9 +59,11 @@ def run(tool, args, env=None, quiet=False):
     except SwytchcodeError as e:
         raise _outcome(e, quiet) from e
     if not isinstance(result, dict):
-        raise Failed("the API sent back an empty response")
+        raise Uncertain("the API sent back an empty response")
     body = result.get("data", result) if "status_code" in result else result
     status = int(result.get("status_code") or 0)
+    if status >= 500:
+        raise Uncertain(f"{api_error(body)} (HTTP {status})")
     if status >= 400:
         raise Failed(f"{api_error(body)} (HTTP {status})")
     if not quiet:
@@ -76,9 +87,11 @@ def _outcome(e, quiet):
         reason = policy_message(reason)
         log(f"  -> blocked by policy: {reason}")
         return Blocked(reason)
+    unsure = (isinstance(e.cause, subprocess.TimeoutExpired) or e.cause in EXIT_UNSURE
+              or text.startswith("Invalid JSON output"))
     if not quiet:
-        log(f"  -> failed: {reason}")
-    return Failed(reason)
+        log(f"  -> {'unsure' if unsure else 'failed'}: {reason}")
+    return Uncertain(reason) if unsure else Failed(reason)
 
 
 def policy_message(error):

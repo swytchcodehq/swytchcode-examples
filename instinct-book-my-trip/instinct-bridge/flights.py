@@ -39,8 +39,12 @@ APPROVAL_CHECK_SECONDS = 120
 APPROVAL_WAIT_SECONDS = int(os.environ.get("APPROVAL_WAIT_SECONDS", "720"))
 # Rows waiting for approval are looked up in Duffel this often.
 WAITING_CHECK_SECONDS = float(os.environ.get("WAITING_CHECK_SECONDS", "10"))
+# How long to look for a booking whose reply was lost before deciding it wasn't made.
+CHECKING_WAIT_SECONDS = 180
 
 WAITING = "waiting for approval"
+# A booking that may have gone through, to look up in Duffel before anyone tries again.
+CHECKING = "checking"
 
 
 class Update(NamedTuple):
@@ -129,6 +133,9 @@ def book(row, sheet, fallback_traveller=None):
         who = f'{passenger["given_name"]} {passenger["family_name"]}'
         return Update(WAITING, f"Approve it in {APPROVAL_APP}: {flight(offer)}, {price(offer)}, for {who}. "
                                f"Once you do, it's booked by {eta(time.time())}.", tag)
+    except swy.Uncertain:
+        return Update(CHECKING, "Not sure yet whether it went through, so I'm checking with Duffel. "
+                                "Don't book it again: this row says booked or not booked within 3 minutes.", tag)
     return booked(order)
 
 
@@ -183,6 +190,8 @@ def follow_up(row):
     Once approved, Swytchcode makes the call in the background and this script
     never sees the reply, so it looks the result up in Duffel instead.
     """
+    if not cell(row, "booking"):
+        return Update("failed", "There's nothing in 'booking' to look up. Add a new row to try again.")
     is_book = cell(row, "action").lower() == "book"
     if is_book:
         tag = cell(row, "booking")
@@ -196,6 +205,10 @@ def follow_up(row):
 
     asked = asked_at(row)
     if not asked:
+        return None
+    if cell(row, "status").lower() == CHECKING:
+        if time.time() - asked > CHECKING_WAIT_SECONDS:
+            return Update("failed", "Not booked: Duffel has no booking for it. Add a new row to try again.")
         return None
     done = "booked" if is_book else "cancelled"
     if time.time() - asked > APPROVAL_WAIT_SECONDS:

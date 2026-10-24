@@ -71,11 +71,14 @@ def main():
 
     print("2. Book option 1")
     row = add(id=2, action="book", search=1, option=1, status="new")
-    if row["status"] != "waiting for approval":
+    pending = (bridge.flights.WAITING, bridge.flights.CHECKING)
+    if row["status"] not in pending:
         return
 
-    print(f"3. Approve it in {bridge.flights.APPROVAL_APP}. Checking every 10 seconds (Ctrl+C to stop).")
-    while row["status"] == "waiting for approval":
+    step = "Looking it up in Duffel" if row["status"] == bridge.flights.CHECKING else \
+        f"Approve it in {bridge.flights.APPROVAL_APP}"
+    print(f"3. {step}. Checking every 10 seconds (Ctrl+C to stop).")
+    while row["status"] in pending:
         time.sleep(10)
         b.tick()
         row = requests.get_all_records()[-1]

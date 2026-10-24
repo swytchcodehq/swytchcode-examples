@@ -61,7 +61,7 @@ class Bridge:
             status = cell(row, "status").lower()
             if status == "new":
                 self.start(n, row)
-            elif status == flights.WAITING:
+            elif status in (flights.WAITING, flights.CHECKING):
                 self.follow_up(n, row)
 
     def start(self, n, row):
@@ -88,7 +88,7 @@ class Bridge:
         self.write(n, update)
 
     def follow_up(self, n, row):
-        """Checks a row waiting for approval, every WAITING_CHECK_SECONDS."""
+        """Checks a row waiting for approval or being checked, every WAITING_CHECK_SECONDS."""
         if time.monotonic() - self.last_follow_up.get(n, 0) < flights.WAITING_CHECK_SECONDS:
             return
         self.last_follow_up[n] = time.monotonic()
