@@ -199,7 +199,8 @@ def follow_up(row):
             if (order.get("metadata") or {}).get("sheet_request") == tag:
                 return booked(order)
     else:
-        ref = cell(row, "booking").split()[0].upper()
+        # The bridge writes "<reference> pending-<time>" here; check the reference before it goes to Duffel.
+        ref = checks.booking_ref({"booking": cell(row, "booking").split()[0]})
         if order_by_reference(ref).get("cancelled_at"):
             return Update("cancelled", f"Cancelled {ref}.", ref)
 
