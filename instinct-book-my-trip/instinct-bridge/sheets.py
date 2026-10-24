@@ -49,6 +49,7 @@ HOW_TO_USE = [
     "  blocked: one of the owner's spending rules refused it.",
     "  failed: the result says what to fix. Fix it, then add a new row.",
     "  no answer: it wasn't approved in time. Add a new row to try again.",
+    "  unconfirmed: it may or may not be booked. Tell the owner to check Duffel before booking again.",
 ]
 
 

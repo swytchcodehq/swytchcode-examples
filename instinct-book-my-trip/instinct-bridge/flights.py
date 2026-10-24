@@ -53,6 +53,10 @@ class Update(NamedTuple):
     booking: Optional[str] = None  # None leaves the booking cell as it is
 
 
+UNCONFIRMED = Update("unconfirmed", "I couldn't tell whether it was booked. Check the bookings in your Duffel "
+                                    "dashboard before you book it again.")
+
+
 def duffel(tool, args):
     """One Duffel call. Returns Duffel's `data`."""
     body = swy.run(TOOLS[tool], {**args, **DUFFEL_VERSION})
@@ -126,6 +130,8 @@ def book(row, sheet, fallback_traveller=None):
             # flight is shown on the approval request.
             "metadata": {"sheet_request": tag, "flight": flight(offer)},
         }}})
+        if not isinstance(order, dict):
+            raise swy.Uncertain("Duffel sent back no booking")
     except swy.NeedsApproval as e:
         if not e.delivered:
             return Update(WAITING, f"This booking needs your OK, but Swytchcode can't reach {APPROVAL_APP} yet. "
@@ -193,11 +199,11 @@ def follow_up(row):
     if not cell(row, "booking"):
         return Update("failed", "There's nothing in 'booking' to look up. Add a new row to try again.")
     is_book = cell(row, "action").lower() == "book"
+    searched_all = True  # only bookings are looked up page by page
     if is_book:
-        tag = cell(row, "booking")
-        for order in duffel("orders", {"limit": 50}) or []:
-            if (order.get("metadata") or {}).get("sheet_request") == tag:
-                return booked(order)
+        order, searched_all = order_by_tag(cell(row, "booking"))
+        if order:
+            return booked(order)
     else:
         # The bridge writes "<reference> pending-<time>" here; check the reference before it goes to Duffel.
         ref = checks.booking_ref({"booking": cell(row, "booking").split()[0]})
@@ -208,17 +214,39 @@ def follow_up(row):
     if not asked:
         return None
     if cell(row, "status").lower() == CHECKING:
-        if time.time() - asked > CHECKING_WAIT_SECONDS:
+        if time.time() - asked <= CHECKING_WAIT_SECONDS:
+            return None
+        if searched_all:
             return Update("failed", "Not booked: Duffel has no booking for it. Add a new row to try again.")
-        return None
+        return UNCONFIRMED
     done = "booked" if is_book else "cancelled"
     if time.time() - asked > APPROVAL_WAIT_SECONDS:
+        if not searched_all:
+            return UNCONFIRMED
         return Update("no answer", f"It wasn't approved in time, or it was denied, so nothing was {done}. "
                                    "Ask again if you still want it.")
     when = eta(asked)
     if when in cell(row, "result"):
         return None
     return Update(WAITING, f"Still waiting for your OK in {APPROVAL_APP}. If you've approved, it's {done} by {when}.")
+
+
+def order_by_tag(tag, max_pages=10):
+    """The order with this sheet_request tag, and whether every order was
+    searched. Duffel lists orders a page at a time, in no set order."""
+    after = None
+    for _ in range(max_pages):
+        args = {"limit": 200, **DUFFEL_VERSION, **({"after": after} if after else {})}
+        page = swy.run(TOOLS["orders"], args, quiet=True)
+        if not isinstance(page, dict):
+            raise swy.Uncertain("Duffel sent back no list of bookings")
+        for order in page.get("data") or []:
+            if (order.get("metadata") or {}).get("sheet_request") == tag:
+                return order, True
+        after = (page.get("meta") or {}).get("after")
+        if not after:
+            return None, True
+    return None, False
 
 
 def asked_at(row):
