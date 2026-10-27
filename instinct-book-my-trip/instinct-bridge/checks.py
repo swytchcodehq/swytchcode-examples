@@ -9,6 +9,8 @@ so it says what to fix.
 import datetime as dt
 import re
 
+import phonenumbers
+
 TIME_WINDOWS = {
     "morning": ("05:00", "11:59"),
     "afternoon": ("12:00", "17:59"),
@@ -129,6 +131,15 @@ def traveller(record):
         raise RowError("In the Traveller tab, 'email' isn't an email address.")
     phone = re.sub(r"[\s()-]", "", t.get("phone_number", ""))
     if not PHONE.match(phone):
-        raise RowError("In the Traveller tab, write 'phone_number' with the country code, like +447700900123.")
+        raise RowError("In the Traveller tab, write 'phone_number' with the country code, like +447911123456.")
+    # Duffel refuses numbers that can't exist, like +1 909 090 9090, but only
+    # after the booking is approved, so catch them before asking.
+    try:
+        real = phonenumbers.is_valid_number(phonenumbers.parse(phone))
+    except phonenumbers.NumberParseException:
+        real = False
+    if not real:
+        raise RowError(f"In the Traveller tab, 'phone_number' {phone} isn't a real number. Check it, "
+                       "keeping the country code, like +447911123456.")
     return {"title": title, "gender": gender, "given_name": t["given_name"], "family_name": t["family_name"],
             "born_on": born.isoformat(), "email": t["email"], "phone_number": phone}

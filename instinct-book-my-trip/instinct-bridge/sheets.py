@@ -36,7 +36,7 @@ HOW_TO_USE = [
     "",
     "Before the first booking, fill row 2 of the Traveller tab with the owner's details. Ask the owner for",
     "anything you don't know, and never guess: title = mr / ms / mrs / miss / dr, gender = m / f,",
-    "given_name, family_name, born_on = YYYY-MM-DD, email, phone_number with the country code (+447700900123).",
+    "given_name, family_name, born_on = YYYY-MM-DD, email, phone_number with the country code (+447911123456).",
     "",
     "After adding a row, wait about 15 seconds, then read that row's status and result, and tell the owner",
     "the result in your own words, keeping every price, time and booking reference exactly as written.",
