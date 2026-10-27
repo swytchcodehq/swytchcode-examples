@@ -6,9 +6,11 @@ bookings, what goes in the booking cell.
 """
 
 import datetime as dt
+import json
 import os
 import re
 import secrets
+import sqlite3
 import time
 from typing import NamedTuple, Optional
 
@@ -41,6 +43,13 @@ APPROVAL_WAIT_SECONDS = int(os.environ.get("APPROVAL_WAIT_SECONDS", "720"))
 WAITING_CHECK_SECONDS = float(os.environ.get("WAITING_CHECK_SECONDS", "10"))
 # How long to look for a booking whose reply was lost before deciding it wasn't made.
 CHECKING_WAIT_SECONDS = 180
+
+# Swytchcode makes an approved call itself. It keeps each approval's request in
+# its local database and logs the call's reply under the approval's fingerprint.
+# That log is the only place a refused booking shows up.
+SWYTCHCODE_HOME = os.path.expanduser("~/.swytchcode")
+APPROVALS_DB = os.path.join(SWYTCHCODE_HOME, "usage.db")
+REPLAY_LOGS = os.path.join(SWYTCHCODE_HOME, "audit", "hitl")
 
 WAITING = "waiting for approval"
 # A booking that may have gone through, to look up in Duffel before anyone tries again.
@@ -201,9 +210,13 @@ def follow_up(row):
     is_book = cell(row, "action").lower() == "book"
     searched_all = True  # only bookings are looked up page by page
     if is_book:
-        order, searched_all = order_by_tag(cell(row, "booking"))
+        tag = cell(row, "booking")
+        order, searched_all = order_by_tag(tag)
         if order:
             return booked(order)
+        refused = replay_error(tag)
+        if refused:
+            return Update("failed", f"Approved, but Duffel didn't book it: {refused}. Fix that, then add a new row.")
     else:
         # The bridge writes "<reference> pending-<time>" here; check the reference before it goes to Duffel.
         ref = checks.booking_ref({"booking": cell(row, "booking").split()[0]})
@@ -247,6 +260,43 @@ def order_by_tag(tag, max_pages=10):
         if not after:
             return None, True
     return None, False
+
+
+def replay_error(tag):
+    """Duffel's reason for refusing the approved booking with this tag, or None
+    if it hasn't refused it (or the approved call hasn't run yet)."""
+    for fingerprint in approvals_for(tag):
+        try:
+            with open(os.path.join(REPLAY_LOGS, f"{fingerprint}.log")) as f:
+                text = f.read()
+        except OSError:
+            continue
+        for line in text.splitlines():
+            if line.startswith("{") and '"status_code"' in line:
+                try:
+                    reply = json.loads(line)
+                except ValueError:
+                    continue
+                if int(reply.get("status_code") or 0) >= 400:
+                    return swy.api_error(reply.get("data")).rstrip(".")
+    return None
+
+
+def approvals_for(tag):
+    """Fingerprints of the approval requests whose booking carries this tag.
+    The log only has the reply, so the request is matched here."""
+    if not os.path.exists(APPROVALS_DB):
+        return []
+    try:
+        db = sqlite3.connect(APPROVALS_DB, timeout=5)
+        try:
+            rows = db.execute("SELECT fingerprint FROM approval_requests WHERE instr(replay_payload, ?) > 0",
+                              (tag,)).fetchall()
+        finally:
+            db.close()
+    except sqlite3.Error:
+        return []
+    return [fingerprint for (fingerprint,) in rows]
 
 
 def asked_at(row):
