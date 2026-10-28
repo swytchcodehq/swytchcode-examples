@@ -1,0 +1,29 @@
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# macOS
+.DS_Store
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# Swytchcode local/project state
+**/.swytchcode/
+
+# Logs / temporary files
+*.log
+*.tmp
